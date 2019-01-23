@@ -1,9 +1,9 @@
 {
   "scripts": {
-    "webpack": "webpack --config vendor/dubysa/components/src/Framework/WebPack/webpack.config.js",
-    "watch": "webpack --config vendor/dubysa/components/src/Framework/WebPack/webpack.config.js --watch",
-    "testing-webpack": "webpack --config vendor/dubysa/components/src/Framework/WebPack/webpack.config.js --env.APP_ENV=testing",
-    "testing-watch": "webpack --config vendor/dubysa/components/src/Framework/WebPack/webpack.config.js --env.APP_ENV=testing --watch"
+    "webpack": "webpack --config vendor/dubysa/framework/src/Framework/WebPack/webpack.config.js",
+    "watch": "webpack --config vendor/dubysa/framework/src/Framework/WebPack/webpack.config.js --watch",
+    "testing-webpack": "webpack --config vendor/dubysa/framework/src/Framework/WebPack/webpack.config.js --env.APP_ENV=testing",
+    "testing-watch": "webpack --config vendor/dubysa/framework/src/Framework/WebPack/webpack.config.js --env.APP_ENV=testing --watch"
   },
   "devDependencies": {
     "css-loader": "^1.0.1",
