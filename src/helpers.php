@@ -6,6 +6,7 @@ use Manadev\Core\Merger;
 use Manadev\Core\Object_;
 use Manadev\Core\Promise;
 use Manadev\Framework\Layers\Layout;
+use Manadev\Framework\Views\View;
 
 function m_make_dir($dir, $mode = null) {
     global $m_app; /* @var App $m_app */
@@ -65,11 +66,10 @@ function m_layout(...$layers) {
 }
 
 function m_view($content) {
-    return m_layout('base', [
-        '#page' => [
-            'content' => $content,
-        ],
-    ]);
+    if (is_string($content)) {
+        $content = View::new(['template' => $content]);
+    }
+    return (string)$content;
 }
 
 function m_core_log($message, $filename = 'core.log') {
