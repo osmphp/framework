@@ -1,0 +1,27 @@
+{
+    "name": "dubysa/framework",
+    "autoload": {
+        "psr-4": {
+            "Manadev\\": "src/",
+            "Manadev\\Tests\\": "tests/",
+            "Manadev\\Samples\\": "samples/"
+        }
+    },
+    "require": {
+        "php": ">=7.1"
+    },
+    "extra": {
+        "dubysa": {
+            "component_pools": {
+                "src": {
+                    "module_path": "*/*/Module.php",
+                    "theme_path": "*/*/theme.php"
+                },
+                "samples": {
+                    "module_path": "*/Module.php",
+                    "testing": true
+                }
+            }
+        }
+    }
+}
