@@ -34,6 +34,8 @@ class View extends Object_
 
         // if no view is rendered, parent is set to null
         $this->parent = $this->rendering->current_view;
+
+        $this->assignSelfAsParentTo($data);
     }
 
     public function set($data) {
