@@ -101,6 +101,7 @@ class Compiler extends Object_
 
             if ($fileInfo->isDir()) {
                 $this->collectModuleClasses($module, ($path ? "{$path}/" : '') . $fileInfo->getFilename());
+                continue;
             }
 
             if ($fileInfo->getExtension() != 'php') {

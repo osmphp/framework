@@ -94,6 +94,7 @@ EOT;
             $name = ($path ? "$path/" : '') . $fileInfo->getFilename();
             if ($fileInfo->isDir()) {
                 $this->collectFromPath($package, $basePath, $name);
+                continue;
             }
 
             if ($fileInfo->getExtension() != 'php') {
