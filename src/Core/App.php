@@ -34,6 +34,7 @@ use Manadev\Framework\Http\Query as HttpQuery;
 use Manadev\Framework\Http\Request;
 use Manadev\Framework\Http\UrlGenerator;
 use Manadev\Framework\Layers\Layout;
+use Manadev\Framework\Logging\Logs;
 use Manadev\Framework\Queues\Queue;
 use Manadev\Framework\Queues\Queues;
 use Manadev\Framework\Sessions\Session;
@@ -118,6 +119,8 @@ use Symfony\Component\HttpFoundation\Response;
  *      @property Jobs|Job[] $cron_jobs @required @default
  * @see \Manadev\Framework\Cron\Module:
  *      @property Hashing $hashing @required @default
+ * @see \Manadev\Framework\Logging\Module:
+ *      @property Logs $logs @required @default
  * @see \Manadev\Data\OptionLists\Module:
  *      @property OptionLists|OptionList[] $option_lists @required @default
  * @see \Manadev\Data\TableQueries\Module:

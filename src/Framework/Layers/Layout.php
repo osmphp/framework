@@ -11,6 +11,7 @@ use Manadev\Framework\Layers\Exceptions\InvalidInstruction;
 use Manadev\Framework\Themes\Theme;
 use Manadev\Framework\Views\Iterator;
 use Manadev\Framework\Views\View;
+use Psr\Log\LoggerInterface;
 
 /**
  * @property Cache $cache @required
@@ -19,6 +20,7 @@ use Manadev\Framework\Views\View;
  * @property string $path @required
  * @property View $root @required
  * @property Iterator $iterator @required
+ * @property LoggerInterface $log @required
  */
 class Layout extends Object_
 {
@@ -42,6 +44,7 @@ class Layout extends Object_
             case 'iterator': return $m_app[Iterator::class];
             case 'path': return $m_app->path("{$m_app->temp_path}/layers/{$this->area->name}/" .
                 $this->theme->name);
+            case 'log': return $m_app->logs->layers;
         }
         return parent::default($property);
     }
@@ -113,6 +116,7 @@ class Layout extends Object_
             $filename = "{$this->path}/{$module->name}/{$layer}.php";
             if (file_exists($filename)) {
                 $result[$filename] = $this->loadFile($filename);
+                $this->log->info(m_("{filename} loaded."), ['filename' => $filename]);
                 $exists = true;
             }
         }

@@ -31,6 +31,8 @@ use Manadev\Framework\Cache\CacheItem;
  *      @property int $hashing_argon2_threads @required @part
  * @see \Manadev\Framework\Profiler\Module:
  *      @property int $profiler_time_to_live @required @part
+ * @ \Manadev\Framework\Layers\Module:
+ *      @property bool $log_layers @part
  * @see \Manadev\App\App\Module:
  *      @property int $backend_session_time_to_live @required @part
  *      @property string $backend_session_cookie_name @required @part
