@@ -8,7 +8,7 @@ use Illuminate\Console\OutputStyle;
 
 /**
  * @property string $name @required $part
- * @property string $event @required $part
+ * @property string[] $events @required $part
  * @property OutputStyle $output @temp
  */
 class Hook extends Object_

@@ -7,7 +7,7 @@ use Manadev\Framework\Processes\Process;
 
 class ComposerHook extends Hook
 {
-    public $event = 'post-update';
+    public $events = ['post-create-project', 'post-update'];
 
     public function run() {
         if (!Process::runBuffered('npm -v')) {
