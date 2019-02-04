@@ -30,7 +30,7 @@ class RunHooks extends Command
         $event = $this->input->getArgument('event');
 
         foreach ($this->hooks as $hook) {
-            if (in_array($event, $hook->events)) {
+            if (!in_array($event, $hook->events)) {
                 continue;
             }
 
