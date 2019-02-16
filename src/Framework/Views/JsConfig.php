@@ -9,7 +9,7 @@ use Manadev\Core\Object_;
  * @property array $transient_query @required @part
  *
  * @see \Manadev\Ui\SnackBars\Module:
- *      @property int $close_snack_bars_after @required
+ *      @property int $close_snack_bars_after @required @part
  */
 class JsConfig extends Object_
 {
