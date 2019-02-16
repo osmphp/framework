@@ -219,6 +219,7 @@ class App extends Object_
         $app->modules = (new ModuleLoader())->load();
 
         static::includeGeneratedClasses();
+        $app->saveClasses();
 
         try {
             file_put_contents(m_make_dir_for($filename), serialize($app));
@@ -284,7 +285,6 @@ class App extends Object_
 
     public function terminate() {
         global $m_profiler; /* @var Profiler $m_profiler */
-        global $m_classes; /* @var Classes $m_classes */
 
         if ($m_profiler) $m_profiler->start(__METHOD__, 'lifecycle');
         try {
@@ -299,12 +299,8 @@ class App extends Object_
 
                 $this->modified = false;
             }
-            if ($m_classes->modified) {
-                $classFilename = $this->path("{$this->temp_path}/cache/classes.json");
-                file_put_contents(m_make_dir_for($classFilename), json_encode($m_classes->items));
-                @chmod($classFilename, $this->writable_file_permissions);
-                $m_classes->modified = false;
-            }
+
+            $this->saveClasses();
         }
         finally {
             if ($m_profiler) $m_profiler->stop(__METHOD__);
@@ -313,6 +309,17 @@ class App extends Object_
         if ($m_profiler) $m_profiler->terminate();
 
         return $this;
+    }
+
+    protected function saveClasses() {
+        global $m_classes; /* @var Classes $m_classes */
+
+        if ($m_classes->modified) {
+            $classFilename = $this->path("{$this->temp_path}/cache/classes.json");
+            file_put_contents(m_make_dir_for($classFilename), json_encode($m_classes->items));
+            @chmod($classFilename, $this->writable_file_permissions);
+            $m_classes->modified = false;
+        }
     }
 
     public static function runApp($mainModule, $data) {
