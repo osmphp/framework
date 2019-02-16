@@ -2,7 +2,7 @@
 
 namespace Manadev\Tests\Core;
 
-use Generated\Testing\Manadev\Samples\Compilation\DerivedClass;
+use Manadev\Samples\Compilation\DerivedClass;
 use Manadev\Core\App;
 use Manadev\Core\Classes\Classes;
 use Manadev\Framework\Testing\Tests\UnitTestCase;
