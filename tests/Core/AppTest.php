@@ -25,7 +25,7 @@ class AppTest extends UnitTestCase
     public function test_that_packages_are_loaded() {
         global $m_app; /* @var App $m_app */
 
-        $this->assertArrayHasKey('dubysa/components', $m_app->packages);
+        $this->assertArrayHasKey('dubysa/framework', $m_app->packages);
     }
 
     public function test_that_modules_are_loaded() {

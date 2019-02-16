@@ -11,11 +11,21 @@ use Manadev\Framework\Views\JsConfig;
 use Manadev\Framework\Views\View;
 
 /**
- * @property string $title @required @part
- * @property View $header @part
- * @property View $content @required @part
- * @property View $footer @part
- * @property string $html_modifier @part
+ * Renders HTML page.
+ *
+ * Assign the following properties in every page type layer:
+ *
+ * @property string $title @required @part Page meta title
+ * @property View $content @required @part View to be rendered in main content area
+ *
+ * Optional properties:
+ *
+ * @property View $header @part Header view
+ * @property View $footer @part Footer view
+ * @property string $html_modifier @part CSS classes to add to <html> element
+ *
+ * Dependencies:
+ *
  * @property Request $request @required
  * @property JsConfig $model @required
  * @property UrlGenerator $url_generator @required
@@ -23,14 +33,35 @@ use Manadev\Framework\Views\View;
  */
 class Page extends View
 {
-    public $id_ = '';
-    public $id = 'page';
     public $template = 'Manadev_Framework_Views.page';
+
     /**
-     * @required @path
+     * Page view doesn't have HTML id assigned, so HTML id of every child view is the same as its alias
+     *
+     * @var string
+     */
+    public $id_ = '';
+
+    /**
+     * View ID is preassigned, so you can easily reference page view using '#page' => [ ... ] instruction
+     *
+     * @var string
+     */
+    public $id = 'page';
+
+    /**
+     * Add views to be rendered before closing </head>
+     *
+     * @required @part
      * @var View[]
      */
     public $head_end = [];
+    /**
+     * Add views to be rendered before closing </head>
+     *
+     * @required @part
+     * @var View[]
+     */
     public $body_end = [];
 
     protected function default($property) {
