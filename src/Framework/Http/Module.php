@@ -106,11 +106,12 @@ class Module extends BaseModule
         global $m_app; /* @var App $m_app */
 
         $error->e = $e;
+
+        /* @var Response $response */
         $response = $m_app->createRaw(Response::class, $error->content, $error->status, [
             'content-type' => $error->content_type,
+            'status-text' => $error->status_text,
         ]);
-
-        $response->setStatusCode($error->status, $error->status_text);
 
         return $response;
     }
