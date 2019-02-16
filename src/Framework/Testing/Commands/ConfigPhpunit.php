@@ -97,10 +97,13 @@ EOT;
                 continue;
             }
 
-            if ($fileInfo->getExtension() != 'php') {
+            if ($m_app->ignore($fileInfo->getPathname())) {
                 continue;
             }
 
+            if ($fileInfo->getExtension() != 'php') {
+                continue;
+            }
 
             $class = $package->namespaces['tests'] . '\\' .
                 str_replace('/', '\\',
