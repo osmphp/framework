@@ -81,6 +81,7 @@ class View extends Object_
     }
 
     public function rendering() {
+        $this->js_config->translate("Signed up successfully.");
     }
 
     public function rendered($result) {
