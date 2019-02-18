@@ -83,7 +83,6 @@ class Object_ implements \ArrayAccess
     public function __get($property) {
         global $m_app; /* @var App $m_app */
         global $m_profiler; /* @var Profiler $m_profiler */
-        global $m_classes; /* @var Classes $m_classes */
 
         // The following check is not needed by the very definition of __get() magic method. However, as of
         // PHP 7.2, __get() may be called twice in complex isset expression like isset($object->property[$key])

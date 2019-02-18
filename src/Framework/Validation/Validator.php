@@ -72,12 +72,12 @@ class Validator extends Object_
     }
 
     protected function doValidate($data, array $property, $path = '') {
-        if (isset($property['array'])) {
+        if (!empty($property['array'])) {
             return $this->validateArray($data, $property, $path);
         }
 
         if ($data === null) {
-            if (isset($property['required'])) {
+            if (!empty($property['required'])) {
                 return $this->validationFailed($path, $path
                     ? m_("Fill in this field")
                     : m_("Data expected"));
@@ -167,7 +167,7 @@ class Validator extends Object_
 
         $data = trim($data);
 
-        if (!$data && isset($property['required'])) {
+        if (!$data && !empty($property['required'])) {
             return $this->validationFailed($path, m_("Fill in this field"));
         }
 

@@ -109,10 +109,10 @@ class Module extends BaseModule
 
         /* @var Response $response */
         $response = $m_app->createRaw(Response::class, $error->content, $error->status, [
-            'content-type' => $error->content_type,
-            'status-text' => $error->status_text,
+            'Content-Type' => $error->content_type,
+            'Status-Text' => $error->status_text,
         ]);
 
-        return $response;
+        return $response->setStatusCode($error->status, $error->status_text);
     }
 }
