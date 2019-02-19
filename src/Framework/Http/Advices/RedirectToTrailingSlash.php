@@ -44,22 +44,24 @@ class RedirectToTrailingSlash extends Advice
     }
 
     protected function redirect() {
-        if ($this->request->route == '/') {
+        if ($this->request->method_and_route == 'GET /') {
             return null;
         }
 
-        if (mb_strrpos($this->request->route, '/') === mb_strlen($this->request->route) - mb_strlen('/')) {
-            $redirectTo = mb_substr($this->request->route, 0, mb_strlen($this->request->route) - mb_strlen('/'));
+        if (mb_strrpos($this->request->method_and_route, '/') === mb_strlen($this->request->method_and_route)
+            - mb_strlen('/'))
+        {
+            $redirectTo = mb_substr($this->request->method_and_route, 0, mb_strlen($this->request->method_and_route)
+                - mb_strlen('/'));
         }
         else {
-            $redirectTo = $this->request->route . '/';
+            $redirectTo = $this->request->method_and_route . '/';
         }
 
-        if (!isset($this->area->controllers["{$this->request->route} {$redirectTo}"])) {
+        if (!isset($this->area->controllers[$redirectTo])) {
             return null;
         }
 
-        return $this->responses->redirect($this->url_generator->rawUrl(
-            "{$this->request->route} {$redirectTo}", $this->request->query));
+        return $this->responses->redirect($this->url_generator->rawUrl($redirectTo, $this->request->query));
     }
 }
