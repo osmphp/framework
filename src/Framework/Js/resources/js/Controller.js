@@ -98,7 +98,7 @@ export default class Controller {
                 selector == 'broadcast' ? [] : (
                 selector == 'window' ? [window] : (
                 selector == 'document' ? [document] : (
-                selector.startsWith('&') ? [document.getElementById(this.getAliasedId(selector))] :
+                selector.startsWith('&') ? this.queryAliasedElement(selector) :
                 this.element.querySelectorAll(selector))));
         }
         else {
@@ -125,5 +125,10 @@ export default class Controller {
             return alias.substr(3);
         }
         return this.alias_base + alias.substr(1);
+    }
+
+    queryAliasedElement(selector) {
+        let element = document.getElementById(this.getAliasedId(selector));
+        return element ? [element] : [];
     }
 };

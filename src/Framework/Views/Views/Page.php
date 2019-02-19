@@ -64,6 +64,11 @@ class Page extends View
      */
     public $body_end = [];
 
+    /**
+     * @var string[]
+     */
+    public $translations = [];
+
     protected function default($property) {
         global $m_app; /* @var App $m_app */
 
@@ -84,5 +89,9 @@ class Page extends View
             function(Parameter $parameter) {
                 return $parameter->transient;
             });
+
+        foreach ($this->translations as $text) {
+            $this->model->translate($text);
+        }
     }
 }

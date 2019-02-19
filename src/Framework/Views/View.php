@@ -105,7 +105,7 @@ class View extends Object_
             throw new IdCantBeInferred(m_("View alias not assigned, id_ can't be rendered."));
         }
 
-        return (isset($this->parent->id_) ? $this->parent->id_ . '__' : '') . $this->alias;
+        return (!empty($this->parent->id_) ? $this->parent->id_ . '__' : '') . $this->alias;
     }
 
     public function __isset($key) {
