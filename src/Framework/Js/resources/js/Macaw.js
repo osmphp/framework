@@ -96,7 +96,7 @@ export default class Macaw {
      * Called after page is loaded and all controllers are registered
      */
     ready() {
-        this.afterInserted(document.body);
+        this.afterInserted(document);
     }
 
     /**
