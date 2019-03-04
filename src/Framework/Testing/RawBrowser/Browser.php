@@ -1,16 +1,17 @@
 <?php
 
-namespace Manadev\Framework\Testing\Browsers;
+namespace Manadev\Framework\Testing\RawBrowser;
 
 use Manadev\Core\App;
 use Manadev\Framework\Http\Request;
+use Manadev\Framework\Testing\Browser\Browser as BaseBrowser;
 use Manadev\Framework\Testing\Exceptions\BrowserError;
 use Manadev\Framework\Testing\Exceptions\InvalidRequest;
 use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 use Symfony\Component\HttpFoundation\Response;
 
 
-class RawBrowser extends Browser
+class Browser extends BaseBrowser
 {
     /**
      * @var int @part @required
@@ -113,6 +114,6 @@ class RawBrowser extends Browser
      * @return Document
      */
     protected function createDocument($response) {
-        return RawDocument::new(['html' => $response->getContent()], null, $this);
+        return Document::new(['html' => $response->getContent()], null, $this);
     }
 }

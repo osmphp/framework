@@ -4,7 +4,7 @@ namespace Manadev\Framework\Testing\Tests;
 
 use Manadev\Framework\Migrations\Migrator;
 use Manadev\Framework\Processes\Process;
-use Manadev\Framework\Testing\Browsers\Browser;
+use Manadev\Framework\Testing\Browser\Browser;
 use Manadev\Framework\Testing\Exceptions\UndefinedBrowser;
 
 /**
@@ -45,12 +45,16 @@ abstract class AppTestCase extends UnitTestCase
     }
 
     /**
-     * @param string[]|array $browsers
+     * @param string|string[]|array $browsers
      * @param callable $callback
      */
     protected function browse($browsers, callable $callback) {
         /* @var Browser[] $browsers_ */
         $browsers_ = [];
+
+        if (is_string($browsers)) {
+            $browsers = [$browsers];
+        }
 
         foreach ($browsers as $browser) {
             if (is_string($browser)) {

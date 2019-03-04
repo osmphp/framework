@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Framework\Testing\Browsers;
+namespace Manadev\Framework\Testing\Browser;
 
 use Manadev\Core\Object_;
 

@@ -1,14 +1,15 @@
 <?php
 
-namespace Manadev\Framework\Testing\Browsers;
+namespace Manadev\Framework\Testing\RawBrowser;
 
+use Manadev\Framework\Testing\Browser\Elements as BaseElements;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
- * @property RawDocument $parent
+ * @property Document $parent
  * @property Crawler $crawler @required
  */
-class RawElements extends Elements
+class Elements extends BaseElements
 {
     /**
      * @return string
