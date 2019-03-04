@@ -13,4 +13,8 @@ class Web extends Controller
     public function ajaxPage() {
         return m_layout('test');
     }
+
+    public function ajax() {
+        return (object)['sample' => 'response'];
+    }
 }
