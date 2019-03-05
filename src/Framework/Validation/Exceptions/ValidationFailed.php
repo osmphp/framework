@@ -10,7 +10,7 @@ class ValidationFailed extends HttpError
     public $errors;
 
     public function __construct($message, $errors, \Throwable $previous = null) {
-        parent::__construct($message, 0, $previous);
+        parent::__construct($message, null, $previous);
         $this->errors = $errors;
     }
 }

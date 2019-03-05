@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'api' => [
-        'title' => m_("JS API"),
+    'unit' => [
+        'title' => m_("Unit Tests"),
         'children' => [
-            'ajax' => ['title' => m_("AJAX"), 'route' => 'GET /tests/api/ajax'],
+            'framework' => ['title' => m_("Framework"), 'route' => 'GET /tests/unit/framework'],
         ],
     ],
 ];

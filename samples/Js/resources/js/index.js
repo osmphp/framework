@@ -1,9 +1,11 @@
-import './tests/ajax';
+import './tests';
 import tests from "./vars/tests";
 
-mocha.setup('bdd');
-requestAnimationFrame(() => {
-    tests[location.pathname]();
-    window.assert = chai.assert;
-    mocha.run();
-});
+if (typeof mocha !== 'undefined') {
+    mocha.setup('bdd');
+    requestAnimationFrame(() => {
+        tests[location.pathname]();
+        window.assert = chai.assert;
+        mocha.run();
+    });
+}
