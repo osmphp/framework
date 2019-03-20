@@ -9,7 +9,10 @@ class Container extends View
     public $template = 'Manadev_Framework_Views.container';
 
     /**
-     * @var View[] @required @part
+     * @required @part
+     * @var View[]
      */
     public $views = [];
+
+    public $id_ = null;
 }

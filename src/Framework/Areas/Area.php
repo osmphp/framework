@@ -33,8 +33,8 @@ use Manadev\Ui\Menus\Menus;
  *      @property string $session_class @part
  * @see \Manadev\Ui\Menus\Traits\AreaTrait
  *      @property Menus $menus @required
- * @see \Manadev\Ui\DataTables\Traits\AreaTrait
- *      @property DataTables $data_tables @required
+ * @see \Manadev\Ui\DataTables\Module
+ *      @property DataTables $data_tables @required @default
  */
 class Area extends Object_
 {
