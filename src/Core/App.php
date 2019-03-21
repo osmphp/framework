@@ -7,7 +7,7 @@ use Manadev\Data\Formulas\Functions\Function_;
 use Manadev\Data\Formulas\Functions\Functions;
 use Manadev\Data\OptionLists\OptionList;
 use Manadev\Data\OptionLists\OptionLists;
-use Manadev\Data\Sheets\Query;
+use Manadev\Data\Sheets\Sheet;
 use Manadev\Data\Sheets\Sheets;
 use Manadev\Data\TableQueries\TableQuery;
 use Manadev\Framework\Areas\Area;
@@ -126,7 +126,7 @@ use Symfony\Component\HttpFoundation\Response;
  * @see \Manadev\Data\TableQueries\Module:
  *      @property Functions|Function_[] $table_functions @required @default
  * @see \Manadev\Data\Sheets\Module:
- *      @property Sheets|Query[] $sheets @required @default
+ *      @property Sheets|Sheet[] $sheets @required @default
  *
  * Module shortcuts:
  *
