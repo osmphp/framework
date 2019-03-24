@@ -52,6 +52,8 @@ use Manadev\Framework\Cache\CacheItem;
  *
  * @see \Manadev\Ui\SnackBars\Module:
  *      @property int $close_snack_bars_after @required @part
+ * @see \Manadev\Ui\DataTables\Module:
+ *      @property int $data_table_rows_per_page @required @part
  */
 class Settings extends CacheItem
 {
