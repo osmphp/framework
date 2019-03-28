@@ -43,6 +43,7 @@ class Classes
 
         $this->getActualProperties($result, $reflection);
         $this->getDocCommentProperties($result, $reflection);
+        $this->mergeParentProperties($result, $result['parent']);
 
         return $result;
     }
@@ -150,5 +151,20 @@ class Classes
         else {
             $class['properties'][$name] = array_merge(compact('name', 'type'), $attributes);
         }
+    }
+
+    protected function mergeParentProperties(&$class, $parent) {
+        while ($parent) {
+            $parent_ = $this->get($parent);
+
+            foreach ($class['properties'] as $property => &$property_) {
+                if (isset($parent_['properties'][$property])) {
+                    $property_ = array_merge($parent_['properties'][$property], $property_);
+                }
+            }
+
+            $parent = $parent_['parent'];
+        }
+
     }
 }
