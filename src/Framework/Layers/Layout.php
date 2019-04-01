@@ -8,6 +8,7 @@ use Manadev\Framework\Areas\Area;
 use Manadev\Framework\Cache\Cache;
 use Manadev\Core\Object_;
 use Manadev\Framework\Layers\Exceptions\InvalidInstruction;
+use Manadev\Framework\Themes\Current;
 use Manadev\Framework\Themes\Theme;
 use Manadev\Framework\Views\Iterator;
 use Manadev\Framework\Views\View;
@@ -40,7 +41,7 @@ class Layout extends Object_
         switch ($property) {
             case 'cache': return $m_app->cache;
             case 'area': return $m_app->area_;
-            case 'theme': return $m_app->theme_;
+            case 'theme': return $m_app->themes[$m_app[Current::class]->get($this->area->name)];
             case 'iterator': return $m_app[Iterator::class];
             case 'path': return $m_app->path("{$m_app->temp_path}/layers/{$this->area->name}/" .
                 $this->theme->name);
@@ -144,7 +145,7 @@ class Layout extends Object_
 
     protected function processInstruction($instruction, $value) {
         if (starts_with($instruction, '#')) {
-            if ($view = $this->findViewById($instruction)) {
+            if ($view = $this->select($instruction)) {
                 $this->assign($view, $value);
             }
             return;
@@ -193,11 +194,50 @@ class Layout extends Object_
     }
 
     /**
-     * @param $key
+     * @param $selector
      * @return View
      */
-    protected function findViewById($key) {
-        return $this->views[substr($key, 1)] ?? null;
+    public function select($selector) {
+        if (($pos = mb_strpos($selector, '.')) !== false) {
+            $path = mb_substr($selector, $pos + 1);
+            $selector = mb_substr($selector, 1, $pos - 1);
+        }
+        else {
+            $path = null;
+            $selector = mb_substr($selector, 1);
+        }
+
+        if (!isset($this->views[$selector])) {
+            return null;
+        }
+
+        $result = $this->views[$selector];
+
+        if ($path === null) {
+            return $result;
+        }
+
+        foreach (explode('.', $path) as $property) {
+            if (($pos = mb_strpos($property, '[')) !== false) {
+                $index = mb_substr($property, $pos + 1, mb_strlen($property) - $pos - 2);
+                $property = mb_substr($property, 0, $pos);
+            }
+            else {
+                $index = null;
+            }
+
+            if (!isset($result->$property)) {
+                return null;
+            }
+
+            $result = $result->$property;
+
+            if ($index !== null) {
+                $result = $result[$index];
+            }
+        }
+
+        return $result;
     }
 
     protected function assign(View $view, $value) {
