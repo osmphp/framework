@@ -16,7 +16,7 @@ use Manadev\Framework\Views\Exceptions\IdCantBeInferred;
  * @property object $model
  * @property string $view_model_script @required
  *
- * @property \Manadev\Framework\Views\Module $views @required
+ * @property \Manadev\Framework\Views\Module $module @required
  * @property ViewFactory $laravel_view @required
  * @property Rendering $rendering @required
  * @property Iterator $iterator @required
@@ -48,8 +48,8 @@ class View extends Object_
         global $m_app; /* @var App $m_app */
 
         switch ($property) {
-            case 'views': return $m_app->modules['Manadev_Framework_Views'];
-            case 'laravel_view': return $this->views->laravel_view;
+            case 'module': return $m_app->modules['Manadev_Framework_Views'];
+            case 'laravel_view': return $this->module->laravel_view;
             case 'rendering': return $m_app[Rendering::class];
             case 'iterator': return $m_app[Iterator::class];
             case 'id_': return $this->inferId();
@@ -105,7 +105,19 @@ class View extends Object_
             throw new IdCantBeInferred(m_("View alias not assigned, id_ can't be rendered."));
         }
 
-        return (!empty($this->parent->id_) ? $this->parent->id_ . '__' : '') . $this->alias;
+        $alias = isset($this->parent->content) || isset($this->parent->views)
+            ? "_{$this->alias}"
+            : $this->alias;
+
+        if (starts_with($alias, '_views_')) {
+            $alias = substr($alias, strlen('_views_'));
+        }
+
+        if ($this->parent->alias == 'content') {
+            return (!empty($this->parent->parent->id_) ? $this->parent->parent->id_ . '__' : '') . $alias;
+        }
+
+        return (!empty($this->parent->id_) ? $this->parent->id_ . '__' : '') . $alias;
     }
 
     public function __isset($key) {
