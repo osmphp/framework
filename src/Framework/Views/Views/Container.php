@@ -13,6 +13,4 @@ class Container extends View
      * @var View[]
      */
     public $views = [];
-
-    public $id_ = null;
 }
