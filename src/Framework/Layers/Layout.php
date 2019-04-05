@@ -270,6 +270,9 @@ class Layout extends Object_
         }
     }
 
+    /**
+     * @return Layout
+     */
     public function prepare() {
         $prepared = [];
         do {
