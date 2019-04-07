@@ -1,4 +1,5 @@
 import callOncePerAnimationFrame from "./callOncePerAnimationFrame";
+import debounceForAnimationFrame from "./debounceForAnimationFrame";
 import $ from 'jquery';
 
 export default class Controller {
@@ -45,12 +46,15 @@ export default class Controller {
 
             let listener = events[event];
             let parsed = this.parseEventNameAndSelector(element, event);
-            let key = parsed.throttle ? 'throttle:' + listener : listener;
+            let key = parsed.prefix + listener;
 
             if (!this.bound_event_listeners[key]) {
                 this.bound_event_listeners[key] = parsed.throttle
                     ? callOncePerAnimationFrame(this.bindListener(listener))
-                    : this.bindListener(listener);
+                    : (parsed.debounce
+                        ? debounceForAnimationFrame(this.bindListener(listener))
+                        : this.bindListener(listener)
+                    );
             }
 
             Array.prototype.forEach.call(parsed.matching_elements, element => {
@@ -67,7 +71,7 @@ export default class Controller {
 
             let listener = events[event];
             let parsed = this.parseEventNameAndSelector(element, event);
-            let key = parsed.throttle ? 'throttle:' + listener : listener;
+            let key = parsed.prefix + listener;
 
             Array.prototype.forEach.call(parsed.matching_elements, element => {
                 element.removeEventListener(parsed.event, this.bound_event_listeners[key]);
@@ -76,8 +80,8 @@ export default class Controller {
     }
 
     parseEventNameAndSelector(element, eventNameAndSelector) {
-        let result = { throttle: false, capture: false};
-        let flags = ['throttle', 'capture'];
+        let result = { throttle: false, capture: false, debounce: false, prefix: ''};
+        let flags = ['throttle', 'capture', 'debounce'];
         for (let i = 0; i < flags.length; i++) {
             let prefix = flags[i] + ':';
             if (!eventNameAndSelector.startsWith(prefix)) {
@@ -85,6 +89,7 @@ export default class Controller {
             }
             result[flags[i]] = true;
             eventNameAndSelector = eventNameAndSelector.substr(prefix.length);
+            result.prefix = flags[i] + ':' + result.prefix;
             break;
         }
 
