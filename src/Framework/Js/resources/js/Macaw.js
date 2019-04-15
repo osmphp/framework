@@ -1,6 +1,7 @@
 import isString from "./isString";
 import view_models from "./vars/view_models";
 import Controller from "./Controller";
+import matches from "./matches";
 
 /**
  * MACAW = Model - Actions - Controller - Actions - vieW
@@ -96,7 +97,7 @@ export default class Macaw {
      * Called after page is loaded and all controllers are registered
      */
     ready() {
-        this.afterInserted(document);
+        this.afterInserted(document.body);
     }
 
     /**
@@ -129,6 +130,10 @@ export default class Macaw {
 
         // find all elements matching registered CSS selectors and attach controller object to each of them
         this.selector_controllers.forEach(binding => {
+            if (matches(element, binding.selector)) {
+                this.attachControllerToElement(binding.controller_class, element, null, binding.model);
+            }
+
             this.attachControllerToElements(binding.controller_class,
                 element.querySelectorAll(binding.selector),
                 binding.model);
