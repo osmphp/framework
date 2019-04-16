@@ -5,7 +5,7 @@ namespace Manadev\Core\Classes;
 class Classes
 {
     const CLASS_COMMENT_PATTERN = '/\s+\*\s+@property\s+(?<type>[A-Za-z0-9_|\\\\[\]]+)\s+\$(?<name>[A-Za-z0-9_]+)(?:\s+(?<description>.*))?/';
-    const ATTRIBUTE_PATTERN = '/@(?<attribute>[A-Za-z0-9_]+)(?<has>\("(?<value>[^"]*)"\))?/';
+    const ATTRIBUTE_PATTERN = '/@(?<attribute>[A-Za-z0-9_]+)(?<has>\((?<value>[^\)]*)\))?/';
     const PROPERTY_TYPE_PATTERN = '/\s+\*\s+@var\s+(?<type>[A-Za-z0-9_|\\\\[\]]+)/';
 
     /**
@@ -129,9 +129,29 @@ class Classes
         }
 
         foreach ($matches['attribute'] as $index => $attribute) {
-            $result[$attribute] = $matches['has'][$index]
-                ? $matches['value'][$index]
-                : true;
+            if (!$matches['has'][$index]) {
+                $result[$attribute] = true;
+                continue;
+            }
+
+            $value = $matches['value'][$index];
+
+            if ($value == 'true') {
+                $result[$attribute] = true;
+                continue;
+            }
+
+            if ($value == 'false') {
+                $result[$attribute] = false;
+                continue;
+            }
+
+            if (starts_with($value, '"') && ends_with($value, '"')) {
+                $result[$attribute] = mb_substr($value, 1, mb_strlen($value) - 2);
+                continue;
+            }
+
+            $result[$attribute] = intval($value);
         }
 
         return $result;

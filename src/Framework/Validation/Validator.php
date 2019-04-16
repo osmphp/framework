@@ -183,6 +183,16 @@ class Validator extends Object_
             return $this->validationFailed($path, m_("Fill in this field"));
         }
 
+        if (!empty($property['max_length']) && mb_strlen($data) > $property['max_length']) {
+            return $this->validationFailed($path, m_("Value should be no longer than :length characters",
+                ['length' => $property['max_length']]));
+        }
+
+        if (!empty($property['min_length']) && mb_strlen($data) < $property['min_length']) {
+            return $this->validationFailed($path, m_("Value should be at least :length characters long",
+                ['length' => $property['min_length']]));
+        }
+
         if (!empty($property['pattern']) && !preg_match($this->patterns[$property['pattern']]->pattern, $data)) {
             return $this->validationFailed($path, $this->patterns[$property['pattern']]->error_message);
         }
