@@ -13,6 +13,9 @@ return [
             ],
         ],
     ],
+    'frontend' => [
+        'title' => m_("Frontend"),
+    ],
     'api' => [
         'title' => m_("API"),
         'parameters' => [

@@ -12,4 +12,5 @@ return [
     "Parameter ':name' should be a string and used once" => "Parameter ':name' should be a string and used once",
     "Web" => "Web",
     "API" => "API",
+    "Frontend" => "Frontend",
 ];

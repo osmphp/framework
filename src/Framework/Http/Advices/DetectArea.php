@@ -10,7 +10,7 @@ class DetectArea extends Advice
     public function around(callable $next) {
         global $m_app; /* @var App $m_app */
 
-        $m_app->area = 'web';
+        $m_app->area = 'frontend';
         return $next();
     }
 }

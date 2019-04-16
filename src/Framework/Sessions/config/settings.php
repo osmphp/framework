@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'web_session_time_to_live' => 30,
-    'web_session_cookie_name' => 'WEB_SESSION',
-    'web_session_cookie_path' => '/',
-    'web_session_cookie_domain' => null,
-    'web_session_cookie_secure' => false,
-    'web_session_cookie_http_only' => true,
-    'web_session_cookie_same_site' => null,
+    'frontend_session_time_to_live' => 30,
+    'frontend_session_cookie_name' => 'SESSION',
+    'frontend_session_cookie_path' => '/',
+    'frontend_session_cookie_domain' => null,
+    'frontend_session_cookie_secure' => false,
+    'frontend_session_cookie_http_only' => true,
+    'frontend_session_cookie_same_site' => null,
 ];
