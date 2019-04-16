@@ -2,12 +2,14 @@
 
 namespace Manadev\Framework\Validation;
 
+use Manadev\Core\App;
 use Manadev\Core\Classes\Classes;
 use Manadev\Core\Object_;
 use Manadev\Framework\Validation\Exceptions\InvalidConstraint;
 use Manadev\Framework\Validation\Exceptions\ValidationFailed;
 
 /**
+ * @property Patterns|Pattern[] $patterns @required
  * @property string[] $errors @temp
  */
 class Validator extends Object_
@@ -17,6 +19,16 @@ class Validator extends Object_
     const CLASS_CONSTRAINT = 2;
 
     protected $type_cache = [];
+
+    protected function default($property) {
+        global $m_app;/* @var App $m_app */
+
+        switch ($property) {
+            case 'patterns': return $m_app[Patterns::class];
+        }
+
+        return parent::default($property);
+    }
 
     public function validate($data, $type, $options = []) {
         $this->errors = [];
@@ -169,6 +181,10 @@ class Validator extends Object_
 
         if (!$data && !empty($property['required'])) {
             return $this->validationFailed($path, m_("Fill in this field"));
+        }
+
+        if (!empty($property['pattern']) && !preg_match($this->patterns[$property['pattern']]->pattern, $data)) {
+            return $this->validationFailed($path, $this->patterns[$property['pattern']]->error_message);
         }
 
         return $data;

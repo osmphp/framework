@@ -8,4 +8,7 @@ return [
     "String expected" => "String expected",
     "Validation failed" => "Validation failed",
     "Data expected" => "Data expected",
+    "Validation pattern ':name' not found" => "Validation pattern ':name' not found",
+    "Email expected" => "Email expected",
+    "Expected to start with lowercase letter or digit followed by one or more lowercase letter, digit, hyphen (-) or underscore (_)" => "Expected to start with lowercase letter or digit followed by one or more lowercase letter, digit, hyphen (-) or underscore (_)",
 ];
