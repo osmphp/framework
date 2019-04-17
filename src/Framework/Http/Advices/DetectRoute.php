@@ -27,22 +27,24 @@ class DetectRoute extends Advice
     public function around(callable $next) {
         global $m_app; /* @var App $m_app */
 
-        if (isset($m_app->controller)) {
-            return $next();
+        if (!isset($m_app->controller)) {
+            $m_app->controller = $this->findController();
         }
 
+        return $next();
+    }
+
+    protected function findController() {
         if (!isset($this->area->controllers["{$this->request->method} {$this->request->route}"])) {
             throw new NotFound(m_("Page not found"));
         }
 
         $controller = $this->area->controllers["{$this->request->method} {$this->request->route}"];
 
-        if ($controller->seo) {
+        if ($controller->abstract) {
             throw new NotFound(m_("Page not found"));
         }
 
-        $m_app->controller = $controller;
-
-        return $next();
+        return $controller;
     }
 }

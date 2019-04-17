@@ -14,7 +14,7 @@ use Manadev\Framework\Areas\Area;
  * @property Parameters|Parameter[] $parameters_ @required @part
  * @property array $query @required Parsed area-wide and route-specific parameters in current request
  * @property bool $public @part
- * @property bool $seo @part
+ * @property bool $abstract @part
  *
  * @property Request $request @required
  * @property Area $area @required
