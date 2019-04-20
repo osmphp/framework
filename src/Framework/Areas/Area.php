@@ -8,7 +8,6 @@ use Manadev\Framework\Http\Controller;
 use Manadev\Framework\Http\Controllers;
 use Manadev\Framework\Http\Parameter;
 use Manadev\Framework\Http\Parameters;
-use Manadev\Ui\DataTables\DataTables;
 
 /**
  * @property Areas|Area[] $parent
@@ -30,8 +29,6 @@ use Manadev\Ui\DataTables\DataTables;
  *      @property array $query @required Parsed area-wide parameters (like _env) in current request
  * @see \Manadev\Framework\Sessions\Module
  *      @property string $session_class @part
- * @see \Manadev\Ui\DataTables\Module
- *      @property DataTables $data_tables @required @default
  */
 class Area extends Object_
 {
