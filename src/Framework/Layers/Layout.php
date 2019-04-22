@@ -146,19 +146,25 @@ class Layout extends Object_
     protected function processInstruction($instruction, $value) {
         if (starts_with($instruction, '#')) {
             if ($view = $this->select($instruction)) {
-                $this->assign($view, $value);
+                $this->merge($view, $value);
             }
             return;
         }
 
         if (starts_with($instruction, '@')) {
-            $this->{'process' . studly_case(substr($instruction, 1)) . 'Directive'}($value);
+            if (($pos = strpos($instruction, ' ')) !== false) {
+                $this->{'process' . studly_case(substr($instruction, 1, $pos - 1)) . 'Directive'}($value,
+                    substr($instruction, $pos + 1));
+            }
+            else {
+                $this->{'process' . studly_case(substr($instruction, 1)) . 'Directive'}($value);
+            }
             return;
         }
 
         if ($instruction == ucfirst($instruction)) {
             foreach ($this->findViewsByClass($instruction) as $view) {
-                $this->assign($view, $value);
+                $this->merge($view, $value);
             }
             return;
         }
@@ -181,6 +187,14 @@ class Layout extends Object_
         foreach ($layers as $layer) {
             $this->loadLayer($layer);
         }
+    }
+
+    protected function processAssignDirective($value, $selector) {
+        $this->assign($selector, $value);
+    }
+
+    protected function processMoveDirective($target, $source) {
+        $this->assign($target, $this->select($source));
     }
 
     /**
@@ -240,7 +254,28 @@ class Layout extends Object_
         return $result;
     }
 
-    protected function assign(View $view, $value) {
+    protected function assign($selector, $value) {
+        $pos = mb_strrpos($selector, '.');
+        $target = $this->select(mb_substr($selector, 0, $pos));
+        $property = mb_substr($selector, $pos + 1);
+
+        for ($parent = $target; !($parent instanceof View); ) {
+            $parent = $parent->parent;
+        }
+        $parent->assignSelfAsParentTo(compact('value'));
+
+        if (($pos = mb_strpos($property, '[')) !== false) {
+            $index = mb_substr($property, $pos + 1, mb_strlen($property) - $pos - 2);
+            $property = mb_substr($property, 0, $pos);
+
+            $target->$property[$index] = $value;
+        }
+        else {
+            $target->$property = $value;
+        }
+    }
+
+    protected function merge(View $view, $value) {
         $view->assignSelfAsParentTo($value);
         m_merge($view, $value);
         $this->registerDataRecursively($value);

@@ -17,7 +17,7 @@ class Heading extends View
         global $m_app; /* @var App $m_app */
 
         switch ($property) {
-            case 'page': return $m_app->layout->views['page'];
+            case 'page': return $m_app->layout->select('#page');
             case 'title': return $this->page->title;
         }
         return parent::default($property);

@@ -6,14 +6,16 @@ use Manadev\Framework\Views\View;
 
 /**
  * @property string $element @part
+ * @property View[] $views @required @part
  */
 class Container extends View
 {
     public $template = 'Manadev_Framework_Views.container';
 
-    /**
-     * @required @part
-     * @var View[]
-     */
-    public $views = [];
+    protected function default($property) {
+        switch ($property) {
+            case 'views': return [];
+        }
+        return parent::default($property);
+    }
 }
