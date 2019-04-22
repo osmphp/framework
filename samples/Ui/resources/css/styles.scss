@@ -1,0 +1,21 @@
+body.-tests-ui-menus {
+
+  .__viewport {
+    width: 500px;
+    height: 500px;
+    border: 1px solid lightgray;
+    overflow: scroll;
+  }
+
+  .__content {
+    width: 1000px;
+    height: 1000px;
+    position: relative;
+  }
+
+  #popup_test__button {
+    position: absolute;
+    left: 250px;
+    top: 250px;
+  }
+}

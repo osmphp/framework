@@ -1,0 +1,178 @@
+@import './_variables-and-mixins.scss';
+/*-------------------------------------------------------------------*\
+  #RESETS
+\*-------------------------------------------------------------------*/
+
+@import './_normalize.scss';
+
+/*-------------------------------------------------------------------*\
+  #TAG-GLOBAL-FONT-ETC
+\*-------------------------------------------------------------------*/
+
+@import './_material-icons.scss';
+@import './_themify-icons.scss';
+@import './_font-awesome.scss';
+@import './_roboto-slab.scss';
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese');
+
+html,
+button {
+  font-family: 'Roboto', sans-serif;
+  line-height: $line-height--base;
+  box-sizing: border-box;
+}
+
+body {
+  margin:0;
+  background: $color--background;
+  color: $color--on-background;
+
+  & > * {
+    // The following is a bad idea as all dynamically popping up elements as direct children of body and we
+    // don't want them to have margin
+    //margin: 0 rem(8px);
+  }
+}
+
+button {
+  cursor: pointer;
+  outline: 0;
+
+  // remove blue highlight rectangle on touch
+  -webkit-tap-highlight-color: transparent;
+}
+
+label {
+  font-size: rem(12px);
+}
+
+input {
+  outline: 0;
+  display: block;
+  border-width: 0 0 1px 0;
+  border-color: lightgrey;
+  font-size: rem(16px);
+}
+
+input[type=checkbox],
+input[type=radio] {
+  display: inline;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+h1 {
+  font-size: rem(40px);
+  margin: 0.75rem 0;
+}
+h2 {
+  font-size: rem(36px);
+  margin: 0.75rem 0;
+}
+
+h3 {
+  font-size: rem(32px);
+  margin: 0.75rem 0;
+}
+h4 {
+  font-size: rem(28px);
+  margin: 0.75rem 0;
+}
+h5 {
+  font-size: rem(24px);
+  margin: 0.75rem 0;
+}
+h6 {
+  font-size: rem(20px);
+  margin: 0.75rem 0;
+}
+
+p {
+  margin: 0.75rem 0;
+}
+
+img {
+  vertical-align: middle;
+}
+
+.page-section {
+  & > * {
+    padding: 0 $page-padding;
+    margin: 0 auto;
+    max-width: $page-width;
+  }
+
+  &.-primary {
+    @include container-color($color--primary, $color--on-primary);
+    &.-light {
+      @include container-color($color--primary-light, $color--on-primary-light);
+    }
+    &.-dark {
+      @include container-color($color--primary-dark, $color--on-primary-dark);
+    }
+  }
+
+  &.-secondary {
+    @include container-color($color--secondary, $color--on-secondary);
+    &.-light {
+      @include container-color($color--secondary-light, $color--on-secondary-light);
+    }
+    &.-dark {
+      @include container-color($color--secondary-dark, $color--on-secondary-dark);
+    }
+  }
+}
+
+/*-------------------------------------------------------------------*\
+  #IMPORTANT-OVERRIDES
+\*-------------------------------------------------------------------*/
+
+._hidden {
+  visibility: hidden !important;
+}
+
+/*-------------------------------------------------------------------*\
+  #GLOBAL-MODIFIERS
+\*-------------------------------------------------------------------*/
+
+* {
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1; // color?
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #888; // color?
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555; // color?
+  }
+}
+
+/*-------------------------------------------------------------------*\
+  #STRUCTURE
+\*-------------------------------------------------------------------*/
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  display: none;
+  user-select: none; // prevent selecting random text on page with multiple click on overlay
+
+  &.-modal {
+    display: block;
+  }
+}

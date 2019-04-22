@@ -1,0 +1,128 @@
+@import '~Manadev_Ui_Aba/_variables-and-mixins.scss';
+@import './_mixins.scss';
+
+.popup-menu {
+  background-color: $color--surface;
+  color: $color--on-surface;
+  padding: rem(8px) 0;
+  box-shadow: shadow($z-index--menu);
+  position: absolute;
+  z-index: $z-index--menu;
+  display: none;
+  overflow-y: auto;
+  margin: 0;
+
+  &__items {
+    @include no-list-formatting();
+  }
+
+  &__item {
+    border: none;
+    cursor: pointer;
+    display: flex;
+    font-size: 1rem;
+    min-height: 36px;
+    min-width: 36px;
+    outline: 0;
+    padding: rem(12px) rem(16px);
+    width: 100%;
+    text-align: left;
+    white-space: nowrap;
+
+    // remove blue highlight rectangle on touch
+    -webkit-tap-highlight-color: transparent;
+
+    &:disabled,
+    &.-disabled,
+    &.-disabled:hover,
+    &.-disabled:focus {
+      color: $color--disabled;
+      pointer-events: none; /* don't handle mouse events */
+      cursor: default;
+    }
+
+    &.-hidden {
+      display: none;
+    }
+
+    &.-separator {
+      height: 1px;
+      border-top: 1px solid $color--disabled;
+      min-height: 1px;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    &.-separator, &.-label {
+      pointer-events: none; /* don't handle mouse events */
+      cursor: default;
+    }
+
+    &.-indented {
+      padding-left: rem(32px);
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  &__icon {
+    /**
+     * Initially "min-width" was used here, but then we ran into the following problem. Initially menu is hidden and
+     * browser doesn't load actual icon due to some optimization. When menu is first shown, icon font is not assigned
+     * to <i> child element and for the very short time actual text such as "bold_action" is rendered using default
+     * font and in result menu__icon width was 87px, no 40px. At that very moment menu width (and icon width affected
+     * it) was used to calculate menu position. Very quickly browser applied correct font and rendered <i> element
+     * anew, but wrong menu width already affected incorrect menu position.
+     */
+    width: rem(40px);
+
+    &.-hidden {
+      visibility: hidden;
+    }
+  }
+
+  &__title {
+    flex-grow: 1;
+  }
+
+  &__input {
+    border-width: 1px;
+  }
+
+  &__submenu-indicator,
+  &__shortcut {
+    padding-left: rem(16px);
+  }
+
+  &__placeholder {
+    width: rem(150px);
+    height: rem(200px);
+    @include placeholder-background();
+  }
+
+  &__viewport {
+    display: none;
+    padding: 10px;
+  }
+
+  @include popup-menu-color($color--primary, $color--on-primary);
+  &.-light {
+    @include popup-menu-color($color--primary-light, $color--on-primary-light);
+  }
+  &.-dark {
+    @include popup-menu-color($color--primary-dark, $color--on-primary-dark);
+  }
+  
+  &.-secondary {
+    @include popup-menu-color($color--secondary, $color--on-secondary);
+    &.-light {
+      @include popup-menu-color($color--secondary-light, $color--on-secondary-light);
+    }
+    &.-dark {
+      @include popup-menu-color($color--secondary-dark, $color--on-secondary-dark);
+    }
+  }
+}

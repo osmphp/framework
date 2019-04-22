@@ -1,0 +1,80 @@
+@import '~Manadev_Ui_Aba/_variables-and-mixins.scss';
+
+html {
+  &.-page-dialog {
+    height: 100%;
+  }
+}
+
+body {
+  &.-page-dialog {
+    background: $color--page-dialog;
+    display: flex;
+    height: 100%;
+    align-items: center;
+  }
+}
+
+.page-dialog {
+  box-shadow: shadow($z-index--card);
+  background: $color--surface;
+  padding: rem(40px) rem(60px);
+  margin: auto;
+
+  &__buttons {
+    text-align: center;
+  }
+
+  &__viewport {
+    display: none;
+    padding: 10px;
+  }
+}
+
+.modal-dialog {
+  position: fixed;
+  z-index: $z-index--modal-dialog;
+  box-shadow: shadow($z-index--modal-dialog);
+  background: $color--surface;
+
+  &__viewport {
+    display: none;
+    padding: 10px;
+  }
+
+  &__header, &__body, &__footer {
+    padding: 0 rem(24px);
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+
+  &__header {
+    top: 0;
+  }
+
+  &__body {
+    overflow: auto;
+  }
+
+  &__footer {
+    bottom: 0;
+    padding-top: rem(8px);
+    padding-bottom: rem(8px);
+    text-align: center;
+  }
+
+  &__message {
+    padding: rem(24px) 0;
+  }
+
+  &.-scrollable {
+    .modal-dialog__header {
+      border-bottom: 1px solid lightgray;
+    }
+
+    .modal-dialog__footer {
+      border-top: 1px solid lightgray;
+    }
+  }
+}

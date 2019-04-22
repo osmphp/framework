@@ -1,0 +1,71 @@
+/*-------------------------------------------------------------------*\
+  #MIXINS-AND-FUNCTIONS
+\*-------------------------------------------------------------------*/
+
+/**
+ * Converts number to pixels
+ *
+ * @param $pixels Number '1' to be converted or number with px '1px'
+ * @return Number with px '16px'
+ *
+ */
+@function convert-to-pixels($pixels) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  } @else {
+    $unit: unit($pixels);
+    @if ($unit != "px") {
+      @error "Function convert-to-pixels() expects " +
+             "number '1' or number with px " +
+             "'1px' as parameter. Unexpected '#{$unit}'.";
+    }
+  }
+
+  @return $pixels;
+}
+
+/**
+ * Converts px to em units.
+ *
+ * Examples:
+ *
+ *    padding: em(8); // in CSS it will be padding: 0.5em;
+ *    padding: em(8px); // in CSS it will be padding: 0.5em;
+ *    padding: em(8rem); // error, rem is unexpected
+ *
+ * @param $pixels Number '1' or number with px '1px' to be converted
+ * @param $context (optional) Expected font size of element
+ * @return Number with em '0.125em'
+ *
+ */
+@function em($pixels, $context: 16) {
+  //@return $pixels;
+  $pixels: convert-to-pixels($pixels);
+  $context: convert-to-pixels($context);
+  @return $pixels / $context * 1em;
+}
+
+/**
+ * Converts px to rem units.
+ *
+ * Examples:
+ *
+ *    padding: rem(8); // in CSS it will be padding: 0.5rem;
+ *    padding: rem(8px); // in CSS it will be padding: 0.5rem;
+ *    padding: rem(8em); // error, em is unexpected
+ *
+ * @param $pixels Number '1' or number with px '1px' to be converted
+ * @param $context (optional) Expected font size of element
+ * @return Number with rem '0.125rem'
+ *
+ */
+@function rem($pixels, $context: 16) {
+  //@return $pixels;
+  $pixels: convert-to-pixels($pixels);
+  $context: convert-to-pixels($context);
+  @return $pixels / $context * 1rem;
+}
+
+@function shadow($z-index) {
+  @return rem(0) rem($z-index * 1px) rem($z-index * 2px) rem(0) rgba(0, 0, 0, 0.25);
+}

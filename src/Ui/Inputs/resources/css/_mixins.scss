@@ -1,0 +1,14 @@
+@import '~Manadev_Ui_Aba/_variables-and-mixins.scss';
+
+@mixin input-color($color, $on-color) {
+  color: $color;
+  &.-active {
+    .input__body {
+      border-color: $color;
+    }
+
+    .input__comment {
+      color: $color;
+    }
+  }
+}
