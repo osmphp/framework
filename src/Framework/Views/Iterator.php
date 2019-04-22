@@ -3,10 +3,15 @@
 namespace Manadev\Framework\Views;
 
 use Manadev\Core\Object_;
+use Manadev\Framework\Views\Views\Container;
 
 class Iterator extends Object_
 {
     public function iterateData($data) {
+        if ($data instanceof Container) {
+            $data->views;
+        }
+
         foreach ($data as $property => $value) {
             if ($value instanceof View) {
                 yield $property => $value;

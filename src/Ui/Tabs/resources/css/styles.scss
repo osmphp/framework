@@ -1,2 +1,21 @@
+@import '~Manadev_Ui_Aba/_variables-and-mixins.scss';
+
 .tabs {
+  &.-side-by-side {
+    display: flex;
+  }
+
+  &__tab {
+    flex: 1 0;
+    width: 0;
+    padding: 0 rem(12px);
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:last-child {
+      padding-right: 0;
+    }
+  }
 }

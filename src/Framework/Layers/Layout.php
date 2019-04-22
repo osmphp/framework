@@ -262,17 +262,24 @@ class Layout extends Object_
         for ($parent = $target; !($parent instanceof View); ) {
             $parent = $parent->parent;
         }
-        $parent->assignSelfAsParentTo(compact('value'));
 
         if (($pos = mb_strpos($property, '[')) !== false) {
             $index = mb_substr($property, $pos + 1, mb_strlen($property) - $pos - 2);
             $property = mb_substr($property, 0, $pos);
 
+            $data = [$property => [$index => $value]];
+            $parent->assignSelfAsParentTo($data);
+
             $target->$property[$index] = $value;
         }
         else {
+            $data = [$property => $value];
+            $parent->assignSelfAsParentTo($data);
+
             $target->$property = $value;
         }
+
+        $this->registerDataRecursively($data);
     }
 
     protected function merge(View $view, $value) {
