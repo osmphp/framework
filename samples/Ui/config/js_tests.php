@@ -14,6 +14,7 @@ return [
             'menus' => ['title' => m_("Menus"), 'route' => 'GET /tests/ui/menus'],
             'dialogs' => ['title' => m_("Dialogs"), 'route' => 'GET /tests/ui/dialogs'],
             'snack-bars' => ['title' => m_("Snack Bars"), 'route' => 'GET /tests/ui/snack-bars'],
+            'data-tables' => ['title' => m_("Data Tables"), 'route' => 'GET /tests/ui/data-tables'],
         ],
     ],
 ];

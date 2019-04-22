@@ -63,4 +63,24 @@ class Web extends Controller
             ],
         ]);
     }
+
+    public function dataTablesPage() {
+        return m_layout('tests_ui_data_tables', [
+            '#page' => [
+                'title' => m_("Data Tables"),
+            ],
+        ]);
+    }
+
+    public function dataTableRows() {
+        $layout = m_layout('tests_ui_data_tables', [
+            '#data_table' => [
+                'render_rows' => true,
+                'offset' => $this->query['_offset'],
+                'limit' => $this->query['_limit'],
+            ],
+        ]);
+
+        return $layout->select('#data_table');
+    }
 }
