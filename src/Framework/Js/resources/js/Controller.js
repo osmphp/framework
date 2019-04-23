@@ -1,5 +1,6 @@
 import callOncePerAnimationFrame from "./callOncePerAnimationFrame";
 import debounceForAnimationFrame from "./debounceForAnimationFrame";
+import debounce from "./debounce";
 import $ from 'jquery';
 
 export default class Controller {
@@ -51,9 +52,12 @@ export default class Controller {
             if (!this.bound_event_listeners[key]) {
                 this.bound_event_listeners[key] = parsed.throttle
                     ? callOncePerAnimationFrame(this.bindListener(listener))
-                    : (parsed.debounce
+                    : (parsed.debounce === true
                         ? debounceForAnimationFrame(this.bindListener(listener))
-                        : this.bindListener(listener)
+                        : (parsed.debounce
+                            ? debounce(this.bindListener(listener), parsed.debounce)
+                            : this.bindListener(listener)
+                        )
                     );
             }
 
@@ -82,6 +86,8 @@ export default class Controller {
     parseEventNameAndSelector(element, eventNameAndSelector) {
         let result = { throttle: false, capture: false, debounce: false, prefix: ''};
         let flags = ['throttle', 'capture', 'debounce'];
+        let pos;
+
         for (let i = 0; i < flags.length; i++) {
             let prefix = flags[i] + ':';
             if (!eventNameAndSelector.startsWith(prefix)) {
@@ -89,11 +95,16 @@ export default class Controller {
             }
             result[flags[i]] = true;
             eventNameAndSelector = eventNameAndSelector.substr(prefix.length);
+            if (/^\d+\:/.test(eventNameAndSelector)) {
+                pos = eventNameAndSelector.indexOf(':');
+                result[flags[i]] = parseInt(eventNameAndSelector.substr(0, pos));
+                eventNameAndSelector = eventNameAndSelector.substr(pos + 1);
+            }
             result.prefix = flags[i] + ':' + result.prefix;
             break;
         }
 
-        let pos = eventNameAndSelector.indexOf(' ');
+        pos = eventNameAndSelector.indexOf(' ');
 
         if (pos !== -1) {
             result.event = eventNameAndSelector.substr(0, pos);

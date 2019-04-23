@@ -1,6 +1,7 @@
 import addClass from './addClass';
 import callOncePerAnimationFrame from './callOncePerAnimationFrame';
 import debounceForAnimationFrame from './debounceForAnimationFrame';
+import debounce from './debounce';
 import Object_ from './Object_';
 import hasClass from './hasClass';
 import merge from './merge';
@@ -19,7 +20,7 @@ import "@babel/polyfill";
 merge(window, {
     Manadev_Framework_Js: {
         addClass, callOncePerAnimationFrame, Object_, hasClass, merge, removeClass, mix, find,
-        Config, isString, ViewModel, debounceForAnimationFrame,
+        Config, isString, ViewModel, debounceForAnimationFrame, debounce,
         vars: {config, view_models}
     }
 });
