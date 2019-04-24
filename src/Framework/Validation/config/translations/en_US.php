@@ -6,6 +6,7 @@ return [
     "Fill in this field" => "Fill in this field",
     "Array expected" => "Array expected",
     "String expected" => "String expected",
+    "Integer expected" => "Integer expected",
     "Validation failed" => "Validation failed",
     "Data expected" => "Data expected",
     "Validation pattern ':name' not found" => "Validation pattern ':name' not found",

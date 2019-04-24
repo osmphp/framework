@@ -200,4 +200,11 @@ class Validator extends Object_
         return $data;
     }
 
+    protected function validateInt($data, array $property, $path) {
+        if (!is_int($data)) {
+            return $this->validationFailed($path, m_("Integer expected"));
+        }
+
+        return $data;
+    }
 }
