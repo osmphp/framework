@@ -28,6 +28,10 @@ export default class Input extends Field {
         requestAnimationFrame(() => {
             this.update();
         });
+
+        if (this.model.focus) {
+            this.$value.focus();
+        }
     }
 
     update() {

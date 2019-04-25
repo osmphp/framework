@@ -12,8 +12,8 @@ use Manadev\Framework\Views\View;
  * @property string $comment @part
  * @property string $value @part
  * @property bool $required @part
- * @property bool $remember_password @part
- * @property bool $autocomplete @part
+ * @property string $autocomplete @part
+ * @property bool $focus @part
  */
 class Input extends View
 {
@@ -48,6 +48,9 @@ class Input extends View
         $result = [];
         if ($this->required) {
             $result['required'] = $this->required;
+        }
+        if ($this->focus) {
+            $result['focus'] = $this->focus;
         }
         return (object)$result;
     }
