@@ -17,12 +17,10 @@ return [
                     'yes' => [
                         'type' => Type::COMMAND,
                         'title' => m_("Yes"),
-                        'modifier' => '-filled',
                     ],
                     'cancel' => [
                         'type' => Type::COMMAND,
                         'title' => m_("No"),
-                        'modifier' => '-filled',
                     ],
                 ],
         ]),
