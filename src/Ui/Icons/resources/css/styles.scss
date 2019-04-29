@@ -163,4 +163,17 @@
     }
   }
 
+  &.-expand {
+    @extend .icon.-material;
+    &::before {
+      content: 'expand_more';
+    }
+  }
+
+  &.-collapse {
+    @extend .icon.-material;
+    &::before {
+      content: 'expand_less';
+    }
+  }
 }
