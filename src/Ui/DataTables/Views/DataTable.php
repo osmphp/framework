@@ -95,9 +95,6 @@ class DataTable extends View
 
     public function getCellUrl() {
         return $this->column->getUrl();
-        return $this->column->cell_url_generator_
-            ? $this->column->cell_url_generator_->generateUrl($this)
-            : null;
     }
 
     /**

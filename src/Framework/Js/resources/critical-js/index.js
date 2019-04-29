@@ -11,6 +11,7 @@ import find from './find';
 import Config from './Config';
 import isString from "./isString";
 import ViewModel from "./ViewModel";
+import getClassSuffix from './getClassSuffix';
 
 import config from './vars/config';
 import view_models from "./vars/view_models";
@@ -20,7 +21,7 @@ import "@babel/polyfill";
 merge(window, {
     Manadev_Framework_Js: {
         addClass, callOncePerAnimationFrame, Object_, hasClass, merge, removeClass, mix, find,
-        Config, isString, ViewModel, debounceForAnimationFrame, debounce,
+        Config, isString, ViewModel, debounceForAnimationFrame, debounce, getClassSuffix,
         vars: {config, view_models}
     }
 });
