@@ -35,6 +35,13 @@ class Layout extends Object_
      */
     public $included = [];
 
+    /**
+     * @temp
+     *
+     * @var bool
+     */
+    public $replacing = false;
+
     protected function default($property) {
         global $m_app; /* @var App $m_app */
 
@@ -193,6 +200,12 @@ class Layout extends Object_
         $this->assign($selector, $value);
     }
 
+    protected function processReplaceDirective($value, $selector) {
+        $this->replacing = true;
+        $this->assign($selector, $value);
+        $this->replacing = false;
+    }
+
     protected function processMoveDirective($target, $source) {
         $this->assign($target, $this->select($source));
     }
@@ -294,7 +307,7 @@ class Layout extends Object_
                 continue;
             }
 
-            if (!isset($this->views[$view->id])) {
+            if (!isset($this->views[$view->id]) || $this->replacing) {
                 $this->views[$view->id] = $view;
                 continue;
             }
