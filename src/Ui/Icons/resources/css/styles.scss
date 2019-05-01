@@ -176,4 +176,18 @@
       content: 'expand_less';
     }
   }
+
+  &.-document {
+    @extend .icon.-material;
+    &::before {
+      content: 'description';
+    }
+  }
+
+  &.-image {
+    @extend .icon.-material;
+    &::before {
+      content: 'insert_photo';
+    }
+  }
 }
