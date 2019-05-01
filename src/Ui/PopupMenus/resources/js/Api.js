@@ -2,13 +2,15 @@ import macaw from "Manadev_Framework_Js/vars/macaw";
 import PopupMenu from "./PopupMenu";
 
 export default class Api {
-    open(menuElementId, anchorElement, options = {}) {
+    get(menuElementId) {
         let element = document.getElementById(menuElementId);
         if (!element) {
             throw new Error(`Menu '${menuElementId}' not found`);
         }
-        let controller = macaw.get(element, PopupMenu);
+        return macaw.get(element, PopupMenu);
+    }
 
-        controller.open(anchorElement, options);
+    open(menuElementId, anchorElement, options = {}) {
+        this.get(menuElementId).open(anchorElement, options);
     }
 };

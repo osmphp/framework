@@ -29,6 +29,10 @@ export default class PopupMenu extends Controller {
         return this._mouse_handling;
     }
 
+    get anchor_element() {
+        return this.model.anchor_element;
+    }
+
     addListenerToScrollableParents() {
         forEachParentElement(this.model.anchor_element, element => {
             if (isScrollable(element)) {
