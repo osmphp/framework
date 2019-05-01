@@ -44,7 +44,13 @@ class UrlGenerator extends Object_
     }
 
     public function rawUrl($route, $rawQuery = []) {
-        $queryString = '';
+        return $this->base .
+            substr($route, strpos($route, ' ') + 1) .
+            $this->generateQueryString($rawQuery);
+    }
+
+    public function generateQueryString($rawQuery = []) {
+        $result = '';
 
         foreach ($rawQuery as $key => $value) {
             $generated = $this->generateParameter($key, $value);
@@ -53,17 +59,15 @@ class UrlGenerator extends Object_
                 continue;
             }
 
-            if ($queryString) {
-                $queryString .= '&';
+            if ($result) {
+                $result .= '&';
             }
 
-            $queryString .= $generated;
+            $result .= $generated;
         }
 
 
-        return $this->base .
-            substr($route, strpos($route, ' ') + 1) .
-            ($queryString ? '?' . $queryString : '');
+        return $result ? '?' . $result : '';
     }
 
     /**

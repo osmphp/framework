@@ -13,6 +13,12 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class Responses extends Object_
 {
+    public $image_content_types = [
+        'png' => 'image/png',
+        'jpg' => 'image/jpeg',
+        'gif' => 'image/gif',
+    ];
+
     protected function default($property) {
         global $m_app; /* @var App $m_app */
 
@@ -54,5 +60,17 @@ class Responses extends Object_
         global $m_app; /* @var App $m_app */
 
         return $m_app->createRaw(RedirectResponse::class, (string)$to, $status);
+    }
+
+    public function image($filename) {
+        global $m_app; /* @var App $m_app */
+
+        $type = $this->image_content_types[strtolower(pathinfo($filename, PATHINFO_EXTENSION))];
+        $name = basename($filename);
+
+        return $m_app->createRaw(Response::class, file_get_contents($filename), Response::HTTP_OK, [
+            'content-type' => $type,
+            'content-disposition' => 'inline; filename="'.$name.'"',
+        ]);
     }
 }
