@@ -38,6 +38,7 @@ export default class Api {
 
             return new Promise((resolve, reject) => {
                  let dialog = macaw.get(element, ModalDialog);
+                 dialog.variables = variables;
                  dialog.resolve = resolve;
                  dialog.reject = reject;
             });

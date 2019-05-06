@@ -6,7 +6,7 @@ import removeClass from "Manadev_Framework_Js/removeClass";
 /**
  * @param {Function} resolve
  * @param {Function} reject
- *
+ * @param {Object} variables
  */
 export default class ModalDialog extends Controller {
     get events() {
