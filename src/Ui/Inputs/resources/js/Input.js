@@ -34,6 +34,10 @@ export default class Input extends Field {
         }
     }
 
+    focus() {
+        this.$value.focus();
+    }
+
     update() {
         if (this.$value.is(':focus')) {
             this.activate();
@@ -122,6 +126,11 @@ export default class Input extends Field {
 
     get value() {
         return this.$value.val().trim();
+    }
+
+    set value(value) {
+        this.$value.val(value);
+        this.update();
     }
 
     isAutoFilled() {

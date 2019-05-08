@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.1",
     "component-emitter": "^1.2.1",
     "mustache": "^3.0.0"
   }

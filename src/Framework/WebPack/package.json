@@ -9,7 +9,7 @@
     "css-loader": "^1.0.1",
     "extract-loader": "^3.0.0",
     "file-loader": "^2.0.0",
-    "node-sass": "^4.9.4",
+    "node-sass": "^4.12.0",
     "sass-loader": "^7.1.0",
     "webpack": "^4.23.1",
     "lodash": "^4.17.11",
