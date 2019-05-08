@@ -2,6 +2,8 @@ import callOncePerAnimationFrame from "./callOncePerAnimationFrame";
 import debounceForAnimationFrame from "./debounceForAnimationFrame";
 import debounce from "./debounce";
 import $ from 'jquery';
+import firstParentElement from "./firstParentElement";
+import matches from "./matches";
 
 export default class Controller {
     constructor(element, viewModel, model) {
@@ -50,15 +52,12 @@ export default class Controller {
             let key = parsed.prefix + listener;
 
             if (!this.bound_event_listeners[key]) {
-                this.bound_event_listeners[key] = parsed.throttle
-                    ? callOncePerAnimationFrame(this.bindListener(listener))
-                    : (parsed.debounce === true
-                        ? debounceForAnimationFrame(this.bindListener(listener))
-                        : (parsed.debounce
-                            ? debounce(this.bindListener(listener), parsed.debounce)
-                            : this.bindListener(listener)
-                        )
-                    );
+                this.bound_event_listeners[key] =
+                    parsed.throttle ? callOncePerAnimationFrame(this.bindListener(listener)) : (
+                    parsed.debounce === true ? debounceForAnimationFrame(this.bindListener(listener)) : (
+                    parsed.debounce ? debounce(this.bindListener(listener), parsed.debounce) : (
+                    parsed.live ? this.generateLiveListener(this.bindListener(listener), parsed.selector) :
+                    this.bindListener(listener))));
             }
 
             Array.prototype.forEach.call(parsed.matching_elements, element => {
@@ -85,7 +84,7 @@ export default class Controller {
 
     parseEventNameAndSelector(element, eventNameAndSelector) {
         let result = { throttle: false, capture: false, debounce: false, prefix: ''};
-        let flags = ['throttle', 'capture', 'debounce'];
+        let flags = ['throttle', 'capture', 'debounce', 'live'];
         let pos;
 
         for (let i = 0; i < flags.length; i++) {
@@ -110,12 +109,14 @@ export default class Controller {
             result.event = eventNameAndSelector.substr(0, pos);
 
             let selector = eventNameAndSelector.substr(pos + 1);
+            result.selector = selector;
             result.matching_elements =
+                result.live ? [element] : (
                 selector == 'broadcast' ? [] : (
                 selector == 'window' ? [window] : (
                 selector == 'document' ? [document] : (
                 selector.startsWith('&') ? this.queryAliasedElement(selector) :
-                this.element.querySelectorAll(selector))));
+                this.element.querySelectorAll(selector)))));
         }
         else {
             result.event = eventNameAndSelector;
@@ -146,5 +147,19 @@ export default class Controller {
     queryAliasedElement(selector) {
         let element = document.getElementById(this.getAliasedId(selector));
         return element ? [element] : [];
+    }
+
+    generateLiveListener(listener, selector) {
+        if (!selector) {
+            return listener;
+        }
+
+        return e => {
+            let parentElement = firstParentElement(e.target, element => matches(element, selector));
+            if (parentElement) {
+                e.liveTarget = parentElement;
+                return listener(e);
+            }
+        };
     }
 };
