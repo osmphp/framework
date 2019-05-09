@@ -56,7 +56,7 @@ export default class Input extends Field {
     }
 
     onMouseDown(e) {
-        if (this.$value.is(':focus')) {
+        if (this.$value.is(':focus') && e.target !== this.$value[0]) {
             // prevent value losing focus when clicked on static area of the input
             e.preventDefault();
         }
