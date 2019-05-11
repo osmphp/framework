@@ -27,7 +27,7 @@ class Request extends Object_
             case 'symfony_request': return SymfonyRequest::createFromGlobals();
             case 'asset_base': return $this->symfony_request->getUriForPath('');
             case 'base': return $this->symfony_request->getUriForPath('');
-            case 'route': return $this->symfony_request->getPathInfo();
+            case 'route': return $this->decode($this->symfony_request->getPathInfo());
             case 'method': return $this->symfony_request->getMethod();
             case 'method_and_route': return "{$this->method} {$this->route}";
             case 'content': return $this->symfony_request->getContent();
