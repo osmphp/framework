@@ -4,7 +4,7 @@
 @if ($view->modifier || $view->element)
     <{{ $view->element ?: 'div' }} class="{{ $view->modifier }}">
 @endif
-@foreach ($view->views as $child)
+@foreach ($view->views_ as $child)
     @include ($child)
 @endforeach
 @if ($view->modifier || $view->element)

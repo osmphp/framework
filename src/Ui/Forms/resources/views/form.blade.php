@@ -10,7 +10,7 @@
         </header>
     @endif
 
-    @foreach ($view->views as $child)
+    @foreach ($view->views_ as $child)
         @include ($child)
     @endforeach
 

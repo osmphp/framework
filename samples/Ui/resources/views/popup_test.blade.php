@@ -25,7 +25,7 @@
     </div>
     <div class="__viewport">
         <div class="__content">
-            @foreach ($view->views as $child)
+            @foreach ($view->views_ as $child)
                 @include ($child)
             @endforeach
         </div>
