@@ -1,7 +1,23 @@
 @import '~Manadev_Ui_Aba/_variables-and-mixins.scss';
 
 .tabs {
-  &.-side-by-side {
+  &__titles {
+    @include no-list-formatting();
+  }
+
+  &.-side-by-side &__titles {
+    display: none;
+  }
+
+  &__title {
+
+  }
+
+  &__tabs {
+    @include no-list-formatting();
+  }
+
+  &.-side-by-side &__tabs {
     display: flex;
   }
 

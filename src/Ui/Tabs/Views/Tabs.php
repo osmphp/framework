@@ -8,6 +8,7 @@ use Manadev\Ui\Tabs\Tab;
 /**
  * @property array $tabs @required @part
  * @property Tab[] $tabs_ @required
+ * @property Tab $active_tab
  */
 class Tabs extends Container
 {
@@ -17,6 +18,7 @@ class Tabs extends Container
         switch ($property) {
             case 'tabs_': return $this->getTabs();
             case 'views': return $this->getViews();
+            case 'active_tab': return $this->getActiveTab();
         }
         return parent::default($property);
     }
@@ -32,6 +34,22 @@ class Tabs extends Container
 
         foreach ($this->tabs as $name => $data) {
             $result[$name] = Tab::new($data, $name, $this);
+        }
+
+        return $result;
+    }
+
+    protected function getActiveTab() {
+        $result = null;
+
+        foreach ($this->tabs_ as $tab) {
+            if ($tab->active) {
+                return $tab;
+            }
+
+            if (!$result) {
+                $result = $tab;
+            }
         }
 
         return $result;
