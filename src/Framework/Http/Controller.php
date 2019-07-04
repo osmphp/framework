@@ -7,6 +7,7 @@ use Manadev\Core\Object_;
 use Manadev\Framework\Areas\Area;
 
 /**
+ * @property string $name @required @part
  * @property Controllers $parent @required
  * @property string $method @required @part
  * @property string $returns @required @part
@@ -38,7 +39,7 @@ class Controller extends Object_
                     }
                 }
                 return $parsedQuery;
-            case 'route': return $this->request->route;
+            case 'route': return mb_substr($this->name, mb_strpos($this->name, ' ') + 1);
         }
 
         return parent::default($property);
