@@ -13,4 +13,10 @@ class Bool_ extends Parameter
 
         return $value;
     }
+
+    public function generate(&$query, $value) {
+        if ($value) {
+            $query[$this->name] = $value;
+        }
+    }
 }
