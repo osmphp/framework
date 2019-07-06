@@ -65,6 +65,8 @@ class ModuleLoader extends Object_
                 'path' => str_replace('\\', '/',
                     substr(dirname($filename), strlen($m_app->base_path) + 1)),
                 'class' => str_replace('_', '\\', $name) . "\\Module",
+                'package' => $pool->parent->name,
+                'component_pool' => $pool->name,
             ];
 
             $modules[$name] = $module = BaseModule::new($data, $name, $m_app);

@@ -4,6 +4,8 @@ namespace Manadev\Core\Modules;
 
 use Manadev\Core\App;
 use Manadev\Core\Object_;
+use Manadev\Core\Packages\ComponentPool;
+use Manadev\Core\Packages\Package;
 
 /**
  * @property string $name @required @part
@@ -15,12 +17,20 @@ use Manadev\Core\Object_;
  * @property array $setters
  *
  * @property string $namespace @required
+ * @property string $package @required @part
+ * @property Package $package_ @required
+ * @property string $component_pool @required @part
+ * @property ComponentPool $component_pool_ @required
  */
 class BaseModule extends Object_
 {
     protected function default($property) {
+        global $m_app; /* @var App $m_app */
+
         switch ($property) {
             case 'namespace': return strtr($this->name, '_', '\\');
+            case 'package_': return $m_app->packages[$this->package];
+            case 'component_pool_': return $this->package_->component_pools[$this->component_pool];
         }
 
         return parent::default($property);
