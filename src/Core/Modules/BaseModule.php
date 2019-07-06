@@ -13,9 +13,19 @@ use Manadev\Core\Object_;
  * @property string[] $soft_dependencies @part
  * @property string[] $traits @part
  * @property array $setters
+ *
+ * @property string $namespace @required
  */
 class BaseModule extends Object_
 {
+    protected function default($property) {
+        switch ($property) {
+            case 'namespace': return strtr($this->name, '_', '\\');
+        }
+
+        return parent::default($property);
+    }
+
     public function boot() {
         global $m_app; /* @var App $m_app */
 
