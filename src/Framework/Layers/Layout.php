@@ -57,11 +57,15 @@ class Layout extends Object_
         return parent::default($property);
     }
 
-    public function load(...$layers) {
+    public function __construct($data = []) {
         global $m_app; /* @var App $m_app */
 
         $m_app->layout = $this;
 
+        parent::__construct($data);
+    }
+
+    public function load(...$layers) {
         foreach ($layers as $layer) {
             $this->loadLayer($layer);
         }
@@ -323,27 +327,5 @@ class Layout extends Object_
         foreach ($this->iterator->iterateData($data) as $view) {
             $this->registerViewRecursively($view);
         }
-    }
-
-    /**
-     * @return Layout
-     */
-    public function prepare() {
-        $prepared = [];
-        do {
-            $foundUnprepared = false;
-
-            foreach ($this->iterator->iterateRecursively($this->root) as $view) {
-                if (isset($prepared[$hash = spl_object_hash($view)])) {
-                    continue;
-                }
-                $prepared[$hash] = true;
-                $foundUnprepared = true;
-
-                $view->prepare();
-            }
-        } while($foundUnprepared);
-
-        return $this;
     }
 }

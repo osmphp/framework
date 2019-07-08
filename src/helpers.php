@@ -60,9 +60,7 @@ function m_env($name, $default = null) {
 }
 
 function m_layout(...$layers) {
-    return Layout::new()
-        ->load(...$layers)
-        ->prepare();
+    return Layout::new()->load(...$layers);
 }
 
 function m_view($content) {

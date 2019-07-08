@@ -4,6 +4,7 @@ namespace Manadev\Framework\Views;
 
 use Manadev\Core\App;
 use Manadev\Core\Object_;
+use Manadev\Framework\Layers\Layout;
 use Manadev\Framework\Views\Exceptions\IdCantBeInferred;
 
 /**
@@ -22,6 +23,7 @@ use Manadev\Framework\Views\Exceptions\IdCantBeInferred;
  * @property Rendering $rendering @required
  * @property Iterator $iterator @required
  * @property JsConfig $js_config @required
+ * @property Layout $layout @required
  */
 class View extends Object_
 {
@@ -29,6 +31,8 @@ class View extends Object_
      * @var View
      */
     public $parent = null;
+
+    static public $layer;
 
     public function __construct($data = []) {
         parent::__construct($data);
@@ -56,15 +60,9 @@ class View extends Object_
             case 'id_': return $this->inferId();
             case 'view_model_script': return $this->getViewModelScript();
             case 'js_config': return $m_app[JsConfig::class];
+            case 'layout': return $m_app->layout ?? Layout::new();
         }
         return parent::default($property);
-    }
-
-    /**
-     * Add logic here to prepare view for rendering (prepare data, modify view tree, create child views). Only
-     * called if view is part of layered layout.
-     */
-    public function prepare() {
     }
 
     public function __toString() {
