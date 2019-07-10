@@ -12,7 +12,7 @@ class General extends Error
             case 'content_type': return 'text/plain';
             case 'content': return env('APP_ENV') != 'production' ? $this->stackTrace() : '';
         }
-        return parent::__get($property);
+        return parent::default($property);
     }
 
     protected function stackTrace() {

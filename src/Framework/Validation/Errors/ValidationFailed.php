@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ValidationFailed extends Error
 {
-    public function __get($property) {
+    public function default($property) {
         switch ($property) {
             case 'status': return Response::HTTP_BAD_REQUEST;
             case 'content_type': return 'application/json';
@@ -20,6 +20,6 @@ class ValidationFailed extends Error
                 'messages' => $this->e->errors,
             ], JSON_PRETTY_PRINT);
         }
-        return parent::__get($property);
+        return parent::default($property);
     }
 }
