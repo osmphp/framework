@@ -96,16 +96,20 @@ class Module extends BaseModule
 
     public function exception(\Throwable $e) {
         if ($e instanceof HttpError) {
-            return $this->error($this->errors[$e->error], $e);
+            return $this->error(clone $this->errors[$e->error], $e);
         }
 
-        return $this->error($this->errors['general'], $e);
+        return $this->error(clone $this->errors['general'], $e);
     }
 
     protected function error(Error $error, \Throwable $e) {
         global $m_app; /* @var App $m_app */
 
         $error->e = $e;
+
+        if ($error->response) {
+            return $error->response;
+        }
 
         /* @var Response $response */
         $response = $m_app->createRaw(Response::class, $error->content, $error->status, [

@@ -5,6 +5,7 @@ namespace Manadev\Framework\Http\Errors;
 use Manadev\Core\App;
 use Manadev\Core\Object_;
 use Manadev\Framework\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @property string $name @required @part
@@ -13,6 +14,7 @@ use Manadev\Framework\Http\Request;
  * @property string $content_type @required
  * @property string $content
  * @property Request $request @required
+ * @property Response $response
  * @property \Throwable $e @temp
  */
 class Error extends Object_
@@ -22,19 +24,13 @@ class Error extends Object_
 
         switch ($property) {
             case 'request': return $m_app->request;
-        }
-        return parent::default($property);
-    }
-
-    public function __get($property) {
-        switch ($property) {
             case 'status_text': return $this->getStatusText();
             case 'content_type': return $this->request->ajax ? 'application/json' : 'text/plain';
             case 'content': return $this->request->ajax
                 ? json_encode(['error' => $this->name], JSON_PRETTY_PRINT)
                 : $this->e->getMessage();
         }
-        return parent::__get($property);
+        return parent::default($property);
     }
 
     protected function getStatusText() {

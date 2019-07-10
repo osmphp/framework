@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class General extends Error
 {
-    public function __get($property) {
+    public function default($property) {
         switch ($property) {
             case 'status': return Response::HTTP_INTERNAL_SERVER_ERROR;
             case 'content_type': return 'text/plain';

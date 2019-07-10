@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ExpectedError extends Error
 {
-    public function __get($property) {
+    public function default($property) {
         switch ($property) {
             case 'status': return Response::HTTP_INTERNAL_SERVER_ERROR;
             case 'content_type': return 'application/json';
@@ -14,6 +14,6 @@ class ExpectedError extends Error
                 'error' => $this->name,
             ], JSON_PRETTY_PRINT);
         }
-        return parent::__get($property);
+        return parent::default($property);
     }
 }
