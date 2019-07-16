@@ -7,6 +7,7 @@ return [
     "Array expected" => "Array expected",
     "String expected" => "String expected",
     "Integer expected" => "Integer expected",
+    "Boolean expected" => "Boolean expected",
     "Validation failed" => "Validation failed",
     "Data expected" => "Data expected",
     "Validation pattern ':name' not found" => "Validation pattern ':name' not found",

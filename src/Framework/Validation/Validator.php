@@ -207,4 +207,12 @@ class Validator extends Object_
 
         return $data;
     }
+
+    protected function validateBool($data, array $property, $path) {
+        if (!is_bool($data)) {
+            return $this->validationFailed($path, m_("Boolean expected"));
+        }
+
+        return $data;
+    }
 }
