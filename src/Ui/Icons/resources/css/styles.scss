@@ -190,4 +190,11 @@
       content: 'insert_photo';
     }
   }
+
+  &.-close {
+    @extend .icon.-material;
+    &::before {
+      content: 'close';
+    }
+  }
 }
