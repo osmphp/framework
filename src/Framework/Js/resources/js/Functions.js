@@ -20,7 +20,7 @@ export default class Functions {
             contentType: 'text/plain'
         };
 
-        if (options.payload) {
+        if (options.payload !== undefined) {
             parameters.dataType = 'text';
             parameters.data = JSON.stringify(options.payload);
             parameters.processData = false;
