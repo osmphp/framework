@@ -2,6 +2,7 @@ import isString from "./isString";
 import view_models from "./vars/view_models";
 import Controller from "./Controller";
 import matches from "./matches";
+import find from "./find";
 
 /**
  * MACAW = Model - Actions - Controller - Actions - vieW
@@ -182,6 +183,7 @@ export default class Macaw {
     }
 
     get(element, Controller) {
+        element = find(element);
         if (!element.m_controllers) {
             return null;
         }

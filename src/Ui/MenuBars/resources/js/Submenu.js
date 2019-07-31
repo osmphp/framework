@@ -1,5 +1,6 @@
 import Controller from "Manadev_Framework_Js/Controller";
-import popupMenus from "Manadev_Ui_PopupMenus/vars/popupMenus";
+import macaw from "Manadev_Framework_Js/vars/macaw";
+import PopupMenu from "Manadev_Ui_PopupMenus/PopupMenu";
 
 export default class Submenu extends Controller {
     get events() {
@@ -13,6 +14,7 @@ export default class Submenu extends Controller {
     }
 
     onClick(e) {
-        popupMenus.open(this.getAliasedId('&'), e.currentTarget, {overlap_y: false});
+        let menu = macaw.get('#' + this.getAliasedId('&'), PopupMenu);
+        menu.open(e.currentTarget, {overlap_y: false});
     }
 };

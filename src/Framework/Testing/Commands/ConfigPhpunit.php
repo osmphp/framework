@@ -126,7 +126,7 @@ EOT;
             }
             $_module = $_suite->modules[$module];
 
-            $_module->files[] = substr($fileInfo->getPathname(), strlen($m_app->base_path) + 1);
+            $_module->files[] = strtr(substr($fileInfo->getPathname(), strlen($m_app->base_path) + 1), '\\', '/');
         }
 
     }

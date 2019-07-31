@@ -1,5 +1,6 @@
 import Controller from "Manadev_Framework_Js/Controller";
-import getPopupMenu from "Manadev_Ui_PopupMenus/getPopupMenu";
+import macaw from "Manadev_Framework_Js/vars/macaw";
+import PopupMenu from "Manadev_Ui_PopupMenus/PopupMenu";
 
 export default class SampleViewUsingPopupMenu extends Controller {
     get events() {
@@ -9,7 +10,7 @@ export default class SampleViewUsingPopupMenu extends Controller {
     }
 
     get menu() {
-        return getPopupMenu(this.getAliasedId('&__popup_menu'));
+        return macaw.get('#' + this.getAliasedId('&__popup_menu'), PopupMenu);
     }
 
     onAttach() {

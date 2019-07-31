@@ -5,14 +5,16 @@ import forEachParentElement from "Manadev_Framework_Js/forEachParentElement";
 import isScrollable from "Manadev_Framework_Js/isScrollable";
 import macaw from "Manadev_Framework_Js/vars/macaw";
 import Detacher from "Manadev_Framework_Js/Detacher";
-import ItemApi from "./ItemApi";
+import Item from "./Item";
+import trigger from "Manadev_Framework_Js/trigger";
 
 export default class PopupMenu extends Controller {
     get events() {
         return Object.assign({}, super.events, {
             'click document': 'mouse_handling.onDocumentClick',
             'resize window': 'onResizeOrScroll',
-            'scroll window': 'onResizeOrScroll'
+            'scroll window': 'onResizeOrScroll',
+            'click .popup-menu__item.-command': 'onCommandClick',
         });
     }
 
@@ -120,6 +122,28 @@ export default class PopupMenu extends Controller {
             throw new Error(`Menu item '${name}' not found`);
         }
 
-        return new ItemApi(name, element);
+        return new Item(this, name, element);
+    }
+
+    onCommandClick(e) {
+        let element = e.currentTarget;
+
+        if (!element.id) {
+            return;
+        }
+
+        if (!element.id.startsWith(this.element.id + '__')) {
+            return;
+        }
+
+        if (!element.id.endsWith('__item')) {
+            return;
+        }
+
+        let item = this.item(element.id.substr(this.element.id.length + '__'.length,
+            element.id.length - (this.element.id.length + '__'.length + '__item'.length)));
+
+        trigger(this.element, 'item:command', item);
+        trigger(this.element, `item:${item.name}:command`, item);
     }
 };
