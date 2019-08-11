@@ -1,0 +1,3 @@
+# Console #
+
+{{ child_pages }}
