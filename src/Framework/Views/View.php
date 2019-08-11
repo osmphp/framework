@@ -32,8 +32,6 @@ class View extends Object_
      */
     public $parent = null;
 
-    static public $layer;
-
     public function __construct($data = []) {
         parent::__construct($data);
 
