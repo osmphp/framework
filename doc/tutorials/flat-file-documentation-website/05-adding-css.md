@@ -11,7 +11,7 @@ Expected Result
 
 After the changes we should see the page shown with another font and with customized formatting:
 
-<http://127.0.0.1/docs/?page=/introduction/installation.html>
+<http://127.0.0.1/docs/?page=/tutorials/hello-world.html>
 
 Before applying custom CSS:
 

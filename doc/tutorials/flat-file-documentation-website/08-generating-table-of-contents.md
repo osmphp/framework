@@ -68,6 +68,15 @@ First processing stage is to define headers and assign identifiers.
 
 Then the list of headings titles and links should be generated and replace table of content placeholder. 
 
+Expected Result
+----------------------------------------
+
+Application should show table of contents in the page:
+
+<http://127.0.0.1/docs/tutorials/hello-world.html>
+
+![Displaying table of contents](08-displaying-toc.png)
+
 Steps To Implement:
 ----------------------------------------
 

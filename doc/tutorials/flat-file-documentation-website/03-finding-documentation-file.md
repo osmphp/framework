@@ -34,11 +34,11 @@ Here are tree possible cases when original Markdown file can be found according 
 
 ![Home page](03-find-file-for-homepage.png)
 
- 2. **First-level page:**  <http://127.0.0.1/docs/?page=/introduction.html> 
+ 2. **First-level page:**  <http://127.0.0.1/docs/?page=/tutorials.html> 
     
 ![First-level page](03-match-first-level-page.png)
    
- 3. **Second=level page:**  <http://127.0.0.1/docs/?page=/introduction/installation.html> 
+ 3. **Second=level page:**  <http://127.0.0.1/docs/?page=/tutorials/hello-world.html> 
     
 ![Second-level page](03-match-second-level-page.png)
     
