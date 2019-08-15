@@ -9,11 +9,11 @@ Without optional `depth` parameter, we will add all headers of 2-nd, 3-rd and de
 Optional `depth` parameter specifies how many levels of headers should be included into table of contents.
 
 
-How To Create Table of Contents 
+How To Create Table of Contents Manually
 ----------------------------------------
 
-Headers in Markdown marked with hash (`#`) character string, placed before header text. 
-The number of hash characters corresponds to the level of the header.
+Headers in Markdown are marked with hash (`#`) character string, placed before header text. 
+The number of hash characters defines the level of the header.
 There should be a space between string of hashes and the text. 
 
 For example:
@@ -24,11 +24,11 @@ For example:
     #### Header 4
 
 Table of contents is a multilevel list of headers, starting from second level. 
-Element in the table of contents is a list item with the relative link to go to the given part of the page.
+Element in the table of contents is a list item with the relative link to go to the listed header.
 We can use [Markdown Extra syntax](https://michelf.ca/projects/php-markdown/extra/#spe-attr) to assign id to the header 
-and use this id in the table of content. 
+HTML element and use the same id in the table of content. 
 
-Here is example of the Markdown document, where table of contents with links to chapters is placed before the main text 
+Here is example of the Markdown document, where table of contents is placed before the main text 
 and headings having assigned identifiers:
 
     Table of Contents
@@ -64,9 +64,22 @@ it will be converted to HTML like in the picture below:
 
 ![TOC example](08-toc-example.png)
 
-First processing stage is to define headers and assign identifiers. 
+Generating Table Of Contents Automatically 
+----------------------------------------
 
-Then the list of headings titles and links should be generated and replace table of content placeholder. 
+We will generate table of contents in 2 phases:
+
+1. Assign identifiers to headers. 
+2. Replace `{{ toc }}` placeholder with the list of links to the headers. 
+
+Expected Result
+----------------------------------------
+
+Application should show table of contents in the page:
+
+<http://127.0.0.1/docs/tutorials/hello-world.html>
+
+![Displaying table of contents](08-displaying-toc.png)
 
 Steps To Implement:
 ----------------------------------------
@@ -75,8 +88,8 @@ Steps To Implement:
 
 ## Modifying `Page` Class 
 
-The `Page` class, which reads documentation source Markdown file and convert it to HTML, having only file name. 
-Lets add additional text processing to the class.
+Lets add assignment of header ids and generation of table of contents to the `Page` class, which reads documentation source Markdown file and converts it 
+to HTML. 
 
 Here is new content of `app/src/Docs/Page.php`:
 
@@ -231,20 +244,17 @@ Here is new content of `app/src/Docs/Page.php`:
         }
     }
 
-First of all, we introduced new property `text` to store preprocessed Markdown text.
-This property is calculated by `transformText` function, processing original text, 
-assigning header identifiers in `assignHeadingIds` function and generating table of content in `processTags`.
+First of all, we introduced new `text` property to store preprocessed Markdown text.
+This property is calculated by `transformText()` method by taking original text, 
+assigning header identifiers in `assignHeadingIds()` method and generating table of content in `processTags()` method.
 
-At first, `assignHeadingIds` function finds header using `HEADER_PATTERN` regex and then generate unique id 
-from header text by replacing  `' '`, `'\'`, `'/'` with `'-'`, skipping several not SEO friendly characters 
+At first, `assignHeadingIds()` method finds header using `HEADER_PATTERN` regex and then generates unique id 
+based on header text by replacing  `' '`, `'\'`, `'/'` with `'-'`, skipping several not SEO friendly characters 
 and changing the text to lowercase.
 
-New property array `tags` is added 
-
-`processTags` function finds table of contents tag `{{ toc }}` according defined `TAG_PATTERN`.
-To have more expandable solution we will not use hardcoded tag name here, but will use module configuration, 
-described in next section. If tag is found, new wil call `render` function of new `TagRenderer` class passing as well 
-tag arguments.
+`processTags()` method finds table of contents tag `{{ toc }}` using `TAG_PATTERN` regex.
+To have more extensible solution we will not use hardcoded tag name here, but rather define it in the module configuration, 
+described in next section. If tag is found, we will call `render()` method of new `TagRenderer` class passing tag arguments as well.
 
 ## Creating Module `doc_tags` Settings
 
@@ -256,8 +266,8 @@ Create new file `app/src/Docs/config/doc_tags.php`:
         'toc' => ['depth'],
     ];
 
-Like all other configuration, this file returns array of all possible tags with possible tag arguments.
-Right now we have only one supported tag `toc` with only one argument `depth`.
+Like all other configuration, this file returns an array. `doc_tags.php` file returns an array of all supported tags and tag arguments.
+Right now we have only one supported tag `toc` with only one supported optional argument `depth`.
 
 ## Creating `TagRendering` Class
 
@@ -331,15 +341,14 @@ Create new class `app/src/Docs/TagRenderer.php`:
         }
     }
 
-Public function `render` calls `renderToc` for `toc` tag and generate a string with table of content.
+Public `render()` method calls `renderToc()` method for `toc` tag, which generates a string with table of content.
 Headers already has assigned identifiers, so, we do processing for each header with depth less or equal 
-than `depth` argument, indicated in `{{ toc }}` snippet:
+than `depth` argument, as specified in `{{ toc }}` snippet:
 
-* adding additional indent to the title depending on level
-* generating unordered list element from title
-* adding a link to the element
+* adding additional indent to the title depending on level;
+* generating unordered list item containing link to the header.
 
 Conclusion
 ----------------------------------------
 
-Check if `{{ toc }}` snipped is replaced with table of content in you page.
+Check if `{{ toc }}` snipped is replaced with table of content on your page.

@@ -36,7 +36,7 @@ Here is an example of file content (you can set own value to the parameter):
     	<?php
     	
     	return [
-    	    'doc_root' => 'c:\_projects\dubysa\vendor\dubysa\components\doc',
+    	    'doc_root' => 'c:\_projects\dubysa\vendor\dubysa\framework\doc',
     	]; 
     	  
 

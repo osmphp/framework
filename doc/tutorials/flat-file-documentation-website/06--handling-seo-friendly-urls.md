@@ -44,9 +44,9 @@ Expected Result
 
  1. **Home page:** <http://127.0.0.1/docs/> 
 
- 2. **First-level page:**  <http://127.0.0.1/docs/introduction.html> 
+ 2. **First-level page:**  <http://127.0.0.1/docs/tutorials.html>
        
- 3. **Second=level page:**  <http://127.0.0.1/docs/introduction/installation.html> 
+ 3. **Second=level page:**  <http://127.0.0.1/docs/tutorials/hello-world.html> 
 
 How HTTP Requests Are Processed
 ----------------------------------------
