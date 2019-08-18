@@ -1,1 +1,0 @@
-# Understanding Application Structure 

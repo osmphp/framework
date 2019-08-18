@@ -351,4 +351,4 @@ than `depth` argument, as specified in `{{ toc }}` snippet:
 Conclusion
 ----------------------------------------
 
-Check if `{{ toc }}` snipped is replaced with table of content on your page.
+Check if `{{ toc }}` snippet is replaced with table of content on your page.

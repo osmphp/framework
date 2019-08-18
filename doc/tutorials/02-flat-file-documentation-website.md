@@ -11,7 +11,7 @@ principles and concepts.
 
 **Lessons:**
 
-{{ child_pages}}
+{{ child_pages }}
 
 
 --------------------

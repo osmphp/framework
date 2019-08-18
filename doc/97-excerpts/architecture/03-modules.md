@@ -1,3 +1,0 @@
-# Modules #
-
-{{ child_pages }}
