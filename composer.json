@@ -1,5 +1,5 @@
 {
-    "name": "dubysa/framework",
+    "name": "osmphp/framework",
     "authors": [
         {
             "name": "Vladislav Osmianskij",
@@ -29,7 +29,7 @@
         "branch-alias": {
             "dev-master": "2.x-dev"
         },
-        "dubysa": {
+        "osm": {
             "component_pools": {
                 "src": {
                     "module_path": "*/*/Module.php",
