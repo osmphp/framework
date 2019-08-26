@@ -1,6 +1,6 @@
 <?php
 
-use Manadev\Framework\Testing\DbTestSuite;
+use Osm\Framework\Testing\DbTestSuite;
 
 return [
     'unit_tests' => [ 'title' => m_('Unit Tests'), 'sort_order' => 10],

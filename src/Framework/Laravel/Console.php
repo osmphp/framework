@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Laravel;
+namespace Osm\Framework\Laravel;
 
 use Illuminate\Console\Application;
-use Manadev\Core\App;
+use Osm\Core\App;
 
 class Console extends Application
 {

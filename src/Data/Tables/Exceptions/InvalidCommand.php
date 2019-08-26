@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Data\Tables\Exceptions;
+namespace Osm\Data\Tables\Exceptions;
 
 class InvalidCommand extends \Exception
 {

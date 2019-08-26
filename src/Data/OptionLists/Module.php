@@ -1,10 +1,10 @@
 <?php
 
-namespace Manadev\Data\OptionLists;
+namespace Osm\Data\OptionLists;
 
-use Manadev\Core\App;
-use Manadev\Core\Modules\BaseModule;
-use Manadev\Core\Properties;
+use Osm\Core\App;
+use Osm\Core\Modules\BaseModule;
+use Osm\Core\Properties;
 
 class Module extends BaseModule
 {

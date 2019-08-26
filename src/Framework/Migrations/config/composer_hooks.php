@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'run_migrations' => \Manadev\Framework\Migrations\ComposerHook::class,
+    'run_migrations' => \Osm\Framework\Migrations\ComposerHook::class,
 ];

@@ -4,10 +4,10 @@ Dubysa application is made of modules. Each module handles relatively simple tas
 
 Examples: 
 
-* `Manadev_Framework_Http` module handles HTTP requests
-* `Manadev_Framework_WebPack` module handles integration with WebPack
-* `Manadev_Framework_Migrations` module executes database preparation scripts
-* `Manadev_Ui_PopupMenus` modules allows displaying popup menus on pages
+* `Osm_Framework_Http` module handles HTTP requests
+* `Osm_Framework_WebPack` module handles integration with WebPack
+* `Osm_Framework_Migrations` module executes database preparation scripts
+* `Osm_Ui_PopupMenus` modules allows displaying popup menus on pages
 
 Dubysa **module** is a directory which contains PHP, JavaScript, CSS and other files. 
 

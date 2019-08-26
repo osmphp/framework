@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\Testing\ChromeBrowser;
+namespace Osm\Framework\Testing\ChromeBrowser;
 
-use Manadev\Framework\Testing\Browser\Browser as BaseBrowser;
+use Osm\Framework\Testing\Browser\Browser as BaseBrowser;
 use Symfony\Component\HttpFoundation\Response;
 
 class Browser extends BaseBrowser

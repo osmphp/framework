@@ -1,15 +1,15 @@
 <?php
 
-namespace Manadev\Tests\Data\TableQueries;
+namespace Osm\Tests\Data\TableQueries;
 
-use Manadev\Core\App;
-use Manadev\Data\Tables\Blueprint;
-use Manadev\Framework\Testing\Tests\DbTestCase;
+use Osm\Core\App;
+use Osm\Data\Tables\Blueprint;
+use Osm\Framework\Testing\Tests\DbTestCase;
 
 class RelationTest extends DbTestCase
 {
     /**
-     * @see \Manadev\Samples\Tables\Traits\RelationsTrait for relation definition.
+     * @see \Osm\Samples\Tables\Traits\RelationsTrait for relation definition.
      */
     public function test_relations() {
         global $m_app; /* @var App $m_app */

@@ -1,15 +1,15 @@
 <?php
 
-use Manadev\Framework\Views\View;
-use Manadev\Ui\MenuBars\Views\MenuBar;
-use Manadev\Ui\Menus\Items\Type;
+use Osm\Framework\Views\View;
+use Osm\Ui\MenuBars\Views\MenuBar;
+use Osm\Ui\Menus\Items\Type;
 
 return [
     '@include' => ['modal_dialog'],
     '#dialog' => [
         'modifier' => '-yes-no',
         'views' => [
-            'stack_trace' => View::new(['template' => 'Manadev_Ui_Dialogs.message']),
+            'stack_trace' => View::new(['template' => 'Osm_Ui_Dialogs.message']),
         ],
         'footer' => MenuBar::new([
                 'modifier' => '-center',

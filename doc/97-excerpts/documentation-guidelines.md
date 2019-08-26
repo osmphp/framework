@@ -134,7 +134,7 @@ Every concept used throught the text should be briefly explained, so that our re
 
 To render a view, assign `template` property and then just convert view object to string:
 
-    use Manadev\Framework\Views\View;
+    use Osm\Framework\Views\View;
 
     $view = View::new(['template' => 'Your_Module_Name.hello']);
     $html = (string)$view;
@@ -144,7 +144,7 @@ To render a view, assign `template` property and then just convert view object t
     $view = View::new();
     $view->template = 'Your_Module_Name.hello';
 
->It is a feature of all classes inherited from `Manadev\Core\Object_` and views are inherit from this class. See also: [Objects](#).
+>It is a feature of all classes inherited from `Osm\Core\Object_` and views are inherit from this class. See also: [Objects](#).
 
 Maybe we should keep a list of concepts which we assume our reader knows, such as PHP class property.
 

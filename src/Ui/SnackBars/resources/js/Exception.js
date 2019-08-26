@@ -1,5 +1,5 @@
-import Controller from "Manadev_Framework_Js/Controller";
-import dialogs from 'Manadev_Ui_Dialogs/vars/dialogs';
+import Controller from "Osm_Framework_Js/Controller";
+import dialogs from 'Osm_Ui_Dialogs/vars/dialogs';
 
 export default class Exception extends Controller {
     get events() {

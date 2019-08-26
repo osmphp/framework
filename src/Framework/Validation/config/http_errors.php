@@ -1,6 +1,6 @@
 <?php
 
-use Manadev\Framework\Validation\Errors;
+use Osm\Framework\Validation\Errors;
 
 return [
     'validation_failed' => Errors\ValidationFailed::class,

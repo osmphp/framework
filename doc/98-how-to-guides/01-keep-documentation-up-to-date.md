@@ -3,7 +3,7 @@
 ## Setup ##
 
 1. Add a documentation topic.
-2. Add documentation test, example `\Manadev\Tests\DocumentationTest::test_web_developer_guide()`:
+2. Add documentation test, example `\Osm\Tests\DocumentationTest::test_web_developer_guide()`:
 
         class DocumentationTest extends DocumentationTestCase
         {

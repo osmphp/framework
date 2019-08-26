@@ -1,9 +1,9 @@
-import merge from 'Manadev_Framework_Js/merge';
+import merge from 'Osm_Framework_Js/merge';
 
 import SampleViewUsingSnackBar from './SampleViewUsingSnackBar';
 
 merge(window, {
-    Manadev_Samples_Ui: {
+    Osm_Samples_Ui: {
         SampleViewUsingSnackBar
     }
 });

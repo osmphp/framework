@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Framework\Data;
+namespace Osm\Framework\Data;
 
 class Sorter
 {

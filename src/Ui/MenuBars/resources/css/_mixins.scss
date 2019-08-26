@@ -1,5 +1,5 @@
-@import '~Manadev_Ui_Aba/_variables-and-mixins.scss';
-@import "~Manadev_Ui_Buttons/_mixins.scss";
+@import '~Osm_Ui_Aba/_variables-and-mixins.scss';
+@import "~Osm_Ui_Buttons/_mixins.scss";
 
 @mixin menu-bar-color($color, $on-color) {
   background: $color;

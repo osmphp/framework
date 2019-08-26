@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Ui\Forms\Views;
+namespace Osm\Ui\Forms\Views;
 
-use Manadev\Framework\Views\View;
-use Manadev\Framework\Views\Views\Container;
+use Osm\Framework\Views\View;
+use Osm\Framework\Views\Views\Container;
 
 /**
  * @property View $header @part
@@ -15,8 +15,8 @@ use Manadev\Framework\Views\Views\Container;
  */
 class Form extends Container
 {
-    public $template = 'Manadev_Ui_Forms.form';
-    public $view_model = 'Manadev_Ui_Forms.Form';
+    public $template = 'Osm_Ui_Forms.form';
+    public $view_model = 'Osm_Ui_Forms.Form';
 
     protected function default($property) {
         switch ($property) {

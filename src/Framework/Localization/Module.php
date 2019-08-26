@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Localization;
+namespace Osm\Framework\Localization;
 
-use Manadev\Core\App;
-use Manadev\Core\Modules\BaseModule;
+use Osm\Core\App;
+use Osm\Core\Modules\BaseModule;
 
 /**
  * @property string $locale @required

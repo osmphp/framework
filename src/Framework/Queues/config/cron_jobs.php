@@ -1,7 +1,7 @@
 <?php
 
-use Manadev\Framework\Cron\Schedule;
-use Manadev\Framework\Queues\CronJobs;
+use Osm\Framework\Cron\Schedule;
+use Osm\Framework\Queues\CronJobs;
 
 return [
     'process_queue' => [

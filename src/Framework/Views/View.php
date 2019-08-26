@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Framework\Views;
+namespace Osm\Framework\Views;
 
-use Manadev\Core\App;
-use Manadev\Core\Object_;
-use Manadev\Framework\Layers\Layout;
-use Manadev\Framework\Views\Exceptions\IdCantBeInferred;
+use Osm\Core\App;
+use Osm\Core\Object_;
+use Osm\Framework\Layers\Layout;
+use Osm\Framework\Views\Exceptions\IdCantBeInferred;
 
 /**
  * @property string $template @required @part
@@ -18,7 +18,7 @@ use Manadev\Framework\Views\Exceptions\IdCantBeInferred;
  * @property object $model
  * @property string $view_model_script @required
  *
- * @property \Manadev\Framework\Views\Module $module @required
+ * @property \Osm\Framework\Views\Module $module @required
  * @property ViewFactory $laravel_view @required
  * @property Rendering $rendering @required
  * @property Iterator $iterator @required
@@ -51,7 +51,7 @@ class View extends Object_
         global $m_app; /* @var App $m_app */
 
         switch ($property) {
-            case 'module': return $m_app->modules['Manadev_Framework_Views'];
+            case 'module': return $m_app->modules['Osm_Framework_Views'];
             case 'laravel_view': return $this->module->laravel_view;
             case 'rendering': return $m_app[Rendering::class];
             case 'iterator': return $m_app[Iterator::class];

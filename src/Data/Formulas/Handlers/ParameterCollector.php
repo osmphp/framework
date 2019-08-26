@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Data\Formulas\Handlers;
+namespace Osm\Data\Formulas\Handlers;
 
-use Manadev\Data\Formulas\Formulas\Formula;
-use Manadev\Data\Formulas\Formulas;
+use Osm\Data\Formulas\Formulas\Formula;
+use Osm\Data\Formulas\Formulas;
 
 /**
  * @property array $parameters @temp
@@ -16,7 +16,7 @@ class ParameterCollector extends Handler {
     }
 
     /**
-     * @see \Manadev\Data\Formulas\Formulas\Formula::$type @handler
+     * @see \Osm\Data\Formulas\Formulas\Formula::$type @handler
      * @param Formula $formula
      */
     protected function handleFormula(Formula &$formula) {

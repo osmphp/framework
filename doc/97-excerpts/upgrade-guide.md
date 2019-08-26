@@ -4,7 +4,7 @@
 
 Starting from `0.3` version:
 
-* core and `Manadev_Framework_*` modules moved to new `dubysa/framework` package.
+* core and `Osm_Framework_*` modules moved to new `dubysa/framework` package.
 * it is recommended to specify version constaint instead of `dev-master@dev` (to run `composer update` without fear of breaking changes) 
 
 ### `composer.json` ###
@@ -27,7 +27,7 @@ Add `dubysa/framework` package as a dependency:
         "dubysa/framework": "0.3.*"
     },
 
-If you only use `Manadev_Framework_*` modules, remove `dubysa/components` dependency from requires section. Otherwise change version constraint to `0.3.*`. 
+If you only use `Osm_Framework_*` modules, remove `dubysa/components` dependency from requires section. Otherwise change version constraint to `0.3.*`. 
 
 ### Other ###
 

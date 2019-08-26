@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Data\OptionLists;
+namespace Osm\Data\OptionLists;
 
-use Manadev\Framework\Data\CollectionRegistry;
+use Osm\Framework\Data\CollectionRegistry;
 
 class OptionLists extends CollectionRegistry
 {

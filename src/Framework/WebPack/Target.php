@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\WebPack;
+namespace Osm\Framework\WebPack;
 
-use Manadev\Core\Object_;
+use Osm\Core\Object_;
 
 /**
  * @property string $area @required @part

@@ -1,6 +1,6 @@
 <?php
 
-use Manadev\Ui\Dialogs\Views\ModalDialog;
+use Osm\Ui\Dialogs\Views\ModalDialog;
 
 return [
     'root' => ModalDialog::new([

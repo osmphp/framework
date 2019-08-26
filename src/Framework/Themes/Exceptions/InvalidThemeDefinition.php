@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Framework\Themes\Exceptions;
+namespace Osm\Framework\Themes\Exceptions;
 
 class InvalidThemeDefinition extends \Exception
 {

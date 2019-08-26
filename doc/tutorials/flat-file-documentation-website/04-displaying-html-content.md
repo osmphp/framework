@@ -74,7 +74,7 @@ Create `app/src/Docs/Page.php` file:
     
     namespace App\Docs;
     
-    use Manadev\Core\Object_;
+    use Osm\Core\Object_;
     use Michelf\MarkdownExtra;
     
     /**
@@ -139,10 +139,10 @@ Here is new content of `app/src/Docs/Controllers/Frontend.php`:
     use App\Docs\Page;
     use App\Docs\Hints\SettingsHint;
     use App\Docs\Views\Html;
-    use Manadev\Core\App;
-    use Manadev\Framework\Http\Controller;
-    use Manadev\Framework\Settings\Settings;
-    use Manadev\Framework\Http\Exceptions\NotFound;
+    use Osm\Core\App;
+    use Osm\Framework\Http\Controller;
+    use Osm\Framework\Settings\Settings;
+    use Osm\Framework\Http\Exceptions\NotFound;
     
     /**
      * @property Settings|SettingsHint $settings @required
@@ -255,7 +255,7 @@ in file `app/src/Docs/Views/Html.php`:
     namespace App\Docs\Views;
     
     use App\Docs\Page;
-    use Manadev\Framework\Views\View;
+    use Osm\Framework\Views\View;
     
     /**
      * @property Page $page @required

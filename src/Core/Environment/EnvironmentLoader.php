@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Core\Environment;
+namespace Osm\Core\Environment;
 
 use Dotenv\Dotenv;
 use Dotenv\Exception\InvalidPathException;
-use Manadev\Core\App;
-use Manadev\Core\Object_;
+use Osm\Core\App;
+use Osm\Core\Object_;
 
 class EnvironmentLoader extends Object_
 {

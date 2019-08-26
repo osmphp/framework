@@ -1,12 +1,12 @@
 <?php
 
-namespace Manadev\Framework\Npm\Commands;
+namespace Osm\Framework\Npm\Commands;
 
-use Manadev\Core\App;
-use Manadev\Framework\Console\Command;
-use Manadev\Core\Modules\BaseModule;
-use Manadev\Framework\Themes\Theme;
-use Manadev\Framework\Themes\Themes;
+use Osm\Core\App;
+use Osm\Framework\Console\Command;
+use Osm\Core\Modules\BaseModule;
+use Osm\Framework\Themes\Theme;
+use Osm\Framework\Themes\Themes;
 
 /**
  * @property BaseModule[] $modules @required

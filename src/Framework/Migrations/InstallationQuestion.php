@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Migrations;
+namespace Osm\Framework\Migrations;
 
-use Manadev\Framework\Installer\Question;
-use Manadev\Framework\Processes\Process;
+use Osm\Framework\Installer\Question;
+use Osm\Framework\Processes\Process;
 
 class InstallationQuestion extends Question
 {

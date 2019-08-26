@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Data\Formulas\Functions;
+namespace Osm\Data\Formulas\Functions;
 
-use Manadev\Core\Object_;
+use Osm\Core\Object_;
 
 /**
  * @property string $name @required @part

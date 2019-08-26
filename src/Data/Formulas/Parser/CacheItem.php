@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Data\Formulas\Parser;
+namespace Osm\Data\Formulas\Parser;
 
-use Manadev\Data\Formulas\Formulas\Formula;
-use Manadev\Framework\Cache\CacheItem as BaseCacheItem;
+use Osm\Data\Formulas\Formulas\Formula;
+use Osm\Framework\Cache\CacheItem as BaseCacheItem;
 
 /**
  * @property Formula $formula @required @part

@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Http\Parameters;
+namespace Osm\Framework\Http\Parameters;
 
-use Manadev\Framework\Http\Exceptions\InvalidParameter;
-use Manadev\Framework\Http\Parameter;
+use Osm\Framework\Http\Exceptions\InvalidParameter;
+use Osm\Framework\Http\Parameter;
 
 /**
  * @property string $pattern @part

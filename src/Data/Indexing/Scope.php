@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Data\Indexing;
+namespace Osm\Data\Indexing;
 
-use Manadev\Core\Object_;
+use Osm\Core\Object_;
 
 /**
  * @property string $name @required @part

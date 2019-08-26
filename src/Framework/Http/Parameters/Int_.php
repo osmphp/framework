@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Framework\Http\Parameters;
+namespace Osm\Framework\Http\Parameters;
 
 class Int_ extends String_
 {

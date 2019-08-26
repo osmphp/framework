@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Core\Modules;
+namespace Osm\Core\Modules;
 
-use Manadev\Core\App;
-use Manadev\Core\Object_;
+use Osm\Core\App;
+use Osm\Core\Object_;
 
 /**
  * @property BaseModule[] $modules @required

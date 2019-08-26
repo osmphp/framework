@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Data\TableQueries\Functions;
+namespace Osm\Data\TableQueries\Functions;
 
-use Manadev\Core\Exceptions\NotSupported;
-use Manadev\Data\Formulas\Formulas\Call;
-use Manadev\Core\Object_;
-use Manadev\Data\TableQueries\Generator as FormulaGenerator;
+use Osm\Core\Exceptions\NotSupported;
+use Osm\Data\Formulas\Formulas\Call;
+use Osm\Core\Object_;
+use Osm\Data\TableQueries\Generator as FormulaGenerator;
 
 /**
  * @property FormulaGenerator $parent @required

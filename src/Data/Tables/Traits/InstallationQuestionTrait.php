@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Data\Tables\Traits;
+namespace Osm\Data\Tables\Traits;
 
 trait InstallationQuestionTrait
 {

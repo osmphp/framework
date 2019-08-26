@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\Installer;
+namespace Osm\Framework\Installer;
 
-use Manadev\Framework\Data\CollectionRegistry;
+use Osm\Framework\Data\CollectionRegistry;
 
 class Questions extends CollectionRegistry
 {

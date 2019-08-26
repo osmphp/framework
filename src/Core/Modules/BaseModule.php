@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Core\Modules;
+namespace Osm\Core\Modules;
 
-use Manadev\Core\App;
-use Manadev\Core\Object_;
-use Manadev\Core\Packages\ComponentPool;
-use Manadev\Core\Packages\Package;
+use Osm\Core\App;
+use Osm\Core\Object_;
+use Osm\Core\Packages\ComponentPool;
+use Osm\Core\Packages\Package;
 
 /**
  * @property string $name @required @part

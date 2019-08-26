@@ -1,10 +1,10 @@
 <?php
 
-namespace Manadev\Framework\Http\Errors;
+namespace Osm\Framework\Http\Errors;
 
-use Manadev\Core\App;
-use Manadev\Core\Object_;
-use Manadev\Framework\Http\Request;
+use Osm\Core\App;
+use Osm\Core\Object_;
+use Osm\Framework\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**

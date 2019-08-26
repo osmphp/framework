@@ -1,15 +1,15 @@
 <?php
 
-namespace Manadev\Framework\Queues\CronJobs;
+namespace Osm\Framework\Queues\CronJobs;
 
 use Carbon\Carbon;
 use Illuminate\Queue\Worker;
 use Illuminate\Queue\WorkerOptions;
-use Manadev\Core\App;
-use Manadev\Framework\Cron\Job;
-use Manadev\Framework\Queues\Module;
-use Manadev\Framework\Queues\Processor;
-use Manadev\Framework\Settings\Settings;
+use Osm\Core\App;
+use Osm\Framework\Cron\Job;
+use Osm\Framework\Queues\Module;
+use Osm\Framework\Queues\Processor;
+use Osm\Framework\Settings\Settings;
 
 /**
  * @property Module $module @required
@@ -24,7 +24,7 @@ class ProcessQueue extends Job
 
         switch ($property) {
             case 'settings': return $m_app->settings;
-            case 'module': return $m_app->modules['Manadev_Framework_Queues'];
+            case 'module': return $m_app->modules['Osm_Framework_Queues'];
             case 'worker': return $m_app->createRaw(Worker::class, $this->module->laravel_manager,
                 $m_app->laravel->events, $m_app->laravel->exception_handler);
             case 'worker_options':

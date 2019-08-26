@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\Css;
+namespace Osm\Framework\Css;
 
-use Manadev\Core\Modules\BaseModule;
+use Osm\Core\Modules\BaseModule;
 
 class Module extends BaseModule
 {

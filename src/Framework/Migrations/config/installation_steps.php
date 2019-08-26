@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'migrations' => \Manadev\Framework\Migrations\InstallationStep::class,
+    'migrations' => \Osm\Framework\Migrations\InstallationStep::class,
 ];

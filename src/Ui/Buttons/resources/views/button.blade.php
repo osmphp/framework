@@ -1,5 +1,5 @@
 <?php
-/* @var \Manadev\Ui\Buttons\Views\Button $view */
+/* @var \Osm\Ui\Buttons\Views\Button $view */
 ?>
 @if ($view->url)
     <a class="button {{ $view->modifier }}" href={{ $view->url }} id="{{ $view->id_ }}">

@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Framework\Views\Traits;
+namespace Osm\Framework\Views\Traits;
 
-use Manadev\Core\App;
-use Manadev\Core\Profiler;
-use Manadev\Framework\Views\Rendering;
-use Manadev\Framework\Views\View;
+use Osm\Core\App;
+use Osm\Core\Profiler;
+use Osm\Framework\Views\Rendering;
+use Osm\Framework\Views\View;
 
 /**
  * @property array $data

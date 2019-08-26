@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Logging;
+namespace Osm\Framework\Logging;
 
-use Manadev\Core\Modules\BaseModule;
-use Manadev\Core\Properties;
+use Osm\Core\Modules\BaseModule;
+use Osm\Core\Properties;
 
 class Module extends BaseModule
 {

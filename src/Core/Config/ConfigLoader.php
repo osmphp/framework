@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Core\Config;
+namespace Osm\Core\Config;
 
-use Manadev\Core\App;
-use Manadev\Core\Object_;
+use Osm\Core\App;
+use Osm\Core\Object_;
 
 /**
  * @property string $name @required @part

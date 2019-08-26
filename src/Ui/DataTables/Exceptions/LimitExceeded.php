@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Ui\DataTables\Exceptions;
+namespace Osm\Ui\DataTables\Exceptions;
 
 class LimitExceeded extends \Exception
 {

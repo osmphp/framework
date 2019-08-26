@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Data\Tables\Commands;
+namespace Osm\Data\Tables\Commands;
 
-use Manadev\Core\Object_;
+use Osm\Core\Object_;
 
 /**
  * @property string $type @required @part

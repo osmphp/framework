@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Ui\Dialogs\Views;
+namespace Osm\Ui\Dialogs\Views;
 
-use Manadev\Framework\Views\View;
-use Manadev\Framework\Views\Views\Container;
+use Osm\Framework\Views\View;
+use Osm\Framework\Views\Views\Container;
 
 /**
  * @property string $header @part
@@ -11,8 +11,8 @@ use Manadev\Framework\Views\Views\Container;
  */
 class ModalDialog extends Container
 {
-    public $template = 'Manadev_Ui_Dialogs.modal-dialog';
-    public $view_model = 'Manadev_Ui_Dialogs.ModalDialog';
+    public $template = 'Osm_Ui_Dialogs.modal-dialog';
+    public $view_model = 'Osm_Ui_Dialogs.ModalDialog';
     public $id_ = '{{ id }}';
     public $width = '{{ width }}';
     public $height = '{{ height }}';

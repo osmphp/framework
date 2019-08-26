@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Data\Formulas;
+namespace Osm\Data\Formulas;
 
-use Manadev\Core\Modules\BaseModule;
+use Osm\Core\Modules\BaseModule;
 
 class Module extends BaseModule
 {

@@ -1,6 +1,6 @@
 <?php
 
-use Manadev\Framework\Queues\Commands;
+use Osm\Framework\Queues\Commands;
 
 return [
     'queued-jobs' => [

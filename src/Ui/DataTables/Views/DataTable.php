@@ -1,14 +1,14 @@
 <?php
 
-namespace Manadev\Ui\DataTables\Views;
+namespace Osm\Ui\DataTables\Views;
 
-use Manadev\Core\App;
-use Manadev\Data\Search\Search;
-use Manadev\Data\Search\SearchResult;
-use Manadev\Framework\Views\View;
-use Manadev\Ui\DataTables\Columns\Column;
-use Manadev\Ui\DataTables\Exceptions\LimitExceeded;
-use Manadev\Ui\DataTables\Module;
+use Osm\Core\App;
+use Osm\Data\Search\Search;
+use Osm\Data\Search\SearchResult;
+use Osm\Framework\Views\View;
+use Osm\Ui\DataTables\Columns\Column;
+use Osm\Ui\DataTables\Exceptions\LimitExceeded;
+use Osm\Ui\DataTables\Module;
 
 /**
  * @property string $search @required @part
@@ -41,7 +41,7 @@ class DataTable extends View
             case 'model': return $this->getModel();
             case 'rows_per_page': return $m_app->settings->data_table_rows_per_page;
             case 'template': return $this->render_rows ? $this->rows_template : $this->full_template;
-            case 'data_table_module': return $m_app->modules['Manadev_Ui_DataTables'];
+            case 'data_table_module': return $m_app->modules['Osm_Ui_DataTables'];
 
             case 'offset': return 0;
             case 'limit': return $this->rows_per_page;
@@ -54,15 +54,15 @@ class DataTable extends View
      * @required @part
      * @var string
      */
-    public $rows_template = 'Manadev_Ui_DataTables.rows';
+    public $rows_template = 'Osm_Ui_DataTables.rows';
 
     /**
      * @required @part
      * @var string
      */
-    public $full_template = 'Manadev_Ui_DataTables.data_table';
+    public $full_template = 'Osm_Ui_DataTables.data_table';
 
-    public $view_model = 'Manadev_Ui_DataTables.DataTable';
+    public $view_model = 'Osm_Ui_DataTables.DataTable';
 
     protected function getColumns() {
         $result = [];

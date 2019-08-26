@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Data\TableQueries\Functions;
+namespace Osm\Data\TableQueries\Functions;
 
-use Manadev\Core\App;
-use Manadev\Data\Queries\Functions\Resolver as BaseFunctionResolver;
+use Osm\Core\App;
+use Osm\Data\Queries\Functions\Resolver as BaseFunctionResolver;
 
 class Resolver extends BaseFunctionResolver
 {

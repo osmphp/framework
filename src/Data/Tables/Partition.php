@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Data\Tables;
+namespace Osm\Data\Tables;
 
-use Manadev\Core\Object_;
-use Manadev\Data\Tables\Columns\Column;
+use Osm\Core\Object_;
+use Osm\Data\Tables\Columns\Column;
 
 /**
  * @property int $index @required

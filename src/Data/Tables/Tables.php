@@ -1,15 +1,15 @@
 <?php
 
-namespace Manadev\Data\Tables;
+namespace Osm\Data\Tables;
 
-use Manadev\Core\App;
-use Manadev\Data\Tables\Columns\Column;
-use Manadev\Data\Tables\Commands\Command;
-use Manadev\Data\Tables\Hints\TableHint;
-use Manadev\Framework\Data\CollectionRegistry;
-use Manadev\Framework\Db\Db;
-use Manadev\Data\Tables\Columns\ColumnType;
-use Manadev\Data\Tables\Columns\ColumnTypes;
+use Osm\Core\App;
+use Osm\Data\Tables\Columns\Column;
+use Osm\Data\Tables\Commands\Command;
+use Osm\Data\Tables\Hints\TableHint;
+use Osm\Framework\Data\CollectionRegistry;
+use Osm\Framework\Db\Db;
+use Osm\Data\Tables\Columns\ColumnType;
+use Osm\Data\Tables\Columns\ColumnTypes;
 
 /**
  * @property Db $parent @required

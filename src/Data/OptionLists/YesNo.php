@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Data\OptionLists;
+namespace Osm\Data\OptionLists;
 
-use Manadev\Data\OptionLists\Hints\OptionHint;
+use Osm\Data\OptionLists\Hints\OptionHint;
 
 /**
  * @property OptionHint[] $items @required @part Explicitly mark as cache-able

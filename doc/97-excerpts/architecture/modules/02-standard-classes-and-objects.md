@@ -16,7 +16,7 @@ name of the class to create every element fro array...
 
 ## $m_app ##
 
-Global application variable stores current top level application object of `Manadev\Core\App` class. 
+Global application variable stores current top level application object of `Osm\Core\App` class. 
 
 Application object contains all other objects.
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Core\Compilation;
+namespace Osm\Core\Compilation;
 
-use Manadev\Core\Object_;
+use Osm\Core\Object_;
 
 /**
  * @property Class_ $class_ @temp

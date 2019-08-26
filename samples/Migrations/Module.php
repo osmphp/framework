@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Samples\Migrations;
+namespace Osm\Samples\Migrations;
 
-use Manadev\Core\Modules\BaseModule;
+use Osm\Core\Modules\BaseModule;
 
 class Module extends BaseModule
 {

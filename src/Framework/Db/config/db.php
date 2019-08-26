@@ -1,6 +1,6 @@
 <?php
 
-use Manadev\Framework\Db\MySql;
+use Osm\Framework\Db\MySql;
 
 return [
     'main' => [

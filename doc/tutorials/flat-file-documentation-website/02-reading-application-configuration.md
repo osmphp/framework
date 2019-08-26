@@ -55,9 +55,9 @@ Below is the content of `app/src/Docs/Controllers/Frontend.php`:
     namespace App\Docs\Controllers;
     
     use App\Docs\Hints\SettingsHint;
-    use Manadev\Core\App;
-    use Manadev\Framework\Http\Controller;
-    use Manadev\Framework\Settings\Settings;
+    use Osm\Core\App;
+    use Osm\Framework\Http\Controller;
+    use Osm\Framework\Settings\Settings;
     
     /**
      * @property Settings|SettingsHint $settings @required
@@ -95,22 +95,22 @@ Values for both properties are set in protected `default()` class function in st
 [properties, calculated on first access (AKA lazy properties)](../../architecture/properties#properties-calculated-on-first-access-aka-lazy-properties). 
 
 To get application settings we are using [`$m_app`](../../architecture/modules/standard-classes-and-objects#$m_app) 
-object - global top-level application object of `Manadev\Core\App` class. 
+object - global top-level application object of `Osm\Core\App` class. 
 
 The global `$m_app` variable already has `settings` property to keep and cache all application settings.
 
 The object `$m_app->settings` reads and merges `config/settings.php` files from all included modules and application directory. 
-This functionality is provided in standard Dubysa Framework class `Manadev\Framework\Settings\Settings`. 
+This functionality is provided in standard Dubysa Framework class `Osm\Framework\Settings\Settings`. 
 This class is also responsible for caching.
 
 However, new setting `doc_root`, which we need to process in our application and which should be mandatory and cacheable, is our own custom property. Normally we specify that property is mandatory and cacheable in its class, 
-but we cannot modify standard `Manadev\Framework\Settings\Settings` class.
+but we cannot modify standard `Osm\Framework\Settings\Settings` class.
 Therefore we need to introduce new class `SettingsHint` in `Docs` module to specify behavior of new `doc_root` property. 
 This class will be created in the next section.  
 
 The `doc_root` property value is assigned by fetching `doc_root` property value of `settings` object. 
 
-Finally, we imported those two classes `Manadev\Framework\Settings\Settings` and `App\Docs\Hints\SettingsHint`, 
+Finally, we imported those two classes `Osm\Framework\Settings\Settings` and `App\Docs\Hints\SettingsHint`, 
 used for `$settings` property evaluation. 
 
 ## Creating `SettingsHint` Class
@@ -125,7 +125,7 @@ Create PHP class `app/src/Docs/Hints/SettingsHint.php`. Here is the content of t
     
     namespace App\Docs\Hints;
     
-    use Manadev\Framework\Settings\Settings;
+    use Osm\Framework\Settings\Settings;
     
     /**
      * @property string $doc_root @required @part

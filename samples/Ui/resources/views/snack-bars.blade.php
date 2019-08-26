@@ -1,6 +1,6 @@
 <?php
-/* @var \Manadev\Framework\Views\View $view */
-use Manadev\Samples\Ui\Views\SampleViewUsingSnackBar;
+/* @var \Osm\Framework\Views\View $view */
+use Osm\Samples\Ui\Views\SampleViewUsingSnackBar;
 ?>
 @include(SampleViewUsingSnackBar::new(['alias' => 'sample']))
 <footer>

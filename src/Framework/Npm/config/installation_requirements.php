@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'npm' => \Manadev\Framework\Npm\InstallationRequirement::class,
+    'npm' => \Osm\Framework\Npm\InstallationRequirement::class,
 ];

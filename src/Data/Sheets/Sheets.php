@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Data\Sheets;
+namespace Osm\Data\Sheets;
 
-use Manadev\Framework\Data\ObjectRegistry;
+use Osm\Framework\Data\ObjectRegistry;
 
 class Sheets extends ObjectRegistry
 {

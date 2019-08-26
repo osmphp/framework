@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Ui\DataTables;
+namespace Osm\Ui\DataTables;
 
-use Manadev\Framework\Data\CollectionRegistry;
+use Osm\Framework\Data\CollectionRegistry;
 
 class ColumnTypes extends CollectionRegistry
 {

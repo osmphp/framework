@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Core;
+namespace Osm\Core;
 
 class Merger
 {

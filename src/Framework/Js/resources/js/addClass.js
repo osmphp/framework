@@ -1,1 +1,1 @@
-export default window.Manadev_Framework_Js.addClass;
+export default window.Osm_Framework_Js.addClass;

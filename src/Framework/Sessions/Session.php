@@ -1,13 +1,13 @@
 <?php
 
-namespace Manadev\Framework\Sessions;
+namespace Osm\Framework\Sessions;
 
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-use Manadev\Core\App;
-use Manadev\Framework\Areas\Area;
-use Manadev\Core\Object_;
-use Manadev\Framework\Settings\Settings;
+use Osm\Core\App;
+use Osm\Framework\Areas\Area;
+use Osm\Core\Object_;
+use Osm\Framework\Settings\Settings;
 
 /**
  * @property string $id @required @part
@@ -15,7 +15,7 @@ use Manadev\Framework\Settings\Settings;
  * @property Settings $settings @required
  * @property int $time_to_live @required
  *
- * @see \Manadev\App\Users\Module:
+ * @see \Osm\App\Users\Module:
  *      @property int $user @part
  */
 class Session extends Object_

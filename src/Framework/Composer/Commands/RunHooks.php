@@ -1,12 +1,12 @@
 <?php
 
-namespace Manadev\Framework\Composer\Commands;
+namespace Osm\Framework\Composer\Commands;
 
-use Manadev\Core\App;
-use Manadev\Framework\Composer\Hook;
-use Manadev\Framework\Composer\Hooks;
-use Manadev\Framework\Composer\Module;
-use Manadev\Framework\Console\Command;
+use Osm\Core\App;
+use Osm\Framework\Composer\Hook;
+use Osm\Framework\Composer\Hooks;
+use Osm\Framework\Composer\Module;
+use Osm\Framework\Console\Command;
 
 /**
  * @property Module $module @required
@@ -18,7 +18,7 @@ class RunHooks extends Command
         global $m_app; /* @var App $m_app */
 
         switch ($property) {
-            case 'module': return $m_app->modules['Manadev_Framework_Composer'];
+            case 'module': return $m_app->modules['Osm_Framework_Composer'];
             case 'hooks': return $this->module->hooks;
         }
 

@@ -1,6 +1,6 @@
 <?php
 
-use Manadev\Ui\Dialogs\Controllers\Web;
+use Osm\Ui\Dialogs\Controllers\Web;
 
 return [
     'GET /dialogs/exception' => ['class' => Web::class, 'method' => 'exceptionDialog', 'public' => true],

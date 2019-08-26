@@ -1,13 +1,13 @@
 <?php
 
-namespace Manadev\Framework\Db\Traits;
+namespace Osm\Framework\Db\Traits;
 
 use Illuminate\Database\Connection;
 use Illuminate\Database\QueryException;
-use Manadev\Core\App;
-use Manadev\Core\Profiler;
-use Manadev\Core\Promise;
-use Manadev\Framework\Db\Logging\QueryLogger;
+use Osm\Core\App;
+use Osm\Core\Profiler;
+use Osm\Core\Promise;
+use Osm\Framework\Db\Logging\QueryLogger;
 
 trait ConnectionTrait
 {

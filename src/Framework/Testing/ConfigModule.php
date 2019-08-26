@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\Testing;
+namespace Osm\Framework\Testing;
 
-use Manadev\Core\Object_;
+use Osm\Core\Object_;
 
 /**
  * @property string $name @required @part

@@ -1,10 +1,10 @@
 <?php
 
-namespace Manadev\Framework\Testing\Tests;
+namespace Osm\Framework\Testing\Tests;
 
-use Manadev\Core\App;
-use Manadev\Framework\Migrations\Migrator;
-use Manadev\Framework\Testing\DbTestSuite;
+use Osm\Core\App;
+use Osm\Framework\Migrations\Migrator;
+use Osm\Framework\Testing\DbTestSuite;
 
 abstract class DbTestCase extends UnitTestCase
 {

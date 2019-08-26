@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Framework\Testing;
+namespace Osm\Framework\Testing;
 
 /**
  * @property string[] $modules @required @part

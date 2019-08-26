@@ -1,2 +1,2 @@
-export default Manadev_Ui_Aba.getViewPortRect; //
+export default Osm_Ui_Aba.getViewPortRect; //
 

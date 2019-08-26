@@ -1,12 +1,12 @@
 <?php
 
-namespace Manadev\Data\Indexing\Traits;
+namespace Osm\Data\Indexing\Traits;
 
 use Illuminate\Database\Schema\Blueprint;
-use Manadev\Data\Formulas\Types;
-use Manadev\Data\Indexing\Event;
-use Manadev\Data\Tables\Columns\Column;
-use Manadev\Framework\Db\Db;
+use Osm\Data\Formulas\Types;
+use Osm\Data\Indexing\Event;
+use Osm\Data\Tables\Columns\Column;
+use Osm\Framework\Db\Db;
 
 trait MySqlTrait
 {

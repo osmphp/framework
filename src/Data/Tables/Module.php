@@ -1,12 +1,12 @@
 <?php
 
-namespace Manadev\Data\Tables;
+namespace Osm\Data\Tables;
 
-use Manadev\Core\Modules\BaseModule;
-use Manadev\Core\Properties;
-use Manadev\Framework\Db\Db;
-use Manadev\Framework\Db\MySql;
-use Manadev\Framework\Migrations\InstallationQuestion;
+use Osm\Core\Modules\BaseModule;
+use Osm\Core\Properties;
+use Osm\Framework\Db\Db;
+use Osm\Framework\Db\MySql;
+use Osm\Framework\Migrations\InstallationQuestion;
 
 class Module extends BaseModule
 {

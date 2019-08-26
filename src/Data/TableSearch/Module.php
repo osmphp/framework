@@ -1,12 +1,12 @@
 <?php
 
-namespace Manadev\Data\TableSearch;
+namespace Osm\Data\TableSearch;
 
-use Manadev\Core\Modules\BaseModule;
+use Osm\Core\Modules\BaseModule;
 
 class Module extends BaseModule
 {
     public $hard_dependencies = [
-        'Manadev_Data_TableQueries',
+        'Osm_Data_TableQueries',
     ];
 }

@@ -1,6 +1,6 @@
-import addClass from 'Manadev_Framework_Js/addClass';
-import getViewPortRect from 'Manadev_Ui_Aba/getViewPortRect';
-import ViewModel from "Manadev_Framework_Js/ViewModel";
+import addClass from 'Osm_Framework_Js/addClass';
+import getViewPortRect from 'Osm_Ui_Aba/getViewPortRect';
+import ViewModel from "Osm_Framework_Js/ViewModel";
 
 export default class PageDialog extends ViewModel {
     onAttach() {

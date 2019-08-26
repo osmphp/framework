@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Framework\Http;
+namespace Osm\Framework\Http;
 
-use Manadev\Core\App;
-use Manadev\Core\Object_;
-use Manadev\Core\Profiler;
-use Manadev\Framework\Areas\Area;
+use Osm\Core\App;
+use Osm\Core\Object_;
+use Osm\Core\Profiler;
+use Osm\Framework\Areas\Area;
 
 /**
  * @property Request $request @required

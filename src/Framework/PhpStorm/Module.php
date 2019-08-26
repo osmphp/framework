@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\PhpStorm;
+namespace Osm\Framework\PhpStorm;
 
-use Manadev\Core\Modules\BaseModule;
+use Osm\Core\Modules\BaseModule;
 
 class Module extends BaseModule
 {

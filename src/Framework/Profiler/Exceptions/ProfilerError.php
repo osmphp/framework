@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Framework\Profiler\Exceptions;
+namespace Osm\Framework\Profiler\Exceptions;
 
 class ProfilerError extends \Exception
 {

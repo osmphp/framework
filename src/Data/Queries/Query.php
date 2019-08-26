@@ -1,18 +1,18 @@
 <?php
 
-namespace Manadev\Data\Queries;
+namespace Osm\Data\Queries;
 
 use Illuminate\Support\Collection;
-use Manadev\Core\App;
-use Manadev\Data\Formulas\Exceptions\UnnamedColumn;
-use Manadev\Data\Formulas\Handlers\ParameterCollector;
-use Manadev\Data\Formulas\Parser\Parser;
-use Manadev\Data\Formulas\Parser\Token;
-use Manadev\Data\Formulas\Types;
-use Manadev\Core\Object_;
-use Manadev\Data\Formulas\Formulas;
-use Manadev\Data\Formulas\Formulas\Formula;
-use Manadev\Framework\Data\Traits\CloneableTrait;
+use Osm\Core\App;
+use Osm\Data\Formulas\Exceptions\UnnamedColumn;
+use Osm\Data\Formulas\Handlers\ParameterCollector;
+use Osm\Data\Formulas\Parser\Parser;
+use Osm\Data\Formulas\Parser\Token;
+use Osm\Data\Formulas\Types;
+use Osm\Core\Object_;
+use Osm\Data\Formulas\Formulas;
+use Osm\Data\Formulas\Formulas\Formula;
+use Osm\Framework\Data\Traits\CloneableTrait;
 
 /**
  * @property int $limit @part

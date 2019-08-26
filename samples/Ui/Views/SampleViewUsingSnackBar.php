@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Samples\Ui\Views;
+namespace Osm\Samples\Ui\Views;
 
-use Manadev\Framework\Views\View;
+use Osm\Framework\Views\View;
 
 class SampleViewUsingSnackBar extends View
 {
-    public $template = 'Manadev_Samples_Ui.snack-bars.sample-view';
-    public $view_model = 'Manadev_Samples_Ui.SampleViewUsingSnackBar';
+    public $template = 'Osm_Samples_Ui.snack-bars.sample-view';
+    public $view_model = 'Osm_Samples_Ui.SampleViewUsingSnackBar';
 }

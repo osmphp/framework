@@ -1,6 +1,6 @@
 <?php
-/* @var \Manadev\Samples\Ui\Views\SampleViewUsingSnackBar $view */
-use Manadev\Ui\Buttons\Views\Button;
+/* @var \Osm\Samples\Ui\Views\SampleViewUsingSnackBar $view */
+use Osm\Ui\Buttons\Views\Button;
 ?>
 <div id="{{$view->id_}}">
 @include(Button::new(['alias' => 'normal', 'title' => m_("Show normal snack bar")]))

@@ -1,16 +1,16 @@
 <?php
 
-namespace Manadev\Data\Indexing;
+namespace Osm\Data\Indexing;
 
-use Manadev\Core\App;
-use Manadev\Core\Properties;
-use Manadev\Data\Indexing\Traits\MySqlTrait;
-use Manadev\Data\Indexing\Traits\MigratorTrait;
-use Manadev\Core\Classes\Classes;
-use Manadev\Core\Modules\BaseModule;
-use Manadev\Framework\Db\MySql;
-use Manadev\Framework\Migrations\Migration;
-use Manadev\Framework\Migrations\Migrator;
+use Osm\Core\App;
+use Osm\Core\Properties;
+use Osm\Data\Indexing\Traits\MySqlTrait;
+use Osm\Data\Indexing\Traits\MigratorTrait;
+use Osm\Core\Classes\Classes;
+use Osm\Core\Modules\BaseModule;
+use Osm\Framework\Db\MySql;
+use Osm\Framework\Migrations\Migration;
+use Osm\Framework\Migrations\Migrator;
 
 /**
  * @property Indexing $indexing @required
@@ -24,9 +24,9 @@ class Module extends BaseModule
     ];
 
     public $hard_dependencies = [
-        'Manadev_Framework_Db',
-        'Manadev_Framework_Migrations',
-        'Manadev_Data_Tables',
+        'Osm_Framework_Db',
+        'Osm_Framework_Migrations',
+        'Osm_Data_Tables',
     ];
 
     protected function default($property) {

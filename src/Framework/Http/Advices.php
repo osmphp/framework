@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\Http;
+namespace Osm\Framework\Http;
 
-use Manadev\Framework\Data\AdviceRegistry;
+use Osm\Framework\Data\AdviceRegistry;
 use Symfony\Component\HttpFoundation\Response;
 
 /**

@@ -1,12 +1,12 @@
 <?php
 
-namespace Manadev\Framework\Queues;
+namespace Osm\Framework\Queues;
 
 use Illuminate\Bus\Dispatcher;
 use Illuminate\Queue\CallQueuedHandler;
-use Manadev\Core\App;
-use Manadev\Core\Modules\BaseModule;
-use Manadev\Core\Properties;
+use Osm\Core\App;
+use Osm\Core\Modules\BaseModule;
+use Osm\Core\Properties;
 
 /**
  * @property LaravelManager $laravel_manager @required
@@ -15,8 +15,8 @@ use Manadev\Core\Properties;
 class Module extends BaseModule
 {
     public $hard_dependencies = [
-        'Manadev_Framework_Laravel',
-        'Manadev_Framework_Settings',
+        'Osm_Framework_Laravel',
+        'Osm_Framework_Settings',
     ];
 
     public $traits = [

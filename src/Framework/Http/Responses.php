@@ -1,10 +1,10 @@
 <?php
 
-namespace Manadev\Framework\Http;
+namespace Osm\Framework\Http;
 
-use Manadev\Core\App;
-use Manadev\Core\Object_;
-use Manadev\Framework\Http\Errors\Errors;
+use Osm\Core\App;
+use Osm\Core\Object_;
+use Osm\Framework\Http\Errors\Errors;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 

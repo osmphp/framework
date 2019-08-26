@@ -14,7 +14,7 @@ class ResolverPlugin {
 
     apply(resolver) {
         const target = resolver.ensureHook('undescribed-raw-file');
-        resolver.getHook('before-resolve').tapAsync("ManadevResolverPlugin", (resource, resolveContext, callback) => {
+        resolver.getHook('before-resolve').tapAsync("OsmResolverPlugin", (resource, resolveContext, callback) => {
             const request = this.resolveRequest(this.target, resource);
             if (request) {
                 resource.path = request;

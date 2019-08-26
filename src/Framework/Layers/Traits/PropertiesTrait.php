@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Layers\Traits;
+namespace Osm\Framework\Layers\Traits;
 
-use Manadev\Core\App;
-use Manadev\Framework\Logging\Logs;
+use Osm\Core\App;
+use Osm\Framework\Logging\Logs;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
@@ -11,7 +11,7 @@ use Monolog\Logger;
 
 trait PropertiesTrait
 {
-    public function Manadev_Framework_Logging_Logs__layers(Logs $logs) {
+    public function Osm_Framework_Logging_Logs__layers(Logs $logs) {
         global $m_app; /* @var App $m_app */
 
         // create new logging channel

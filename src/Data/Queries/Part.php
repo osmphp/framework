@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Data\Queries;
+namespace Osm\Data\Queries;
 
 class Part
 {

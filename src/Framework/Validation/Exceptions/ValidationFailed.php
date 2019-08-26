@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\Validation\Exceptions;
+namespace Osm\Framework\Validation\Exceptions;
 
-use Manadev\Framework\Http\Exceptions\HttpError;
+use Osm\Framework\Http\Exceptions\HttpError;
 
 class ValidationFailed extends HttpError
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace Manadev\Framework\Db\Traits;
+namespace Osm\Framework\Db\Traits;
 
 use Illuminate\Database\Connection;
 use Illuminate\Database\MySqlConnection;
 use Illuminate\Database\PostgresConnection;
 use Illuminate\Database\SQLiteConnection;
 use Illuminate\Database\SqlServerConnection;
-use Manadev\Core\App;
+use Osm\Core\App;
 
 trait ConnectionFactoryTrait
 {

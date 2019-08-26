@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Samples\Cache;
+namespace Osm\Samples\Cache;
 
-use Manadev\Core\Modules\BaseModule;
+use Osm\Core\Modules\BaseModule;
 
 class Module extends BaseModule
 {

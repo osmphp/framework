@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Tests\Framework;
+namespace Osm\Tests\Framework;
 
-use Manadev\Framework\Testing\Tests\UnitTestCase;
-use Manadev\Framework\Views\View;
+use Osm\Framework\Testing\Tests\UnitTestCase;
+use Osm\Framework\Views\View;
 
 class ViewsTest extends UnitTestCase
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Testing\Browser;
+namespace Osm\Framework\Testing\Browser;
 
-use Manadev\Core\Object_;
-use Manadev\Framework\Testing\Exceptions\BrowserError;
+use Osm\Core\Object_;
+use Osm\Framework\Testing\Exceptions\BrowserError;
 use Symfony\Component\HttpFoundation\Response;
 
 /**

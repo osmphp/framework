@@ -1,1 +1,1 @@
-export default window.Manadev_Framework_Js.removeClass;
+export default window.Osm_Framework_Js.removeClass;

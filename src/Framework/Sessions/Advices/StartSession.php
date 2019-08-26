@@ -1,14 +1,14 @@
 <?php
 
-namespace Manadev\Framework\Sessions\Advices;
+namespace Osm\Framework\Sessions\Advices;
 
 use Carbon\Carbon;
-use Manadev\Core\App;
-use Manadev\Framework\Areas\Area;
-use Manadev\Framework\Http\Advice;
-use Manadev\Framework\Sessions\Session;
-use Manadev\Framework\Sessions\Stores\Store;
-use Manadev\Framework\Settings\Settings;
+use Osm\Core\App;
+use Osm\Framework\Areas\Area;
+use Osm\Framework\Http\Advice;
+use Osm\Framework\Sessions\Session;
+use Osm\Framework\Sessions\Stores\Store;
+use Osm\Framework\Settings\Settings;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

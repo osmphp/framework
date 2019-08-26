@@ -1,10 +1,10 @@
 <?php
 
-namespace Manadev\Framework\Console;
+namespace Osm\Framework\Console;
 
 use Illuminate\Console\OutputStyle;
-use Manadev\Core\Exceptions\NotImplemented;
-use Manadev\Core\Object_;
+use Osm\Core\Exceptions\NotImplemented;
+use Osm\Core\Object_;
 use Symfony\Component\Console\Input\InputInterface;
 
 /**

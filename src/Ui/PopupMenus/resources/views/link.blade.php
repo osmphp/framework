@@ -1,5 +1,5 @@
 <?php
-/* @var \Manadev\Ui\PopupMenus\Views\PopupMenu $view */
+/* @var \Osm\Ui\PopupMenus\Views\PopupMenu $view */
 ?>
 <a class="popup-menu__link" href="{{ $view->item->url }}">
     @if ($view->item->icon)

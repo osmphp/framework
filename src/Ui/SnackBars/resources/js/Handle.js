@@ -1,4 +1,4 @@
-import Object_ from "Manadev_Framework_Js/Object_";
+import Object_ from "Osm_Framework_Js/Object_";
 import $ from "jquery";
 
 /**

@@ -1,5 +1,5 @@
 <?php
-/* @var \Manadev\Framework\Views\Views\Container $view */
+/* @var \Osm\Framework\Views\Views\Container $view */
 ?>
 <div class="">
     <div class="__options">

@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Data\Sheets;
+namespace Osm\Data\Sheets;
 
-use Manadev\Core\Modules\BaseModule;
-use Manadev\Core\Properties;
+use Osm\Core\Modules\BaseModule;
+use Osm\Core\Properties;
 
 class Module extends BaseModule
 {

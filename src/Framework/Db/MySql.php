@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Db;
+namespace Osm\Framework\Db;
 
 use Illuminate\Database\MySqlConnection;
-use Manadev\Core\App;
+use Osm\Core\App;
 
 /**
  * @property string $database @required @part

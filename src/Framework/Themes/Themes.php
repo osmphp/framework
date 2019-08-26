@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Framework\Themes;
+namespace Osm\Framework\Themes;
 
-use Manadev\Core\App;
-use Manadev\Core\Packages\Package;
-use Manadev\Framework\Data\CollectionRegistry;
-use Manadev\Framework\Themes\Exceptions\InvalidThemeDefinition;
+use Osm\Core\App;
+use Osm\Core\Packages\Package;
+use Osm\Framework\Data\CollectionRegistry;
+use Osm\Framework\Themes\Exceptions\InvalidThemeDefinition;
 
 /**
  * @property Package[] $packages
@@ -51,9 +51,9 @@ class Themes extends CollectionRegistry
 
             $path = $m_app->path($package->path . ($pool->name ? "/$pool->name" : ''));
             foreach (glob("$path/{$pool->theme_path}") as $filename) {
-                // make sure Manadev\Framework\Themes\Theme class file Theme.php is not treated as theme definition
+                // make sure Osm\Framework\Themes\Theme class file Theme.php is not treated as theme definition
                 // file theme.php. On Windows, file names are case-insensitive, so this may happen. Without this check,
-                // you would see weird error "Cannot declare class Manadev\Framework\Themes\Theme, because
+                // you would see weird error "Cannot declare class Osm\Framework\Themes\Theme, because
                 // the name is already in use"
                 $dir = __DIR__;
                 if (str_replace('\\', '/', dirname($filename)) == str_replace('\\', '/', $dir))

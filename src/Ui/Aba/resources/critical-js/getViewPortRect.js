@@ -1,4 +1,4 @@
-import addClass from 'Manadev_Framework_Js/addClass';
+import addClass from 'Osm_Framework_Js/addClass';
 let viewportElements = {};
 
 export default function getViewPortRect(class_ = null) { //

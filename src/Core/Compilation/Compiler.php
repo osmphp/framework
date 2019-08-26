@@ -1,12 +1,12 @@
 <?php
 
-namespace Manadev\Core\Compilation;
+namespace Osm\Core\Compilation;
 
-use Manadev\Core\App;
-use Manadev\Core\Classes\Classes;
-use Manadev\Core\Modules\BaseModule;
-use Manadev\Core\Object_;
-use Manadev\Core\Properties;
+use Osm\Core\App;
+use Osm\Core\Classes\Classes;
+use Osm\Core\Modules\BaseModule;
+use Osm\Core\Object_;
+use Osm\Core\Properties;
 
 /**
  * @property string $filename @required @part

@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Http\Advices;
+namespace Osm\Framework\Http\Advices;
 
-use Manadev\Core\App;
-use Manadev\Framework\Http\Advice;
+use Osm\Core\App;
+use Osm\Framework\Http\Advice;
 
 class DetectArea extends Advice
 {

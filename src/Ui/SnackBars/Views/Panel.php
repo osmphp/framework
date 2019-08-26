@@ -1,13 +1,13 @@
 <?php
 
-namespace Manadev\Ui\SnackBars\Views;
+namespace Osm\Ui\SnackBars\Views;
 
-use Manadev\Core\App;
-use Manadev\Framework\Views\View;
+use Osm\Core\App;
+use Osm\Framework\Views\View;
 
 class Panel extends View
 {
-    public $template = 'Manadev_Ui_SnackBars.panel';
+    public $template = 'Osm_Ui_SnackBars.panel';
 
     public function rendering() {
         global $m_app; /* @var App $m_app */

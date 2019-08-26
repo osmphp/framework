@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Testing;
+namespace Osm\Framework\Testing;
 
-use Manadev\Core\App;
-use Manadev\Core\Modules\BaseModule;
+use Osm\Core\App;
+use Osm\Core\Modules\BaseModule;
 
 /**
  * @property TestSuites|TestSuite[] $suites
@@ -12,8 +12,8 @@ use Manadev\Core\Modules\BaseModule;
 class Module extends BaseModule
 {
     public $hard_dependencies = [
-        'Manadev_Framework_Console',
-        'Manadev_Framework_Localization',
+        'Osm_Framework_Console',
+        'Osm_Framework_Localization',
     ];
 
     public $short_name = 'testing';

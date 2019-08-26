@@ -4,9 +4,9 @@
  * @license     http://www.manadev.com/license  Proprietary License
  */
 
-namespace Manadev\Framework\Processes;
+namespace Osm\Framework\Processes;
 
-use Manadev\Framework\Processes\Exceptions\ProcessFailed;
+use Osm\Framework\Processes\Exceptions\ProcessFailed;
 use Symfony\Component\Process\Process as SymfonyProcess;
 
 class Process

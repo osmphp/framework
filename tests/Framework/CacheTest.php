@@ -1,10 +1,10 @@
 <?php
 
-namespace Manadev\Tests\Framework;
+namespace Osm\Tests\Framework;
 
-use Manadev\Core\App;
-use Manadev\Framework\Testing\Tests\UnitTestCase;
-use Manadev\Samples\Cache\Container;
+use Osm\Core\App;
+use Osm\Framework\Testing\Tests\UnitTestCase;
+use Osm\Samples\Cache\Container;
 
 class CacheTest extends UnitTestCase
 {

@@ -1,7 +1,7 @@
-import tests from 'Manadev_Samples_Js/vars/tests';
-import snackBars from 'Manadev_Ui_SnackBars/vars/snackBars';
-import ajax from 'Manadev_Framework_Js/ajax';
-import m_ from "Manadev_Framework_Js/m_";
+import tests from 'Osm_Samples_Js/vars/tests';
+import snackBars from 'Osm_Ui_SnackBars/vars/snackBars';
+import ajax from 'Osm_Framework_Js/ajax';
+import m_ from "Osm_Framework_Js/m_";
 
 tests['/tests/unit/ui'] = function () {
     describe('vendor/dubysa/framework/samples/Ui/resources/js/tests.js', function() {

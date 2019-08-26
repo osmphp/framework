@@ -1,14 +1,14 @@
 <?php
 
-namespace Manadev\Data\Tables\Traits;
+namespace Osm\Data\Tables\Traits;
 
-use Manadev\Core\App;
-use Manadev\Data\Tables\Tables;
-use Manadev\Framework\Db\Db;
+use Osm\Core\App;
+use Osm\Data\Tables\Tables;
+use Osm\Framework\Db\Db;
 
 trait PropertiesTrait
 {
-    public function Manadev_Framework_Db_Db__tables(Db $db) {
+    public function Osm_Framework_Db_Db__tables(Db $db) {
         global $m_app; /* @var App $m_app */
 
         /* @var Tables $result */

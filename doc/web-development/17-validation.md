@@ -1,6 +1,6 @@
 # Validation #
 
-All incoming HTTP requests should be validated on server. While [routing parameter definitions](#) handle validation of HTTP query parameters, payload of incoming HTTP requests is validated using `Manadev\Framework\Validation\Validator` class. 
+All incoming HTTP requests should be validated on server. While [routing parameter definitions](#) handle validation of HTTP query parameters, payload of incoming HTTP requests is validated using `Osm\Framework\Validation\Validator` class. 
 
 ## Sample Request ##
 

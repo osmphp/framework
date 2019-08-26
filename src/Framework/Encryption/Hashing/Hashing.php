@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Encryption\Hashing;
+namespace Osm\Framework\Encryption\Hashing;
 
-use Manadev\Core\Exceptions\NotSupported;
-use Manadev\Core\Object_;
+use Osm\Core\Exceptions\NotSupported;
+use Osm\Core\Object_;
 
 /**
  * @property string $name @required @part

@@ -1,12 +1,12 @@
-import Controller from "Manadev_Framework_Js/Controller";
+import Controller from "Osm_Framework_Js/Controller";
 import Positioning from "./Positioning";
 import MouseHandling from "./MouseHandling";
-import forEachParentElement from "Manadev_Framework_Js/forEachParentElement";
-import isScrollable from "Manadev_Framework_Js/isScrollable";
-import macaw from "Manadev_Framework_Js/vars/macaw";
-import Detacher from "Manadev_Framework_Js/Detacher";
+import forEachParentElement from "Osm_Framework_Js/forEachParentElement";
+import isScrollable from "Osm_Framework_Js/isScrollable";
+import macaw from "Osm_Framework_Js/vars/macaw";
+import Detacher from "Osm_Framework_Js/Detacher";
 import Item from "./Item";
-import trigger from "Manadev_Framework_Js/trigger";
+import trigger from "Osm_Framework_Js/trigger";
 
 export default class PopupMenu extends Controller {
     get events() {

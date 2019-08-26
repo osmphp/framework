@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Data\TableQueries;
+namespace Osm\Data\TableQueries;
 
 class MySqlTableQuery extends TableQuery
 {

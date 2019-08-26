@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'name' => 'Manadev_Blank',
+    'name' => 'Osm_Blank',
     'area' => 'web',
 ];

@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\Profiler;
+namespace Osm\Framework\Profiler;
 
-use Manadev\Core\Object_;
+use Osm\Core\Object_;
 
 /**
  * @property string $name @required

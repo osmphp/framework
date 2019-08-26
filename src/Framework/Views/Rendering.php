@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\Views;
+namespace Osm\Framework\Views;
 
-use Manadev\Core\Object_;
+use Osm\Core\Object_;
 
 /**
  * @property View $current_view @temp

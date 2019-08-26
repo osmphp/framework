@@ -25,7 +25,7 @@ Define mentioned route in [area](#) route file `config/web/routes.php`:
 
     <?php
 
-    use Manadev\Samples\Js\Controllers\Web;
+    use Osm\Samples\Js\Controllers\Web;
 
     return [
         'GET /tests/unit/framework' => ['class' => Web::class, 'method' => 'unitTestPage', 'public' => true],
@@ -35,9 +35,9 @@ Add controller method which renders JS test runner. Optionally, render some HTML
 
     <?php
 
-    namespace Manadev\Samples\Js\Controllers;
+    namespace Osm\Samples\Js\Controllers;
 
-    use Manadev\Framework\Http\Controller;
+    use Osm\Framework\Http\Controller;
 
     class Web extends Controller
     {
@@ -52,7 +52,7 @@ Create unit test files, one per JS unit test page, in one of [sample modules](#)
 
 In test file, import functions, variables and classes being tested. Also add the following import:
 
-    import tests from 'Manadev_Samples_Js/vars/tests';
+    import tests from 'Osm_Samples_Js/vars/tests';
 
 Then add tests to JS unit test page using the following syntax:
 
@@ -64,8 +64,8 @@ Inside callback use `describe()/it()` function calls to structure unit tests and
 
 Example:
 
-    import tests from 'Manadev_Samples_Js/vars/tests';
-    import ajax from 'Manadev_Framework_Js/ajax';
+    import tests from 'Osm_Samples_Js/vars/tests';
+    import ajax from 'Osm_Framework_Js/ajax';
 
     tests['/tests/unit/framework'] = function() {
         describe('ajax()', function () {

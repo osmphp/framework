@@ -10,7 +10,7 @@ See also: [Material Design: Snackbars](https://material.io/design/components/sna
 
 To show snack bar message, call `snackBars.showMessage()`:
 
-    import snackBars from 'Manadev_Ui_SnackBars/vars/snackBars';
+    import snackBars from 'Osm_Ui_SnackBars/vars/snackBars';
 
     snackBars.showMessage('Hi');
 
@@ -24,8 +24,8 @@ The message automatically closes after 5 seconds. You can change this timeout in
 
 Visualize AJAX requests to user using snack bars as shown below:
 
-    import snackBars from 'Manadev_Ui_SnackBars/vars/snackBars';
-    import ajax from 'Manadev_Framework_Js/ajax';
+    import snackBars from 'Osm_Ui_SnackBars/vars/snackBars';
+    import ajax from 'Osm_Framework_Js/ajax';
 
     // modal message won't hide automatically
     let snackBar = snackBars.modalMessage('Processing ...');

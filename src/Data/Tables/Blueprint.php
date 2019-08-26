@@ -1,13 +1,13 @@
 <?php
 
-namespace Manadev\Data\Tables;
+namespace Osm\Data\Tables;
 
-use Manadev\Core\Object_;
-use Manadev\Framework\Db\Db;
-use Manadev\Data\Tables\Columns\Column;
-use Manadev\Data\Tables\Columns\ColumnType;
-use Manadev\Data\Tables\Columns\ColumnTypes;
-use Manadev\Data\Tables\Commands\Command;
+use Osm\Core\Object_;
+use Osm\Framework\Db\Db;
+use Osm\Data\Tables\Columns\Column;
+use Osm\Data\Tables\Columns\ColumnType;
+use Osm\Data\Tables\Columns\ColumnTypes;
+use Osm\Data\Tables\Commands\Command;
 
 /**
  * @property string $name @required @part

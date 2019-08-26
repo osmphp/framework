@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\Encryption\Hashing;
+namespace Osm\Framework\Encryption\Hashing;
 
-use Manadev\Framework\Data\CollectionRegistry;
+use Osm\Framework\Data\CollectionRegistry;
 
 class Hashings extends CollectionRegistry
 {

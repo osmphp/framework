@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Core\Classes;
+namespace Osm\Core\Classes;
 
 class Classes
 {

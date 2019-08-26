@@ -1,7 +1,7 @@
-import ViewModel from 'Manadev_Framework_Js/ViewModel';
-import addClass from 'Manadev_Framework_Js/addClass';
-import removeClass from 'Manadev_Framework_Js/removeClass';
-import getViewPortRect from 'Manadev_Ui_Aba/getViewPortRect';
+import ViewModel from 'Osm_Framework_Js/ViewModel';
+import addClass from 'Osm_Framework_Js/addClass';
+import removeClass from 'Osm_Framework_Js/removeClass';
+import getViewPortRect from 'Osm_Ui_Aba/getViewPortRect';
 
 /**
  * @property {Handle} handle

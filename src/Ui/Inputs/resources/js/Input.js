@@ -1,8 +1,8 @@
-import Field from 'Manadev_Ui_Forms/Field';
-import addClass from 'Manadev_Framework_Js/addClass';
-import removeClass from 'Manadev_Framework_Js/removeClass';
-import hasClass from 'Manadev_Framework_Js/hasClass';
-import m_ from 'Manadev_Framework_Js/m_';
+import Field from 'Osm_Ui_Forms/Field';
+import addClass from 'Osm_Framework_Js/addClass';
+import removeClass from 'Osm_Framework_Js/removeClass';
+import hasClass from 'Osm_Framework_Js/hasClass';
+import m_ from 'Osm_Framework_Js/m_';
 
 export default class Input extends Field {
     get events() {

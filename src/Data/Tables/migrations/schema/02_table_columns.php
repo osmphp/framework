@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Data\Tables\Migrations\Schema;
+namespace Osm\Data\Tables\Migrations\Schema;
 
 use Illuminate\Database\Schema\Blueprint;
-use Manadev\Framework\Migrations\Migration;
+use Osm\Framework\Migrations\Migration;
 
 class TableColumns extends Migration
 {

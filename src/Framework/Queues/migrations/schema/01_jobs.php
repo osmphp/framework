@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Queues\Migrations\Schema;
+namespace Osm\Framework\Queues\Migrations\Schema;
 
 use Illuminate\Database\Schema\Blueprint;
-use Manadev\Framework\Migrations\Migration;
+use Osm\Framework\Migrations\Migration;
 
 class Jobs extends Migration
 {

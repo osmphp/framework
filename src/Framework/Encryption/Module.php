@@ -1,13 +1,13 @@
 <?php
 
-namespace Manadev\Framework\Encryption;
+namespace Osm\Framework\Encryption;
 
-use Manadev\Core\App;
-use Manadev\Core\Modules\BaseModule;
-use Manadev\Core\Properties;
-use Manadev\Framework\Encryption\Hashing\Hashing;
-use Manadev\Framework\Encryption\Hashing\Hashings;
-use Manadev\Framework\Settings\Settings;
+use Osm\Core\App;
+use Osm\Core\Modules\BaseModule;
+use Osm\Core\Properties;
+use Osm\Framework\Encryption\Hashing\Hashing;
+use Osm\Framework\Encryption\Hashing\Hashings;
+use Osm\Framework\Settings\Settings;
 
 /**
  * @property Hashings|Hashing[] $hashings @required
@@ -19,7 +19,7 @@ class Module extends BaseModule
     ];
 
     public $hard_dependencies = [
-        'Manadev_Framework_Settings',
+        'Osm_Framework_Settings',
     ];
 
     protected function default($property) {

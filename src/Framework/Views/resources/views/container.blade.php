@@ -1,5 +1,5 @@
 <?php
-/* @var \Manadev\Framework\Views\Views\Container $view */
+/* @var \Osm\Framework\Views\Views\Container $view */
 ?>
 @if ($view->modifier || $view->element)
     <{{ $view->element ?: 'div' }} class="{{ $view->modifier }}">

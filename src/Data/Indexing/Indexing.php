@@ -1,14 +1,14 @@
 <?php
 
-namespace Manadev\Data\Indexing;
+namespace Osm\Data\Indexing;
 
 use Illuminate\Console\OutputStyle;
 use Illuminate\Support\Collection;
-use Manadev\Core\App;
-use Manadev\Data\Indexing\Exceptions\CircularDependency;
-use Manadev\Data\Indexing\Hints\IndexerHint;
-use Manadev\Core\Object_;
-use Manadev\Framework\Db\Db;
+use Osm\Core\App;
+use Osm\Data\Indexing\Exceptions\CircularDependency;
+use Osm\Data\Indexing\Hints\IndexerHint;
+use Osm\Core\Object_;
+use Osm\Framework\Db\Db;
 
 /**
  * @property Db $db @required

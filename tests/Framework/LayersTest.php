@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Tests\Framework;
+namespace Osm\Tests\Framework;
 
-use Manadev\Core\App;
-use Manadev\Framework\Layers\Layout;
-use Manadev\Framework\Testing\Tests\UnitTestCase;
-use Manadev\Samples\Layers\Views\TestView;
+use Osm\Core\App;
+use Osm\Framework\Layers\Layout;
+use Osm\Framework\Testing\Tests\UnitTestCase;
+use Osm\Samples\Layers\Views\TestView;
 
 class LayersTest extends UnitTestCase
 {

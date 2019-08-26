@@ -1,14 +1,14 @@
 <?php
 
-namespace Manadev\Samples\Ui;
+namespace Osm\Samples\Ui;
 
-use Manadev\Core\Modules\BaseModule;
+use Osm\Core\Modules\BaseModule;
 
 class Module extends BaseModule
 {
     public $hard_dependencies = [
-        'Manadev_Ui_DataTables',
-        'Manadev_Data_TableSheets',
-        'Manadev_Samples_Js',
+        'Osm_Ui_DataTables',
+        'Osm_Data_TableSheets',
+        'Osm_Samples_Js',
     ];
 }

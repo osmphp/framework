@@ -1,1 +1,1 @@
-export default window.Manadev_Framework_Js.firstParentElement;
+export default window.Osm_Framework_Js.firstParentElement;

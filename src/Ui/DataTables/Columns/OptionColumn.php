@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Ui\DataTables\Columns;
+namespace Osm\Ui\DataTables\Columns;
 
 class OptionColumn extends Column
 {
-    public $cell_template = 'Manadev_Ui_DataTables.cells.option';
+    public $cell_template = 'Osm_Ui_DataTables.cells.option';
 }

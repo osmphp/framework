@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Samples\Ui;
+namespace Osm\Samples\Ui;
 
-use Manadev\Data\TableQueries\TableQuery;
-use Manadev\Data\TableSearch\Search;
+use Osm\Data\TableQueries\TableQuery;
+use Osm\Data\TableSearch\Search;
 
 class Contacts extends Search
 {

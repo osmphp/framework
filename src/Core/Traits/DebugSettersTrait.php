@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Core\Traits;
+namespace Osm\Core\Traits;
 
 trait DebugSettersTrait
 {

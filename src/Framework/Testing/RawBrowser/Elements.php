@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\Testing\RawBrowser;
+namespace Osm\Framework\Testing\RawBrowser;
 
-use Manadev\Framework\Testing\Browser\Elements as BaseElements;
+use Osm\Framework\Testing\Browser\Elements as BaseElements;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**

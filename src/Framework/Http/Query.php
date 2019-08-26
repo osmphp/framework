@@ -1,16 +1,16 @@
 <?php
 
-namespace Manadev\Framework\Http;
+namespace Osm\Framework\Http;
 
-use Manadev\Core\App;
-use Manadev\Core\Object_;
-use Manadev\Core\Profiler;
-use Manadev\Data\Sheets\Query as SheetQuery;
+use Osm\Core\App;
+use Osm\Core\Object_;
+use Osm\Core\Profiler;
+use Osm\Data\Sheets\Query as SheetQuery;
 
 /**
  * @property array $__items @required
  *
- * @see \Manadev\Ui\DataTables\Module:
+ * @see \Osm\Ui\DataTables\Module:
  *      @property SheetQuery $data_table @required Typical name of data table query parameter which returns
  *          fully prepared sheet query
  */

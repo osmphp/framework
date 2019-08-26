@@ -1,16 +1,16 @@
 <?php
 
-namespace Manadev\Data\Formulas\Handlers;
+namespace Osm\Data\Formulas\Handlers;
 
-use Manadev\Core\Exceptions\NotSupported;
-use Manadev\Core\Object_;
-use Manadev\Data\Formulas\Formulas\Formula;
-use Manadev\Data\Formulas\Formulas;
+use Osm\Core\Exceptions\NotSupported;
+use Osm\Core\Object_;
+use Osm\Data\Formulas\Formulas\Formula;
+use Osm\Data\Formulas\Formulas;
 
 class Handler extends Object_
 {
     /**
-     * @see \Manadev\Data\Formulas\Formulas\Formula::$type @handler
+     * @see \Osm\Data\Formulas\Formulas\Formula::$type @handler
      * @param Formula $formula
      */
     protected function handleFormula(Formula &$formula) {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\Data;
+namespace Osm\Framework\Data;
 
-use Manadev\Core\Object_;
+use Osm\Core\Object_;
 
 /**
  * @property string $name

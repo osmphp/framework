@@ -1,14 +1,14 @@
 <?php
 
-namespace Manadev\Framework\Encryption\Traits;
+namespace Osm\Framework\Encryption\Traits;
 
-use Manadev\Core\App;
-use Manadev\Framework\Encryption\Module;
+use Osm\Core\App;
+use Osm\Framework\Encryption\Module;
 
 trait PropertiesTrait
 {
-    public function Manadev_Core_App__hashing(App $app) {
-        $module = $app->modules['Manadev_Framework_Encryption']; /* @var Module $module */
+    public function Osm_Core_App__hashing(App $app) {
+        $module = $app->modules['Osm_Framework_Encryption']; /* @var Module $module */
         return $module->hashings[$app->settings->hashing_algorithm];
     }
 

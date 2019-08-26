@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Samples\Compilation\Traits;
+namespace Osm\Samples\Compilation\Traits;
 
 trait SampleTrait
 {

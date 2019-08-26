@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Data\Formulas\Formulas;
+namespace Osm\Data\Formulas\Formulas;
 
-use Manadev\Core\Object_;
+use Osm\Core\Object_;
 
 /**
  * @property Formula|mixed $parent

@@ -1,10 +1,10 @@
 <?php
 
-namespace Manadev\Framework\Sessions;
+namespace Osm\Framework\Sessions;
 
-use Manadev\Core\App;
-use Manadev\Core\Modules\BaseModule;
-use Manadev\Core\Properties;
+use Osm\Core\App;
+use Osm\Core\Modules\BaseModule;
+use Osm\Core\Properties;
 
 class Module extends BaseModule
 {

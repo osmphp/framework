@@ -97,8 +97,8 @@ Here is new content of `app/src/Docs/Page.php`:
     
     namespace App\Docs;
     
-    use Manadev\Core\App;
-    use Manadev\Core\Object_;
+    use Osm\Core\App;
+    use Osm\Core\Object_;
     use Michelf\MarkdownExtra;
     
     /**
@@ -277,9 +277,9 @@ Create new class `app/src/Docs/TagRenderer.php`:
     
     namespace App\Docs;
     
-    use Manadev\Core\App;
-    use Manadev\Core\Exceptions\NotSupported;
-    use Manadev\Core\Object_;
+    use Osm\Core\App;
+    use Osm\Core\Exceptions\NotSupported;
+    use Osm\Core\Object_;
     
     /**
      * @property Page $page @temp

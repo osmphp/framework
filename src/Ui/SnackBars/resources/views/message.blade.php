@@ -1,5 +1,5 @@
 <?php
-/* @var \Manadev\Ui\SnackBars\Views\SnackBar $view */
+/* @var \Osm\Ui\SnackBars\Views\SnackBar $view */
 ?>
 <div class="snack-bar @if ($side ?? null) -with-sidebar @endif snack-bar-panel__item" id="{{ $view->id_ }}">
     @if ($side ?? null)

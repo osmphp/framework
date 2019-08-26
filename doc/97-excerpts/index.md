@@ -40,10 +40,10 @@ MACAW stands for Model - Action - Controller - Action - vieW. These concept and 
 
 Controllers are bound to elements in `js/index.js` file. One of 2 syntaxes are used:
 
-    import macaw from 'Manadev_Framework_Js/vars/macaw';
+    import macaw from 'Osm_Framework_Js/vars/macaw';
 
     // bind to all elements having specified ViewModel class
-    macaw.controller(Manadev_Samples_Ui.TestSnackBar, TestSnackBar);
+    macaw.controller(Osm_Samples_Ui.TestSnackBar, TestSnackBar);
 
     // bind to all elements matching specified CSS selector
     macaw.controller('.test-popup-menu', SampleViewUsingPopupMenu);

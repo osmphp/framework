@@ -1,6 +1,6 @@
 <?php
 
-use Manadev\Data\Formulas\Types;
+use Osm\Data\Formulas\Types;
 
 return [
     'distinct_count' => [

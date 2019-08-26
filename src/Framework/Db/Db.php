@@ -1,13 +1,13 @@
 <?php
 
-namespace Manadev\Framework\Db;
+namespace Osm\Framework\Db;
 
 use Illuminate\Database\Connection;
-use Manadev\Data\Tables\Partition;
-use Manadev\Data\Tables\Table;
-use Manadev\Data\Tables\Blueprint as TableBlueprint;
-use Manadev\Data\Tables\Tables;
-use Manadev\Core\Object_;
+use Osm\Data\Tables\Partition;
+use Osm\Data\Tables\Table;
+use Osm\Data\Tables\Blueprint as TableBlueprint;
+use Osm\Data\Tables\Tables;
+use Osm\Core\Object_;
 use Illuminate\Database\Schema;
 
 /**
@@ -15,19 +15,19 @@ use Illuminate\Database\Schema;
  * @property Connection $connection @required
  * @property Schema\Builder $schema @required
  *
- * @see \Manadev\Data\Tables\Module:
+ * @see \Osm\Data\Tables\Module:
  *      @property Tables|Table[] $tables @required @default
- * @see \Manadev\Data\Tables\Traits\DbTrait:
+ * @see \Osm\Data\Tables\Traits\DbTrait:
  *      @method void create(string $table, callable $callback)
  *      @method string temp(callable $callback)
  *      @method void alter(string $table, callable $callback)
  *      @method void drop(string $table)
  *
- * @see \Manadev\Data\Tables\Traits\MySqlTrait:
+ * @see \Osm\Data\Tables\Traits\MySqlTrait:
  *      @method Partition[] partition(string $table, TableBlueprint $blueprint = null)
  *      @method Key[] getKeys(Table $table)
  *
- * @see \Manadev\Data\Indexing\Traits\MySqlTrait:
+ * @see \Osm\Data\Indexing\Traits\MySqlTrait:
  *      @method void createIndexingTriggers(int $id, string $source, string[] $events = [], string[] $columns = [])
  *      @method void dropIndexingTriggers(int $id, string $source, string[] $events = [])
  */

@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Data\Indexing;
+namespace Osm\Data\Indexing;
 
 class Mode
 {

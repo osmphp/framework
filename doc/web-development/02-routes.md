@@ -33,20 +33,20 @@ You should see something like:
 
 	[
 		'GET /profiler/plain-text' => [
-			'class' => 'Manadev\Framework\Profiler\Controllers\Web',
+			'class' => 'Osm\Framework\Profiler\Controllers\Web',
 			'method' => 'plainTextPage',
 			'public' => true,
 			'returns' => 'plainText',
 			'parameters' => [
 				'id' => [
-					'class' => 'Manadev\Framework\Http\Parameters\String_',
+					'class' => 'Osm\Framework\Http\Parameters\String_',
 					'required' => true,
 				],
 			],
 		],
 	]
 
-Each route specifies which method of which class should run when route is requested. For instance, standard route `'GET /profiler/plain-text'` is handled by `Manadev\Framework\Profiler\Controllers\Web::plainTextPage()` method. Such classes are called **controller classes** and methods handling HTTP requests are called **controller methods**.
+Each route specifies which method of which class should run when route is requested. For instance, standard route `'GET /profiler/plain-text'` is handled by `Osm\Framework\Profiler\Controllers\Web::plainTextPage()` method. Such classes are called **controller classes** and methods handling HTTP requests are called **controller methods**.
 
 > **Note**. If you enter `http://127.0.0.1/dubysa/profiler/plain-text` in a browser, you will still see "Page not found" message. Don't worry, this route exists and works, but to show something meaningful it requires [profiler](#) to be enabled.
 
@@ -85,7 +85,7 @@ Example of route definition in Dubysa:
  - `'abstract' => true` tells to ignore this route while matching incoming URL. Mostly used for handling pages with SEO-friendly URL, see [lesson-06 SEO Friendly URL](#)  
  - `'parameters'`  is an array of all parameters processed by `show` method. 
  
-    Parameter values are handled by `Manadev\Framework\Http\Parameters` class and are validated according it type. 
+    Parameter values are handled by `Osm\Framework\Http\Parameters` class and are validated according it type. 
     
     For instance if we expecting integer, but string of characters is sent, error will be raised. 
     

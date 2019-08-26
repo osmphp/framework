@@ -1,10 +1,10 @@
 <?php
 
-namespace Manadev\Core\Packages;
+namespace Osm\Core\Packages;
 
-use Manadev\Core\App;
-use Manadev\Core\Exceptions\InvalidPackage;
-use Manadev\Core\Object_;
+use Osm\Core\App;
+use Osm\Core\Exceptions\InvalidPackage;
+use Osm\Core\Object_;
 
 class PackageLoader extends Object_
 {
@@ -27,7 +27,7 @@ class PackageLoader extends Object_
 
         $json = json_decode(file_get_contents($filename), true);
 
-        if (!($config = $json['extra']['dubysa'] ?? null)) {
+        if (!($config = $json['extra']['osm'] ?? null)) {
             return;
         }
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Data\TableQueries;
+namespace Osm\Data\TableQueries;
 
-use Manadev\Data\Formulas\Formulas\Formula;
-use Manadev\Data\Tables\Table as TableDefinition;
-use Manadev\Core\Object_;
-use Manadev\Framework\Db\Db;
+use Osm\Data\Formulas\Formulas\Formula;
+use Osm\Data\Tables\Table as TableDefinition;
+use Osm\Core\Object_;
+use Osm\Framework\Db\Db;
 
 /**
  * @property TableQuery $parent @required

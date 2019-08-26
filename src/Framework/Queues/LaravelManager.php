@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Queues;
+namespace Osm\Framework\Queues;
 
 use Illuminate\Queue\QueueManager;
-use Manadev\Core\App;
+use Osm\Core\App;
 
 class LaravelManager extends QueueManager
 {

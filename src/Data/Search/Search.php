@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Data\Search;
+namespace Osm\Data\Search;
 
-use Manadev\Core\App;
-use Manadev\Core\Object_;
-use Manadev\Data\Sheets\Sheet;
-use Manadev\Framework\Data\Traits\CloneableTrait;
+use Osm\Core\App;
+use Osm\Core\Object_;
+use Osm\Data\Sheets\Sheet;
+use Osm\Framework\Data\Traits\CloneableTrait;
 
 /**
  * @property string $sheet @required @part

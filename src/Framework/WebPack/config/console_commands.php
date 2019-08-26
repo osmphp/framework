@@ -1,6 +1,6 @@
 <?php
 
-use Manadev\Framework\WebPack\Commands;
+use Osm\Framework\WebPack\Commands;
 use Symfony\Component\Console\Input\InputOption;
 
 return [

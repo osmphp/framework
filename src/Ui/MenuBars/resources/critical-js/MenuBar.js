@@ -1,6 +1,6 @@
-import ViewModel from "Manadev_Framework_Js/ViewModel";
-import addClass from "Manadev_Framework_Js/addClass";
-import removeClass from "Manadev_Framework_Js/removeClass";
+import ViewModel from "Osm_Framework_Js/ViewModel";
+import addClass from "Osm_Framework_Js/addClass";
+import removeClass from "Osm_Framework_Js/removeClass";
 
 export default class MenuBar extends ViewModel {
     onResize() {

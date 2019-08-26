@@ -1,6 +1,6 @@
 <?php
 
-use Manadev\Framework\Npm\Commands;
+use Osm\Framework\Npm\Commands;
 
 return [
     'config:npm' => [

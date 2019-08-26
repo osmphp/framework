@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Data\Formulas\Parser;
+namespace Osm\Data\Formulas\Parser;
 
-use Manadev\Core\Exceptions\NotImplemented;
-use Manadev\Core\Object_;
+use Osm\Core\Exceptions\NotImplemented;
+use Osm\Core\Object_;
 
 /**
  * @property int $pos @required @part

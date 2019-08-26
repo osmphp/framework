@@ -6,7 +6,7 @@ Serialization is recursive. It means that if object contains another object, con
 
 Most often serialization is used in caching. Initially object is created using constructor and serialized into cache storage. On subsequent HTTP requests object is just unserialized from cache storage. 
 
-Objects of `Manadev\Core\Object_` class only serialize properties marked with `@part` attribute. It means that without `@part` attribute, after serialization and unserialization property value is lost:
+Objects of `Osm\Core\Object_` class only serialize properties marked with `@part` attribute. It means that without `@part` attribute, after serialization and unserialization property value is lost:
 
     /**
      * @property float $x @required @part

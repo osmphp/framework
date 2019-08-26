@@ -1,12 +1,12 @@
 <?php
 
-namespace Manadev\Framework\Testing\Commands;
+namespace Osm\Framework\Testing\Commands;
 
-use Manadev\Core\App;
-use Manadev\Framework\Console\Command;
-use Manadev\Core\Packages\Package;
-use Manadev\Framework\Testing\ConfigModule;
-use Manadev\Framework\Testing\ConfigSuite;
+use Osm\Core\App;
+use Osm\Framework\Console\Command;
+use Osm\Core\Packages\Package;
+use Osm\Framework\Testing\ConfigModule;
+use Osm\Framework\Testing\ConfigSuite;
 
 /**
  * @property ConfigSuite[] $suites @temp
@@ -23,7 +23,7 @@ class ConfigPhpunit extends Command
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit backupGlobals="false"
          backupStaticAttributes="false"
-         bootstrap="{$m_app->modules['Manadev_Framework_Testing']->path}/bootstrap.php"
+         bootstrap="{$m_app->modules['Osm_Framework_Testing']->path}/bootstrap.php"
          colors="true"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"

@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\Cron;
+namespace Osm\Framework\Cron;
 
-use Manadev\Framework\Data\CollectionRegistry;
+use Osm\Framework\Data\CollectionRegistry;
 
 class Jobs extends CollectionRegistry
 {

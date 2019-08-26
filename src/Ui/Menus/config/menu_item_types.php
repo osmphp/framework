@@ -1,7 +1,7 @@
 <?php
 
-use Manadev\Ui\Menus\Items;
-use Manadev\Ui\Menus\Items\Type;
+use Osm\Ui\Menus\Items;
+use Osm\Ui\Menus\Items\Type;
 
 return [
     // item types with only basic set of properties

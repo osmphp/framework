@@ -1,8 +1,8 @@
-import templates from 'Manadev_Framework_Js/vars/templates';
+import templates from 'Osm_Framework_Js/vars/templates';
 import $ from 'jquery';
 import Mustache from 'mustache';
-import broadcasts from 'Manadev_Framework_Js/vars/broadcasts';
-import macaw from "Manadev_Framework_Js/vars/macaw";
+import broadcasts from 'Osm_Framework_Js/vars/broadcasts';
+import macaw from "Osm_Framework_Js/vars/macaw";
 import ModalDialog from "./ModalDialog";
 
 /**

@@ -1,13 +1,13 @@
 <?php
 
-namespace Manadev\Framework\Profiler\Controllers;
+namespace Osm\Framework\Profiler\Controllers;
 
-use Manadev\Core\App;
-use Manadev\Core\Profiler;
-use Manadev\Framework\Http\Controller;
-use Manadev\Framework\Http\Exceptions\NotFound;
-use Manadev\Framework\Profiler\Metrics;
-use Manadev\Framework\Profiler\Tag;
+use Osm\Core\App;
+use Osm\Core\Profiler;
+use Osm\Framework\Http\Controller;
+use Osm\Framework\Http\Exceptions\NotFound;
+use Osm\Framework\Profiler\Metrics;
+use Osm\Framework\Profiler\Tag;
 
 /**
  * @property Metrics $metrics @required

@@ -1,7 +1,7 @@
 <?php
 
-use Manadev\Ui\DataTables\Columns\Column;
-use Manadev\Ui\DataTables\Columns;
+use Osm\Ui\DataTables\Columns\Column;
+use Osm\Ui\DataTables\Columns;
 
 return [
     Column::STRING => Columns\StringColumn::class,

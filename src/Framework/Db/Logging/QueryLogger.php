@@ -1,14 +1,14 @@
 <?php
 
-namespace Manadev\Framework\Db\Logging;
+namespace Osm\Framework\Db\Logging;
 
 use Illuminate\Database\Connection;
 use Illuminate\Log\Logger;
 use Illuminate\Support\Str;
-use Manadev\Core\App;
-use Manadev\Core\Object_;
-use Manadev\Framework\Db\Module;
-use Manadev\Framework\Settings\Settings;
+use Osm\Core\App;
+use Osm\Core\Object_;
+use Osm\Framework\Db\Module;
+use Osm\Framework\Settings\Settings;
 use Monolog\Handler\AbstractProcessingHandler;
 use Monolog\Logger as MonologLogger;
 
@@ -43,7 +43,7 @@ class QueryLogger extends Object_
                 $result = new Logger($logger = new MonologLogger('queries'), $m_app->laravel->events);
                 $logger->pushHandler($this->handler);
                 return $result;
-            case 'module': return $m_app->modules['Manadev_Framework_Db'];
+            case 'module': return $m_app->modules['Osm_Framework_Db'];
             case 'query_logging_classes': return $this->module->query_logging_classes;
 
         }

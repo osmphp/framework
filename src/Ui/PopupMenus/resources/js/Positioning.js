@@ -1,8 +1,8 @@
-import Action from "Manadev_Framework_Js/Action";
-import doRectanglesIntersect from "Manadev_Framework_Js/doRectanglesIntersect";
-import firstParentElement from "Manadev_Framework_Js/firstParentElement";
-import isScrollable from "Manadev_Framework_Js/isScrollable";
-import getViewPortRect from "Manadev_Ui_Aba/getViewPortRect";
+import Action from "Osm_Framework_Js/Action";
+import doRectanglesIntersect from "Osm_Framework_Js/doRectanglesIntersect";
+import firstParentElement from "Osm_Framework_Js/firstParentElement";
+import isScrollable from "Osm_Framework_Js/isScrollable";
+import getViewPortRect from "Osm_Ui_Aba/getViewPortRect";
 
 export default class Positioning extends Action {
     get window() {

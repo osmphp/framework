@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Composer;
+namespace Osm\Framework\Composer;
 
-use Manadev\Core\Exceptions\NotImplemented;
-use Manadev\Core\Object_;
+use Osm\Core\Exceptions\NotImplemented;
+use Osm\Core\Object_;
 use Illuminate\Console\OutputStyle;
 
 /**

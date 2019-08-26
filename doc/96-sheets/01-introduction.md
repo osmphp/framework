@@ -15,8 +15,8 @@ In user interface, sheet is visualized with:
 
 Classes which implement these concepts:
 
-* `\Manadev\Data\Sheets\Sheet`
-* `\Manadev\Ui\DataTables\DataTable`
+* `\Osm\Data\Sheets\Sheet`
+* `\Osm\Ui\DataTables\DataTable`
 
 The rest of the article reviews how `users` sheet, data table and data form are defined and interconnected:
 
@@ -157,7 +157,7 @@ Here `string` is column type, `'username'` is column name and `->title("User Nam
 
 ## Column Attributes ##
 
-`\Manadev\Data\Sheets\Columns\Column` defines available sheet column attributes and API to assign them in migration script:
+`\Osm\Data\Sheets\Columns\Column` defines available sheet column attributes and API to assign them in migration script:
 
 * `formula($value)`
 * `references($value)`

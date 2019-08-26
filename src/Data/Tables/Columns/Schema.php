@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Data\Tables\Columns;
+namespace Osm\Data\Tables\Columns;
 
 use Illuminate\Database\Schema\Blueprint as SchemaBlueprint;
 use Illuminate\Support\Fluent;
-use Manadev\Core\Exceptions\NotSupported;
-use Manadev\Core\Object_;
+use Osm\Core\Exceptions\NotSupported;
+use Osm\Core\Object_;
 
 /**
  * @property Column $column @temp
@@ -14,7 +14,7 @@ use Manadev\Core\Object_;
 class Schema extends Object_
 {
     /**
-     * @see \Manadev\Data\Tables\Columns\Column::$type @handler
+     * @see \Osm\Data\Tables\Columns\Column::$type @handler
      *
      * @param Column $column
      * @param SchemaBlueprint $table

@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\Npm;
+namespace Osm\Framework\Npm;
 
-use Manadev\Core\Modules\BaseModule;
+use Osm\Core\Modules\BaseModule;
 
 class Module extends BaseModule
 {

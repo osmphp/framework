@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Core\Exceptions;
+namespace Osm\Core\Exceptions;
 
 class NotFound extends \Exception
 {

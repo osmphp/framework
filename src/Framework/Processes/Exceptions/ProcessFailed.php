@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Framework\Processes\Exceptions;
+namespace Osm\Framework\Processes\Exceptions;
 
 class ProcessFailed extends \Exception
 {

@@ -1,7 +1,7 @@
 <?php
 
-use Manadev\Framework\Cache;
-use Manadev\Framework\KeyValueStores;
+use Osm\Framework\Cache;
+use Osm\Framework\KeyValueStores;
 
 return [
     'main' => [

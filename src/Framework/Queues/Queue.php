@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\Queues;
+namespace Osm\Framework\Queues;
 
-use Manadev\Core\Object_;
+use Osm\Core\Object_;
 use Illuminate\Queue\Queue as LaravelQueue;
 
 /**

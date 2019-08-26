@@ -1,10 +1,10 @@
 <?php
 
-namespace Manadev\Tests\Framework;
+namespace Osm\Tests\Framework;
 
 
-use Manadev\Framework\Testing\Browser\Browser;
-use Manadev\Framework\Testing\Tests\AppTestCase;
+use Osm\Framework\Testing\Browser\Browser;
+use Osm\Framework\Testing\Tests\AppTestCase;
 
 class JsTest_ extends AppTestCase
 {

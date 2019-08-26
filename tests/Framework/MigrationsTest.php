@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Tests\Framework;
+namespace Osm\Tests\Framework;
 
 use Illuminate\Database\Schema\Blueprint;
-use Manadev\Core\App;
-use Manadev\Framework\Migrations\Migrator;
-use Manadev\Framework\Testing\Tests\UnitTestCase;
+use Osm\Core\App;
+use Osm\Framework\Migrations\Migrator;
+use Osm\Framework\Testing\Tests\UnitTestCase;
 
 class MigrationsTest extends UnitTestCase
 {
@@ -29,7 +29,7 @@ class MigrationsTest extends UnitTestCase
         $schema = $m_app->db->schema;
 
         /* @var Migrator $migrator */
-        $migrator = Migrator::new(['modules' => ['Manadev_Samples_Migrations']]);
+        $migrator = Migrator::new(['modules' => ['Osm_Samples_Migrations']]);
 
         $migrator->migrate();
         $this->assertTrue($schema->hasTable('t_raw'));

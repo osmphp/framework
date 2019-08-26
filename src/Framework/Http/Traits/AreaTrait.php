@@ -1,12 +1,12 @@
 <?php
 
-namespace Manadev\Framework\Http\Traits;
+namespace Osm\Framework\Http\Traits;
 
-use Manadev\Core\App;
-use Manadev\Framework\Areas\Area;
-use Manadev\Framework\Http\Advices;
-use Manadev\Framework\Http\Controllers;
-use Manadev\Framework\Http\Parameters;
+use Osm\Core\App;
+use Osm\Framework\Areas\Area;
+use Osm\Framework\Http\Advices;
+use Osm\Framework\Http\Controllers;
+use Osm\Framework\Http\Parameters;
 
 trait AreaTrait
 {

@@ -1,5 +1,5 @@
-import Controller from "Manadev_Framework_Js/Controller";
-import snackBars from 'Manadev_Ui_SnackBars/vars/snackBars';
+import Controller from "Osm_Framework_Js/Controller";
+import snackBars from 'Osm_Ui_SnackBars/vars/snackBars';
 
 export default class SampleViewUsingSnackBar extends Controller {
     get events() {

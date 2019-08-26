@@ -1,10 +1,10 @@
 <?php
 
-namespace Manadev\Samples\Js\Controllers;
+namespace Osm\Samples\Js\Controllers;
 
-use Manadev\Core\Exceptions\NotImplemented;
-use Manadev\Framework\Http\Controller;
-use Manadev\Framework\Http\Exceptions\HttpError;
+use Osm\Core\Exceptions\NotImplemented;
+use Osm\Framework\Http\Controller;
+use Osm\Framework\Http\Exceptions\HttpError;
 
 class Web extends Controller
 {

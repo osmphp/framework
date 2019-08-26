@@ -1,5 +1,5 @@
 import Field from './Field';
-import macaw from 'Manadev_Framework_Js/vars/macaw';
+import macaw from 'Osm_Framework_Js/vars/macaw';
 
 export default class FieldGroup extends Field {
     get fields() {

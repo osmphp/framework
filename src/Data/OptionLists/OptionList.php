@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Data\OptionLists;
+namespace Osm\Data\OptionLists;
 
 use Illuminate\Support\Collection;
-use Manadev\Core\Exceptions\NotSupported;
-use Manadev\Core\Object_;
-use Manadev\Data\OptionLists\Hints\OptionHint;
+use Osm\Core\Exceptions\NotSupported;
+use Osm\Core\Object_;
+use Osm\Data\OptionLists\Hints\OptionHint;
 
 /**
  * @property string $name @required @part

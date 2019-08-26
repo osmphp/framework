@@ -33,8 +33,8 @@ Create [mentioned form class](#) (link to view class definition) in `[module_pat
     
     namespace [module_namespace]\Views;
     
-    use Manadev\Framework\Views\View;
-    use Manadev\Ui\Forms\Views\Form;
+    use Osm\Framework\Views\View;
+    use Osm\Ui\Forms\Views\Form;
     
     class NewsletterSubscriptionForm extends Form
     {
@@ -55,10 +55,10 @@ Create [mentioned template](#) (link to view template definition) in `[module_pa
 Use `form.form__header` and `form.form__footer` CSS classes to mark form header and footer:
 
     <?php
-    /* @var Manadev\Framework\Views\View $view */ 
+    /* @var Osm\Framework\Views\View $view */ 
     
-    use Manadev\Ui\Inputs\Views\Input;
-    use Manadev\Ui\Buttons\Views\Button;
+    use Osm\Ui\Inputs\Views\Input;
+    use Osm\Ui\Buttons\Views\Button;
     ?>
     <header class="form__header">
         {{ m_("Subscribe To Our Newsletter") }}
@@ -77,7 +77,7 @@ Use `form.form__header` and `form.form__footer` CSS classes to mark form header 
 
 [Register mentioned JS view-model class](#) in `[module_path]/[area_resource_path]/critical-js/index.js`:
 
-    import merge from 'Manadev_Framework_Js/merge';
+    import merge from 'Osm_Framework_Js/merge';
     import SignUpForm from './NewsletterSubscriptionForm';
     
     merge(window, {
@@ -90,7 +90,7 @@ Use `form.form__header` and `form.form__footer` CSS classes to mark form header 
 
 [Create mentioned JS view-model class](#) in `[module_path]/[area_resource_path]/critical-js/NewsletterSubscriptionForm.js`:
 
-    import Form from 'Manadev_Ui_Forms/Form';
+    import Form from 'Osm_Ui_Forms/Form';
     
     export default class NewsletterSubscriptionForm extends Form {
     };
@@ -99,7 +99,7 @@ Use `form.form__header` and `form.form__footer` CSS classes to mark form header 
 
 [Attach JS controller class](#) to all HTML elements marked with mentioned view-model in `[module_path]/[area_resource_path]/js/index.js`:
 
-    import macaw from "Manadev_Framework_Js/vars/macaw";
+    import macaw from "Osm_Framework_Js/vars/macaw";
     import NewsletterSubscriptionForm from "./NewsletterSubscriptionForm";
     
     macaw.controller(Your_Module_Name.NewsletterSubscriptionForm, NewsletterSubscriptionForm); 
@@ -110,9 +110,9 @@ Use `form.form__header` and `form.form__footer` CSS classes to mark form header 
  
 [Create mentioned JS controller class](#) in `[module_path]/[area_resource_path]/js/NewsletterSubscriptionForm.js`:
     
-    import Form from 'Manadev_Ui_Forms/Form';
-    import snackBars from 'Manadev_Ui_SnackBars/vars/snackBars';
-    import m_ from "Manadev_Framework_Js/m_";
+    import Form from 'Osm_Ui_Forms/Form';
+    import snackBars from 'Osm_Ui_SnackBars/vars/snackBars';
+    import m_ from "Osm_Framework_Js/m_";
     
     export default class NewsletterSubscriptionForm extends Form {
         get events() {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Tests\Core;
+namespace Osm\Tests\Core;
 
-use Manadev\Framework\Testing\Tests\UnitTestCase;
-use Manadev\Samples\Objects\HelloObject_;
+use Osm\Framework\Testing\Tests\UnitTestCase;
+use Osm\Samples\Objects\HelloObject_;
 
 class ObjectTest extends UnitTestCase
 {

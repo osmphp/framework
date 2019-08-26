@@ -1,20 +1,20 @@
 <?php
 
-namespace Manadev\Ui\SnackBars\Controllers;
+namespace Osm\Ui\SnackBars\Controllers;
 
-use Manadev\Framework\Http\Controller;
-use Manadev\Ui\SnackBars\Views\SnackBar;
+use Osm\Framework\Http\Controller;
+use Osm\Ui\SnackBars\Views\SnackBar;
 
 class Web extends Controller
 {
     public function getMessageTemplate() {
-        return SnackBar::new(['template' => 'Manadev_Ui_SnackBars.message']);
+        return SnackBar::new(['template' => 'Osm_Ui_SnackBars.message']);
     }
 
     public function getExceptionTemplate() {
         return SnackBar::new([
-            'template' => 'Manadev_Ui_SnackBars.exception',
-            'view_model' => 'Manadev_Ui_SnackBars.Exception',
+            'template' => 'Osm_Ui_SnackBars.exception',
+            'view_model' => 'Osm_Ui_SnackBars.Exception',
         ]);
     }
 }

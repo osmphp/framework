@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Samples\Compilation\Hints;
+namespace Osm\Samples\Compilation\Hints;
 
-use Manadev\Core\App;
+use Osm\Core\App;
 
 /**
  * @property string $t_custom_property @required

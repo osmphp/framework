@@ -1,17 +1,17 @@
 <?php
 
-namespace Manadev\Framework\Installer\Commands;
+namespace Osm\Framework\Installer\Commands;
 
-use Manadev\Core\App;
-use Manadev\Framework\Console\Command;
-use Manadev\Framework\Installer\Module;
-use Manadev\Framework\Installer\Question;
-use Manadev\Framework\Installer\Questions;
-use Manadev\Framework\Installer\Requirement;
-use Manadev\Framework\Installer\Requirements;
-use Manadev\Framework\Installer\Step;
-use Manadev\Framework\Installer\Steps;
-use Manadev\Framework\Processes\Process;
+use Osm\Core\App;
+use Osm\Framework\Console\Command;
+use Osm\Framework\Installer\Module;
+use Osm\Framework\Installer\Question;
+use Osm\Framework\Installer\Questions;
+use Osm\Framework\Installer\Requirement;
+use Osm\Framework\Installer\Requirements;
+use Osm\Framework\Installer\Step;
+use Osm\Framework\Installer\Steps;
+use Osm\Framework\Processes\Process;
 
 /**
  * @property string $flag @required
@@ -29,7 +29,7 @@ class Install extends Command
 
         switch ($property) {
             case 'flag': return $m_app->path("{$m_app->temp_path}/installed.flag");
-            case 'module': return $m_app->modules['Manadev_Framework_Installer'];
+            case 'module': return $m_app->modules['Osm_Framework_Installer'];
             case 'questions': return $this->module->questions;
             case 'steps': return $this->module->steps;
             case 'requirements': return $this->module->requirements;

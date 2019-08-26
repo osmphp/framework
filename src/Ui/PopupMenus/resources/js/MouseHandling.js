@@ -1,4 +1,4 @@
-import Action from "Manadev_Framework_Js/Action";
+import Action from "Osm_Framework_Js/Action";
 import $ from 'jquery';
 
 export default class MouseHandling extends Action {

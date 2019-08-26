@@ -72,7 +72,7 @@ where
 - `'seo' => true`, our setting for this application to know if this request contains SEO-friendly parameters. 
 - `'parameters'`  is an array of all parameters processed by `show` method. 
 
-   Parameter values are handled by `Manadev\Framework\Http\Parameters` class and are validated according it type. 
+   Parameter values are handled by `Osm\Framework\Http\Parameters` class and are validated according it type. 
    
    For instance if we expecting integer, but string of characters is sent, error will be raised. 
    

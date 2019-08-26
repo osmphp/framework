@@ -52,7 +52,7 @@ Query methods for modifying underlying data:
     // formula may be marked as facet
     $sheet->faceted("account.area");
 
-*Facet type* specifies how exactly faceted data is prepared for querying. For column marked as facet, facet type is determined from column type in `Manadev\Data\Sheets\Columns\FacetClassifier` class. For formula marked as facet, facet type is explicitly specified in call to `$sheet->faceted($formula, $type = Facet::LIST, $options = [])`.  
+*Facet type* specifies how exactly faceted data is prepared for querying. For column marked as facet, facet type is determined from column type in `Osm\Data\Sheets\Columns\FacetClassifier` class. For formula marked as facet, facet type is explicitly specified in call to `$sheet->faceted($formula, $type = Facet::LIST, $options = [])`.  
 
 ### Requesting Facets ###
 

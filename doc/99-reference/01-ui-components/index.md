@@ -33,7 +33,7 @@ Add to the beginning of blade template file:
 
     <?php
     // ...
-    use Manadev\Ui\Buttons\Views\Button;
+    use Osm\Ui\Buttons\Views\Button;
     ?>
 
 For standard HTML buttons, define it as follow and then handle its clicks with JavaScript:
@@ -58,7 +58,7 @@ Add to the beginning of blade template file:
 
     <?php
     // ...
-    use Manadev\Ui\Dialogs\Views\PageDialog;
+    use Osm\Ui\Dialogs\Views\PageDialog;
     ?>
 
 Then use it in template:
@@ -75,7 +75,7 @@ Add to the beginning of blade template file:
 
     <?php
     // ...
-    use Manadev\Ui\Inputs\Views\Input;
+    use Osm\Ui\Inputs\Views\Input;
     ?>
 
 Then use it in template:

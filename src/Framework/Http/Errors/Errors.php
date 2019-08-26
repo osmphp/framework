@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Http\Errors;
+namespace Osm\Framework\Http\Errors;
 
-use Manadev\Framework\Data\CollectionRegistry;
-use Manadev\Framework\Http\Exceptions\NotFound;
+use Osm\Framework\Data\CollectionRegistry;
+use Osm\Framework\Http\Exceptions\NotFound;
 
 class Errors extends CollectionRegistry
 {

@@ -1,6 +1,6 @@
 <?php
 
-use Manadev\Framework\Cron\Commands;
+use Osm\Framework\Cron\Commands;
 
 return [
     'scheduled-jobs' => [

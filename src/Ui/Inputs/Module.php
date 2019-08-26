@@ -1,13 +1,13 @@
 <?php
 
-namespace Manadev\Ui\Inputs;
+namespace Osm\Ui\Inputs;
 
-use Manadev\Core\Modules\BaseModule;
+use Osm\Core\Modules\BaseModule;
 
 class Module extends BaseModule
 {
     public $hard_dependencies = [
-        'Manadev_Ui_Aba',
-        'Manadev_Ui_Forms',
+        'Osm_Ui_Aba',
+        'Osm_Ui_Forms',
     ];
 }

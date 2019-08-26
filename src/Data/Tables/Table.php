@@ -1,17 +1,17 @@
 <?php
 
-namespace Manadev\Data\Tables;
+namespace Osm\Data\Tables;
 
-use Manadev\Core\App;
-use Manadev\Data\Formulas\Types;
-use Manadev\Data\Tables\Commands\Command;
-use Manadev\Core\Object_;
-use Manadev\Framework\Db\Db;
-use Manadev\Framework\Db\Key;
-use Manadev\Data\Tables\Columns\Column;
-use Manadev\Data\Tables\Columns\Columns;
+use Osm\Core\App;
+use Osm\Data\Formulas\Types;
+use Osm\Data\Tables\Commands\Command;
+use Osm\Core\Object_;
+use Osm\Framework\Db\Db;
+use Osm\Framework\Db\Key;
+use Osm\Data\Tables\Columns\Column;
+use Osm\Data\Tables\Columns\Columns;
 use Illuminate\Database\Schema\Blueprint as SchemaBlueprint;
-use Manadev\Data\Tables\Columns\Schema as ColumnSchema;
+use Osm\Data\Tables\Columns\Schema as ColumnSchema;
 
 /**
  * @property string $name @required @part

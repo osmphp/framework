@@ -1,10 +1,10 @@
 <?php
 
-namespace Manadev\Framework\Env\Commands;
+namespace Osm\Framework\Env\Commands;
 
-use Manadev\Core\App;
-use Manadev\Framework\Console\Command;
-use Manadev\Framework\Env\File;
+use Osm\Core\App;
+use Osm\Framework\Console\Command;
+use Osm\Framework\Env\File;
 
 /**
  * @property File $file @required

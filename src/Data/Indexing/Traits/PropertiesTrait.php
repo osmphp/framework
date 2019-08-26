@@ -1,13 +1,13 @@
 <?php
 
-namespace Manadev\Data\Indexing\Traits;
+namespace Osm\Data\Indexing\Traits;
 
-use Manadev\Core\App;
-use Manadev\Data\Indexing\Indexing;
+use Osm\Core\App;
+use Osm\Data\Indexing\Indexing;
 
 trait PropertiesTrait
 {
-    public function Manadev_Framework_Migrations_Migration__indexing() {
+    public function Osm_Framework_Migrations_Migration__indexing() {
         global $m_app; /* @var App $m_app */
 
         return $m_app->singleton(Indexing::class);

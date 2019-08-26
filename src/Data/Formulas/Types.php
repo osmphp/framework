@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Data\Formulas;
+namespace Osm\Data\Formulas;
 
-use Manadev\Data\Formulas\Exceptions\InvalidCast;
-use Manadev\Data\Formulas\Formulas\Formula;
-use Manadev\Data\Formulas\Parser\Token;
-use Manadev\Core\Object_;
+use Osm\Data\Formulas\Exceptions\InvalidCast;
+use Osm\Data\Formulas\Formulas\Formula;
+use Osm\Data\Formulas\Parser\Token;
+use Osm\Core\Object_;
 
 class Types extends Object_
 {

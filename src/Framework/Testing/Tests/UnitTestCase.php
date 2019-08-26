@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Framework\Testing\Tests;
+namespace Osm\Framework\Testing\Tests;
 
-use Manadev\Core\App;
-use Manadev\Core\Object_;
-use Manadev\Framework\Processes\Process;
-use Manadev\Framework\Testing\TestCase;
+use Osm\Core\App;
+use Osm\Core\Object_;
+use Osm\Framework\Processes\Process;
+use Osm\Framework\Testing\TestCase;
 
 abstract class UnitTestCase extends TestCase
 {

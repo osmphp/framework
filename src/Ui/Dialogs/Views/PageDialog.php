@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Ui\Dialogs\Views;
+namespace Osm\Ui\Dialogs\Views;
 
-use Manadev\Framework\Views\View;
+use Osm\Framework\Views\View;
 
 /**
  * @property int $width @required @part Dialog width in pixels
@@ -10,8 +10,8 @@ use Manadev\Framework\Views\View;
  */
 class PageDialog extends View
 {
-    public $template = 'Manadev_Ui_Dialogs.page-dialog';
-    public $view_model = 'Manadev_Ui_Dialogs.PageDialog';
+    public $template = 'Osm_Ui_Dialogs.page-dialog';
+    public $view_model = 'Osm_Ui_Dialogs.PageDialog';
 
     protected function default($property) {
         switch ($property) {

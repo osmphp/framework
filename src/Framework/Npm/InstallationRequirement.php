@@ -1,10 +1,10 @@
 <?php
 
-namespace Manadev\Framework\Npm;
+namespace Osm\Framework\Npm;
 
-use Manadev\Core\App;
-use Manadev\Framework\Installer\Requirement;
-use Manadev\Framework\Processes\Process;
+use Osm\Core\App;
+use Osm\Framework\Installer\Requirement;
+use Osm\Framework\Processes\Process;
 
 /**
  * @property string $app_title @required

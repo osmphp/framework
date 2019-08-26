@@ -1,18 +1,18 @@
 <?php
 
-namespace Manadev\Framework\Settings;
+namespace Osm\Framework\Settings;
 
-use Manadev\Core\App;
-use Manadev\Framework\Cache\CacheItem;
+use Osm\Core\App;
+use Osm\Framework\Cache\CacheItem;
 
 /**
  * @property string $app_title @required @part
  * @property string $app_version @required @part
  *
- * @see \Manadev\Framework\Db\Module:
+ * @see \Osm\Framework\Db\Module:
  *      @property bool $log_db_queries @part
  *      @property float $log_db_queries_from @part
- * @see \Manadev\Framework\Sessions\Module:
+ * @see \Osm\Framework\Sessions\Module:
  *      @property int $web_session_time_to_live @required @part
  *      @property string $web_session_cookie_name @required @part
  *      @property string $web_session_cookie_path @required @part
@@ -20,20 +20,20 @@ use Manadev\Framework\Cache\CacheItem;
  *      @property bool $web_session_cookie_secure @required @part
  *      @property bool $web_session_cookie_http_only @required @part
  *      @property string $web_session_cookie_same_site @part
- * @see \Manadev\Framework\Queues\Module:
+ * @see \Osm\Framework\Queues\Module:
  *      @property string $queue_store @required @part
  *      @property string $queue_processor @required @part
- * @see \Manadev\Framework\Encryption\Module:
+ * @see \Osm\Framework\Encryption\Module:
  *      @property string $hashing_algorithm @required @part
  *      @property int $hashing_bcrypt_cost @required @part
  *      @property int $hashing_argon2_memory_cost @required @part
  *      @property int $hashing_argon2_time_cost @required @part
  *      @property int $hashing_argon2_threads @required @part
- * @see \Manadev\Framework\Profiler\Module:
+ * @see \Osm\Framework\Profiler\Module:
  *      @property int $profiler_time_to_live @required @part
- * @ \Manadev\Framework\Layers\Module:
+ * @ \Osm\Framework\Layers\Module:
  *      @property bool $log_layers @part
- * @see \Manadev\App\App\Module:
+ * @see \Osm\App\App\Module:
  *      @property int $backend_session_time_to_live @required @part
  *      @property string $backend_session_cookie_name @required @part
  *      @property string $backend_session_cookie_path @required @part
@@ -50,9 +50,9 @@ use Manadev\Framework\Cache\CacheItem;
  *      @property bool $frontend_session_cookie_http_only @required @part
  *      @property string $frontend_session_cookie_same_site @part
  *
- * @see \Manadev\Ui\SnackBars\Module:
+ * @see \Osm\Ui\SnackBars\Module:
  *      @property int $close_snack_bars_after @required @part
- * @see \Manadev\Ui\DataTables\Module:
+ * @see \Osm\Ui\DataTables\Module:
  *      @property int $data_table_rows_per_page @required @part
  */
 class Settings extends CacheItem

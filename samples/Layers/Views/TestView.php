@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Samples\Layers\Views;
+namespace Osm\Samples\Layers\Views;
 
-use Manadev\Framework\Views\View;
+use Osm\Framework\Views\View;
 
 /**
  * @property TestView $child @part

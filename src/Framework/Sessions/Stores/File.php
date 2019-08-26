@@ -1,10 +1,10 @@
 <?php
 
-namespace Manadev\Framework\Sessions\Stores;
+namespace Osm\Framework\Sessions\Stores;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Session\FileSessionHandler;
-use Manadev\Core\App;
+use Osm\Core\App;
 
 /**
  * @property Filesystem $files @required

@@ -1,14 +1,14 @@
 <?php
 
-namespace Manadev\Data\Tables\Traits;
+namespace Osm\Data\Tables\Traits;
 
-use Manadev\Data\Tables\Columns\Column;
-use Manadev\Data\Tables\Partition;
-use Manadev\Data\Tables\Table;
-use Manadev\Data\Tables\Blueprint;
-use Manadev\Core\App;
-use Manadev\Framework\Db\Db;
-use Manadev\Framework\Db\Key;
+use Osm\Data\Tables\Columns\Column;
+use Osm\Data\Tables\Partition;
+use Osm\Data\Tables\Table;
+use Osm\Data\Tables\Blueprint;
+use Osm\Core\App;
+use Osm\Framework\Db\Db;
+use Osm\Framework\Db\Key;
 
 /**
  * @property App $app

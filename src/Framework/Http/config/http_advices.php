@@ -1,6 +1,6 @@
 <?php
 
-use Manadev\Framework\Http\Advices;
+use Osm\Framework\Http\Advices;
 
 return [
     'detect_area' => ['class' => Advices\DetectArea::class, 'sort_order' => 30],

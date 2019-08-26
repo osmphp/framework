@@ -26,7 +26,7 @@ Contents:
 
 		namespace Your\Logger;
 	
-		use Manadev\Core\Modules\BaseModule;
+		use Osm\Core\Modules\BaseModule;
 		use ThirdParty\Shapes\Point; 
 	
 		class Module extends BaseModule {

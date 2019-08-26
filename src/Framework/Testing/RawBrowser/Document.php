@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Testing\RawBrowser;
+namespace Osm\Framework\Testing\RawBrowser;
 
-use Manadev\Core\App;
-use Manadev\Framework\Testing\Browser\Document as BaseDocument;
+use Osm\Core\App;
+use Osm\Framework\Testing\Browser\Document as BaseDocument;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**

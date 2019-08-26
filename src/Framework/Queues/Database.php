@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Framework\Queues;
+namespace Osm\Framework\Queues;
 
 use Illuminate\Container\Container;
 use Illuminate\Queue\DatabaseQueue;
-use Manadev\Core\App;
-use Manadev\Framework\Db\Db;
+use Osm\Core\App;
+use Osm\Framework\Db\Db;
 
 /**
  * @property Db $db @required

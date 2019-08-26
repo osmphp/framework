@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Ui\DataTables\Columns;
+namespace Osm\Ui\DataTables\Columns;
 
 class StringColumn extends Column
 {

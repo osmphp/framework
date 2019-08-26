@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Samples\Cache;
+namespace Osm\Samples\Cache;
 
-use Manadev\Framework\Cache\CacheItem;
+use Osm\Framework\Cache\CacheItem;
 
 /**
  * @property string $incremental_property @part

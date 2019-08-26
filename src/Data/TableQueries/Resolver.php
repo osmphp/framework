@@ -1,15 +1,15 @@
 <?php
 
-namespace Manadev\Data\TableQueries;
+namespace Osm\Data\TableQueries;
 
-use Manadev\Core\App;
-use Manadev\Data\Formulas\Exceptions\UnknownColumn;
-use Manadev\Data\Formulas\Formulas;
-use Manadev\Data\Formulas\Parser\Parser;
-use Manadev\Data\Queries\Part;
-use Manadev\Data\Queries\Resolver as BaseResolver;
-use Manadev\Data\TableQueries\Exceptions\CircularDependency;
-use Manadev\Data\TableQueries\Functions\Resolver as FunctionResolver;
+use Osm\Core\App;
+use Osm\Data\Formulas\Exceptions\UnknownColumn;
+use Osm\Data\Formulas\Formulas;
+use Osm\Data\Formulas\Parser\Parser;
+use Osm\Data\Queries\Part;
+use Osm\Data\Queries\Resolver as BaseResolver;
+use Osm\Data\TableQueries\Exceptions\CircularDependency;
+use Osm\Data\TableQueries\Functions\Resolver as FunctionResolver;
 
 /**
  * @property Relations $relations @required
@@ -120,7 +120,7 @@ class Resolver extends BaseResolver
      * method named "table__relation". This method should LEFT JOIN related table, it changed to
      * INNER JOIN if needed.
      *
-     * @see \Manadev\Samples\Tables\Traits\RelationsTrait for example.
+     * @see \Osm\Samples\Tables\Traits\RelationsTrait for example.
      *
      * @param $table
      * @param $part

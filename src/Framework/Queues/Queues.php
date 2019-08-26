@@ -1,10 +1,10 @@
 <?php
 
-namespace Manadev\Framework\Queues;
+namespace Osm\Framework\Queues;
 
 use Illuminate\Bus\Dispatcher;
-use Manadev\Core\App;
-use Manadev\Framework\Data\CollectionRegistry;
+use Osm\Core\App;
+use Osm\Framework\Data\CollectionRegistry;
 
 /**
  * @property Module $module @required
@@ -20,7 +20,7 @@ class Queues extends CollectionRegistry
         global $m_app; /* @var App $m_app */
 
         switch ($property) {
-            case 'module': return $m_app->modules['Manadev_Framework_Queues'];
+            case 'module': return $m_app->modules['Osm_Framework_Queues'];
             case 'laravel_dispatcher': return $this->module->laravel_dispatcher;
         }
         return parent::default($property);

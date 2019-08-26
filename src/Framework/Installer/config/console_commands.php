@@ -1,6 +1,6 @@
 <?php
 
-use Manadev\Framework\Installer\Commands;
+use Osm\Framework\Installer\Commands;
 use Symfony\Component\Console\Input\InputOption;
 
 return [

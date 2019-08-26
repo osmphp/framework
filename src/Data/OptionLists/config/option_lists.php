@@ -1,6 +1,6 @@
 <?php
 
-use Manadev\Data\OptionLists;
+use Osm\Data\OptionLists;
 
 return [
     'dummy' => ['class' => OptionLists\Dummy::class, 'title' => m_("Dummy")],

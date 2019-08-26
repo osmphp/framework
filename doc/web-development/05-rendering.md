@@ -36,11 +36,11 @@ The layout is rarely created all in one step. Instead, some base layout is defin
 
 ## Views ##
 
-View is just an ordinary PHP object with properties and methods, an instance of `Manadev\Framework\Views\View` or descendant class.  
+View is just an ordinary PHP object with properties and methods, an instance of `Osm\Framework\Views\View` or descendant class.  
 
 To create a view object, use [`new` static method](#):
 
-    use Manadev\Framework\Views\View;
+    use Osm\Framework\Views\View;
 
     $view = View::new([
 		'template' => 'My_Module.signup_form',
@@ -146,7 +146,7 @@ View templates are described in detail in [Laravel documentation](https://larave
 
 To render a view, just convert view object to string:
 
-    use Manadev\Framework\Views\View;
+    use Osm\Framework\Views\View;
 
     $view = Sidebar::new();
     $html = (string)$view;
@@ -163,12 +163,12 @@ Create layer in [area resource directory](#) `[my_module_path]/frontend/layers/m
 
 	<?php
 	
-	use Manadev\Framework\Views\View;
-	use Manadev\Framework\Views\Views\Container;
-	use Manadev\Ui\Forms\Views\Form;
-	use Manadev\Ui\Inputs\Views\Input;
-	use Manadev\Ui\MenuBars\Views\MenuBar;
-	use Manadev\Ui\Menus\Items\Type;
+	use Osm\Framework\Views\View;
+	use Osm\Framework\Views\Views\Container;
+	use Osm\Ui\Forms\Views\Form;
+	use Osm\Ui\Inputs\Views\Input;
+	use Osm\Ui\MenuBars\Views\MenuBar;
+	use Osm\Ui\Menus\Items\Type;
 
 	return [
 	    '@include' => ['base'],
@@ -177,7 +177,7 @@ Create layer in [area resource directory](#) `[my_module_path]/frontend/layers/m
 	        'content' => Container::new([
 	            'id' => 'content',
 	            'views' => [
-	                'intro' => View::new(['template' => 'Manadev_DocHost_App.home_page_intro']),
+	                'intro' => View::new(['template' => 'Osm_DocHost_App.home_page_intro']),
 	                'sign_up_form' => Form::new([
 	                    'modifier' => '-sign-up',
 	                    'route' => 'POST /sign-up',
@@ -310,7 +310,7 @@ by default, `page` layer just includes `base` layer and does nothing more than t
 `base` layer, simply put, tells to render the page using standard `Page` view:
 
 	// vendor/dubysa/framework/src/Framework/Layers/resources/layers/base.php
-	use Manadev\Framework\Views\Views\Page;
+	use Osm\Framework\Views\Views\Page;
 	
 	return [
 	    'root' => Page::new(),

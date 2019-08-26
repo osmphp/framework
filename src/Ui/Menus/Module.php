@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Ui\Menus;
+namespace Osm\Ui\Menus;
 
-use Manadev\Core\App;
-use Manadev\Core\Modules\BaseModule;
-use Manadev\Framework\Areas\Area;
-use Manadev\Ui\Menus\Items\Types;
+use Osm\Core\App;
+use Osm\Core\Modules\BaseModule;
+use Osm\Framework\Areas\Area;
+use Osm\Ui\Menus\Items\Types;
 
 /**
  * @property Types $item_types @required

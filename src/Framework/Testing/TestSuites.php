@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\Testing;
+namespace Osm\Framework\Testing;
 
-use Manadev\Framework\Data\CollectionRegistry;
+use Osm\Framework\Data\CollectionRegistry;
 
 class TestSuites extends CollectionRegistry
 {

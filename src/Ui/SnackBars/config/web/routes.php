@@ -1,6 +1,6 @@
 <?php
 
-use Manadev\Ui\SnackBars\Controllers\Web;
+use Osm\Ui\SnackBars\Controllers\Web;
 
 return [
     'GET /snack-bars/message' => ['class' => Web::class, 'method' => 'getMessageTemplate', 'public' => true],

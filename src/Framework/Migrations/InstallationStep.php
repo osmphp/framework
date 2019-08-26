@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Migrations;
+namespace Osm\Framework\Migrations;
 
-use Manadev\Framework\Installer\Step;
-use Manadev\Framework\Processes\Process;
+use Osm\Framework\Installer\Step;
+use Osm\Framework\Processes\Process;
 
 class InstallationStep extends Step
 {

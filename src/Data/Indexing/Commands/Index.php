@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Data\Indexing\Commands;
+namespace Osm\Data\Indexing\Commands;
 
-use Manadev\Core\App;
-use Manadev\Data\Indexing\Indexing;
-use Manadev\Data\Indexing\Mode;
-use Manadev\Framework\Console\Command;
+use Osm\Core\App;
+use Osm\Data\Indexing\Indexing;
+use Osm\Data\Indexing\Mode;
+use Osm\Framework\Console\Command;
 
 /**
  * @property Indexing $indexing @required

@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'db_tests' => [ 'modules' => ['Manadev_Data_Tables']],
+    'db_tests' => [ 'modules' => ['Osm_Data_Tables']],
 ];

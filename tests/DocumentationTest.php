@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Tests;
+namespace Osm\Tests;
 
-use Manadev\Framework\Testing\DocumentationTestCase;
+use Osm\Framework\Testing\DocumentationTestCase;
 
 class DocumentationTest extends DocumentationTestCase
 {

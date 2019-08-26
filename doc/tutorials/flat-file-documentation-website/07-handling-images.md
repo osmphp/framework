@@ -58,8 +58,8 @@ Full content of `app/src/Docs/Traits/DetectRouteTrait.php`:
     use App\Docs\ImageFinder;
     use App\Docs\Module;
     use App\Docs\PageFinder;
-    use Manadev\Core\App;
-    use Manadev\Framework\Http\Exceptions\NotFound;
+    use Osm\Core\App;
+    use Osm\Framework\Http\Exceptions\NotFound;
     
     trait DetectRouteTrait
     {
@@ -107,9 +107,9 @@ Full content of `app/src/Docs/Traits/DetectRouteTrait.php`:
     namespace App\Docs;
     
     use App\Docs\Hints\SettingsHint;
-    use Manadev\Core\App;
-    use Manadev\Core\Object_;
-    use Manadev\Framework\Settings\Settings;
+    use Osm\Core\App;
+    use Osm\Core\Object_;
+    use Osm\Framework\Settings\Settings;
     
     /**
      * @property Settings|SettingsHint $settings @required
@@ -153,8 +153,8 @@ We used module global variable `image` in `DetectRouteTrait` to store file name 
 	
 	namespace App\Docs;
 	
-	use Manadev\Core\Modules\BaseModule;
-	use Manadev\Framework\Http\Advices\DetectRoute;
+	use Osm\Core\Modules\BaseModule;
+	use Osm\Framework\Http\Advices\DetectRoute;
 	
 	/**
 	 * @property Page $page @required
@@ -202,9 +202,9 @@ Here is a new content of `app/src/Docs/Controllers/Frontend.php`:
     use App\Docs\Module;
     use App\Docs\Page;
     use App\Docs\Views\Html;
-    use Manadev\Core\App;
-    use Manadev\Framework\Http\Controller;
-    use Manadev\Framework\Http\Responses;
+    use Osm\Core\App;
+    use Osm\Framework\Http\Controller;
+    use Osm\Framework\Http\Responses;
     
     /**
      * @property Page $page @required

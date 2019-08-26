@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Data\Formulas\Formulas;
+namespace Osm\Data\Formulas\Formulas;
 
 /**
  * @property string[] $parts @required @part

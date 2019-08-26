@@ -86,7 +86,7 @@ Create new PHP class `App\Hello\Module` (file `app/src/Hello/Module.php`):
 	
 	namespace App\Hello;
 	
-	use Manadev\Core\Modules\BaseModule;
+	use Osm\Core\Modules\BaseModule;
 	
 	class Module extends BaseModule
 	{
@@ -134,7 +134,7 @@ Content of `app/src/Hello/Controllers/Frontend.php`:
     
     namespace App\Hello\Controllers;
     
-    use Manadev\Framework\Http\Controller;
+    use Osm\Framework\Http\Controller;
     
     class Frontend extends Controller
     {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Http;
+namespace Osm\Framework\Http;
 
-use Manadev\Core\Object_;
-use Manadev\Framework\Http\Exceptions\InvalidParameter;
+use Osm\Core\Object_;
+use Osm\Framework\Http\Exceptions\InvalidParameter;
 use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 
 /**

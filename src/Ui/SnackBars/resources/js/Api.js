@@ -1,13 +1,13 @@
-import templates from 'Manadev_Framework_Js/vars/templates';
+import templates from 'Osm_Framework_Js/vars/templates';
 import $ from 'jquery';
 import Mustache from 'mustache';
 import Handle from './Handle';
-import m_ from 'Manadev_Framework_Js/m_';
-import config from 'Manadev_Framework_Js/vars/config';
-import macaw from "Manadev_Framework_Js/vars/macaw";
-import view_models from "Manadev_Framework_Js/vars/view_models";
-import isString from "Manadev_Framework_Js/isString";
-import ajax from "Manadev_Framework_Js/ajax";
+import m_ from 'Osm_Framework_Js/m_';
+import config from 'Osm_Framework_Js/vars/config';
+import macaw from "Osm_Framework_Js/vars/macaw";
+import view_models from "Osm_Framework_Js/vars/view_models";
+import isString from "Osm_Framework_Js/isString";
+import ajax from "Osm_Framework_Js/ajax";
 
 /**
  * @property {int} last_id

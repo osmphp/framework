@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Samples\Cache;
+namespace Osm\Samples\Cache;
 
-use Manadev\Core\App;
-use Manadev\Core\Object_;
+use Osm\Core\App;
+use Osm\Core\Object_;
 
 /**
  * @property IncrementalObject $item @required @part

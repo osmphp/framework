@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Core;
+namespace Osm\Core;
 
-use Manadev\Core\Exceptions\ProfilingException;
+use Osm\Core\Exceptions\ProfilingException;
 
 class Profiler
 {

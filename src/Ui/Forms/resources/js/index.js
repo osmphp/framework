@@ -1,4 +1,4 @@
-import macaw from 'Manadev_Framework_Js/vars/macaw';
+import macaw from 'Osm_Framework_Js/vars/macaw';
 import Form from './Form';
 
-macaw.controller(Manadev_Ui_Forms.Form, Form);
+macaw.controller(Osm_Ui_Forms.Form, Form);

@@ -1,8 +1,8 @@
 <?php
 
-use Manadev\Framework\Views\View;
-use Manadev\Framework\Views\Views\Container;
-use Manadev\Ui\Buttons\Views\Button;
+use Osm\Framework\Views\View;
+use Osm\Framework\Views\Views\Container;
+use Osm\Ui\Buttons\Views\Button;
 
 return [
     '@include' => ['base'],
@@ -15,7 +15,7 @@ return [
                 'yes_no_button' => Button::new(['title' => m_("Show Yes/No Dialog")]),
             ],
         ]),
-        'footer' => View::new(['template' => 'Manadev_Samples_Ui.footer']),
+        'footer' => View::new(['template' => 'Osm_Samples_Ui.footer']),
         'translations' => [
             "Do you really want to delete this item?" => "Do you really want to delete this item?",
         ],

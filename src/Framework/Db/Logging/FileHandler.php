@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Framework\Db\Logging;
+namespace Osm\Framework\Db\Logging;
 
 use Monolog\Handler\StreamHandler;
 

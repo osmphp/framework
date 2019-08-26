@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Ui\DataTables;
+namespace Osm\Ui\DataTables;
 
-use Manadev\Core\App;
-use Manadev\Core\Modules\BaseModule;
+use Osm\Core\App;
+use Osm\Core\Modules\BaseModule;
 
 /**
  * @property string[] $column_types @required

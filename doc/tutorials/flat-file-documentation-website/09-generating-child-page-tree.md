@@ -69,9 +69,9 @@ Modify the class `app/src/Docs/TagRenderer.php`:
     
     namespace App\Docs;
     
-    use Manadev\Core\App;
-    use Manadev\Core\Exceptions\NotSupported;
-    use Manadev\Core\Object_;
+    use Osm\Core\App;
+    use Osm\Core\Exceptions\NotSupported;
+    use Osm\Core\Object_;
     
     /**
      * @property Page $page @temp
@@ -191,10 +191,10 @@ Here is the new content of `app/src/Docs/PageFinder.php` file:
     namespace App\Docs;
     
     use App\Docs\Hints\SettingsHint;
-    use Manadev\Core\App;
-    use Manadev\Core\Exceptions\NotSupported;
-    use Manadev\Core\Object_;
-    use Manadev\Framework\Settings\Settings;
+    use Osm\Core\App;
+    use Osm\Core\Exceptions\NotSupported;
+    use Osm\Core\Object_;
+    use Osm\Framework\Settings\Settings;
     
     /**
      * @property Settings|SettingsHint $settings @required
@@ -338,8 +338,8 @@ Let's add new `url` property to the class. Here is modified content of `app/src/
     
     namespace App\Docs;
     
-    use Manadev\Core\App;
-    use Manadev\Core\Object_;
+    use Osm\Core\App;
+    use Osm\Core\Object_;
     use Michelf\MarkdownExtra;
     
     /**
@@ -511,12 +511,12 @@ Create new PHP class `app/src/Docs/PageUrlGenerator.php`:
     namespace App\Docs;
     
     use App\Docs\Hints\SettingsHint;
-    use Manadev\Core\App;
-    use Manadev\Core\Exceptions\NotSupported;
-    use Manadev\Core\Object_;
-    use Manadev\Framework\Http\Request;
-    use Manadev\Framework\Http\UrlGenerator;
-    use Manadev\Framework\Settings\Settings;
+    use Osm\Core\App;
+    use Osm\Core\Exceptions\NotSupported;
+    use Osm\Core\Object_;
+    use Osm\Framework\Http\Request;
+    use Osm\Framework\Http\UrlGenerator;
+    use Osm\Framework\Settings\Settings;
     
     /**
      * @property Settings|SettingsHint $settings @required
@@ -565,7 +565,7 @@ Public `generateUrl()` method calculate absolute URL from `page` object absolute
 At the very beginning, relative URL is calculated from file name. 
 To get absolute URL we need to add base URL to calculated relative URL.
 
-Base URL is defined from HTTP request, using `rawUrl()` method of `Manadev\Framework\Http\UrlGenerator` class.
+Base URL is defined from HTTP request, using `rawUrl()` method of `Osm\Framework\Http\UrlGenerator` class.
 We also can have custom environment setting, for example `?_env=testing` and we need to use same environment setting 
 for all child page URLs, therefore `$this->request->query` string is added at the end.
 

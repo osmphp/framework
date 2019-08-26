@@ -1,1 +1,1 @@
-export default window.Manadev_Framework_Js.mix;
+export default window.Osm_Framework_Js.mix;

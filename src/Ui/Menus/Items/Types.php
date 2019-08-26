@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Ui\Menus\Items;
+namespace Osm\Ui\Menus\Items;
 
-use Manadev\Framework\Data\CollectionRegistry;
+use Osm\Framework\Data\CollectionRegistry;
 
 class Types extends CollectionRegistry
 {

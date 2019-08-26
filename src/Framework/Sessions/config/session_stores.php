@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'main' => \Manadev\Framework\Sessions\Stores\File::class,
+    'main' => \Osm\Framework\Sessions\Stores\File::class,
 ];

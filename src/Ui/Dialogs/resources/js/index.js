@@ -1,5 +1,5 @@
-import templates from 'Manadev_Framework_Js/vars/templates';
-import macaw from "Manadev_Framework_Js/vars/macaw";
+import templates from 'Osm_Framework_Js/vars/templates';
+import macaw from "Osm_Framework_Js/vars/macaw";
 import CancelModalDialog from "./CancelModalDialog";
 import YesNoModalDialog from "./YesNoModalDialog";
 

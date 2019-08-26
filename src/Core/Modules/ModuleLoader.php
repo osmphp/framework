@@ -1,12 +1,12 @@
 <?php
 
-namespace Manadev\Core\Modules;
+namespace Osm\Core\Modules;
 
-use Manadev\Core\App;
-use Manadev\Core\Exceptions\CircularDependency;
-use Manadev\Core\Exceptions\ModuleNotFound;
-use Manadev\Core\Object_;
-use Manadev\Core\Packages\ComponentPool;
+use Osm\Core\App;
+use Osm\Core\Exceptions\CircularDependency;
+use Osm\Core\Exceptions\ModuleNotFound;
+use Osm\Core\Object_;
+use Osm\Core\Packages\ComponentPool;
 
 class ModuleLoader extends Object_
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\KeyValueStores;
+namespace Osm\Framework\KeyValueStores;
 
-use Manadev\Core\Modules\BaseModule;
+use Osm\Core\Modules\BaseModule;
 
 class Module extends BaseModule {
 }

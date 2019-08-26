@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Console;
+namespace Osm\Framework\Console;
 
-use Manadev\Core\App;
-use Manadev\Core\Modules\BaseModule;
+use Osm\Core\App;
+use Osm\Core\Modules\BaseModule;
 
 /**
  * @property Commands|Command[] $commands
@@ -12,7 +12,7 @@ class Module extends BaseModule
 {
     public $short_name = 'console';
     public $hard_dependencies = [
-        'Manadev_Framework_Laravel',
+        'Osm_Framework_Laravel',
     ];
 
     public function default($property) {

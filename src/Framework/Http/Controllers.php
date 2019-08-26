@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\Http;
+namespace Osm\Framework\Http;
 
-use Manadev\Framework\Areas\AreaObjectRegistry;
+use Osm\Framework\Areas\AreaObjectRegistry;
 
 class Controllers extends AreaObjectRegistry
 {

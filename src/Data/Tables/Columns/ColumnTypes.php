@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Data\Tables\Columns;
+namespace Osm\Data\Tables\Columns;
 
-use Manadev\Framework\Data\CollectionRegistry;
+use Osm\Framework\Data\CollectionRegistry;
 
 class ColumnTypes extends CollectionRegistry
 {

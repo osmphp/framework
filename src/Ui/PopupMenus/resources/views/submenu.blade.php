@@ -1,6 +1,6 @@
 <?php
-/* @var \Manadev\Ui\PopupMenus\Views\PopupMenu $view */
-use Manadev\Ui\PopupMenus\Views\PopupMenu;
+/* @var \Osm\Ui\PopupMenus\Views\PopupMenu $view */
+use Osm\Ui\PopupMenus\Views\PopupMenu;
 ?>
 @include(PopupMenu::new(['id_' => "{$view->id_}__{$view->item->name}",
     'items' => $view->item->items, 'modifier' => $view->modifier]))

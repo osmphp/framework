@@ -1,15 +1,15 @@
 <?php
 
-namespace Manadev\Data\Queries;
+namespace Osm\Data\Queries;
 
-use Manadev\Core\App;
-use Manadev\Core\Exceptions\NotSupported;
-use Manadev\Core\Profiler;
-use Manadev\Data\Formulas\Formulas\Formula;
-use Manadev\Data\Formulas\Handlers\Handler;
-use Manadev\Data\Formulas\Types;
-use Manadev\Data\Formulas\Formulas;
-use Manadev\Data\Formulas\Functions\Resolver as FunctionResolver;
+use Osm\Core\App;
+use Osm\Core\Exceptions\NotSupported;
+use Osm\Core\Profiler;
+use Osm\Data\Formulas\Formulas\Formula;
+use Osm\Data\Formulas\Handlers\Handler;
+use Osm\Data\Formulas\Types;
+use Osm\Data\Formulas\Formulas;
+use Osm\Data\Formulas\Functions\Resolver as FunctionResolver;
 
 /**
  * @property Types $types @required
@@ -53,7 +53,7 @@ class Resolver extends Handler
     }
 
     /**
-     * @see \Manadev\Data\Formulas\Formulas\Formula::$type @handler
+     * @see \Osm\Data\Formulas\Formulas\Formula::$type @handler
      * @param Formula $formula
      */
     protected function handleFormula(Formula &$formula) {

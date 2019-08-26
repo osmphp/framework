@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Framework\Laravel;
+namespace Osm\Framework\Laravel;
 
 use Exception;
 use Illuminate\Contracts\Debug\ExceptionHandler as BaseExceptionHandler;

@@ -65,15 +65,15 @@ For example `vendor/dubysa/components/composer.json` autoload section
             "src/helpers.php"
         ],
         "psr-4": {
-            "Manadev\\": "src/",
-            "Manadev\\Tests\\": "tests/",
-            "Manadev\\Samples\\": "samples/"
+            "Osm\\": "src/",
+            "Osm\\Tests\\": "tests/",
+            "Osm\\Samples\\": "samples/"
         }
     },
-means that in `vendor/dubysa/components/src` all files are stored with `Manadev` namespace prefix.
-When some class with `Manadev` namespace prefix will be used, it will be searched in `vendor/dubysa/components/src`  directory.
+means that in `vendor/dubysa/components/src` all files are stored with `Osm` namespace prefix.
+When some class with `Osm` namespace prefix will be used, it will be searched in `vendor/dubysa/components/src`  directory.
 
-So `Manadev\Core\Object_` class will be found in `vendor/dubysa/components/src/Core/Object_.php`.
+So `Osm\Core\Object_` class will be found in `vendor/dubysa/components/src/Core/Object_.php`.
 
 ## `composer update`
 If you want to get newest versions of composer packages open command line, switch to Dubysa project directory and run 

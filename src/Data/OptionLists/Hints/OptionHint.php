@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Data\OptionLists\Hints;
+namespace Osm\Data\OptionLists\Hints;
 
 /**
  * @property string $title

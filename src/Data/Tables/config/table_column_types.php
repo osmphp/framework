@@ -1,7 +1,7 @@
 <?php
 
-use Manadev\Data\Formulas\Types;
-use Manadev\Data\Tables\Columns\Column;
+use Osm\Data\Formulas\Types;
+use Osm\Data\Tables\Columns\Column;
 
 return [
     Column::STRING_ => ['data_type' => Types::STRING_, 'title' => m_("String")],

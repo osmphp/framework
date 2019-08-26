@@ -1,4 +1,4 @@
 <?php
-/* @var \Manadev\Ui\PopupMenus\Views\PopupMenu $view */
+/* @var \Osm\Ui\PopupMenus\Views\PopupMenu $view */
 ?>
 <input class="popup-menu__input">

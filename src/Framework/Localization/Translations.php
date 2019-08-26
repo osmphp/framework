@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\Localization;
+namespace Osm\Framework\Localization;
 
-use Manadev\Framework\Data\CollectionRegistry;
+use Osm\Framework\Data\CollectionRegistry;
 
 /**
  * @property string $locale @required @part

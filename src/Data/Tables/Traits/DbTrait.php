@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Data\Tables\Traits;
+namespace Osm\Data\Tables\Traits;
 
-use Manadev\Data\Tables\Blueprint;
-use Manadev\Data\Tables\Columns\Columns;
-use Manadev\Data\Tables\Table;
-use Manadev\Framework\Db\Db;
+use Osm\Data\Tables\Blueprint;
+use Osm\Data\Tables\Columns\Columns;
+use Osm\Data\Tables\Table;
+use Osm\Framework\Db\Db;
 
 trait DbTrait
 {

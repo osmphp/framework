@@ -1,15 +1,15 @@
 <?php
 
-namespace Manadev\Ui\MenuBars\Views;
+namespace Osm\Ui\MenuBars\Views;
 
-use Manadev\Framework\Views\View;
+use Osm\Framework\Views\View;
 
 /**
  * @property View $menu @required @part
  */
 class Header extends View
 {
-    public $template = 'Manadev_Ui_MenuBars.header';
+    public $template = 'Osm_Ui_MenuBars.header';
 
     public function __construct($data = []) {
         parent::__construct($data);

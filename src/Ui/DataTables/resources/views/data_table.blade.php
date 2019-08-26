@@ -1,7 +1,7 @@
 <?php
-/* @var \Manadev\Ui\DataTables\Views\DataTable $view */
+/* @var \Osm\Ui\DataTables\Views\DataTable $view */
 
-use Manadev\Ui\DataTables\Columns\Column;
+use Osm\Ui\DataTables\Columns\Column;
 
 ?>
 <div class="data-table {{ $view->modifier }}" id="{{ $view->id_ }}">

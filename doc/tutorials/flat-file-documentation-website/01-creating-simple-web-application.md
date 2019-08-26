@@ -108,7 +108,7 @@ Create new PHP class `App\Docs\Module` (file `app/src/Docs/Module.php`):
 	
 	namespace App\Docs;
 	
-	use Manadev\Core\Modules\BaseModule;
+	use Osm\Core\Modules\BaseModule;
 	
 	class Module extends BaseModule
 	{
@@ -156,7 +156,7 @@ Content of `app/src/Docs/Controllers/Frontend.php`:
     
     namespace App\Docs\Controllers;
     
-    use Manadev\Framework\Http\Controller;
+    use Osm\Framework\Http\Controller;
     
     class Frontend extends Controller
     {

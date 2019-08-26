@@ -1,13 +1,13 @@
 <?php
 
-namespace Manadev\Framework\Cron\Traits;
+namespace Osm\Framework\Cron\Traits;
 
-use Manadev\Core\App;
-use Manadev\Framework\Cron\Jobs;
+use Osm\Core\App;
+use Osm\Framework\Cron\Jobs;
 
 trait PropertiesTrait
 {
-    public function Manadev_Core_App__cron_jobs(App $app) {
+    public function Osm_Core_App__cron_jobs(App $app) {
         return $app->cache->remember('cron_jobs', function($data) {
             return Jobs::new($data);
         });

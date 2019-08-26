@@ -1,4 +1,4 @@
-import macaw from 'Manadev_Framework_Js/vars/macaw';
+import macaw from 'Osm_Framework_Js/vars/macaw';
 
 import Hidden from './Hidden';
 import Role from './Role';

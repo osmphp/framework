@@ -1,12 +1,12 @@
 <?php
 
-namespace Manadev\Framework\Testing\RawBrowser;
+namespace Osm\Framework\Testing\RawBrowser;
 
-use Manadev\Core\App;
-use Manadev\Framework\Http\Request;
-use Manadev\Framework\Testing\Browser\Browser as BaseBrowser;
-use Manadev\Framework\Testing\Exceptions\BrowserError;
-use Manadev\Framework\Testing\Exceptions\InvalidRequest;
+use Osm\Core\App;
+use Osm\Framework\Http\Request;
+use Osm\Framework\Testing\Browser\Browser as BaseBrowser;
+use Osm\Framework\Testing\Exceptions\BrowserError;
+use Osm\Framework\Testing\Exceptions\InvalidRequest;
 use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 use Symfony\Component\HttpFoundation\Response;
 

@@ -1,7 +1,7 @@
 <?php
-/* @var \Manadev\Ui\MenuBars\Views\MenuBar $view */
-use Manadev\Ui\Buttons\Views\Button;
-use Manadev\Ui\PopupMenus\Views\PopupMenu;
+/* @var \Osm\Ui\MenuBars\Views\MenuBar $view */
+use Osm\Ui\Buttons\Views\Button;
+use Osm\Ui\PopupMenus\Views\PopupMenu;
 ?>
 <li class="menu-bar__item -submenu" id="{{ "{$view->id_}__{$view->item->name}___item" }}">
     @include(PopupMenu::new(['id_' => "{$view->id_}__{$view->item->name}",

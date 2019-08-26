@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Framework\Console;
+namespace Osm\Framework\Console;
 
 use Illuminate\Console\Command as BaseLaravelCommand;
 

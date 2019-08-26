@@ -1,15 +1,15 @@
 <?php
 
-namespace Manadev\Ui\Menus\Views;
+namespace Osm\Ui\Menus\Views;
 
-use Manadev\Core\App;
-use Manadev\Core\Exceptions\PropertyNotSet;
-use Manadev\Framework\Data\Sorter;
-use Manadev\Framework\Views\View;
-use Manadev\Ui\Menus\Items\Item;
-use Manadev\Ui\Menus\Items\Type;
-use Manadev\Ui\Menus\Items\Types;
-use Manadev\Ui\Menus\Module;
+use Osm\Core\App;
+use Osm\Core\Exceptions\PropertyNotSet;
+use Osm\Framework\Data\Sorter;
+use Osm\Framework\Views\View;
+use Osm\Ui\Menus\Items\Item;
+use Osm\Ui\Menus\Items\Type;
+use Osm\Ui\Menus\Items\Types;
+use Osm\Ui\Menus\Module;
 
 /**
  * @property bool $items_can_be_checked @required
@@ -29,7 +29,7 @@ class Menu extends View
 
         switch ($property) {
             case 'items_': return $this->getItems();
-            case 'module': return $m_app->modules['Manadev_Ui_Menus'];
+            case 'module': return $m_app->modules['Osm_Ui_Menus'];
             case 'item_types': return $this->module->item_types;
             case 'sorter': return $m_app[Sorter::class];
             case 'items_can_be_checked': return $this->canItemsBeChecked();

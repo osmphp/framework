@@ -1,5 +1,5 @@
-import tests from 'Manadev_Samples_Js/vars/tests';
-import ajax from 'Manadev_Framework_Js/ajax';
+import tests from 'Osm_Samples_Js/vars/tests';
+import ajax from 'Osm_Framework_Js/ajax';
 
 tests['/tests/unit/framework'] = function() {
     describe('vendor/dubysa/framework/samples/Js/resources/js/tests.js', function() {

@@ -1,10 +1,10 @@
 <?php
 
-namespace Manadev\Data\Sheets;
+namespace Osm\Data\Sheets;
 
-use Manadev\Core\App;
-use Manadev\Core\Object_;
-use Manadev\Data\OptionLists\OptionList;
+use Osm\Core\App;
+use Osm\Core\Object_;
+use Osm\Data\OptionLists\OptionList;
 
 /**
  * @property string $name @required @part

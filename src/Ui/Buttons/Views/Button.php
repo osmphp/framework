@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Ui\Buttons\Views;
+namespace Osm\Ui\Buttons\Views;
 
 
-use Manadev\Framework\Views\View;
+use Osm\Framework\Views\View;
 
 /**
  * @property string $title @part
@@ -12,5 +12,5 @@ use Manadev\Framework\Views\View;
  */
 class Button extends View
 {
-    public $template = 'Manadev_Ui_Buttons.button';
+    public $template = 'Osm_Ui_Buttons.button';
 }

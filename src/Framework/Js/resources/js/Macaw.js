@@ -13,7 +13,7 @@ import find from "./find";
  * Model is raw data typically passed via constructor in page source. "{"required":true}" is model in the following
  * page source snippet:
  *
- *      <script>new Manadev_Ui_Inputs.Input('#username', {"required":true});</script>
+ *      <script>new Osm_Ui_Inputs.Input('#username', {"required":true});</script>
  *
  * View is HTML element with all its child HTML elements.
  *

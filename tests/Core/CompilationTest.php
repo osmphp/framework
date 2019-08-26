@@ -1,12 +1,12 @@
 <?php
 
-namespace Manadev\Tests\Core;
+namespace Osm\Tests\Core;
 
-use Manadev\Samples\Compilation\DerivedClass;
-use Manadev\Core\App;
-use Manadev\Core\Classes\Classes;
-use Manadev\Framework\Testing\Tests\UnitTestCase;
-use Manadev\Samples\Compilation\SampleClass;
+use Osm\Samples\Compilation\DerivedClass;
+use Osm\Core\App;
+use Osm\Core\Classes\Classes;
+use Osm\Framework\Testing\Tests\UnitTestCase;
+use Osm\Samples\Compilation\SampleClass;
 
 class CompilationTest extends UnitTestCase
 {

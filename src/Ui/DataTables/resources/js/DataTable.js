@@ -1,8 +1,8 @@
-import Controller from 'Manadev_Framework_Js/Controller';
-import getViewPortRect from "Manadev_Ui_Aba/getViewPortRect";
-import hasClass from 'Manadev_Framework_Js/hasClass';
-import removeClass from 'Manadev_Framework_Js/removeClass';
-import ajax from 'Manadev_Framework_Js/ajax';
+import Controller from 'Osm_Framework_Js/Controller';
+import getViewPortRect from "Osm_Ui_Aba/getViewPortRect";
+import hasClass from 'Osm_Framework_Js/hasClass';
+import removeClass from 'Osm_Framework_Js/removeClass';
+import ajax from 'Osm_Framework_Js/ajax';
 import $ from 'jquery';
 
 export default class DataTable extends Controller {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Sessions;
+namespace Osm\Framework\Sessions;
 
-use Manadev\Framework\Data\CollectionRegistry;
-use Manadev\Framework\Sessions\Stores\Store;
+use Osm\Framework\Data\CollectionRegistry;
+use Osm\Framework\Sessions\Stores\Store;
 
 class Stores extends CollectionRegistry
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace Manadev\Framework\Cron;
+namespace Osm\Framework\Cron;
 
 use Carbon\Carbon;
 use Cron\CronExpression;
 use Cron\FieldFactory;
-use Manadev\Core\Exceptions\NotImplemented;
-use Manadev\Core\Object_;
+use Osm\Core\Exceptions\NotImplemented;
+use Osm\Core\Object_;
 
 /**
  * @property string $schedule @required @part

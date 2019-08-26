@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Tests\Framework;
+namespace Osm\Tests\Framework;
 
-use Manadev\Core\App;
-use Manadev\Framework\Testing\Tests\UnitTestCase;
-use Manadev\Framework\Validation\Exceptions\ValidationFailed;
-use Manadev\Framework\Validation\Validator;
+use Osm\Core\App;
+use Osm\Framework\Testing\Tests\UnitTestCase;
+use Osm\Framework\Validation\Exceptions\ValidationFailed;
+use Osm\Framework\Validation\Validator;
 
 /**
  * @property Validator $validator

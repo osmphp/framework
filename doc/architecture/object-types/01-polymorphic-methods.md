@@ -50,7 +50,7 @@ When designing a polymorphic method in the base class:
 			}
 		}
 
-* Otherwise, throw `Manadev\Core\Exceptions\NotSupported` exception to force your application to fail when using the method if derived class doesn't implement it:
+* Otherwise, throw `Osm\Core\Exceptions\NotSupported` exception to force your application to fail when using the method if derived class doesn't implement it:
 
 		class Shape {
 			public function draw() {

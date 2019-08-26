@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\KeyValueStores;
+namespace Osm\Framework\KeyValueStores;
 
 use Illuminate\Cache\FileStore;
-use Manadev\Core\App;
+use Osm\Core\App;
 
 /**
  * @property string $name @required @part

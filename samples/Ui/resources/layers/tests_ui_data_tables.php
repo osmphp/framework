@@ -1,8 +1,8 @@
 <?php
 
-use Manadev\Samples\Ui\Contacts;
-use Manadev\Ui\DataTables\Columns\Column;
-use Manadev\Ui\DataTables\Views\DataTable;
+use Osm\Samples\Ui\Contacts;
+use Osm\Ui\DataTables\Columns\Column;
+use Osm\Ui\DataTables\Views\DataTable;
 
 return [
     '@include' => ['base'],

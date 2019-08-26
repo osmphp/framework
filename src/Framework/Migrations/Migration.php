@@ -1,21 +1,21 @@
 <?php
 
-namespace Manadev\Framework\Migrations;
+namespace Osm\Framework\Migrations;
 
-use Manadev\Data\Indexing\Indexing;
-use Manadev\Data\Sheets\Query;
-use Manadev\Data\Sheets\Sheets;
-use Manadev\Core\Object_;
-use Manadev\Framework\Db\Db;
+use Osm\Data\Indexing\Indexing;
+use Osm\Data\Sheets\Query;
+use Osm\Data\Sheets\Sheets;
+use Osm\Core\Object_;
+use Osm\Framework\Db\Db;
 use Illuminate\Database\Schema;
 
 /**
  * @property Db $db @required
  * @property Schema\Builder $schema
  *
- * @see \Manadev\Data\Indexing\Module:
+ * @see \Osm\Data\Indexing\Module:
  *      @property Indexing $indexing @required @default
- * @see \Manadev\Data\Sheets\Module:
+ * @see \Osm\Data\Sheets\Module:
  *      @property Sheets|Query[] $sheets @required @default
  */
 class Migration extends Object_

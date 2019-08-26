@@ -1,12 +1,12 @@
 <?php
 
-namespace Manadev\Framework\Themes;
+namespace Osm\Framework\Themes;
 
-use Manadev\Core\Object_;
+use Osm\Core\Object_;
 
 class Current extends Object_
 {
     public function get($area) {
-        return 'Manadev_Blank';
+        return 'Osm_Blank';
     }
 }

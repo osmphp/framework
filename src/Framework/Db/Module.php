@@ -1,18 +1,18 @@
 <?php
 
-namespace Manadev\Framework\Db;
+namespace Osm\Framework\Db;
 
 use Illuminate\Database\Connectors\ConnectionFactory;
 use Illuminate\Database\MySqlConnection;
 use Illuminate\Database\PostgresConnection;
 use Illuminate\Database\SQLiteConnection;
 use Illuminate\Database\SqlServerConnection;
-use Manadev\Core\App;
-use Manadev\Core\Modules\BaseModule;
-use Manadev\Core\Properties;
-use Manadev\Framework\Db\Logging\QueryLoggingClasses;
-use Manadev\Framework\Db\Traits\ConnectionFactoryTrait;
-use Manadev\Framework\Db\Traits\ConnectionTrait;
+use Osm\Core\App;
+use Osm\Core\Modules\BaseModule;
+use Osm\Core\Properties;
+use Osm\Framework\Db\Logging\QueryLoggingClasses;
+use Osm\Framework\Db\Traits\ConnectionFactoryTrait;
+use Osm\Framework\Db\Traits\ConnectionTrait;
 
 /**
  * @property QueryLoggingClasses|string[] $query_logging_classes @required

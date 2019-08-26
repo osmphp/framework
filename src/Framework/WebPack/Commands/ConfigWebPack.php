@@ -1,16 +1,16 @@
 <?php
 
-namespace Manadev\Framework\WebPack\Commands;
+namespace Osm\Framework\WebPack\Commands;
 
-use Manadev\Core\App;
-use Manadev\Framework\Areas\Area;
-use Manadev\Framework\Areas\Areas;
-use Manadev\Framework\Console\Command;
-use Manadev\Core\Modules\BaseModule;
-use Manadev\Framework\Themes\Current;
-use Manadev\Framework\Themes\Theme;
-use Manadev\Framework\Themes\Themes;
-use Manadev\Framework\WebPack\Target;
+use Osm\Core\App;
+use Osm\Framework\Areas\Area;
+use Osm\Framework\Areas\Areas;
+use Osm\Framework\Console\Command;
+use Osm\Core\Modules\BaseModule;
+use Osm\Framework\Themes\Current;
+use Osm\Framework\Themes\Theme;
+use Osm\Framework\Themes\Themes;
+use Osm\Framework\WebPack\Target;
 
 /**
  * @property BaseModule[] $modules @required

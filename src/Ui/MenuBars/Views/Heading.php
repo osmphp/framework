@@ -1,10 +1,10 @@
 <?php
 
-namespace Manadev\Ui\MenuBars\Views;
+namespace Osm\Ui\MenuBars\Views;
 
-use Manadev\Core\App;
-use Manadev\Framework\Views\View;
-use Manadev\Framework\Views\Views\Page;
+use Osm\Core\App;
+use Osm\Framework\Views\View;
+use Osm\Framework\Views\Views\Page;
 
 /**
  * @property Page $page @required
@@ -23,5 +23,5 @@ class Heading extends View
         return parent::default($property);
     }
 
-    public $template = 'Manadev_Ui_MenuBars.heading';
+    public $template = 'Osm_Ui_MenuBars.heading';
 }

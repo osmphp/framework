@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Data\Formulas\Functions;
+namespace Osm\Data\Formulas\Functions;
 
-use Manadev\Framework\Data\CollectionRegistry;
+use Osm\Framework\Data\CollectionRegistry;
 
 class Functions extends CollectionRegistry
 {

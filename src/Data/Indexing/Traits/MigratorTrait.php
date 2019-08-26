@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Data\Indexing\Traits;
+namespace Osm\Data\Indexing\Traits;
 
-use Manadev\Core\App;
-use Manadev\Data\Indexing\Indexing;
+use Osm\Core\App;
+use Osm\Data\Indexing\Indexing;
 
 trait MigratorTrait
 {

@@ -1,48 +1,48 @@
 <?php
 
-namespace Manadev\Core;
+namespace Osm\Core;
 
 use Illuminate\Support\Str;
-use Manadev\Data\Formulas\Functions\Function_;
-use Manadev\Data\Formulas\Functions\Functions;
-use Manadev\Data\OptionLists\OptionList;
-use Manadev\Data\OptionLists\OptionLists;
-use Manadev\Data\Sheets\Sheet;
-use Manadev\Data\Sheets\Sheets;
-use Manadev\Data\TableQueries\TableQuery;
-use Manadev\Framework\Areas\Area;
-use Manadev\Framework\Areas\Areas;
-use Manadev\Framework\Cache\Cache;
-use Manadev\Framework\Cache\Caches;
-use Manadev\Core\Classes\Classes;
-use Manadev\Core\Compilation\Compiler;
-use Manadev\Core\Config\ConfigLoader;
-use Manadev\Core\Environment\EnvironmentLoader;
-use Manadev\Core\ErrorHandling\ErrorHandler;
-use Manadev\Core\Exceptions\FactoryError;
-use Manadev\Core\Modules\BaseModule;
-use Manadev\Core\Modules\ModuleLoader;
-use Manadev\Core\Packages\Package;
-use Manadev\Core\Packages\PackageLoader;
-use Manadev\Framework\Cron\Job;
-use Manadev\Framework\Cron\Jobs;
-use Manadev\Framework\Db\Databases;
-use Manadev\Framework\Db\Db;
-use Manadev\Framework\Encryption\Hashing\Hashing;
-use Manadev\Framework\Http\Controller;
-use Manadev\Framework\Http\Query as HttpQuery;
-use Manadev\Framework\Http\Request;
-use Manadev\Framework\Http\UrlGenerator;
-use Manadev\Framework\Layers\Layout;
-use Manadev\Framework\Logging\Logs;
-use Manadev\Framework\Queues\Queue;
-use Manadev\Framework\Queues\Queues;
-use Manadev\Framework\Sessions\Session;
-use Manadev\Framework\Sessions\Stores;
-use Manadev\Framework\Sessions\Stores\Store;
-use Manadev\Framework\Settings\Settings;
-use Manadev\Framework\Themes\Theme;
-use Manadev\Framework\Themes\Themes;
+use Osm\Data\Formulas\Functions\Function_;
+use Osm\Data\Formulas\Functions\Functions;
+use Osm\Data\OptionLists\OptionList;
+use Osm\Data\OptionLists\OptionLists;
+use Osm\Data\Sheets\Sheet;
+use Osm\Data\Sheets\Sheets;
+use Osm\Data\TableQueries\TableQuery;
+use Osm\Framework\Areas\Area;
+use Osm\Framework\Areas\Areas;
+use Osm\Framework\Cache\Cache;
+use Osm\Framework\Cache\Caches;
+use Osm\Core\Classes\Classes;
+use Osm\Core\Compilation\Compiler;
+use Osm\Core\Config\ConfigLoader;
+use Osm\Core\Environment\EnvironmentLoader;
+use Osm\Core\ErrorHandling\ErrorHandler;
+use Osm\Core\Exceptions\FactoryError;
+use Osm\Core\Modules\BaseModule;
+use Osm\Core\Modules\ModuleLoader;
+use Osm\Core\Packages\Package;
+use Osm\Core\Packages\PackageLoader;
+use Osm\Framework\Cron\Job;
+use Osm\Framework\Cron\Jobs;
+use Osm\Framework\Db\Databases;
+use Osm\Framework\Db\Db;
+use Osm\Framework\Encryption\Hashing\Hashing;
+use Osm\Framework\Http\Controller;
+use Osm\Framework\Http\Query as HttpQuery;
+use Osm\Framework\Http\Request;
+use Osm\Framework\Http\UrlGenerator;
+use Osm\Framework\Layers\Layout;
+use Osm\Framework\Logging\Logs;
+use Osm\Framework\Queues\Queue;
+use Osm\Framework\Queues\Queues;
+use Osm\Framework\Sessions\Session;
+use Osm\Framework\Sessions\Stores;
+use Osm\Framework\Sessions\Stores\Store;
+use Osm\Framework\Settings\Settings;
+use Osm\Framework\Themes\Theme;
+use Osm\Framework\Themes\Themes;
 use Symfony\Component\Finder\Glob;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -87,54 +87,54 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * Properties introduced in modules:
  *
- * @see \Manadev\Framework\Cache\Module:
+ * @see \Osm\Framework\Cache\Module:
  *      @property Caches|Cache[] $caches @required @default
  *      @property Cache $cache Main cache @required @default
- * @see \Manadev\Framework\Settings\Module:
+ * @see \Osm\Framework\Settings\Module:
  *      @property Settings $settings @required @default
- * @see \Manadev\Framework\Db\Module:
+ * @see \Osm\Framework\Db\Module:
  *      @property Databases|Db[] $databases @required @default
  *      @property Db|TableQuery[] $db @required @default
- * @see \Manadev\Framework\Http\Module:
+ * @see \Osm\Framework\Http\Module:
  *      @property Request $request @required @default
  *      @property UrlGenerator $url_generator @required @default
  *      @property Controller $controller @required
  *      @property HttpQuery|array $query @required @default
- * @see \Manadev\Framework\Areas\Module:
+ * @see \Osm\Framework\Areas\Module:
  *      @property string $area @required
  *      @property Areas|Area[] $areas @required @default
  *      @property Area $area_ @required @default
- * @see \Manadev\Framework\Themes\Module:
+ * @see \Osm\Framework\Themes\Module:
  *      @property string $theme @required @default
  *      @property Themes $themes @required @default
  *      @property Theme $theme_ @required @default
- * @see \Manadev\Framework\Sessions\Module:
+ * @see \Osm\Framework\Sessions\Module:
  *      @property Stores|Store[] $session_stores @required @default
  *      @property Session $session @required
- * @see \Manadev\Framework\Layers\Module:
+ * @see \Osm\Framework\Layers\Module:
  *      @property Layout $layout @required
- * @see \Manadev\Framework\Queues\Module:
+ * @see \Osm\Framework\Queues\Module:
  *      @property Queues|Queue[] $queues @required @default
- * @see \Manadev\Framework\Cron\Module:
+ * @see \Osm\Framework\Cron\Module:
  *      @property Jobs|Job[] $cron_jobs @required @default
- * @see \Manadev\Framework\Cron\Module:
+ * @see \Osm\Framework\Cron\Module:
  *      @property Hashing $hashing @required @default
- * @see \Manadev\Framework\Logging\Module:
+ * @see \Osm\Framework\Logging\Module:
  *      @property Logs $logs @required @default
- * @see \Manadev\Data\OptionLists\Module:
+ * @see \Osm\Data\OptionLists\Module:
  *      @property OptionLists|OptionList[] $option_lists @required @default
- * @see \Manadev\Data\TableQueries\Module:
+ * @see \Osm\Data\TableQueries\Module:
  *      @property Functions|Function_[] $table_functions @required @default
- * @see \Manadev\Data\Sheets\Module:
+ * @see \Osm\Data\Sheets\Module:
  *      @property Sheets|Sheet[] $sheets @required @default
  *
  * Module shortcuts:
  *
- * @property \Manadev\Framework\Laravel\Module $laravel @required
- * @property \Manadev\Framework\Localization\Module $localization @required
- * @property \Manadev\Framework\Testing\Module $testing @required
- * @property \Manadev\Framework\Console\Module $console @required
- * @property \Manadev\Framework\Http\Module $http @required
+ * @property \Osm\Framework\Laravel\Module $laravel @required
+ * @property \Osm\Framework\Localization\Module $localization @required
+ * @property \Osm\Framework\Testing\Module $testing @required
+ * @property \Osm\Framework\Console\Module $console @required
+ * @property \Osm\Framework\Http\Module $http @required
  */
 class App extends Object_
 {

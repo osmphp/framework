@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\Db\Logging;
+namespace Osm\Framework\Db\Logging;
 
-use Manadev\Framework\Data\CollectionRegistry;
+use Osm\Framework\Data\CollectionRegistry;
 
 class QueryLoggingClasses extends CollectionRegistry
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Data\Formulas\Exceptions;
+namespace Osm\Data\Formulas\Exceptions;
 
 class InvalidCall extends Error
 {

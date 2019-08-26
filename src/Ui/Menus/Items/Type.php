@@ -1,16 +1,16 @@
 <?php
 
-namespace Manadev\Ui\Menus\Items;
+namespace Osm\Ui\Menus\Items;
 
-use Manadev\Core\Object_;
+use Osm\Core\Object_;
 
 /**
  * @property string $name @required @part
  * @property string $model_class @required @part
  *
- * @see \Manadev\Ui\MenuBars\Module
+ * @see \Osm\Ui\MenuBars\Module
  *      @property string $menu_bar_template @required @part
- * @see \Manadev\Ui\PopupMenus\Module
+ * @see \Osm\Ui\PopupMenus\Module
  *      @property string $popup_menu_template @required @part
  */
 class Type extends Object_

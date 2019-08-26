@@ -1,7 +1,7 @@
 <?php
 
-use Manadev\Framework\Views\View;
-use Manadev\Samples\Js\Views\TestRunner;
+use Osm\Framework\Views\View;
+use Osm\Samples\Js\Views\TestRunner;
 
 return [
     '@include' => ['base'],
@@ -9,7 +9,7 @@ return [
         'title' => m_("Test Suite"),
         'modifier' => '-test',
         'head_end' => [
-            'testing' => View::new(['template' => 'Manadev_Samples_Js.mocha-styles']),
+            'testing' => View::new(['template' => 'Osm_Samples_Js.mocha-styles']),
         ],
         'content' => TestRunner::new(['id' => 'test_runner']),
     ],

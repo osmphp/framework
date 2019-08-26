@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\Http\Parameters;
+namespace Osm\Framework\Http\Parameters;
 
-use Manadev\Framework\Http\Parameter;
+use Osm\Framework\Http\Parameter;
 
 class Bool_ extends Parameter
 {

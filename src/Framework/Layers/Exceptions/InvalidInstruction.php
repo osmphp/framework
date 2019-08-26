@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Framework\Layers\Exceptions;
+namespace Osm\Framework\Layers\Exceptions;
 
 class InvalidInstruction extends \Exception
 {

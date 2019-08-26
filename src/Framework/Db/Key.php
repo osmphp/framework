@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\Db;
+namespace Osm\Framework\Db;
 
-use Manadev\Core\Object_;
+use Osm\Core\Object_;
 
 /**
  * @property string $name @required @part

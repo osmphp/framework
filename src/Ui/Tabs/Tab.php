@@ -1,10 +1,10 @@
 <?php
 
-namespace Manadev\Ui\Tabs;
+namespace Osm\Ui\Tabs;
 
-use Manadev\Core\Object_;
-use Manadev\Framework\Views\View;
-use Manadev\Ui\Tabs\Views\Tabs;
+use Osm\Core\Object_;
+use Osm\Framework\Views\View;
+use Osm\Ui\Tabs\Views\Tabs;
 
 /**
  * @property Tabs $parent @required

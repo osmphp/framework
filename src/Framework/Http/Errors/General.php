@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Framework\Http\Errors;
+namespace Osm\Framework\Http\Errors;
 
 use Symfony\Component\HttpFoundation\Response;
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace Manadev\Data\Tables\Commands;
+namespace Osm\Data\Tables\Commands;
 
 use Illuminate\Database\Schema\Blueprint as SchemaBlueprint;
-use Manadev\Core\Exceptions\NotSupported;
-use Manadev\Core\Object_;
-use Manadev\Data\Tables\Exceptions\InvalidCommand;
-use Manadev\Data\Tables\Partition;
+use Osm\Core\Exceptions\NotSupported;
+use Osm\Core\Object_;
+use Osm\Data\Tables\Exceptions\InvalidCommand;
+use Osm\Data\Tables\Partition;
 
 /**
  * @property Command $command @temp
@@ -17,7 +17,7 @@ use Manadev\Data\Tables\Partition;
 class Runner extends Object_
 {
     /**
-     * @see \Manadev\Data\Tables\Commands\Command::$type @handler
+     * @see \Osm\Data\Tables\Commands\Command::$type @handler
      *
      * @param Command $command
      * @param SchemaBlueprint $table

@@ -1,13 +1,13 @@
 <?php
 
-namespace Manadev\Framework\Sessions\Traits;
+namespace Osm\Framework\Sessions\Traits;
 
-use Manadev\Core\App;
-use Manadev\Framework\Sessions\Stores;
+use Osm\Core\App;
+use Osm\Framework\Sessions\Stores;
 
 trait PropertiesTrait
 {
-    public function Manadev_Core_App__session_stores(App $app) {
+    public function Osm_Core_App__session_stores(App $app) {
         return $app->cache->remember('session_stores', function($data) {
             return Stores::new($data);
         });

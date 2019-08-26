@@ -1,10 +1,10 @@
 <?php
 
-namespace Manadev\Framework\Views\Views;
+namespace Osm\Framework\Views\Views;
 
-use Manadev\Core\App;
-use Manadev\Framework\Data\Sorter;
-use Manadev\Framework\Views\View;
+use Osm\Core\App;
+use Osm\Framework\Data\Sorter;
+use Osm\Framework\Views\View;
 
 /**
  * @property string $element @part
@@ -15,7 +15,7 @@ use Manadev\Framework\Views\View;
  */
 class Container extends View
 {
-    public $template = 'Manadev_Framework_Views.container';
+    public $template = 'Osm_Framework_Views.container';
 
     protected function default($property) {
         global $m_app; /* @var App $m_app */

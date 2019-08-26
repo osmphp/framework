@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Migrations;
+namespace Osm\Framework\Migrations;
 
-use Manadev\Framework\Composer\Hook;
-use Manadev\Framework\Processes\Process;
+use Osm\Framework\Composer\Hook;
+use Osm\Framework\Processes\Process;
 
 class ComposerHook extends Hook
 {

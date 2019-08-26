@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Data\Tables\Columns;
+namespace Osm\Data\Tables\Columns;
 
-use Manadev\Data\Tables\Hints\ColumnHint;
-use Manadev\Data\Tables\Table;
-use Manadev\Framework\Data\CollectionRegistry;
-use Manadev\Framework\Db\Db;
+use Osm\Data\Tables\Hints\ColumnHint;
+use Osm\Data\Tables\Table;
+use Osm\Framework\Data\CollectionRegistry;
+use Osm\Framework\Db\Db;
 
 /**
  * @property Table $parent @required

@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Framework\Data\Traits;
+namespace Osm\Framework\Data\Traits;
 
-use Manadev\Core\App;
-use Manadev\Core\Object_;
-use Manadev\Core\Profiler;
-use Manadev\Framework\Data\MethodCall;
+use Osm\Core\App;
+use Osm\Core\Object_;
+use Osm\Core\Profiler;
+use Osm\Framework\Data\MethodCall;
 
 trait CloneableTrait
 {
@@ -44,7 +44,7 @@ trait CloneableTrait
      * @param string $class
      * @param string[] $methods One or more method calls to be reproduced. Use constants from Part class
      * @return Object_
-     * @throws \Manadev\Core\Exceptions\FactoryError
+     * @throws \Osm\Core\Exceptions\FactoryError
      */
     public function cloneAs($class, ...$methods) {
         global $m_app; /* @var App $m_app */

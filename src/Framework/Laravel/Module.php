@@ -1,13 +1,13 @@
 <?php
 
-namespace Manadev\Framework\Laravel;
+namespace Osm\Framework\Laravel;
 
 use Illuminate\Container\Container;
 use Illuminate\Database\Connectors\ConnectionFactory;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Filesystem\Filesystem;
-use Manadev\Core\App;
-use Manadev\Core\Modules\BaseModule;
+use Osm\Core\App;
+use Osm\Core\Modules\BaseModule;
 
 /**
  * @property Container $container

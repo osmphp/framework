@@ -1,10 +1,10 @@
 <?php
 
-namespace Manadev\Data\Indexing;
+namespace Osm\Data\Indexing;
 
-use Manadev\Core\App;
-use Manadev\Core\Object_;
-use Manadev\Framework\Db\Db;
+use Osm\Core\App;
+use Osm\Core\Object_;
+use Osm\Framework\Db\Db;
 
 /**
  * @property string $target @required @part

@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\Db;
+namespace Osm\Framework\Db;
 
-use Manadev\Framework\Data\CollectionRegistry;
+use Osm\Framework\Data\CollectionRegistry;
 
 class Databases extends CollectionRegistry
 {

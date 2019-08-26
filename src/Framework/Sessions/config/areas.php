@@ -1,6 +1,6 @@
 <?php
 
-use Manadev\Framework\Sessions\Advices\StartSession;
+use Osm\Framework\Sessions\Advices\StartSession;
 
 return [
     'web' => [

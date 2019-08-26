@@ -1,12 +1,12 @@
 <?php
 
-use Manadev\Core\App;
-use Manadev\Core\Classes\Classes;
-use Manadev\Core\Merger;
-use Manadev\Core\Object_;
-use Manadev\Core\Promise;
-use Manadev\Framework\Layers\Layout;
-use Manadev\Framework\Views\View;
+use Osm\Core\App;
+use Osm\Core\Classes\Classes;
+use Osm\Core\Merger;
+use Osm\Core\Object_;
+use Osm\Core\Promise;
+use Osm\Framework\Layers\Layout;
+use Osm\Framework\Views\View;
 
 function m_make_dir($dir, $mode = null) {
     global $m_app; /* @var App $m_app */

@@ -1,8 +1,8 @@
 <?php
 
-use Manadev\Framework\Http\Returns;
-use Manadev\Framework\Profiler\Controllers\Web;
-use Manadev\Framework\Http\Parameters;
+use Osm\Framework\Http\Returns;
+use Osm\Framework\Profiler\Controllers\Web;
+use Osm\Framework\Http\Parameters;
 
 return [
     'GET /profiler/plain-text' => [

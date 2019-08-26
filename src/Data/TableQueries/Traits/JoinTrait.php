@@ -1,16 +1,16 @@
 <?php
 
-namespace Manadev\Data\TableQueries\Traits;
+namespace Osm\Data\TableQueries\Traits;
 
-use Manadev\Core\App;
-use Manadev\Data\Formulas\Parser\Parser;
-use Manadev\Data\Formulas\Types;
-use Manadev\Data\Queries\Query;
-use Manadev\Data\Queries\Resolver;
-use Manadev\Data\TableQueries\Table;
-use Manadev\Data\TableQueries\TableQuery;
-use Manadev\Framework\Data\AliasParser;
-use Manadev\Framework\Db\Db;
+use Osm\Core\App;
+use Osm\Data\Formulas\Parser\Parser;
+use Osm\Data\Formulas\Types;
+use Osm\Data\Queries\Query;
+use Osm\Data\Queries\Resolver;
+use Osm\Data\TableQueries\Table;
+use Osm\Data\TableQueries\TableQuery;
+use Osm\Framework\Data\AliasParser;
+use Osm\Framework\Db\Db;
 
 /**
  * @property Parser $parser @required

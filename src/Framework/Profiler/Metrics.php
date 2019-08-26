@@ -1,10 +1,10 @@
 <?php
 
-namespace Manadev\Framework\Profiler;
+namespace Osm\Framework\Profiler;
 
-use Manadev\Core\App;
-use Manadev\Core\Object_;
-use Manadev\Framework\Http\Exceptions\NotFound;
+use Osm\Core\App;
+use Osm\Core\Object_;
+use Osm\Framework\Http\Exceptions\NotFound;
 
 /**
  * @property string $id @required

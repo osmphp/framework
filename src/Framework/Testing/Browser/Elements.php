@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\Testing\Browser;
+namespace Osm\Framework\Testing\Browser;
 
-use Manadev\Core\Object_;
+use Osm\Core\Object_;
 
 abstract class Elements extends Object_
 {

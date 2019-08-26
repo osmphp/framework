@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Framework\Queues;
+namespace Osm\Framework\Queues;
 
 class Processor
 {

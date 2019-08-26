@@ -1,10 +1,10 @@
 <?php
 
-namespace Manadev\Data\Formulas\Parser;
+namespace Osm\Data\Formulas\Parser;
 
-use Manadev\Data\Formulas\Exceptions\UnexpectedCharacter;
-use Manadev\Data\Formulas\Exceptions\UnexpectedEOF;
-use Manadev\Core\Object_;
+use Osm\Data\Formulas\Exceptions\UnexpectedCharacter;
+use Osm\Data\Formulas\Exceptions\UnexpectedEOF;
+use Osm\Core\Object_;
 
 /**
  * @property Parser $parent

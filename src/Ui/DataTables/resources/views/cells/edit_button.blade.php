@@ -1,8 +1,8 @@
 <?php
-/* @var \Manadev\Ui\DataTables\Views\DataTable $view */
+/* @var \Osm\Ui\DataTables\Views\DataTable $view */
 
-use Manadev\Core\Exceptions\NotSupported;
-use Manadev\Ui\Buttons\Views\Button;
+use Osm\Core\Exceptions\NotSupported;
+use Osm\Ui\Buttons\Views\Button;
 
 if (!$view->edit_route) {
     throw new NotSupported(m_("To use edit button column, fill in data table 'edit_url' property"));

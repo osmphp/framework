@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Framework\Testing\Tests;
+namespace Osm\Framework\Testing\Tests;
 
-use Manadev\Framework\Migrations\Migrator;
-use Manadev\Framework\Processes\Process;
-use Manadev\Framework\Testing\Browser\Browser;
-use Manadev\Framework\Testing\Exceptions\UndefinedBrowser;
+use Osm\Framework\Migrations\Migrator;
+use Osm\Framework\Processes\Process;
+use Osm\Framework\Testing\Browser\Browser;
+use Osm\Framework\Testing\Exceptions\UndefinedBrowser;
 
 /**
  * @property array $browsers

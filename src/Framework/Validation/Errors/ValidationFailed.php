@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Validation\Errors;
+namespace Osm\Framework\Validation\Errors;
 
-use Manadev\Framework\Http\Errors\Error;
-use Manadev\Framework\Validation\Exceptions;
+use Osm\Framework\Http\Errors\Error;
+use Osm\Framework\Validation\Exceptions;
 use Symfony\Component\HttpFoundation\Response;
 
 /**

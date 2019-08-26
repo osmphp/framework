@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Data\OptionLists;
+namespace Osm\Data\OptionLists;
 
 use Illuminate\Support\Collection;
 

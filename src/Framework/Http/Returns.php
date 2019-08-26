@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Framework\Http;
+namespace Osm\Framework\Http;
 
 class Returns
 {

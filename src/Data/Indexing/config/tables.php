@@ -1,6 +1,6 @@
 <?php
 
-use Manadev\Data\Indexing\Indexers;
+use Osm\Data\Indexing\Indexers;
 
 return [
     'indexers' => [

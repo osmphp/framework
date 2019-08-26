@@ -1,14 +1,14 @@
 <?php
 
-namespace Manadev\Framework\Views\Views;
+namespace Osm\Framework\Views\Views;
 
-use Manadev\Core\App;
-use Manadev\Framework\Http\Controller;
-use Manadev\Framework\Http\Parameter;
-use Manadev\Framework\Http\Request;
-use Manadev\Framework\Http\UrlGenerator;
-use Manadev\Framework\Views\JsConfig;
-use Manadev\Framework\Views\View;
+use Osm\Core\App;
+use Osm\Framework\Http\Controller;
+use Osm\Framework\Http\Parameter;
+use Osm\Framework\Http\Request;
+use Osm\Framework\Http\UrlGenerator;
+use Osm\Framework\Views\JsConfig;
+use Osm\Framework\Views\View;
 
 /**
  * Renders HTML page.
@@ -33,7 +33,7 @@ use Manadev\Framework\Views\View;
  */
 class Page extends View
 {
-    public $template = 'Manadev_Framework_Views.page';
+    public $template = 'Osm_Framework_Views.page';
 
     /**
      * Page view doesn't have HTML id assigned, so HTML id of every child view is the same as its alias

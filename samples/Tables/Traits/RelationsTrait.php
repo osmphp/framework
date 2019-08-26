@@ -1,13 +1,13 @@
 <?php
 
-namespace Manadev\Samples\Tables\Traits;
+namespace Osm\Samples\Tables\Traits;
 
-use Manadev\Data\TableQueries\TableQuery;
+use Osm\Data\TableQueries\TableQuery;
 
 trait RelationsTrait
 {
     /**
-     * @see \Manadev\Tests\Data\TableQueries\RelationTest
+     * @see \Osm\Tests\Data\TableQueries\RelationTest
      *
      * @param TableQuery $query
      * @param $task
@@ -18,7 +18,7 @@ trait RelationsTrait
     }
 
     /**
-     * @see \Manadev\Tests\Data\TableSheets\BasicSheetTest
+     * @see \Osm\Tests\Data\TableSheets\BasicSheetTest
      *
      * @param TableQuery $query
      * @param $user

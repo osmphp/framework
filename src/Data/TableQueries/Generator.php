@@ -1,14 +1,14 @@
 <?php
 
-namespace Manadev\Data\TableQueries;
+namespace Osm\Data\TableQueries;
 
-use Manadev\Core\Exceptions\NotSupported;
-use Manadev\Core\Object_;
-use Manadev\Data\Formulas\Formulas;
-use Manadev\Data\Formulas\Formulas\Formula;
-use Manadev\Data\Formulas\Parser\Token;
-use Manadev\Data\Formulas\Types;
-use Manadev\Data\TableQueries\Functions\Generator as FunctionGenerator;
+use Osm\Core\Exceptions\NotSupported;
+use Osm\Core\Object_;
+use Osm\Data\Formulas\Formulas;
+use Osm\Data\Formulas\Formulas\Formula;
+use Osm\Data\Formulas\Parser\Token;
+use Osm\Data\Formulas\Types;
+use Osm\Data\TableQueries\Functions\Generator as FunctionGenerator;
 
 /**
  * @property FunctionGenerator $function_generator @required @part
@@ -245,7 +245,7 @@ class Generator extends Object_
     }
 
     /**
-     * @see \Manadev\Data\Formulas\Formulas\Formula::$type @handler
+     * @see \Osm\Data\Formulas\Formulas\Formula::$type @handler
      * @param Formula $formula
      */
     public function handleFormula(Formula &$formula) {
@@ -431,7 +431,7 @@ class Generator extends Object_
     }
 
     /**
-     * @see \Manadev\Data\Formulas\Formulas\Literal::$token @handler
+     * @see \Osm\Data\Formulas\Formulas\Literal::$token @handler
      * @param Formulas\Literal $formula
      */
     protected function handleLiteral(Formulas\Literal $formula) {

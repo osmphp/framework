@@ -1,1 +1,1 @@
-export default window.Manadev_Framework_Js.isString;
+export default window.Osm_Framework_Js.isString;

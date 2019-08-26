@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Ui\Dialogs\Controllers;
+namespace Osm\Ui\Dialogs\Controllers;
 
-use Manadev\Framework\Http\Controller;
+use Osm\Framework\Http\Controller;
 
 class Web extends Controller
 {

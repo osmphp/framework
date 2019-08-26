@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\Validation;
+namespace Osm\Framework\Validation;
 
-use Manadev\Framework\Data\CollectionRegistry;
+use Osm\Framework\Data\CollectionRegistry;
 
 class Patterns extends CollectionRegistry
 {

@@ -1,14 +1,14 @@
 <?php
 
-namespace Manadev\Framework\Migrations;
+namespace Osm\Framework\Migrations;
 
 use Illuminate\Console\OutputStyle;
 use Illuminate\Database\Schema\Blueprint;
-use Manadev\Core\App;
-use Manadev\Core\Modules\BaseModule;
-use Manadev\Core\Modules\ModuleHelper;
-use Manadev\Core\Object_;
-use Manadev\Framework\Db\Db;
+use Osm\Core\App;
+use Osm\Core\Modules\BaseModule;
+use Osm\Core\Modules\ModuleHelper;
+use Osm\Core\Object_;
+use Osm\Framework\Db\Db;
 
 /**
  * @property OutputStyle $output

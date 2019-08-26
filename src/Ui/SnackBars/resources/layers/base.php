@@ -1,6 +1,6 @@
 <?php
 
-use Manadev\Ui\SnackBars\Views\Panel;
+use Osm\Ui\SnackBars\Views\Panel;
 
 return [
     '#page' => [

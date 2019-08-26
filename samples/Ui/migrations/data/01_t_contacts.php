@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Samples\Ui\Migrations\Data;
+namespace Osm\Samples\Ui\Migrations\Data;
 
-use Manadev\Data\Tables\Blueprint;
-use Manadev\Framework\Migrations\Migration;
+use Osm\Data\Tables\Blueprint;
+use Osm\Framework\Migrations\Migration;
 
 class TContacts extends Migration
 {

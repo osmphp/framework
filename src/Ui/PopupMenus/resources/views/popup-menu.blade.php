@@ -1,10 +1,10 @@
 <?php
-/* @var \Manadev\Ui\PopupMenus\Views\PopupMenu $view */
+/* @var \Osm\Ui\PopupMenus\Views\PopupMenu $view */
 ?>
 <nav class="popup-menu {{$view->modifier}}" id="{{$view->id_}}">
     <ul class="popup-menu__items">
         @foreach ($view->items_ as $item)
-            <?php /* @var \Manadev\Ui\Menus\Items\Item $item */ $view->item = $item; ?>
+            <?php /* @var \Osm\Ui\Menus\Items\Item $item */ $view->item = $item; ?>
             <li class="popup-menu__item -{{$view->item->type}} {{$view->item->modifier}}"
                 @if($view->item->name) id="{{$view->id_}}__{{$view->item->name}}__item" @endif>
                 @if ($view->item->icon)

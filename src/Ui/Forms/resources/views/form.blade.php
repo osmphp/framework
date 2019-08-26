@@ -1,5 +1,5 @@
 <?php
-/* @var \Manadev\Ui\Forms\Views\Form $view */
+/* @var \Osm\Ui\Forms\Views\Form $view */
 ?>
 <form class="form {{ $view->modifier }}" method="{{ $view->method }}"
     action="{{ $view->action }}" id="{{ $view->id_ }}">

@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Data;
+namespace Osm\Framework\Data;
 
-use Manadev\Core\App;
-use Manadev\Framework\Cache\CacheItem;
+use Osm\Core\App;
+use Osm\Framework\Cache\CacheItem;
 
 /**
  * @property array $config @required @part

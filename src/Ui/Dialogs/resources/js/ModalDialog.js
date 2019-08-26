@@ -1,7 +1,7 @@
-import Controller from "Manadev_Framework_Js/Controller";
-import getViewPortRect from "Manadev_Ui_Aba/getViewPortRect";
-import addClass from "Manadev_Framework_Js/addClass";
-import removeClass from "Manadev_Framework_Js/removeClass";
+import Controller from "Osm_Framework_Js/Controller";
+import getViewPortRect from "Osm_Ui_Aba/getViewPortRect";
+import addClass from "Osm_Framework_Js/addClass";
+import removeClass from "Osm_Framework_Js/removeClass";
 
 /**
  * @param {Function} resolve

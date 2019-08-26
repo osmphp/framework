@@ -4,9 +4,9 @@
  * @license     http://www.manadev.com/license  Proprietary License
  */
 
-namespace Manadev\Core\Classes;
+namespace Osm\Core\Classes;
 
-use Manadev\Core\Exceptions\UnexpectedStatements;
+use Osm\Core\Exceptions\UnexpectedStatements;
 use PhpParser\Node;
 use PhpParser\NodeTraverser;
 use PhpParser\NodeVisitor;

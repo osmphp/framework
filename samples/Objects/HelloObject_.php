@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Samples\Objects;
+namespace Osm\Samples\Objects;
 
 class HelloObject_
 {

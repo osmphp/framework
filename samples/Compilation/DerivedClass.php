@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Samples\Compilation;
+namespace Osm\Samples\Compilation;
 
 class DerivedClass extends SampleClass
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\Console;
+namespace Osm\Framework\Console;
 
-use Manadev\Framework\Data\CollectionRegistry;
+use Osm\Framework\Data\CollectionRegistry;
 
 class Commands extends CollectionRegistry
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace Manadev\Framework\Http;
+namespace Osm\Framework\Http;
 
-use Manadev\Core\App;
-use Manadev\Core\Object_;
-use Manadev\Framework\Http\Exceptions\InvalidParameter;
+use Osm\Core\App;
+use Osm\Core\Object_;
+use Osm\Framework\Http\Exceptions\InvalidParameter;
 
 /**
  * @property string $name @required @part

@@ -1,13 +1,13 @@
 <?php
 
-namespace Manadev\Framework\Areas;
+namespace Osm\Framework\Areas;
 
-use Manadev\Core\Object_;
-use Manadev\Framework\Http\Advices;
-use Manadev\Framework\Http\Controller;
-use Manadev\Framework\Http\Controllers;
-use Manadev\Framework\Http\Parameter;
-use Manadev\Framework\Http\Parameters;
+use Osm\Core\Object_;
+use Osm\Framework\Http\Advices;
+use Osm\Framework\Http\Controller;
+use Osm\Framework\Http\Controllers;
+use Osm\Framework\Http\Parameter;
+use Osm\Framework\Http\Parameters;
 
 /**
  * @property Areas|Area[] $parent
@@ -20,14 +20,14 @@ use Manadev\Framework\Http\Parameters;
  *
  * @property string[] $names @required
  *
- * @see \Manadev\Framework\Http\Traits\AreaTrait
+ * @see \Osm\Framework\Http\Traits\AreaTrait
  *      @property array $advices @required @part
  *      @property Advices $advices_ @required
  *      @property array $parameters @required @part
  *      @property Parameters|Parameter[] $parameters_ @required @part
  *      @property Controllers|Controller[] $controllers @required
  *      @property array $query @required Parsed area-wide parameters (like _env) in current request
- * @see \Manadev\Framework\Sessions\Module
+ * @see \Osm\Framework\Sessions\Module
  *      @property string $session_class @part
  */
 class Area extends Object_

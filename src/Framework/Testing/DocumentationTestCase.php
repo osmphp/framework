@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Testing;
+namespace Osm\Framework\Testing;
 
-use Manadev\Core\App;
-use Manadev\Framework\Processes\Process;
+use Osm\Core\App;
+use Osm\Framework\Processes\Process;
 use PHPUnit\Framework\Warning;
 
 abstract class DocumentationTestCase extends TestCase

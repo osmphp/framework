@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\Composer;
+namespace Osm\Framework\Composer;
 
-use Manadev\Framework\Data\CollectionRegistry;
+use Osm\Framework\Data\CollectionRegistry;
 
 class Hooks extends CollectionRegistry
 {

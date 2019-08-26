@@ -1,1 +1,1 @@
-export default window.Manadev_Framework_Js.debounce;
+export default window.Osm_Framework_Js.debounce;

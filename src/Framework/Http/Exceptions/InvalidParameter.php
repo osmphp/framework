@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Framework\Http\Exceptions;
+namespace Osm\Framework\Http\Exceptions;
 
 class InvalidParameter extends \Exception
 {

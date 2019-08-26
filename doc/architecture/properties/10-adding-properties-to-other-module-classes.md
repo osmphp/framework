@@ -8,7 +8,7 @@ It helps to separate concerns: without your module installed, that other module 
 
 ## Adding Custom Properties ##
 
-You can add the property to any object derived from `Manadev\Core\Object_` by just assigning it:
+You can add the property to any object derived from `Osm\Core\Object_` by just assigning it:
 
 	$obj->my_count = 0;
 
@@ -89,14 +89,14 @@ Custom property may be calculated on first access (lazy property):
 		abstract class PointHint extends Point {
 		}
 
-2. In your module class, register a [dynamic trait](../dynamic-traits.html) to standard `Manadev\Core\Properties` class:
+2. In your module class, register a [dynamic trait](../dynamic-traits.html) to standard `Osm\Core\Properties` class:
  
 		<?php
 
 		namespace Your\Logger;
 	
-		use Manadev\Core\Modules\BaseModule;
-		use Manadev\Core\Properties;
+		use Osm\Core\Modules\BaseModule;
+		use Osm\Core\Properties;
 	
 		class Module extends BaseModule {
 		    public $traits = [

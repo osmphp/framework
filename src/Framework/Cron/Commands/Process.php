@@ -1,12 +1,12 @@
 <?php
 
-namespace Manadev\Framework\Cron\Commands;
+namespace Osm\Framework\Cron\Commands;
 
 use Carbon\Carbon;
-use Manadev\Core\App;
-use Manadev\Framework\Console\Command;
-use Manadev\Framework\Cron\Job;
-use Manadev\Framework\Cron\Jobs;
+use Osm\Core\App;
+use Osm\Framework\Console\Command;
+use Osm\Framework\Cron\Job;
+use Osm\Framework\Cron\Jobs;
 
 /**
  * @property Carbon $now @required

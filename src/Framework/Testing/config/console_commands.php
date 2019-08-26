@@ -1,6 +1,6 @@
 <?php
 
-use Manadev\Framework\Testing\Commands;
+use Osm\Framework\Testing\Commands;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 

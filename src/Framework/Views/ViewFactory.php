@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Framework\Views;
+namespace Osm\Framework\Views;
 
 use Illuminate\View\Factory;
 use Illuminate\View\View as LaravelView;
-use Manadev\Core\App;
-use Manadev\Core\Profiler;
+use Osm\Core\App;
+use Osm\Core\Profiler;
 
 class ViewFactory extends Factory
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace Manadev\Framework\Testing;
+namespace Osm\Framework\Testing;
 
-use Manadev\Core\App;
+use Osm\Core\App;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 
 /**
  * @property string $suite
- * @property \Manadev\Framework\Testing\Module $module
+ * @property \Osm\Framework\Testing\Module $module
  */
 abstract class TestCase extends BaseTestCase
 {
@@ -18,7 +18,7 @@ abstract class TestCase extends BaseTestCase
 
         switch ($property) {
             case 'module':
-                return $m_app->modules['Manadev_Framework_Testing'];
+                return $m_app->modules['Osm_Framework_Testing'];
         }
 
         return null;

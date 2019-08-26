@@ -1,10 +1,10 @@
 <?php
 
-namespace Manadev\Data\TableSheets;
+namespace Osm\Data\TableSheets;
 
-use Manadev\Core\App;
-use Manadev\Data\Sheets\Sheet;
-use Manadev\Data\Tables\Table;
+use Osm\Core\App;
+use Osm\Data\Sheets\Sheet;
+use Osm\Data\Tables\Table;
 
 /**
  * @property string $table @required @part

@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Encryption\Hashing;
+namespace Osm\Framework\Encryption\Hashing;
 
-use Manadev\Core\App;
-use Manadev\Framework\Settings\Settings;
+use Osm\Core\App;
+use Osm\Framework\Settings\Settings;
 
 /**
  * @property Settings $settings @required

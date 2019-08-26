@@ -1,12 +1,12 @@
 <?php
 
-namespace Manadev\Framework\PhpStorm\Commands;
+namespace Osm\Framework\PhpStorm\Commands;
 
-use Manadev\Core\App;
-use Manadev\Framework\Areas\Area;
-use Manadev\Framework\Areas\Areas;
-use Manadev\Framework\Console\Command;
-use Manadev\Core\Modules\BaseModule;
+use Osm\Core\App;
+use Osm\Framework\Areas\Area;
+use Osm\Framework\Areas\Areas;
+use Osm\Framework\Console\Command;
+use Osm\Core\Modules\BaseModule;
 
 /**
  * @property BaseModule[] $modules @required

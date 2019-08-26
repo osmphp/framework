@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Data\Indexing\Migrations\Schema;
+namespace Osm\Data\Indexing\Migrations\Schema;
 
 use Illuminate\Database\Schema\Blueprint;
-use Manadev\Core\App;
-use Manadev\Data\Tables\Table;
-use Manadev\Framework\Migrations\Migration;
+use Osm\Core\App;
+use Osm\Data\Tables\Table;
+use Osm\Framework\Migrations\Migration;
 
 /**
  * @property Table $table @required

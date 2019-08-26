@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Data\Indexing;
+namespace Osm\Data\Indexing;
 
-use Manadev\Data\Tables\Table;
+use Osm\Data\Tables\Table;
 
 class Indexers extends Table
 {

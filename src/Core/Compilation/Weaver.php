@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Core\Compilation;
+namespace Osm\Core\Compilation;
 
-use Manadev\Core\Classes\Statements;
-use Manadev\Core\Object_;
+use Osm\Core\Classes\Statements;
+use Osm\Core\Object_;
 use PhpParser\Node;
 use PhpParser\NodeVisitor\NameResolver;
 use PhpParser\ParserFactory;

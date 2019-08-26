@@ -1,12 +1,12 @@
 <?php
 
-namespace Manadev\Framework\Http\Advices;
+namespace Osm\Framework\Http\Advices;
 
-use Manadev\Core\App;
-use Manadev\Framework\Areas\Area;
-use Manadev\Framework\Http\Advice;
-use Manadev\Framework\Http\Exceptions\NotFound;
-use Manadev\Framework\Http\Request;
+use Osm\Core\App;
+use Osm\Framework\Areas\Area;
+use Osm\Framework\Http\Advice;
+use Osm\Framework\Http\Exceptions\NotFound;
+use Osm\Framework\Http\Request;
 
 /**
  * @property Area $area @required

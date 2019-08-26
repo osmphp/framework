@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Installer;
+namespace Osm\Framework\Installer;
 
-use Manadev\Core\App;
-use Manadev\Core\Modules\BaseModule;
+use Osm\Core\App;
+use Osm\Core\Modules\BaseModule;
 
 /**
  * @property Questions|Question[] $questions @required

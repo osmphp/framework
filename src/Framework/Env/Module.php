@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\Env;
+namespace Osm\Framework\Env;
 
-use Manadev\Core\Modules\BaseModule;
+use Osm\Core\Modules\BaseModule;
 
 class Module extends BaseModule
 {

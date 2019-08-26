@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Ui\Tabs\Views;
+namespace Osm\Ui\Tabs\Views;
 
-use Manadev\Framework\Views\Views\Container;
-use Manadev\Ui\Tabs\Tab;
+use Osm\Framework\Views\Views\Container;
+use Osm\Ui\Tabs\Tab;
 
 /**
  * @property array $tabs @required @part
@@ -12,7 +12,7 @@ use Manadev\Ui\Tabs\Tab;
  */
 class Tabs extends Container
 {
-    public $template = 'Manadev_Ui_Tabs.tabs';
+    public $template = 'Osm_Ui_Tabs.tabs';
 
     protected function default($property) {
         switch ($property) {

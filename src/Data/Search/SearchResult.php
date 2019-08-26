@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Data\Search;
+namespace Osm\Data\Search;
 
 use Illuminate\Support\Collection;
-use Manadev\Core\Object_;
+use Osm\Core\Object_;
 
 /**
  * @property int $count @required @part

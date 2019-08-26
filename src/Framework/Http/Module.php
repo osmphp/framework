@@ -1,16 +1,16 @@
 <?php
 
-namespace Manadev\Framework\Http;
+namespace Osm\Framework\Http;
 
-use Manadev\Core\App;
-use Manadev\Core\Profiler;
-use Manadev\Core\Properties;
-use Manadev\Framework\Areas\Area;
-use Manadev\Core\Modules\BaseModule;
-use Manadev\Framework\Http\Errors\Error;
-use Manadev\Framework\Http\Errors\Errors;
-use Manadev\Framework\Http\Exceptions\HttpError;
-use Manadev\Framework\Http\Traits\AreaTrait;
+use Osm\Core\App;
+use Osm\Core\Profiler;
+use Osm\Core\Properties;
+use Osm\Framework\Areas\Area;
+use Osm\Core\Modules\BaseModule;
+use Osm\Framework\Http\Errors\Error;
+use Osm\Framework\Http\Errors\Errors;
+use Osm\Framework\Http\Exceptions\HttpError;
+use Osm\Framework\Http\Traits\AreaTrait;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -24,7 +24,7 @@ class Module extends BaseModule
     public $short_name = 'http';
 
     public $hard_dependencies = [
-        'Manadev_Framework_Areas',
+        'Osm_Framework_Areas',
     ];
 
     public $traits = [

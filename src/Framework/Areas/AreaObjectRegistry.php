@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Areas;
+namespace Osm\Framework\Areas;
 
-use Manadev\Core\App;
-use Manadev\Framework\Data\ObjectRegistry;
+use Osm\Core\App;
+use Osm\Framework\Data\ObjectRegistry;
 
 /**
  * @property string $area @required @part

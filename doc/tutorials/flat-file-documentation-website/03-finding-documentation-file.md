@@ -60,7 +60,7 @@ Modify `app/src/Docs/config/frontend/routes.php` file content as shown below:
     <?php
     
     use App\Docs\Controllers\Frontend;
-    use Manadev\Framework\Http\Parameters;
+    use Osm\Framework\Http\Parameters;
     
     return [
         'GET /' => [
@@ -88,10 +88,10 @@ Here is updated content of `app/src/Docs/Controllers/Frontend.php` file:
     namespace App\Docs\Controllers;
     
     use App\Docs\Hints\SettingsHint;
-    use Manadev\Core\App;
-    use Manadev\Framework\Http\Controller;
-    use Manadev\Framework\Settings\Settings;
-    use Manadev\Framework\Http\Exceptions\NotFound;
+    use Osm\Core\App;
+    use Osm\Framework\Http\Controller;
+    use Osm\Framework\Settings\Settings;
+    use Osm\Framework\Http\Exceptions\NotFound;
     
     /**
      * @property Settings|SettingsHint $settings @required
@@ -181,7 +181,7 @@ The main logic of finding documentation file by `page` parameter value is implem
 We are processing all possible patterns of finding the file described above.
 
 In case file is not found by all three patterns, we are throwing `NotFound` exception. 
-Full name of this class `Manadev\Framework\Http\Exceptions\NotFound` is imported in the beginning of the file. 
+Full name of this class `Osm\Framework\Http\Exceptions\NotFound` is imported in the beginning of the file. 
 
 Note that exception text has a placeholder for `page` parameter which is replaced by `page` parameter value.  
 

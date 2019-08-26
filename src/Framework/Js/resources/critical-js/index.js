@@ -21,7 +21,7 @@ import view_models from "./vars/view_models";
 import "@babel/polyfill";
 
 merge(window, {
-    Manadev_Framework_Js: {
+    Osm_Framework_Js: {
         addClass, callOncePerAnimationFrame, Object_, hasClass, merge, removeClass, mix, find,
         Config, isString, ViewModel, debounceForAnimationFrame, debounce, getClassSuffix,
         forEachParentElement, firstParentElement,

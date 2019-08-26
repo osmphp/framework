@@ -1,6 +1,6 @@
 <?php
 
-use Manadev\Data\TableSheets\TableSheet;
+use Osm\Data\TableSheets\TableSheet;
 
 return [
     't_contacts' => [

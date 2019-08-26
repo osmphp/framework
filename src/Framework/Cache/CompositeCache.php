@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Cache;
+namespace Osm\Framework\Cache;
 
-use Manadev\Core\Profiler;
-use Manadev\Framework\KeyValueStores\Store;
+use Osm\Core\Profiler;
+use Osm\Framework\KeyValueStores\Store;
 
 
 /**

@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Ui\MenuBars\Views;
+namespace Osm\Ui\MenuBars\Views;
 
-use Manadev\Ui\Menus\Views\Menu;
+use Osm\Ui\Menus\Views\Menu;
 
 class MenuBar extends Menu
 {
-    public $template = 'Manadev_Ui_MenuBars.menu-bar';
-    public $view_model = 'Manadev_Ui_MenuBars.MenuBar';
+    public $template = 'Osm_Ui_MenuBars.menu-bar';
+    public $view_model = 'Osm_Ui_MenuBars.MenuBar';
 }

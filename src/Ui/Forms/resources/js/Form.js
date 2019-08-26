@@ -1,11 +1,11 @@
-import snackBars from 'Manadev_Ui_SnackBars/vars/snackBars';
+import snackBars from 'Osm_Ui_SnackBars/vars/snackBars';
 import FieldGroup from './FieldGroup';
-import trigger from 'Manadev_Framework_Js/trigger';
-import macaw from "Manadev_Framework_Js/vars/macaw";
-import Input from "Manadev_Ui_Inputs/Input";
+import trigger from 'Osm_Framework_Js/trigger';
+import macaw from "Osm_Framework_Js/vars/macaw";
+import Input from "Osm_Ui_Inputs/Input";
 import $ from 'jquery';
-import url from 'Manadev_Framework_Js/vars/url';
-import ajax from 'Manadev_Framework_Js/ajax';
+import url from 'Osm_Framework_Js/vars/url';
+import ajax from 'Osm_Framework_Js/ajax';
 
 export default class Form extends FieldGroup {
     get events() {

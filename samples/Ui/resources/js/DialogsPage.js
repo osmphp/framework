@@ -1,6 +1,6 @@
-import Controller from "Manadev_Framework_Js/Controller";
-import dialogs from 'Manadev_Ui_Dialogs/vars/dialogs';
-import m_ from "Manadev_Framework_Js/m_";
+import Controller from "Osm_Framework_Js/Controller";
+import dialogs from 'Osm_Ui_Dialogs/vars/dialogs';
+import m_ from "Osm_Framework_Js/m_";
 
 export default class DialogsPage extends Controller {
     get events() {

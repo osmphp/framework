@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Profiler\Advices;
+namespace Osm\Framework\Profiler\Advices;
 
-use Manadev\Core\Profiler;
-use Manadev\Framework\Http\Advice;
+use Osm\Core\Profiler;
+use Osm\Framework\Http\Advice;
 use Symfony\Component\HttpFoundation\Response;
 
 class AddProfileHeader extends Advice

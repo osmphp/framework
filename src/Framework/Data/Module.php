@@ -1,13 +1,13 @@
 <?php
 
-namespace Manadev\Framework\Data;
+namespace Osm\Framework\Data;
 
-use Manadev\Core\Modules\BaseModule;
+use Osm\Core\Modules\BaseModule;
 
 class Module extends BaseModule
 {
     public $hard_dependencies = [
-        'Manadev_Framework_Cache',
-        'Manadev_Framework_Localization',
+        'Osm_Framework_Cache',
+        'Osm_Framework_Localization',
     ];
 }

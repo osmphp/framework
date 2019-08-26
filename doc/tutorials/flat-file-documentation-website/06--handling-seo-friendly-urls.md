@@ -67,7 +67,7 @@ It is only part of the story, actually. Before and after execution of controller
 		detect_area:after
 	add_profile_header:after
 
-In this stack, `detect_route`, as the name implies, detects route matching incoming request. Its implementation (in `Manadev\Framework\Http\Advices\DetectRoute` class) is quite simple - before calling the `$next` advice it finds the route in the array by key or throws an exception if key is not defined:
+In this stack, `detect_route`, as the name implies, detects route matching incoming request. Its implementation (in `Osm\Framework\Http\Advices\DetectRoute` class) is quite simple - before calling the `$next` advice it finds the route in the array by key or throws an exception if key is not defined:
 
     public function around(callable $next) {
         global $m_app; /* @var App $m_app */
@@ -172,8 +172,8 @@ Create new directory `app/src/Docs/Traits` and a file `app/src/Docs/Traits/Detec
 	use App\Docs\Controllers\Frontend;
 	use App\Docs\Module;
 	use App\Docs\PageFinder;
-	use Manadev\Core\App;
-	use Manadev\Framework\Http\Exceptions\NotFound;
+	use Osm\Core\App;
+	use Osm\Framework\Http\Exceptions\NotFound;
 	
 	trait DetectRouteTrait
 	{
@@ -217,9 +217,9 @@ Create new PHP class `app/src/Docs/PageFinder.php`:
 	namespace App\Docs;
 	
 	use App\Docs\Hints\SettingsHint;
-	use Manadev\Core\App;
-	use Manadev\Core\Object_;
-	use Manadev\Framework\Settings\Settings;
+	use Osm\Core\App;
+	use Osm\Core\Object_;
+	use Osm\Framework\Settings\Settings;
 
 	/**
 	 * @property Settings|SettingsHint $settings @required
@@ -303,8 +303,8 @@ In `app/src/Docs/Module.php`:
 	
 	namespace App\Docs;
 	
-	use Manadev\Core\Modules\BaseModule;
-	use Manadev\Framework\Http\Advices\DetectRoute;
+	use Osm\Core\Modules\BaseModule;
+	use Osm\Framework\Http\Advices\DetectRoute;
 	
 	/**
 	 * @property Page $page @required
@@ -330,8 +330,8 @@ In `app/src/Docs/Controllers/Frontend.php`:
 	use App\Docs\Module;
 	use App\Docs\Page;
 	use App\Docs\Views\Html;
-	use Manadev\Core\App;
-	use Manadev\Framework\Http\Controller;
+	use Osm\Core\App;
+	use Osm\Framework\Http\Controller;
 	
 	/**
 	 * @property Page $page @required

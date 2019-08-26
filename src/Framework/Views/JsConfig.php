@@ -1,14 +1,14 @@
 <?php
 
-namespace Manadev\Framework\Views;
+namespace Osm\Framework\Views;
 
-use Manadev\Core\Object_;
+use Osm\Core\Object_;
 
 /**
  * @property string $base_url @required @part
  * @property array $transient_query @required @part
  *
- * @see \Manadev\Ui\SnackBars\Module:
+ * @see \Osm\Ui\SnackBars\Module:
  *      @property int $close_snack_bars_after @required @part
  */
 class JsConfig extends Object_

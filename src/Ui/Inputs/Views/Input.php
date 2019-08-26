@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Ui\Inputs\Views;
+namespace Osm\Ui\Inputs\Views;
 
-use Manadev\Framework\Views\View;
+use Osm\Framework\Views\View;
 
 /**
  * @property string $name @required @part
@@ -17,8 +17,8 @@ use Manadev\Framework\Views\View;
  */
 class Input extends View
 {
-    public $template = 'Manadev_Ui_Inputs.input';
-    public $view_model = 'Manadev_Ui_Inputs.Input';
+    public $template = 'Osm_Ui_Inputs.input';
+    public $view_model = 'Osm_Ui_Inputs.Input';
 
     protected function default($property) {
         switch ($property) {

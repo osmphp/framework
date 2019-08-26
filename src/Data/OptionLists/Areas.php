@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Data\OptionLists;
+namespace Osm\Data\OptionLists;
 
-use Manadev\Core\App;
-use Manadev\Data\OptionLists\Hints\OptionHint;
-use Manadev\Framework\Areas\Area;
-use Manadev\Framework\Areas\Areas as AreaRegistry;
+use Osm\Core\App;
+use Osm\Data\OptionLists\Hints\OptionHint;
+use Osm\Framework\Areas\Area;
+use Osm\Framework\Areas\Areas as AreaRegistry;
 
 /**
  * @property OptionHint[] $items @required @part Explicitly mark as cache-able

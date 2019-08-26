@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Samples\Compilation;
+namespace Osm\Samples\Compilation;
 
-use Manadev\Core\Modules\BaseModule;
-use Manadev\Samples\Compilation\Traits\SampleTrait;
+use Osm\Core\Modules\BaseModule;
+use Osm\Samples\Compilation\Traits\SampleTrait;
 
 class Module extends BaseModule
 {

@@ -1,16 +1,16 @@
 <?php
 
-namespace Manadev\Data\Queries\Functions;
+namespace Osm\Data\Queries\Functions;
 
-use Manadev\Core\App;
-use Manadev\Data\Formulas\Exceptions\InvalidCall;
-use Manadev\Data\Formulas\Formulas\Call;
-use Manadev\Data\Formulas\Functions\Argument;
-use Manadev\Data\Formulas\Functions\Function_;
-use Manadev\Data\Formulas\Functions\Functions;
-use Manadev\Data\Formulas\Types;
-use Manadev\Core\Object_;
-use Manadev\Data\Queries\Resolver as QueryResolver;
+use Osm\Core\App;
+use Osm\Data\Formulas\Exceptions\InvalidCall;
+use Osm\Data\Formulas\Formulas\Call;
+use Osm\Data\Formulas\Functions\Argument;
+use Osm\Data\Formulas\Functions\Function_;
+use Osm\Data\Formulas\Functions\Functions;
+use Osm\Data\Formulas\Types;
+use Osm\Core\Object_;
+use Osm\Data\Queries\Resolver as QueryResolver;
 
 /**
  * @property QueryResolver $parent @required

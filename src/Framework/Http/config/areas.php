@@ -1,6 +1,6 @@
 <?php
 
-use Manadev\Framework\Http\Parameters;
+use Osm\Framework\Http\Parameters;
 
 return [
     'web' => [

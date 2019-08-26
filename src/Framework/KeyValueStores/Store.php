@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\KeyValueStores;
+namespace Osm\Framework\KeyValueStores;
 
 use Illuminate\Contracts\Cache\Store as LaravelStore;
-use Manadev\Core\Object_;
+use Osm\Core\Object_;
 
 /**
  * @property LaravelStore $store @required

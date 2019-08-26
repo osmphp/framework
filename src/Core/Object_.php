@@ -1,10 +1,10 @@
 <?php
 
-namespace Manadev\Core;
+namespace Osm\Core;
 
-use Manadev\Core\Classes\Classes;
-use Manadev\Core\Exceptions\NotSupported;
-use Manadev\Core\Exceptions\PropertyNotSet;
+use Osm\Core\Classes\Classes;
+use Osm\Core\Exceptions\NotSupported;
+use Osm\Core\Exceptions\PropertyNotSet;
 
 /**
  * @property Object_ $parent
@@ -21,7 +21,7 @@ class Object_ implements \ArrayAccess
     // This measure takes significant performance overhead, so use with case and don't leave enabled in
     // production environment
 
-    //use \Manadev\Core\Traits\RestrictedSettersTrait;
+    //use \Osm\Core\Traits\RestrictedSettersTrait;
 
     /**
      * @param array $data

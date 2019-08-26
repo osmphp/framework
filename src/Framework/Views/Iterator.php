@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Views;
+namespace Osm\Framework\Views;
 
-use Manadev\Core\Object_;
-use Manadev\Framework\Views\Views\Container;
+use Osm\Core\Object_;
+use Osm\Framework\Views\Views\Container;
 
 class Iterator extends Object_
 {

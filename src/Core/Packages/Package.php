@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Core\Packages;
+namespace Osm\Core\Packages;
 
-use Manadev\Core\Object_;
+use Osm\Core\Object_;
 
 /**
  * @property string $name @required @part

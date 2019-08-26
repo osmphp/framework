@@ -1,7 +1,7 @@
 <?php
 
-use Manadev\Framework\Queues;
-use Manadev\Framework\Queues\Queue;
+use Osm\Framework\Queues;
+use Osm\Framework\Queues\Queue;
 
 return [
     Queue::DB => ['class' => Queues\Database::class],

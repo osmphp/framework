@@ -1,15 +1,15 @@
 <?php
 
-namespace Manadev\Data\TableSearch;
+namespace Osm\Data\TableSearch;
 
 use Illuminate\Support\Collection;
-use Manadev\Core\App;
-use Manadev\Data\Search\Search as BaseSearch;
-use Manadev\Data\Search\SearchResult;
-use Manadev\Data\Sheets\Column;
-use Manadev\Data\TableQueries\TableQuery;
-use Manadev\Data\TableSheets\TableSheet;
-use Manadev\Framework\Db\Db;
+use Osm\Core\App;
+use Osm\Data\Search\Search as BaseSearch;
+use Osm\Data\Search\SearchResult;
+use Osm\Data\Sheets\Column;
+use Osm\Data\TableQueries\TableQuery;
+use Osm\Data\TableSheets\TableSheet;
+use Osm\Framework\Db\Db;
 
 /**
  * @property TableSheet $sheet_ @required

@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Data\TableQueries;
+namespace Osm\Data\TableQueries;
 
-use Manadev\Core\Object_;
+use Osm\Core\Object_;
 
 class Relations extends Object_
 {

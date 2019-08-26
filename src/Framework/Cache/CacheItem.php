@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Cache;
+namespace Osm\Framework\Cache;
 
-use Manadev\Core\App;
-use Manadev\Core\Object_;
+use Osm\Core\App;
+use Osm\Core\Object_;
 
 /**
  * @property Cache $cache

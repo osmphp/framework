@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Core\ErrorHandling;
+namespace Osm\Core\ErrorHandling;
 
 use ErrorException;
-use Manadev\Core\Object_;
+use Osm\Core\Object_;
 use Symfony\Component\Debug\Exception\FatalErrorException;
 
 class ErrorHandler extends Object_

@@ -1,5 +1,5 @@
 <?php
-/* @var \Manadev\Ui\Dialogs\Views\ModalDialog $view */
+/* @var \Osm\Ui\Dialogs\Views\ModalDialog $view */
 ?>
 <div class="modal-dialog {{$view->modifier}}" id="{{ $view->id_ }}" style="width: {{ $view->width }}px; height: {{ $view->height }}px;">
     @if ($view->header)

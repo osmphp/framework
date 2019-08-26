@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Data\TableQueries\Traits;
+namespace Osm\Data\TableQueries\Traits;
 
-use Manadev\Data\TableQueries\MySqlTableQuery;
-use Manadev\Framework\Db\Db;
+use Osm\Data\TableQueries\MySqlTableQuery;
+use Osm\Framework\Db\Db;
 
 trait MySqlTrait
 {

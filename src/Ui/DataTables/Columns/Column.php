@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Ui\DataTables\Columns;
+namespace Osm\Ui\DataTables\Columns;
 
-use Manadev\Core\App;
-use Manadev\Core\Object_;
-use Manadev\Framework\Http\UrlGenerator;
-use Manadev\Ui\DataTables\Views\DataTable;
+use Osm\Core\App;
+use Osm\Core\Object_;
+use Osm\Framework\Http\UrlGenerator;
+use Osm\Ui\DataTables\Views\DataTable;
 
 /**
  * @property DataTable $parent @required
@@ -29,7 +29,7 @@ class Column extends Object_
      *
      * @var string
      */
-    public $cell_template = 'Manadev_Ui_DataTables.cells.default';
+    public $cell_template = 'Osm_Ui_DataTables.cells.default';
 
     public function addToSearch() {
         $this->parent->search_->select($this->name);

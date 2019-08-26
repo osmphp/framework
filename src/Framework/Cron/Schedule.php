@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Framework\Cron;
+namespace Osm\Framework\Cron;
 
 class Schedule
 {

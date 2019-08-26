@@ -1,7 +1,7 @@
 <?php
 
-use Manadev\Framework\Http\Returns;
-use Manadev\Samples\Js\Controllers\Web;
+use Osm\Framework\Http\Returns;
+use Osm\Samples\Js\Controllers\Web;
 
 return [
     'GET /tests/' => ['class' => Web::class, 'method' => 'testListPage', 'public' => true],

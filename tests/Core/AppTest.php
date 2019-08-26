@@ -1,10 +1,10 @@
 <?php
 
-namespace Manadev\Tests\Core;
+namespace Osm\Tests\Core;
 
-use Manadev\Core\App;
-use Manadev\Core\Object_;
-use Manadev\Framework\Testing\Tests\UnitTestCase;
+use Osm\Core\App;
+use Osm\Core\Object_;
+use Osm\Framework\Testing\Tests\UnitTestCase;
 
 class AppTest extends UnitTestCase
 {
@@ -31,6 +31,6 @@ class AppTest extends UnitTestCase
     public function test_that_modules_are_loaded() {
         global $m_app; /* @var App $m_app */
 
-        $this->assertArrayHasKey('Manadev_Framework_Testing', $m_app->modules);
+        $this->assertArrayHasKey('Osm_Framework_Testing', $m_app->modules);
     }
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Framework\Data;
+namespace Osm\Framework\Data;
 
-use Manadev\Core\App;
-use Manadev\Framework\Cache\CacheItem;
-use Manadev\Core\Exceptions\NotFound;
-use Manadev\Core\Exceptions\NotSupported;
+use Osm\Core\App;
+use Osm\Framework\Cache\CacheItem;
+use Osm\Core\Exceptions\NotFound;
+use Osm\Core\Exceptions\NotSupported;
 
 /**
  * @property string $config @required @part

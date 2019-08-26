@@ -1,12 +1,12 @@
 <?php
 
-namespace Manadev\Data\Search;
+namespace Osm\Data\Search;
 
-use Manadev\Core\Modules\BaseModule;
+use Osm\Core\Modules\BaseModule;
 
 class Module extends BaseModule
 {
     public $hard_dependencies = [
-        'Manadev_Data_Sheets',
+        'Osm_Data_Sheets',
     ];
 }

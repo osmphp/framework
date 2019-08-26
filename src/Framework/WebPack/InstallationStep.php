@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\WebPack;
+namespace Osm\Framework\WebPack;
 
-use Manadev\Framework\Installer\Step;
-use Manadev\Framework\Processes\Process;
+use Osm\Framework\Installer\Step;
+use Osm\Framework\Processes\Process;
 
 class InstallationStep extends Step
 {

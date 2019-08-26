@@ -1,4 +1,4 @@
-import ViewModel from "Manadev_Framework_Js/ViewModel";
+import ViewModel from "Osm_Framework_Js/ViewModel";
 
 /**
  * @property {string} model.submitting_message

@@ -1,10 +1,10 @@
 <?php
 
-namespace Manadev\Framework\Config\Commands;
+namespace Osm\Framework\Config\Commands;
 
-use Manadev\Core\App;
-use Manadev\Core\Modules\BaseModule;
-use Manadev\Framework\Console\Command;
+use Osm\Core\App;
+use Osm\Core\Modules\BaseModule;
+use Osm\Framework\Console\Command;
 
 /**
  * @property BaseModule[] $modules @required
@@ -85,7 +85,7 @@ class ShowConfig extends Command
         $dump = preg_replace('#\n([ ]*)\),#', "\n$1],", $dump); // Ends
         $dump = preg_replace('#=> \[\n\s+\],\n#', "=> [],\n", $dump); // Empties
         $dump = preg_replace('#\)$#', "]", $dump);
-        $dump = preg_replace('#\n\s*Manadev\\\\Core\\\\Promise::__set_state\(array\(\n\s*\'object\' => \'localization\',\n\s*\'method\' => \'translate\',\n\s*\'args\' => \[\n\s*0 => \'([^\']*)\',\n\s*1 => \[\],\n\s*\],\n\s*\)\),#', "m_('$1')", $dump);
+        $dump = preg_replace('#\n\s*Osm\\\\Core\\\\Promise::__set_state\(array\(\n\s*\'object\' => \'localization\',\n\s*\'method\' => \'translate\',\n\s*\'args\' => \[\n\s*0 => \'([^\']*)\',\n\s*1 => \[\],\n\s*\],\n\s*\)\),#', "m_('$1')", $dump);
 
         return $dump;
     }

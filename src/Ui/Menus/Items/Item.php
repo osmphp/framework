@@ -1,12 +1,12 @@
 <?php
 
-namespace Manadev\Ui\Menus\Items;
+namespace Osm\Ui\Menus\Items;
 
-use Manadev\Core\App;
-use Manadev\Core\Object_;
-use Manadev\Core\Promise;
-use Manadev\Ui\Menus\Module;
-use Manadev\Ui\Menus\Views\Menu;
+use Osm\Core\App;
+use Osm\Core\Object_;
+use Osm\Core\Promise;
+use Osm\Ui\Menus\Module;
+use Osm\Ui\Menus\Views\Menu;
 
 /**
  * Dependencies:
@@ -38,7 +38,7 @@ class Item extends Object_
         global $m_app; /* @var App $m_app */
 
         switch ($property) {
-            case 'module': return $m_app->modules['Manadev_Ui_Menus'];
+            case 'module': return $m_app->modules['Osm_Ui_Menus'];
             case 'type_': return $this->module->item_types[$this->type];
         }
         return parent::default($property);

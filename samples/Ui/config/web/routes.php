@@ -1,8 +1,8 @@
 <?php
 
-use Manadev\Samples\Ui\Controllers\Web;
-use Manadev\Ui\DataTables\Parameters\DataTable;
-use Manadev\Framework\Http\Parameters;
+use Osm\Samples\Ui\Controllers\Web;
+use Osm\Ui\DataTables\Parameters\DataTable;
+use Osm\Framework\Http\Parameters;
 
 return [
     'GET /tests/unit/ui' => ['class' => Web::class, 'method' => 'unitTestPage', 'public' => true],

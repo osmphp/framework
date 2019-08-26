@@ -1,12 +1,12 @@
 <?php
 
-namespace Manadev\Framework\Queues\Commands;
+namespace Osm\Framework\Queues\Commands;
 
 use Illuminate\Queue\Worker;
 use Illuminate\Queue\WorkerOptions;
-use Manadev\Core\App;
-use Manadev\Framework\Console\Command;
-use Manadev\Framework\Queues\Module;
+use Osm\Core\App;
+use Osm\Framework\Console\Command;
+use Osm\Framework\Queues\Module;
 
 /**
  * @property Module $module @required
@@ -19,7 +19,7 @@ class Process extends Command
         global $m_app; /* @var App $m_app */
 
         switch ($property) {
-            case 'module': return $m_app->modules['Manadev_Framework_Queues'];
+            case 'module': return $m_app->modules['Osm_Framework_Queues'];
             case 'worker': return $m_app->createRaw(Worker::class, $this->module->laravel_manager,
                 $m_app->laravel->events, $m_app->laravel->exception_handler);
             case 'worker_options':

@@ -33,10 +33,10 @@ Modify `app/src/Docs/Controllers/Frontend.php`
     use App\Docs\Page;
     use App\Docs\Views\Breadcrumbs;
     use App\Docs\Views\Html;
-    use Manadev\Core\App;
-    use Manadev\Framework\Http\Controller;
-    use Manadev\Framework\Http\Responses;
-    use Manadev\Framework\Views\Views\Container;
+    use Osm\Core\App;
+    use Osm\Framework\Http\Controller;
+    use Osm\Framework\Http\Responses;
+    use Osm\Framework\Views\Views\Container;
     
     /**
      * @property Page $page @required
@@ -94,8 +94,8 @@ Create new PHP class `app/src/Docs/Views/Breadcrumbs.php`:
     
     use App\Docs\Page;
     use App\Docs\PageFinder;
-    use Manadev\Core\App;
-    use Manadev\Framework\Views\View;
+    use Osm\Core\App;
+    use Osm\Framework\Views\View;
     
     /**
      * @property Page $page @required
@@ -160,10 +160,10 @@ Here is the new content of `app/src/Docs/PageFinder.php`:
     namespace App\Docs;
     
     use App\Docs\Hints\SettingsHint;
-    use Manadev\Core\App;
-    use Manadev\Core\Exceptions\NotSupported;
-    use Manadev\Core\Object_;
-    use Manadev\Framework\Settings\Settings;
+    use Osm\Core\App;
+    use Osm\Core\Exceptions\NotSupported;
+    use Osm\Core\Object_;
+    use Osm\Framework\Settings\Settings;
     
     /**
      * @property Settings|SettingsHint $settings @required

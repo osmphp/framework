@@ -1,6 +1,6 @@
 <?php
 
-use Manadev\Framework\Testing\RawBrowser;
+use Osm\Framework\Testing\RawBrowser;
 
 return [
     'raw' => ['class' => RawBrowser\Browser::class],

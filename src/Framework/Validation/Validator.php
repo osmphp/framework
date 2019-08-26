@@ -1,12 +1,12 @@
 <?php
 
-namespace Manadev\Framework\Validation;
+namespace Osm\Framework\Validation;
 
-use Manadev\Core\App;
-use Manadev\Core\Classes\Classes;
-use Manadev\Core\Object_;
-use Manadev\Framework\Validation\Exceptions\InvalidConstraint;
-use Manadev\Framework\Validation\Exceptions\ValidationFailed;
+use Osm\Core\App;
+use Osm\Core\Classes\Classes;
+use Osm\Core\Object_;
+use Osm\Framework\Validation\Exceptions\InvalidConstraint;
+use Osm\Framework\Validation\Exceptions\ValidationFailed;
 
 /**
  * @property Patterns|Pattern[] $patterns @required

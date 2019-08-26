@@ -1,12 +1,12 @@
 <?php
 
-namespace Manadev\Framework\Profiler;
+namespace Osm\Framework\Profiler;
 
-use Manadev\Core\App;
-use Manadev\Core\Modules\BaseModule;
-use Manadev\Core\Profiler;
-use Manadev\Framework\Profiler\Exceptions\ProfilerError;
-use Manadev\Framework\Settings\Settings;
+use Osm\Core\App;
+use Osm\Core\Modules\BaseModule;
+use Osm\Core\Profiler;
+use Osm\Framework\Profiler\Exceptions\ProfilerError;
+use Osm\Framework\Settings\Settings;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
@@ -18,7 +18,7 @@ use Symfony\Component\Finder\SplFileInfo;
 class Module extends BaseModule
 {
     public $hard_dependencies = [
-        'Manadev_Framework_Settings',
+        'Osm_Framework_Settings',
     ];
 
     protected function default($property) {

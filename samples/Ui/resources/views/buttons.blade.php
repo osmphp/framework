@@ -1,6 +1,6 @@
 <?php
-/* @var \Manadev\Framework\Views\View $view */
-use Manadev\Ui\Buttons\Views\Button;
+/* @var \Osm\Framework\Views\View $view */
+use Osm\Ui\Buttons\Views\Button;
 ?>
 <p>
     @include(Button::new(['alias' => 'button', 'title' => m_("Normal Button")]))

@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Framework\Views\Exceptions;
+namespace Osm\Framework\Views\Exceptions;
 
 class IdCantBeInferred extends \Exception
 {

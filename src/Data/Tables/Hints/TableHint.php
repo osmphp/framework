@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Data\Tables\Hints;
+namespace Osm\Data\Tables\Hints;
 
 /**
  * @property string $name

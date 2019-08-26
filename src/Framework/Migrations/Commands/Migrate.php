@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Migrations\Commands;
+namespace Osm\Framework\Migrations\Commands;
 
-use Manadev\Framework\Console\Command;
-use Manadev\Framework\Migrations\Migrator;
+use Osm\Framework\Console\Command;
+use Osm\Framework\Migrations\Migrator;
 
 class Migrate extends Command
 {

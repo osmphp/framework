@@ -1,1 +1,1 @@
-export default window.Manadev_Framework_Js.vars.view_models;
+export default window.Osm_Framework_Js.vars.view_models;

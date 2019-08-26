@@ -1,7 +1,7 @@
 <?php
-/* @var \Manadev\Ui\MenuBars\Views\Heading $view */
+/* @var \Osm\Ui\MenuBars\Views\Heading $view */
 
-use Manadev\Ui\MenuBars\Views\MenuBar;
+use Osm\Ui\MenuBars\Views\MenuBar;
 
 ?>
 <div class="heading">

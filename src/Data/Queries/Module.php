@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Data\Queries;
+namespace Osm\Data\Queries;
 
-use Manadev\Core\Modules\BaseModule;
+use Osm\Core\Modules\BaseModule;
 
 class Module extends BaseModule
 {

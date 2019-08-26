@@ -17,7 +17,7 @@ Benefits of modular programming - dividing monolithic application into relativel
 * how hard and soft dependencies differ
 * direct and indirect dependencies
 * practical hints
-	* if your module introduces new layers, make sure it depends on `Manadev_Framework_Layers`
+	* if your module introduces new layers, make sure it depends on `Osm_Framework_Layers`
 	* ...
 
 ## Order In Which Modules Are Loaded ##

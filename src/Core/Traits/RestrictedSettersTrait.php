@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Core\Traits;
+namespace Osm\Core\Traits;
 
-use Manadev\Core\App;
-use Manadev\Core\Exceptions\CantSetProperty;
-use Manadev\Core\Modules\BaseModule;
-use Manadev\Core\Object_;
+use Osm\Core\App;
+use Osm\Core\Exceptions\CantSetProperty;
+use Osm\Core\Modules\BaseModule;
+use Osm\Core\Object_;
 
 trait RestrictedSettersTrait
 {

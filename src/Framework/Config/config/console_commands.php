@@ -1,6 +1,6 @@
 <?php
 
-use Manadev\Framework\Config\Commands;
+use Osm\Framework\Config\Commands;
 use Symfony\Component\Console\Input\InputArgument;
 
 return [

@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Samples\Compilation;
+namespace Osm\Samples\Compilation;
 
-use Manadev\Core\Object_;
+use Osm\Core\Object_;
 
 class SampleClass extends Object_
 {

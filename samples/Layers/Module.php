@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Samples\Layers;
+namespace Osm\Samples\Layers;
 
-use Manadev\Core\Modules\BaseModule;
+use Osm\Core\Modules\BaseModule;
 
 class Module extends BaseModule
 {

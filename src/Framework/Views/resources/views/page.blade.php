@@ -1,5 +1,5 @@
 <?php
-/* @var \Manadev\Framework\Views\Views\Page $view */
+/* @var \Osm\Framework\Views\Views\Page $view */
 ?>
 <!DOCTYPE html>
 <html @if ($view->html_modifier) class="{{ $view->html_modifier }}" @endif>
@@ -26,7 +26,7 @@
     @include($child)
 @endforeach
 
-<script>Manadev_Framework_Js.vars.config.merge({!! json_encode($view->model->toObject(), JSON_PRETTY_PRINT) !!});</script>
+<script>Osm_Framework_Js.vars.config.merge({!! json_encode($view->model->toObject(), JSON_PRETTY_PRINT) !!});</script>
 <script src="{{ m_asset('scripts.js') }}"></script>
 </body>
 

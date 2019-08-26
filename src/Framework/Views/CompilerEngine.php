@@ -1,12 +1,12 @@
 <?php
 
-namespace Manadev\Framework\Views;
+namespace Osm\Framework\Views;
 
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\Engines\CompilerEngine as LaravelCompilerEngine;
-use Manadev\Core\App;
-use Manadev\Core\Classes\Statements;
-use Manadev\Core\Classes\RemoveUseStatements;
+use Osm\Core\App;
+use Osm\Core\Classes\Statements;
+use Osm\Core\Classes\RemoveUseStatements;
 use PhpParser\NodeVisitor\NameResolver;
 use PhpParser\ParserFactory;
 use PhpParser\PrettyPrinter;
@@ -30,7 +30,7 @@ class CompilerEngine extends LaravelCompilerEngine
             case 'compiled_templates': return $this->compiled_templates = $this->getCompiledTemplates();
             case 'filename': return $m_app->path("{$m_app->temp_path}/cache/blade_templates.php");
             case 'timestamp': return $this->timestamp = filemtime($this->filename);
-            case 'module': return $this->module = $m_app->modules['Manadev_Framework_Views'];
+            case 'module': return $this->module = $m_app->modules['Osm_Framework_Views'];
             case 'env': return $this->env = $this->module->laravel_view;
         }
         return null;

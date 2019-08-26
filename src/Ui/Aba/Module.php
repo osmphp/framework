@@ -1,12 +1,12 @@
 <?php
 
-namespace Manadev\Ui\Aba;
+namespace Osm\Ui\Aba;
 
-use Manadev\Core\Modules\BaseModule;
+use Osm\Core\Modules\BaseModule;
 
 class Module extends BaseModule
 {
     public $hard_dependencies = [
-        'Manadev_Framework_Layers',
+        'Osm_Framework_Layers',
     ];
 }

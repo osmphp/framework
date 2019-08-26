@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Data\Sheets;
+namespace Osm\Data\Sheets;
 
-use Manadev\Core\Object_;
+use Osm\Core\Object_;
 
 /**
  * @property string $name @required @part

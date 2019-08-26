@@ -1,12 +1,12 @@
 <?php
 
-namespace Manadev\Framework\WebPack;
+namespace Osm\Framework\WebPack;
 
-use Manadev\Core\Modules\BaseModule;
+use Osm\Core\Modules\BaseModule;
 
 class Module extends BaseModule
 {
     public $hard_dependencies = [
-        'Manadev_Framework_Npm',
+        'Osm_Framework_Npm',
     ];
 }

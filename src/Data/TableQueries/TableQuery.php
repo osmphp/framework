@@ -1,16 +1,16 @@
 <?php
 
-namespace Manadev\Data\TableQueries;
+namespace Osm\Data\TableQueries;
 
 use Illuminate\Support\Collection;
-use Manadev\Core\App;
-use Manadev\Data\Queries\Part;
-use Manadev\Data\Queries\Query;
-use Manadev\Data\TableQueries\Exceptions\InvalidInto;
-use Manadev\Data\TableQueries\Traits\JoinTrait;
-use Manadev\Framework\Db\Db;
-use Manadev\Data\Tables\Table as TableDefinition;
-use Manadev\Framework\Db\Key;
+use Osm\Core\App;
+use Osm\Data\Queries\Part;
+use Osm\Data\Queries\Query;
+use Osm\Data\TableQueries\Exceptions\InvalidInto;
+use Osm\Data\TableQueries\Traits\JoinTrait;
+use Osm\Framework\Db\Db;
+use Osm\Data\Tables\Table as TableDefinition;
+use Osm\Framework\Db\Key;
 
 /**
  * @property string $from @required @part

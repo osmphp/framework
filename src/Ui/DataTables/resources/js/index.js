@@ -1,5 +1,5 @@
-import macaw from "Manadev_Framework_Js/vars/macaw";
+import macaw from "Osm_Framework_Js/vars/macaw";
 import DataTable from "./DataTable";
 
-macaw.controller(Manadev_Ui_DataTables.DataTable, DataTable);
+macaw.controller(Osm_Ui_DataTables.DataTable, DataTable);
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Framework\Composer;
+namespace Osm\Framework\Composer;
 
-use Manadev\Core\App;
-use Manadev\Core\Modules\BaseModule;
+use Osm\Core\App;
+use Osm\Core\Modules\BaseModule;
 
 /**
  * @property Hooks|Hook[] $hooks @required

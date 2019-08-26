@@ -1,6 +1,6 @@
 <?php
 
-use Manadev\Framework\Views\Views\Page;
+use Osm\Framework\Views\Views\Page;
 
 return [
     'root' => Page::new(),

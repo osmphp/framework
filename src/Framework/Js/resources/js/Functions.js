@@ -11,7 +11,7 @@ export default class Functions {
      * @param {string[]=} options.headers - Additional request headers
      * @param {string=} options.snackbar_message - Enables showing request progress and error handling in
      *      snack bar. While request is being processed, this message is shown in snackbar. This option only
-     *      makes sense if Manadev_Ui_SnackBars module is installed
+     *      makes sense if Osm_Ui_SnackBars module is installed
      * @returns {Promise<any>}
      */
     ajax(route, options = {}) {

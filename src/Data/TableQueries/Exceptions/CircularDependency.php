@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Data\TableQueries\Exceptions;
+namespace Osm\Data\TableQueries\Exceptions;
 
 class CircularDependency extends \Exception
 {

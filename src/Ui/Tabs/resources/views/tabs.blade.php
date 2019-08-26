@@ -1,5 +1,5 @@
 <?php
-/* @var \Manadev\Ui\Tabs\Views\Tabs $view */
+/* @var \Osm\Ui\Tabs\Views\Tabs $view */
 ?>
 <div class="tabs {{$view->modifier}}" id="{{ $view->id_ }}">
     <ul class="tabs__titles">

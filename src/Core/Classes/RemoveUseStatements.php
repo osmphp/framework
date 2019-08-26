@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Core\Classes;
+namespace Osm\Core\Classes;
 
 use PhpParser\Node\Stmt\Use_;
 use PhpParser\NodeVisitorAbstract;

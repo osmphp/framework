@@ -1,14 +1,14 @@
 <?php
 
-namespace Manadev\Samples\Tables;
+namespace Osm\Samples\Tables;
 
-use Manadev\Data\TableQueries\Relations;
-use Manadev\Core\Modules\BaseModule;
+use Osm\Data\TableQueries\Relations;
+use Osm\Core\Modules\BaseModule;
 
 class Module extends BaseModule
 {
     public $hard_dependencies = [
-        'Manadev_Data_TableQueries',
+        'Osm_Data_TableQueries',
     ];
 
     public $traits = [

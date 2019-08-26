@@ -1,6 +1,6 @@
 <?php
 
-use Manadev\Framework\PhpStorm\Commands;
+use Osm\Framework\PhpStorm\Commands;
 use Symfony\Component\Console\Input\InputArgument;
 
 return [

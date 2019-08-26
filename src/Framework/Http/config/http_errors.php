@@ -1,6 +1,6 @@
 <?php
 
-use Manadev\Framework\Http\Errors;
+use Osm\Framework\Http\Errors;
 
 return [
     'general' => Errors\General::class,

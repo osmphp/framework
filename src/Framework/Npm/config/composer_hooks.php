@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'install_npm' => \Manadev\Framework\Npm\ComposerHook::class,
+    'install_npm' => \Osm\Framework\Npm\ComposerHook::class,
 ];

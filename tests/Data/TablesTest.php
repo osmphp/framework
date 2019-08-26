@@ -1,10 +1,10 @@
 <?php
 
-namespace Manadev\Tests\Data;
+namespace Osm\Tests\Data;
 
-use Manadev\Core\App;
-use Manadev\Data\Tables\Blueprint;
-use Manadev\Framework\Testing\Tests\DbTestCase;
+use Osm\Core\App;
+use Osm\Data\Tables\Blueprint;
+use Osm\Framework\Testing\Tests\DbTestCase;
 
 class TablesTest extends DbTestCase
 {

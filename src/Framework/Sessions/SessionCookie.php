@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\Sessions;
+namespace Osm\Framework\Sessions;
 
-use Manadev\Core\Object_;
+use Osm\Core\Object_;
 
 /**
  * @property string $name @required @part

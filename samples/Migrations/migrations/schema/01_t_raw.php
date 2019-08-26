@@ -1,9 +1,9 @@
 <?php
 
-namespace Manadev\Samples\Migrations\Migrations\Schema;
+namespace Osm\Samples\Migrations\Migrations\Schema;
 
 use Illuminate\Database\Schema\Blueprint;
-use Manadev\Framework\Migrations\Migration;
+use Osm\Framework\Migrations\Migration;
 
 class TRaw extends Migration
 {

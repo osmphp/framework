@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Data\Indexing;
+namespace Osm\Data\Indexing;
 
-use Manadev\Framework\Data\ObjectRegistry;
+use Osm\Framework\Data\ObjectRegistry;
 
 class Targets extends ObjectRegistry
 {

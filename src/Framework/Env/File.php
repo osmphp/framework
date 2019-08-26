@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Framework\Env;
+namespace Osm\Framework\Env;
 
 use Dotenv\Loader;
 

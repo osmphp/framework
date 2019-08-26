@@ -1,8 +1,8 @@
-import merge from 'Manadev_Framework_Js/merge';
+import merge from 'Osm_Framework_Js/merge';
 import MenuBar from './MenuBar';
 
 merge(window, {
-    Manadev_Ui_MenuBars: {
+    Osm_Ui_MenuBars: {
         MenuBar
     }
 });

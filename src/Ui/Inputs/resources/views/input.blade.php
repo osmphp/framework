@@ -1,5 +1,5 @@
 <?php
-/* @var \Manadev\Ui\Inputs\Views\Input $view */
+/* @var \Osm\Ui\Inputs\Views\Input $view */
 ?>
 <div class="input {{ $view->modifier }} -large-title" id="{{ $view->id_ }}">
     <div class="input__body">

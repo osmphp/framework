@@ -1,1 +1,1 @@
-export default window.Manadev_Framework_Js.find;
+export default window.Osm_Framework_Js.find;

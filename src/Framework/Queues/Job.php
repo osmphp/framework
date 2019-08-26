@@ -1,10 +1,10 @@
 <?php
 
-namespace Manadev\Framework\Queues;
+namespace Osm\Framework\Queues;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Manadev\Core\Exceptions\NotImplemented;
-use Manadev\Core\Object_;
+use Osm\Core\Exceptions\NotImplemented;
+use Osm\Core\Object_;
 
 class Job extends Object_ implements ShouldQueue
 {

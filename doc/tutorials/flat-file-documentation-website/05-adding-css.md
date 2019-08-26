@@ -26,7 +26,7 @@ How CSS Styles Are Added To Page
 
 Every page includes a single CSS file, you can see it in page source:
 
-	<link rel="stylesheet" href="http://127.0.0.1/docs/development/frontend/Manadev_Blank/styles.css?v=Inl7M1zp">
+	<link rel="stylesheet" href="http://127.0.0.1/docs/development/frontend/Osm_Blank/styles.css?v=Inl7M1zp">
 
 This link contains a lot of details which are not important for this tutorial. For now it is enough to understand that CSS file is only one for the whole site.
 
@@ -141,4 +141,4 @@ As you can notice, Web Developer Tools give you the possibility to see exact `sc
 This browser feature is known as **source map**. Dubysa not only generates merged `styles.css` file, but also `styles.css.map` file containing exact location of every generated line in module source files. 
 
 You can check both generated files in  
-`public/development/frontend/Manadev_Blank/styles.css` and `public/development/frontend/Manadev_Blank/styles.css.map`. 
+`public/development/frontend/Osm_Blank/styles.css` and `public/development/frontend/Osm_Blank/styles.css.map`. 

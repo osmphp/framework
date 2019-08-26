@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Framework\Testing\Exceptions;
+namespace Osm\Framework\Testing\Exceptions;
 
 class InvalidRequest extends \Exception
 {

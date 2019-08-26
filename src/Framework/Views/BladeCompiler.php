@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Framework\Views;
+namespace Osm\Framework\Views;
 
 use Illuminate\View\Compilers\BladeCompiler as LaravelCompiler;
 

@@ -1,1 +1,1 @@
-<link href="{{ m_asset('Manadev_Samples_Js/mocha.css') }}" rel="stylesheet"/>
+<link href="{{ m_asset('Osm_Samples_Js/mocha.css') }}" rel="stylesheet"/>

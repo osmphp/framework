@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\Areas;
+namespace Osm\Framework\Areas;
 
-use Manadev\Framework\Data\CollectionRegistry;
+use Osm\Framework\Data\CollectionRegistry;
 
 class Areas extends CollectionRegistry
 {

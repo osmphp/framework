@@ -1,10 +1,10 @@
 <?php
 
-namespace Manadev\Tests\Data\TableQueries;
+namespace Osm\Tests\Data\TableQueries;
 
-use Manadev\Core\App;
-use Manadev\Framework\Testing\Tests\DbTestCase;
-use Manadev\Data\Tables\Blueprint;
+use Osm\Core\App;
+use Osm\Framework\Testing\Tests\DbTestCase;
+use Osm\Data\Tables\Blueprint;
 
 class TempTableTest extends DbTestCase
 {

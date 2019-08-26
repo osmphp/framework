@@ -1,19 +1,19 @@
 <?php
 
-namespace Manadev\Data\Formulas\Parser;
+namespace Osm\Data\Formulas\Parser;
 
-use Manadev\Core\App;
-use Manadev\Core\Exceptions\NotSupported;
-use Manadev\Core\Profiler;
-use Manadev\Data\Formulas\Exceptions\MissingParameter;
-use Manadev\Data\Formulas\Exceptions\RedundantParameters;
-use Manadev\Data\Formulas\Exceptions\SyntaxError;
-use Manadev\Data\Formulas\Formulas;
-use Manadev\Data\Formulas\Formulas\Formula;
-use Manadev\Data\Formulas\Handlers\ParameterFiller;
-use Manadev\Data\Formulas\Types;
-use Manadev\Framework\Cache\Cache;
-use Manadev\Core\Object_;
+use Osm\Core\App;
+use Osm\Core\Exceptions\NotSupported;
+use Osm\Core\Profiler;
+use Osm\Data\Formulas\Exceptions\MissingParameter;
+use Osm\Data\Formulas\Exceptions\RedundantParameters;
+use Osm\Data\Formulas\Exceptions\SyntaxError;
+use Osm\Data\Formulas\Formulas;
+use Osm\Data\Formulas\Formulas\Formula;
+use Osm\Data\Formulas\Handlers\ParameterFiller;
+use Osm\Data\Formulas\Types;
+use Osm\Framework\Cache\Cache;
+use Osm\Core\Object_;
 
 /**
  * @property string $text @temp
@@ -203,7 +203,7 @@ class Parser extends Object_
     }
 
     /**
-     * @see \Manadev\Data\Formulas\Formulas\Formula::$type @handler
+     * @see \Osm\Data\Formulas\Formulas\Formula::$type @handler
      * @param $type
      * @return Formula
      */

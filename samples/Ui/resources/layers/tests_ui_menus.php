@@ -1,11 +1,11 @@
 <?php
 
-use Manadev\Framework\Views\View;
-use Manadev\Framework\Views\Views\Container;
-use Manadev\Ui\Buttons\Views\Button;
-use Manadev\Ui\MenuBars\Views\MenuBar;
-use Manadev\Ui\Menus\Items\Type;
-use Manadev\Ui\PopupMenus\Views\PopupMenu;
+use Osm\Framework\Views\View;
+use Osm\Framework\Views\Views\Container;
+use Osm\Ui\Buttons\Views\Button;
+use Osm\Ui\MenuBars\Views\MenuBar;
+use Osm\Ui\Menus\Items\Type;
+use Osm\Ui\PopupMenus\Views\PopupMenu;
 
 return [
     '@include' => ['base'],
@@ -154,7 +154,7 @@ return [
                     ],
                 ]),
                 'popup_test' => Container::new([
-                    'template' => 'Manadev_Samples_Ui.popup_test',
+                    'template' => 'Osm_Samples_Ui.popup_test',
                     'views' => [
                         'button' => Button::new(['title' => m_("Open Popup Menu")]),
                         'menu' => PopupMenu::new([
@@ -264,6 +264,6 @@ return [
                 ])
             ],
         ]),
-        'footer' => View::new(['template' => 'Manadev_Samples_Ui.footer']),
+        'footer' => View::new(['template' => 'Osm_Samples_Ui.footer']),
     ],
 ];

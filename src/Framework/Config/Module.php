@@ -1,12 +1,12 @@
 <?php
 
-namespace Manadev\Framework\Config;
+namespace Osm\Framework\Config;
 
-use Manadev\Core\Modules\BaseModule;
+use Osm\Core\Modules\BaseModule;
 
 class Module extends BaseModule
 {
     public $hard_dependencies = [
-        'Manadev_Framework_Console',
+        'Osm_Framework_Console',
     ];
 }

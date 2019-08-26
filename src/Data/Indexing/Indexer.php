@@ -1,12 +1,12 @@
 <?php
 
-namespace Manadev\Data\Indexing;
+namespace Osm\Data\Indexing;
 
-use Manadev\Core\App;
-use Manadev\Data\TableQueries\Table;
-use Manadev\Data\TableQueries\TableQuery;
-use Manadev\Core\Object_;
-use Manadev\Framework\Db\Db;
+use Osm\Core\App;
+use Osm\Data\TableQueries\Table;
+use Osm\Data\TableQueries\TableQuery;
+use Osm\Core\Object_;
+use Osm\Framework\Db\Db;
 
 /**
  * @property Target $parent @required

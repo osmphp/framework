@@ -1,8 +1,8 @@
 <?php
 
-namespace Manadev\Framework\Logging;
+namespace Osm\Framework\Logging;
 
-use Manadev\Core\Object_;
+use Osm\Core\Object_;
 use Psr\Log\LoggerInterface;
 
 /**

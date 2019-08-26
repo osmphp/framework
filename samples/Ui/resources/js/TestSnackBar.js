@@ -1,4 +1,4 @@
-import Controller from "Manadev_Framework_Js/Controller";
+import Controller from "Osm_Framework_Js/Controller";
 
 export default class TestSnackBar extends Controller {
     get events() {

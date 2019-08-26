@@ -1,6 +1,6 @@
 <?php
 
-namespace Manadev\Data\Indexing\Exceptions;
+namespace Osm\Data\Indexing\Exceptions;
 
 class InvalidIndexer extends \Exception
 {

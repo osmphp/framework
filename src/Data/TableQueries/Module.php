@@ -1,18 +1,18 @@
 <?php
 
-namespace Manadev\Data\TableQueries;
+namespace Osm\Data\TableQueries;
 
-use Manadev\Core\App;
-use Manadev\Core\Properties;
-use Manadev\Data\Formulas\Functions\Functions;
-use Manadev\Core\Modules\BaseModule;
-use Manadev\Framework\Db\MySql;
+use Osm\Core\App;
+use Osm\Core\Properties;
+use Osm\Data\Formulas\Functions\Functions;
+use Osm\Core\Modules\BaseModule;
+use Osm\Framework\Db\MySql;
 
 class Module extends BaseModule
 {
     public $hard_dependencies = [
-        'Manadev_Data_Queries',
-        'Manadev_Data_Tables',
+        'Osm_Data_Queries',
+        'Osm_Data_Tables',
     ];
 
     public $traits = [

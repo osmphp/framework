@@ -1,14 +1,14 @@
 <?php
 
-namespace Manadev\Ui\MenuBars;
+namespace Osm\Ui\MenuBars;
 
-use Manadev\Core\Modules\BaseModule;
+use Osm\Core\Modules\BaseModule;
 
 class Module extends BaseModule
 {
     public $hard_dependencies = [
-        'Manadev_Ui_Menus',
-        'Manadev_Ui_Buttons',
-        'Manadev_Ui_PopupMenus',
+        'Osm_Ui_Menus',
+        'Osm_Ui_Buttons',
+        'Osm_Ui_PopupMenus',
     ];
 }

@@ -1,6 +1,6 @@
 <?php
 
-use Manadev\Framework\Encryption\Hashing;
+use Osm\Framework\Encryption\Hashing;
 
 return [
     'bcrypt' => Hashing\Bcrypt::class,

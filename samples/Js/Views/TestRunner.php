@@ -1,13 +1,13 @@
 <?php
 
-namespace Manadev\Samples\Js\Views;
+namespace Osm\Samples\Js\Views;
 
-use Manadev\Framework\Views\View;
+use Osm\Framework\Views\View;
 
 /**
  * @property View $content @part
  */
 class TestRunner extends View
 {
-    public $template = 'Manadev_Samples_Js.mocha';
+    public $template = 'Osm_Samples_Js.mocha';
 }

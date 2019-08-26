@@ -1,5 +1,5 @@
 <?php
-/* @var \Manadev\Framework\Views\View $view */
+/* @var \Osm\Framework\Views\View $view */
 $text = <<<EOT
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
 incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud

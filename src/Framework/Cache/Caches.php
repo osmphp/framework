@@ -1,11 +1,11 @@
 <?php
 
-namespace Manadev\Framework\Cache;
+namespace Osm\Framework\Cache;
 
-use Manadev\Core\App;
-use Manadev\Core\Exceptions\NotFound;
-use Manadev\Core\Object_;
-use Manadev\Core\Profiler;
+use Osm\Core\App;
+use Osm\Core\Exceptions\NotFound;
+use Osm\Core\Object_;
+use Osm\Core\Profiler;
 
 /**
  * @property Cache[] $items @required @part
