@@ -5,7 +5,7 @@ use Symfony\Component\Console\Input\InputArgument;
 
 return [
     'env' => [
-        'description' => m_("Gets or set environment variables"),
+        'description' => m_("Gets or sets environment variables"),
         'class' => Commands\Env::class,
         'arguments' => [
             'variable' => [
