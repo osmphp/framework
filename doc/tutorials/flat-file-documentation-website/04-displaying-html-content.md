@@ -270,7 +270,7 @@ This class has `page` property filled in by controller class.
 This class extends standard Dubysa `View` class and assign new template, we'll create a moment later, 
 to `$template` property. 
 
-## Creating New `App_Docs.html` View Template 
+## Creating New `html` View Template 
 
 We will create new template for our project, `App_Docs.html`, mentioned in previous step.  
 
