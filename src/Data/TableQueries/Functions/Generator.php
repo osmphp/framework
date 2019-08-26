@@ -20,7 +20,7 @@ class Generator extends Object_
                 $this->parent->sql .= ")";
                 break;
             default:
-                throw new NotSupported(m_("Table function ':function' not supported",
+                throw new NotSupported(osm_t("Table function ':function' not supported",
                     ['function' => $formula->function]));
         }
     }

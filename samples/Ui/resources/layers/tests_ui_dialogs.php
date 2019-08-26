@@ -11,8 +11,8 @@ return [
         'content' => Container::new([
             'id' => 'content',
             'views' => [
-                'exception_button' => Button::new(['title' => m_("Show Exception Dialog")]),
-                'yes_no_button' => Button::new(['title' => m_("Show Yes/No Dialog")]),
+                'exception_button' => Button::new(['title' => osm_t("Show Exception Dialog")]),
+                'yes_no_button' => Button::new(['title' => osm_t("Show Yes/No Dialog")]),
             ],
         ]),
         'footer' => View::new(['template' => 'Osm_Samples_Ui.footer']),

@@ -34,7 +34,7 @@ class Runner extends Object_
             case Command::UNIQUE: $this->runUnique(); break;
             case Command::DROP_COLUMNS: $this->runDropColumns(); break;
             default:
-                throw new NotSupported(m_("Command type ':type' not supported", ['type' => $this->command->type]));
+                throw new NotSupported(osm_t("Command type ':type' not supported", ['type' => $this->command->type]));
         }
     }
 
@@ -59,7 +59,7 @@ class Runner extends Object_
             }
         }
 
-        throw new InvalidCommand(m_("':table.:column' not found", ['table' => $this->table->getTable(),
+        throw new InvalidCommand(osm_t("':table.:column' not found", ['table' => $this->table->getTable(),
             'column' => $column]));
     }
 
@@ -72,7 +72,7 @@ class Runner extends Object_
             }
 
             if ($this->getColumnPartition($column) !== $result) {
-                throw new InvalidCommand(m_("'Columns ':columns' in ':table' should belong to same partition",
+                throw new InvalidCommand(osm_t("'Columns ':columns' in ':table' should belong to same partition",
                     ['table' => $this->table->getTable(), 'columns' => implode(', ', $columns)]));
             }
         }

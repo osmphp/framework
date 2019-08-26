@@ -16,7 +16,7 @@ trait DebugSettersTrait
         else {
             $value = "'{$value}'";
         }
-        m_core_log(get_class($this) . "::\${$property} = {$value}", 'setter.log');
-        m_core_log_stack_trace('setter.log');
+        osm_core_log(get_class($this) . "::\${$property} = {$value}", 'setter.log');
+        osm_core_log_stack_trace('setter.log');
     }
 }

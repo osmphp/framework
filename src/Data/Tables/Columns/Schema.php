@@ -31,7 +31,7 @@ class Schema extends Object_
             case Column::DATE: $this->createDateColumn(); break;
             case Column::DECIMAL: $this->createDecimalColumn(); break;
             default:
-                throw new NotSupported(m_("Column type ':type' not supported", ['type' => $this->column->type]));
+                throw new NotSupported(osm_t("Column type ':type' not supported", ['type' => $this->column->type]));
         }
     }
 

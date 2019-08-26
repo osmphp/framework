@@ -11,8 +11,8 @@ class YesNo extends OptionList
 {
     protected function all() {
         return collect([
-            0 => (object)['title' => m_("No")],
-            1 => (object)['title' => m_("Yes")],
+            0 => (object)['title' => osm_t("No")],
+            1 => (object)['title' => osm_t("Yes")],
         ]);
     }
 }

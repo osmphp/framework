@@ -37,7 +37,7 @@ class Resolver extends BaseResolver
 
         if (empty($parts)) {
             if (!isset($this->query->tables['this'])) {
-                throw new UnknownColumn(m_("':column' means 'this.:column' but there is no 'this' table alias",
+                throw new UnknownColumn(osm_t("':column' means 'this.:column' but there is no 'this' table alias",
                     ['column' => $column]), $formula->formula, $formula->pos, $formula->length);
             }
 
@@ -45,7 +45,7 @@ class Resolver extends BaseResolver
                 return $result;
             }
 
-            throw new UnknownColumn(m_("':column' not found in table ':table'",
+            throw new UnknownColumn(osm_t("':column' not found in table ':table'",
                 ['column' => $column, 'table' => $this->query->tables['this']->table]),
                 $formula->formula, $formula->pos, $formula->length);
         }
@@ -72,7 +72,7 @@ class Resolver extends BaseResolver
             }
         }
 
-        throw new UnknownColumn(m_("Unknown column ':column'", ['column' => implode('.', $formula->parts)]),
+        throw new UnknownColumn(osm_t("Unknown column ':column'", ['column' => implode('.', $formula->parts)]),
             $formula->formula, $formula->pos, $formula->length);
     }
 
@@ -150,7 +150,7 @@ class Resolver extends BaseResolver
     protected function handleVirtuallyJoinedColumn(Table $table, $column) {
         $key = "{$table->alias}.{$column}";
         if (isset($this->columns_being_virtually_joined[$key])) {
-            throw new CircularDependency(m_("Formulas have circular dependencies: :formulas",
+            throw new CircularDependency(osm_t("Formulas have circular dependencies: :formulas",
                 ['formulas' => implode(', ', $this->columns_being_virtually_joined[$key])]));
         }
         $this->columns_being_virtually_joined[$key] = true;

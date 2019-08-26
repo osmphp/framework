@@ -36,7 +36,7 @@ class AreaObjectRegistry extends ObjectRegistry
             return $result;
         }
 
-        return m_merge($this->createConfig($parentArea), $result);
+        return osm_merge($this->createConfig($parentArea), $result);
     }
 
 }

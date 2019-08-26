@@ -46,7 +46,7 @@ class ObjectRegistry extends CacheItem
         }
 
         if ($this->not_found_message && !isset($this->items[$name])) {
-            throw new NotFound(m_($this->not_found_message, compact('name')));
+            throw new NotFound(osm_t($this->not_found_message, compact('name')));
         }
 
         return $this->items[$name];

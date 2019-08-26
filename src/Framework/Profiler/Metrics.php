@@ -22,7 +22,7 @@ class Metrics extends Object_
             case 'filename': return $osm_app->path("{$osm_app->temp_path}/profiler/{$this->id}.ser");
             case 'data':
                 if (!file_exists($this->filename)) {
-                    throw new NotFound(m_("Profile ':id' no longer exists", ['id' => $this->id]));
+                    throw new NotFound(osm_t("Profile ':id' no longer exists", ['id' => $this->id]));
                 }
                 return unserialize(file_get_contents($this->filename));
             case 'total': return $this->data['total']['elapsed'][0];
@@ -54,7 +54,7 @@ class Metrics extends Object_
         }
 
         if ($total < $this->total) {
-            $name = (string)m_("Not covered");
+            $name = (string)osm_t("Not covered");
             $result[$name] = Tag::new(['name' => $name, 'total' => $this->total - $total]);
         }
 

@@ -53,7 +53,7 @@ class Menu extends View
 
     protected function prepareItemData($data) {
         if (!isset($data['type'])) {
-            throw new PropertyNotSet(m_("Menu item 'type' property is not set. Full item definition: :definition",
+            throw new PropertyNotSet(osm_t("Menu item 'type' property is not set. Full item definition: :definition",
                 ['definition' => json_encode($data)]));
         }
 

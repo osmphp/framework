@@ -90,13 +90,13 @@ class Request extends Object_
      */
     protected function parseFlag(&$query, $key, $isArray) {
         if ($isArray) {
-            throw new InvalidParameter(m_("Flag parameter ':name' can't be an array", [
+            throw new InvalidParameter(osm_t("Flag parameter ':name' can't be an array", [
                 'name' => $key,
             ]));
         }
 
         if (isset($query[$key])) {
-            throw new InvalidParameter(m_("Parameter ':name' can't have value and be a flag at the same time", [
+            throw new InvalidParameter(osm_t("Parameter ':name' can't have value and be a flag at the same time", [
                 'name' => $key,
             ]));
         }

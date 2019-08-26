@@ -160,7 +160,7 @@ class TableQuery extends Query
             }
         }
 
-        throw new InvalidInto(m_("Partitioned INTO statement should reference unique key in SELECT columns"));
+        throw new InvalidInto(osm_t("Partitioned INTO statement should reference unique key in SELECT columns"));
     }
 
     /**

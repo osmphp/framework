@@ -128,13 +128,13 @@ class Layout extends Object_
             $filename = "{$this->path}/{$module->name}/{$layer}.php";
             if (file_exists($filename)) {
                 $result[$filename] = $this->loadFile($filename);
-                $this->log->info(m_("{filename} loaded."), ['filename' => $filename]);
+                $this->log->info(osm_t("{filename} loaded."), ['filename' => $filename]);
                 $exists = true;
             }
         }
 
         if (!$exists) {
-            throw new NotFound(m_("Layout layer ':layer' not found", ['layer' => $layer]));
+            throw new NotFound(osm_t("Layout layer ':layer' not found", ['layer' => $layer]));
         }
         return $result;
     }
@@ -186,7 +186,7 @@ class Layout extends Object_
             return;
         }
 
-        throw new InvalidInstruction(m_("Invalid layer instruction ':instruction'",
+        throw new InvalidInstruction(osm_t("Invalid layer instruction ':instruction'",
             ['instruction' => $instruction]));
     }
 
@@ -301,7 +301,7 @@ class Layout extends Object_
 
     protected function merge(View $view, $value) {
         $view->assignSelfAsParentTo($value);
-        m_merge($view, $value);
+        osm_merge($view, $value);
         $this->registerDataRecursively($value);
     }
 
@@ -318,7 +318,7 @@ class Layout extends Object_
 
             /** @noinspection PhpNonStrictObjectEqualityInspection */
             if ($this->views[$view->id] != $view) {
-                throw new InvalidInstruction(m_("Two or more views have the same id ':id'", ['id' => $view->id]));
+                throw new InvalidInstruction(osm_t("Two or more views have the same id ':id'", ['id' => $view->id]));
             }
         }
     }

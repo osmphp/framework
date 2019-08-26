@@ -149,7 +149,7 @@ abstract class Query extends Object_
             }
 
             if ($formula_->type != Formula::SELECT_EXPR) {
-                throw new UnnamedColumn(m_("Unnamed column expression ':expr' are not allowed",
+                throw new UnnamedColumn(osm_t("Unnamed column expression ':expr' are not allowed",
                     ['expr' => $formula_->formula]));
             }
 

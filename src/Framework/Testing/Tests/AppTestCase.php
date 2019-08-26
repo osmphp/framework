@@ -62,7 +62,7 @@ abstract class AppTestCase extends UnitTestCase
             }
 
             if (!isset($this->browsers[$browser['name']])) {
-                throw new UndefinedBrowser(m_("Browser ':browser' is not defined in config/test_browsers.php files",
+                throw new UndefinedBrowser(osm_t("Browser ':browser' is not defined in config/test_browsers.php files",
                     ['browser' => $browser['name'] ?? '']));
             }
 

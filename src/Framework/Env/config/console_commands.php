@@ -5,12 +5,12 @@ use Symfony\Component\Console\Input\InputArgument;
 
 return [
     'env' => [
-        'description' => m_("Gets or sets environment variables"),
+        'description' => osm_t("Gets or sets environment variables"),
         'class' => Commands\Env::class,
         'arguments' => [
             'variable' => [
                 'type' => InputArgument::IS_ARRAY,
-                'description' => m_("'VAR' shows variable, 'VAR=' clears variable, VAR=value sets variable")
+                'description' => osm_t("'VAR' shows variable, 'VAR=' clears variable, VAR=value sets variable")
             ],
         ],
     ],

@@ -4,7 +4,7 @@ use Osm\Framework\Http\Parameters;
 
 return [
     'web' => [
-        'title' => m_("Web"),
+        'title' => osm_t("Web"),
         'parameters' => [
             '_env' => [
                 'class' => Parameters\String_::class,
@@ -14,10 +14,10 @@ return [
         ],
     ],
     'frontend' => [
-        'title' => m_("Frontend"),
+        'title' => osm_t("Frontend"),
     ],
     'api' => [
-        'title' => m_("API"),
+        'title' => osm_t("API"),
         'parameters' => [
             '_env' => [
                 'class' => Parameters\String_::class,

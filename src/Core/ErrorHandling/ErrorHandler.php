@@ -34,7 +34,7 @@ class ErrorHandler extends Object_
     public function handleException($e) {
         $message = $e->getMessage() . "\n" . $e->getTraceAsString();
         echo "{$message}\n";
-        m_core_log($message, 'exception.log');
+        osm_core_log($message, 'exception.log');
     }
 
     public function handleShutdown() {

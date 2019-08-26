@@ -222,7 +222,7 @@ class App extends Object_
         $app->saveClasses();
 
         try {
-            file_put_contents(m_make_dir_for($filename), serialize($app));
+            file_put_contents(osm_make_dir_for($filename), serialize($app));
             @chmod($filename, $app->writable_file_permissions);
         }
         catch (\Exception $e) {
@@ -230,7 +230,7 @@ class App extends Object_
             throw $e;
         }
 
-        file_put_contents(m_make_dir_for($versionFilename), Str::random(8));
+        file_put_contents(osm_make_dir_for($versionFilename), Str::random(8));
         @chmod($versionFilename, $app->writable_file_permissions);
 
         if ($osm_profiler) {
@@ -294,7 +294,7 @@ class App extends Object_
 
             if ($this->modified) {
                 $filename = $this->path("{$this->temp_path}/cache/app.ser");
-                file_put_contents(m_make_dir_for($filename), serialize($this));
+                file_put_contents(osm_make_dir_for($filename), serialize($this));
                 @chmod($filename, $this->writable_file_permissions);
 
                 $this->modified = false;
@@ -316,7 +316,7 @@ class App extends Object_
 
         if ($osm_classes->modified) {
             $classFilename = $this->path("{$this->temp_path}/cache/classes.json");
-            file_put_contents(m_make_dir_for($classFilename), json_encode($osm_classes->items));
+            file_put_contents(osm_make_dir_for($classFilename), json_encode($osm_classes->items));
             @chmod($classFilename, $this->writable_file_permissions);
             $osm_classes->modified = false;
         }
@@ -360,7 +360,7 @@ class App extends Object_
 
     public function create($class, $data = null, $name = null, $parent = null) {
         if (is_object($data)) {
-            $data = m_non_nulls($data);
+            $data = osm_non_nulls($data);
         }
 
         if (!is_array($data)) {

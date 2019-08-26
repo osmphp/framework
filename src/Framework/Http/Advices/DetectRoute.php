@@ -36,13 +36,13 @@ class DetectRoute extends Advice
 
     protected function findController() {
         if (!isset($this->area->controllers["{$this->request->method} {$this->request->route}"])) {
-            throw new NotFound(m_("Page not found"));
+            throw new NotFound(osm_t("Page not found"));
         }
 
         $controller = $this->area->controllers["{$this->request->method} {$this->request->route}"];
 
         if ($controller->abstract) {
-            throw new NotFound(m_("Page not found"));
+            throw new NotFound(osm_t("Page not found"));
         }
 
         return $controller;

@@ -13,7 +13,7 @@ $tests = $tests ?? $osm_app->config('js_tests');
     @foreach ($tests as $name => $test)
         <li>
             @if (isset($test['route']))
-                <a href="{{ m_url($test['route']) }}">{{ $test['title'] }}</a>
+                <a href="{{ osm_url($test['route']) }}">{{ $test['title'] }}</a>
             @else
                 <span>{{ $test['title'] }}</span>
             @endif

@@ -129,7 +129,7 @@ class Parser extends Object_
         }
 
         if (count($parameters) > 0) {
-            throw new RedundantParameters(m_(":count redundant parameter(s) passed into formula ':formula'",
+            throw new RedundantParameters(osm_t(":count redundant parameter(s) passed into formula ':formula'",
                 ['count' => count($parameters), 'formula' => $this->text]));
         }
 
@@ -146,7 +146,7 @@ class Parser extends Object_
         $result = $this->parse($formula, $parameters, $as);
 
         if (count($parameters) > 0) {
-            throw new RedundantParameters(m_(":count redundant parameter(s) passed into formula ':formula'",
+            throw new RedundantParameters(osm_t(":count redundant parameter(s) passed into formula ':formula'",
                 ['count' => count($parameters), 'formula' => $this->text]));
         }
 
@@ -177,7 +177,7 @@ class Parser extends Object_
             $formula = $this->parseAs($as);
 
             if ($this->token->type != Token::EOF) {
-                throw $this->syntaxError(m_("Expected end of formula, but ':token' found",
+                throw $this->syntaxError(osm_t("Expected end of formula, but ':token' found",
                     ['token' => $this->token->text]));
             }
 
@@ -189,7 +189,7 @@ class Parser extends Object_
             $formula->parent = $cacheItem;
 
             if (count($parameters) < $cacheItem->parameter_count) {
-                throw new MissingParameter(m_(
+                throw new MissingParameter(osm_t(
                     "At least one more parameter should be passed into formula ':formula'",
                     ['formula' => $this->text]));
             }
@@ -260,7 +260,7 @@ class Parser extends Object_
 
             case Formula::LITERAL: return $this->parseLiteral();
             case Formula::TERNARY: return $this->parseTernary();
-            default: throw new NotSupported(m_("Formula type ':type' not supported", compact('type')));
+            default: throw new NotSupported(osm_t("Formula type ':type' not supported", compact('type')));
         }
     }
 
@@ -563,7 +563,7 @@ class Parser extends Object_
         }
 
         if ($isNegated) {
-            throw $this->syntaxError(m_(":token1, :token2, :token3 or :token4 expected", [
+            throw $this->syntaxError(osm_t(":token1, :token2, :token3 or :token4 expected", [
                 'token1' => Token::getTitle(Token::IN_),
                 'token2' => Token::getTitle(Token::BETWEEN),
                 'token3' => Token::getTitle(Token::LIKE),
@@ -693,7 +693,7 @@ class Parser extends Object_
             return Formulas\Literal::new(compact('value', 'pos', 'formula', 'token', 'length'));
         }
 
-        throw $this->syntaxError(m_($error));
+        throw $this->syntaxError(osm_t($error));
     }
 
     /**
@@ -702,7 +702,7 @@ class Parser extends Object_
      */
     protected function expect($tokenType) {
         if ($this->token->type != $tokenType) {
-            throw $this->syntaxError(m_(":token expected", ['token' => Token::getTitle($tokenType)]));
+            throw $this->syntaxError(osm_t(":token expected", ['token' => Token::getTitle($tokenType)]));
         }
     }
 

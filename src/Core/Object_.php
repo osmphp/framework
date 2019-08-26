@@ -205,7 +205,7 @@ class Object_ implements \ArrayAccess
             if (!isset($this->getProperty($property)['part'])) {
                 continue;
             }
-            $result[$property] = m_array($value);
+            $result[$property] = osm_array($value);
         }
         return $result;
     }
@@ -217,7 +217,7 @@ class Object_ implements \ArrayAccess
                 continue;
             }
             if ($value !== null) {
-                $result->$property = m_object($value);
+                $result->$property = osm_object($value);
             }
         }
         return $result;

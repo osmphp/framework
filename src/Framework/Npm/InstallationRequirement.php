@@ -26,7 +26,7 @@ class InstallationRequirement extends Requirement
         }
 
         if (!Process::runBuffered('npm -v')) {
-            if ($this->yes != $this->output->choice(m_(
+            if ($this->yes != $this->output->choice(osm_t(
                 "Node and NPM are not installed. Though it is possible to use :name in production " .
                 "without Node and NPM (though there are benefits in using them in production too), " .
                 "it is highly recommended to install and use Node and NPM during development. " .

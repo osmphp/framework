@@ -4,7 +4,7 @@ use Osm\Framework\Queues\Commands;
 
 return [
     'queued-jobs' => [
-        'description' => m_("Processes queued jobs"),
+        'description' => osm_t("Processes queued jobs"),
         'class' => Commands\Process::class,
     ],
 ];

@@ -86,7 +86,7 @@ class Migrator extends Object_
         }
 
         if ($this->output && !$this->files_processed) {
-            $this->output->writeln((string)m_("<info>Nothing to migrate.</info>"));
+            $this->output->writeln((string)osm_t("<info>Nothing to migrate.</info>"));
         }
     }
 
@@ -128,7 +128,7 @@ class Migrator extends Object_
         $this->markMigrationAsProcessed();
 
         if ($this->output) {
-            $this->output->writeln((string)m_("<info>Migrated: </info> :step :module :migration", [
+            $this->output->writeln((string)osm_t("<info>Migrated: </info> :step :module :migration", [
                 'step' => $this->step,
                 'module' => $this->module->name,
                 'migration' => $this->name,
@@ -146,7 +146,7 @@ class Migrator extends Object_
         }
 
         if ($this->output && !$this->files_processed) {
-            $this->output->writeln((string)m_("<info>Nothing to migrate back.</info>"));
+            $this->output->writeln((string)osm_t("<info>Nothing to migrate back.</info>"));
         }
     }
 
@@ -183,7 +183,7 @@ class Migrator extends Object_
         $this->instance->down();
         $this->markMigrationAsRolledBack();
         if ($this->output) {
-            $this->output->writeln((string)m_("<info>Migration rolled back: </info>  :step :module :migration", [
+            $this->output->writeln((string)osm_t("<info>Migration rolled back: </info>  :step :module :migration", [
                 'step' => $this->step,
                 'module' => $this->module->name,
                 'migration' => $this->name,

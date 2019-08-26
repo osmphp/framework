@@ -40,7 +40,7 @@ class RunHooks extends Command
         }
 
         if (!$ran) {
-            $this->output->writeln(m_("No hooks registered for composer event ':event'", ['event' => $event]));
+            $this->output->writeln(osm_t("No hooks registered for composer event ':event'", ['event' => $event]));
         }
     }
 }

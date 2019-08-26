@@ -18,16 +18,16 @@ return [
                     'items' => [
                         'file' => [
                             'type' => Type::COMMAND,
-                            'title' => m_("File"),
+                            'title' => osm_t("File"),
                         ],
                         'tests' => [
                             'type' => Type::SUBMENU,
-                            'title' => m_("Tests"),
+                            'title' => osm_t("Tests"),
                             'items' => [
                                 'tests' => [
                                     'type' => Type::LINK,
-                                    'title' => m_("All Tests"),
-                                    'url' => m_url('GET /tests/'),
+                                    'title' => osm_t("All Tests"),
+                                    'url' => osm_url('GET /tests/'),
                                 ],
                             ],
                         ],
@@ -38,16 +38,16 @@ return [
                     'items' => [
                         'file' => [
                             'type' => Type::COMMAND,
-                            'title' => m_("File"),
+                            'title' => osm_t("File"),
                         ],
                         'tests' => [
                             'type' => Type::SUBMENU,
-                            'title' => m_("Tests"),
+                            'title' => osm_t("Tests"),
                             'items' => [
                                 'tests' => [
                                     'type' => Type::LINK,
-                                    'title' => m_("All Tests"),
-                                    'url' => m_url('GET /tests/'),
+                                    'title' => osm_t("All Tests"),
+                                    'url' => osm_url('GET /tests/'),
                                 ],
                             ],
                         ],
@@ -58,16 +58,16 @@ return [
                     'items' => [
                         'file' => [
                             'type' => Type::COMMAND,
-                            'title' => m_("File"),
+                            'title' => osm_t("File"),
                         ],
                         'tests' => [
                             'type' => Type::SUBMENU,
-                            'title' => m_("Tests"),
+                            'title' => osm_t("Tests"),
                             'items' => [
                                 'tests' => [
                                     'type' => Type::LINK,
-                                    'title' => m_("All Tests"),
-                                    'url' => m_url('GET /tests/'),
+                                    'title' => osm_t("All Tests"),
+                                    'url' => osm_url('GET /tests/'),
                                 ],
                             ],
                         ],
@@ -78,16 +78,16 @@ return [
                     'items' => [
                         'file' => [
                             'type' => Type::COMMAND,
-                            'title' => m_("File"),
+                            'title' => osm_t("File"),
                         ],
                         'tests' => [
                             'type' => Type::SUBMENU,
-                            'title' => m_("Tests"),
+                            'title' => osm_t("Tests"),
                             'items' => [
                                 'tests' => [
                                     'type' => Type::LINK,
-                                    'title' => m_("All Tests"),
-                                    'url' => m_url('GET /tests/'),
+                                    'title' => osm_t("All Tests"),
+                                    'url' => osm_url('GET /tests/'),
                                 ],
                             ],
                         ],
@@ -98,16 +98,16 @@ return [
                     'items' => [
                         'file' => [
                             'type' => Type::COMMAND,
-                            'title' => m_("File"),
+                            'title' => osm_t("File"),
                         ],
                         'tests' => [
                             'type' => Type::SUBMENU,
-                            'title' => m_("Tests"),
+                            'title' => osm_t("Tests"),
                             'items' => [
                                 'tests' => [
                                     'type' => Type::LINK,
-                                    'title' => m_("All Tests"),
-                                    'url' => m_url('GET /tests/'),
+                                    'title' => osm_t("All Tests"),
+                                    'url' => osm_url('GET /tests/'),
                                 ],
                             ],
                         ],
@@ -118,16 +118,16 @@ return [
                     'items' => [
                         'file' => [
                             'type' => Type::COMMAND,
-                            'title' => m_("File"),
+                            'title' => osm_t("File"),
                         ],
                         'tests' => [
                             'type' => Type::SUBMENU,
-                            'title' => m_("Tests"),
+                            'title' => osm_t("Tests"),
                             'items' => [
                                 'tests' => [
                                     'type' => Type::LINK,
-                                    'title' => m_("All Tests"),
-                                    'url' => m_url('GET /tests/'),
+                                    'title' => osm_t("All Tests"),
+                                    'url' => osm_url('GET /tests/'),
                                 ],
                             ],
                         ],
@@ -138,16 +138,16 @@ return [
                     'items' => [
                         'file' => [
                             'type' => Type::COMMAND,
-                            'title' => m_("File"),
+                            'title' => osm_t("File"),
                         ],
                         'tests' => [
                             'type' => Type::SUBMENU,
-                            'title' => m_("Tests"),
+                            'title' => osm_t("Tests"),
                             'items' => [
                                 'tests' => [
                                     'type' => Type::LINK,
-                                    'title' => m_("All Tests"),
-                                    'url' => m_url('GET /tests/'),
+                                    'title' => osm_t("All Tests"),
+                                    'url' => osm_url('GET /tests/'),
                                 ],
                             ],
                         ],
@@ -156,71 +156,71 @@ return [
                 'popup_test' => Container::new([
                     'template' => 'Osm_Samples_Ui.popup_test',
                     'views' => [
-                        'button' => Button::new(['title' => m_("Open Popup Menu")]),
+                        'button' => Button::new(['title' => osm_t("Open Popup Menu")]),
                         'menu' => PopupMenu::new([
                             'items' => [
                                 [
                                     'type' => Type::LABEL,
-                                    'title' => m_("Label"),
+                                    'title' => osm_t("Label"),
                                 ],
                                 'command' => [
                                     'type' => Type::COMMAND,
-                                    'title' => m_("Command"),
+                                    'title' => osm_t("Command"),
                                     'shortcut' => 'Ctrl+B',
                                     'icon' => '-bold',
                                 ],
                                 'link' => [
                                     'type' => Type::LINK,
-                                    'title' => m_("Link"),
-                                    'url' => m_url('GET /tests/'),
+                                    'title' => osm_t("Link"),
+                                    'url' => osm_url('GET /tests/'),
                                 ],
                                 'input' => [
                                     'type' => Type::INPUT,
-                                    'title' => m_("Input"),
+                                    'title' => osm_t("Input"),
                                 ],
                                 'submenu' => [
                                     'type' => Type::SUBMENU,
-                                    'title' => m_("Submenu"),
+                                    'title' => osm_t("Submenu"),
                                     'items' => [
                                         'first' => [
                                             'type' => Type::SUBMENU,
-                                            'title' => m_("First"),
+                                            'title' => osm_t("First"),
                                             'items' => [
                                                 'some' => [
                                                     'type' => Type::COMMAND,
-                                                    'title' => m_("Some"),
+                                                    'title' => osm_t("Some"),
                                                 ],
                                                 'items' => [
                                                     'type' => Type::COMMAND,
-                                                    'title' => m_("Items"),
+                                                    'title' => osm_t("Items"),
                                                 ],
                                             ],
                                         ],
                                         'second' => [
                                             'type' => Type::SUBMENU,
-                                            'title' => m_("Second"),
+                                            'title' => osm_t("Second"),
                                             'items' => [
                                                 'some' => [
                                                     'type' => Type::COMMAND,
-                                                    'title' => m_("Some"),
+                                                    'title' => osm_t("Some"),
                                                 ],
                                                 'items' => [
                                                     'type' => Type::COMMAND,
-                                                    'title' => m_("Items"),
+                                                    'title' => osm_t("Items"),
                                                 ],
                                             ],
                                         ],
                                         'third' => [
                                             'type' => Type::SUBMENU,
-                                            'title' => m_("Third"),
+                                            'title' => osm_t("Third"),
                                             'items' => [
                                                 'some' => [
                                                     'type' => Type::COMMAND,
-                                                    'title' => m_("Some"),
+                                                    'title' => osm_t("Some"),
                                                 ],
                                                 'items' => [
                                                     'type' => Type::COMMAND,
-                                                    'title' => m_("Items"),
+                                                    'title' => osm_t("Items"),
                                                 ],
                                             ],
                                         ],
@@ -230,32 +230,32 @@ return [
 
                                 'check1' => [
                                     'type' => Type::COMMAND,
-                                    'title' => m_("Checkbox 1"),
+                                    'title' => osm_t("Checkbox 1"),
                                 ],
                                 'check2' => [
                                     'type' => Type::COMMAND,
-                                    'title' => m_("Checkbox 2"),
+                                    'title' => osm_t("Checkbox 2"),
                                     'checked' => true,
                                 ],
                                 'check3' => [
                                     'type' => Type::COMMAND,
-                                    'title' => m_("Checkbox 3"),
+                                    'title' => osm_t("Checkbox 3"),
                                 ],
                                 ['type' => Type::SEPARATOR],
 
                                 'radio1' => [
                                     'type' => Type::COMMAND,
-                                    'title' => m_("Radio button 1"),
+                                    'title' => osm_t("Radio button 1"),
                                     'checkbox_group' => 'radios',
                                 ],
                                 'radio2' => [
                                     'type' => Type::COMMAND,
-                                    'title' => m_("Radio button 2"),
+                                    'title' => osm_t("Radio button 2"),
                                     'checkbox_group' => 'radios',
                                 ],
                                 'radio3' => [
                                     'type' => Type::COMMAND,
-                                    'title' => m_("Radio button 3"),
+                                    'title' => osm_t("Radio button 3"),
                                     'checkbox_group' => 'radios',
                                 ],
                             ],

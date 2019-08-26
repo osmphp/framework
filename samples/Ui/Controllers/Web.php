@@ -11,27 +11,27 @@ use Osm\Ui\SnackBars\Views\SnackBar;
 class Web extends Controller
 {
     public function typographyPage() {
-        return m_layout('base', [
+        return osm_layout('base', [
             '#page' => [
-                'title' => m_("Typography"),
+                'title' => osm_t("Typography"),
                 'content' => View::new(['template' => 'Osm_Samples_Ui.typography', 'id_' => null]),
             ],
         ]);
     }
 
     public function buttonPage() {
-        return m_layout('base', [
+        return osm_layout('base', [
             '#page' => [
-                'title' => m_("Buttons"),
+                'title' => osm_t("Buttons"),
                 'content' => View::new(['template' => 'Osm_Samples_Ui.buttons', 'id_' => null]),
             ],
         ]);
     }
 
     public function snackBarPage() {
-        return m_layout('base', [
+        return osm_layout('base', [
             '#page' => [
-                'title' => m_("Snack Bars"),
+                'title' => osm_t("Snack Bars"),
                 'content' => View::new(['template' => 'Osm_Samples_Ui.snack-bars', 'id_' => null]),
             ],
         ]);
@@ -45,35 +45,35 @@ class Web extends Controller
     }
 
     public function unitTestPage() {
-        return m_layout('test');
+        return osm_layout('test');
     }
 
     public function menusPage() {
-        return m_layout('tests_ui_menus', [
+        return osm_layout('tests_ui_menus', [
             '#page' => [
-                'title' => m_("Menus"),
+                'title' => osm_t("Menus"),
             ],
         ]);
     }
 
     public function dialogsPage() {
-        return m_layout('tests_ui_dialogs', [
+        return osm_layout('tests_ui_dialogs', [
             '#page' => [
-                'title' => m_("Dialogs"),
+                'title' => osm_t("Dialogs"),
             ],
         ]);
     }
 
     public function dataTablesPage() {
-        return m_layout('tests_ui_data_tables', [
+        return osm_layout('tests_ui_data_tables', [
             '#page' => [
-                'title' => m_("Data Tables"),
+                'title' => osm_t("Data Tables"),
             ],
         ]);
     }
 
     public function dataTableRows() {
-        $layout = m_layout('tests_ui_data_tables', [
+        $layout = osm_layout('tests_ui_data_tables', [
             '#data_table' => [
                 'render_rows' => true,
                 'offset' => $this->query['_offset'],

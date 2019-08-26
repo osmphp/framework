@@ -18,13 +18,13 @@ class ConfigLoader extends Object_
         foreach ($osm_app->modules as $module) {
             $filename = $osm_app->path("{$module->path}/config/{$this->name}.php");
             if (file_exists($filename)) {
-                $result = m_merge($result, $this->loadFile($filename));
+                $result = osm_merge($result, $this->loadFile($filename));
             }
         }
 
         $filename = $osm_app->path("{$osm_app->config_path}/{$this->name}.php");
         if (file_exists($filename)) {
-            $result = m_merge($result, $this->loadFile($filename));
+            $result = osm_merge($result, $this->loadFile($filename));
         }
 
         return $result;

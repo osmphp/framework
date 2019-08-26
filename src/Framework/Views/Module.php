@@ -32,7 +32,7 @@ class Module extends BaseModule
                 $this->laravel->files,
                 [$osm_app->path("{$osm_app->temp_path}/views/{$osm_app->area}/{$osm_app->theme}")]);
             case 'laravel_blade_compiler': return $osm_app->createRaw(BladeCompiler::class,
-                $this->laravel->files, m_make_dir($osm_app->path("{$osm_app->temp_path}/cache/views")));
+                $this->laravel->files, osm_make_dir($osm_app->path("{$osm_app->temp_path}/cache/views")));
             case 'laravel_view_resolver':
                 $resolver = $osm_app->createRaw(EngineResolver::class);
                 $resolver->register('file', function () {

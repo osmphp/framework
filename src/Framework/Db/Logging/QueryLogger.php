@@ -63,10 +63,10 @@ class QueryLogger extends Object_
             }
 
             if ($this->select !== null) {
-                $affected = (string)m_(":count row(s) returned", ['count' => count($this->select)]);
+                $affected = (string)osm_t(":count row(s) returned", ['count' => count($this->select)]);
             }
             elseif ($this->statement) {
-                $affected = (string)m_(":count row(s) affected", ['count' => $this->statement->rowCount()]);
+                $affected = (string)osm_t(":count row(s) affected", ['count' => $this->statement->rowCount()]);
             }
             else {
                 $affected = '';

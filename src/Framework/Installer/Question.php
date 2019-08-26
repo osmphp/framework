@@ -16,8 +16,8 @@ class Question extends Object_
 {
     public function default($property) {
         switch ($property) {
-            case 'yes': return (string)m_("Yes");
-            case 'no': return (string)m_("No");
+            case 'yes': return (string)osm_t("Yes");
+            case 'no': return (string)osm_t("No");
             case 'required': return function ($value) { return $this->required($value); };
 
         }
@@ -30,7 +30,7 @@ class Question extends Object_
 
     protected function required($value) {
         if (trim($value) == '') {
-            throw new \Exception(m_("The value cannot be empty"));
+            throw new \Exception(osm_t("The value cannot be empty"));
         }
 
         return $value;

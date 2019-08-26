@@ -12,20 +12,20 @@ return [
             'id' => 'data_table',
             'search' => Contacts::class,
             'main_column' => 'full_name',
-            'not_found_message' => m_("There are no contacts entered yet."),
+            'not_found_message' => osm_t("There are no contacts entered yet."),
             'load_route' => 'GET /tests/ui/data-tables/rows',
             'columns' => [
                 'full_name' => [
-                    'title' => m_("Full Name"),
+                    'title' => osm_t("Full Name"),
                     'type' => Column::STRING,
                 ],
                 'phone' => [
-                    'title' => m_("Phone"),
+                    'title' => osm_t("Phone"),
                     'type' => Column::STRING,
                     'width' => 250.0,
                 ],
                 'email' => [
-                    'title' => m_("Email"),
+                    'title' => osm_t("Email"),
                     'type' => Column::STRING,
                     'width' => 300.0,
                 ],

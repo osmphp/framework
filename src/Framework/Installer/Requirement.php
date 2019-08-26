@@ -15,8 +15,8 @@ class Requirement extends Object_
 {
     public function default($property) {
         switch ($property) {
-            case 'yes': return (string)m_("Yes");
-            case 'no': return (string)m_("No");
+            case 'yes': return (string)osm_t("Yes");
+            case 'no': return (string)osm_t("No");
         }
         return parent::default($property);
     }

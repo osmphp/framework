@@ -77,7 +77,7 @@ class Resolver extends Object_
 
         $index++;
         if (!isset($this->function->args_[$index])) {
-            throw new InvalidCall(m_("More arguments provided to function :function than actually expected",
+            throw new InvalidCall(osm_t("More arguments provided to function :function than actually expected",
                 ['function' => strtoupper($this->formula->function)]), $this->formula->formula,
                 $this->formula->pos, $this->formula->length);
         }
@@ -96,7 +96,7 @@ class Resolver extends Object_
                 continue;
             }
 
-            throw new InvalidCall(m_("One or more required arguments not provided to function :function",
+            throw new InvalidCall(osm_t("One or more required arguments not provided to function :function",
                 ['function' => strtoupper($this->formula->function)]), $this->formula->formula,
                 $this->formula->pos, $this->formula->length);
         }

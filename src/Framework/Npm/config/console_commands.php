@@ -4,7 +4,7 @@ use Osm\Framework\Npm\Commands;
 
 return [
     'config:npm' => [
-        'description' => m_("Updates NPM configuration"),
+        'description' => osm_t("Updates NPM configuration"),
         'class' => Commands\ConfigNpm::class,
     ],
 ];

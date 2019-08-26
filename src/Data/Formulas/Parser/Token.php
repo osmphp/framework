@@ -95,13 +95,13 @@ class Token extends Object_
      */
     public static function getTitle($type) {
         switch ($type) {
-            case static::IDENTIFIER: return m_("identifier");
-            case static::STRING_: return m_("string");
-            case static::HEXADECIMAL: return m_("hexadecimal");
-            case static::BINARY: return m_("binary");
-            case static::INT_: return m_("int");
-            case static::FLOAT_: return m_("float");
-            case static::EOF: return m_("end of formula");
+            case static::IDENTIFIER: return osm_t("identifier");
+            case static::STRING_: return osm_t("string");
+            case static::HEXADECIMAL: return osm_t("hexadecimal");
+            case static::BINARY: return osm_t("binary");
+            case static::INT_: return osm_t("int");
+            case static::FLOAT_: return osm_t("float");
+            case static::EOF: return osm_t("end of formula");
 
             case static::EQ: return "'='";
             case static::GT: return "'>'";

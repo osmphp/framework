@@ -228,13 +228,13 @@ class Scanner extends Object_
     }
 
     protected function unexpectedCharacter() {
-        return new UnexpectedCharacter(m_("Unexpected character ':ch'",
+        return new UnexpectedCharacter(osm_t("Unexpected character ':ch'",
             ['ch' => $this->parent->characters[$this->parent->pos - 1]]), $this->parent->text,
             $this->parent->pos - 1, 1);
     }
 
     protected function unexpectedEndOfFormula() {
-        return new UnexpectedEOF(m_("Unexpected end of formula"), $this->parent->text,
+        return new UnexpectedEOF(osm_t("Unexpected end of formula"), $this->parent->text,
             $this->parent->length, 1);
     }
 }

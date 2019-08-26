@@ -9,11 +9,11 @@ use Osm\Framework\Http\Exceptions\HttpError;
 class Web extends Controller
 {
     public function testListPage() {
-        return m_layout('test_list');
+        return osm_layout('test_list');
     }
 
     public function unitTestPage() {
-        return m_layout('test');
+        return osm_layout('test');
     }
 
     public function ajax() {

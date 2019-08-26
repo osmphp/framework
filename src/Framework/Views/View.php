@@ -93,13 +93,13 @@ class View extends Object_
             // Views which are not assigned an 'id' or 'id_' must have a "parent" view.
             // Parent view is resolved automatically for all non-root views in layer files and for all
             // views created in template files. Otherwise, parent view should be assigned manually.
-            throw new IdCantBeInferred(m_("View parent not assigned, id_ can't be rendered."));
+            throw new IdCantBeInferred(osm_t("View parent not assigned, id_ can't be rendered."));
         }
 
         if (!$this->alias) {
             // Views which are not assigned an 'id' or 'html_id' must have an alias. Alias is resolved
             // automatically for all non-root views in layer files. Otherwise, alias should be assigned manually.
-            throw new IdCantBeInferred(m_("View alias not assigned, id_ can't be rendered."));
+            throw new IdCantBeInferred(osm_t("View alias not assigned, id_ can't be rendered."));
         }
 
         $alias = isset($this->parent->content) || isset($this->parent->views)

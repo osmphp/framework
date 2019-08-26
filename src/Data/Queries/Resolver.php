@@ -186,7 +186,7 @@ class Resolver extends Handler
                 /* @var Formulas\Pattern $formula */
 
             default:
-                throw new NotSupported(m_("Formula type ':type' not supported", ['type' => $formula->type]));
+                throw new NotSupported(osm_t("Formula type ':type' not supported", ['type' => $formula->type]));
         }
     }
 

@@ -7,8 +7,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{ $view->title }}</title>
-    <link rel="stylesheet" href="{{ m_asset('styles.css') }}">
-    <script src="{{ m_asset('critical.js') }}"></script>
+    <link rel="stylesheet" href="{{ osm_asset('styles.css') }}">
+    <script src="{{ osm_asset('critical.js') }}"></script>
     @foreach($view->head_end as $child)
         @include($child)
     @endforeach
@@ -27,7 +27,7 @@
 @endforeach
 
 <script>Osm_Framework_Js.vars.config.merge({!! json_encode($view->model->toObject(), JSON_PRETTY_PRINT) !!});</script>
-<script src="{{ m_asset('scripts.js') }}"></script>
+<script src="{{ osm_asset('scripts.js') }}"></script>
 </body>
 
 </html>

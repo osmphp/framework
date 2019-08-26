@@ -30,7 +30,7 @@ class Parameter extends Object_
     public function parse($query) {
         if (!isset($query[$this->name])) {
             if ($this->required) {
-                throw new InvalidParameter(m_("Missing required parameter ':name'", ['name' => $this->name]));
+                throw new InvalidParameter(osm_t("Missing required parameter ':name'", ['name' => $this->name]));
             }
 
             return null;

@@ -57,13 +57,13 @@ class Web extends Controller
 
         if (!$osm_profiler) {
             // if profiler is disabled, profile page doesn't exist
-            throw new NotFound(m_("Page not found"));
+            throw new NotFound(osm_t("Page not found"));
         }
 
         return
-            sprintf($this->header, m_("Timer"), m_("Total (ms)"), m_("Count"), m_("Avg (ms)")) .
+            sprintf($this->header, osm_t("Timer"), osm_t("Total (ms)"), osm_t("Count"), osm_t("Avg (ms)")) .
             $this->delimiter .
-            sprintf($this->tag, (string)m_("TOTAL"), $this->metrics->total) .
+            sprintf($this->tag, (string)osm_t("TOTAL"), $this->metrics->total) .
             $this->plainTextTags();
     }
 
@@ -92,7 +92,7 @@ class Web extends Controller
         if ($other > 0.0) {
                 $result .=
                     $this->delimiter .
-                    sprintf($this->tag, m_("Other tags"), $other);
+                    sprintf($this->tag, osm_t("Other tags"), $other);
         }
 
         return $result;
@@ -135,7 +135,7 @@ class Web extends Controller
         }
 
         if ($other > 0.0) {
-                $result .= sprintf($this->tag, m_("Other timers"), $other);
+                $result .= sprintf($this->tag, osm_t("Other timers"), $other);
         }
 
         return $result;

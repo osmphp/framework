@@ -92,7 +92,7 @@ class Indexing extends Object_
             }
 
             if ($output) {
-                $output->writeln((string)m_(":target updated", ['target' => $target_->title]));
+                $output->writeln((string)osm_t(":target updated", ['target' => $target_->title]));
             }
         }
     }
@@ -232,7 +232,7 @@ class Indexing extends Object_
                 $circular[] = $target;
             }
         }
-        return new CircularDependency(m_("Index targets with circular dependencies found: :targets",
+        return new CircularDependency(osm_t("Index targets with circular dependencies found: :targets",
             ['targets' => implode(', ', $circular)]));
     }
 

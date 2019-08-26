@@ -43,10 +43,10 @@ class Promise
     }
 
     public function toArray() {
-        return m_array($this->get());
+        return osm_array($this->get());
     }
 
     public function toObject() {
-        return m_object($this->get());
+        return osm_object($this->get());
     }
 }

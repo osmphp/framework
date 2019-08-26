@@ -14,7 +14,7 @@ class Hashing extends Object_
 {
     public function encrypt($value) {
         if (($hash = password_hash($value, $this->algorithm, $this->options)) === false) {
-            throw new NotSupported(m_("':name' hashing not supported.", ['name' => $this->algorithm]));
+            throw new NotSupported(osm_t("':name' hashing not supported.", ['name' => $this->algorithm]));
         }
 
         return $hash;

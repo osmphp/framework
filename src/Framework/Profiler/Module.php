@@ -47,7 +47,7 @@ class Module extends BaseModule
                 global $osm_profiler; /* @var Profiler $osm_profiler */
 
                 $osm_profiler->record('total', 'total', $osm_profiler->elapsed($osm_app->started_at));
-                file_put_contents(m_make_dir_for($this->filename), serialize($osm_profiler->getMetrics()));
+                file_put_contents(osm_make_dir_for($this->filename), serialize($osm_profiler->getMetrics()));
             });
         }
     }
@@ -65,11 +65,11 @@ class Module extends BaseModule
         }
 
         if (!$this->time_to_live) {
-            throw new ProfilerError(m_("'profiler_time_to_live' setting should be positive number"));
+            throw new ProfilerError(osm_t("'profiler_time_to_live' setting should be positive number"));
         }
 
         $files = Finder::create()
-            ->in(m_make_dir(dirname($this->filename)))
+            ->in(osm_make_dir(dirname($this->filename)))
             ->files()
             ->ignoreDotFiles(true)
             ->date("<= now - {$this->time_to_live} seconds");

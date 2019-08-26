@@ -3,24 +3,24 @@
 use Osm\Ui\Buttons\Views\Button;
 ?>
 <p>
-    @include(Button::new(['alias' => 'button', 'title' => m_("Normal Button")]))
-    @include(Button::new(['alias' => 'link', 'title' => m_("Normal Link"), 'url' => m_url('GET /tests/')]))
-    @include(Button::new(['alias' => 'disabled', 'title' => m_("Normal Disabled"), 'modifier' => '-disabled']))
+    @include(Button::new(['alias' => 'button', 'title' => osm_t("Normal Button")]))
+    @include(Button::new(['alias' => 'link', 'title' => osm_t("Normal Link"), 'url' => osm_url('GET /tests/')]))
+    @include(Button::new(['alias' => 'disabled', 'title' => osm_t("Normal Disabled"), 'modifier' => '-disabled']))
 </p>
 <p>
-    @include(Button::new(['alias' => 'outlined_button', 'title' => m_("Outlined Button"),
+    @include(Button::new(['alias' => 'outlined_button', 'title' => osm_t("Outlined Button"),
         'modifier' => '-outlined']))
-    @include(Button::new(['alias' => 'outlined_link', 'title' => m_("Outlined Link"),
-        'modifier' => '-outlined', 'url' => m_url('GET /tests/')]))
-    @include(Button::new(['alias' => 'outlined_disabled', 'title' => m_("Outlined Disabled"),
+    @include(Button::new(['alias' => 'outlined_link', 'title' => osm_t("Outlined Link"),
+        'modifier' => '-outlined', 'url' => osm_url('GET /tests/')]))
+    @include(Button::new(['alias' => 'outlined_disabled', 'title' => osm_t("Outlined Disabled"),
         'modifier' => '-outlined -disabled']))
 </p>
 <p>
-    @include(Button::new(['alias' => 'filled_button', 'title' => m_("Filled Button"),
+    @include(Button::new(['alias' => 'filled_button', 'title' => osm_t("Filled Button"),
         'modifier' => '-filled']))
-    @include(Button::new(['alias' => 'filled_link', 'title' => m_("Filled Link"),
-        'modifier' => '-filled', 'url' => m_url('GET /tests/')]))
-    @include(Button::new(['alias' => 'filled_disabled', 'title' => m_("Filled Disabled"),
+    @include(Button::new(['alias' => 'filled_link', 'title' => osm_t("Filled Link"),
+        'modifier' => '-filled', 'url' => osm_url('GET /tests/')]))
+    @include(Button::new(['alias' => 'filled_disabled', 'title' => osm_t("Filled Disabled"),
         'modifier' => '-filled -disabled']))
 </p>
 <hr>
@@ -70,5 +70,5 @@ use Osm\Ui\Buttons\Views\Button;
 </p>
 <hr>
 <footer>
-    <a href="{{ m_url('GET /tests/') }}">{{ m_("Back To Test List") }}</a>
+    <a href="{{ osm_url('GET /tests/') }}">{{ osm_t("Back To Test List") }}</a>
 </footer>

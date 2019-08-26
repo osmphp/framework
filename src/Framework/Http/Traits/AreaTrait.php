@@ -21,7 +21,7 @@ trait AreaTrait
                 $definitions = [];
 
                 for (;$area; $area = $area->parent_area_) {
-                    $definitions = m_merge($area->advices ?? [], $definitions);
+                    $definitions = osm_merge($area->advices ?? [], $definitions);
                 }
 
                 return Advices::new(array_merge($data, ['config' => $definitions]));
@@ -33,7 +33,7 @@ trait AreaTrait
                 $definitions = [];
 
                 for (;$area; $area = $area->parent_area_) {
-                    $definitions = m_merge($area->parameters ?? [], $definitions);
+                    $definitions = osm_merge($area->parameters ?? [], $definitions);
                 }
 
                 return Parameters::new(['config_' => $definitions]);

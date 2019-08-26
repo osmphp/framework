@@ -27,7 +27,7 @@ class Caches extends Object_
             }
         }
         $result = Caches::new();
-        file_put_contents(m_make_dir_for($filename), serialize($result));
+        file_put_contents(osm_make_dir_for($filename), serialize($result));
         @chmod($filename, $osm_app->writable_file_permissions);
         return $result;
     }
@@ -57,7 +57,7 @@ class Caches extends Object_
 
     public function offsetGet($name) {
         if (!$this->offsetExists($name)) {
-            throw new NotFound(m_("Cache ':name' not found", compact('name')));
+            throw new NotFound(osm_t("Cache ':name' not found", compact('name')));
         }
 
         return $this->items[$name];
@@ -72,7 +72,7 @@ class Caches extends Object_
 
         if ($this->modified) {
             $filename = $osm_app->path("{$osm_app->temp_path}/cache/caches.ser");
-            file_put_contents(m_make_dir_for($filename), serialize($this));
+            file_put_contents(osm_make_dir_for($filename), serialize($this));
             @chmod($filename, $osm_app->writable_file_permissions);
 
             $this->modified = false;

@@ -85,7 +85,7 @@ class DataTable extends View
         }
 
         if ($this->limit > $this->rows_per_page) {
-            throw new LimitExceeded(m_("Can't load more than :limit rows in one request", [
+            throw new LimitExceeded(osm_t("Can't load more than :limit rows in one request", [
                 'limit' => $this->rows_per_page,
             ]));
         }

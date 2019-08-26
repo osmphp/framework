@@ -25,7 +25,7 @@ class Compiler extends Object_
         global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'filename': return m_path("{$osm_app->temp_path}/cache/classes.php");
+            case 'filename': return osm_path("{$osm_app->temp_path}/cache/classes.php");
             case 'weaver': return Weaver::new(['parent' => $this]);
             case 'generator': return Generator::new(['parent' => $this]);
         }
@@ -165,7 +165,7 @@ class Compiler extends Object_
             $output .= $this->generateClass($class);
         }
 
-        file_put_contents(m_make_dir_for($this->filename), $output);
+        file_put_contents(osm_make_dir_for($this->filename), $output);
         @chmod($this->filename, $osm_app->writable_file_permissions);
     }
 

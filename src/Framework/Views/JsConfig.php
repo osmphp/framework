@@ -20,6 +20,6 @@ class JsConfig extends Object_
     public $translations = [];
 
     public function translate($text) {
-        $this->translations[$text] = (string)m_($text);
+        $this->translations[$text] = (string)osm_t($text);
     }
 }

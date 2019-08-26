@@ -52,7 +52,7 @@ class ConfigNpm extends Command
             return;
         }
 
-        $this->data = m_merge($this->data, json_decode(file_get_contents($filename)));
+        $this->data = osm_merge($this->data, json_decode(file_get_contents($filename)));
     }
 
     protected function loadTheme(Theme $theme) {

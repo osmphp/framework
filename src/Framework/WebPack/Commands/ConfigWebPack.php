@@ -40,16 +40,16 @@ class ConfigWebPack extends Command
     public function run() {
         global $osm_app; /* @var App $osm_app */
 
-        file_put_contents(m_make_dir_for($osm_app->path("{$osm_app->temp_path}/webpack.json")),
-            json_encode(m_object((object)[
+        file_put_contents(osm_make_dir_for($osm_app->path("{$osm_app->temp_path}/webpack.json")),
+            json_encode(osm_object((object)[
                 'modules' => array_values($this->modules),
                 'themes' => array_values(array_map(function($theme) {
                     if (isset($theme->definitions)) {
                         $theme->definitions = array_values($theme->definitions);
                     }
                     return $theme;
-                }, m_object($this->themes))),
-                'areas' => array_values(m_object($this->areas)),
+                }, osm_object($this->themes))),
+                'areas' => array_values(osm_object($this->areas)),
                 'targets' => $this->getTargets()
             ]), JSON_PRETTY_PRINT));
     }

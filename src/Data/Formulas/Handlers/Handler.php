@@ -116,7 +116,7 @@ class Handler extends Object_
                 break;
 
             default:
-                throw new NotSupported(m_("Formula type ':type' not supported", ['type' => $formula->type]));
+                throw new NotSupported(osm_t("Formula type ':type' not supported", ['type' => $formula->type]));
         }
     }
 }

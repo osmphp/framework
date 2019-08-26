@@ -17,7 +17,7 @@ return [
                 'items' => [
                     'cancel' => [
                         'type' => Type::COMMAND,
-                        'title' => m_("Close"),
+                        'title' => osm_t("Close"),
                         'modifier' => '-filled',
                     ],
                 ],

@@ -30,6 +30,6 @@ class TableSheet extends Sheet
             $result[$column->name] = [];
         }
 
-        return m_merge($result, parent::getColumnArray());
+        return osm_merge($result, parent::getColumnArray());
     }
 }

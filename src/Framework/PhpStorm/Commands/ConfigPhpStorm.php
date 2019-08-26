@@ -27,7 +27,7 @@ class ConfigPhpStorm extends Command
     public function run() {
         global $osm_app; /* @var App $osm_app */
 
-        file_put_contents(m_make_dir_for($osm_app->path("{$osm_app->temp_path}/webpack.phpstorm.config.js")),
+        file_put_contents(osm_make_dir_for($osm_app->path("{$osm_app->temp_path}/webpack.phpstorm.config.js")),
             $this->generateWebPackConfig());
     }
 

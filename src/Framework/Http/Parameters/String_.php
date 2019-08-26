@@ -16,14 +16,14 @@ class String_ extends Parameter
         }
 
         if (!is_string($value)) {
-            throw new InvalidParameter(m_("Parameter ':name' should be a string and used once", [
+            throw new InvalidParameter(osm_t("Parameter ':name' should be a string and used once", [
                 'name' => $this->name,
             ]));
 
         }
 
         if ($this->pattern && !preg_match($this->pattern, $value)) {
-            throw new InvalidParameter(m_("Parameter ':name' value ':value' should match pattern ':pattern'", [
+            throw new InvalidParameter(osm_t("Parameter ':name' value ':value' should match pattern ':pattern'", [
                 'name' => $this->name,
                 'value' => $value,
                 'pattern' => $this->pattern,

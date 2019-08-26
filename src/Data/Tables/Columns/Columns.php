@@ -16,7 +16,7 @@ class Columns extends CollectionRegistry
 {
     protected function default($property) {
         switch ($property) {
-            case 'not_found_message': return m_("Column ':table.:name' not found",
+            case 'not_found_message': return osm_t("Column ':table.:name' not found",
                 ['table' => $this->parent->name]);
             case 'db': return $this->parent->parent->parent;
             case 'column_types': return $this->parent->parent->column_types;
@@ -38,7 +38,7 @@ class Columns extends CollectionRegistry
             /* @var ColumnHint $data */
             $data->data_type = $this->column_types[$data->type]->data_type;
             if ($data->title__translate) {
-                $data->title = m_($data->title);
+                $data->title = osm_t($data->title);
             }
             unset($data->title__translate);
 

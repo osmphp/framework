@@ -19,7 +19,7 @@ class General extends Error
         $result = '';
         for ($e = $this->e; $e; $e = $e->getPrevious()) {
             if ($result) {
-                $result = m_("\n\nThis exception was wrapped into another exception:\n\n") . $result;
+                $result = osm_t("\n\nThis exception was wrapped into another exception:\n\n") . $result;
             }
 
             $result = get_class($e) . ": " . $e->getMessage() . "\n\n" . $e->getTraceAsString() . $result;

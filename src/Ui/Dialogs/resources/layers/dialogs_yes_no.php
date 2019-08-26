@@ -16,11 +16,11 @@ return [
                 'items' => [
                     'yes' => [
                         'type' => Type::COMMAND,
-                        'title' => m_("Yes"),
+                        'title' => osm_t("Yes"),
                     ],
                     'cancel' => [
                         'type' => Type::COMMAND,
-                        'title' => m_("No"),
+                        'title' => osm_t("No"),
                     ],
                 ],
         ]),

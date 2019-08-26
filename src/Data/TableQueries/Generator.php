@@ -101,7 +101,7 @@ class Generator extends Object_
                 break;
 
             default:
-                throw new NotSupported(m_("Table join ':type' not supported", ['type' => $table->join]));
+                throw new NotSupported(osm_t("Table join ':type' not supported", ['type' => $table->join]));
         }
     }
 
@@ -426,7 +426,7 @@ class Generator extends Object_
                 /* @var Formulas\Unary $formula */
 
             default:
-                throw new NotSupported(m_("Formula type ':type' not supported", ['type' => $formula->type]));
+                throw new NotSupported(osm_t("Formula type ':type' not supported", ['type' => $formula->type]));
         }
     }
 
@@ -445,7 +445,7 @@ class Generator extends Object_
             case Token::FALSE_: $this->bindings[] = false; break;
             case Token::NULL_: $this->bindings[] = null; break;
             default:
-                throw new NotSupported(m_("Literal token type ':type' not supported",
+                throw new NotSupported(osm_t("Literal token type ':type' not supported",
                     ['type' => Token::getTitle(Token::STRING_)]));
         }
     }

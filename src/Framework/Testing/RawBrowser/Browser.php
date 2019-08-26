@@ -38,7 +38,7 @@ class Browser extends BaseBrowser
             $response = $this->run("GET {$url}");
         }
 
-        throw new BrowserError(m_("Too many redirects"));
+        throw new BrowserError(osm_t("Too many redirects"));
     }
 
     /**
@@ -85,7 +85,7 @@ class Browser extends BaseBrowser
      */
     protected function parseRequest($request) {
         if (!$request) {
-            throw new InvalidRequest(m_("Request can't be empty"));
+            throw new InvalidRequest(osm_t("Request can't be empty"));
         }
 
         $lines = array_map('trim', explode("\n", $request));
@@ -100,7 +100,7 @@ class Browser extends BaseBrowser
         }
 
         if ($urlLineIndex === null) {
-            throw new InvalidRequest(m_("URL line starting with GET, POST or DELETE not found"));
+            throw new InvalidRequest(osm_t("URL line starting with GET, POST or DELETE not found"));
         }
 
         $result = new SymfonyRequest();

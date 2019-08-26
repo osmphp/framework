@@ -65,13 +65,13 @@ class Themes extends CollectionRegistry
                 $definition = include $filename;
 
                 if (!isset($definition['name'])) {
-                    throw new InvalidThemeDefinition(m_("Theme name should be specified in ':filename'", [
+                    throw new InvalidThemeDefinition(osm_t("Theme name should be specified in ':filename'", [
                         'filename' => $filename,
                     ]));
                 }
 
                 if (!isset($definition['area'])) {
-                    throw new InvalidThemeDefinition(m_("Area name should be specified in ':filename'", [
+                    throw new InvalidThemeDefinition(osm_t("Area name should be specified in ':filename'", [
                         'filename' => $filename,
                     ]));
                 }

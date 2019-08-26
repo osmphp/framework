@@ -2,9 +2,9 @@
 
 return [
     'unit' => [
-        'title' => m_("Unit Tests"),
+        'title' => osm_t("Unit Tests"),
         'children' => [
-            'framework' => ['title' => m_("Framework"), 'route' => 'GET /tests/unit/framework'],
+            'framework' => ['title' => osm_t("Framework"), 'route' => 'GET /tests/unit/framework'],
         ],
     ],
 ];

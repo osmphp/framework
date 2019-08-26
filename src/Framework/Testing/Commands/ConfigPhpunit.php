@@ -172,7 +172,7 @@ EOT;
     protected function renderModules(ConfigSuite $suite) {
         global $osm_app; /* @var App $osm_app */
 
-        $title = $osm_app->testing->suites[$suite->name]->title ?? m_('Other Tests');
+        $title = $osm_app->testing->suites[$suite->name]->title ?? osm_t('Other Tests');
         $result = "        <testsuite name=\"{$title}\">\n";
 
         if (isset($suite->modules[''])) {

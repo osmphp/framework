@@ -44,7 +44,7 @@ class CollectionRegistry extends CacheItem implements \IteratorAggregate, \Count
 
     public function offsetGet($name) {
         if ($this->not_found_message && !$this->offsetExists($name)) {
-            throw new NotFound(m_($this->not_found_message, compact('name')));
+            throw new NotFound(osm_t($this->not_found_message, compact('name')));
         }
 
         return $this->items[$name];

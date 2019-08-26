@@ -33,8 +33,8 @@ class Install extends Command
             case 'questions': return $this->module->questions;
             case 'steps': return $this->module->steps;
             case 'requirements': return $this->module->requirements;
-            case 'yes': return (string)m_("Yes");
-            case 'no': return (string)m_("No");
+            case 'yes': return (string)osm_t("Yes");
+            case 'no': return (string)osm_t("No");
         }
         return parent::default($property);
     }
@@ -44,7 +44,7 @@ class Install extends Command
 
         if (file_exists($this->flag)) {
             if (!$this->input->getOption('force')) {
-                $this->output->writeln(m_("Project is already installed."));
+                $this->output->writeln(osm_t("Project is already installed."));
 
                 return 0;
             }
@@ -53,7 +53,7 @@ class Install extends Command
 
         if ($this->input->isInteractive()) {
             $this->output->writeln("");
-            $this->output->writeln((string)m_("Welcome! This program will perform all necessary installation steps. But first, please answer some questions:"));
+            $this->output->writeln((string)osm_t("Welcome! This program will perform all necessary installation steps. But first, please answer some questions:"));
             $this->output->writeln("");
 
             foreach ($this->requirements as $requirement) {
@@ -70,7 +70,7 @@ class Install extends Command
 
             $this->output->writeln("");
 
-            if ($this->yes != $this->output->choice(m_("That's all the questions. Start installation?"),
+            if ($this->yes != $this->output->choice(osm_t("That's all the questions. Start installation?"),
                 [$this->no, $this->yes], $this->yes))
             {
                 return 1;
@@ -85,7 +85,7 @@ class Install extends Command
             $step->run();
         }
 
-        file_put_contents(m_make_dir_for($this->flag, $osm_app->readonly_directory_permissions), '');
+        file_put_contents(osm_make_dir_for($this->flag, $osm_app->readonly_directory_permissions), '');
         @chmod($this->flag, $osm_app->readonly_file_permissions);
         return 0;
     }

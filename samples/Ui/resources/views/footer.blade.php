@@ -1,3 +1,3 @@
 <footer>
-    <a href="{{ m_url('GET /tests/') }}">{{ m_("Back To Test List") }}</a>
+    <a href="{{ osm_url('GET /tests/') }}">{{ osm_t("Back To Test List") }}</a>
 </footer>

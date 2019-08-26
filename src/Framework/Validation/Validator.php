@@ -36,7 +36,7 @@ class Validator extends Object_
         $result = $this->doValidate($data, $this->createProperty($type, $options));
 
         if (!empty($this->errors)) {
-            throw new ValidationFailed(m_("Validation failed"), $this->errors);
+            throw new ValidationFailed(osm_t("Validation failed"), $this->errors);
         }
 
         return $result;
@@ -91,8 +91,8 @@ class Validator extends Object_
         if ($data === null) {
             if (!empty($property['required'])) {
                 return $this->validationFailed($path, $path
-                    ? m_("Fill in this field")
-                    : m_("Data expected"));
+                    ? osm_t("Fill in this field")
+                    : osm_t("Data expected"));
             }
             return $data;
         }
@@ -102,7 +102,7 @@ class Validator extends Object_
 
     protected function validateArray($data, array $property, $path) {
         if (!is_array($data)) {
-            return $this->validationFailed($path, m_("Array expected"));
+            return $this->validationFailed($path, osm_t("Array expected"));
         }
 
         $intKeys = array_first(array_keys($data)) === 0;
@@ -135,7 +135,7 @@ class Validator extends Object_
             case static::CLASS_CONSTRAINT:
                 return $this->validateClass($data, $property['type'], $path);
             default:
-                throw new InvalidConstraint(m_("Constraint ':constraint' is neither simple type nor class name",
+                throw new InvalidConstraint(osm_t("Constraint ':constraint' is neither simple type nor class name",
                     ['constraint' => $property['type']]));
         }
     }
@@ -145,13 +145,13 @@ class Validator extends Object_
 
         if (is_array($data)) {
             if (!empty($data) && is_int(array_first(array_keys($data)))) {
-                return $this->validationFailed($path, m_("Object of class ':class' expected", ['class' => $class]));
+                return $this->validationFailed($path, osm_t("Object of class ':class' expected", ['class' => $class]));
             }
             $data = (object)$data;
         }
 
         if (!is_object($data)) {
-            return $this->validationFailed($path, m_("Object of class ':class' expected", ['class' => $class]));
+            return $this->validationFailed($path, osm_t("Object of class ':class' expected", ['class' => $class]));
         }
 
         while ($class) {
@@ -174,22 +174,22 @@ class Validator extends Object_
 
     protected function validateString($data, array $property, $path) {
         if (!is_string($data)) {
-            return $this->validationFailed($path, m_("String expected"));
+            return $this->validationFailed($path, osm_t("String expected"));
         }
 
         $data = trim($data);
 
         if (!$data && !empty($property['required'])) {
-            return $this->validationFailed($path, m_("Fill in this field"));
+            return $this->validationFailed($path, osm_t("Fill in this field"));
         }
 
         if (!empty($property['max_length']) && mb_strlen($data) > $property['max_length']) {
-            return $this->validationFailed($path, m_("Value should be no longer than :length characters",
+            return $this->validationFailed($path, osm_t("Value should be no longer than :length characters",
                 ['length' => $property['max_length']]));
         }
 
         if (!empty($property['min_length']) && mb_strlen($data) < $property['min_length']) {
-            return $this->validationFailed($path, m_("Value should be at least :length characters long",
+            return $this->validationFailed($path, osm_t("Value should be at least :length characters long",
                 ['length' => $property['min_length']]));
         }
 
@@ -202,7 +202,7 @@ class Validator extends Object_
 
     protected function validateInt($data, array $property, $path) {
         if (!is_int($data)) {
-            return $this->validationFailed($path, m_("Integer expected"));
+            return $this->validationFailed($path, osm_t("Integer expected"));
         }
 
         return $data;
@@ -210,7 +210,7 @@ class Validator extends Object_
 
     protected function validateBool($data, array $property, $path) {
         if (!is_bool($data)) {
-            return $this->validationFailed($path, m_("Boolean expected"));
+            return $this->validationFailed($path, osm_t("Boolean expected"));
         }
 
         return $data;

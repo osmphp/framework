@@ -59,7 +59,7 @@ class Types extends Object_
         }
 
         if (!isset($this->cast[$formula->data_type]) || !in_array($type, $this->cast[$formula->data_type])) {
-            throw new InvalidCast(m_("Can't cast ':from' to ':to'",
+            throw new InvalidCast(osm_t("Can't cast ':from' to ':to'",
                 ['from' => $formula->data_type, 'to' => $type]), $formula->formula, $formula->pos, $formula->length);
         }
 
