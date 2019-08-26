@@ -11,12 +11,12 @@ use Osm\Core\App;
 class File extends Store
 {
     public function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
             case 'store':
-                return new FileStore($m_app->laravel->files,
-                    $m_app->path("{$m_app->temp_path}/cache/{$this->name}"));
+                return new FileStore($osm_app->laravel->files,
+                    $osm_app->path("{$osm_app->temp_path}/cache/{$this->name}"));
         }
         return parent::default($property);
     }

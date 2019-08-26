@@ -13,22 +13,22 @@ use Osm\Core\Profiler;
 class Caches extends Object_
 {
     public static function create() {
-        global $m_app; /* @var App $m_app */
-        global $m_profiler; /* @var Profiler $m_profiler */
+        global $osm_app; /* @var App $osm_app */
+        global $osm_profiler; /* @var Profiler $osm_profiler */
 
-        $filename = $m_app->path($m_app->temp_path . '/cache/caches.ser');
+        $filename = $osm_app->path($osm_app->temp_path . '/cache/caches.ser');
         if (file_exists($filename)) {
-            if ($m_profiler) $m_profiler->start("caches", 'cache');
+            if ($osm_profiler) $osm_profiler->start("caches", 'cache');
             try {
                 return unserialize(file_get_contents($filename));
             }
             finally {
-                if ($m_profiler) $m_profiler->stop("caches");
+                if ($osm_profiler) $osm_profiler->stop("caches");
             }
         }
         $result = Caches::new();
         file_put_contents(m_make_dir_for($filename), serialize($result));
-        @chmod($filename, $m_app->writable_file_permissions);
+        @chmod($filename, $osm_app->writable_file_permissions);
         return $result;
     }
 
@@ -40,11 +40,11 @@ class Caches extends Object_
     }
 
     protected function get() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         $result = [];
 
-        foreach ($m_app->config('caches') as $name => $data) {
+        foreach ($osm_app->config('caches') as $name => $data) {
             $result[$name] = Cache::new(array_merge($data, ['parent' => $this]), $name);
         }
 
@@ -64,16 +64,16 @@ class Caches extends Object_
     }
 
     public function terminate() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         foreach ($this->items as $cache) {
             $cache->terminate();
         }
 
         if ($this->modified) {
-            $filename = $m_app->path("{$m_app->temp_path}/cache/caches.ser");
+            $filename = $osm_app->path("{$osm_app->temp_path}/cache/caches.ser");
             file_put_contents(m_make_dir_for($filename), serialize($this));
-            @chmod($filename, $m_app->writable_file_permissions);
+            @chmod($filename, $osm_app->writable_file_permissions);
 
             $this->modified = false;
         }

@@ -20,10 +20,10 @@ use Symfony\Component\HttpFoundation\Response;
 class Error extends Object_
 {
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'request': return $m_app->request;
+            case 'request': return $osm_app->request;
             case 'status_text': return $this->getStatusText();
             case 'content_type': return $this->request->ajax ? 'application/json' : 'text/plain';
             case 'content': return $this->request->ajax

@@ -152,15 +152,15 @@ Here is new content of `app/src/Docs/Controllers/Frontend.php`:
     class Frontend extends Controller
     {
         protected function default($property) {
-            global $m_app; /* @var App $m_app */
+            global $osm_app; /* @var App $osm_app */
     
             switch ($property) {
                 case 'settings':
-                    return $m_app->settings;
+                    return $osm_app->settings;
                 case 'doc_root':
                     return $this->settings->doc_root;
                 case 'url':
-                    return $m_app->query['page'];
+                    return $osm_app->query['page'];
             }
     
             return parent::default($property);

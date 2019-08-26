@@ -21,12 +21,12 @@ class Resolver extends BaseResolver
     protected $columns_being_virtually_joined = [];
 
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'relations': return $m_app[Relations::class];
+            case 'relations': return $osm_app[Relations::class];
             case 'function_resolver': return FunctionResolver::new([], null, $this);
-            case 'parser': return $m_app[Parser::class];
+            case 'parser': return $osm_app[Parser::class];
         }
         return parent::default($property);
     }

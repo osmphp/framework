@@ -17,10 +17,10 @@ class Queues extends CollectionRegistry
     public $not_found_message = "Queue store ':name' not found";
 
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'module': return $m_app->modules['Osm_Framework_Queues'];
+            case 'module': return $osm_app->modules['Osm_Framework_Queues'];
             case 'laravel_dispatcher': return $this->module->laravel_dispatcher;
         }
         return parent::default($property);

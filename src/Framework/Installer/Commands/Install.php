@@ -25,11 +25,11 @@ use Osm\Framework\Processes\Process;
 class Install extends Command
 {
     public function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'flag': return $m_app->path("{$m_app->temp_path}/installed.flag");
-            case 'module': return $m_app->modules['Osm_Framework_Installer'];
+            case 'flag': return $osm_app->path("{$osm_app->temp_path}/installed.flag");
+            case 'module': return $osm_app->modules['Osm_Framework_Installer'];
             case 'questions': return $this->module->questions;
             case 'steps': return $this->module->steps;
             case 'requirements': return $this->module->requirements;
@@ -40,7 +40,7 @@ class Install extends Command
     }
 
     public function run() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         if (file_exists($this->flag)) {
             if (!$this->input->getOption('force')) {
@@ -85,8 +85,8 @@ class Install extends Command
             $step->run();
         }
 
-        file_put_contents(m_make_dir_for($this->flag, $m_app->readonly_directory_permissions), '');
-        @chmod($this->flag, $m_app->readonly_file_permissions);
+        file_put_contents(m_make_dir_for($this->flag, $osm_app->readonly_directory_permissions), '');
+        @chmod($this->flag, $osm_app->readonly_file_permissions);
         return 0;
     }
 }

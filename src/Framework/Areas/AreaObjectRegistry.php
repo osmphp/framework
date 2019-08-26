@@ -13,11 +13,11 @@ use Osm\Framework\Data\ObjectRegistry;
 class AreaObjectRegistry extends ObjectRegistry
 {
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
             case 'area_': return $this->areas[$this->area];
-            case 'areas': return $m_app->areas;
+            case 'areas': return $osm_app->areas;
             case 'config_': return $this->createConfig($this->area);
         }
         return parent::default($property);
@@ -28,9 +28,9 @@ class AreaObjectRegistry extends ObjectRegistry
      * @return array|mixed
      */
     protected function createConfig($area) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        $result = $m_app->config("{$area}/{$this->config}");
+        $result = $osm_app->config("{$area}/{$this->config}");
 
         if (!($parentArea = $this->areas[$area]->parent_area)) {
             return $result;

@@ -4,11 +4,11 @@
 
 ## Instantiate Classes Properly ##
 
-Dynamic traits are applied only to objects created using `$m_app->createRaw()` or `Osm\Core\Object_::new()` static method (which internally calls `$m_app->createRaw()` method).
+Dynamic traits are applied only to objects created using `$osm_app->createRaw()` or `Osm\Core\Object_::new()` static method (which internally calls `$osm_app->createRaw()` method).
 
 In most cases, `::new()` method is available, so use it to instantiate your classes.
 
-For classes not based on `Object_` class, use `$m_app->createRaw()` method. 
+For classes not based on `Object_` class, use `$osm_app->createRaw()` method. 
 
 ## Ignored Classes ##
 

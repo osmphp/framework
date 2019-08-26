@@ -23,14 +23,14 @@ class CompositeCache extends Cache
     }
 
     public function get($key) {
-        global $m_profiler; /* @var Profiler $m_profiler */
+        global $osm_profiler; /* @var Profiler $osm_profiler */
 
-        if ($m_profiler) $m_profiler->start($key, 'cache');
+        if ($osm_profiler) $osm_profiler->start($key, 'cache');
         try {
             return $this->store_->get($key);
         }
         finally {
-            if ($m_profiler) $m_profiler->stop($key);
+            if ($osm_profiler) $osm_profiler->stop($key);
         }
     }
 

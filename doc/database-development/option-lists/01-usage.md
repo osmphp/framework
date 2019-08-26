@@ -1,8 +1,8 @@
 # Usage #
 
-Option lists are requested from global `$m_app` object:
+Option lists are requested from global `$osm_app` object:
 
-    $optionList = $m_app->option_lists['yes_no'];
+    $optionList = $osm_app->option_lists['yes_no'];
 
 You can retrieve individual option using array syntax (so option value can only be only `int` and `string`):
 
@@ -23,7 +23,7 @@ You can add option titles to collection of objects:
 
 Or to query, if option list supports that:
 
-    $query = $m_app->db['books'];
+    $query = $osm_app->db['books'];
 
     if ($optionList->supports_db_queries) {
         $optionList->addToQuery($query, 'active', ['title' => 'active__title']);

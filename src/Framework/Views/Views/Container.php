@@ -18,12 +18,12 @@ class Container extends View
     public $template = 'Osm_Framework_Views.container';
 
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
             case 'views': return [];
             case 'views_': return $this->getViews();
-            case 'sorter': return $m_app[Sorter::class];
+            case 'sorter': return $osm_app[Sorter::class];
         }
         return parent::default($property);
     }

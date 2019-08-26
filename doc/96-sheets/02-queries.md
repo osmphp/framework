@@ -6,7 +6,7 @@
 
 Example:
 
-    $result = $m_app->sheets['users']
+    $result = $osm_app->sheets['users']
         ->where("username <> ?", 'x1')
         ->facetBy(["active", "account", "account.area"])
         ->get(["username", "active", "account", "account.area AS area"]);
@@ -58,7 +58,7 @@ Query methods for modifying underlying data:
 
 `facetBy($formulas, $options = [])` puts a request for faceted data for specified formula into `query->facets` property which is array of `QueryFacet` objects. 
 
-    $query = $m_app->sheets['users']
+    $query = $osm_app->sheets['users']
         ->facetBy("active");
 
 Faceted data is actually calculated when one of retrieval methods is invoked:

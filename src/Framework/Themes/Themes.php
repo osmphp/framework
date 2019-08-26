@@ -16,10 +16,10 @@ class Themes extends CollectionRegistry
     public $not_found_message = "Theme ':name' not found";
 
     public function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'packages': return $m_app->packages;
+            case 'packages': return $osm_app->packages;
         }
         return parent::default($property);
     }
@@ -42,14 +42,14 @@ class Themes extends CollectionRegistry
      * @throws InvalidThemeDefinition
      */
     protected function getPackageThemes(&$result, Package $package) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         foreach ($package->component_pools as $pool) {
             if (!$pool->theme_path) {
                 continue;
             }
 
-            $path = $m_app->path($package->path . ($pool->name ? "/$pool->name" : ''));
+            $path = $osm_app->path($package->path . ($pool->name ? "/$pool->name" : ''));
             foreach (glob("$path/{$pool->theme_path}") as $filename) {
                 // make sure Osm\Framework\Themes\Theme class file Theme.php is not treated as theme definition
                 // file theme.php. On Windows, file names are case-insensitive, so this may happen. Without this check,
@@ -93,7 +93,7 @@ class Themes extends CollectionRegistry
                 unset($definition['parent_theme']);
 
                 $definition['path'] = str_replace('\\', '/',
-                    substr(dirname($filename), strlen($m_app->base_path) + 1));
+                    substr(dirname($filename), strlen($osm_app->base_path) + 1));
 
                 $name = $pool->namespace . '_' . str_replace('/', '_', str_replace('\\', '/',
                     substr(dirname($filename), strlen($path) + 1)));

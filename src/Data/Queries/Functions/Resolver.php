@@ -22,10 +22,10 @@ use Osm\Data\Queries\Resolver as QueryResolver;
 class Resolver extends Object_
 {
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'types': return $m_app[Types::class];
+            case 'types': return $osm_app[Types::class];
         }
 
         return parent::default($property);

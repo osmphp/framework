@@ -10,9 +10,9 @@ use Osm\Samples\Layers\Views\TestView;
 class LayersTest extends UnitTestCase
 {
     public function testIncludeInstruction() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        $layout = Layout::new(['area' => $m_app->areas['test']]);
+        $layout = Layout::new(['area' => $osm_app->areas['test']]);
 
         $layout->load([
             '@include' => 'base',
@@ -22,9 +22,9 @@ class LayersTest extends UnitTestCase
     }
 
     public function testIdSelector() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        $layout = Layout::new(['area' => $m_app->areas['test']]);
+        $layout = Layout::new(['area' => $osm_app->areas['test']]);
 
         $layout->load('base', [
             '#test_root' => [
@@ -36,9 +36,9 @@ class LayersTest extends UnitTestCase
     }
 
     public function testPropertySelector() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        $layout = Layout::new(['area' => $m_app->areas['test']]);
+        $layout = Layout::new(['area' => $osm_app->areas['test']]);
 
         $layout->load('base', [
             '#test_root' => [
@@ -58,9 +58,9 @@ class LayersTest extends UnitTestCase
     }
 
     public function testSelectorApi() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        $layout = Layout::new(['area' => $m_app->areas['test']]);
+        $layout = Layout::new(['area' => $osm_app->areas['test']]);
 
         $layout->load('base', [
             '#test_root' => [

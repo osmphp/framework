@@ -9,9 +9,9 @@ use Osm\Framework\Testing\Tests\DbTestCase;
 class BasicTest extends DbTestCase
 {
     public function test_operations() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        $db = $m_app->db;
+        $db = $osm_app->db;
 
         $db->create('test_table', function (Blueprint $table) {
             $table->string('sku')->title("SKU")->required()->unique();

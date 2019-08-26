@@ -146,19 +146,19 @@ class App extends Object_
     public $properties = null;
 
     public static function createApp($data = []) {
-        global $m_app; /* @var App $m_app */
-        global $m_classes; /* @var Classes $m_classes */
-        global $m_profiler; /* @var Profiler $m_profiler */
+        global $osm_app; /* @var App $osm_app */
+        global $osm_classes; /* @var Classes $osm_classes */
+        global $osm_profiler; /* @var Profiler $osm_profiler */
 
-        $m_classes = new Classes();
+        $osm_classes = new Classes();
 
         $data['started_at'] = microtime(true);
 
-        $m_app = $app = new static($data);
+        $osm_app = $app = new static($data);
 
         umask($app->umask);
         (new EnvironmentLoader())->load();
-        $m_profiler = env('PROFILE', false) ? new Profiler() : null;
+        $osm_profiler = env('PROFILE', false) ? new Profiler() : null;
         $elapsed = 0.0;
         $app->error_handler = new ErrorHandler();
 
@@ -172,14 +172,14 @@ class App extends Object_
                 @unlink($classFilename);
             }
             else {
-                if ($m_profiler) $m_profiler->start('classes', 'cache');
+                if ($osm_profiler) $osm_profiler->start('classes', 'cache');
                 try {
                     /** @noinspection PhpIncludeInspection */
-                    $m_classes->items = json_decode(file_get_contents($classFilename), true);
-                    $m_classes->modified = false;
+                    $osm_classes->items = json_decode(file_get_contents($classFilename), true);
+                    $osm_classes->modified = false;
                 }
                 finally {
-                    if ($m_profiler) $elapsed += $m_profiler->stop('classes');
+                    if ($osm_profiler) $elapsed += $osm_profiler->stop('classes');
                 }
             }
         }
@@ -187,23 +187,23 @@ class App extends Object_
         if (file_exists($filename)) {
             try {
                 /* @var App $app */
-                if ($m_profiler) $m_profiler->start('app', 'cache');
+                if ($osm_profiler) $osm_profiler->start('app', 'cache');
                 try {
-                    $m_app = unserialize(file_get_contents($filename));
+                    $osm_app = unserialize(file_get_contents($filename));
                 }
                 finally {
-                    if ($m_profiler) $elapsed += $m_profiler->stop('app');
+                    if ($osm_profiler) $elapsed += $osm_profiler->stop('app');
                 }
-                $m_app->set($data);
-                $m_app->error_handler = $app->error_handler;
+                $osm_app->set($data);
+                $osm_app->error_handler = $app->error_handler;
 
                 static::includeGeneratedClasses();
-                $m_app->properties = Properties::new();
-                if ($m_profiler) {
-                    $m_profiler->record(App::class . '::createApp', 'lifecycle',
-                        $m_profiler->elapsed($m_app->started_at) - $elapsed);
+                $osm_app->properties = Properties::new();
+                if ($osm_profiler) {
+                    $osm_profiler->record(App::class . '::createApp', 'lifecycle',
+                        $osm_profiler->elapsed($osm_app->started_at) - $elapsed);
                 }
-                return $m_app;
+                return $osm_app;
             }
             catch (\Throwable $e) {
                 // in case loading fast loading from cache failed, continue as if cache doesn't exist. In most
@@ -233,11 +233,11 @@ class App extends Object_
         file_put_contents(m_make_dir_for($versionFilename), Str::random(8));
         @chmod($versionFilename, $app->writable_file_permissions);
 
-        if ($m_profiler) {
-            $m_profiler->record(App::class . '::createApp', 'lifecycle',
-                $m_profiler->elapsed($app->started_at));
+        if ($osm_profiler) {
+            $osm_profiler->record(App::class . '::createApp', 'lifecycle',
+                $osm_profiler->elapsed($app->started_at));
         }
-        $m_app->properties = Properties::new();
+        $osm_app->properties = Properties::new();
 
         return $app;
     }
@@ -269,9 +269,9 @@ class App extends Object_
     }
 
     public function boot() {
-        global $m_profiler; /* @var Profiler $m_profiler */
+        global $osm_profiler; /* @var Profiler $osm_profiler */
 
-        if ($m_profiler) $m_profiler->start(__METHOD__, 'lifecycle');
+        if ($osm_profiler) $osm_profiler->start(__METHOD__, 'lifecycle');
         try {
             foreach ($this->modules as $module) {
                 $module->boot();
@@ -279,14 +279,14 @@ class App extends Object_
             return $this;
         }
         finally {
-            if ($m_profiler) $m_profiler->stop(__METHOD__);
+            if ($osm_profiler) $osm_profiler->stop(__METHOD__);
         }
     }
 
     public function terminate() {
-        global $m_profiler; /* @var Profiler $m_profiler */
+        global $osm_profiler; /* @var Profiler $osm_profiler */
 
-        if ($m_profiler) $m_profiler->start(__METHOD__, 'lifecycle');
+        if ($osm_profiler) $osm_profiler->start(__METHOD__, 'lifecycle');
         try {
             foreach ($this->modules as $module) {
                 $module->terminate();
@@ -303,31 +303,31 @@ class App extends Object_
             $this->saveClasses();
         }
         finally {
-            if ($m_profiler) $m_profiler->stop(__METHOD__);
+            if ($osm_profiler) $osm_profiler->stop(__METHOD__);
         }
 
-        if ($m_profiler) $m_profiler->terminate();
+        if ($osm_profiler) $osm_profiler->terminate();
 
         return $this;
     }
 
     protected function saveClasses() {
-        global $m_classes; /* @var Classes $m_classes */
+        global $osm_classes; /* @var Classes $osm_classes */
 
-        if ($m_classes->modified) {
+        if ($osm_classes->modified) {
             $classFilename = $this->path("{$this->temp_path}/cache/classes.json");
-            file_put_contents(m_make_dir_for($classFilename), json_encode($m_classes->items));
+            file_put_contents(m_make_dir_for($classFilename), json_encode($osm_classes->items));
             @chmod($classFilename, $this->writable_file_permissions);
-            $m_classes->modified = false;
+            $osm_classes->modified = false;
         }
     }
 
     public static function runApp($mainModule, $data) {
-        global $m_app; /* @var App $m_app */
-        global $m_profiler; /* @var Profiler $m_profiler */
+        global $osm_app; /* @var App $osm_app */
+        global $osm_profiler; /* @var Profiler $osm_profiler */
 
-        $currentApp = $m_app;
-        $currentProfiler = $m_profiler;
+        $currentApp = $osm_app;
+        $currentProfiler = $osm_profiler;
 
         try {
             $app = static::createApp($data);
@@ -345,8 +345,8 @@ class App extends Object_
             return $app;
         }
         finally {
-            $m_app = $currentApp;
-            $m_profiler = $currentProfiler;
+            $osm_app = $currentApp;
+            $osm_profiler = $currentProfiler;
         }
     }
 

@@ -48,30 +48,30 @@ class View extends Object_
     }
 
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'module': return $m_app->modules['Osm_Framework_Views'];
+            case 'module': return $osm_app->modules['Osm_Framework_Views'];
             case 'laravel_view': return $this->module->laravel_view;
-            case 'rendering': return $m_app[Rendering::class];
-            case 'iterator': return $m_app[Iterator::class];
+            case 'rendering': return $osm_app[Rendering::class];
+            case 'iterator': return $osm_app[Iterator::class];
             case 'id_': return $this->inferId();
             case 'view_model_script': return $this->getViewModelScript();
-            case 'js_config': return $m_app[JsConfig::class];
-            case 'layout': return $m_app->layout ?? Layout::new();
+            case 'js_config': return $osm_app[JsConfig::class];
+            case 'layout': return $osm_app->layout ?? Layout::new();
         }
         return parent::default($property);
     }
 
     public function __toString() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         try {
             return $this->laravel_view->render($this);
         }
         catch (\Throwable $e) {
-            if (!$m_app->pending_exception) {
-                $m_app->pending_exception = $e;
+            if (!$osm_app->pending_exception) {
+                $osm_app->pending_exception = $e;
             }
             return '';
         }

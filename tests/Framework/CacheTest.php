@@ -9,7 +9,7 @@ use Osm\Samples\Cache\Container;
 class CacheTest extends UnitTestCase
 {
     public function test_incrementally_cached_property() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         /* @var Container $container */
         $container = Container::new();
@@ -27,16 +27,16 @@ class CacheTest extends UnitTestCase
             $this->assertArrayHasKey('incremental_property', get_object_vars($container->item));
 
             // we manually commit incremental changes - normally it is done automatically during app termination
-            $m_app->cache->terminate();
+            $osm_app->cache->terminate();
 
             // if we get same object from cache again, its incremental_property is already set
             $container = Container::new();
             $this->assertArrayHasKey('incremental_property', get_object_vars($container->item));
 
-            $m_app->cache->forget('test_incremental_object');
+            $osm_app->cache->forget('test_incremental_object');
         }
         finally {
-            $m_app->cache->forget('t_key');
+            $osm_app->cache->forget('t_key');
         }
 
     }

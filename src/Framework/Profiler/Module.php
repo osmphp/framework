@@ -22,41 +22,41 @@ class Module extends BaseModule
     ];
 
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
-        global $m_profiler; /* @var Profiler $m_profiler */
+        global $osm_app; /* @var App $osm_app */
+        global $osm_profiler; /* @var Profiler $osm_profiler */
 
         switch ($property) {
-            case 'filename': return $m_app->path(
-                "{$m_app->temp_path}/profiler/{$m_profiler->getId()}.ser");
-            case 'settings': return $m_app->settings;
+            case 'filename': return $osm_app->path(
+                "{$osm_app->temp_path}/profiler/{$osm_profiler->getId()}.ser");
+            case 'settings': return $osm_app->settings;
             case 'time_to_live': return $this->settings->profiler_time_to_live * 60;
         }
         return parent::default($property);
     }
 
     public function boot() {
-        global $m_profiler; /* @var Profiler $m_profiler */
+        global $osm_profiler; /* @var Profiler $osm_profiler */
 
         parent::boot();
 
         $this->gc();
 
-        if ($m_profiler) {
-            $m_profiler->setTerminator(function() {
-                global $m_app; /* @var App $m_app */
-                global $m_profiler; /* @var Profiler $m_profiler */
+        if ($osm_profiler) {
+            $osm_profiler->setTerminator(function() {
+                global $osm_app; /* @var App $osm_app */
+                global $osm_profiler; /* @var Profiler $osm_profiler */
 
-                $m_profiler->record('total', 'total', $m_profiler->elapsed($m_app->started_at));
-                file_put_contents(m_make_dir_for($this->filename), serialize($m_profiler->getMetrics()));
+                $osm_profiler->record('total', 'total', $osm_profiler->elapsed($osm_app->started_at));
+                file_put_contents(m_make_dir_for($this->filename), serialize($osm_profiler->getMetrics()));
             });
         }
     }
 
     public function gc()
     {
-        global $m_profiler; /* @var Profiler $m_profiler */
+        global $osm_profiler; /* @var Profiler $osm_profiler */
 
-        if (!$m_profiler) {
+        if (!$osm_profiler) {
             return;
         }
 

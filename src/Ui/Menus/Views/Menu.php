@@ -25,13 +25,13 @@ use Osm\Ui\Menus\Module;
 class Menu extends View
 {
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
             case 'items_': return $this->getItems();
-            case 'module': return $m_app->modules['Osm_Ui_Menus'];
+            case 'module': return $osm_app->modules['Osm_Ui_Menus'];
             case 'item_types': return $this->module->item_types;
-            case 'sorter': return $m_app[Sorter::class];
+            case 'sorter': return $osm_app[Sorter::class];
             case 'items_can_be_checked': return $this->canItemsBeChecked();
         }
         return parent::default($property);

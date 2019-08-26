@@ -14,10 +14,10 @@ use Osm\Framework\Views\Views\Page;
 class Heading extends View
 {
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'page': return $m_app->layout->select('#page');
+            case 'page': return $osm_app->layout->select('#page');
             case 'title': return $this->page->title;
         }
         return parent::default($property);

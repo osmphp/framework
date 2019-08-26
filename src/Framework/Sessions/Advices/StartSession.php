@@ -30,12 +30,12 @@ use Symfony\Component\HttpFoundation\Response;
 class StartSession extends Advice
 {
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'area': return $m_app->area_;
-            case 'symfony_request': return $m_app->request->symfony_request;
-            case 'settings': return $m_app->settings;
+            case 'area': return $osm_app->area_;
+            case 'symfony_request': return $osm_app->request->symfony_request;
+            case 'settings': return $osm_app->settings;
             case 'time_to_live': return $this->settings->{"{$this->area->name}_session_time_to_live"};
             case 'cookie_name': return (env('APP_ENV') == 'testing' ? 'TESTING_' : '') .
                 $this->settings->{"{$this->area->name}_session_cookie_name"};
@@ -44,16 +44,16 @@ class StartSession extends Advice
             case 'cookie_secure': return $this->settings->{"{$this->area->name}_session_cookie_secure"};
             case 'cookie_http_only': return $this->settings->{"{$this->area->name}_session_cookie_http_only"};
             case 'cookie_same_site': return $this->settings->{"{$this->area->name}_session_cookie_same_site"};
-            case 'sessions': return $m_app->session_stores['main'];
+            case 'sessions': return $osm_app->session_stores['main'];
             case 'session_class': return $this->area->session_class;
         }
         return parent::default($property);
     }
 
     public function around(callable $next) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        $m_app->session = $this->load();
+        $osm_app->session = $this->load();
         $this->gc();
         $response = $next();
         $this->save($response);
@@ -69,9 +69,9 @@ class StartSession extends Advice
     }
 
     protected function save(Response $response) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        $session = $m_app->session;
+        $session = $osm_app->session;
 
         $this->sessions[$session->id] = $session;
         $response->headers->setCookie(new Cookie($this->cookie_name, $session->id,

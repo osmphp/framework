@@ -24,27 +24,27 @@ class Module extends BaseModule
     ];
 
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'laravel_manager': return $m_app->createRaw(LaravelManager::class,
-                $m_app->laravel->container);
-            case 'laravel_dispatcher': return $m_app->createRaw(Dispatcher::class,
-                $m_app->laravel->container, function ($connection = null) {
+            case 'laravel_manager': return $osm_app->createRaw(LaravelManager::class,
+                $osm_app->laravel->container);
+            case 'laravel_dispatcher': return $osm_app->createRaw(Dispatcher::class,
+                $osm_app->laravel->container, function ($connection = null) {
                     return $this->laravel_manager->connection($connection);
                 });
         }
         return parent::default($property);
     }
     public function boot() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         parent::boot();
 
-        $m_app->laravel->container->bind(CallQueuedHandler::class, function() {
-            global $m_app; /* @var App $m_app */
+        $osm_app->laravel->container->bind(CallQueuedHandler::class, function() {
+            global $osm_app; /* @var App $osm_app */
 
-            return $m_app->createRaw(CallQueuedHandler::class, $this->laravel_dispatcher);
+            return $osm_app->createRaw(CallQueuedHandler::class, $this->laravel_dispatcher);
         });
     }
 }

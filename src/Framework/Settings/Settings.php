@@ -77,9 +77,9 @@ class Settings extends CacheItem
     }
 
     protected function load() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        $this->set($m_app->config('settings'));
+        $this->set($osm_app->config('settings'));
         $this->modified();
     }
 }

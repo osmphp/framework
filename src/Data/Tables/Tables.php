@@ -21,10 +21,10 @@ class Tables extends CollectionRegistry
     public $not_found_message = "Table ':name' not found";
 
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'column_types': return $m_app->cache->remember('table_column_types', function() {
+            case 'column_types': return $osm_app->cache->remember('table_column_types', function() {
                 return ColumnTypes::new();
             });
         }

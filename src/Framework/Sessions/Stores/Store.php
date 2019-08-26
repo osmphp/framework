@@ -17,12 +17,12 @@ use Osm\Framework\Settings\Settings;
 abstract class Store extends Object_
 {
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
             case 'env': return env('APP_ENV');
-            case 'area': return $m_app->area;
-            case 'settings': return $m_app->settings;
+            case 'area': return $osm_app->area;
+            case 'settings': return $osm_app->settings;
             case 'time_to_live': return $this->settings->{"{$this->area}_session_time_to_live"};
         }
         return parent::default($property);

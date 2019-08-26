@@ -20,13 +20,13 @@ use Osm\Framework\Settings\Settings;
 class ProcessQueue extends Job
 {
     public function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'settings': return $m_app->settings;
-            case 'module': return $m_app->modules['Osm_Framework_Queues'];
-            case 'worker': return $m_app->createRaw(Worker::class, $this->module->laravel_manager,
-                $m_app->laravel->events, $m_app->laravel->exception_handler);
+            case 'settings': return $osm_app->settings;
+            case 'module': return $osm_app->modules['Osm_Framework_Queues'];
+            case 'worker': return $osm_app->createRaw(Worker::class, $this->module->laravel_manager,
+                $osm_app->laravel->events, $osm_app->laravel->exception_handler);
             case 'worker_options':
                 $options = new WorkerOptions();
                 $options->stopWhenEmpty = true;

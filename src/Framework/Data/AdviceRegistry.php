@@ -27,10 +27,10 @@ class AdviceRegistry extends CacheItem
     public $sort_by = 'sort_order';
 
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'sorter': return $m_app[Sorter::class];
+            case 'sorter': return $osm_app[Sorter::class];
             case 'advices': return $this->createAdvices();
             case 'count': return count($this->advices);
         }
@@ -66,12 +66,12 @@ class AdviceRegistry extends CacheItem
     }
 
     protected function createAdvices() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         $result = [];
 
         foreach ($this->config as $name => $data) {
-            $result[$name] = $m_app->create($this->class_, $data, $name);
+            $result[$name] = $osm_app->create($this->class_, $data, $name);
         }
 
         if ($this->sort_by) {

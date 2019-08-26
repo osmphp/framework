@@ -8,9 +8,9 @@ use Osm\Core\App;
 class Console extends Application
 {
     public function getName() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        return $m_app->settings->app_title;
+        return $osm_app->settings->app_title;
     }
 
 }

@@ -15,10 +15,10 @@ use Osm\Framework\Http\Exceptions\InvalidParameter;
 class Parameter extends Object_
 {
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'request': return $m_app->request;
+            case 'request': return $osm_app->request;
         }
         return parent::default($property);
     }

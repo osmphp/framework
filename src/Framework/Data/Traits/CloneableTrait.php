@@ -27,16 +27,16 @@ trait CloneableTrait
      * @return Object_
      */
     public function clone(...$methods) {
-        global $m_profiler; /* @var Profiler $m_profiler */
+        global $osm_profiler; /* @var Profiler $osm_profiler */
 
-        if ($m_profiler) $m_profiler->start('clone', 'helpers');
+        if ($osm_profiler) $osm_profiler->start('clone', 'helpers');
         try {
             $result = static::new([], null, $this->parent);
             $this->callMethodsOn($result, ...$methods);
             return $result;
         }
         finally {
-            if ($m_profiler) $m_profiler->stop('clone');
+            if ($osm_profiler) $osm_profiler->stop('clone');
         }
     }
 
@@ -47,9 +47,9 @@ trait CloneableTrait
      * @throws \Osm\Core\Exceptions\FactoryError
      */
     public function cloneAs($class, ...$methods) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        $result = $m_app->create($class, [], null, $this->parent);
+        $result = $osm_app->create($class, [], null, $this->parent);
         $this->callMethodsOn($result, ...$methods);
         return $result;
     }

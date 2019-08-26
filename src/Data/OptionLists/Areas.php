@@ -14,10 +14,10 @@ use Osm\Framework\Areas\Areas as AreaRegistry;
 class Areas extends OptionList
 {
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'areas': return $m_app->areas;
+            case 'areas': return $osm_app->areas;
         }
         return parent::default($property);
     }

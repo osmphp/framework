@@ -43,7 +43,7 @@ We will add, that if `.md` file is not found, we will try to find image file in 
         $module->image = $image;
 
         return Frontend::new(['route' => '/_image', 'method' => 'image'], null,
-            $m_app->area_->controllers);
+            $osm_app->area_->controllers);
     }
 
 Again, as with detecting `.md` file we introduce here new class for detecting if incoming request asks for image and if such an image exists in the `doc_root` directory. This new class will be implemented in next step.
@@ -64,16 +64,16 @@ Full content of `app/src/Docs/Traits/DetectRouteTrait.php`:
     trait DetectRouteTrait
     {
         protected function around_findController(callable $proceed) {
-            global $m_app; /* @var App $m_app */
+            global $osm_app; /* @var App $osm_app */
     
             try {
                 return $proceed();
             }
             catch (NotFound $e) {
-                $module = $m_app->modules['App_Docs']; /* @var Module $module */
-                $request = $m_app->request;
-                $pageFinder = $m_app[PageFinder::class]; /* @var PageFinder $pageFinder */
-                $imageFinder = $m_app[ImageFinder::class]; /* @var ImageFinder $imageFinder */
+                $module = $osm_app->modules['App_Docs']; /* @var Module $module */
+                $request = $osm_app->request;
+                $pageFinder = $osm_app[PageFinder::class]; /* @var PageFinder $pageFinder */
+                $imageFinder = $osm_app[ImageFinder::class]; /* @var ImageFinder $imageFinder */
     
                 if ($request->method != 'GET') {
                     throw $e;
@@ -82,14 +82,14 @@ Full content of `app/src/Docs/Traits/DetectRouteTrait.php`:
                 if ($page = $pageFinder->find($request->route)) {
                     $module->page = $page;
     
-                    return Frontend::new(['route' => '/', 'method' => 'show'], null, $m_app->area_->controllers);
+                    return Frontend::new(['route' => '/', 'method' => 'show'], null, $osm_app->area_->controllers);
                 }
     
                 if ($image = $imageFinder->findImage($request->route)) {
                     $module->image = $image;
     
                     return Frontend::new(['route' => '/_image', 'method' => 'image'], null,
-                        $m_app->area_->controllers);
+                        $osm_app->area_->controllers);
                 }
     
                 throw $e;
@@ -118,11 +118,11 @@ Full content of `app/src/Docs/Traits/DetectRouteTrait.php`:
     class ImageFinder extends Object_
     {
         protected function default($property) {
-            global $m_app; /* @var App $m_app */
+            global $osm_app; /* @var App $osm_app */
     
             switch ($property) {
                 case 'settings':
-                    return $m_app->settings;
+                    return $osm_app->settings;
                 case 'doc_root':
                     return $this->settings->doc_root;
             }
@@ -214,15 +214,15 @@ Here is a new content of `app/src/Docs/Controllers/Frontend.php`:
     class Frontend extends Controller
     {
         protected function default($property) {
-            global $m_app; /* @var App $m_app */
+            global $osm_app; /* @var App $osm_app */
     
             switch ($property) {
                 case 'module':
-                    return $m_app->modules['App_Docs'];
+                    return $osm_app->modules['App_Docs'];
                 case 'page':
                     return $this->module->page;
                 case 'responses':
-                    return $m_app[Responses::class];
+                    return $osm_app[Responses::class];
             }
     
             return parent::default($property);

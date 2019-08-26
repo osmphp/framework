@@ -6,8 +6,8 @@ use Osm\Framework\Views\View;
 /* @var \Osm\Framework\Views\View $view */
 /* @var array $tests */
 
-global $m_app;/* @var App $m_app */;
-$tests = $tests ?? $m_app->config('js_tests');
+global $osm_app;/* @var App $osm_app */;
+$tests = $tests ?? $osm_app->config('js_tests');
 ?>
 <ul>
     @foreach ($tests as $name => $test)

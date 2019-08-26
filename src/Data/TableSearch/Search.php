@@ -27,10 +27,10 @@ abstract class Search extends BaseSearch
     abstract protected function createQuery();
 
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'db': return $m_app->db;
+            case 'db': return $osm_app->db;
             case 'count': return $this->getCount();
             case 'items': return $this->getItems();
         }

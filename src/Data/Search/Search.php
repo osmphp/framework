@@ -27,10 +27,10 @@ abstract class Search extends Object_
     public $columns = [];
 
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'sheet_': return $m_app->sheets[$this->sheet];
+            case 'sheet_': return $osm_app->sheets[$this->sheet];
         }
         return parent::default($property);
     }

@@ -70,10 +70,10 @@ It is only part of the story, actually. Before and after execution of controller
 In this stack, `detect_route`, as the name implies, detects route matching incoming request. Its implementation (in `Osm\Framework\Http\Advices\DetectRoute` class) is quite simple - before calling the `$next` advice it finds the route in the array by key or throws an exception if key is not defined:
 
     public function around(callable $next) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        if (!isset($m_app->controller)) {
-            $m_app->controller = $this->findController();
+        if (!isset($osm_app->controller)) {
+            $osm_app->controller = $this->findController();
         }
 
         return $next();
@@ -178,15 +178,15 @@ Create new directory `app/src/Docs/Traits` and a file `app/src/Docs/Traits/Detec
 	trait DetectRouteTrait
 	{
 	    protected function around_findController(callable $proceed) {
-	        global $m_app; /* @var App $m_app */
+	        global $osm_app; /* @var App $osm_app */
 	
 	        try {
 	            return $proceed();
 	        }
 	        catch (NotFound $e) {
-	            $module = $m_app->modules['App_Docs']; /* @var Module $module */
-	            $request = $m_app->request;
-	            $pageFinder = $m_app[PageFinder::class]; /* @var PageFinder $pageFinder */
+	            $module = $osm_app->modules['App_Docs']; /* @var Module $module */
+	            $request = $osm_app->request;
+	            $pageFinder = $osm_app[PageFinder::class]; /* @var PageFinder $pageFinder */
 	
 	            if ($request->method != 'GET') {
 	                throw $e;
@@ -195,7 +195,7 @@ Create new directory `app/src/Docs/Traits` and a file `app/src/Docs/Traits/Detec
 	            if ($page = $pageFinder->find($request->route)) {
 	                $module->page = $page;
 	
-	                return Frontend::new(['route' => '/', 'method' => 'show'], null, $m_app->area_->controllers);
+	                return Frontend::new(['route' => '/', 'method' => 'show'], null, $osm_app->area_->controllers);
 	            }
 	
 	            throw $e;
@@ -228,11 +228,11 @@ Create new PHP class `app/src/Docs/PageFinder.php`:
 	class PageFinder extends Object_
 	{
 	    protected function default($property) {
-	        global $m_app; /* @var App $m_app */
+	        global $osm_app; /* @var App $osm_app */
 	
 	        switch ($property) {
 	            case 'settings':
-	                return $m_app->settings;
+	                return $osm_app->settings;
 	            case 'doc_root':
 	                return $this->settings->doc_root;
 	        }
@@ -340,11 +340,11 @@ In `app/src/Docs/Controllers/Frontend.php`:
 	class Frontend extends Controller
 	{
 	    protected function default($property) {
-	        global $m_app; /* @var App $m_app */
+	        global $osm_app; /* @var App $osm_app */
 	
 	        switch ($property) {
 	            case 'module':
-	                return $m_app->modules['App_Docs'];
+	                return $osm_app->modules['App_Docs'];
 	            case 'page':
 	                return $this->module->page;
 	        }

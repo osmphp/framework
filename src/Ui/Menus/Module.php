@@ -13,10 +13,10 @@ use Osm\Ui\Menus\Items\Types;
 class Module extends BaseModule
 {
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'item_types': return $m_app->cache->remember('menu_item_types', function($data) {
+            case 'item_types': return $osm_app->cache->remember('menu_item_types', function($data) {
                 return Types::new($data);
             });
         }

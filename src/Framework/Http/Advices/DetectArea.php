@@ -8,9 +8,9 @@ use Osm\Framework\Http\Advice;
 class DetectArea extends Advice
 {
     public function around(callable $next) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        $m_app->area = 'frontend';
+        $osm_app->area = 'frontend';
         return $next();
     }
 }

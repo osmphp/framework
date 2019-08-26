@@ -39,19 +39,19 @@ class Module extends BaseModule
     }
 
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'advices': return $m_app->cache->remember('http_advices', function($data) {
-                global $m_app; /* @var App $m_app */
+            case 'advices': return $osm_app->cache->remember('http_advices', function($data) {
+                global $osm_app; /* @var App $osm_app */
 
                 return Advices::new(array_merge($data, [
-                    'config' => $m_app->config('http_advices'),
+                    'config' => $osm_app->config('http_advices'),
                 ]));
             });
-            case 'responses': return $m_app[Responses::class];
-            case 'controller': return $m_app->controller;
-            case 'errors': return $m_app->cache->remember('http_errors', function($data) {
+            case 'responses': return $osm_app[Responses::class];
+            case 'controller': return $osm_app->controller;
+            case 'errors': return $osm_app->cache->remember('http_errors', function($data) {
                 return Errors::new($data);
             });
         }
@@ -59,15 +59,15 @@ class Module extends BaseModule
     }
 
     public function run() {
-        global $m_app; /* @var App $m_app */
-        global $m_profiler; /* @var Profiler $m_profiler */
+        global $osm_app; /* @var App $osm_app */
+        global $osm_profiler; /* @var Profiler $osm_profiler */
 
-        if ($m_profiler) $m_profiler->start(__METHOD__, 'lifecycle');
+        if ($osm_profiler) $osm_profiler->start(__METHOD__, 'lifecycle');
         try {
             $response = $this->advices->around(function() {
-                global $m_app; /* @var App $m_app */
+                global $osm_app; /* @var App $osm_app */
 
-                return $m_app->area_->advices_->around(function() {
+                return $osm_app->area_->advices_->around(function() {
                     $method = $this->controller->method;
                     $returns = $this->controller->returns;
 
@@ -79,17 +79,17 @@ class Module extends BaseModule
             $response = $this->exception($e);
         }
         finally {
-            if ($m_profiler) $m_profiler->stop(__METHOD__);
+            if ($osm_profiler) $osm_profiler->stop(__METHOD__);
         }
 
-        if ($e = $m_app->pending_exception) {
-            $m_app->pending_exception = null;
+        if ($e = $osm_app->pending_exception) {
+            $osm_app->pending_exception = null;
             $response = $this->exception($e);
         }
 
-        $m_app->response = $response;
+        $osm_app->response = $response;
 
-        if (!$m_app->catch_output) {
+        if (!$osm_app->catch_output) {
             $response->send();
         }
     }
@@ -103,7 +103,7 @@ class Module extends BaseModule
     }
 
     protected function error(Error $error, \Throwable $e) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         $error->e = $e;
 
@@ -112,7 +112,7 @@ class Module extends BaseModule
         }
 
         /* @var Response $response */
-        $response = $m_app->createRaw(Response::class, $error->content, $error->status, [
+        $response = $osm_app->createRaw(Response::class, $error->content, $error->status, [
             'Content-Type' => $error->content_type,
             'Status-Text' => $error->status_text,
         ]);

@@ -23,10 +23,10 @@ class Module extends BaseModule
     ];
 
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'hashings': return $m_app->cache->remember('hashings', function($data) {
+            case 'hashings': return $osm_app->cache->remember('hashings', function($data) {
                 return Hashings::new($data);
             });
         }

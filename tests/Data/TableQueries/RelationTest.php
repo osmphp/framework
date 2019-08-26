@@ -12,9 +12,9 @@ class RelationTest extends DbTestCase
      * @see \Osm\Samples\Tables\Traits\RelationsTrait for relation definition.
      */
     public function test_relations() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        $db = $m_app->db;
+        $db = $osm_app->db;
 
         $db->create('test_users', function (Blueprint $table) {
             $table->string('name')->title("Name")->required()->unique();

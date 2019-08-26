@@ -83,10 +83,10 @@ Modify the class `app/src/Docs/TagRenderer.php`:
     class TagRenderer extends Object_
     {
         protected function default($property) {
-            global $m_app; /* @var App $m_app */
+            global $osm_app; /* @var App $osm_app */
     
             switch ($property) {
-                case 'page_finder': return $m_app[PageFinder::class];
+                case 'page_finder': return $osm_app[PageFinder::class];
             }
     
             return parent::default($property);
@@ -203,11 +203,11 @@ Here is the new content of `app/src/Docs/PageFinder.php` file:
     class PageFinder extends Object_
     {
         protected function default($property) {
-            global $m_app; /* @var App $m_app */
+            global $osm_app; /* @var App $osm_app */
     
             switch ($property) {
                 case 'settings':
-                    return $m_app->settings;
+                    return $osm_app->settings;
                 case 'doc_root':
                     return $this->settings->doc_root;
             }
@@ -376,7 +376,7 @@ Let's add new `url` property to the class. Here is modified content of `app/src/
         const REPLACEMENTS = ['-', '-', '-'];
     
         protected function default($property) {
-            global $m_app; /* @var App $m_app */
+            global $osm_app; /* @var App $osm_app */
     
             switch ($property) {
                 case 'title':
@@ -391,11 +391,11 @@ Let's add new `url` property to the class. Here is modified content of `app/src/
                     return $this->url_generator->generateUrl($this);
     
                 case 'tags':
-                    return $m_app->config('doc_tags');
+                    return $osm_app->config('doc_tags');
                 case 'tag_renderer':
-                    return $m_app[TagRenderer::class];
+                    return $osm_app[TagRenderer::class];
                 case 'url_generator':
-                    return $m_app[PageUrlGenerator::class];
+                    return $osm_app[PageUrlGenerator::class];
             }
     
             return parent::default($property);
@@ -527,17 +527,17 @@ Create new PHP class `app/src/Docs/PageUrlGenerator.php`:
     class PageUrlGenerator extends Object_
     {
         protected function default($property) {
-            global $m_app; /* @var App $m_app */
+            global $osm_app; /* @var App $osm_app */
     
             switch ($property) {
                 case 'settings':
-                    return $m_app->settings;
+                    return $osm_app->settings;
                 case 'doc_root':
                     return $this->settings->doc_root;
                 case 'url_generator':
-                    return $m_app[UrlGenerator::class];
+                    return $osm_app[UrlGenerator::class];
                 case 'request':
-                    return $m_app->request;
+                    return $osm_app->request;
             }
     
             return parent::default($property);

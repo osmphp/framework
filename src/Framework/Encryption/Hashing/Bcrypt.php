@@ -13,10 +13,10 @@ class Bcrypt extends Hashing
     public $algorithm = PASSWORD_BCRYPT;
 
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'settings': return $m_app->settings;
+            case 'settings': return $osm_app->settings;
             case 'options': return [
                 'cost' => $this->settings->hashing_bcrypt_cost,
             ];

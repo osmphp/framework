@@ -28,11 +28,11 @@ class TableQuery extends Query
     use JoinTrait;
 
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'resolver': return $m_app[Resolver::class];
-            case 'generator': return $m_app[Generator::class];
+            case 'resolver': return $osm_app[Resolver::class];
+            case 'generator': return $osm_app[Generator::class];
         }
 
         return parent::default($property);

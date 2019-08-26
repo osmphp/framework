@@ -14,11 +14,11 @@ abstract class TestCase extends BaseTestCase
     public static $app_instance;
 
     public function __get($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
             case 'module':
-                return $m_app->modules['Osm_Framework_Testing'];
+                return $osm_app->modules['Osm_Framework_Testing'];
         }
 
         return null;

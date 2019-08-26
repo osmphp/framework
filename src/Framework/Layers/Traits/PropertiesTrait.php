@@ -12,25 +12,25 @@ use Monolog\Logger;
 trait PropertiesTrait
 {
     public function Osm_Framework_Logging_Logs__layers(Logs $logs) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         // create new logging channel
         $logger = new Logger('layers');
 
-        if (!$m_app->settings->log_layers) {
+        if (!$osm_app->settings->log_layers) {
             return $logger->pushHandler(new NullHandler());
         }
 
         // write each included layer file to temp/ENV/log/layers/UNIQUE_FILENAME.log
-        $logger->pushHandler($handler = new StreamHandler($m_app->path(
-            "{$m_app->temp_path}/log/layers/{$logs->unique_filename}")));
+        $logger->pushHandler($handler = new StreamHandler($osm_app->path(
+            "{$osm_app->temp_path}/log/layers/{$logs->unique_filename}")));
 
         // write file name and file contents of each reported layer file
         $handler->setFormatter(new LineFormatter("# %context.filename% \n\n%extra.contents%\n\n",
             LineFormatter::SIMPLE_FORMAT, true));
 
         // as user code only provides file name, add file contents to log record using processor
-        $logger->pushProcessor(function($record) use ($m_app) {
+        $logger->pushProcessor(function($record) use ($osm_app) {
             $record['extra']['contents'] = file_get_contents($record['context']['filename']);
 
             return $record;

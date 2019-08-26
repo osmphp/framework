@@ -11,10 +11,10 @@ use Osm\Core\Object_;
 class ModuleHelper extends Object_
 {
     public function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'modules': return $m_app->modules;
+            case 'modules': return $osm_app->modules;
         }
         return parent::default($property);
     }

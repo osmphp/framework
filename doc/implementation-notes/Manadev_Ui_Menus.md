@@ -20,7 +20,7 @@ Keeping same configuration and similar PHP/JS API for popup menus and menus bars
 
 ### Menu Item Types ###
 
-`$m_app->modules['Osm_Ui_Menus']->item_types` is a registry of all types of menu items which can be added to menu bars or popup menus.
+`$osm_app->modules['Osm_Ui_Menus']->item_types` is a registry of all types of menu items which can be added to menu bars or popup menus.
 
 This registry is used internally by menu bar and popup menu views. When instantiating the menu bar or popup menu view, you list the items to be shown in menu and among other things specify the type of each menu item. Based on type of the item, the view knows how to prepare item data for display and how to display each item.
 

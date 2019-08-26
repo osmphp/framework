@@ -15,20 +15,20 @@ use Osm\Framework\Http\Request;
 class DetectRoute extends Advice
 {
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'request': return $m_app->request;
-            case 'area': return $m_app->area_;
+            case 'request': return $osm_app->request;
+            case 'area': return $osm_app->area_;
         }
         return parent::default($property);
     }
 
     public function around(callable $next) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        if (!isset($m_app->controller)) {
-            $m_app->controller = $this->findController();
+        if (!isset($osm_app->controller)) {
+            $osm_app->controller = $this->findController();
         }
 
         return $next();

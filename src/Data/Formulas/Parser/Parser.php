@@ -45,13 +45,13 @@ class Parser extends Object_
     protected $regex_parser_cache = [];
 
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
             case 'scanner': return Scanner::new([], null, $this);
-            case 'cache': return $m_app->cache;
-            case 'types': return $m_app[Types::class];
-            case 'parameter_filler': return $m_app[ParameterFiller::class];
+            case 'cache': return $osm_app->cache;
+            case 'types': return $osm_app[Types::class];
+            case 'parameter_filler': return $osm_app[ParameterFiller::class];
             case 'operators': return [
                 Formula::LOGICAL_OR => [
                     'tokens' => [Token::OR_ => true],
@@ -154,9 +154,9 @@ class Parser extends Object_
     }
 
     protected function parse($text, &$parameters, $as) {
-        global $m_profiler; /* @var Profiler $m_profiler */
+        global $osm_profiler; /* @var Profiler $osm_profiler */
 
-        if ($m_profiler) $m_profiler->start(__METHOD__, 'formulas');
+        if ($osm_profiler) $osm_profiler->start(__METHOD__, 'formulas');
         try {
             if ($result = $this->parseUsingRegex($text, $as)) {
                 return $result;
@@ -198,7 +198,7 @@ class Parser extends Object_
             return $cacheItem->formula;
         }
         finally {
-            if ($m_profiler) $m_profiler->stop(__METHOD__);
+            if ($osm_profiler) $osm_profiler->stop(__METHOD__);
         }
     }
 

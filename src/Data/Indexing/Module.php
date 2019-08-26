@@ -30,10 +30,10 @@ class Module extends BaseModule
     ];
 
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'indexing': return $m_app[Indexing::class];
+            case 'indexing': return $osm_app[Indexing::class];
         }
         return parent::default($property);
     }

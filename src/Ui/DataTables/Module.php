@@ -11,10 +11,10 @@ use Osm\Core\Modules\BaseModule;
 class Module extends BaseModule
 {
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'column_types': return $m_app->cache->remember('data_table_column_types', function() use ($m_app) {
+            case 'column_types': return $osm_app->cache->remember('data_table_column_types', function() use ($osm_app) {
                 return ColumnTypes::new();
             });
         }

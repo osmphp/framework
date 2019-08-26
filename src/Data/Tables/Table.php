@@ -30,14 +30,14 @@ use Osm\Data\Tables\Columns\Schema as ColumnSchema;
 class Table extends Object_
 {
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
             case 'columns': return $this->getColumns();
             case 'partitions': return $this->getPartitions();
             case 'keys': return $this->db->getKeys($this);
-            case 'column_schema': return $m_app[ColumnSchema::class];
-            case 'command_runner': return $m_app[Commands\Runner::class];
+            case 'column_schema': return $osm_app[ColumnSchema::class];
+            case 'command_runner': return $osm_app[Commands\Runner::class];
         }
 
         return parent::default($property);
@@ -56,13 +56,13 @@ class Table extends Object_
     }
 
     protected function getColumns() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         if (!$this->parent || !$this->parent->cache_key) {
             return null;
         }
 
-        $result = $m_app->cache->remember("{$this->parent->cache_key}.{$this->name}",
+        $result = $osm_app->cache->remember("{$this->parent->cache_key}.{$this->name}",
             function($data) {
                 return Columns::new($data);
             }, [$this->parent->cache_key]);

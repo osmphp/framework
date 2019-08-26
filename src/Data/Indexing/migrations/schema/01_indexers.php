@@ -13,10 +13,10 @@ use Osm\Framework\Migrations\Migration;
 class Indexers extends Migration
 {
     public function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'table': return $m_app->db->tables['indexers'];
+            case 'table': return $osm_app->db->tables['indexers'];
         }
         return parent::default($property);
     }

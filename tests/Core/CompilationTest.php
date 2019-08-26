@@ -24,8 +24,8 @@ class CompilationTest extends UnitTestCase
     }
 
     public function test_that_hints_add_properties() {
-        global $m_classes; /* @var Classes $m_classes */
+        global $osm_classes; /* @var Classes $osm_classes */
 
-        $this->assertTrue($m_classes->get(App::class)['properties']['t_custom_property']['required']);
+        $this->assertTrue($osm_classes->get(App::class)['properties']['t_custom_property']['required']);
     }
 }

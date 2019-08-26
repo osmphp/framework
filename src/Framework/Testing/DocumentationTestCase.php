@@ -47,13 +47,13 @@ abstract class DocumentationTestCase extends TestCase
     }
 
     protected function getThisPackage($filename) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        $this->assertTrue(strpos($filename, $m_app->base_path) === 0,
+        $this->assertTrue(strpos($filename, $osm_app->base_path) === 0,
             "Documentation tests should be within project directory.");
-        $filename = substr($filename, strlen($m_app->base_path) + 1);
+        $filename = substr($filename, strlen($osm_app->base_path) + 1);
 
-        foreach ($m_app->packages as $package) {
+        foreach ($osm_app->packages as $package) {
             if (strpos($filename, $package->path) === 0) {
                 return $package;
             }

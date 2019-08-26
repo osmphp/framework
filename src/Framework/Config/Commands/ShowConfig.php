@@ -12,10 +12,10 @@ use Osm\Framework\Console\Command;
 class ShowConfig extends Command
 {
     public function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'modules': return $m_app->modules;
+            case 'modules': return $osm_app->modules;
         }
 
         return parent::default($property);
@@ -31,11 +31,11 @@ class ShowConfig extends Command
     }
 
     protected function listConfigurationFiles() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         $filenames = [];
         foreach ($this->modules as $module) {
-            if (!is_dir($m_app->path("{$module->path}/config"))) {
+            if (!is_dir($osm_app->path("{$module->path}/config"))) {
                 continue;
             }
 
@@ -50,9 +50,9 @@ class ShowConfig extends Command
     }
 
     protected function collectConfigurationFiles(&$filenames, BaseModule $module, $path = '') {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        foreach (new \DirectoryIterator($m_app->path("{$module->path}/config" .
+        foreach (new \DirectoryIterator($osm_app->path("{$module->path}/config" .
             ($path ? "/$path" : ''))) as $fileInfo)
         {
             if ($fileInfo->isDot()) {
@@ -75,9 +75,9 @@ class ShowConfig extends Command
     }
 
     protected function showConfig($path) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        $this->output->writeln($this->beautify(var_export($m_app->config($path), true)));
+        $this->output->writeln($this->beautify(var_export($osm_app->config($path), true)));
     }
 
     protected function beautify($dump) {

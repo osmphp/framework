@@ -16,10 +16,10 @@ class Module extends BaseModule
     ];
 
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'current': return $m_app[Current::class];
+            case 'current': return $osm_app[Current::class];
         }
         return parent::default($property);
     }

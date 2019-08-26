@@ -11,10 +11,10 @@ use Osm\Core\Modules\BaseModule;
 class Module extends BaseModule
 {
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'hooks': return $m_app->cache->remember("composer_hooks", function($data) {
+            case 'hooks': return $osm_app->cache->remember("composer_hooks", function($data) {
                 return Hooks::new($data);
             });
         }

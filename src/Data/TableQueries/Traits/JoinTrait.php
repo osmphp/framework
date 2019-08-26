@@ -94,9 +94,9 @@ trait JoinTrait
     }
 
     protected function explodeByAsKeyword($expr) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        $parser = $m_app[AliasParser::class]; /* @var AliasParser $parser*/
+        $parser = $osm_app[AliasParser::class]; /* @var AliasParser $parser*/
         return $parser->parse($expr);
     }
 

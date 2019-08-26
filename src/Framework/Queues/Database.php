@@ -14,14 +14,14 @@ use Osm\Framework\Db\Db;
 class Database extends Queue
 {
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'db': return $m_app->db;
-            case 'laravel_container': return $m_app->laravel->container;
+            case 'db': return $osm_app->db;
+            case 'laravel_container': return $osm_app->laravel->container;
             case 'laravel_queue':
                 /* @var DatabaseQueue $queue */
-                $queue = $m_app->createRaw(DatabaseQueue::class, $this->db->connection,
+                $queue = $osm_app->createRaw(DatabaseQueue::class, $this->db->connection,
                     'jobs', 'default', 60);
                 $queue->setContainer($this->laravel_container);
                 return $queue;

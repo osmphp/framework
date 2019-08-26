@@ -23,9 +23,9 @@ class CacheItem extends Object_
     }
 
     public function __destruct() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        if ($m_app && $this->cache) {
+        if ($osm_app && $this->cache) {
             $this->cache->terminateItem($this);
         }
     }

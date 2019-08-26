@@ -19,11 +19,11 @@ class Module extends BaseModule
     public $short_name = 'testing';
 
     public function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
             case 'suites': return TestSuites::new();
-            case 'browsers': return $m_app->config('test_browsers');
+            case 'browsers': return $osm_app->config('test_browsers');
         }
         return parent::default($property);
     }

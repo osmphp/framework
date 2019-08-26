@@ -9,21 +9,21 @@ use Osm\Core\Object_;
 class PackageLoader extends Object_
 {
     public function load() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         $result = [];
 
-        foreach (glob($m_app->path('vendor/*/*/composer.json')) as $filename) {
+        foreach (glob($osm_app->path('vendor/*/*/composer.json')) as $filename) {
             $this->loadPackage($result, $filename);
         }
 
-        $this->loadPackage($result, $m_app->path('composer.json'), ['project' => true]);
+        $this->loadPackage($result, $osm_app->path('composer.json'), ['project' => true]);
 
         return $result;
     }
 
     protected function loadPackage(&$result, $filename, $data = []) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         $json = json_decode(file_get_contents($filename), true);
 
@@ -38,9 +38,9 @@ class PackageLoader extends Object_
         /* @var Package $package */
         $result[$json['name']] = $package = Package::new(array_merge($data, [
             'path' => str_replace('\\', '/',
-                substr(dirname($filename), strlen($m_app->base_path) + 1)),
+                substr(dirname($filename), strlen($osm_app->base_path) + 1)),
             'class' => $config['class'] ?? null
-        ]), $json['name'], $m_app);
+        ]), $json['name'], $osm_app);
 
         $package->namespaces = $this->loadNamespaces($json);
         $package->component_pools = $this->loadComponentPools($package, $config['component_pools'] ?? []);

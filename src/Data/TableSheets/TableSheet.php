@@ -13,11 +13,11 @@ use Osm\Data\Tables\Table;
 class TableSheet extends Sheet
 {
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
             case 'table': return $this->name;
-            case 'table_': return $m_app->db->tables[$this->table];
+            case 'table_': return $osm_app->db->tables[$this->table];
         }
 
         return parent::default($property);

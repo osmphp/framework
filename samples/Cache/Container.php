@@ -11,10 +11,10 @@ use Osm\Core\Object_;
 class Container extends Object_
 {
     public function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'item': return $m_app->cache->remember('test_incremental_object', function($data) {
+            case 'item': return $osm_app->cache->remember('test_incremental_object', function($data) {
                 return IncrementalObject::new($data, null, $this);
             });
         }

@@ -47,8 +47,8 @@ If additional arguments are needed, consider using [`@temp` properties](../prope
 
 Instantiate handler class as a singleton, and use its public method on any `Shape`:
 
-	global $m_app; /* @var App $m_app */
-	$renderer = $m_app[ShapeRenderer::class];
+	global $osm_app; /* @var App $osm_app */
+	$renderer = $osm_app[ShapeRenderer::class];
 
 	$shapes = [
 		Shape::new(['type' => Shape::CIRCLE, 'radius' => 5.0]), 

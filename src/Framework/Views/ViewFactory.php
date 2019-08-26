@@ -18,8 +18,8 @@ class ViewFactory extends Factory
     }
 
     public function render($view, $data = []) {
-        global $m_app; /* @var App $m_app */
-        global $m_profiler; /* @var Profiler $m_profiler */
+        global $osm_app; /* @var App $osm_app */
+        global $osm_profiler; /* @var Profiler $osm_profiler */
 
         $view_ = null;
         if ($view instanceof View) {
@@ -30,7 +30,7 @@ class ViewFactory extends Factory
             $view_ = $data['view'];
         }
 
-        if ($m_profiler) $m_profiler->start($view, 'views');
+        if ($osm_profiler) $osm_profiler->start($view, 'views');
         try {
             $path = $this->finder->find($this->normalizeName($view));
             $engine = $this->getEngineFromPath($path);
@@ -40,7 +40,7 @@ class ViewFactory extends Factory
             }
 
             /* @var Rendering $rendering */
-            $rendering = $m_app[Rendering::class];
+            $rendering = $osm_app[Rendering::class];
 
             $currentView = $rendering->current_view;
             $rendering->current_view = $view_;
@@ -53,7 +53,7 @@ class ViewFactory extends Factory
             }
         }
         finally {
-            if ($m_profiler) $m_profiler->stop($view);
+            if ($osm_profiler) $osm_profiler->stop($view);
         }
     }
 
@@ -71,9 +71,9 @@ class ViewFactory extends Factory
 
     protected function viewInstance($view, $path, $data)
     {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        return $m_app->createRaw(LaravelView::class, $this,
+        return $osm_app->createRaw(LaravelView::class, $this,
             $this->getEngineFromPath($path), $view, $path, $data);
     }
 

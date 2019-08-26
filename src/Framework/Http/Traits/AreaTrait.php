@@ -11,13 +11,13 @@ use Osm\Framework\Http\Parameters;
 trait AreaTrait
 {
     protected function around_default(callable $proceed, $property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         /* @var Area $area */
         $area = $this;
 
         switch ($property) {
-            case 'advices_': return $m_app->cache->remember("http_advices.{$area->name}", function($data) use ($area) {
+            case 'advices_': return $osm_app->cache->remember("http_advices.{$area->name}", function($data) use ($area) {
                 $definitions = [];
 
                 for (;$area; $area = $area->parent_area_) {
@@ -26,7 +26,7 @@ trait AreaTrait
 
                 return Advices::new(array_merge($data, ['config' => $definitions]));
             });
-            case 'controllers': return $m_app->cache->remember("routes.{$area->name}", function($data) {
+            case 'controllers': return $osm_app->cache->remember("routes.{$area->name}", function($data) {
                 return Controllers::new(array_merge($data, ['area' => $this->name]));
             });
             case 'parameters_':
@@ -40,7 +40,7 @@ trait AreaTrait
             case 'query':
                 $parsedQuery = [];
                 foreach ($area->parameters_ as $parameter) {
-                    if (($value = $parameter->parse($m_app->request->query)) !== null) {
+                    if (($value = $parameter->parse($osm_app->request->query)) !== null) {
                         $parsedQuery[$parameter->name] = $value;
                     }
                 }

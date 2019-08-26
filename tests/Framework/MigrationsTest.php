@@ -10,9 +10,9 @@ use Osm\Framework\Testing\Tests\UnitTestCase;
 class MigrationsTest extends UnitTestCase
 {
     public function test_basic_schema_operations() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        $schema = $m_app->db->schema;
+        $schema = $osm_app->db->schema;
 
         $schema->create('test_raw', function(Blueprint $table) {
             $table->increments('id');
@@ -24,9 +24,9 @@ class MigrationsTest extends UnitTestCase
     }
 
     public function test_raw_schema_migration() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        $schema = $m_app->db->schema;
+        $schema = $osm_app->db->schema;
 
         /* @var Migrator $migrator */
         $migrator = Migrator::new(['modules' => ['Osm_Samples_Migrations']]);

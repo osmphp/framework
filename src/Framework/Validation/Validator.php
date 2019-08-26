@@ -21,10 +21,10 @@ class Validator extends Object_
     protected $type_cache = [];
 
     protected function default($property) {
-        global $m_app;/* @var App $m_app */
+        global $osm_app;/* @var App $osm_app */
 
         switch ($property) {
-            case 'patterns': return $m_app[Patterns::class];
+            case 'patterns': return $osm_app[Patterns::class];
         }
 
         return parent::default($property);
@@ -141,7 +141,7 @@ class Validator extends Object_
     }
 
     protected function validateClass($data, $class, $path) {
-        global $m_classes; /* @var Classes $m_classes */
+        global $osm_classes; /* @var Classes $osm_classes */
 
         if (is_array($data)) {
             if (!empty($data) && is_int(array_first(array_keys($data)))) {
@@ -155,7 +155,7 @@ class Validator extends Object_
         }
 
         while ($class) {
-            $class_ = $m_classes->get($class);
+            $class_ = $osm_classes->get($class);
             foreach ($class_['properties'] as $property => $property_) {
                 if (($value = $this->doValidate($data->$property ?? null, $property_,
                     "$path/$property")) !== null)

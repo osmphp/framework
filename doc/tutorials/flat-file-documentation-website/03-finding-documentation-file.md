@@ -101,15 +101,15 @@ Here is updated content of `app/src/Docs/Controllers/Frontend.php` file:
     class Frontend extends Controller
     {
         protected function default($property) {
-            global $m_app; /* @var App $m_app */
+            global $osm_app; /* @var App $osm_app */
     
             switch ($property) {
                 case 'settings':
-                    return $m_app->settings;
+                    return $osm_app->settings;
                 case 'doc_root':
                     return $this->settings->doc_root;
                 case 'url':
-                    return $m_app->query['page'];
+                    return $osm_app->query['page'];
             }
     
             return parent::default($property);
@@ -173,9 +173,9 @@ should be accessed multiple times.
 In Dubysa it is common to use [properties, calculated on first access (AKA lazy properties)](../../architecture/properties#properties-calculated-on-first-access-aka-lazy-properties).
 
 After HTTP route is processed, all query parameters are stored in `query` property of 
-[global application object `$m_app`](../../architecture/modules/standard-classes-and-objects#$m_app).
+[global application object `$osm_app`](../../architecture/modules/standard-classes-and-objects#$osm_app).
 
-Property `page` value is retrieved from array of preprocessed HTTP query parameters by parameter name: `$m_app->query['page']`.
+Property `page` value is retrieved from array of preprocessed HTTP query parameters by parameter name: `$osm_app->query['page']`.
 
 The main logic of finding documentation file by `page` parameter value is implemented in `findFile()` function.
 We are processing all possible patterns of finding the file described above.

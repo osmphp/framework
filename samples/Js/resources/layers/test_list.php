@@ -3,7 +3,7 @@
 use Osm\Core\App;
 use Osm\Framework\Views\View;
 
-global $m_app; /* @var App $m_app */;
+global $osm_app; /* @var App $osm_app */;
 
 return [
     '@include' => ['base'],

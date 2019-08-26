@@ -15,9 +15,9 @@ class Promise
     }
 
     public function get($method = null) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        $object = $this->object ? $m_app->{$this->object} : $m_app;
+        $object = $this->object ? $osm_app->{$this->object} : $osm_app;
         if (!$method) {
             $method = $this->method;
         }
@@ -29,14 +29,14 @@ class Promise
      * @return string
      */
     public function __toString() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         try {
             return $this->get();
         }
         catch (\Throwable $e) {
-            if (!$m_app->pending_exception) {
-                $m_app->pending_exception = $e;
+            if (!$osm_app->pending_exception) {
+                $osm_app->pending_exception = $e;
             }
             return '';
         }

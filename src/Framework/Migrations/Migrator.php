@@ -39,16 +39,16 @@ use Osm\Framework\Db\Db;
 class Migrator extends Object_
 {
     public function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
             case 'steps': return ['schema', 'data'];
             case 'modules_':
                 return empty($this->modules)
-                    ? $m_app->modules
+                    ? $osm_app->modules
                     : $this->module_helper->getModulesAndDependencies($this->modules);
-            case 'module_helper': return $m_app[ModuleHelper::class];
-            case 'db': return $m_app->db;
+            case 'module_helper': return $osm_app[ModuleHelper::class];
+            case 'db': return $osm_app->db;
         }
         return parent::default($property);
     }
@@ -91,11 +91,11 @@ class Migrator extends Object_
     }
 
     protected function migrateStep() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         foreach ($this->modules_ as $module) {
             $this->module = $module;
-            $this->path = $m_app->path("{$module->path}/migrations/{$this->step}");
+            $this->path = $osm_app->path("{$module->path}/migrations/{$this->step}");
             if (!is_dir($this->path)) {
                 continue;
             }
@@ -105,7 +105,7 @@ class Migrator extends Object_
     }
 
     protected function migrateModule() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         foreach ($this->getMigrationFiles() as $name => $filename) {
             if ($this->isProcessed($name)) {
@@ -118,7 +118,7 @@ class Migrator extends Object_
             require_once $filename;
 
             $this->name = $name;
-            $this->instance = $m_app->create($this->getClassName($name), ['db' => $this->db]);
+            $this->instance = $osm_app->create($this->getClassName($name), ['db' => $this->db]);
             $this->migrateFile();
         }
     }
@@ -151,11 +151,11 @@ class Migrator extends Object_
     }
 
     protected function migrateStepBack() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         foreach (array_reverse($this->modules_) as $module) {
             $this->module = $module;
-            $this->path = $m_app->path("{$module->path}/migrations/{$this->step}");
+            $this->path = $osm_app->path("{$module->path}/migrations/{$this->step}");
             if (!is_dir($this->path)) {
                 continue;
             }
@@ -165,16 +165,16 @@ class Migrator extends Object_
     }
 
     protected function migrateModuleBack() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         foreach ($this->getAllModuleMigrations() as $name) {
             $this->files_processed++;
 
             /** @noinspection PhpIncludeInspection */
-            require_once $m_app->path("{$this->module->path}/migrations/{$this->step}/{$name}.php");
+            require_once $osm_app->path("{$this->module->path}/migrations/{$this->step}/{$name}.php");
 
             $this->name = $name;
-            $this->instance = $m_app->create($this->getClassName($name), ['db' => $this->db]);
+            $this->instance = $osm_app->create($this->getClassName($name), ['db' => $this->db]);
             $this->migrateFileBack();
         }
     }

@@ -9,9 +9,9 @@ use Osm\Data\Tables\Blueprint;
 class TempTableTest extends DbTestCase
 {
     public function test_creation_and_querying() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        $db = $m_app->db;
+        $db = $osm_app->db;
 
         $table = $db->temp(function (Blueprint $table) {
             $table->int('id')->unsigned()->title("ID");

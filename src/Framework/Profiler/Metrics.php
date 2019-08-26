@@ -16,10 +16,10 @@ use Osm\Framework\Http\Exceptions\NotFound;
 class Metrics extends Object_
 {
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'filename': return $m_app->path("{$m_app->temp_path}/profiler/{$this->id}.ser");
+            case 'filename': return $osm_app->path("{$osm_app->temp_path}/profiler/{$this->id}.ser");
             case 'data':
                 if (!file_exists($this->filename)) {
                     throw new NotFound(m_("Profile ':id' no longer exists", ['id' => $this->id]));

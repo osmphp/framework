@@ -12,11 +12,11 @@ use Osm\Framework\Env\File;
 class Env extends Command
 {
     public function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'file': return $m_app->createRaw(File::class,
-                $m_app->path("{$m_app->environment_path}/.env"));
+            case 'file': return $osm_app->createRaw(File::class,
+                $osm_app->path("{$osm_app->environment_path}/.env"));
         }
         return parent::default($property);
     }

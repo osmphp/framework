@@ -17,21 +17,21 @@ use Osm\Data\Sheets\Query as SheetQuery;
 class Query extends Object_
 {
     public function __get($property) {
-        global $m_app; /* @var App $app */
-        global $m_profiler; /* @var Profiler $m_profiler */
+        global $osm_app; /* @var App $app */
+        global $osm_profiler; /* @var Profiler $osm_profiler */
 
         switch ($property) {
             case '__items':
-                if ($m_profiler) $m_profiler->start(__METHOD__, 'urls');
+                if ($osm_profiler) $osm_profiler->start(__METHOD__, 'urls');
                 try {
-                    if ($m_app->controller) {
-                        return $this->__items = $m_app->controller->query;
+                    if ($osm_app->controller) {
+                        return $this->__items = $osm_app->controller->query;
                     }
 
-                    return $m_app->area ? $m_app->area_->query : [];
+                    return $osm_app->area ? $osm_app->area_->query : [];
                 }
                 finally {
-                    if ($m_profiler) $m_profiler->stop(__METHOD__);
+                    if ($osm_profiler) $osm_profiler->stop(__METHOD__);
                 }
         }
 

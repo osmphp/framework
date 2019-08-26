@@ -11,13 +11,13 @@ class EnvironmentLoader extends Object_
 {
     public static $overloaded = false;
     public function load() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         try {
-            (new Dotenv($m_app->path($m_app->environment_path), '.env'))->load();
+            (new Dotenv($osm_app->path($osm_app->environment_path), '.env'))->load();
 
             if ($overload = $this->detectOverload()) {
-                (new Dotenv($m_app->path($m_app->environment_path), ".env.{$overload}"))->overload();
+                (new Dotenv($osm_app->path($osm_app->environment_path), ".env.{$overload}"))->overload();
             }
         } catch (InvalidPathException $e) {
             // ignore
@@ -25,7 +25,7 @@ class EnvironmentLoader extends Object_
     }
 
     protected function detectOverload() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         if (static::$overloaded) {
             return null;
@@ -36,6 +36,6 @@ class EnvironmentLoader extends Object_
             return null;
         }
 
-        return $m_app->env;
+        return $osm_app->env;
     }
 }

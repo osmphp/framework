@@ -13,16 +13,16 @@ use Osm\Core\Modules\BaseModule;
 class Module extends BaseModule
 {
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'questions': return $m_app->cache->remember("installation_questions", function($data) {
+            case 'questions': return $osm_app->cache->remember("installation_questions", function($data) {
                 return Questions::new($data);
             });
-            case 'steps': return $m_app->cache->remember("installation_steps", function($data) {
+            case 'steps': return $osm_app->cache->remember("installation_steps", function($data) {
                 return Steps::new($data);
             });
-            case 'requirements': return $m_app->cache->remember("installation_requirements", function($data) {
+            case 'requirements': return $osm_app->cache->remember("installation_requirements", function($data) {
                 return Requirements::new($data);
             });
         }

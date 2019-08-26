@@ -9,11 +9,11 @@ use Osm\Framework\Db\Db;
 trait PropertiesTrait
 {
     public function Osm_Framework_Db_Db__tables(Db $db) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         /* @var Tables $result */
         $cacheKey = "tables.{$db->name}";
-        $result = $m_app->cache->remember($cacheKey, function($data) {
+        $result = $osm_app->cache->remember($cacheKey, function($data) {
             return Tables::new($data);
         });
 

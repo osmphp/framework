@@ -15,11 +15,11 @@ use Osm\Framework\Cron\Jobs;
 class Process extends Command
 {
     public function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
             case 'now': return Carbon::now();
-            case 'jobs': return $m_app->cron_jobs;
+            case 'jobs': return $osm_app->cron_jobs;
 
         }
         return parent::default($property);

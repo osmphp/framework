@@ -14,10 +14,10 @@ use Symfony\Component\DomCrawler\Crawler;
 class Document extends BaseDocument
 {
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'crawler': return $m_app->createRaw(Crawler::class, $this->html);
+            case 'crawler': return $osm_app->createRaw(Crawler::class, $this->html);
         }
         return parent::default($property);
     }

@@ -22,10 +22,10 @@ class Compiler extends Object_
     public $classes = [];
 
     public function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'filename': return m_path("{$m_app->temp_path}/cache/classes.php");
+            case 'filename': return m_path("{$osm_app->temp_path}/cache/classes.php");
             case 'weaver': return Weaver::new(['parent' => $this]);
             case 'generator': return Generator::new(['parent' => $this]);
         }
@@ -38,7 +38,7 @@ class Compiler extends Object_
     }
 
     public function compile() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         $this->collectTraits();
         $this->collectClasses();
@@ -49,16 +49,16 @@ class Compiler extends Object_
         $this->removeUnaffectedClasses();
         $this->generateClasses();
 
-        $m_app->class_names = array_map(function(Class_ $class) {
+        $osm_app->class_names = array_map(function(Class_ $class) {
             return $class->generated_name;
         }, $this->classes);
-        $m_app->modified();
+        $osm_app->modified();
     }
 
     protected function collectTraits() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        foreach ($m_app->modules as $module) {
+        foreach ($osm_app->modules as $module) {
             if (!$module->traits) {
                 continue;
             }
@@ -79,17 +79,17 @@ class Compiler extends Object_
     }
 
     protected function collectClasses() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        foreach ($m_app->modules as $module) {
+        foreach ($osm_app->modules as $module) {
             $this->collectModuleClasses($module, '');
         }
     }
 
     protected function collectModuleClasses(BaseModule $module, $path) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        foreach (new \DirectoryIterator($m_app->path($module->path .($path ? "/$path" : ''))) as $fileInfo)
+        foreach (new \DirectoryIterator($osm_app->path($module->path .($path ? "/$path" : ''))) as $fileInfo)
         {
             if ($fileInfo->isDot()) {
                 continue;
@@ -153,7 +153,7 @@ class Compiler extends Object_
     }
 
     protected function generateClasses() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         $output = "<?php\n\n";
 
@@ -166,7 +166,7 @@ class Compiler extends Object_
         }
 
         file_put_contents(m_make_dir_for($this->filename), $output);
-        @chmod($this->filename, $m_app->writable_file_permissions);
+        @chmod($this->filename, $osm_app->writable_file_permissions);
     }
 
     protected function generateClass($class) {
@@ -182,17 +182,17 @@ class Compiler extends Object_
     }
 
     protected function addHintsToClasses() {
-        global $m_classes; /* @var Classes $m_classes */
+        global $osm_classes; /* @var Classes $osm_classes */
 
         foreach (array_keys($this->classes) as $class) {
-            $hint = $m_classes->get($class);
+            $hint = $osm_classes->get($class);
             if (!$hint['hint']) {
                 continue;
             }
 
             $parent = $hint['parent'];
             while ($parent) {
-                $parent_ = &$m_classes->get($parent);
+                $parent_ = &$osm_classes->get($parent);
                 if ($parent_['hint']) {
                     $parent = $parent_['parent'];
                     continue;
@@ -205,15 +205,15 @@ class Compiler extends Object_
     }
 
     protected function propagateHints() {
-        global $m_classes; /* @var Classes $m_classes */
+        global $osm_classes; /* @var Classes $osm_classes */
 
-        foreach ($m_classes->items as &$class) {
+        foreach ($osm_classes->items as &$class) {
             $this->propagateHintsInClass($class);
         }
     }
 
     protected function propagateHintsInClass(&$class) {
-        global $m_classes; /* @var Classes $m_classes */
+        global $osm_classes; /* @var Classes $osm_classes */
 
         if ($class['hint']) {
             $class['hints'] = [];
@@ -229,21 +229,21 @@ class Compiler extends Object_
             return;
         }
 
-        $parent = &$m_classes->get($class['parent']);
+        $parent = &$osm_classes->get($class['parent']);
         $this->propagateHintsInClass($parent);
 
         $class['hints'] = array_merge($class['direct_hints'], $parent['hints']);
     }
 
     protected function defineHintProperties() {
-        global $m_classes; /* @var Classes $m_classes */
-        foreach ($m_classes->items as &$class) {
+        global $osm_classes; /* @var Classes $osm_classes */
+        foreach ($osm_classes->items as &$class) {
             if (!isset($class['hints'])) {
                 continue;
             }
 
             foreach ($class['hints'] as $hint) {
-                $class['properties'] = array_merge($class['properties'], $m_classes->get($hint)['properties']);
+                $class['properties'] = array_merge($class['properties'], $osm_classes->get($hint)['properties']);
             }
         }
     }

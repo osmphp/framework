@@ -46,15 +46,15 @@ Modify `app/src/Docs/Controllers/Frontend.php`
     class Frontend extends Controller
     {
         protected function default($property) {
-            global $m_app; /* @var App $m_app */
+            global $osm_app; /* @var App $osm_app */
     
             switch ($property) {
                 case 'module':
-                    return $m_app->modules['App_Docs'];
+                    return $osm_app->modules['App_Docs'];
                 case 'page':
                     return $this->module->page;
                 case 'responses':
-                    return $m_app[Responses::class];
+                    return $osm_app[Responses::class];
             }
     
             return parent::default($property);
@@ -107,10 +107,10 @@ Create new PHP class `app/src/Docs/Views/Breadcrumbs.php`:
         public $template = 'App_Docs.breadcrumbs';
     
         protected function default($property) {
-            global $m_app; /* @var App $m_app */
+            global $osm_app; /* @var App $osm_app */
     
             switch ($property) {
-                case 'page_finder': return $m_app[PageFinder::class];
+                case 'page_finder': return $osm_app[PageFinder::class];
                 case 'parent_pages': return $this->page_finder->findParentPages($this->page);
             }
             return parent::default($property);
@@ -172,11 +172,11 @@ Here is the new content of `app/src/Docs/PageFinder.php`:
     class PageFinder extends Object_
     {
         protected function default($property) {
-            global $m_app; /* @var App $m_app */
+            global $osm_app; /* @var App $osm_app */
     
             switch ($property) {
                 case 'settings':
-                    return $m_app->settings;
+                    return $osm_app->settings;
                 case 'doc_root':
                     return $this->settings->doc_root;
             }

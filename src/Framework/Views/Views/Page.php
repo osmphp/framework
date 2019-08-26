@@ -70,13 +70,13 @@ class Page extends View
     public $translations = [];
 
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
             case 'model': return $this->js_config;
-            case 'request': return $m_app->request;
-            case 'url_generator': return $m_app->url_generator;
-            case 'controller': return $m_app->controller;
+            case 'request': return $osm_app->request;
+            case 'url_generator': return $osm_app->url_generator;
+            case 'controller': return $osm_app->controller;
         }
         return parent::default($property);
     }

@@ -29,10 +29,10 @@ class Module extends BaseModule
     ];
 
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'query_logging_classes': return $m_app->cache->remember('query_logging_classes',
+            case 'query_logging_classes': return $osm_app->cache->remember('query_logging_classes',
                 function($data) {
                     return QueryLoggingClasses::new($data);
                 });

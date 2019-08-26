@@ -13,9 +13,9 @@ class Module extends BaseModule
     ];
 
     public function terminate() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        $m_app->caches->terminate();
+        $osm_app->caches->terminate();
 
         parent::terminate();
     }

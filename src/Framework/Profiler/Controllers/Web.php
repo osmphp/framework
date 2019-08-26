@@ -28,9 +28,9 @@ use Osm\Framework\Profiler\Tag;
 class Web extends Controller
 {
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
         switch ($property) {
-            case 'metrics': return Metrics::new(['id' => $m_app->query['id']]);
+            case 'metrics': return Metrics::new(['id' => $osm_app->query['id']]);
             case 'timer_width': return 60;
             case 'total_width': return 15;
             case 'count_width': return 10;
@@ -53,9 +53,9 @@ class Web extends Controller
     }
 
     public function plainTextPage() {
-        global $m_profiler; /* @var Profiler $m_profiler */
+        global $osm_profiler; /* @var Profiler $osm_profiler */
 
-        if (!$m_profiler) {
+        if (!$osm_profiler) {
             // if profiler is disabled, profile page doesn't exist
             throw new NotFound(m_("Page not found"));
         }

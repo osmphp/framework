@@ -19,20 +19,20 @@ use Osm\Core\Exceptions\NotSupported;
 class CollectionRegistry extends CacheItem implements \IteratorAggregate, \Countable
 {
     public function __get($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'config_': return $m_app->config($this->config);
+            case 'config_': return $osm_app->config($this->config);
         }
 
         return parent::__get($property);
     }
 
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'sorter': return $m_app[Sorter::class];
+            case 'sorter': return $osm_app[Sorter::class];
             case 'items': return $this->get();
         }
         return parent::default($property);
@@ -75,9 +75,9 @@ class CollectionRegistry extends CacheItem implements \IteratorAggregate, \Count
     }
 
     protected function createItem($data, $name) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        return $m_app->create($this->class_, $data, $name, $this);
+        return $osm_app->create($this->class_, $data, $name, $this);
     }
 
     public function refresh() {

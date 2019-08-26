@@ -21,17 +21,17 @@ class ConfigNpm extends Command
     public $data = [];
 
     public function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'modules': return $m_app->modules;
-            case 'themes': return $m_app->themes;
+            case 'modules': return $osm_app->modules;
+            case 'themes': return $osm_app->themes;
         }
         return parent::default($property);
     }
 
     public function run() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         foreach ($this->modules as $module) {
             $this->loadModule($module);
@@ -40,14 +40,14 @@ class ConfigNpm extends Command
         foreach ($this->themes as $theme) {
             $this->loadTheme($theme);
         }
-        file_put_contents($m_app->path( 'package.json'),
+        file_put_contents($osm_app->path( 'package.json'),
             json_encode($this->data, JSON_PRETTY_PRINT));
     }
 
     protected function loadModule(BaseModule $module) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        $filename = $m_app->path("{$module->path}/package.json");
+        $filename = $osm_app->path("{$module->path}/package.json");
         if (!file_exists($filename)) {
             return;
         }

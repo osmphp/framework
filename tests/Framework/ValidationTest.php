@@ -13,10 +13,10 @@ use Osm\Framework\Validation\Validator;
 class ValidationTest extends UnitTestCase
 {
     public function __get($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'validator': return $m_app[Validator::class];
+            case 'validator': return $osm_app[Validator::class];
         }
         return parent::__get($property);
     }

@@ -66,12 +66,12 @@ Below is the content of `app/src/Docs/Controllers/Frontend.php`:
     class Frontend extends Controller
     {
         protected function default($property) {
-            global $m_app;
-            /* @var App $m_app */
+            global $osm_app;
+            /* @var App $osm_app */
     
             switch ($property) {
                 case 'settings':
-                    return $m_app->settings;
+                    return $osm_app->settings;
                 case 'doc_root':
                     return $this->settings->doc_root;
             }
@@ -94,12 +94,12 @@ if any of those properties is not found.
 Values for both properties are set in protected `default()` class function in standard way for 
 [properties, calculated on first access (AKA lazy properties)](../../architecture/properties#properties-calculated-on-first-access-aka-lazy-properties). 
 
-To get application settings we are using [`$m_app`](../../architecture/modules/standard-classes-and-objects#$m_app) 
+To get application settings we are using [`$osm_app`](../../architecture/modules/standard-classes-and-objects#$osm_app) 
 object - global top-level application object of `Osm\Core\App` class. 
 
-The global `$m_app` variable already has `settings` property to keep and cache all application settings.
+The global `$osm_app` variable already has `settings` property to keep and cache all application settings.
 
-The object `$m_app->settings` reads and merges `config/settings.php` files from all included modules and application directory. 
+The object `$osm_app->settings` reads and merges `config/settings.php` files from all included modules and application directory. 
 This functionality is provided in standard Dubysa Framework class `Osm\Framework\Settings\Settings`. 
 This class is also responsible for caching.
 

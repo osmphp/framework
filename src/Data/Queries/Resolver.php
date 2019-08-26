@@ -25,9 +25,9 @@ class Resolver extends Handler
      * @param Formula $formula
      */
     public function resolve($part, $query, Formula &$formula) {
-        global $m_profiler; /* @var Profiler $m_profiler */
+        global $osm_profiler; /* @var Profiler $osm_profiler */
 
-        if ($m_profiler) $m_profiler->start(__METHOD__, 'formulas');
+        if ($osm_profiler) $osm_profiler->start(__METHOD__, 'formulas');
         $previousQuery = $this->query;
         $previousPart = $this->part;
         $this->query = $query;
@@ -38,15 +38,15 @@ class Resolver extends Handler
         finally {
             $this->query = $previousQuery;
             $this->part = $previousPart;
-            if ($m_profiler) $m_profiler->stop(__METHOD__);
+            if ($osm_profiler) $osm_profiler->stop(__METHOD__);
         }
     }
 
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'types': return $m_app[Types::class];
+            case 'types': return $osm_app[Types::class];
         }
 
         return parent::default($property);

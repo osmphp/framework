@@ -24,13 +24,13 @@ use Symfony\Component\Debug\Exception\FatalThrowableError;
 class CompilerEngine extends LaravelCompilerEngine
 {
     public function __get($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
             case 'compiled_templates': return $this->compiled_templates = $this->getCompiledTemplates();
-            case 'filename': return $m_app->path("{$m_app->temp_path}/cache/blade_templates.php");
+            case 'filename': return $osm_app->path("{$osm_app->temp_path}/cache/blade_templates.php");
             case 'timestamp': return $this->timestamp = filemtime($this->filename);
-            case 'module': return $this->module = $m_app->modules['Osm_Framework_Views'];
+            case 'module': return $this->module = $osm_app->modules['Osm_Framework_Views'];
             case 'env': return $this->env = $this->module->laravel_view;
         }
         return null;

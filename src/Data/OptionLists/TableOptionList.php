@@ -27,10 +27,10 @@ class TableOptionList extends OptionList
     public $data = ['title' => "title"];
 
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'db': return $m_app->db;
+            case 'db': return $osm_app->db;
         }
         return parent::default($property);
     }

@@ -43,24 +43,24 @@ class Layout extends Object_
     public $replacing = false;
 
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'cache': return $m_app->cache;
-            case 'area': return $m_app->area_;
-            case 'theme': return $m_app->themes[$m_app[Current::class]->get($this->area->name)];
-            case 'iterator': return $m_app[Iterator::class];
-            case 'path': return $m_app->path("{$m_app->temp_path}/layers/{$this->area->name}/" .
+            case 'cache': return $osm_app->cache;
+            case 'area': return $osm_app->area_;
+            case 'theme': return $osm_app->themes[$osm_app[Current::class]->get($this->area->name)];
+            case 'iterator': return $osm_app[Iterator::class];
+            case 'path': return $osm_app->path("{$osm_app->temp_path}/layers/{$this->area->name}/" .
                 $this->theme->name);
-            case 'log': return $m_app->logs->layers;
+            case 'log': return $osm_app->logs->layers;
         }
         return parent::default($property);
     }
 
     public function __construct($data = []) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        $m_app->layout = $this;
+        $osm_app->layout = $this;
 
         parent::__construct($data);
     }
@@ -120,11 +120,11 @@ class Layout extends Object_
      * @return array
      */
     protected function loadNamedLayer($layer) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         $result = [];
         $exists = false;
-        foreach ($m_app->modules as $module) {
+        foreach ($osm_app->modules as $module) {
             $filename = "{$this->path}/{$module->name}/{$layer}.php";
             if (file_exists($filename)) {
                 $result[$filename] = $this->loadFile($filename);

@@ -30,20 +30,20 @@ use Monolog\Logger as MonologLogger;
 class QueryLogger extends Object_
 {
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'settings': return $m_app->settings;
-            case 'filename': return $m_app->path("{$m_app->temp_path}/log/queries/" .
+            case 'settings': return $osm_app->settings;
+            case 'filename': return $osm_app->path("{$osm_app->temp_path}/log/queries/" .
                 (PHP_SAPI !== 'cli' ? $_SERVER['REMOTE_ADDR'] : 'cli') . '-' . date("Y-m-d-H-i-s") . '.log');
             case 'handler':
                 return (new FileHandler($this->filename, MonologLogger::DEBUG))
                     ->setFormatter(new QueryLineFormatter());
             case 'writer':
-                $result = new Logger($logger = new MonologLogger('queries'), $m_app->laravel->events);
+                $result = new Logger($logger = new MonologLogger('queries'), $osm_app->laravel->events);
                 $logger->pushHandler($this->handler);
                 return $result;
-            case 'module': return $m_app->modules['Osm_Framework_Db'];
+            case 'module': return $osm_app->modules['Osm_Framework_Db'];
             case 'query_logging_classes': return $this->module->query_logging_classes;
 
         }

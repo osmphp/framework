@@ -24,12 +24,12 @@ use Osm\Framework\Areas\Area;
 class Controller extends Object_
 {
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
             case 'area': return $this->parent->area_;
             case 'returns': return Returns::HTML;
-            case 'request': return $m_app->request;
+            case 'request': return $osm_app->request;
             case 'parameters_': return Parameters::new(['config_' => $this->parameters ?? []]);
             case 'query':
                 $parsedQuery = $this->area->query;

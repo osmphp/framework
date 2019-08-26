@@ -20,11 +20,11 @@ use Osm\Framework\Db\Db;
 class Indexing extends Object_
 {
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'db': return $m_app->db;
-            case 'targets': return $m_app->cache->remember( 'indexers', function($data) {
+            case 'db': return $osm_app->db;
+            case 'targets': return $osm_app->cache->remember( 'indexers', function($data) {
                 return Targets::new($data);
             });
         }

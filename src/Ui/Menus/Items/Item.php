@@ -35,10 +35,10 @@ use Osm\Ui\Menus\Views\Menu;
 class Item extends Object_
 {
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'module': return $m_app->modules['Osm_Ui_Menus'];
+            case 'module': return $osm_app->modules['Osm_Ui_Menus'];
             case 'type_': return $this->module->item_types[$this->type];
         }
         return parent::default($property);

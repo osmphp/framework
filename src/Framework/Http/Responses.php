@@ -20,10 +20,10 @@ class Responses extends Object_
     ];
 
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'errors': return $m_app[Errors::class];
+            case 'errors': return $osm_app[Errors::class];
         }
         return parent::default($property);
     }
@@ -36,39 +36,39 @@ class Responses extends Object_
         return $this->$method($response);
     }
     public function html($html) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        return $m_app->createRaw(Response::class, (string)$html, Response::HTTP_OK,
+        return $osm_app->createRaw(Response::class, (string)$html, Response::HTTP_OK,
             ['content-type' => 'text/html']);
     }
 
     public function plainText($html) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        return $m_app->createRaw(Response::class, (string)$html, Response::HTTP_OK,
+        return $osm_app->createRaw(Response::class, (string)$html, Response::HTTP_OK,
             ['content-type' => 'text/plain']);
     }
 
     public function json($json) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        return $m_app->createRaw(Response::class, json_encode($json, JSON_PRETTY_PRINT),
+        return $osm_app->createRaw(Response::class, json_encode($json, JSON_PRETTY_PRINT),
             Response::HTTP_OK, ['content-type' => 'application/json']);
     }
 
     public function redirect($to, $status = Response::HTTP_MOVED_PERMANENTLY) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        return $m_app->createRaw(RedirectResponse::class, (string)$to, $status);
+        return $osm_app->createRaw(RedirectResponse::class, (string)$to, $status);
     }
 
     public function image($filename) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         $type = $this->image_content_types[strtolower(pathinfo($filename, PATHINFO_EXTENSION))];
         $name = basename($filename);
 
-        return $m_app->createRaw(Response::class, file_get_contents($filename), Response::HTTP_OK, [
+        return $osm_app->createRaw(Response::class, file_get_contents($filename), Response::HTTP_OK, [
             'content-type' => $type,
             'content-disposition' => 'inline; filename="'.$name.'"',
         ]);

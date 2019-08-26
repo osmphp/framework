@@ -15,19 +15,19 @@ use Osm\Core\Modules\BaseModule;
 class ConfigPhpStorm extends Command
 {
     public function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'modules': return $m_app->modules;
-            case 'areas': return $m_app->areas;
+            case 'modules': return $osm_app->modules;
+            case 'areas': return $osm_app->areas;
         }
         return parent::default($property);
     }
 
     public function run() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        file_put_contents(m_make_dir_for($m_app->path("{$m_app->temp_path}/webpack.phpstorm.config.js")),
+        file_put_contents(m_make_dir_for($osm_app->path("{$osm_app->temp_path}/webpack.phpstorm.config.js")),
             $this->generateWebPackConfig());
     }
 

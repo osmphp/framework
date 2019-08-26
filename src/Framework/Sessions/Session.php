@@ -29,12 +29,12 @@ class Session extends Object_
     public $referers = [];
 
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
             case 'id': return Str::random(40);
-            case 'area': return $m_app->area_;
-            case 'settings': return $m_app->settings;
+            case 'area': return $osm_app->area_;
+            case 'settings': return $osm_app->settings;
             case 'time_to_live': return $this->settings->{"{$this->area->name}_session_time_to_live"};
         }
         return parent::default($property);

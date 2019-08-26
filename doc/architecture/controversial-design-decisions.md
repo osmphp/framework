@@ -129,6 +129,6 @@ However, major advantage is that drastically simplifies dependency injection.
 
 Common wisdom says avoiding usage of global variables.
 
-However, Dubysa introduces 3 global variables (`$m_app`, `$m_classes` and `$m_profiler`) as it considerably increases performance (up to 30%). 
+However, Dubysa introduces 3 global variables (`$osm_app`, `$osm_classes` and `$osm_profiler`) as it considerably increases performance (up to 30%). 
 
 Common drawback of global variables is that code is hard to test. On the contrary, Dubysa code is fully testable.  

@@ -14,16 +14,16 @@ use Osm\Framework\Testing\ConfigSuite;
 class ConfigPhpunit extends Command
 {
     public function run() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        $filename = $m_app->path('phpunit.xml');
+        $filename = $osm_app->path('phpunit.xml');
 
         $this->collect();
         $output = <<<EOT
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit backupGlobals="false"
          backupStaticAttributes="false"
-         bootstrap="{$m_app->modules['Osm_Framework_Testing']->path}/bootstrap.php"
+         bootstrap="{$osm_app->modules['Osm_Framework_Testing']->path}/bootstrap.php"
          colors="true"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
@@ -47,14 +47,14 @@ class ConfigPhpunit extends Command
 </phpunit>
 EOT;
         file_put_contents($filename, $output);
-        @chmod($filename, $m_app->readonly_file_permissions);
+        @chmod($filename, $osm_app->readonly_file_permissions);
     }
 
     protected function collect() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         $this->suites = [];
-        foreach ($m_app->packages as $package) {
+        foreach ($osm_app->packages as $package) {
             $this->collectFromPackage($package);
         }
 
@@ -70,12 +70,12 @@ EOT;
     }
 
     protected function collectFromPackage(Package $package) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         if (!isset($package->namespaces['tests'])) {
             return;
         }
-        $path = $m_app->path("{$package->path}/tests");
+        $path = $osm_app->path("{$package->path}/tests");
         if (!is_dir($path)) {
             return;
         }
@@ -84,7 +84,7 @@ EOT;
     }
 
     protected function collectFromPath(Package $package, $basePath, $path = '') {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         foreach (new \DirectoryIterator($basePath . ($path ? "/$path" : '')) as $fileInfo) {
             if ($fileInfo->isDot()) {
@@ -97,7 +97,7 @@ EOT;
                 continue;
             }
 
-            if ($m_app->ignore($fileInfo->getPathname())) {
+            if ($osm_app->ignore($fileInfo->getPathname())) {
                 continue;
             }
 
@@ -126,7 +126,7 @@ EOT;
             }
             $_module = $_suite->modules[$module];
 
-            $_module->files[] = strtr(substr($fileInfo->getPathname(), strlen($m_app->base_path) + 1), '\\', '/');
+            $_module->files[] = strtr(substr($fileInfo->getPathname(), strlen($osm_app->base_path) + 1), '\\', '/');
         }
 
     }
@@ -137,14 +137,14 @@ EOT;
      * @return string
      */
     protected function getModule($package, $class) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         if (!isset($package->namespaces['src'])) {
             return '';
         }
 
         $class = $package->namespaces['src'] . substr($class, strlen($package->namespaces['tests']));
-        foreach ($m_app->modules as $module) {
+        foreach ($osm_app->modules as $module) {
             if (strpos($class, str_replace('_', '\\', $module->name)) === 0) {
                 return $module->name;
             }
@@ -154,10 +154,10 @@ EOT;
     }
 
     protected function renderSuites() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         $result = '';
-        foreach ($m_app->testing->suites as $suite) {
+        foreach ($osm_app->testing->suites as $suite) {
             if (isset($this->suites[$suite->name])) {
                 $result .= $this->renderModules($this->suites[$suite->name]);
             }
@@ -170,16 +170,16 @@ EOT;
     }
 
     protected function renderModules(ConfigSuite $suite) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        $title = $m_app->testing->suites[$suite->name]->title ?? m_('Other Tests');
+        $title = $osm_app->testing->suites[$suite->name]->title ?? m_('Other Tests');
         $result = "        <testsuite name=\"{$title}\">\n";
 
         if (isset($suite->modules[''])) {
             $result .= $this->renderFiles($suite->modules['']);
         }
 
-        foreach ($m_app->modules as $module) {
+        foreach ($osm_app->modules as $module) {
             if (isset($suite->modules[$module->name])) {
                 $result .= $this->renderFiles($suite->modules[$module->name]);
             }
@@ -217,10 +217,10 @@ EOT;
     }
 
     protected function renderCoveredPackages() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         $result = '';
-        foreach ($m_app->packages as $package) {
+        foreach ($osm_app->packages as $package) {
             $result .= "            <directory suffix=\".php\">{$package->path}/src</directory>\n";
         }
         return $result;

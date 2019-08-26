@@ -25,22 +25,22 @@ class ConfigWebPack extends Command
      * @return array|null
      */
     public function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'modules': return $m_app->modules;
-            case 'themes': return $m_app->themes;
-            case 'areas': return $m_app->areas;
-            case 'current_theme': return $m_app[Current::class];
+            case 'modules': return $osm_app->modules;
+            case 'themes': return $osm_app->themes;
+            case 'areas': return $osm_app->areas;
+            case 'current_theme': return $osm_app[Current::class];
         }
 
         return parent::default($property);
     }
 
     public function run() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        file_put_contents(m_make_dir_for($m_app->path("{$m_app->temp_path}/webpack.json")),
+        file_put_contents(m_make_dir_for($osm_app->path("{$osm_app->temp_path}/webpack.json")),
             json_encode(m_object((object)[
                 'modules' => array_values($this->modules),
                 'themes' => array_values(array_map(function($theme) {

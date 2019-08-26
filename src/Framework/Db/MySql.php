@@ -23,7 +23,7 @@ use Osm\Core\App;
 class MySql extends Db
 {
     public function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
             case 'host': return 'localhost';
@@ -35,7 +35,7 @@ class MySql extends Db
             case 'strict': return true;
 
             case 'connection':
-                return $m_app->laravel->db->make([
+                return $osm_app->laravel->db->make([
                     'driver' => 'mysql',
                     'host' => (string)$this->host,
                     'port' => (int)(string)$this->port,

@@ -25,11 +25,11 @@ use Osm\Core\Packages\Package;
 class BaseModule extends Object_
 {
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
             case 'namespace': return strtr($this->name, '_', '\\');
-            case 'package_': return $m_app->packages[$this->package];
+            case 'package_': return $osm_app->packages[$this->package];
             case 'component_pool_': return $this->package_->component_pools[$this->component_pool];
         }
 
@@ -37,10 +37,10 @@ class BaseModule extends Object_
     }
 
     public function boot() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         if ($this->short_name) {
-            $m_app->{$this->short_name} = $this;
+            $osm_app->{$this->short_name} = $this;
         }
     }
 

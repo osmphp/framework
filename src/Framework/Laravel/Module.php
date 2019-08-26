@@ -22,16 +22,16 @@ class Module extends BaseModule
     public $short_name = 'laravel';
 
     public function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'container': return $m_app->createRaw(Container::class);
-            case 'events': return $m_app->createRaw(Dispatcher::class);
-            case 'console': return $m_app->createRaw(Console::class,
-                $this->container, $this->events, $m_app->settings->app_version);
-            case 'files': return $m_app->createRaw(Filesystem::class);
-            case 'db': return $m_app->createRaw(ConnectionFactory::class, $this->container);
-            case 'exception_handler': return $m_app->createRaw(ExceptionHandler::class);
+            case 'container': return $osm_app->createRaw(Container::class);
+            case 'events': return $osm_app->createRaw(Dispatcher::class);
+            case 'console': return $osm_app->createRaw(Console::class,
+                $this->container, $this->events, $osm_app->settings->app_version);
+            case 'files': return $osm_app->createRaw(Filesystem::class);
+            case 'db': return $osm_app->createRaw(ConnectionFactory::class, $this->container);
+            case 'exception_handler': return $osm_app->createRaw(ExceptionHandler::class);
         }
 
         return parent::default($property);

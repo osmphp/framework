@@ -13,10 +13,10 @@ use Osm\Framework\Views\View;
 trait LaravelViewTrait
 {
     protected function around_getContents(callable $callback) {
-        global $m_app; /* @var App $m_app */
-        global $m_profiler; /* @var Profiler $m_profiler */
+        global $osm_app; /* @var App $osm_app */
+        global $osm_profiler; /* @var Profiler $osm_profiler */
 
-        if ($m_profiler) $m_profiler->start($this->view, 'views');
+        if ($osm_profiler) $osm_profiler->start($this->view, 'views');
         try {
             if (!isset($this->data['view'])) {
                 return $callback();
@@ -28,7 +28,7 @@ trait LaravelViewTrait
             }
 
             /* @var Rendering $rendering */
-            $rendering = $m_app[Rendering::class];
+            $rendering = $osm_app[Rendering::class];
 
             $currentView = $rendering->current_view;
             $rendering->current_view = $view;
@@ -41,7 +41,7 @@ trait LaravelViewTrait
             }
         }
         finally {
-            if ($m_profiler) $m_profiler->stop($this->view);
+            if ($osm_profiler) $osm_profiler->stop($this->view);
         }
     }
 }

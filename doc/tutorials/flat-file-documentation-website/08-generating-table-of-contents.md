@@ -131,7 +131,7 @@ Here is new content of `app/src/Docs/Page.php`:
         const REPLACEMENTS = ['-', '-', '-'];
     
         protected function default($property) {
-            global $m_app; /* @var App $m_app */
+            global $osm_app; /* @var App $osm_app */
     
             switch ($property) {
                 case 'title':
@@ -143,9 +143,9 @@ Here is new content of `app/src/Docs/Page.php`:
                 case 'html':
                     return MarkdownExtra::defaultTransform($this->text);
                 case 'tags':
-                    return $m_app->config('doc_tags');
+                    return $osm_app->config('doc_tags');
                 case 'tag_renderer':
-                    return $m_app[TagRenderer::class];
+                    return $osm_app[TagRenderer::class];
             }
     
             return parent::default($property);

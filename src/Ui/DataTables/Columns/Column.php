@@ -40,11 +40,11 @@ class Column extends Object_
     }
 
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
             case 'width': return $this->getWidth();
-            case 'url_generator': return $m_app[UrlGenerator::class];
+            case 'url_generator': return $osm_app[UrlGenerator::class];
         }
 
         return parent::default($property);

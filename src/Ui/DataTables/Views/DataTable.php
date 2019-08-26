@@ -33,15 +33,15 @@ use Osm\Ui\DataTables\Module;
 class DataTable extends View
 {
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'search_': return $m_app->create($this->search);
+            case 'search_': return $osm_app->create($this->search);
             case 'columns_': return $this->getColumns();
             case 'model': return $this->getModel();
-            case 'rows_per_page': return $m_app->settings->data_table_rows_per_page;
+            case 'rows_per_page': return $osm_app->settings->data_table_rows_per_page;
             case 'template': return $this->render_rows ? $this->rows_template : $this->full_template;
-            case 'data_table_module': return $m_app->modules['Osm_Ui_DataTables'];
+            case 'data_table_module': return $osm_app->modules['Osm_Ui_DataTables'];
 
             case 'offset': return 0;
             case 'limit': return $this->rows_per_page;

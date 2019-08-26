@@ -13,10 +13,10 @@ trait ConnectionTrait
 {
     protected function around_runQueryCallback(callable $proceed, $query, $bindings, \Closure $callback)
     {
-        global $m_app; /* @var App $m_app */
-        global $m_profiler; /* @var Profiler $m_profiler */
+        global $osm_app; /* @var App $osm_app */
+        global $osm_profiler; /* @var Profiler $osm_profiler */
 
-        if ($m_profiler) $m_profiler->start($query, 'queries');
+        if ($osm_profiler) $osm_profiler->start($query, 'queries');
         try {
             return $proceed($query, $bindings, $callback);
         }
@@ -24,7 +24,7 @@ trait ConnectionTrait
             throw new QueryException($query, $this->prepareBindingsForDebugging($bindings), $e->getPrevious());
         }
         finally {
-            if ($m_profiler) $m_profiler->stop($query);
+            if ($osm_profiler) $osm_profiler->stop($query);
         }
     }
 
@@ -51,10 +51,10 @@ trait ConnectionTrait
     }
 
     protected function around_select(callable $proceed, ...$args) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         /* @var QueryLogger $logger */
-        $logger = $m_app[QueryLogger::class];
+        $logger = $osm_app[QueryLogger::class];
 
         $logger->select = true;
 
@@ -67,10 +67,10 @@ trait ConnectionTrait
     }
 
     protected function around_bindValues(callable $proceed, $statement, $bindings) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         /* @var QueryLogger $logger */
-        $logger = $m_app[QueryLogger::class];
+        $logger = $osm_app[QueryLogger::class];
 
         if ($logger->select === null) {
             $logger->statement = $statement;
@@ -80,10 +80,10 @@ trait ConnectionTrait
     }
 
     protected function around_logQuery(callable $proceed, $query, $bindings, $time) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         /* @var QueryLogger $logger */
-        $logger = $m_app[QueryLogger::class];
+        $logger = $osm_app[QueryLogger::class];
 
         $logger->query = $query;
         $logger->bindings = $bindings;

@@ -15,10 +15,10 @@ use Osm\Framework\Console\Command;
 class RunHooks extends Command
 {
     public function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'module': return $m_app->modules['Osm_Framework_Composer'];
+            case 'module': return $osm_app->modules['Osm_Framework_Composer'];
             case 'hooks': return $this->module->hooks;
         }
 

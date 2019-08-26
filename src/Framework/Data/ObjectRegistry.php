@@ -23,10 +23,10 @@ class ObjectRegistry extends CacheItem
     public $items = [];
 
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'config_': return $m_app->config($this->config);
+            case 'config_': return $osm_app->config($this->config);
         }
         return parent::default($property);
     }
@@ -53,7 +53,7 @@ class ObjectRegistry extends CacheItem
     }
 
     protected function get($name) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         if (!isset($this->config_[$name])) {
             return null;
@@ -63,7 +63,7 @@ class ObjectRegistry extends CacheItem
         unset($this->config_[$name]);
         $this->modified();
 
-        return $m_app->create($this->class_, $data, $name, $this);
+        return $osm_app->create($this->class_, $data, $name, $this);
     }
 
     public function refresh() {

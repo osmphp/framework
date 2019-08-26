@@ -22,25 +22,25 @@ use Osm\Framework\Areas\Area;
 class UrlGenerator extends Object_
 {
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'request': return $m_app->request;
-            case 'area': return $m_app->area;
-            case 'area_': return $m_app->areas[$this->area];
+            case 'request': return $osm_app->request;
+            case 'area': return $osm_app->area;
+            case 'area_': return $osm_app->areas[$this->area];
             case 'base': return $this->request->base;
             case 'asset_base': return $this->request->asset_base;
             case 'env_path': return env('APP_ENV') != 'production' ? env('APP_ENV') : '';
             case 'asset_version': return $this->getAssetVersion();
-            case 'query': return $m_app->query;
+            case 'query': return $osm_app->query;
         }
         return parent::default($property);
     }
 
     public function assetUrl($path) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
         return $this->asset_base . ($this->env_path ? "/{$this->env_path}" : '') .
-            "/{$this->area}/{$m_app->theme}/{$path}?v={$this->asset_version}";
+            "/{$this->area}/{$osm_app->theme}/{$path}?v={$this->asset_version}";
     }
 
     public function rawUrl($route, $rawQuery = []) {
@@ -77,14 +77,14 @@ class UrlGenerator extends Object_
      * @return string
      */
     public function routeUrl($route, $parsedQuery = [], $data = []) {
-        global $m_profiler; /* @var Profiler $m_profiler */
+        global $osm_profiler; /* @var Profiler $osm_profiler */
 
-        if ($m_profiler) $m_profiler->start(__METHOD__, 'helpers');
+        if ($osm_profiler) $osm_profiler->start(__METHOD__, 'helpers');
         try {
             return $this->rawUrl($route, $this->generateQuery($route, $parsedQuery));
         }
         finally {
-            if ($m_profiler) $m_profiler->stop(__METHOD__);
+            if ($osm_profiler) $osm_profiler->stop(__METHOD__);
         }
     }
 
@@ -179,10 +179,10 @@ class UrlGenerator extends Object_
      * @return bool|string
      */
     protected function getAssetVersion() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        return file_get_contents($m_app->path('public' . ($this->env_path ? "/{$this->env_path}" : '') .
-            "/{$this->area}/{$m_app->theme}/version.txt"));
+        return file_get_contents($osm_app->path('public' . ($this->env_path ? "/{$this->env_path}" : '') .
+            "/{$this->area}/{$osm_app->theme}/version.txt"));
     }
 
 

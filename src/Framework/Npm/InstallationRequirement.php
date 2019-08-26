@@ -12,10 +12,10 @@ use Osm\Framework\Processes\Process;
 class InstallationRequirement extends Requirement
 {
     public function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'app_title': return $m_app->settings->app_title;
+            case 'app_title': return $osm_app->settings->app_title;
         }
         return parent::default($property);
     }

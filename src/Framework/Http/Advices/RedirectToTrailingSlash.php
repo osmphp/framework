@@ -19,13 +19,13 @@ use Osm\Framework\Http\UrlGenerator;
 class RedirectToTrailingSlash extends Advice
 {
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'request': return $m_app->request;
-            case 'responses': return $m_app[Responses::class];
-            case 'area': return $m_app->area_;
-            case 'url_generator': return $m_app->url_generator;
+            case 'request': return $osm_app->request;
+            case 'responses': return $osm_app[Responses::class];
+            case 'area': return $osm_app->area_;
+            case 'url_generator': return $osm_app->url_generator;
         }
         return parent::default($property);
     }

@@ -46,12 +46,12 @@ abstract class Query extends Object_
 
 
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'parser': return $m_app[Parser::class];
-            case 'types': return $m_app[Types::class];
-            case 'parameter_collector': return $m_app[ParameterCollector::class];
+            case 'parser': return $osm_app[Parser::class];
+            case 'types': return $osm_app[Types::class];
+            case 'parameter_collector': return $osm_app[ParameterCollector::class];
         }
 
         return parent::default($property);

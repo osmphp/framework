@@ -17,10 +17,10 @@ use Osm\Data\OptionLists\OptionList;
 class Column extends Object_
 {
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'option_list_': return $this->option_list ? $m_app->option_lists[$this->option_list] : null;
+            case 'option_list_': return $this->option_list ? $osm_app->option_lists[$this->option_list] : null;
         }
         return parent::default($property);
     }

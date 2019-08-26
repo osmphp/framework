@@ -8,9 +8,9 @@ use Osm\Core\App;
 class LaravelManager extends QueueManager
 {
     public function connection($name = null) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        $store = $m_app->queues[$name ?? $m_app->settings->queue_store];
+        $store = $osm_app->queues[$name ?? $osm_app->settings->queue_store];
         return $store->laravel_queue;
     }
 

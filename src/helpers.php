@@ -9,18 +9,18 @@ use Osm\Framework\Layers\Layout;
 use Osm\Framework\Views\View;
 
 function m_make_dir($dir, $mode = null) {
-    global $m_app; /* @var App $m_app */
+    global $osm_app; /* @var App $osm_app */
 
     if (!is_dir($dir)) {
-        mkdir($dir, $mode ?: $m_app->writable_directory_permissions, true);
+        mkdir($dir, $mode ?: $osm_app->writable_directory_permissions, true);
     }
     return $dir;
 }
 
 function m_make_dir_for($filename, $mode = null) {
-    global $m_app; /* @var App $m_app */
+    global $osm_app; /* @var App $osm_app */
 
-    m_make_dir(dirname($filename), $mode ?: $m_app->writable_directory_permissions);
+    m_make_dir(dirname($filename), $mode ?: $osm_app->writable_directory_permissions);
     return $filename;
 }
 
@@ -46,9 +46,9 @@ function m_url($route, $parsedQuery = [], $data = []) {
 }
 
 function m_current_url($parsedQuery = [], $data = []) {
-    global $m_app; /* @var App $m_app */
+    global $osm_app; /* @var App $osm_app */
 
-    return m_url($m_app->request->method_and_route, $parsedQuery, $data);
+    return m_url($osm_app->request->method_and_route, $parsedQuery, $data);
 }
 
 function m_asset($path) {

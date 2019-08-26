@@ -14,11 +14,11 @@ class Module extends BaseModule
     public $short_name = 'localization';
 
     public function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
             case 'locale': return env('APP_LOCALE');
-            case 'translations': return $m_app->cache->remember("translations.{$this->locale}", function($data) {
+            case 'translations': return $osm_app->cache->remember("translations.{$this->locale}", function($data) {
                 return Translations::new(array_merge(['locale' => $this->locale], $data));
             });
         }

@@ -16,11 +16,11 @@ class Module extends BaseModule
     ];
 
     public function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
             case 'commands':
-                return $m_app->cache->remember('console_commands', function() {
+                return $osm_app->cache->remember('console_commands', function() {
                     return Commands::new();
                 });
         }
@@ -42,19 +42,19 @@ class Module extends BaseModule
     }
 
     public function run() {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         try {
-            $console = $m_app->laravel->console;
+            $console = $osm_app->laravel->console;
 
             foreach ($this->commands as $name => $command) {
-                $console->add($m_app->createRaw(LaravelCommand::class, $command));
+                $console->add($osm_app->createRaw(LaravelCommand::class, $command));
             }
-            $m_app->exit_code = $console->run();
+            $osm_app->exit_code = $console->run();
         }
         catch (\Throwable $e) {
-            $m_app->error_handler->handleException($e);
-            $m_app->exit_code = 1;
+            $osm_app->error_handler->handleException($e);
+            $osm_app->exit_code = 1;
         }
     }
 }

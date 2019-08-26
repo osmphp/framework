@@ -24,36 +24,36 @@ class Module extends BaseModule
     ];
 
     protected function default($property) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'laravel': return $m_app->modules['Osm_Framework_Laravel'];
-            case 'laravel_view_finder': return $m_app->createRaw(FileViewFinder::class,
+            case 'laravel': return $osm_app->modules['Osm_Framework_Laravel'];
+            case 'laravel_view_finder': return $osm_app->createRaw(FileViewFinder::class,
                 $this->laravel->files,
-                [$m_app->path("{$m_app->temp_path}/views/{$m_app->area}/{$m_app->theme}")]);
-            case 'laravel_blade_compiler': return $m_app->createRaw(BladeCompiler::class,
-                $this->laravel->files, m_make_dir($m_app->path("{$m_app->temp_path}/cache/views")));
+                [$osm_app->path("{$osm_app->temp_path}/views/{$osm_app->area}/{$osm_app->theme}")]);
+            case 'laravel_blade_compiler': return $osm_app->createRaw(BladeCompiler::class,
+                $this->laravel->files, m_make_dir($osm_app->path("{$osm_app->temp_path}/cache/views")));
             case 'laravel_view_resolver':
-                $resolver = $m_app->createRaw(EngineResolver::class);
+                $resolver = $osm_app->createRaw(EngineResolver::class);
                 $resolver->register('file', function () {
-                    global $m_app; /* @var App $m_app */
+                    global $osm_app; /* @var App $osm_app */
 
-                    return $m_app->createRaw(FileEngine::class);
+                    return $osm_app->createRaw(FileEngine::class);
                 });
                 $resolver->register('php', function () {
-                    global $m_app; /* @var App $m_app */
+                    global $osm_app; /* @var App $osm_app */
 
-                    return $m_app->createRaw(PhpEngine::class);
+                    return $osm_app->createRaw(PhpEngine::class);
                 });
                 $resolver->register('blade', function () {
-                    global $m_app; /* @var App $m_app */
+                    global $osm_app; /* @var App $osm_app */
 
-                    return $m_app->createRaw(CompilerEngine::class, $this->laravel_blade_compiler);
+                    return $osm_app->createRaw(CompilerEngine::class, $this->laravel_blade_compiler);
                 });
                 return $resolver;
             case 'laravel_view':
                 /* @var ViewFactory $viewFactory */
-                $viewFactory = $m_app->createRaw(ViewFactory::class, $this->laravel_view_resolver,
+                $viewFactory = $osm_app->createRaw(ViewFactory::class, $this->laravel_view_resolver,
                     $this->laravel_view_finder, $this->laravel->events);
                 $viewFactory->setContainer($this->laravel->container);
                 return $viewFactory;

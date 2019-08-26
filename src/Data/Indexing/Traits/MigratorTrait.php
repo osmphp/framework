@@ -8,22 +8,22 @@ use Osm\Data\Indexing\Indexing;
 trait MigratorTrait
 {
     protected function around_migrate(callable $proceed) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         $proceed();
 
         /* @var Indexing $indexing */
-        $indexing = $m_app[Indexing::class];
+        $indexing = $osm_app[Indexing::class];
         $indexing->run_async = false;
     }
 
     protected function around_migrateBack(callable $proceed) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
         $proceed();
 
         /* @var Indexing $indexing */
-        $indexing = $m_app[Indexing::class];
+        $indexing = $osm_app[Indexing::class];
         $indexing->run_async = false;
     }
 

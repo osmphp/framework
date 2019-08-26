@@ -26,9 +26,9 @@ class ModuleLoader extends Object_
      * @param BaseModule[] $modules
      */
     protected function loadFiles(&$modules) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        foreach ($m_app->packages as $package) {
+        foreach ($osm_app->packages as $package) {
             foreach ($package->component_pools as $pool) {
                 if (!$pool->module_path || !$pool->namespace) {
                     continue;
@@ -48,13 +48,13 @@ class ModuleLoader extends Object_
      * @param ComponentPool $pool
      */
     protected function loadFilesFrom(&$modules, $pool) {
-        global $m_app; /* @var App $m_app */
+        global $osm_app; /* @var App $osm_app */
 
-        $path = $m_app->path($pool->parent->path .
+        $path = $osm_app->path($pool->parent->path .
             ($pool->name && $pool->parent->path ? '/' : '') .
             $pool->name);
         foreach (glob("{$path}/{$pool->module_path}") as $filename) {
-            if ($m_app->ignore($filename)) {
+            if ($osm_app->ignore($filename)) {
                 continue;
             }
 
@@ -63,13 +63,13 @@ class ModuleLoader extends Object_
 
             $data = [
                 'path' => str_replace('\\', '/',
-                    substr(dirname($filename), strlen($m_app->base_path) + 1)),
+                    substr(dirname($filename), strlen($osm_app->base_path) + 1)),
                 'class' => str_replace('_', '\\', $name) . "\\Module",
                 'package' => $pool->parent->name,
                 'component_pool' => $pool->name,
             ];
 
-            $modules[$name] = $module = BaseModule::new($data, $name, $m_app);
+            $modules[$name] = $module = BaseModule::new($data, $name, $osm_app);
         }
     }
 
