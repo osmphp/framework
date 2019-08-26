@@ -111,13 +111,13 @@ export default class Macaw {
             this.beforeRemoving(element);
         });
 
-        if (element.m_controllers) {
-            element.m_controllers.forEach(controller => {
+        if (element.osm_controllers) {
+            element.osm_controllers.forEach(controller => {
                 controller.onDetach();
                 controller.view_model = null;
                 controller.element = null;
             });
-            delete element.m_controllers;
+            delete element.osm_controllers;
         }
     }
 
@@ -151,10 +151,10 @@ export default class Macaw {
     attachControllerToElement(Controller, element, viewModel, model) {
         let controller = new Controller(element, viewModel, model);
 
-        if (!element.m_controllers) {
-            element.m_controllers = [];
+        if (!element.osm_controllers) {
+            element.osm_controllers = [];
         }
-        element.m_controllers.push(controller);
+        element.osm_controllers.push(controller);
 
         controller.onAttach();
     }
@@ -184,13 +184,13 @@ export default class Macaw {
 
     get(element, Controller) {
         element = find(element);
-        if (!element.m_controllers) {
+        if (!element.osm_controllers) {
             return null;
         }
 
-        for (let i = 0; i < element.m_controllers.length; i++) {
-            if (element.m_controllers[i] instanceof Controller) {
-                return element.m_controllers[i];
+        for (let i = 0; i < element.osm_controllers.length; i++) {
+            if (element.osm_controllers[i] instanceof Controller) {
+                return element.osm_controllers[i];
             }
         }
 
@@ -198,6 +198,6 @@ export default class Macaw {
     }
 
     all(element) {
-        return element.m_controllers || [];
+        return element.osm_controllers || [];
     }
 };

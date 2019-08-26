@@ -2,7 +2,7 @@ import Field from 'Osm_Ui_Forms/Field';
 import addClass from 'Osm_Framework_Js/addClass';
 import removeClass from 'Osm_Framework_Js/removeClass';
 import hasClass from 'Osm_Framework_Js/hasClass';
-import m_ from 'Osm_Framework_Js/m_';
+import osm_t from 'Osm_Framework_Js/osm_t';
 
 export default class Input extends Field {
     get events() {
@@ -101,7 +101,7 @@ export default class Input extends Field {
         this.hideError();
 
         if (this.model.required && !this.value) {
-            this.showError(m_("Fill in this field"));
+            this.showError(osm_t("Fill in this field"));
             return false;
         }
 

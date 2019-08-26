@@ -2,7 +2,7 @@ import templates from 'Osm_Framework_Js/vars/templates';
 import $ from 'jquery';
 import Mustache from 'mustache';
 import Handle from './Handle';
-import m_ from 'Osm_Framework_Js/m_';
+import osm_t from 'Osm_Framework_Js/osm_t';
 import config from 'Osm_Framework_Js/vars/config';
 import macaw from "Osm_Framework_Js/vars/macaw";
 import view_models from "Osm_Framework_Js/vars/view_models";
@@ -71,7 +71,7 @@ export default class Api {
             return false;
         }
 
-        this.showMessage(m_("Request processing was interrupted."));
+        this.showMessage(osm_t("Request processing was interrupted."));
         return true;
     }
 
@@ -131,7 +131,7 @@ export default class Api {
     }
 
     ajax(route, options) {
-        let snackBar = this.modalMessage(options.processing_message || m_("Processing ..."));
+        let snackBar = this.modalMessage(options.processing_message || osm_t("Processing ..."));
         return ajax(route, options)
             .then(payload => {
                 if (payload === undefined) return payload; // response fully handled by previous then()

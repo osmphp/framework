@@ -1,6 +1,6 @@
 import config from './vars/config';
 
-export default function m_(text, parameters = {}) {
+export default function osm_t(text, parameters = {}) {
     if (config.translations && config.translations[text]) {
         text = config.translations[text];
     }

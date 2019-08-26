@@ -1,6 +1,6 @@
 import Controller from "Osm_Framework_Js/Controller";
 import dialogs from 'Osm_Ui_Dialogs/vars/dialogs';
-import m_ from "Osm_Framework_Js/m_";
+import osm_t from "Osm_Framework_Js/osm_t";
 
 export default class DialogsPage extends Controller {
     get events() {
@@ -25,7 +25,7 @@ export default class DialogsPage extends Controller {
         dialogs.show('yes_no', {
             width: 500,
             height: 150,
-            message: m_("Do you really want to delete this item?")
+            message: osm_t("Do you really want to delete this item?")
         }).then(result => {
             console.log(result);
         });
