@@ -170,7 +170,7 @@ Here is updated content of `app/src/Docs/Controllers/Frontend.php` file:
 First of all, you see that we've introduced a new property `url` inside the class.
 Properties are the class variables, and it is convenient to introduce them when the value 
 should be accessed multiple times. 
-In Dubysa it is common to use [properties, calculated on first access (AKA lazy properties)](../../architecture/properties#properties-calculated-on-first-access-aka-lazy-properties).
+In Osm it is common to use [properties, calculated on first access (AKA lazy properties)](../../architecture/properties#properties-calculated-on-first-access-aka-lazy-properties).
 
 After HTTP route is processed, all query parameters are stored in `query` property of 
 [global application object `$osm_app`](../../architecture/modules/standard-classes-and-objects#$osm_app).

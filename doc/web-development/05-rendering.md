@@ -4,7 +4,7 @@
 
 ## Introduction ##
 
-Dubysa comes with standard set of page components: menu bar, button, input control, popup menu, dialog box, snack bar message and more. These components are called **views**. It is also easy to define custom views.
+Osm comes with standard set of page components: menu bar, button, input control, popup menu, dialog box, snack bar message and more. These components are called **views**. It is also easy to define custom views.
 
 Individual views can be composed into larger views, those - into even larger views. Topmost views are composed into HTML page (which is also view).
  
@@ -177,7 +177,7 @@ Create layer in [area resource directory](#) `[my_module_path]/frontend/layers/m
 	        'content' => Container::new([
 	            'id' => 'content',
 	            'views' => [
-	                'intro' => View::new(['template' => 'Osm_DocHost_App.home_page_intro']),
+	                'intro' => View::new(['template' => 'Osm_Docs_App.home_page_intro']),
 	                'sign_up_form' => Form::new([
 	                    'modifier' => '-sign-up',
 	                    'route' => 'POST /sign-up',
@@ -302,14 +302,14 @@ By convention, page layer name should reflect URL of the page. For example, invo
 
 by default, `page` layer just includes `base` layer and does nothing more than that:
 
-	// vendor/dubysa/framework/src/Framework/Layers/resources/layers/page.php
+	// vendor/osmphp/framework/src/Framework/Layers/resources/layers/page.php
 	return [
 	    '@include' => ['base'],
 	];
 
 `base` layer, simply put, tells to render the page using standard `Page` view:
 
-	// vendor/dubysa/framework/src/Framework/Layers/resources/layers/base.php
+	// vendor/osmphp/framework/src/Framework/Layers/resources/layers/base.php
 	use Osm\Framework\Views\Views\Page;
 	
 	return [

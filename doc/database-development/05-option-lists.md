@@ -7,4 +7,4 @@ Contents:
 
 {{ child_pages }}
 
-> **Note**. To use option lists, [add `dubysa/app` package](#) to your project.
+> **Note**. To use option lists, [add `osmphp/app` package](#) to your project.

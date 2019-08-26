@@ -20,9 +20,9 @@ Application should find a file according to HTTP query parameter and display HTM
 Understanding Rendering
 ----------------------------------------
 
-Before digging into tutorial steps, let's review how HTML rendering works in Dubysa first.
+Before digging into tutorial steps, let's review how HTML rendering works in Osm first.
 
-Dubysa comes with standard set of page components: menu bar, button, input control, popup menu, dialog box, snack bar message and more. These components are called **views**. It is also easy to define custom views.
+Osm comes with standard set of page components: menu bar, button, input control, popup menu, dialog box, snack bar message and more. These components are called **views**. It is also easy to define custom views.
 
 Individual views can be composed into larger views, those - into even larger views. Topmost views are composed into HTML page (which is also view).
  
@@ -41,13 +41,13 @@ Steps To Implement:
 
 ## Adding External Composer Library `michelf/php-markdown` To Work With Markdown Files 
 
-Stop [`npm run watch`](../../php-development/dubysa-console-commands#npm-run-watch) if it is running.
+Stop [`npm run watch`](../../php-development/osmphp-console-commands#npm-run-watch) if it is running.
 
 We will use external `michelf/php-markdown` [Composer](../../integrations/composer-integration/) 
 library to convert Markdown files to HTML. Now we need to include it to our project as required library.
 
 Open command line, go to project directory and run
-[`composer require`](../../php-development/dubysa-console-commands#composer-require) 
+[`composer require`](../../php-development/osmphp-console-commands#composer-require) 
 command:
 
     composer require "michelf/php-markdown" --no-scripts
@@ -61,7 +61,7 @@ block of project's `composer.json` file. Here is an example of this block:
 
     "require": {
         "php": ">=7.1.0",
-        "dubysa/framework": "0.4.*",
+        "osmphp/framework": "0.4.*",
         "michelf/php-markdown": "^1.8"
     },
 
@@ -117,7 +117,7 @@ First of all you see that we have 4 class properties:
 - `html` - HTML content of the file. We will use `Michelf\MarkdownExtra` class to transform Markdown text to HTML.
 - `title` - page title according to header in Markdown file. 
 
-`default()` function is a standard way in Dubysa to set initial values for [properties, calculated on first access (AKA lazy properties)](../../architecture/properties#properties-calculated-on-first-access-aka-lazy-properties).
+`default()` function is a standard way in Osm to set initial values for [properties, calculated on first access (AKA lazy properties)](../../architecture/properties#properties-calculated-on-first-access-aka-lazy-properties).
 In this class initial property values are calculated in this way:
  
 - to get original content of the file to `$original_text` property, standard PHP `file_get_contents()` function is used
@@ -267,7 +267,7 @@ in file `app/src/Docs/Views/Html.php`:
 
 This class has `page` property filled in by controller class.
 
-This class extends standard Dubysa `View` class and assign new template, we'll create a moment later, 
+This class extends standard Osm `View` class and assign new template, we'll create a moment later, 
 to `$template` property. 
 
 ## Creating New `html` View Template 
@@ -291,7 +291,7 @@ This template output `html` property of the page.
 
 ## Restarting `npm run watch`
 
-Start [`npm run watch`](../../php-development/dubysa-console-commands#npm-run-watch).
+Start [`npm run watch`](../../php-development/osmphp-console-commands#npm-run-watch).
 
 If it was running, stop it and start again.
 This is needed because we added new resource directory and this process should include this folder into watching.
@@ -303,5 +303,5 @@ Check if document HTML content is shown when appropriate URL is entered in the b
 
 In this lesson we modified controller to show the layer which uses a view, which uses template from his side. 
 
-We advice to read more about [web development in Dubysa](../../web-development/) to have deeper understanding 
+We advice to read more about [web development in Osm](../../web-development/) to have deeper understanding 
 of it. 

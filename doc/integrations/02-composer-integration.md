@@ -2,10 +2,10 @@
 
 Integration with [Composer](https://getcomposer.org/). 
 
-[composer create-project](../../php-development/dubysa-console-commands.html#composer-create-project)
+[composer create-project](../../php-development/osmphp-console-commands.html#composer-create-project)
 
 
-Dubysa processes new `composer.json` section `scripts` which is used to perform specific actions together with standard Composer commands.
+Osm processes new `composer.json` section `scripts` which is used to perform specific actions together with standard Composer commands.
 
 Here is example of this section:
 
@@ -26,7 +26,7 @@ Here is example of this section:
 
 In this example additional scripts are described:    
 - In `post-root-package-install` after root package is installed, two additional files are copied.
-- After `composer-update` execution cache is refreshed and `post-update` command is called. Dubysa modules can add custom actions in this step. For instance, database module adds scripts to update database structure. JavaScript and CSS module validate and combine all .js and .csss files. 
+- After `composer-update` execution cache is refreshed and `post-update` command is called. Osm modules can add custom actions in this step. For instance, database module adds scripts to update database structure. JavaScript and CSS module validate and combine all .js and .csss files. 
 - After `composer-create-project` cache is refreshed and `post-create-project` is executed. Purpose is the same as in command above - to have possibility for specific module to run additional actions after project creation.
 
 {{ child_pages }}

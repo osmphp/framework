@@ -6,4 +6,4 @@ Read more:
 
 {{ child_pages }}
 
-> **Note**. To use inputs, [add `dubysa/app` package](#) to your project.
+> **Note**. To use inputs, [add `osmphp/app` package](#) to your project.

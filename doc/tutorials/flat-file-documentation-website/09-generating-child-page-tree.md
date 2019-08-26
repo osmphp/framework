@@ -595,7 +595,7 @@ modifying documentation source root, if needed:
         <?php
         
         return [
-            'doc_root' => 'c:\_projects\dubysa\vendor\dubysa\framework\doc',
+            'doc_root' => 'c:\_projects\osmphp\vendor\osmphp\framework\doc',
         ]; 
 
            

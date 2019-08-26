@@ -40,4 +40,4 @@ By default, page sections are transparent. However you can apply theme colors to
         <!-- ... -->
     </div>
 
-> **Note**. To use page sections, [add `dubysa/app` package](#) to your project.
+> **Note**. To use page sections, [add `osmphp/app` package](#) to your project.

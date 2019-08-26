@@ -4,9 +4,9 @@ This section contains excerpts of various documentation topics. With time, these
 
 ## Designing For Primary And Secondary Colors ##
 
-Every UI component may be of some predefined color - primary color, secondary color or one of dark/light variations - by default, of primary color. More on colors in `vendor/dubysa/components/src/Ui/Aba/resources/css/_variables.scss`. 
+Every UI component may be of some predefined color - primary color, secondary color or one of dark/light variations - by default, of primary color. More on colors in `vendor/osmphp/components/src/Ui/Aba/resources/css/_variables.scss`. 
 
-To implement that, CSS styles of UI component are colorless and contain the following code snippet in the end of style sheet (example from `vendor/dubysa/components/src/Ui/PopupMenus/resources/css/styles.scss`):
+To implement that, CSS styles of UI component are colorless and contain the following code snippet in the end of style sheet (example from `vendor/osmphp/components/src/Ui/PopupMenus/resources/css/styles.scss`):
 
       @include popup-menu-color($color--primary, $color--on-primary);
       &.-light {
@@ -36,7 +36,7 @@ To implement that, CSS styles of UI component are colorless and contain the foll
 
 ## MACAW ##
 
-MACAW stands for Model - Action - Controller - Action - vieW. These concept and responsibilities are described in `vendor/dubysa/components/src/Framework/Js/resources/js/Macaw.js`. Below are some practical tips.
+MACAW stands for Model - Action - Controller - Action - vieW. These concept and responsibilities are described in `vendor/osmphp/components/src/Framework/Js/resources/js/Macaw.js`. Below are some practical tips.
 
 Controllers are bound to elements in `js/index.js` file. One of 2 syntaxes are used:
 
@@ -57,13 +57,13 @@ All controllers attached to element (view) can be seen in Inspect Element -> Pro
 
 In Windows, add an script entry to be used for debugging, directly in `package.json`:
 
-    "debug-webpack": "node %NODE_DEBUG_OPTION% node_modules/webpack/bin/webpack.js --config vendor/dubysa/components/src/Framework/WebPack/webpack.config.js --env.APP_ENV=testing"
+    "debug-webpack": "node %NODE_DEBUG_OPTION% node_modules/webpack/bin/webpack.js --config vendor/osmphp/components/src/Framework/WebPack/webpack.config.js --env.APP_ENV=testing"
 
 In PHPStorm -> Run -> Edit Configurations, add new `npm` configuration:
 
 ![Debug Webpack Configuration](debug-webpack-configuration.jpg)
 
-Set up a breakpoint, For starters, in the end of `buildTarget()` method in `vendor/dubysa/components/src/Framework/WebPack/webpack.config.js` file, to check final generated WebPack configuration.
+Set up a breakpoint, For starters, in the end of `buildTarget()` method in `vendor/osmphp/components/src/Framework/WebPack/webpack.config.js` file, to check final generated WebPack configuration.
 
 Run `debug-webpack` script by pressing `F5` and picking `webpack` configuration from list.
 

@@ -1,12 +1,12 @@
 # Architecture #
 
-This section describes the most basic concepts and internal mechanics every Dubysa application relies on. Understanding these concepts is essential to efficient application development.
+This section describes the most basic concepts and internal mechanics every Osm application relies on. Understanding these concepts is essential to efficient application development.
 
 Fortunately, there are only 3 basic topics to learn:
 
 * how the application works, step by step: where the execution starts, how it dives deeper, what main classes are typically involved and how the result is generated;
 * how large application is divided into smaller pieces - modules: what module can do, how it gets involved into application internals, typical structure of the module, how modules are packaged and distributed;
-* how Dubysa applications are different from applications based on other PHP frameworks: dynamic traits, optional dependency injection, lazy properties.
+* how Osm applications are different from applications based on other PHP frameworks: dynamic traits, optional dependency injection, lazy properties.
 
 Contents:
 
@@ -14,7 +14,7 @@ Contents:
 
 --- 
 
-* why Dubysa
+* why Osm
 	* I wanted to have a system where I can add property or method to some standard class or even customize how existing method of standard class works - all in a safe way. Motivation:
 		* it allows freedom for any 3rd party developer to customize any part of the standard system in a way which developer of standard system couldn't even imagine
 			* performance not affected

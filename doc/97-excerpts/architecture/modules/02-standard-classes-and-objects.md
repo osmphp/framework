@@ -6,7 +6,7 @@
 
 Class to get configuration settings.
 
-Dubysa reads configuration from all modules together with project configuration 
+Osm reads configuration from all modules together with project configuration 
 from `config` directory and merge it to one array.
 
 Default `CollectionRegistry` behavior is to convert values to objects 

@@ -33,7 +33,7 @@
          M src/Ui/Aba/resources/css/_variables.scss
         
         Use the following commands to review undocumented changes visually:
-         cd vendor/dubysa/components
+         cd vendor/osmphp/components
          gitk  -- src/*/*/resources/css/_variables.scss
         
         After updating documentation, set '$since' parameter to latest commit ID.
@@ -57,7 +57,7 @@
          M src/Ui/Aba/resources/css/_variables.scss
         
         Use the following commands to review undocumented changes visually:
-         cd vendor/dubysa/components
+         cd vendor/osmphp/components
          gitk  -- src/*/*/resources/css/_variables.scss
         
         After updating documentation, set '$since' parameter to latest commit ID.

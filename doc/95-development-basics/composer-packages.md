@@ -9,10 +9,10 @@ Example of Composer packages in `composer.json`
 
     "require": {
         "php": ">=7.1.0",
-        "dubysa/components": "dev-master@dev"
+        "osmphp/components": "dev-master@dev"
     },
 
-Composer checks and download package into `vendor` directory. After downloading the package Composer checks   required composer packages in `vendor/dubysa/components/composer.json` :
+Composer checks and download package into `vendor` directory. After downloading the package Composer checks   required composer packages in `vendor/osmphp/components/composer.json` :
 
     "require": {
         "php": ">=7.1",
@@ -32,7 +32,7 @@ All packages are stored under `vendor` directory in two layers structure `packag
 Package modules are described in package `composer.json` :
 
     "extra": {
-        "dubysa": {
+        "osmphp": {
             "component_pools": {
                 "src": {
                     "module_path": "*/*/Module.php",
@@ -51,14 +51,14 @@ means that in `src` directory modules and themes can be stored. Modules can be f
 `samples` are components used for unit testing. Each sample can be found in second level directory in `Module.php`.
 Samples can be loaded only if testing mode is on : `"testing": true`
 
-## Composer package autoload in Dubysa
+## Composer package autoload in Osm
 
-When Dubysa console project is started by running `php run` in command line, `run` file located in project root directory is executed.
+When Osm console project is started by running `php run` in command line, `run` file located in project root directory is executed.
 
 `require $dir . '/vendor/autoload.php';` command prepares Composer package loading from `vendor` directory. 
 Composer reads `composer.json` from every `vendor` package directory and loads packages.
 
-For example `vendor/dubysa/components/composer.json` autoload section
+For example `vendor/osmphp/components/composer.json` autoload section
 
     "autoload": {
         "files": [
@@ -70,20 +70,20 @@ For example `vendor/dubysa/components/composer.json` autoload section
             "Osm\\Samples\\": "samples/"
         }
     },
-means that in `vendor/dubysa/components/src` all files are stored with `Osm` namespace prefix.
-When some class with `Osm` namespace prefix will be used, it will be searched in `vendor/dubysa/components/src`  directory.
+means that in `vendor/osmphp/components/src` all files are stored with `Osm` namespace prefix.
+When some class with `Osm` namespace prefix will be used, it will be searched in `vendor/osmphp/components/src`  directory.
 
-So `Osm\Core\Object_` class will be found in `vendor/dubysa/components/src/Core/Object_.php`.
+So `Osm\Core\Object_` class will be found in `vendor/osmphp/components/src/Core/Object_.php`.
 
 ## `composer update`
-If you want to get newest versions of composer packages open command line, switch to Dubysa project directory and run 
+If you want to get newest versions of composer packages open command line, switch to Osm project directory and run 
 `composer update`.
 
 It will check if newer version exists, download all needed files and install to project directory.
 After all packages are updated it will 
 - optimize class autoload to improve loading performance
 - refresh project cache
-- run Dubysa migration
+- run Osm migration
 - run configuration
 - install NPM - Node.js package manager
 - run NPM webpack - compile JS and CSS

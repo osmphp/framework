@@ -4,7 +4,7 @@ import ajax from 'Osm_Framework_Js/ajax';
 import osm_t from "Osm_Framework_Js/osm_t";
 
 tests['/tests/unit/ui'] = function () {
-    describe('vendor/dubysa/framework/samples/Ui/resources/js/tests.js', function() {
+    describe('vendor/osmphp/framework/samples/Ui/resources/js/tests.js', function() {
         describe('ajax() with `snackbar_message` option', function () {
             it('normal response should be handled in .then()', function (done) {
                 ajax('POST /tests/framework/ajax', {payload: {}, snackbar_message: osm_t("Processing ...")})

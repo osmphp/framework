@@ -1,6 +1,6 @@
 # Windows + Vagrant + Nginx + PHPStorm + SFTP Sync + Self-Signed SSL #
 
-This is step by step guide for installing Dubysa on local Windows computer using:
+This is step by step guide for installing Osm on local Windows computer using:
 
 * Vagrant virtual machine serving PHP via Nginx Web server
 * PHPStorm for development, debugging and syncing updated files to virtual machine
@@ -12,7 +12,7 @@ Contents:
 
 ## Installing and Configuring Prerequisites ##
 
-Prepare your local computer and the virtual machine before the first Dubysa installation:
+Prepare your local computer and the virtual machine before the first Osm installation:
 
 1. **TODO**
 

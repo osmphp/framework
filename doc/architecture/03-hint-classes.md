@@ -1,6 +1,6 @@
 # Hint Classes #
 
-Dubysa extensively uses **hint classes** - abstract PHP classes used solely for enhancing IDE auto-completion and code navigation capabilities.
+Osm extensively uses **hint classes** - abstract PHP classes used solely for enhancing IDE auto-completion and code navigation capabilities.
 
 This section describes the motivation behind the hint classes, conventions used and additional benefits. 
 

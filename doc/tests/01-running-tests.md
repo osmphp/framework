@@ -10,7 +10,7 @@ Run this command only once.
 
 ## Prepare Test Configuration File ##
 
-Run the following command to collect tests from all [Dubysa packages](#) into `phpunit.xml` configuration file in project directory:
+Run the following command to collect tests from all [Osm packages](#) into `phpunit.xml` configuration file in project directory:
 
     php run config:phpunit
 
@@ -75,9 +75,9 @@ Of course, you can include test suites and use optimization flags in one command
 
 ## Exclude Directories ##
 
-By default, `tests` directories of all Dubysa packages are scanned for tests. You may add exclusion patterns to your [`.componentignore` file](#) to skip certain tests.
+By default, `tests` directories of all Osm packages are scanned for tests. You may add exclusion patterns to your [`.componentignore` file](#) to skip certain tests.
 
 Example line below excludes all tests in specified package:
 
-    vendor/dubysa/components/tests/*
+    vendor/osmphp/components/tests/*
 

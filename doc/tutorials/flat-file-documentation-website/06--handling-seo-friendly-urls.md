@@ -100,7 +100,7 @@ However, it is not a good idea to edit source code of the framework directly. Th
 How PHP Classes Can Be Customized
 ----------------------------------------
 
-In Dubysa you can customize execution of every `public` or `protected` method of almost every class by adding code executing before the method, after the method or even instead of the method. 
+In Osm you can customize execution of every `public` or `protected` method of almost every class by adding code executing before the method, after the method or even instead of the method. 
 
 To customize method `x()`, you define a trait with a method `around_x()`:
 

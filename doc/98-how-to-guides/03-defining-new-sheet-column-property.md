@@ -1,6 +1,6 @@
 # Defining New Sheet Column Property #
 
-1. To schema, file `vendor/dubysa/components/src/Data/Sheets/migrations/schema/02_sheet_columns.php`.
+1. To schema, file `vendor/osmphp/components/src/Data/Sheets/migrations/schema/02_sheet_columns.php`.
 2. Update column table record hint class, `\Osm\Data\Sheets\Hints\ColumnHint`.
 3. Update list of read properties in column reader, `\Osm\Data\Sheets\Columns\Columns::$select_formulas`.
 4. Update column class, `\Osm\Data\Sheets\Columns\Column`.

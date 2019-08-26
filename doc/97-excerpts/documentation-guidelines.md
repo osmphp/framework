@@ -110,7 +110,7 @@ Child topics:
 
 Each child topic also covers how to enable needed PHP extensions.
 
-By the end of child topic developer should be fully prepared to conveniently work with Dubysa.
+By the end of child topic developer should be fully prepared to conveniently work with Osm.
 
 ## Tutorial Structure ##
 

@@ -1,13 +1,13 @@
 # Controversial Design Decisions #
 
-Dubysa framework design is based on four priorities:
+Osm framework design is based on four priorities:
 
 * **extensibility**: the more one can customize, the better;
 * **performance**: the faster, the better;
 * **simplicity**: the less files with less lines, the better;
 * **consistency**: the more similar solutions are to similar problems, the better. 
 
-As natural as they may seem, these priorities make significant impact on how OOP and SOLID principles are applied in Dubysa framework.
+As natural as they may seem, these priorities make significant impact on how OOP and SOLID principles are applied in Osm framework.
 
 Throughout this article we use the notion of "user code". It means any code of a 3rd party developer using the code of original developer. 
 
@@ -64,13 +64,13 @@ The drawback doesn't much damage as most properties are public anyway due to laz
 
 Originally is initially meant for code reuse. However, standard industry practice advices to prefer composition over inheritance for code reuse.
 
-Dubysa framework follows standard industry practice. In simple case - one base class and several derived classes - inheritance is used. In more complex cases, composition is used, that is, reusable code is in a class which is referenced by user class via property and its public methods are used.   
+Osm framework follows standard industry practice. In simple case - one base class and several derived classes - inheritance is used. In more complex cases, composition is used, that is, reusable code is in a class which is referenced by user class via property and its public methods are used.   
 
 ## Polymorphism ##
 
 > Polymorphism is the provision of a single interface to entities of different types.
 
-Dubysa extensively uses polymorphism, especially in [registry pattern](registry-pattern.html): standard code defines base class with a single interface, and both standard and user code register different implementation classes in configuration files.  
+Osm extensively uses polymorphism, especially in [registry pattern](registry-pattern.html): standard code defines base class with a single interface, and both standard and user code register different implementation classes in configuration files.  
  
 ## Single Responsibility Principle ##
 
@@ -107,7 +107,7 @@ Our practice has shown that separating interfaces from implementation often does
 * code tends to be more complex.
 * interfaces often leak implementation details anyway.  
 
-As a simpler alternative to programming to contract, Dubysa encourages programming to base class.
+As a simpler alternative to programming to contract, Osm encourages programming to base class.
 
 ## Dependency Inversion Principle ##
 
@@ -119,7 +119,7 @@ This principle is applied without exception.
 
 In some literature, service locator is not advised.
 
-Still, Dubysa uses service locator pattern for [lazy dependency injection](lazy-dependency-injection.html). 
+Still, Osm uses service locator pattern for [lazy dependency injection](lazy-dependency-injection.html). 
 
 Minor drawback is that dependencies are resolves in run-time, not in compile-time.
 
@@ -129,6 +129,6 @@ However, major advantage is that drastically simplifies dependency injection.
 
 Common wisdom says avoiding usage of global variables.
 
-However, Dubysa introduces 3 global variables (`$osm_app`, `$osm_classes` and `$osm_profiler`) as it considerably increases performance (up to 30%). 
+However, Osm introduces 3 global variables (`$osm_app`, `$osm_classes` and `$osm_profiler`) as it considerably increases performance (up to 30%). 
 
-Common drawback of global variables is that code is hard to test. On the contrary, Dubysa code is fully testable.  
+Common drawback of global variables is that code is hard to test. On the contrary, Osm code is fully testable.  

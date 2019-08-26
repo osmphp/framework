@@ -6,14 +6,14 @@
 
 New project is typically created from Composer package of `project` type (or *project template*):
 
-	composer create-project dubysa/dubysa
+	composer create-project osmphp/osmphp
 
-This command copied all the package files into new project's directory and also installs all dependent Composer packages of `library` type (or just *packages*) into `vendor` directory of the project. `dubysa/dubysa` project template only depends on `dubysa/framework` package.
+This command copied all the package files into new project's directory and also installs all dependent Composer packages of `library` type (or just *packages*) into `vendor` directory of the project. `osmphp/osmphp` project template only depends on `osmphp/framework` package.
 
 You may install more packages into the project:
 
-	composer require dubysa/docs
-	composer require dubysa/shop
+	composer require osmphp/docs
+	composer require osmphp/shop
 	...
 
 >**Note**. Currently syntax of command which create projects and adds more packages is a bit more complex, please refer to the documentation of these packages.
@@ -21,12 +21,12 @@ You may install more packages into the project:
 Composer packages are backed by Git repositories, and you can create project or add package based on any commit in Git repository. Most often you name commits to be used (in Composer world, it is called *version constraint*) by either by version tag assigned to them or by branch name pointing to them:
 
 	// use package commit with certain version tag assigned
-	composer create-project dubysa/dubysa:1.1.*
-	composer require dubysa/docs:1.1.*
+	composer create-project osmphp/osmphp:1.1.*
+	composer require osmphp/docs:1.1.*
 
 	// use package commit under `master` branch
-	composer create-project dubysa/dubysa:dev-master
-	composer require dubysa/docs:dev-master
+	composer create-project osmphp/osmphp:dev-master
+	composer require osmphp/docs:dev-master
 
 Use version tag constraint for "read only" package use and safe package updates to newer versions.
 
@@ -111,18 +111,18 @@ Finally assign the tag:
 
 ## Publishing New Project Template Version ##
 
-New version of `dubysa/dubysa` package should be released not only if project files change, but also whenever new version of `dubysa/framework` is released.
+New version of `osmphp/osmphp` package should be released not only if project files change, but also whenever new version of `osmphp/framework` is released.
 
-Branches and version tags in `dubysa/dubysa` package mimic ones of `dubysa/framework` package.
+Branches and version tags in `osmphp/osmphp` package mimic ones of `osmphp/framework` package.
 
 If it is your first release, prepare local project first:
 
 	cd [directory_containing_all_projects]
-	git clone git@bitbucket.org:dubysa/dubysa.git dubysa-project-template
-	cd dubysa-project-template
+	git clone git@bitbucket.org:osmphp/osmphp.git osmphp-project-template
+	cd osmphp-project-template
 	composer install
 
-Pick version tag same as last published version tag of `dubysa/framework` package.
+Pick version tag same as last published version tag of `osmphp/framework` package.
 
 If major or minor version changes, update `readme.md`. Then continue in shell:
 

@@ -1,6 +1,6 @@
 # Modules
 
-Dubysa module is a directory which contains PHP, JavaScript, CSS and other files 
+Osm module is a directory which contains PHP, JavaScript, CSS and other files 
 related to specific functionality.
 
 Benefits of modular programming - dividing monolithic application into relatively simple modules a- are well known. Individual modules are easier to understand, maintain, update and customize.
@@ -8,7 +8,7 @@ Benefits of modular programming - dividing monolithic application into relativel
 ## Modules And Composer Packages ##
 
 * about application modules (project-specific) and vendor package modules (reusable).
-* link to understanding and creating dubysa packages
+* link to understanding and creating osmphp packages
  
 ## Creating new Module ##
 
@@ -40,7 +40,7 @@ Typical module directory structure:
 Explain which directory is for what.	
 
 ##  ##
-Dubysa module and directory structure is created according `psr-4` specification for autoloading classes from file paths.
+Osm module and directory structure is created according `psr-4` specification for autoloading classes from file paths.
 
 
 Classes
@@ -72,7 +72,7 @@ Module files are stored in own directory which is dedicated only for the files o
 There are two types of modules: 
 
   - project specific modules, located in `app/src` directory,
-  - reusable modules, used in more than one project, stored in `vendor/dubysa` directory. 
+  - reusable modules, used in more than one project, stored in `vendor/osmphp` directory. 
 
 Every class in the module should be stored in own file and name of the class should be exactly the same as name of the file.
 Keep in mind that class and file names should be case sensitive equivalent.  
@@ -112,7 +112,7 @@ If one module should be executes before another - this is soft dependency.
 ## Directory structure
 
 It is required to name files and directories exactly like it is 
-common for Dubysa including capitalization of letters.
+common for Osm including capitalization of letters.
 
 By default **Studly Caps** notation is used for directory names.
 
@@ -125,24 +125,24 @@ Module configuration should be stored in `config` folder. So let's create `app/s
 
 Inside configuration directory we should create `translations` subdirectory where we should store text and message translations for supported locales and languages.
 
-[More about handling translations in Dubysa can be found here](../development-basics/translations)
+[More about handling translations in Osm can be found here](../development-basics/translations)
 
 
 ### Module `Controllers` directory ##
 
 PHP classes processing HTTP requests historically are named **Controllers**.
 
-In Dubysa all possible http requests are divided into several areas. 
+In Osm all possible http requests are divided into several areas. 
 One is callsed web for visual requests 
-In Dubysa own controllers is created for each `area` processed by application.
+In Osm own controllers is created for each `area` processed by application.
 
-`Area` in Dubysa is an application presentation layer, 
+`Area` in Osm is an application presentation layer, 
 for example `frontend` providing content to system end-user 
 or `backend` which is used by website administrator. 
 
 Another example of `Area` is API when users communicates with application by HTTP requests without user interface.
 
-If application has only one presentation area it used to have `web` name In Dubysa. 
+If application has only one presentation area it used to have `web` name In Osm. 
 
 Controllers for each area should be stored in `Controllers` directory. 
 

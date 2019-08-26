@@ -6,4 +6,4 @@ Contents:
 
 {{ child_pages }}
 
-> **Note**. To use sheets, [add `dubysa/app` package](#) to your project.
+> **Note**. To use sheets, [add `osmphp/app` package](#) to your project.

@@ -1,6 +1,6 @@
 # Linode + Nginx + Let's Encrypt #
 
-This is step by step guide for installing Dubysa on Linode virtual private server having:
+This is step by step guide for installing Osm on Linode virtual private server having:
 
 * Nginx Web server
 * Let's Encrypt for managing HTTPS certificates
@@ -11,7 +11,7 @@ Contents:
 
 ## Installing and Configuring Prerequisites ##
 
-Prepare your Linode server before the first Dubysa installation:
+Prepare your Linode server before the first Osm installation:
 
 1. **TODO**
 

@@ -1,6 +1,6 @@
 # Modules #
 
-Dubysa application is made of modules. Each module handles relatively simple task with well-defined boundaries. 
+Osm application is made of modules. Each module handles relatively simple task with well-defined boundaries. 
 
 Examples: 
 
@@ -9,7 +9,7 @@ Examples:
 * `Osm_Framework_Migrations` module executes database preparation scripts
 * `Osm_Ui_PopupMenus` modules allows displaying popup menus on pages
 
-Dubysa **module** is a directory which contains PHP, JavaScript, CSS and other files. 
+Osm **module** is a directory which contains PHP, JavaScript, CSS and other files. 
 
 Dividing monolithic application into relatively simple modules makes it easier to understand, maintain, update and customize.
 

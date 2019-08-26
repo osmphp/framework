@@ -33,15 +33,15 @@ Choose or create a directory where you develop all your projects.
 
 First, open command-line, go to the root project directory and run Composer command with like in the example below:
 
-    composer create-project -n dubysa/dubysa docs "--repository={\"type\":\"vcs\",\"url\":\"git@bitbucket.org:dubysa/dubysa.git\"}"
+    composer create-project -n osmphp/osmphp docs "--repository={\"type\":\"vcs\",\"url\":\"git@bitbucket.org:osmphp/osmphp.git\"}"
 
 During command execution, 
 
  - project files are downloaded from the repository and copied locally into `docs` subdirectory,
  - Composer downloads latest version of all dependent packages,
- - Dubysa post-update scripts are executed and environment is configured.
+ - Osm post-update scripts are executed and environment is configured.
  
-You can read more about how to [customize project creation](../../php-development/dubysa-console-commands.html#composer-create-project).
+You can read more about how to [customize project creation](../../php-development/osmphp-console-commands.html#composer-create-project).
 
 ## Configuring Local Web Server ##
 
@@ -86,15 +86,15 @@ If you use [PHPStorm](https://www.jetbrains.com/phpstorm/), open the project in 
 
 In the context of this tutorial we will create one project-specific module `App_Docs`.
 
->**NOTE:** Dubysa [module](../../architecture/modules/) is a directory which contains 
+>**NOTE:** Osm [module](../../architecture/modules/) is a directory which contains 
 PHP, JavaScript, CSS and and other files related to specific functionality. 
 
 >There are two types of modules: 
 
 >  - project specific modules, located in `app/src` directory,
->  - reusable modules, used in more than one project, stored in `vendor/dubysa` directory. 
+>  - reusable modules, used in more than one project, stored in `vendor/osmphp` directory. 
 
->Each Dubysa module is expected to follow specific 
+>Each Osm module is expected to follow specific 
 >[directory structure](../../architecture/modules/#directory-structure). 
 
 Create main module directory `app/src/Docs`.
@@ -178,7 +178,7 @@ Please check [other things controller method can do](#).
 While new folders and files will be added to the project, 
 it is often needed to refresh the cache and publish JS/CSS assets. Otherwise browser will just show old content. 
 
-Dubysa provides [`npm run watch`](../../php-development/dubysa-console-commands#npm-run-watch) 
+Osm provides [`npm run watch`](../../php-development/osmphp-console-commands#npm-run-watch) 
 command to refresh PHP cache automatically when something is changed
 
 In command line go to project directory and run  

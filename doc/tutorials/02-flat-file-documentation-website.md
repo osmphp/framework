@@ -1,9 +1,9 @@
 # Flat File Documentation Website
 
-In this tutorial, you will create a **flat file documentation website** with Dubysa framework.
+In this tutorial, you will create a **flat file documentation website** with Osm framework.
 
-The main aim of this tutorial is to get your hands dirty developing the real application with Dubysa. 
-You will create and improve your application step by step, getting acquainted with Dubysa development 
+The main aim of this tutorial is to get your hands dirty developing the real application with Osm. 
+You will create and improve your application step by step, getting acquainted with Osm development 
 principles and concepts.
 
 >**IMPORTANT:** Before you begin, check if your 

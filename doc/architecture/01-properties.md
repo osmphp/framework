@@ -7,7 +7,7 @@
 * specifying that property must be assigned prior first use
 * specifying that property should be serialized if object is serialized
 
-Most classes inherit from `Osm\Core\Object_`, and listed property features are widely used in Dubysa modules, so it is important to understand how `Object_` properties work and most important, why.
+Most classes inherit from `Osm\Core\Object_`, and listed property features are widely used in Osm modules, so it is important to understand how `Object_` properties work and most important, why.
 
 > **Important**. Treat all public properties as read only unless documentation explicitly says that the property is writable.
  

@@ -1,11 +1,11 @@
 # Installation #
 
-Dubysa is installed in 2 simple steps:
+Osm is installed in 2 simple steps:
 
 1. Create new project directory from template:
 
 		cd {home_dir}
-		composer create-project -n dubysa/dubysa "--repository={\"type\":\"vcs\",\"url\":\"git@bitbucket.org:dubysa/dubysa.git\"}" {project}
+		composer create-project -n osmphp/osmphp "--repository={\"type\":\"vcs\",\"url\":\"git@bitbucket.org:osmphp/osmphp.git\"}" {project}
 
 2. Add the project to Web server configuration, so that Web site's root URL is served from `{project_dir}/public` directory.
 

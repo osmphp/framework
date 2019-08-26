@@ -246,7 +246,7 @@ Here is a new content of `app/src/Docs/Controllers/Frontend.php`:
     }
 
 
-We use `image` function in `vendor/dubysa/framework/src/Framework/Http/Responses.php`, which prepares HTTP response for the image, 
+We use `image` function in `vendor/osmphp/framework/src/Framework/Http/Responses.php`, which prepares HTTP response for the image, 
 providing important data for the browser, for example, `content-type` and `content-disposition` . 
 
 Conclusion

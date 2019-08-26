@@ -4,9 +4,9 @@
 
 ## Introduction 
 
-In this tutorial you will create the first simple web application with Dubysa framework showing "Hello world!".
+In this tutorial you will create the first simple web application with Osm framework showing "Hello world!".
 
-<http://127.0.0.1/dubysa/> 
+<http://127.0.0.1/osmphp/> 
   
 ![Hello, World!](hello-world.png)
 
@@ -27,22 +27,22 @@ Choose or create a directory where you develop all your projects.
 
 First, open command-line, go to the root project directory and run Composer command with like in the example below:
 
-    composer create-project -n dubysa/dubysa "--repository={\"type\":\"vcs\",\"url\":\"git@bitbucket.org:dubysa/dubysa.git\"}"
+    composer create-project -n osmphp/osmphp "--repository={\"type\":\"vcs\",\"url\":\"git@bitbucket.org:osmphp/osmphp.git\"}"
 
 During command execution, 
 
- - project files are downloaded from the repository and copied locally into `dubysa` subdirectory,
+ - project files are downloaded from the repository and copied locally into `osmphp` subdirectory,
  - Composer downloads latest version of all dependent packages,
- - Dubysa post-update scripts are executed and environment is configured.
+ - Osm post-update scripts are executed and environment is configured.
  
-You can read more about how to [customize project creation](../php-development/dubysa-console-commands.html#composer-create-project).
+You can read more about how to [customize project creation](../php-development/osmphp-console-commands.html#composer-create-project).
 
 ## Configuring Local Web Server ##
 
-Before Local web server is configured, the browser does not know how to process <http://127.0.0.1/dubysa/> and 
-shows *"Not Found. The requested URL /dubysa/ was not found on this server."*
+Before Local web server is configured, the browser does not know how to process <http://127.0.0.1/osmphp/> and 
+shows *"Not Found. The requested URL /osmphp/ was not found on this server."*
 
-Local web server is going to process <http://127.0.0.1/dubysa/>  browser request from `/projects/dubysa/public`.
+Local web server is going to process <http://127.0.0.1/osmphp/>  browser request from `/projects/osmphp/public`.
 
 For production environment virtual host can be configured, but for development, in case of Windows and Apache web server, you can just create Windows symbolic link.
 
@@ -51,31 +51,31 @@ In our case, it should be created in Apache default document root directory for 
 
 To do this first go to Apache default document root directory `htdocs` in command prompt and run `mklink` Windows command.
 
-	mklink /D dubysa c:\projects\dubysa\public
+	mklink /D osmphp c:\projects\osmphp\public
 
 where
  
 - `/D` means pointing to directory
-- `dubysa` - name of symbolic link
-- `c:\projects\dubysa\public` is a `public` directory of our project where symbolic link will point to.
+- `osmphp` - name of symbolic link
+- `c:\projects\osmphp\public` is a `public` directory of our project where symbolic link will point to.
 
-After command is executed, you should see the new directory `dubysa` in Apache document root.  
+After command is executed, you should see the new directory `osmphp` in Apache document root.  
 
-Also running <http://127.0.0.1/dubysa/>  in the browser address line will show *"Page not found"*.
+Also running <http://127.0.0.1/osmphp/>  in the browser address line will show *"Page not found"*.
 
 ## Creating New Module ##
 
 In the context of this tutorial we will create one project-specific module `App_Hello`.
 
->**NOTE:** Dubysa [module](../../architecture/modules/) is a directory which contains 
+>**NOTE:** Osm [module](../../architecture/modules/) is a directory which contains 
 PHP, JavaScript, CSS and and other files related to specific functionality. 
 
 >There are two types of modules: 
 
 >  - project specific modules, located in `app/src` directory,
->  - reusable modules, used in more than one project, stored in `vendor/dubysa` directory. 
+>  - reusable modules, used in more than one project, stored in `vendor/osmphp` directory. 
 
->Each Dubysa module is expected to follow specific 
+>Each Osm module is expected to follow specific 
 >[directory structure](../../architecture/modules/#directory-structure). 
 
 Create main module directory `app/src/Hello`.
@@ -101,7 +101,7 @@ Create new PHP class `App\Hello\Module` (file `app/src/Hello/Module.php`):
 Create directory `app/src/Hello/config` - module configuration 
 and subdirectory `app/src/Hello/config/frontend` for [`frontend` area](../../web-development/areas/) configuration.
 
-Create PHP file `app/src/Hello/config/frontend/routes.php` to store route configuration and add `'GET /'` route to handle <http://127.0.0.1/dubysa/> homepage URL:
+Create PHP file `app/src/Hello/config/frontend/routes.php` to store route configuration and add `'GET /'` route to handle <http://127.0.0.1/osmphp/> homepage URL:
 
     <?php
     
@@ -149,9 +149,9 @@ Conclusion
 ----------------------------------------
 
 You did it! 
-Try to enter <http://127.0.0.1/dubysa/>  in browser address line and check if you see "Hello world!". 
-If you do not see expected result, run [`php fresh`](../../php-development/dubysa-console-commands#php-fresh) 
+Try to enter <http://127.0.0.1/osmphp/>  in browser address line and check if you see "Hello world!". 
+If you do not see expected result, run [`php fresh`](../../php-development/osmphp-console-commands#php-fresh) 
 in project directory. 
 
-We propose you to continue with learning Dubysa framework in the next tutorial 
+We propose you to continue with learning Osm framework in the next tutorial 
 ["Flat File Documentation Website"](../flat-file-documentation-website/).

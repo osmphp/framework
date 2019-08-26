@@ -1,6 +1,6 @@
 # Introduction #
 
-Dubysa is modular, extensible, developer-oriented, high-performance, multi-theme PHP Framework.
+Osm is modular, extensible, developer-oriented, high-performance, multi-theme PHP Framework.
 
 It is a powerful tool to create any kind of application, starting from simple console command to e-shop or web marketplace.
 

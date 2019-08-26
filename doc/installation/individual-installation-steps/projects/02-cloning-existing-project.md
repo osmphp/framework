@@ -21,4 +21,4 @@
 
 		php run
 
-	You should see list of Dubysa shell commands containing `installer` command, `migrations` command, and many more.
+	You should see list of Osm shell commands containing `installer` command, `migrations` command, and many more.

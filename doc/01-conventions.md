@@ -24,7 +24,7 @@ In the list below you will find all used placeholders in alphabetical order with
     * equals `{module}` with `_` replaced by `\`
     * for example: namespace of `Osm_Framework_Js` module is `Osm\Framework\Js` 
 * `{package}` - Name of your Composer package currently being developed.
-    * example: `dubysa/docs`
+    * example: `osmphp/docs`
 * `{project}` - name of the project you are currently working on. 
 	* This name is used for project's directory name.
 	* This name is usually part of project's Web domain name.

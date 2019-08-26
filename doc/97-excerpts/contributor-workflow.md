@@ -1,6 +1,6 @@
 # Contributor's Workflow #
 
-**Q**. In `dubysa/framework`, there is `master` branch and `next` branch. Which one should I choose when contributing patches?
+**Q**. In `osmphp/framework`, there is `master` branch and `next` branch. Which one should I choose when contributing patches?
 
 **A**. It depends on size and backward compatibility of the patch. Small and backward compatible go to `master` branch, while large pieces with breaking changes go to `next` branch.
 

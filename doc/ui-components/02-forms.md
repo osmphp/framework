@@ -12,4 +12,4 @@ Read more:
 
 {{ child_pages }}
 
-> **Note**. To use forms, [add `dubysa/app` package](#) to your project.
+> **Note**. To use forms, [add `osmphp/app` package](#) to your project.

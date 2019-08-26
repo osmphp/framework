@@ -2,7 +2,7 @@
 
 ## SASS Variables ##
 
-Most global SASS variables are defined in `vendor/dubysa/components/src/Ui/Aba/resources/css/_variables.scss`.
+Most global SASS variables are defined in `vendor/osmphp/components/src/Ui/Aba/resources/css/_variables.scss`.
 
 {{ page_toc }}
 

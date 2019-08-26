@@ -1,6 +1,6 @@
 # Lesson 5. Adding CSS #
 
-Application already shows HTML page applying standard CSS provided by Dubysa.
+Application already shows HTML page applying standard CSS provided by Osm.
 
 However, we want to have a possibility to customize it.
 
@@ -120,7 +120,7 @@ Definitely, it can be improved, modified by you to provide the design you want t
 
 ## Restarting `npm run watch`
 
-We should restart [`npm run watch`](../../php-development/dubysa-console-commands#npm-run-watch) process,
+We should restart [`npm run watch`](../../php-development/osmphp-console-commands#npm-run-watch) process,
 because we just added new `styles.scss` file which is not known to Webpack yet.
 
 Conclusion
@@ -138,7 +138,7 @@ from `app/src/Docs/frontend/css/styles.scss`:
 
 As you can notice, Web Developer Tools give you the possibility to see exact `scss` source file introducing every CSS rule. 
 
-This browser feature is known as **source map**. Dubysa not only generates merged `styles.css` file, but also `styles.css.map` file containing exact location of every generated line in module source files. 
+This browser feature is known as **source map**. Osm not only generates merged `styles.css` file, but also `styles.css.map` file containing exact location of every generated line in module source files. 
 
 You can check both generated files in  
 `public/development/frontend/Osm_Blank/styles.css` and `public/development/frontend/Osm_Blank/styles.css.map`. 

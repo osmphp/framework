@@ -17,9 +17,9 @@ Web application receives [HTTP requests](../http-requests/) and returns [HTTP re
 
 Below are examples of route names:
 
-	http://127.0.0.1/dubysa/?param1=value					=> 'GET /'
-	http://127.0.0.1/dubysa/jim								=> 'GET /jim'
-	http://127.0.0.1/dubysa/some-other-person?param1=value	=> 'GET /some-other-person'
+	http://127.0.0.1/osmphp/?param1=value					=> 'GET /'
+	http://127.0.0.1/osmphp/jim								=> 'GET /jim'
+	http://127.0.0.1/osmphp/some-other-person?param1=value	=> 'GET /some-other-person'
 
 > **Note**. `GET` here is HTTP request method. All URLs directly entered in browser address bar are requested using `GET` method. Other methods: `POST`, `PUT`, `DELETE`, sent when submitting forms or making AJAX requests, are out of scope of this tutorial. 
 
@@ -48,7 +48,7 @@ You should see something like:
 
 Each route specifies which method of which class should run when route is requested. For instance, standard route `'GET /profiler/plain-text'` is handled by `Osm\Framework\Profiler\Controllers\Web::plainTextPage()` method. Such classes are called **controller classes** and methods handling HTTP requests are called **controller methods**.
 
-> **Note**. If you enter `http://127.0.0.1/dubysa/profiler/plain-text` in a browser, you will still see "Page not found" message. Don't worry, this route exists and works, but to show something meaningful it requires [profiler](#) to be enabled.
+> **Note**. If you enter `http://127.0.0.1/osmphp/profiler/plain-text` in a browser, you will still see "Page not found" message. Don't worry, this route exists and works, but to show something meaningful it requires [profiler](#) to be enabled.
 
 ## Route Configuration
 
@@ -60,7 +60,7 @@ Configuration includes route name and specification of handling the route.
 
 Each route specifies which method of which class should run when route is requested.
  
-Example of route definition in Dubysa:
+Example of route definition in Osm:
  
         'GET /show' => [
              'class' => Web::class,

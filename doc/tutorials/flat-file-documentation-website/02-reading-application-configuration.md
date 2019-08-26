@@ -36,7 +36,7 @@ Here is an example of file content (you can set own value to the parameter):
     	<?php
     	
     	return [
-    	    'doc_root' => 'c:\_projects\dubysa\vendor\dubysa\framework\doc',
+    	    'doc_root' => 'c:\_projects\osmphp\vendor\osmphp\framework\doc',
     	]; 
     	  
 
@@ -86,7 +86,7 @@ Below is the content of `app/src/Docs/Controllers/Frontend.php`:
 
 
 First of all, we introduced two properties `$settings` and `$doc_root` in the class.
-We advise to read more about [properties](../../architecture/properties) in Dubysa.
+We advise to read more about [properties](../../architecture/properties) in Osm.
 
 The properties have `@required` notation, that means that application will stop processing 
 if any of those properties is not found. 
@@ -100,7 +100,7 @@ object - global top-level application object of `Osm\Core\App` class.
 The global `$osm_app` variable already has `settings` property to keep and cache all application settings.
 
 The object `$osm_app->settings` reads and merges `config/settings.php` files from all included modules and application directory. 
-This functionality is provided in standard Dubysa Framework class `Osm\Framework\Settings\Settings`. 
+This functionality is provided in standard Osm Framework class `Osm\Framework\Settings\Settings`. 
 This class is also responsible for caching.
 
 However, new setting `doc_root`, which we need to process in our application and which should be mandatory and cacheable, is our own custom property. Normally we specify that property is mandatory and cacheable in its class, 
@@ -115,7 +115,7 @@ used for `$settings` property evaluation.
 
 ## Creating `SettingsHint` Class
 
-As we cannot modify standard Dubysa class, we introduce [type hint](../../architecture/type-hints) for it. 
+As we cannot modify standard Osm class, we introduce [type hint](../../architecture/type-hints) for it. 
 
 Create directory `app/src/Docs/Hints`. 
 

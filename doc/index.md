@@ -1,4 +1,4 @@
-# Dubysa Framework #
+# Osm Framework #
 
 {{ child_pages depth="2" }}
 

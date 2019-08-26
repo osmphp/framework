@@ -26,7 +26,7 @@ The rest of the article reviews how `users` sheet, data table and data form are 
 
 Routes are defined for showing sheet as data table ans as data form as well as routes for AJAX refresh and data modification requests:
 
-    // vendor/dubysa/components/src/App/Users/config/backend/routes.php
+    // vendor/osmphp/components/src/App/Users/config/backend/routes.php
     return [
         'GET /users/' => [
             'class' => Backend\Users::class,
@@ -40,7 +40,7 @@ Routes are defined for showing sheet as data table ans as data form as well as r
 
 Defined routes are handled in controller class:
 
-    // vendor/dubysa/components/src/App/Users/Controllers/Backend/Users.php
+    // vendor/osmphp/components/src/App/Users/Controllers/Backend/Users.php
     class Users extends Controller
     {
         public function listPage() {
@@ -58,7 +58,7 @@ Controller code specifies that pages showing user data table and data form shoul
 
 Layers mentioned in controller are defined in asset subdirectory:
 
-    // vendor/dubysa/components/src/App/Users/backend/layers/user_list.php
+    // vendor/osmphp/components/src/App/Users/backend/layers/user_list.php
     return [
         '@include' => 'page',
         '#page' => [
@@ -67,7 +67,7 @@ Layers mentioned in controller are defined in asset subdirectory:
         ],
     ];
 
-    // vendor/dubysa/components/src/App/Users/backend/layers/user_edit.php
+    // vendor/osmphp/components/src/App/Users/backend/layers/user_edit.php
     return [
         '@include' => 'page',
         '#page' => [
@@ -80,7 +80,7 @@ List page layer instuctions render `DataTableContainer` view, which in turn rend
  
 ## Data Table Definition ##
 
-    // vendor/dubysa/components/src/App/Users/config/backend/data_tables.php
+    // vendor/osmphp/components/src/App/Users/config/backend/data_tables.php
     return [
         'users' => [
             'sheet' => 'users',
@@ -97,7 +97,7 @@ Defined data table is based on `users` sheet in 2 ways: it shows information fro
 
 Sheet's underlying database table are created and sheet itself is registered for usage in migration script:
 
-    // vendor/dubysa/components/src/App/Users/migrations/schema/01_users.php
+    // vendor/osmphp/components/src/App/Users/migrations/schema/01_users.php
     class Users extends Migration
     {
         public function up() {

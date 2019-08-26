@@ -12,9 +12,9 @@ Server sends HTML text back to browser to show the page.
 
 In general URL consists of 4 parts `[base URL][/path][?query][#fragment]`
 
-For example in URL `http://127.0.0.1/dubysa-docs/?param1=value`
+For example in URL `http://127.0.0.1/osmphp-docs/?param1=value`
 
- - base URL `http://127.0.0.1/dubysa-docs` is a local address of our project is hosted
+ - base URL `http://127.0.0.1/osmphp-docs` is a local address of our project is hosted
  - path `/` means homepage of the project
  - query `?param1=value` define additional information to serve the request
  - this URL does not contain `#fragment` 

@@ -1,6 +1,6 @@
 # Environment #
 
-Dubysa supports own configuration for different environments:
+Osm supports own configuration for different environments:
 
 - `development`
 - `testing`

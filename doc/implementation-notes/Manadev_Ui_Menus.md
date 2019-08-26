@@ -4,7 +4,7 @@
 
 ## About This Module ##
 
-Dubysa has 2 visually different, yet structurally identical UI components:
+Osm has 2 visually different, yet structurally identical UI components:
 
 * popup menus, implemented in [`Osm_UI_PopupMenus` module](Osm_UI_PopupMenus.html)
 * menu bars, implemented in [`Osm_UI_MenuBars` module](Osm_UI_MenuBars.html)
@@ -28,9 +28,9 @@ Use this registry to define new menu item types.
 
 This registry works over `config/menu_item_types.php` files:
 
-* common characteristics are defined in `vendor/dubysa/framework/src/Ui/Menus/config/menu_item_types.php`
-* menu bar specific properties are added to the types in `vendor/dubysa/framework/src/Ui/MenuBars/config/menu_item_types.php`
-* popup menu specific properties are added to the types in `vendor/dubysa/framework/src/Ui/PopupMenus/config/menu_item_types.php`
+* common characteristics are defined in `vendor/osmphp/framework/src/Ui/Menus/config/menu_item_types.php`
+* menu bar specific properties are added to the types in `vendor/osmphp/framework/src/Ui/MenuBars/config/menu_item_types.php`
+* popup menu specific properties are added to the types in `vendor/osmphp/framework/src/Ui/PopupMenus/config/menu_item_types.php`
 
 When loaded, entries are converted into instances of `Osm\Ui\Menus\Items\Type` class:
 
