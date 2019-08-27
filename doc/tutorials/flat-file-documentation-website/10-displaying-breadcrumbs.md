@@ -80,9 +80,9 @@ Modify `app/src/Docs/Controllers/Frontend.php`
         }
     }
     
-As you can see `show()` method is changed to set a container with 2 views instead of just setting one `Html` view.
-For each view in the container we should provide the link to the page where the view will be shown.
-'Breadcrumbs' view will be created in next section.     
+As you can see `show()` method now displays a container with two views instead of just one `Html` view.
+For each view in the container we should provide the page object to be displayed.
+`Breadcrumbs` view will be created in next section.     
 
 ## Creating New `Breadcrumbs` View
   
@@ -120,7 +120,7 @@ Create new PHP class `app/src/Docs/Views/Breadcrumbs.php`:
 As you see, we need to have new `breadcrumbs` view template for this view. 
 Template will be created in the next section.
 
-This view should pass to `breadcrumbs` view template the array of higher-level parent pages related to current page.
+This view should pass to `breadcrumbs` view template an array of higher-level parent pages related to current page.
 Therefore new `parent_pages` property is defined. This array will be filled by `findParentPages` method of 
 `PageFinder` class. This change will be described later in this lesson.
     
@@ -327,8 +327,8 @@ Here is the new content of `app/src/Docs/PageFinder.php`:
     }
 
 New method `findParentPages()` finds relative path of the current page from source file name 
-and create `Page` object for each directory of this path. Finally, this method returns the array of all parent pages 
-up to home page.
+and creates `Page` object for each directory of this path. Finally, this method returns the array of all parent pages 
+up to the home page.
 
 Conclusion
 ----------------------------------------
