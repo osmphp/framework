@@ -8,7 +8,7 @@ use Illuminate\Contracts\Debug\ExceptionHandler as BaseExceptionHandler;
 class ExceptionHandler implements BaseExceptionHandler
 {
     public function report(Exception $e) {
-        throw $e;
+        osm_core_log($e->getMessage());
     }
 
     public function render($request, Exception $e) {

@@ -24,7 +24,7 @@ class Process extends Command
                 $osm_app->laravel->events, $osm_app->laravel->exception_handler);
             case 'worker_options':
                 $options = new WorkerOptions();
-                $options->stopWhenEmpty = true;
+                $options->stopWhenEmpty = false;
                 $options->sleep = 0;
                 return $options;
         }
@@ -33,6 +33,13 @@ class Process extends Command
     }
 
     public function run() {
+        $this->output->writeln("started");
+        $this->module->laravel_manager->before(function() {
+            $this->output->writeln("before");
+        });
+        $this->module->laravel_manager->after(function() {
+            $this->output->writeln("after");
+        });
         $this->worker->daemon(null, 'default', $this->worker_options);
     }
 }
