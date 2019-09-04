@@ -18,4 +18,8 @@ class ExceptionHandler implements BaseExceptionHandler
     public function renderForConsole($output, Exception $e) {
         throw $e;
     }
+
+    public function shouldReport(Exception $e) {
+        return true;
+    }
 }

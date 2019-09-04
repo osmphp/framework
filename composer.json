@@ -17,9 +17,10 @@
         }
     },
     "require": {
-        "php": ">=7.1",
+        "php": "^7.2",
         "nikic/php-parser": "^4.0",
         "laravel/framework": "^6.0",
+        "laravel/helpers": "^1.0",
         "symfony/dom-crawler": "~3.3",
         "doctrine/dbal": "~2.5",
         "fzaninotto/faker": "~1.8"

@@ -8,14 +8,14 @@ Thus Composer packages support solution re-usability  in many different projects
 Example of Composer packages in `composer.json` 
 
     "require": {
-        "php": ">=7.1.0",
+        "php": "^7.2",
         "osmphp/components": "dev-master@dev"
     },
 
 Composer checks and download package into `vendor` directory. After downloading the package Composer checks   required composer packages in `vendor/osmphp/components/composer.json` :
 
     "require": {
-        "php": ">=7.1",
+        "php": "^7.2",
         "vlucas/phpdotenv": "~2.2",
         "nikic/php-parser": "^4.0",
         "laravel/framework": "5.7.*",
