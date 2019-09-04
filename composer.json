@@ -20,7 +20,7 @@
         "php": ">=7.1",
         "vlucas/phpdotenv": "~2.2",
         "nikic/php-parser": "^4.0",
-        "laravel/framework": "5.7.*",
+        "laravel/framework": "^6.0",
         "symfony/dom-crawler": "~3.3",
         "doctrine/dbal": "~2.5",
         "fzaninotto/faker": "~1.8"
