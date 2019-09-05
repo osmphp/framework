@@ -12,6 +12,6 @@ trait PropertiesTrait
     }
 
     public function Osm_Core_App__cache(App $app) {
-        return $app->caches['main'];
+        return $app->caches[env('CACHE', 'file')];
     }
 }

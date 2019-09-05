@@ -4,7 +4,7 @@ use Osm\Framework\Cache;
 use Osm\Framework\KeyValueStores;
 
 return [
-    'main' => [
+    'file' => [
         'class' => Cache\CompositeCache::class,
         'store' => [
             'class' => KeyValueStores\File::class,

@@ -4,5 +4,6 @@ use Osm\Framework\Queues;
 use Osm\Framework\Queues\Queue;
 
 return [
-    Queue::DB => ['class' => Queues\Database::class],
+    'db' => ['class' => Queues\Database::class],
+    'redis' => ['class' => Queues\Redis::class],
 ];
