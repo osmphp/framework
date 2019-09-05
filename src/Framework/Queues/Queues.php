@@ -29,4 +29,8 @@ class Queues extends CollectionRegistry
     public function dispatch(Job $job) {
         $this->laravel_dispatcher->dispatch($job);
     }
+
+    public function dispatchNow(Job $job) {
+        $this->laravel_dispatcher->dispatchNow($job);
+    }
 }
