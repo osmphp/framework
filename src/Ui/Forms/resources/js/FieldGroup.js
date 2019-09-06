@@ -37,7 +37,7 @@ export default class FieldGroup extends Field {
 
         this.fields.forEach(field => {
             let value = field.value;
-            if (value === null) {
+            if (value === undefined) {
                 return;
             }
 
