@@ -180,20 +180,24 @@ class Validator extends Object_
 
         if (!$data && !empty($property['required'])) {
             $this->error($path, osm_t("Fill in this field"));
+            return $data;
         }
 
         if (!empty($property['max_length']) && mb_strlen($data) > $property['max_length']) {
             $this->error($path, osm_t("Value should be no longer than :length characters",
                 ['length' => $property['max_length']]));
+            return $data;
         }
 
         if (!empty($property['min_length']) && mb_strlen($data) < $property['min_length']) {
             $this->error($path, osm_t("Value should be at least :length characters long",
                 ['length' => $property['min_length']]));
+            return $data;
         }
 
         if (!empty($property['pattern']) && !preg_match($this->patterns[$property['pattern']]->pattern, $data)) {
             $this->error($path, $this->patterns[$property['pattern']]->error_message);
+            return $data;
         }
 
         return $data;
@@ -202,6 +206,7 @@ class Validator extends Object_
     protected function validateInt($data, array $property, $path) {
         if (!is_int($data)) {
             $this->error($path, osm_t("Integer expected"));
+            return $data;
         }
 
         return $data;
@@ -210,6 +215,7 @@ class Validator extends Object_
     protected function validateBool($data, array $property, $path) {
         if (!is_bool($data)) {
             $this->error($path, osm_t("Boolean expected"));
+            return $data;
         }
 
         return $data;

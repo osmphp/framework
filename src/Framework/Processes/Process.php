@@ -30,6 +30,12 @@ class Process
         return $process->run($callback) == 0;
     }
 
+    public static function mustRun($command, callable $callback) {
+        if (!static::run($command, $callback)) {
+            throw new ProcessFailed("Command '$command' failed unexpectedly");
+        }
+    }
+
     public static function runInConsole($command, $show = false) {
         if ($show) {
             static::out("> $command\n");

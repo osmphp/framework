@@ -58,6 +58,10 @@ function osm_env($name, $default = null) {
     return new Promise(null, 'getEnv', [$name, $default]);
 }
 
+/**
+ * @param mixed ...$layers
+ * @return Layout
+ */
 function osm_layout(...$layers) {
     return Layout::new()->load(...$layers);
 }
