@@ -5,10 +5,10 @@ namespace Osm\Framework\Queues\Migrations\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Osm\Framework\Migrations\Migration;
 
-class Jobs extends Migration
+class QueuedJobs extends Migration
 {
     public function up() {
-        $this->schema->create('jobs', function (Blueprint $table) {
+        $this->schema->create('queued_jobs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('queue')->index();
             $table->longText('payload');
@@ -20,6 +20,6 @@ class Jobs extends Migration
     }
 
     public function down() {
-        $this->schema->drop('jobs');
+        $this->schema->drop('queued_jobs');
     }
 }

@@ -20,7 +20,7 @@ class Database extends Queue
             case 'laravel_queue':
                 /* @var DatabaseQueue $queue */
                 $queue = $osm_app->createRaw(DatabaseQueue::class,
-                    $this->db->connection, 'jobs', $this->default,
+                    $this->db->connection, 'queued_jobs', $this->default,
                     $this->retry_after);
                 $queue->setContainer($osm_app->laravel->container);
                 return $queue;
