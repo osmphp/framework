@@ -44,7 +44,8 @@ class Module extends BaseModule
         $osm_app->laravel->container->bind(CallQueuedHandler::class, function() {
             global $osm_app; /* @var App $osm_app */
 
-            return $osm_app->createRaw(CallQueuedHandler::class, $this->laravel_dispatcher);
+            return $osm_app->createRaw(CallQueuedHandler::class,
+                $this->laravel_dispatcher, $osm_app->laravel->container);
         });
     }
 }

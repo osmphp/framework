@@ -10,7 +10,7 @@ export default class Field extends Controller {
     }
 
     get value() {
-        return null;
+        return undefined;
     }
 
     showError(message) {

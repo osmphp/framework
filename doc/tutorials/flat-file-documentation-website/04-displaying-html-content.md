@@ -60,7 +60,7 @@ After command is finished can check that `michelf/php-markdown` is added to `req
 block of project's `composer.json` file. Here is an example of this block:
 
     "require": {
-        "php": ">=7.1.0",
+        "php": "^7.2",
         "osmphp/framework": "0.4.*",
         "michelf/php-markdown": "^1.8"
     },

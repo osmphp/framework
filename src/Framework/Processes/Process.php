@@ -21,13 +21,19 @@ class Process
         }
     }
 
-    public static function run($command, callable $callback) {
+    public static function run($command, callable $callback = null) {
         $path = static::getBasePath() . (static::$path ? '/' . static::$path : '');
         $process = new SymfonyProcess($command, $path, null, null, null);
         $dir = __DIR__;
         $process->setWorkingDirectory(realpath("$dir/../../../../../.." .
             (static::$path ? '/' . static::$path : '')));
         return $process->run($callback) == 0;
+    }
+
+    public static function mustRun($command, callable $callback = null) {
+        if (!static::run($command, $callback)) {
+            throw new ProcessFailed("Command '$command' failed unexpectedly");
+        }
     }
 
     public static function runInConsole($command, $show = false) {

@@ -78,9 +78,8 @@ class Validator extends Object_
         return array_merge($data, $options);
     }
 
-    protected function validationFailed($path, $error) {
+    protected function error($path, $error) {
         $this->errors[ltrim($path, '/')] = (string)$error;
-        return null;
     }
 
     protected function doValidate($data, array $property, $path = '') {
@@ -90,7 +89,7 @@ class Validator extends Object_
 
         if ($data === null) {
             if (!empty($property['required'])) {
-                return $this->validationFailed($path, $path
+                $this->error($path, $path
                     ? osm_t("Fill in this field")
                     : osm_t("Data expected"));
             }
@@ -102,18 +101,15 @@ class Validator extends Object_
 
     protected function validateArray($data, array $property, $path) {
         if (!is_array($data)) {
-            return $this->validationFailed($path, osm_t("Array expected"));
+            $this->error($path, osm_t("Array expected"));
+            return $data;
         }
 
         $intKeys = array_first(array_keys($data)) === 0;
         $unset = false;
 
         foreach ($data as $key => $value) {
-            if ($value === null) {
-                unset($data[$key]);
-                $unset = true;
-            }
-            elseif (($value = $this->validateValue($value, $property,  "$path/$key")) !== null) {
+            if (($value = $this->validateValue($value, $property,  "$path/$key")) !== null) {
                 $data[$key] = $value;
             }
             else {
@@ -145,25 +141,27 @@ class Validator extends Object_
 
         if (is_array($data)) {
             if (!empty($data) && is_int(array_first(array_keys($data)))) {
-                return $this->validationFailed($path, osm_t("Object of class ':class' expected", ['class' => $class]));
+                $this->error($path, osm_t("Object of class ':class' expected", ['class' => $class]));
+                return $data;
             }
             $data = (object)$data;
         }
 
         if (!is_object($data)) {
-            return $this->validationFailed($path, osm_t("Object of class ':class' expected", ['class' => $class]));
+            $this->error($path, osm_t("Object of class ':class' expected", ['class' => $class]));
+            return $data;
         }
 
         while ($class) {
             $class_ = $osm_classes->get($class);
             foreach ($class_['properties'] as $property => $property_) {
-                if (($value = $this->doValidate($data->$property ?? null, $property_,
-                    "$path/$property")) !== null)
-                {
-                    $data->$property = $value;
+                if (isset($data->$property)) {
+                    $data->$property = $this->doValidate($data->$property,
+                        $property_, "$path/$property");
                 }
                 else {
-                    unset($data->$property);
+                    $this->doValidate(null, $property_,
+                        "$path/$property");
                 }
             }
             $class = $class_['parent'];
@@ -174,27 +172,32 @@ class Validator extends Object_
 
     protected function validateString($data, array $property, $path) {
         if (!is_string($data)) {
-            return $this->validationFailed($path, osm_t("String expected"));
+            $this->error($path, osm_t("String expected"));
+            return $data;
         }
 
         $data = trim($data);
 
         if (!$data && !empty($property['required'])) {
-            return $this->validationFailed($path, osm_t("Fill in this field"));
+            $this->error($path, osm_t("Fill in this field"));
+            return $data;
         }
 
         if (!empty($property['max_length']) && mb_strlen($data) > $property['max_length']) {
-            return $this->validationFailed($path, osm_t("Value should be no longer than :length characters",
+            $this->error($path, osm_t("Value should be no longer than :length characters",
                 ['length' => $property['max_length']]));
+            return $data;
         }
 
         if (!empty($property['min_length']) && mb_strlen($data) < $property['min_length']) {
-            return $this->validationFailed($path, osm_t("Value should be at least :length characters long",
+            $this->error($path, osm_t("Value should be at least :length characters long",
                 ['length' => $property['min_length']]));
+            return $data;
         }
 
         if (!empty($property['pattern']) && !preg_match($this->patterns[$property['pattern']]->pattern, $data)) {
-            return $this->validationFailed($path, $this->patterns[$property['pattern']]->error_message);
+            $this->error($path, $this->patterns[$property['pattern']]->error_message);
+            return $data;
         }
 
         return $data;
@@ -202,7 +205,8 @@ class Validator extends Object_
 
     protected function validateInt($data, array $property, $path) {
         if (!is_int($data)) {
-            return $this->validationFailed($path, osm_t("Integer expected"));
+            $this->error($path, osm_t("Integer expected"));
+            return $data;
         }
 
         return $data;
@@ -210,7 +214,8 @@ class Validator extends Object_
 
     protected function validateBool($data, array $property, $path) {
         if (!is_bool($data)) {
-            return $this->validationFailed($path, osm_t("Boolean expected"));
+            $this->error($path, osm_t("Boolean expected"));
+            return $data;
         }
 
         return $data;

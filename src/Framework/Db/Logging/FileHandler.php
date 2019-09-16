@@ -6,7 +6,7 @@ use Monolog\Handler\StreamHandler;
 
 class FileHandler extends StreamHandler
 {
-    public function write(array $record) {
+    public function write(array $record): void {
         parent::write($record);
         $this->close();
     }

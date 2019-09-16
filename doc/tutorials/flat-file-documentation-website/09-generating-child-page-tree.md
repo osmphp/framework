@@ -1,5 +1,8 @@
 # Lesson 9. Generating Child Page Tree
 
+For higher-level pages it is reasonable to show the tree of child pages similar to table of content, 
+which was show in previous lesson.
+
 In this lesson we will process the child page placeholder and replace it with the tree 
 of child pages. Placeholder syntax: 
 
@@ -13,7 +16,7 @@ How Child Pages Are Organized
 -----------------------------
 
 Before starting this tutorial we agreed to follow the rules for 
-[source documentation structure](what-we-are-going-to-build.html).
+[source documentation structure](what-we-are-going-to-build.html#source-documentation-structure).
 
 If Markdown document is quite large, it is reasonable to split it to several child documents. 
 Each child document, in turn, can also be split. This way document hierarchy is created.
@@ -320,7 +323,7 @@ Here is the new content of `app/src/Docs/PageFinder.php` file:
         }
     }
 
-New `findChildPages()` method return the array of all child pages for the given page.
+New `findChildPages()` method returns the array of all child pages for the given page.
 
 First, it tries to find the directory where child pages are stored. 
 The name of the directory should match with the page name by `FILENAME_PATTERN` regex.

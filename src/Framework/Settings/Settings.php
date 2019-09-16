@@ -31,8 +31,10 @@ use Osm\Framework\Cache\CacheItem;
  *      @property int $hashing_argon2_threads @required @part
  * @see \Osm\Framework\Profiler\Module:
  *      @property int $profiler_time_to_live @required @part
- * @ \Osm\Framework\Layers\Module:
+ * @see \Osm\Framework\Layers\Module:
  *      @property bool $log_layers @part
+ * @see \Osm\Framework\Redis\Module:
+ *      @property bool $redis_driver @part
  * @see \Osm\App\App\Module:
  *      @property int $backend_session_time_to_live @required @part
  *      @property string $backend_session_cookie_name @required @part

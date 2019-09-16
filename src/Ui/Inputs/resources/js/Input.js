@@ -125,7 +125,8 @@ export default class Input extends Field {
     }
 
     get value() {
-        return this.$value.val().trim();
+        let result = this.$value.val().trim();
+        return result.length ? result : null;
     }
 
     set value(value) {

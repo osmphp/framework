@@ -9,7 +9,6 @@ use Osm\Framework\Db\Db;
 
 /**
  * @property Db $db @required
- * @property Container $laravel_container @required
  */
 class Database extends Queue
 {
@@ -18,12 +17,12 @@ class Database extends Queue
 
         switch ($property) {
             case 'db': return $osm_app->db;
-            case 'laravel_container': return $osm_app->laravel->container;
             case 'laravel_queue':
                 /* @var DatabaseQueue $queue */
-                $queue = $osm_app->createRaw(DatabaseQueue::class, $this->db->connection,
-                    'jobs', 'default', 60);
-                $queue->setContainer($this->laravel_container);
+                $queue = $osm_app->createRaw(DatabaseQueue::class,
+                    $this->db->connection, 'queued_jobs', $this->default,
+                    $this->retry_after);
+                $queue->setContainer($osm_app->laravel->container);
                 return $queue;
         }
         return parent::default($property);
