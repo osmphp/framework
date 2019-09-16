@@ -93,13 +93,6 @@ function osm_core_log_stack_trace($filename = 'core.log') {
     }
 }
 
-if (!function_exists('is_iterable' )) {
-    function is_iterable($var) {
-        return is_array($var) || (is_object($var) && ($var instanceof \Traversable));
-    }
-
-}
-
 /**
  * @param mixed $var
  * @return array
@@ -139,4 +132,50 @@ function osm_object($var) {
         }
     }
     return $var;
+}
+
+function osm_delete_dir($path) {
+    if (!is_dir($path)) {
+        return;
+    }
+
+    foreach (new \DirectoryIterator($path) as $fileInfo) {
+        if ($fileInfo->isDot()) {
+            continue;
+        }
+
+        if ($fileInfo->isDir()) {
+            osm_delete_dir("{$path}/{$fileInfo->getFilename()}");
+        }
+        else {
+            unlink("{$path}/{$fileInfo->getFilename()}");
+        }
+    }
+
+    rmdir($path);
+}
+
+function osm_copy_dir($target, $source) {
+    if (!is_dir($source)) {
+        return;
+    }
+
+    if (!is_dir($target)) {
+        osm_make_dir($target);
+    }
+
+    foreach (new \DirectoryIterator($source) as $fileInfo) {
+        if ($fileInfo->isDot()) {
+            continue;
+        }
+
+        if ($fileInfo->isDir()) {
+            osm_copy_dir("{$target}/{$fileInfo->getFilename()}",
+                "{$source}/{$fileInfo->getFilename()}");
+        }
+        else {
+            copy("{$source}/{$fileInfo->getFilename()}",
+                "{$target}/{$fileInfo->getFilename()}");
+        }
+    }
 }

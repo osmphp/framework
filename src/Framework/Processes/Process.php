@@ -21,7 +21,7 @@ class Process
         }
     }
 
-    public static function run($command, callable $callback) {
+    public static function run($command, callable $callback = null) {
         $path = static::getBasePath() . (static::$path ? '/' . static::$path : '');
         $process = new SymfonyProcess($command, $path, null, null, null);
         $dir = __DIR__;
@@ -30,7 +30,7 @@ class Process
         return $process->run($callback) == 0;
     }
 
-    public static function mustRun($command, callable $callback) {
+    public static function mustRun($command, callable $callback = null) {
         if (!static::run($command, $callback)) {
             throw new ProcessFailed("Command '$command' failed unexpectedly");
         }
