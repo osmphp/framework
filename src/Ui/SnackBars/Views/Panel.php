@@ -12,8 +12,16 @@ class Panel extends View
     public function rendering() {
         global $osm_app; /* @var App $osm_app */
 
-        $this->js_config->translate("Request processing was interrupted.");
-        $this->js_config->translate("Processing ...");
-        $this->js_config->close_snack_bars_after = $osm_app->settings->close_snack_bars_after;
+        $this->layout->loadLayer([
+            '#page' => [
+                'translations' => [
+                    "Request processing was interrupted." => "Request processing was interrupted.",
+                    "Processing ..." => "Processing ...",
+                ],
+                'model' => [
+                    'close_snack_bars_after' => $osm_app->settings->close_snack_bars_after,
+                ],
+            ],
+        ]);
     }
 }

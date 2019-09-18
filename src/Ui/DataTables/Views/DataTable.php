@@ -38,7 +38,6 @@ class DataTable extends View
         switch ($property) {
             case 'search_': return $osm_app->create($this->search);
             case 'columns_': return $this->getColumns();
-            case 'model': return $this->getModel();
             case 'rows_per_page': return $osm_app->settings->data_table_rows_per_page;
             case 'template': return $this->render_rows ? $this->rows_template : $this->full_template;
             case 'data_table_module': return $osm_app->modules['Osm_Ui_DataTables'];
@@ -104,14 +103,14 @@ class DataTable extends View
         return $this->column->cell_template;
     }
 
-    protected function getModel() {
-        return (object)[
+    public function rendering() {
+        $this->model = osm_merge([
             'main_column' => $this->main_column,
             'count' => $this->data->count,
             'rows_per_page' => $this->rows_per_page,
             'load_route' => $this->load_route,
             'columns' => array_map([$this, 'getColumnModel'], $this->columns_),
-        ];
+        ], $this->model ?: []);
     }
 
     protected function getColumnModel(Column $column) {
