@@ -17,15 +17,19 @@ export default class Functions {
     ajax(route, options = {}) {
         let parameters = {
             method: route.substr(0, route.indexOf(' ')),
-            contentType: 'text/plain'
         };
 
         if (options.payload !== undefined) {
+            parameters.contentType = 'text/plain';
             parameters.dataType = 'text';
             parameters.data = JSON.stringify(options.payload);
             parameters.processData = false;
-            parameters.headers = options.headers || {};
         }
+        else if (options.data !== undefined) {
+            parameters.data = options.data;
+        }
+
+        parameters.headers = options.headers || {};
 
         return Promise.resolve($.ajax(url.generate(route, options.query), parameters));
     }
