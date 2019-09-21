@@ -35,7 +35,7 @@ class QueryLineFormatter extends LineFormatter
         parent::__construct(null, $dateFormat, $allowInlineLineBreaks, $ignoreEmptyContextAndExtra);
     }
 
-    public function format(array $record) {
+    public function format(array $record):string {
         if (!isset($record['context']['file'])) {
             return parent::format($record);
         }

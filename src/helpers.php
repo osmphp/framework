@@ -58,6 +58,10 @@ function osm_env($name, $default = null) {
     return new Promise(null, 'getEnv', [$name, $default]);
 }
 
+/**
+ * @param mixed ...$layers
+ * @return Layout
+ */
 function osm_layout(...$layers) {
     return Layout::new()->load(...$layers);
 }
@@ -87,13 +91,6 @@ function osm_core_log_stack_trace($filename = 'core.log') {
     catch (\Exception $e) {
         osm_core_log($e->getTraceAsString(), $filename);
     }
-}
-
-if (!function_exists('is_iterable' )) {
-    function is_iterable($var) {
-        return is_array($var) || (is_object($var) && ($var instanceof \Traversable));
-    }
-
 }
 
 /**
@@ -135,4 +132,50 @@ function osm_object($var) {
         }
     }
     return $var;
+}
+
+function osm_delete_dir($path) {
+    if (!is_dir($path)) {
+        return;
+    }
+
+    foreach (new \DirectoryIterator($path) as $fileInfo) {
+        if ($fileInfo->isDot()) {
+            continue;
+        }
+
+        if ($fileInfo->isDir()) {
+            osm_delete_dir("{$path}/{$fileInfo->getFilename()}");
+        }
+        else {
+            unlink("{$path}/{$fileInfo->getFilename()}");
+        }
+    }
+
+    rmdir($path);
+}
+
+function osm_copy_dir($target, $source) {
+    if (!is_dir($source)) {
+        return;
+    }
+
+    if (!is_dir($target)) {
+        osm_make_dir($target);
+    }
+
+    foreach (new \DirectoryIterator($source) as $fileInfo) {
+        if ($fileInfo->isDot()) {
+            continue;
+        }
+
+        if ($fileInfo->isDir()) {
+            osm_copy_dir("{$target}/{$fileInfo->getFilename()}",
+                "{$source}/{$fileInfo->getFilename()}");
+        }
+        else {
+            copy("{$source}/{$fileInfo->getFilename()}",
+                "{$target}/{$fileInfo->getFilename()}");
+        }
+    }
 }

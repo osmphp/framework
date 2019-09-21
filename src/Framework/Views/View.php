@@ -15,14 +15,13 @@ use Osm\Framework\Views\Exceptions\IdCantBeInferred;
  * @property string $id_ @required @part
  * @property string $view_model @required @part
  * @property int $sort_order @part // used in Container views
- * @property object $model
+ * @property array|null $model
  * @property string $view_model_script @required
  *
  * @property \Osm\Framework\Views\Module $module @required
  * @property ViewFactory $laravel_view @required
  * @property Rendering $rendering @required
  * @property Iterator $iterator @required
- * @property JsConfig $js_config @required
  * @property Layout $layout @required
  */
 class View extends Object_
@@ -57,7 +56,6 @@ class View extends Object_
             case 'iterator': return $osm_app[Iterator::class];
             case 'id_': return $this->inferId();
             case 'view_model_script': return $this->getViewModelScript();
-            case 'js_config': return $osm_app[JsConfig::class];
             case 'layout': return $osm_app->layout ?? Layout::new();
         }
         return parent::default($property);
@@ -137,7 +135,9 @@ class View extends Object_
      * @return string
      */
     protected function getViewModelScript() {
-        return "<script>new {$this->view_model}('#{$this->id_}', " . json_encode($this->model) .
-            ");</script>";
+        /** @noinspection BadExpressionStatementJS */
+        return "<script>new {$this->view_model}('#{$this->id_}', " .
+            json_encode($this->model ? (object)$this->model : null) .
+            ")</script>";
     }
 }

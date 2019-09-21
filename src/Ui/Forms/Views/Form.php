@@ -22,14 +22,13 @@ class Form extends Container
         switch ($property) {
             case 'method': return substr($this->route, 0, strpos($this->route, ' '));
             case 'action': return substr($this->route, strpos($this->route, ' ') + 1);
-            case 'model': return $this->getModel();
         }
         return parent::default($property);
     }
 
-    protected function getModel() {
-        return (object)[
+    public function rendering() {
+        $this->model = osm_merge([
             'submitting_message' => (string)$this->submitting_message,
-        ];
+        ], $this->model ?: []);
     }
 }

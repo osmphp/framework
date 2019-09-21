@@ -24,7 +24,6 @@ class Input extends View
         switch ($property) {
             case 'type': return $this->getType();
             case 'alias': return $this->name;
-            case 'model': return $this->getModel();
             case 'autocomplete': return $this->type == 'password' ? 'new-password' : null;
         }
         return parent::default($property);
@@ -42,16 +41,18 @@ class Input extends View
         return 'text';
     }
 
-    protected function getModel() {
-        $this->js_config->translate("Fill in this field");
+    public function rendering() {
+        $this->model = osm_merge([],
+            $this->required ? ['required' => $this->required] : [],
+            $this->focus ? ['focus' => $this->focus] : [],
+            $this->model ?: []);
 
-        $result = [];
-        if ($this->required) {
-            $result['required'] = $this->required;
-        }
-        if ($this->focus) {
-            $result['focus'] = $this->focus;
-        }
-        return (object)$result;
+        $this->layout->loadLayer([
+            '#page' => [
+                'translations' => [
+                    "Fill in this field" => "Fill in this field",
+                ],
+            ],
+        ]);
     }
 }

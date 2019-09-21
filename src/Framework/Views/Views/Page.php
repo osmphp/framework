@@ -7,7 +7,6 @@ use Osm\Framework\Http\Controller;
 use Osm\Framework\Http\Parameter;
 use Osm\Framework\Http\Request;
 use Osm\Framework\Http\UrlGenerator;
-use Osm\Framework\Views\JsConfig;
 use Osm\Framework\Views\View;
 
 /**
@@ -27,7 +26,6 @@ use Osm\Framework\Views\View;
  * Dependencies:
  *
  * @property Request $request @required
- * @property JsConfig $model @required
  * @property UrlGenerator $url_generator @required
  * @property Controller $controller @required
  */
@@ -73,7 +71,6 @@ class Page extends View
         global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'model': return $this->js_config;
             case 'request': return $osm_app->request;
             case 'url_generator': return $osm_app->url_generator;
             case 'controller': return $osm_app->controller;
@@ -82,16 +79,16 @@ class Page extends View
     }
 
     public function rendering() {
-        $this->model->base_url = $this->request->base;
-        $this->model->transient_query = (object)$this->url_generator->generateQuery(
-            "{$this->request->method} {$this->controller->route}",
-            $this->controller->query,
-            function(Parameter $parameter) {
-                return $parameter->transient;
-            });
-
-        foreach ($this->translations as $text) {
-            $this->model->translate($text);
-        }
+        $this->model = osm_merge([
+            'base_url' => $this->request->base,
+            'transient_query' => (object)$this->url_generator->generateQuery(
+                "{$this->request->method} {$this->controller->route}",
+                $this->controller->query,
+                function(Parameter $parameter) { return $parameter->transient; }
+            ),
+            'translations' => array_map(function($s) {
+                return (string)osm_t($s);
+            }, $this->translations),
+        ], $this->model ?: []);
     }
 }
