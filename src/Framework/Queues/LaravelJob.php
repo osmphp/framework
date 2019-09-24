@@ -15,6 +15,7 @@ use Osm\Framework\Db\Db;
  * @property Job $job_
  * @property Db $db @required
  * @property string $key @required
+ * @property Module $module @required
  *
  * @property string $log @temp
  */
@@ -30,6 +31,7 @@ class LaravelJob extends Object_ implements ShouldQueue
             case 'key': return $this->job_
                 ? "{$this->job_->class_} ({$this->job_->key})"
                 : null;
+            case 'module': return $osm_app->modules['Osm_Framework_Queues'];
         }
 
         return parent::default($property);
@@ -51,6 +53,7 @@ class LaravelJob extends Object_ implements ShouldQueue
 
         $this->selectJob()->update(['status' => Job::PROCESSING]);
         $this->log = '';
+        $this->module->job = $this;
         $startedAt = microtime(true);
         try {
             $this->job_->handle();
@@ -67,6 +70,9 @@ class LaravelJob extends Object_ implements ShouldQueue
 
             throw $e;
         }
+        finally {
+            $this->module->job = null;
+        }
 
         $this->selectJob()->update([
             'elapsed' => microtime(true) - $startedAt,
@@ -82,5 +88,13 @@ class LaravelJob extends Object_ implements ShouldQueue
     protected function selectJob() {
         return $this->db->connection->table('jobs')
             ->where('id', '=', $this->job);
+    }
+
+    public function interrupted() {
+        $this->selectJob()->update([
+            'processed_at' => Carbon::now(),
+            'status' => Job::INTERRUPTED,
+            'log' => $this->log,
+        ]);
     }
 }

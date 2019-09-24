@@ -51,11 +51,14 @@ abstract class Search extends BaseSearch
     }
 
     protected function getCount() {
-        return $this->createQuery()->value("DISTINCT_COUNT(id)");
+        $query = $this->createQuery();
+        $this->applyFilters($query);
+        return $query->value("DISTINCT_COUNT(id)");
     }
 
     protected function getItems() {
         $this->query = $this->createQuery();
+        $this->applyFilters($this->query);
         $this->query->select('id');
 
         foreach ($this->columns as $column) {
@@ -116,5 +119,14 @@ abstract class Search extends BaseSearch
         }
 
         $column->option_list_->addToCollection($items, $column->name, ['title' => "{$column->name}__title"]);
+    }
+
+    /**
+     * @param TableQuery $query
+     */
+    protected function applyFilters($query) {
+        if ($this->id) {
+            $query->where("id = ?", $this->id);
+        }
     }
 }

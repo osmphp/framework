@@ -44,6 +44,10 @@ class Process extends Command
         $this->module->laravel_manager->failing(function(JobFailed $event) {
             $this->output->writeln("{$this->getJobName($event->job)} FAIL");
         });
+
+        pcntl_signal(SIGINT, [$this, 'stop']); // Ctrl+C
+        pcntl_signal(SIGTSTP, [$this, 'stop']); // Ctrl+Z
+
         $this->worker->daemon(null, 'default', $this->worker_options);
     }
 
@@ -65,5 +69,12 @@ class Process extends Command
         }
 
         return $laravelJob->key;
+    }
+
+    public function stop() {
+        if ($this->module->job) {
+            $this->module->job->interrupted();
+        }
+        exit(0);
     }
 }

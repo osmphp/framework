@@ -2,8 +2,10 @@
 
 namespace Osm\Framework\Queues;
 
+use Carbon\Carbon;
 use Illuminate\Bus\Dispatcher;
 use Illuminate\Queue\CallQueuedHandler;
+use Illuminate\Queue\Events\WorkerStopping;
 use Osm\Core\App;
 use Osm\Core\Modules\BaseModule;
 use Osm\Core\Properties;
@@ -11,6 +13,8 @@ use Osm\Core\Properties;
 /**
  * @property LaravelManager $laravel_manager @required
  * @property Dispatcher $laravel_dispatcher @required
+ *
+ * @property LaravelJob $job @temp
  */
 class Module extends BaseModule
 {
@@ -46,6 +50,12 @@ class Module extends BaseModule
 
             return $osm_app->createRaw(CallQueuedHandler::class,
                 $this->laravel_dispatcher, $osm_app->laravel->container);
+        });
+
+        $osm_app->laravel->events->listen(WorkerStopping::class, function() {
+            if ($this->job) {
+                $this->job->interrupted();
+            }
         });
     }
 }

@@ -3,6 +3,7 @@
 namespace Osm\Framework\Laravel;
 
 use Illuminate\Container\Container;
+use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Database\Connectors\ConnectionFactory;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Filesystem\Filesystem;
@@ -50,8 +51,13 @@ class Module extends BaseModule
 
     public function getContainer() {
        global $osm_app; /* @var App $osm_app */
+
+       /* @var Container $result */
        $result = $osm_app->createRaw(Container::class);
        $result['events'] = $this->events;
+       $result->bind(DispatcherContract::class, function() {
+           return $this->events;
+       });
        return $result;
     }
 }

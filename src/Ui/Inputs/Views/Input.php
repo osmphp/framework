@@ -2,7 +2,9 @@
 
 namespace Osm\Ui\Inputs\Views;
 
+use Osm\Data\Search\Search;
 use Osm\Framework\Views\View;
+use Osm\Ui\Forms\FormPart;
 
 /**
  * @property string $name @required @part
@@ -15,7 +17,7 @@ use Osm\Framework\Views\View;
  * @property string $autocomplete @part
  * @property bool $focus @part
  */
-class Input extends View
+class Input extends View implements FormPart
 {
     public $template = 'Osm_Ui_Inputs.input';
     public $view_model = 'Osm_Ui_Inputs.Input';
@@ -54,5 +56,16 @@ class Input extends View
                 ],
             ],
         ]);
+    }
+
+    public function addFormPartToSearch(Search $search) {
+        $search->select($this->name);
+    }
+
+    /**
+     * @param object $data
+     */
+    public function assignFormPartValue($data) {
+        $this->value = $data->{$this->name};
     }
 }

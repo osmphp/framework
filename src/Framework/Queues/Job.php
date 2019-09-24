@@ -21,6 +21,7 @@ class Job extends Object_
     const PROCESSING = 'processing';
     const FINISHED = 'finished';
     const FAILED = 'failed';
+    const INTERRUPTED = 'interrupted';
 
     /**
      * @required @part

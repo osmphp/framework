@@ -14,6 +14,7 @@ use Osm\Framework\Data\Traits\CloneableTrait;
  * @property string $for @part
  * @property int $limit @part
  * @property int $offset @part
+ * @property int $id @part
  */
 abstract class Search extends Object_
 {
@@ -66,6 +67,14 @@ abstract class Search extends Object_
         $this->registerMethodCall(__FUNCTION__, $offset);
 
         $this->offset = $offset;
+
+        return $this;
+    }
+
+    public function id($id) {
+        $this->registerMethodCall(__FUNCTION__, $id);
+
+        $this->id = $id;
 
         return $this;
     }
