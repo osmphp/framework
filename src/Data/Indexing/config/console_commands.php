@@ -19,6 +19,10 @@ return [
                 'shortcut' => 't',
                 'description' => osm_t("Don't start database transactions"),
             ],
+            'group' => [
+                'type' => InputOption::VALUE_OPTIONAL,
+                'description' => osm_t("Target group"),
+            ],
         ],
         'arguments' => [
             'target' => [

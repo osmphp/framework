@@ -14,6 +14,10 @@ use Osm\Framework\Validation\Exceptions\ValidationFailed;
  */
 class Validator extends Object_
 {
+    const STRICT = 'strict';
+    const LOOSE = 'loose';
+    const AUTO = null;
+
     const UNKNOWN_CONSTRAINT = 0;
     const TYPE_CONSTRAINT = 1;
     const CLASS_CONSTRAINT = 2;
@@ -36,7 +40,7 @@ class Validator extends Object_
         $result = $this->doValidate($data, $this->createProperty($type, $options));
 
         if (!empty($this->errors)) {
-            throw new ValidationFailed(osm_t("Validation failed"), $this->errors);
+            throw new ValidationFailed($this->errors);
         }
 
         return $result;
@@ -70,7 +74,7 @@ class Validator extends Object_
             $type = 'mixed';
         }
 
-        $data = ['type' => $type, 'required' => true];
+        $data = ['type' => $type, 'required' => true, 'mode' => static::AUTO];
         if ($array) {
             $data['array'] = true;
         }

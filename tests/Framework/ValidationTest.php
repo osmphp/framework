@@ -43,7 +43,7 @@ class ValidationTest extends UnitTestCase
             $this->validator->validate('   ', 'string', ['required' => true]);
         });
 
-        $this->assertEquals([], $this->validator->validate([null], 'string',
+        $this->assertEquals(['qq'], $this->validator->validate([' qq '], 'string',
             ['array' => true, 'required' => true]));
     }
 }

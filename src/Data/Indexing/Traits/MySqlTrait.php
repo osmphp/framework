@@ -14,11 +14,10 @@ trait MySqlTrait
         /* @var Db $db */
         $db = $this;
 
-        $notificationTable = "{$table}__n{$id}";
-        $this->createNotificationTable($table, $notificationTable);
-
+        $this->createNotificationTables($id, $table, $events);
         foreach ($events as $event) {
             $event = strtolower($event);
+            $notificationTable = $this->getNotificationTableName($id, $table, $event);
             $this->createIndexingTrigger($id, $table, $notificationTable, $event, $columns);
 
             if ($event == 'update') {
@@ -29,20 +28,34 @@ trait MySqlTrait
         }
     }
 
-    protected function createNotificationTable($mainTable, $notificationTable) {
+    protected function createNotificationTables($id, $mainTable, $events)
+    {
         /* @var Db $db */
         $db = $this;
 
-        $db->schema->create($notificationTable, function(Blueprint $table) use ($mainTable) {
-            $table->unsignedInteger('id');
-            $table->primary('id');
-            $table->foreign('id')->references('id')->on($mainTable)->onDelete('cascade');
-        });
+        $tables = [];
+        foreach ($events as $event) {
+            $notificationTable = $this->getNotificationTableName($id,
+                $mainTable, $event);
+            if (isset($tables[$notificationTable])) {
+                continue;
+            }
 
-        $db->tables->register($notificationTable, [
-            'id' => Column::new(['type' => Column::INT_, 'data_type' => Types::INT_], 'id')
-                ->partition(1)->unsigned()->title("ID")->pinned(),
-        ]);
+            $db->schema->create($notificationTable, function(Blueprint $table) use ($mainTable, $event) {
+                $table->unsignedInteger('id');
+                $table->primary('id');
+                if ($event != Event::DELETE) {
+                    $table->foreign('id')->references('id')->on($mainTable)->onDelete('cascade');
+                }
+            });
+
+            $db->tables->register($notificationTable, [
+                'id' => Column::new(['type' => Column::INT_, 'data_type' => Types::INT_], 'id')
+                    ->partition(1)->unsigned()->title("ID")->pinned(),
+            ]);
+
+            $tables[$notificationTable] = true;
+        }
     }
 
     protected function createIndexingTrigger($id, $table, $notificationTable, $event, $columns) {
@@ -104,8 +117,7 @@ trait MySqlTrait
         /* @var Db $db */
         $db = $this;
 
-        $notificationTable = "{$table}__n{$id}";
-
+        $tables = [];
         foreach ($events as $event) {
             $event = strtolower($event);
             $this->dropIndexingTrigger($id, $table, $event);
@@ -115,10 +127,14 @@ trait MySqlTrait
                     $this->dropIndexingTrigger($id, "{$table}__{$partition}", $event);
                 }
             }
-        }
 
-        $db->schema->drop($notificationTable);
-        $db->tables->unregister($notificationTable);
+            $notificationTable = $this->getNotificationTableName($id, $table, $event);
+            if (!isset($tables[$notificationTable])) {
+                $db->schema->drop($notificationTable);
+                $db->tables->unregister($notificationTable);
+                $tables[$notificationTable] = true;
+            }
+        }
     }
 
     protected function dropIndexingTrigger($id, $table, $event) {
@@ -127,5 +143,9 @@ trait MySqlTrait
 
         $trigger = "{$table}_{$event}_{$id}_trg";
         $db->connection->unprepared("DROP TRIGGER `$trigger`");
+    }
+
+    protected function getNotificationTableName($id, $table, $event) {
+        return $event != Event::DELETE ? "{$table}__n{$id}" : "{$table}__d{$id}";
     }
 }

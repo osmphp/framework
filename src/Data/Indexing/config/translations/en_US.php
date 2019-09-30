@@ -14,4 +14,5 @@ return [
     "Index all, not only pending records" => "Index all, not only pending records",
     "Don't start database transactions" => "Don't start database transactions",
     ":target updated" => ":target updated",
+    "Target group" => "Target group",
 ];

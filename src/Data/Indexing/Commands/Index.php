@@ -24,6 +24,7 @@ class Index extends Command
     public function run() {
         $this->indexing->run(
             $this->input->getOption('full') ? Mode::FULL : Mode::PARTIAL,
+            $this->input->getOption('group'),
             $this->input->getArgument('target'),
             $this->input->getArgument('source'),
             $this->input->getOption('no-transaction'),

@@ -22,4 +22,8 @@ class ValidationFailed extends Error
         }
         return parent::default($property);
     }
+
+    protected function getStatusText() {
+        return osm_t("Validation failed");
+    }
 }

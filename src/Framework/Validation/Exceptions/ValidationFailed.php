@@ -9,7 +9,18 @@ class ValidationFailed extends HttpError
     public $error = 'validation_failed';
     public $errors;
 
-    public function __construct($message, $errors, \Throwable $previous = null) {
+    public function __construct($errors = [], \Throwable $previous = null) {
+        if (is_array($errors)) {
+            foreach ($errors as $key => $value) {
+                $message = "{$key}: $value";
+                break;
+            }
+        }
+        else {
+            $message = (string)$errors;
+            $errors = [];
+        }
+
         parent::__construct($message, null, $previous);
         $this->errors = $errors;
     }

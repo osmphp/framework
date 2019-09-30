@@ -33,10 +33,11 @@ class Indexing extends Object_
 
     /**
      * @param string $target
+     * @param string $group
      * @return FluentIndexerDefinition
      */
-    public function target($target) {
-        return FluentIndexerDefinition::new(compact('target'), null, $this);
+    public function target($target, $group = null) {
+        return FluentIndexerDefinition::new(compact('target', 'group'), null, $this);
     }
 
     public function dropTarget($target) {
@@ -67,15 +68,16 @@ class Indexing extends Object_
 
     /**
      * @param int $mode
+     * @param string $group
      * @param string $target
      * @param string $source
      * @param bool $noTransaction
      * @param OutputStyle|null $output
      */
-    public function run($mode = Mode::PARTIAL, $target = null, $source = null, $noTransaction = false,
-        OutputStyle $output = null)
+    public function run($mode = Mode::PARTIAL, $group = null, $target = null,
+        $source = null, $noTransaction = false, OutputStyle $output = null)
     {
-        $indexers = $this->getIndexers($target, $source);
+        $indexers = $this->getIndexers($group, $target, $source);
         $scopes = $this->getScopes($indexers, $mode, $noTransaction);
 
         foreach ($scopes as $target => $scope) {
@@ -98,13 +100,20 @@ class Indexing extends Object_
     }
 
     /**
+     * @param string $group
      * @param string $target
      * @param string $source
      * @return IndexerHint[]|Collection
      */
-    protected function getIndexers($target = null, $source = null) {
+    protected function getIndexers($group = null, $target = null, $source = null) {
         $query = $this->db->connection->table('indexers');
 
+        if ($group) {
+            $query->where('group', '=', $group);
+        }
+        else {
+            $query->whereNull('group');
+        }
         if ($target) {
             $query->where('target', '=', $target);
         }

@@ -7,23 +7,12 @@ use Osm\Core\App;
 use Osm\Data\Tables\Table;
 use Osm\Framework\Migrations\Migration;
 
-/**
- * @property Table $table @required
- */
 class Indexers extends Migration
 {
-    public function default($property) {
-        global $osm_app; /* @var App $osm_app */
-
-        switch ($property) {
-            case 'table': return $osm_app->db->tables['indexers'];
-        }
-        return parent::default($property);
-    }
-
     public function up() {
         $this->schema->create('indexers', function(Blueprint $table) {
             $table->increments('id');
+            $table->string('group')->nullable();
             $table->string('target');
             $table->string('source');
             $table->string('events');

@@ -8,6 +8,7 @@ use Osm\Framework\Db\Db;
 
 /**
  * @property string $target @required @part
+ * @property string $group @part
  * @property Db $db @required
  */
 class FluentIndexerDefinition extends Object_
@@ -23,6 +24,7 @@ class FluentIndexerDefinition extends Object_
 
     public function source($source, $events = [], $columns = []) {
         $id = $this->db->connection->table('indexers')->insertGetId([
+            'group' => $this->group,
             'target' => $this->target,
             'source' => $source,
             'events' => implode(',', $events),
