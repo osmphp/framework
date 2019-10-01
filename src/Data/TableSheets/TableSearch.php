@@ -1,31 +1,26 @@
 <?php
 
-namespace Osm\Data\TableSearch;
+namespace Osm\Data\TableSheets;
 
 use Illuminate\Support\Collection;
 use Osm\Core\App;
-use Osm\Data\Search\Search as BaseSearch;
-use Osm\Data\Search\SearchResult;
+use Osm\Data\Sheets\Search;
+use Osm\Data\Sheets\SearchResult;
 use Osm\Data\Sheets\Column;
 use Osm\Data\TableQueries\TableQuery;
-use Osm\Data\TableSheets\TableSheet;
 use Osm\Framework\Db\Db;
 
 /**
- * @property TableSheet $sheet_ @required
+ * @property TableSheet $parent @required
  * @property Db|TableQuery[] $db @required
  *
+ * @method TableQuery query()
  * @property int $count @temp
  * @property Collection $items @temp
  * @property TableQuery $query @temp
  */
-abstract class Search extends BaseSearch
+class TableSearch extends Search
 {
-    /**
-     * @return TableQuery
-     */
-    abstract protected function createQuery();
-
     protected function default($property) {
         global $osm_app; /* @var App $osm_app */
 
@@ -51,13 +46,13 @@ abstract class Search extends BaseSearch
     }
 
     protected function getCount() {
-        $query = $this->createQuery();
+        $query = $this->query();
         $this->applyFilters($query);
         return $query->value("DISTINCT_COUNT(id)");
     }
 
     protected function getItems() {
-        $this->query = $this->createQuery();
+        $this->query = $this->query();
         $this->applyFilters($this->query);
         $this->query->select('id');
 

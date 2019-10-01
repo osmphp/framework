@@ -3,17 +3,19 @@
 namespace Osm\Data\Sheets;
 
 use Osm\Core\Object_;
+use Osm\Data\Queries\Query;
 
 /**
  * @property string $name @required @part
  * @property array $columns @required @part
  * @property Column[] $columns_ @required @part
  */
-class Sheet extends Object_
+abstract class Sheet extends Object_
 {
     protected function default($property) {
         switch ($property) {
             case 'columns_': return $this->getColumns();
+
         }
         return parent::default($property);
     }
@@ -36,4 +38,16 @@ class Sheet extends Object_
 
         return $result;
     }
+
+    /**
+     * @param string $set
+     * @return Search
+     */
+    abstract public function search($set = 'all');
+
+    /**
+     * @param string $set
+     * @return Query
+     */
+    abstract public function query($set = null);
 }

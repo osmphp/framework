@@ -1,15 +1,13 @@
 <?php
 
-namespace Osm\Data\Search;
+namespace Osm\Data\Sheets;
 
-use Osm\Core\App;
 use Osm\Core\Object_;
-use Osm\Data\Sheets\Sheet;
 use Osm\Framework\Data\Traits\CloneableTrait;
 
 /**
- * @property string $sheet @required @part
- * @property Sheet $sheet_ @required
+ * @property Sheet $parent @required
+ * @property string $set @part
  *
  * @property string $for @part
  * @property int $limit @part
@@ -26,15 +24,6 @@ abstract class Search extends Object_
      * @var string[] @required @part
      */
     public $columns = [];
-
-    protected function default($property) {
-        global $osm_app; /* @var App $osm_app */
-
-        switch ($property) {
-            case 'sheet_': return $osm_app->sheets[$this->sheet];
-        }
-        return parent::default($property);
-    }
 
     /**
      * @return SearchResult
@@ -84,6 +73,10 @@ abstract class Search extends Object_
     }
 
     protected function getColumnDefinition($name) {
-        return $this->sheet_->columns_[$name];
+        return $this->parent->columns_[$name];
+    }
+
+    protected function query() {
+        return $this->parent->query($this->set);
     }
 }

@@ -3,16 +3,19 @@
 namespace Osm\Ui\DataTables\Views;
 
 use Osm\Core\App;
-use Osm\Data\Search\Search;
-use Osm\Data\Search\SearchResult;
+use Osm\Data\Sheets\Search;
+use Osm\Data\Sheets\SearchResult;
+use Osm\Data\Sheets\Sheet;
 use Osm\Framework\Views\View;
 use Osm\Ui\DataTables\Columns\Column;
 use Osm\Ui\DataTables\Exceptions\LimitExceeded;
 use Osm\Ui\DataTables\Module;
 
 /**
- * @property string $search @required @part
- * @property Search $search_ @required
+ * @property string $sheet @required @part
+ * @property Sheet $sheet_ @required
+ * @property string $set @part
+ * @property Search $search @required
  * @property array $columns @required @part
  * @property string $not_found_message @required @part
  * @property string $edit_route @part
@@ -36,7 +39,8 @@ class DataTable extends View
         global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'search_': return $osm_app->create($this->search);
+            case 'sheet_': return $osm_app->sheets[$this->sheet];
+            case 'search': return $this->sheet_->search($this->set);
             case 'columns_': return $this->getColumns();
             case 'rows_per_page': return $osm_app->settings->data_table_rows_per_page;
             case 'template': return $this->render_rows ? $this->rows_template : $this->full_template;
@@ -77,7 +81,7 @@ class DataTable extends View
     }
 
     protected function getData() {
-        $this->search_->forDisplay();
+        $this->search->forDisplay();
 
         foreach ($this->columns_ as $column) {
             $column->addToSearch();
@@ -89,7 +93,7 @@ class DataTable extends View
             ]));
         }
 
-        return $this->search_->offset($this->offset)->limit($this->limit)->get();
+        return $this->search->offset($this->offset)->limit($this->limit)->get();
     }
 
     public function getCellUrl() {

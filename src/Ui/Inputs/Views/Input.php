@@ -2,7 +2,7 @@
 
 namespace Osm\Ui\Inputs\Views;
 
-use Osm\Data\Search\Search;
+use Osm\Data\Sheets\Search;
 use Osm\Framework\Views\View;
 use Osm\Ui\Forms\FormPart;
 

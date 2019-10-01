@@ -32,7 +32,7 @@ class Column extends Object_
     public $cell_template = 'Osm_Ui_DataTables.cells.default';
 
     public function addToSearch() {
-        $this->parent->search_->select($this->name);
+        $this->parent->search->select($this->name);
     }
 
     public function getUrl() {

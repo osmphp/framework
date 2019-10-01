@@ -1,6 +1,6 @@
 <?php
 
-namespace Osm\Data\Search;
+namespace Osm\Data\Sheets;
 
 use Illuminate\Support\Collection;
 use Osm\Core\Object_;

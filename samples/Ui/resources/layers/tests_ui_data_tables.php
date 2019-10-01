@@ -10,7 +10,7 @@ return [
         'modifier' => '-tests-ui-data-tables',
         'content' => DataTable::new([
             'id' => 'data_table',
-            'search' => Contacts::class,
+            'sheet' => 't_contacts',
             'main_column' => 'full_name',
             'not_found_message' => osm_t("There are no contacts entered yet."),
             'load_route' => 'GET /tests/ui/data-tables/rows',

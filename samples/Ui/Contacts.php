@@ -2,17 +2,8 @@
 
 namespace Osm\Samples\Ui;
 
-use Osm\Data\TableQueries\TableQuery;
-use Osm\Data\TableSearch\Search;
+use Osm\Data\TableSheets\TableSheet;
 
-class Contacts extends Search
+class Contacts extends TableSheet
 {
-    public $sheet = 't_contacts';
-
-    /**
-     * @return TableQuery
-     */
-    protected function createQuery() {
-        return $this->db['t_contacts'];
-    }
 }

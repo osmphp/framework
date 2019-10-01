@@ -1,10 +1,10 @@
 <?php
 
-use Osm\Data\TableSheets\TableSheet;
+use Osm\Samples\Ui\Contacts;
 
 return [
     't_contacts' => [
-        'class' => TableSheet::class,
+        'class' => Contacts::class,
         'columns' => [],
     ],
 ];

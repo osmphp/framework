@@ -3,7 +3,7 @@
 namespace Osm\Ui\Forms\Views;
 
 use Osm\Core\App;
-use Osm\Data\Search\Search;
+use Osm\Data\Sheets\Search;
 use Osm\Framework\Views\View;
 use Osm\Framework\Views\Views\Container;
 use Osm\Ui\Forms\Assigner;

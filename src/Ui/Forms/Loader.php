@@ -2,7 +2,7 @@
 
 namespace Osm\Ui\Forms;
 
-use Osm\Data\Search\Search;
+use Osm\Data\Sheets\Search;
 use Osm\Ui\Forms\Views\Form;
 
 /**
