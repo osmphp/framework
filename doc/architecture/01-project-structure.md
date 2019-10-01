@@ -2,43 +2,76 @@
 
 {{ toc }}
 
-Osm [installs](../installation.html) all necessary files and folders into project directory `{project_dir}` 
+Osm [installs](../installation.html) all necessary files and directories into project directory `{project_dir}` 
 
-## Project Root Directory Files
+## Project Directories And Files
 
-Project root directory `{project_dir}` contains several configuration files:
-
-- `.componentignore`
-- `.env` - important configuration items such as your app is running in your local 
-environment or production environment. This file will never be committed to your version control
-- `.envtesting` - configuration used for test environment. It will be used in case `APP_ENV=testing` is set 
-in `.env` file, or when application gets `env=testing` parameter. 
-- `.gitignore` - declare all files and directories to be ignored by GIT
-- `.bootstrap.php`
-- `composer.json` - the configuration file, that specifies all of Composer dependencies. 
+- **`app/`**  - application specific directories and files
+  - **`app/docs/`** - application documentation 
+  - **`app/samples/`** - application test related source code 
+  - **`app/src/`** - application source code, organized as one or several [modules](modules.html)
+  - **`app/tests/`** - application tests
+- **`config/`** - application configuration directory. Used to add new configuration parameters or overwrite default module configuration
+- **`data/`** - directory to store data, saved as flat files
+- **`node_modules/`** - installed `npm` packages 
+- **`public/`** - publicly accessible web application root directory. 
+Stores request entry point as well as asset files (CSS, JavaScript, images, fonts, etc.) used to render web page for production environments
+  - **`public/development/`** - development environment asset directory
+  - **`public/testing/`** - testing environment asset directory
+  - **`public/index.php`** - entry point for all HTTP requests
+  - **`public/.htaccess`** - Apache configuration file. It will be used if project is hosted under Apache and ignored otherwise
+- **`temp/`** - directory is used to store application temporary and cache files, compiled layers and templates, user session information and log files
+  - **`temp/development/`** - development environment temp files
+  - **`temp/testing/`** - testing environment temp files
+- **`vendor/`** - installed `Composer` packages, including `Osm` framework
+- **`.componentignore`** - the file is automatically generated and should not be modified manually
+- **`.env`** - important configuration items such as your app is running in your local development, testing or production environment
+- **`.env.testing`** - configuration used for test environment. It will be used in case `APP_ENV=testing` is set 
+in `.env` file, or when application gets `env=testing` parameter
+- **`.gitignore`** - declare all files and directories to be ignored by Git
+- **`bootstrap.php`** - common file, which is executed before every HTTP request and every CLI command. Should contain as less source as possible 
+- **`composer.json`** - the configuration file, that specifies all of Composer dependencies
 Most important is `require` section, then `autoload`
-- `composer.lock `- takes all of the dependencies you pulled in and lock them this specific versions. 
+- **`composer.lock`** - takes all of the dependencies you pulled in and lock them this specific versions 
 This ensure project development consistency. If you share this project with somebody else, 
 he will get the identical versions to you. This file should be committed to your version control
-- `fresh` - Osm CLI command to refresh project cache 
-- `package.json` - this is to help with your frontend compilation. 
-These are dependencies that will be installed through Node and will be referenced in your JavaScript
-- `package.json`
-- `readme.md` - Markdown description of your project. It will be automatically shown in project repository 
+The file is automatically generated and should not be modified manually
+- **`fresh`** - Osm CLI command to refresh project cache 
+- **`package.json`** - stores Node package dependencies, that will be installed through `npm` and will be referenced in your JavaScript
+The file is generated automatically and should not be modified manually
+- **`package-lock.json`** - automatically generated file containing exact currently installed version of each Node package
+The file should not be modified manually
+- **`readme.md`** - Markdown description of your project. It will be automatically shown in project repository 
 in BitBucket or GitHub.
-- `run` - Osm CLI command to run the application in command line 
+- **`run`** - entry point for application command line interface
 
-## Project Directories
+## Git Version Control Settings For Project Directories And Files
 
-- `app` directory contains application specific source code, organized as one or several [modules](modules.html).
-- `config`. Various application configuration are stored here. This directory usually is ignored by source version control.
-- `data`
-- `node_modules` 
-- `public` directory contains `index.php` - the default page of the application. 
-Application assets such as images, JavaScript, and CSS as well are stored here. 
-JavaScript and CSS files are compiled and ready to be used.
-- `temp` directory is used to store application cache files, compiled layers and views, user session information and log files.
-- `vendor` is a directory where all composer dependencies, including Osm framework, will be installed.
+After project is installed, it is already ready for Git. You can create own Git repository to track project changes. 
+
+However, there are a lot of files, that cannot be directly modified in the project, 
+therefore it is not needed to track the changes and store them under Git.
+Git repository should have only application specific files and directories. 
+For instance, `mpm` and `Composer` packages will be updated from external repositories, 
+while some project directories and files related only to current machine.
+
+Main `.gitignore` file, located in root project directory, sets up the list of directories and root files, 
+which should be ignored by GIT. 
+
+Some directories as well contains `.gitignore` files:
+
+- `config/` 
+- `data/` 
+- `public/`
+- `temp/`
+
+To explicitly state that `app/src/` directory should be in GIT repo, `app/src/.gitkeep` file exists.  
+
+>**NOTE:** It is important to keep installed `.gitkeep` and `.gitignore` files, 
+although the content of `.gitignore` files can be carefully modified.
+
+
+
 
 
 
