@@ -12,21 +12,25 @@ use Osm\Framework\Db\Db;
  * @property string $title @required @part
  * @property array $indexers @required @part
  * @property bool $no_transaction @part If set, target <= source update will run without database transaction
- * @property Indexer[] $indexers_ @required @part
  * @property Db $db @required
  * @property Scope $scope @temp
  */
 class Target extends Object_
 {
+    #region Properties
     protected function default($property) {
         global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'indexers_': return $this->getIndexers();
             case 'db': return $osm_app->db;
         }
         return parent::default($property);
     }
+
+    protected function createIndexer($data, $name) {
+        return Indexer::new($data, $name, $this);
+    }
+    #endregion
 
     public function index() {
         if (empty($this->indexers)) {
@@ -44,23 +48,13 @@ class Target extends Object_
     }
 
     protected function doIndex() {
-        foreach ($this->indexers_ as $indexer) {
-            $indexer->scope = $this->scope;
-            $indexer->index();
+        foreach ($this->indexers as $name => $data) {
+            $data['scope'] = $this->scope;
+            $this->createIndexer($data, $name)->index();
         }
 
         $this->db->connection->table('indexers')
             ->where('target', '=', $this->name)
             ->update(['requires_partial_reindex' => false, 'requires_full_reindex' => false]);
-    }
-
-    protected function getIndexers() {
-        $result = [];
-
-        foreach ($this->indexers as $name => $data) {
-            $result[$name] = Indexer::new($data, $name, $this);
-        }
-
-        return $result;
     }
 }

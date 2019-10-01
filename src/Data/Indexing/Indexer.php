@@ -14,7 +14,7 @@ use Osm\Framework\Db\Db;
  * @property string $name @required @part
  * @property string $title @required @part
  * @property Db|TableQuery[] $db @required
- * @property Scope $scope @temp
+ * @property Scope $scope @required
  */
 abstract class Indexer extends Object_
 {
