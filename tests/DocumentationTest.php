@@ -2,7 +2,7 @@
 
 namespace Osm\Tests;
 
-use Osm\Framework\Testing\DocumentationTestCase;
+use Osm\Framework\Testing\Tests\DocumentationTestCase;
 
 class DocumentationTest extends DocumentationTestCase
 {

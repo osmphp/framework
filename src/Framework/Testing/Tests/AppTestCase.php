@@ -12,7 +12,7 @@ use Osm\Framework\Testing\Exceptions\UndefinedBrowser;
  */
 abstract class AppTestCase extends UnitTestCase
 {
-    public $suite = 'app_tests';
+    public $suite = 'app';
 
     protected static $areAppTestsSetUp = false;
 

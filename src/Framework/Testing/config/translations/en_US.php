@@ -16,4 +16,5 @@ return [
     "Request can't be empty" => "Request can't be empty",
     "URL line starting with GET, POST or DELETE not found" => "URL line starting with GET, POST or DELETE not found",
     "Test suites to be included. If list is empty, all test suites are included" => "Test suites to be included. If list is empty, all test suites are included",
+    "Privileged App Tests" => "Privileged App Tests",
 ];

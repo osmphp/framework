@@ -31,4 +31,11 @@ abstract class TestCase extends BaseTestCase
             'env' => 'testing',
         ])->boot();
     }
+
+    protected function setUp() {
+        // boot application instance to be used in testing
+        if (!static::$app_instance) {
+            $this->recreateApp();
+        }
+    }
 }

@@ -8,7 +8,7 @@ use Osm\Framework\Testing\DbTestSuite;
 
 abstract class DbTestCase extends UnitTestCase
 {
-    public $suite = 'db_tests';
+    public $suite = 'db';
 
     protected static $areDbTestsSetUp = false;
 

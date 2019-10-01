@@ -9,7 +9,7 @@ use Osm\Framework\Testing\TestCase;
 
 abstract class UnitTestCase extends TestCase
 {
-    public $suite = 'unit_tests';
+    public $suite = 'unit';
     protected static $areUnitTestsSetUp = false;
 
     protected function setUp() {

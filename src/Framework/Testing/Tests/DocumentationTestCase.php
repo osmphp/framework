@@ -1,14 +1,15 @@
 <?php
 
-namespace Osm\Framework\Testing;
+namespace Osm\Framework\Testing\Tests;
 
 use Osm\Core\App;
 use Osm\Framework\Processes\Process;
+use Osm\Framework\Testing\TestCase;
 use PHPUnit\Framework\Warning;
 
 abstract class DocumentationTestCase extends TestCase
 {
-    public $suite = 'doc_tests';
+    public $suite = 'docs';
 
     protected function assertDocumentationIsUpToDate($url, $since, $sources) {
         $filename = __FILE__;

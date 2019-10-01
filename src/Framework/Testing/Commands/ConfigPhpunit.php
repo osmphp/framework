@@ -7,6 +7,7 @@ use Osm\Framework\Console\Command;
 use Osm\Core\Packages\Package;
 use Osm\Framework\Testing\ConfigModule;
 use Osm\Framework\Testing\ConfigSuite;
+use Osm\Framework\Testing\Module;
 
 /**
  * @property ConfigSuite[] $suites @temp
@@ -59,7 +60,15 @@ EOT;
         }
 
         if (!($suites = $this->input->getArgument('suite'))) {
-            return;
+            /* @var Module $module */
+            $module = $osm_app->modules['Osm_Framework_Testing'];
+
+            $suites = [];
+            foreach ($module->suites as $suite) {
+                if (!$suite->optional) {
+                    $suites[] = $suite->name;
+                }
+            }
         }
 
         foreach (array_keys($this->suites) as $suite) {
