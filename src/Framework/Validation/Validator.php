@@ -109,6 +109,16 @@ class Validator extends Object_
             return $data;
         }
 
+        if ($this->getConstraintType($property['type']) == static::CLASS_CONSTRAINT) {
+            foreach ($data as $key => &$value) {
+                if ($value === null) {
+                    continue;
+                }
+                $value = $this->validateValue($value, $property,  "$path/$key");
+            }
+            return $data;
+        }
+
         $intKeys = array_first(array_keys($data)) === 0;
         $unset = false;
 
@@ -133,7 +143,7 @@ class Validator extends Object_
             case static::TYPE_CONSTRAINT:
                 return $this->{'validate' . studly_case($property['type'])}($data, $property, $path);
             case static::CLASS_CONSTRAINT:
-                return $this->validateClass($data, $property['type'], $path);
+                return $this->validateClass($data, $property, $path);
             default:
                 throw new InvalidConstraint(osm_t("Constraint ':constraint' is neither simple type nor class name",
                     ['constraint' => $property['type']]));
@@ -145,25 +155,25 @@ class Validator extends Object_
 
         if (is_array($data)) {
             if (!empty($data) && is_int(array_first(array_keys($data)))) {
-                $this->error($path, osm_t("Object of class ':class' expected", ['class' => $class]));
+                $this->error($path, osm_t("Object of class ':class' expected", ['class' => $class['type']]));
                 return $data;
             }
             $data = (object)$data;
         }
 
         if (!is_object($data)) {
-            $this->error($path, osm_t("Object of class ':class' expected", ['class' => $class]));
+            $this->error($path, osm_t("Object of class ':class' expected", ['class' => $class['type']]));
             return $data;
         }
 
         while ($class) {
-            $class_ = $osm_classes->get($class);
+            $class_ = $osm_classes->get($class['type']);
             foreach ($class_['properties'] as $property => $property_) {
                 if (isset($data->$property)) {
                     $data->$property = $this->doValidate($data->$property,
                         $property_, "$path/$property");
                 }
-                else {
+                elseif (!empty($class['strict'])) {
                     $this->doValidate(null, $property_,
                         "$path/$property");
                 }
