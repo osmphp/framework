@@ -31,8 +31,16 @@ class Process
     }
 
     public static function mustRun($command, callable $callback = null) {
-        if (!static::run($command, $callback)) {
-            throw new ProcessFailed("Command '$command' failed unexpectedly");
+        $output = '';
+        $result = static::run($command, function($type, $buffer) use ($callback, &$output) {
+            $output .= $buffer;
+            if ($callback) {
+                $callback($type, $buffer);
+            }
+        });
+
+        if (!$result) {
+            throw new ProcessFailed("Command '$command' failed unexpectedly with the following output: \n\n$output");
         }
     }
 
