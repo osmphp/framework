@@ -4,7 +4,9 @@ namespace Osm\Data\TableSheets;
 
 use Osm\Core\App;
 use Osm\Core\Exceptions\NotSupported;
+use Osm\Data\Queries\Query;
 use Osm\Data\Sheets\Sheet;
+use Osm\Data\TableQueries\TableQuery;
 use Osm\Data\Tables\Table;
 use Osm\Framework\Db\Db;
 
@@ -14,9 +16,13 @@ use Osm\Framework\Db\Db;
  * @property string $row_class @required @part
  * @property Table $table_ @required
  * @property Db $db @required
+ *
+ * @method TableSearch search(string $set = null)
  */
 class TableSheet extends Sheet
 {
+    public $search_class = TableSearch::class;
+
     protected function default($property) {
         global $osm_app; /* @var App $osm_app */
 
@@ -49,18 +55,16 @@ class TableSheet extends Sheet
         return osm_merge($result, parent::getColumnArray());
     }
 
-
-    public function search($set = null) {
-        return TableSearch::new(['set' => $set], null, $this);
-    }
-
+    /**
+     * @param null $set
+     * @return TableQuery|Query
+     */
     public function query($set = null) {
         if (!$set) {
             return $this->db[$this->table];
         }
 
-        throw new NotSupported("Row set ':set' not supported in sheet ':sheet'",
-            ['set' => $set, 'sheet' => $this->name]);
+        return parent::query($set);
     }
 
     public function insert($values, $set = null) {

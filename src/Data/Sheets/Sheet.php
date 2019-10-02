@@ -2,6 +2,8 @@
 
 namespace Osm\Data\Sheets;
 
+use Osm\Core\App;
+use Osm\Core\Exceptions\NotSupported;
 use Osm\Core\Object_;
 use Osm\Data\Queries\Query;
 
@@ -9,8 +11,9 @@ use Osm\Data\Queries\Query;
  * @property string $name @required @part
  * @property array $columns @required @part
  * @property Column[] $columns_ @required @part
+ * @property string $search_class @required @part
  */
-abstract class Sheet extends Object_
+class Sheet extends Object_
 {
     protected function default($property) {
         switch ($property) {
@@ -40,14 +43,22 @@ abstract class Sheet extends Object_
     }
 
     /**
-     * @param string $set
+     * @param null $set
      * @return Search
      */
-    abstract public function search($set = 'all');
+    public function search($set = null) {
+        global $osm_app; /* @var App $osm_app */
+
+        return $osm_app->create($this->search_class, ['set' => $set],
+            null, $this);
+    }
 
     /**
-     * @param string $set
+     * @param null $set
      * @return Query
      */
-    abstract public function query($set = null);
+    public function query($set = null) {
+        throw new NotSupported("Row set ':set' not supported in sheet ':sheet'",
+            ['set' => $set, 'sheet' => $this->name]);
+    }
 }

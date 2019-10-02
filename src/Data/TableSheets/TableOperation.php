@@ -22,6 +22,7 @@ use Osm\Framework\Validation\Validator;
  * @property int $id
  * @property object $valid_values @required
  * @property object $final_values @required
+ * @property bool $inserting @required
  */
 class TableOperation extends Object_
 {
@@ -33,9 +34,10 @@ class TableOperation extends Object_
             case 'db': return $osm_app->db;
             case 'validator': return $osm_app[Validator::class];
 
+            case 'inserting': return $this->criteria === null;
             case 'valid_values': return $this->validator->validate(
                 (object)$this->values, $this->parent->row_class,
-                ['strict' => $this->criteria === null]
+                ['strict' => $this->inserting]
             );
             case 'final_values': return $this->getFinalValues();
             case 'count': return is_string($this->criteria)
