@@ -90,7 +90,7 @@ class Blueprint extends Object_
      * @param string $column
      * @return Column
      */
-    public function date($column) {
+    public function datetime($column) {
         return $this->column(__FUNCTION__, $column);
     }
 

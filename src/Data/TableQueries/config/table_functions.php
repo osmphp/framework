@@ -9,4 +9,10 @@ return [
         ],
         'return_data_type' => Types::INT_,
     ],
+    'count' => [
+        'args' => [
+            ['data_type' => Types::ANY],
+        ],
+        'return_data_type' => Types::INT_,
+    ],
 ];

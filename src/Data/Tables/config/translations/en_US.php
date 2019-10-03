@@ -6,7 +6,7 @@ return [
     "Yes/No" => "Yes/No",
     "Integer" => "Integer",
     "Text" => "Text",
-    "Date" => "Date",
+    "Date/Time" => "Date/Time",
     "Decimal" => "Decimal",
     "':column' not found in table ':table'" => "':column' not found in table ':table'",
     "Unknown column ':column'" => "Unknown column ':column'",

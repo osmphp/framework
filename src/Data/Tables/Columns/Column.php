@@ -32,7 +32,7 @@ class Column extends Object_
     const BOOL_ = 'bool';
     const STRING_ = 'string';
     const TEXT = 'text';
-    const DATE = 'date';
+    const DATETIME = 'datetime';
     const DECIMAL = 'decimal';
 
     /**

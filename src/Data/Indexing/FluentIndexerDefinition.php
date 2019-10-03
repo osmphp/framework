@@ -23,6 +23,11 @@ class FluentIndexerDefinition extends Object_
     }
 
     public function source($source, $events = [], $columns = []) {
+        if (($index = array_search(Event::SAVE, $events)) !== false) {
+            array_splice($events, $index, 1,
+                [Event::INSERT, Event::UPDATE]);
+        }
+
         $id = $this->db->connection->table('indexers')->insertGetId([
             'group' => $this->group,
             'target' => $this->target,

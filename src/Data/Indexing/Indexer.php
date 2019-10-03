@@ -15,6 +15,9 @@ use Osm\Framework\Db\Db;
  * @property string $title @required @part
  * @property Db|TableQuery[] $db @required
  * @property Scope $scope @required
+ * @property bool $partial @required
+ * @property string $save_table @required
+ * @property string $delete_table @required
  */
 abstract class Indexer extends Object_
 {
@@ -24,6 +27,15 @@ abstract class Indexer extends Object_
         switch ($property) {
             case 'db': return $osm_app->db;
             case 'target': return $this->parent;
+            case 'partial':
+                return $this->scope->mode == Mode::PARTIAL &&
+                    isset($this->scope->sources[$this->name]);
+            case 'save_table': return $this->partial
+                ? "{$this->name}__n{$this->scope->sources[$this->name]}"
+                : null;
+            case 'delete_table': return $this->partial
+                ? "{$this->name}__d{$this->scope->sources[$this->name]}"
+                : null;
         }
 
         return parent::default($property);

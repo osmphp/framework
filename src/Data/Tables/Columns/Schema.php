@@ -28,7 +28,7 @@ class Schema extends Object_
             case Column::INT_: $this->createIntColumn(); break;
             case Column::STRING_: $this->createStringColumn(); break;
             case Column::TEXT: $this->createTextColumn(); break;
-            case Column::DATE: $this->createDateColumn(); break;
+            case Column::DATETIME: $this->createDateTimeColumn(); break;
             case Column::DECIMAL: $this->createDecimalColumn(); break;
             default:
                 throw new NotSupported(osm_t("Column type ':type' not supported", ['type' => $this->column->type]));
@@ -79,13 +79,13 @@ class Schema extends Object_
         $this->createReference();
     }
 
-    protected function createDateColumn() {
+    protected function createDateTimeColumn() {
         if ($this->column->required) {
-            $column = $this->table->date($this->column->name);
+            $column = $this->table->dateTime($this->column->name);
             $this->setDefault($column);
         }
         else {
-            $this->table->date($this->column->name)->nullable();
+            $this->table->dateTime($this->column->name)->nullable();
         }
 
         $this->createIndex();
