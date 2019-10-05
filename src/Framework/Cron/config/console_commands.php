@@ -3,7 +3,7 @@
 use Osm\Framework\Cron\Commands;
 
 return [
-    'scheduled-jobs' => [
+    'cron' => [
         'description' => osm_t("Processes scheduled jobs"),
         'class' => Commands\Process::class,
     ],

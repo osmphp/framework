@@ -7,6 +7,7 @@ use Osm\Core\Object_;
 use Osm\Framework\Db\Db;
 
 /**
+ * @property Indexing $parent @required
  * @property string $target @required @part
  * @property string $group @part
  * @property Db $db @required
@@ -39,6 +40,8 @@ class FluentIndexerDefinition extends Object_
         if (!empty($events)) {
             $this->db->createIndexingTriggers($id, $source, $events, $columns);
         }
+
+        $this->parent->forgetSourceGroups();
 
         return $this;
     }

@@ -26,7 +26,7 @@ class LaravelCommand extends BaseLaravelCommand
         $result = [];
 
         foreach ($this->command->options_ as $option) {
-            $result[] = [$option->name, $option->shortcut, $option->type, $option->description];
+            $result[] = [$option->name, $option->shortcut, $option->type, $option->description, $option->default];
         }
 
         return $result;

@@ -9,6 +9,7 @@ use Osm\Core\Object_;
  * @property int $type @required @part
  * @property string $description @required @part
  * @property string $shortcut @part
+ * @property string $default @part
  */
 class Option extends Object_
 {

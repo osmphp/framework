@@ -8,24 +8,36 @@ use Osm\Core\App;
 use Osm\Data\Indexing\Exceptions\CircularDependency;
 use Osm\Data\Indexing\Hints\IndexerHint;
 use Osm\Core\Object_;
+use Osm\Framework\Cache\Cache;
 use Osm\Framework\Db\Db;
 
 /**
  * @property Db $db @required
+ * @property Cache $cache @required
  * @property Targets|Target[] $targets @required
+ * @property SourceGroups|string[] $source_groups @required
  * @property bool $run_async If true, indexer is expected to run in job queue instead of running after each
  *      request modifying database
  * @property bool $requires_reindex
  */
 class Indexing extends Object_
 {
+    protected $modified_groups = [];
+    protected $no_registration = []; // positive entry - skip modified source registration
+    protected $no_queueing = 0; // positive - index immediately instead of queueing
+    protected $requires_reindex = false;
+
     protected function default($property) {
         global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
             case 'db': return $osm_app->db;
-            case 'targets': return $osm_app->cache->remember( 'indexers', function($data) {
+            case 'cache': return $osm_app->cache;
+            case 'targets': return $this->cache->remember( 'indexers', function($data) {
                 return Targets::new($data);
+            });
+            case 'source_groups': return $this->cache->remember('index_source_groups', function($data) {
+                return SourceGroups::new($data);
             });
         }
         return parent::default($property);
@@ -55,6 +67,67 @@ class Indexing extends Object_
         $this->db->connection->table('indexers')
             ->where('target', '=', $target)
             ->delete();
+
+        $this->forgetSourceGroups();
+    }
+
+    public function registerModifiedSource($source) {
+        if (!isset($this->source_groups[$source])) {
+            return;
+        }
+
+        $groups = $this->source_groups[$source];
+
+        if ($this->no_queueing > 0 &&
+            ($index = array_search(null, $groups)) !== false)
+        {
+            $this->requires_reindex = true;
+            array_splice($groups, $index, 1);
+        }
+
+        foreach ($groups as $group) {
+            if (!isset($this->no_registration[$group])) {
+                $this->modified_groups[$group] = true;
+            }
+        }
+    }
+
+    public function stopRegistering($group) {
+        if (isset($this->no_registration[$group])) {
+            $this->no_registration[$group]++;
+        }
+        else {
+            $this->no_registration[$group] = 1;
+        }
+    }
+
+    public function resumeRegistering($group) {
+        if (!isset($this->no_registration[$group])) {
+            return;
+        }
+
+        if ($this->no_registration[$group] > 1) {
+            $this->no_registration--;
+        }
+        else {
+            unset($this->no_registration[$group]);
+        }
+    }
+
+    public function stopQueueing() {
+        $this->no_queueing++;
+    }
+
+    public function resumeQueueing() {
+        $this->no_queueing--;
+    }
+
+    public function getModifiedGroups() {
+        return array_keys($this->modified_groups);
+    }
+
+    public function requiresReindex() {
+        return $this->requires_reindex;
     }
 
     public function reindex($source) {
@@ -62,7 +135,8 @@ class Indexing extends Object_
             ->where('source', '=', $source)
             ->update(['requires_full_reindex' => true]);
 
-        $this->requires_reindex = true;
+        $this->registerModifiedSource($source);
+
         return $this;
     }
 
@@ -77,25 +151,33 @@ class Indexing extends Object_
     public function run($mode = Mode::PARTIAL, $group = null, $target = null,
         $source = null, $noTransaction = false, OutputStyle $output = null)
     {
-        $indexers = $this->getIndexers($group, $target, $source);
-        $scopes = $this->getScopes($indexers, $mode, $noTransaction);
+        $this->stopRegistering($group);
 
-        foreach ($scopes as $target => $scope) {
-            if (!$scope->mode) {
-                continue;
+        try {
+            $indexers = $this->getIndexers($group, $target, $source);
+            $scopes = $this->getScopes($indexers, $mode, $noTransaction);
+
+            foreach ($scopes as $target => $scope) {
+                if (!$scope->mode) {
+                    continue;
+                }
+
+                $target_ = $this->targets[$target];
+                $target_->scope = $scope;
+                $target_->index();
+
+                if ($mode == Mode::PARTIAL) {
+                    $this->updateScopes($scopes, $scope, $indexers);
+                }
+
+                if ($output) {
+                    $output->writeln((string)osm_t(":target updated",
+                        ['target' => $target_->title]));
+                }
             }
-
-            $target_ = $this->targets[$target];
-            $target_->scope = $scope;
-            $target_->index();
-
-            if ($mode == Mode::PARTIAL) {
-                $this->updateScopes($scopes, $scope, $indexers);
-            }
-
-            if ($output) {
-                $output->writeln((string)osm_t(":target updated", ['target' => $target_->title]));
-            }
+        }
+        finally {
+            $this->resumeRegistering($group);
         }
     }
 
@@ -269,5 +351,10 @@ class Indexing extends Object_
                 $scope->sources[$updated->name] = $id;
             }
         }
+    }
+
+    public function forgetSourceGroups() {
+        $this->cache->forget('index_source_groups');
+        unset($this->source_groups);
     }
 }

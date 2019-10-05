@@ -67,7 +67,7 @@ class Queues extends CollectionRegistry
 
             $id = $this->db->connection->table('jobs')->insertGetId($data);
 
-            return LaravelJob::new(['job' => $id]);
+            return LaravelJob::new(['job' => $id, 'queue' => $job->queue]);
         });
     }
 }

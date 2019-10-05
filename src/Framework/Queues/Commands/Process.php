@@ -16,6 +16,7 @@ use Osm\Framework\Queues\Module;
  * @property Module $module @required
  * @property Worker $worker @required
  * @property WorkerOptions $worker_options @required
+ * @property string $queue @required
  */
 class Process extends Command
 {
@@ -33,6 +34,7 @@ class Process extends Command
                 $options->stopWhenEmpty = false;
                 $options->sleep = 1;
                 return $options;
+            case 'queue': return $this->input->getOption('queue');
         }
         return parent::default($property);
     }
@@ -48,7 +50,7 @@ class Process extends Command
         pcntl_signal(SIGINT, [$this, 'stop']); // Ctrl+C
         pcntl_signal(SIGTSTP, [$this, 'stop']); // Ctrl+Z
 
-        $this->worker->daemon(null, 'default', $this->worker_options);
+        $this->worker->daemon(null, $this->queue, $this->worker_options);
     }
 
     public function isDownForMaintenance() {
