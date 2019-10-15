@@ -4,6 +4,7 @@ namespace Osm\Ui\Forms\Views;
 
 use Osm\Core\App;
 use Osm\Data\Sheets\Search;
+use Osm\Data\Sheets\Sheet;
 use Osm\Framework\Views\View;
 use Osm\Framework\Views\Views\Container;
 use Osm\Ui\Forms\Assigner;
@@ -11,14 +12,17 @@ use Osm\Ui\Forms\Loader;
 use Osm\Ui\Forms\Validator;
 
 /**
+ * @property string $sheet @required @part
+ * @property Sheet $sheet_ @required
+ * @property string $set @part
+ * @property Search $search @required
+ *
  * @property View $header @part
  * @property View $footer @part
  * @property string $route @required @part
  * @property string $method @required
  * @property string $action @required
  * @property string $submitting_message @part
- * @property string $search @required @part
- * @property Search $search_ @required
  * @property int $row_id
  * @property object $data
  */
@@ -33,7 +37,8 @@ class Form extends Container
         switch ($property) {
             case 'method': return substr($this->route, 0, strpos($this->route, ' '));
             case 'action': return substr($this->route, strpos($this->route, ' ') + 1);
-            case 'search_': return $osm_app->create($this->search);
+            case 'sheet_': return $osm_app->sheets[$this->sheet];
+            case 'search': return $this->sheet_->search($this->set);
             case 'data': return Loader::load($this);
         }
         return parent::default($property);

@@ -82,4 +82,5 @@ $z-index--modal-dialog: 24;
 $line-height--base: 1.5;                // Default line height (1.5 ratio means that if font size is 16px,
                                         // then line height is 24px)
 $page-width: 1200px;                    // if page is larger, content is of this width, centered
+$narrow-page-width: 800px;
 $page-padding: rem(12px);               // padding INSIDE of page width

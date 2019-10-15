@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
  * @property string $method @required @part
  * @property string $method_and_route @required
  * @property string $content @part
+ * @property mixed $json @required
  * @property bool $ajax @part
  * @property array $query @required @part Raw unfiltered query parameters. Value type is:
  *      string - in most cases
@@ -31,6 +32,7 @@ class Request extends Object_
             case 'method': return $this->symfony_request->getMethod();
             case 'method_and_route': return "{$this->method} {$this->route}";
             case 'content': return $this->symfony_request->getContent();
+            case 'json': return json_decode($this->content);
             case 'ajax': return $this->symfony_request->isXmlHttpRequest();
 
             case 'query': return $this->parseQuery();

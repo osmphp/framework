@@ -18,6 +18,7 @@ use Osm\Ui\Menus\Views\Menu;
  *      @property string $type @required @part
  *      @property string $modifier @part // CSS modifier
  *      @property int $sort_order @part
+ *      @property bool $deleted @part
  * Named menu items may have title and icon:
  *      @property string $title @required @part
  *      @property string $icon @part

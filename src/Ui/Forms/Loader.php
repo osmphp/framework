@@ -13,7 +13,7 @@ class Loader extends Handler
 {
     protected function default($property) {
         switch ($property) {
-            case 'search': return $this->form->search_;
+            case 'search': return $this->form->search;
             case 'id': return $this->form->row_id;
         }
         return parent::default($property);

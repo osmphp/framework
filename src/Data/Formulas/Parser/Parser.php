@@ -44,6 +44,13 @@ class Parser extends Object_
         ')?$/u';
     protected $regex_parser_cache = [];
 
+    public $regex_literals = [
+        'null' => Token::NULL_,
+        'true' => Token::TRUE_,
+        'false' => Token::FALSE_,
+    ];
+
+
     protected function default($property) {
         global $osm_app; /* @var App $osm_app */
 
@@ -726,12 +733,8 @@ class Parser extends Object_
             }
 
             return Formulas\SortExpr::new([
-                'expr' => Formulas\Identifier::new([
-                    'parts' => [$match['identifier'][0]],
-                    'pos' => $match['identifier'][1],
-                    'formula' => $text,
-                    'length' => mb_strlen($match['identifier'][0]),
-                ]),
+                'expr' => $this->regexIdentifier($match['identifier'][0],
+                    $match['identifier'][1], $text),
                 'ascending' => $match['direction'][0] == 'ASC',
                 'pos' => 0,
                 'formula' => $text,
@@ -745,12 +748,8 @@ class Parser extends Object_
             }
 
             return Formulas\SelectExpr::new([
-                'expr' => Formulas\Identifier::new([
-                    'parts' => [$match['identifier'][0]],
-                    'pos' => $match['identifier'][1],
-                    'formula' => $text,
-                    'length' => mb_strlen($match['identifier'][0]),
-                ]),
+                'expr' => $this->regexIdentifier($match['identifier'][0],
+                    $match['identifier'][1], $text),
                 'alias' => $match['alias'][0],
                 'pos' => 0,
                 'formula' => $text,
@@ -758,11 +757,26 @@ class Parser extends Object_
             ]);
         }
 
+        return $this->regexIdentifier($text,0, $text);
+    }
+
+    protected function regexIdentifier($identifier, $pos, $formula) {
+        $literal = mb_strtolower($identifier);
+        if (isset($this->regex_literals[$literal])) {
+            return Formulas\Literal::new([
+                'value' => $literal,
+                'pos' => $pos,
+                'formula' => $formula,
+                'token' => $this->regex_literals[$literal],
+                'length' => mb_strlen($literal),
+            ]);
+        }
+
         return Formulas\Identifier::new([
-            'parts' => [$text],
-            'pos' => 0,
-            'formula' => $text,
-            'length' => mb_strlen($text),
+            'parts' => [$identifier],
+            'pos' => $pos,
+            'formula' => $formula,
+            'length' => mb_strlen($identifier),
         ]);
     }
 }

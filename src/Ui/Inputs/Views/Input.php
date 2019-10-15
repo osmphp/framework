@@ -59,13 +59,17 @@ class Input extends View implements FormPart
     }
 
     public function addFormPartToSearch(Search $search) {
-        $search->select($this->name);
+        if ($this->type != 'password') {
+            $search->select($this->name);
+        }
     }
 
     /**
      * @param object $data
      */
     public function assignFormPartValue($data) {
-        $this->value = $data->{$this->name};
+        if ($this->type != 'password') {
+            $this->value = $data->{$this->name};
+        }
     }
 }

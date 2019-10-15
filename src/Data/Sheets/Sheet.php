@@ -17,8 +17,8 @@ class Sheet extends Object_
 {
     protected function default($property) {
         switch ($property) {
+            case 'columns': return [];
             case 'columns_': return $this->getColumns();
-
         }
         return parent::default($property);
     }
