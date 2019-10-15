@@ -34,7 +34,7 @@ class Process extends Command
                 $options->stopWhenEmpty = false;
                 $options->sleep = 1;
                 return $options;
-            case 'queue': return $this->input->getOption('queue');
+            case 'queue': return $this->input->getArgument('queue');
         }
         return parent::default($property);
     }
