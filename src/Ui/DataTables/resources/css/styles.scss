@@ -4,6 +4,7 @@
 .data-table {
   font-size: rem(13px);
   overflow-x: auto;
+  overflow-y: hidden;
   position: relative;
 
   &__table {

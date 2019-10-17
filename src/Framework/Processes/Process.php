@@ -22,11 +22,10 @@ class Process
     }
 
     public static function run($command, callable $callback = null) {
-        $path = static::getBasePath() . (static::$path ? '/' . static::$path : '');
+        // realpath(__DIR__ . '/../../../../../..')
+        $path = static::$path ?: static::getBasePath();
         $process = new SymfonyProcess($command, $path, null, null, null);
-        $dir = __DIR__;
-        $process->setWorkingDirectory(realpath("$dir/../../../../../.." .
-            (static::$path ? '/' . static::$path : '')));
+        $process->setWorkingDirectory($path);
         return $process->run($callback) == 0;
     }
 
@@ -88,8 +87,8 @@ class Process
         return $process->stop(10000) == 0;
     }
 
-    protected static function getBasePath() {
-        return dirname(dirname(dirname(dirname(__DIR__))));
+    public static function getBasePath() {
+        return dirname(dirname(dirname(dirname(dirname(dirname(__DIR__))))));
     }
 
     protected static function out($string) {

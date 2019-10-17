@@ -18,7 +18,8 @@ abstract class DocumentationTestCase extends TestCase
         $message = '';
         $commands = '';
 
-        $commits = Process::cd($package->path, function() use ($since, $sources) {
+        $path = Process::getBasePath() . '/' . $package->path;
+        $commits = Process::cd($path, function() use ($since, $sources) {
             return Process::runBuffered("git log \"--format= %h %ad %an: %s\" --date=short " .
                 "{$this->getRange($since)} -- {$this->getSources($sources)}");
         });
@@ -28,7 +29,7 @@ abstract class DocumentationTestCase extends TestCase
             $commands .= " gitk {$this->getRange($since)} -- {$this->getSources($sources)}\n";
         }
 
-        $changes = Process::cd($package->path, function() use ($since, $sources) {
+        $changes = Process::cd($path, function() use ($since, $sources) {
             return Process::runBuffered("git status -s -- {$this->getSources($sources)}");
         });
 

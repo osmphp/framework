@@ -27,7 +27,7 @@ trait PropertiesTrait
 
         // write file name and file contents of each reported layer file
         $handler->setFormatter(new LineFormatter("# %context.filename% \n\n%extra.contents%\n\n",
-            LineFormatter::SIMPLE_FORMAT, true));
+            LineFormatter::SIMPLE_DATE, true));
 
         // as user code only provides file name, add file contents to log record using processor
         $logger->pushProcessor(function($record) use ($osm_app) {

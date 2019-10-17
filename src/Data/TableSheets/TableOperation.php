@@ -2,6 +2,7 @@
 
 namespace Osm\Data\TableSheets;
 
+use Carbon\Carbon;
 use Osm\Core\App;
 use Osm\Core\Object_;
 use Osm\Data\TableQueries\TableQuery;
@@ -75,14 +76,19 @@ class TableOperation extends Object_
         $this->query()->delete();
     }
 
-    protected function validateUnique($column, $message) {
+    protected function validateUnique($column, $message, $where = null) {
         if (!isset($this->valid_values->$column)) {
             return;
         }
 
-        $id = $this->db['customers']
-            ->where("$column = ?", $this->valid_values->$column)
-            ->value("id");
+        $query = $this->parent->query()
+            ->where("$column = ?", $this->valid_values->$column);
+
+        if ($where) {
+            $query->where($where);
+        }
+
+        $id = $query->value("id");
 
         if (!$id) {
             return;
@@ -97,5 +103,13 @@ class TableOperation extends Object_
         if ($id != $this->id) {
             throw new ValidationFailed([$column => (string)$message]);
         }
+    }
+
+    protected function fillInTimestamps() {
+        $now = Carbon::now();
+        if ($this->inserting) {
+            $this->valid_values->created_at = $now;
+        }
+        $this->valid_values->updated_at = $now;
     }
 }
