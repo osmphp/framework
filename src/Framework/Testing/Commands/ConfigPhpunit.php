@@ -81,10 +81,10 @@ EOT;
     protected function collectFromPackage(Package $package) {
         global $osm_app; /* @var App $osm_app */
 
-        if (!isset($package->namespaces['tests'])) {
+        if (!isset($package->namespaces[$package->tests])) {
             return;
         }
-        $path = $osm_app->path("{$package->path}/tests");
+        $path = $osm_app->path($package->test_path);
         if (!is_dir($path)) {
             return;
         }
@@ -114,7 +114,7 @@ EOT;
                 continue;
             }
 
-            $class = $package->namespaces['tests'] . '\\' .
+            $class = $package->namespaces[$package->tests] . '\\' .
                 str_replace('/', '\\',
                     ($path ? "$path/" : '') . pathinfo($fileInfo->getFilename(), PATHINFO_FILENAME));
 
@@ -148,11 +148,11 @@ EOT;
     protected function getModule($package, $class) {
         global $osm_app; /* @var App $osm_app */
 
-        if (!isset($package->namespaces['src'])) {
+        if (!isset($package->namespaces[$package->src])) {
             return '';
         }
 
-        $class = $package->namespaces['src'] . substr($class, strlen($package->namespaces['tests']));
+        $class = $package->namespaces[$package->src] . substr($class, strlen($package->namespaces[$package->tests]));
         foreach ($osm_app->modules as $module) {
             if (strpos($class, str_replace('_', '\\', $module->name)) === 0) {
                 return $module->name;
@@ -230,7 +230,7 @@ EOT;
 
         $result = '';
         foreach ($osm_app->packages as $package) {
-            $result .= "            <directory suffix=\".php\">{$package->path}/src</directory>\n";
+            $result .= "            <directory suffix=\".php\">{$package->src_path}</directory>\n";
         }
         return $result;
     }
