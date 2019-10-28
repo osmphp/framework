@@ -49,6 +49,14 @@ class Target extends Object_
 
     protected function doIndex() {
         foreach ($this->indexers as $name => $data) {
+            // if source hasn't changed and we only process changes, then
+            // don't process this source
+            if ($this->scope->mode == Mode::PARTIAL &&
+                !isset($this->scope->sources[$name]))
+            {
+                continue;
+            }
+
             $data['scope'] = $this->scope;
             $this->createIndexer($data, $name)->index();
         }

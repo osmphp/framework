@@ -27,9 +27,7 @@ abstract class Indexer extends Object_
         switch ($property) {
             case 'db': return $osm_app->db;
             case 'target': return $this->parent;
-            case 'partial':
-                return $this->scope->mode == Mode::PARTIAL &&
-                    isset($this->scope->sources[$this->name]);
+            case 'partial': return $this->scope->mode == Mode::PARTIAL;
             case 'save_table': return $this->partial
                 ? "{$this->name}__n{$this->scope->sources[$this->name]}"
                 : null;
