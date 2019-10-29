@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'domain' => [
+        'pattern' => '/^[A-Z0-9.-]+\.[A-Z]{2,}$/iu',
+        'error_message' => osm_t("Domain name expected"),
+    ],
     'email' => [
         'pattern' => '/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/iu',
         'error_message' => osm_t("Email expected"),

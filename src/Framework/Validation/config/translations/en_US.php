@@ -15,4 +15,5 @@ return [
     "Expected to start with lowercase letter or digit followed by one or more lowercase letter, digit, hyphen (-) or underscore (_)" => "Expected to start with lowercase letter or digit followed by one or more lowercase letter, digit, hyphen (-) or underscore (_)",
     "Value should be no longer than :length characters" => "Value should be no longer than :length characters",
     "Value should be at least :length characters long" => "Value should be at least :length characters long",
+    "Domain name expected" => "Domain name expected",
 ];
