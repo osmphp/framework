@@ -24,6 +24,11 @@ class Generator extends Object_
                 $this->parent->handleFormula($formula->args[0]);
                 $this->parent->sql .= ")";
                 break;
+            case 'sha1':
+                $this->parent->sql .= "SHA1(";
+                $this->parent->handleFormula($formula->args[0]);
+                $this->parent->sql .= ")";
+                break;
             default:
                 throw new NotSupported(osm_t("Table function ':function' not supported",
                     ['function' => $formula->function]));

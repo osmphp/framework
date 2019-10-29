@@ -14,7 +14,8 @@ use Osm\Ui\DataTables\Views\DataTable;
  * @property string $title @part
  * @property float $width @required @part
  * @property string $modifier @part
- * @property string $button_title @required @part
+ * @property string $button_icon @part
+ * @property string $button_title @part
  * @property string $option_list @required @part
  * @property UrlGenerator $url_generator @required
  */

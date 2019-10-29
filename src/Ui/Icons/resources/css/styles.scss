@@ -197,4 +197,11 @@
       content: 'close';
     }
   }
+
+  &.-settings {
+    @extend .icon.-awesome;
+    &::before {
+      content: '\f013';
+    }
+  }
 }

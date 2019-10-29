@@ -48,6 +48,7 @@ class Target extends Object_
     }
 
     protected function doIndex() {
+        $success = true;
         foreach ($this->indexers as $name => $data) {
             // if source hasn't changed and we only process changes, then
             // don't process this source
@@ -58,11 +59,18 @@ class Target extends Object_
             }
 
             $data['scope'] = $this->scope;
-            $this->createIndexer($data, $name)->index();
+            $success = $success && $this->createIndexer($data, $name)->index();
+        }
+
+        if (!$success) {
+            return;
         }
 
         $this->db->connection->table('indexers')
             ->where('target', '=', $this->name)
-            ->update(['requires_partial_reindex' => false, 'requires_full_reindex' => false]);
+            ->update([
+                'requires_partial_reindex' => false,
+                'requires_full_reindex' => false,
+            ]);
     }
 }

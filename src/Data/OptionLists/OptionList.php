@@ -42,23 +42,39 @@ abstract class OptionList extends Object_
         $optionData = $this->collectionLookup($collection->pluck($key));
 
         foreach ($collection as $item) {
-            if (!isset($optionData[$item->$key])) {
-                continue;
-            }
-
-            foreach ($optionData[$item->$key] as $property => $value) {
-                if ($property == 'value') {
-                    continue;
-                }
-
-                if ($data) {
-                    if (!isset($data[$property])) {
+            if ($item->$key === null || !isset($optionData[$item->$key])) {
+                foreach ($optionData->first() as $property => $value) {
+                    if ($property == 'value') {
                         continue;
                     }
-                    $property = $data[$property];
-                }
 
-                $item->{$property} = $value;
+                    $value = $property == 'title' ? $item->$key : null;
+
+                    if ($data) {
+                        if (!isset($data[$property])) {
+                            continue;
+                        }
+                        $property = $data[$property];
+                    }
+
+                    $item->{$property} = $value;
+                }
+            }
+            else {
+                foreach ($optionData[$item->$key] as $property => $value) {
+                    if ($property == 'value') {
+                        continue;
+                    }
+
+                    if ($data) {
+                        if (!isset($data[$property])) {
+                            continue;
+                        }
+                        $property = $data[$property];
+                    }
+
+                    $item->{$property} = $value;
+                }
             }
         }
     }

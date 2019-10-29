@@ -400,7 +400,23 @@ class Generator extends Object_
 
             case Formula::CAST:
                 /* @var Formulas\Cast $formula */
-
+                if ($formula->data_type == Types::ANY ||
+                    $formula->data_type == $formula->expr->data_type)
+                {
+                    $this->handleFormula($formula->expr);
+                }
+                else {
+                    switch ($formula->data_type) {
+                        case Types::STRING_:
+                            $this->sql .= 'COALESCE(';
+                            $this->handleFormula($formula->expr);
+                            $this->sql .= ')';
+                            break;
+                        default:
+                            throw new NotSupported(osm_t("Formula type ':type' not supported", ['type' => $formula->type]));
+                    }
+                }
+                break;
             case Formula::LOGICAL_XOR:
             case Formula::BIT_OR:
             case Formula::BIT_AND:
