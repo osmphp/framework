@@ -1,1 +1,0 @@
-# Configuring command line shortcut for Windows

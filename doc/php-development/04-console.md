@@ -1,3 +1,0 @@
-# Console #
-
-{{ child_pages }}

@@ -1,3 +1,0 @@
-# Views #
-
-{{ child_pages }}

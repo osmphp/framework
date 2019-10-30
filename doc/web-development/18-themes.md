@@ -1,3 +1,0 @@
-# Themes #
-
-{{ child_pages }}

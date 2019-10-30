@@ -1,3 +1,0 @@
-# Connections #
-
-{{ child_pages }}
