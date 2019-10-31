@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
  * @property Settings $settings @required
  * @property string $session_class
  * @property int $time_to_live @required
- * @property string $cookie_name @required
+ * @property string $cookie_name
  * @property string $cookie_path @required
  * @property string $cookie_domain
  * @property bool $cookie_secure @required
@@ -61,6 +61,10 @@ class StartSession extends Advice
     }
 
     protected function load() {
+        if (!$this->cookie_name) {
+            return null;
+        }
+
         if (($id = $this->symfony_request->cookies->get($this->cookie_name)) && ($session = $this->sessions[$id])) {
             return $session;
         }
@@ -70,6 +74,10 @@ class StartSession extends Advice
 
     protected function save(Response $response) {
         global $osm_app; /* @var App $osm_app */
+
+        if (!$this->cookie_name) {
+            return null;
+        }
 
         $session = $osm_app->session;
 

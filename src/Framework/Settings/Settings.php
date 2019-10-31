@@ -13,13 +13,13 @@ use Osm\Framework\Cache\CacheItem;
  *      @property bool $log_db_queries @part
  *      @property float $log_db_queries_from @part
  * @see \Osm\Framework\Sessions\Module:
- *      @property int $web_session_time_to_live @required @part
- *      @property string $web_session_cookie_name @required @part
- *      @property string $web_session_cookie_path @required @part
- *      @property string $web_session_cookie_domain @part
- *      @property bool $web_session_cookie_secure @required @part
- *      @property bool $web_session_cookie_http_only @required @part
- *      @property string $web_session_cookie_same_site @part
+ *      @property int $frontend_session_time_to_live @required @part
+ *      @property string $frontend_session_cookie_name @required @part
+ *      @property string $frontend_session_cookie_path @required @part
+ *      @property string $frontend_session_cookie_domain @part
+ *      @property bool $frontend_session_cookie_secure @required @part
+ *      @property bool $frontend_session_cookie_http_only @required @part
+ *      @property string $frontend_session_cookie_same_site @part
  * @see \Osm\Framework\Queues\Module:
  *      @property string $queue_store @required @part
  *      @property string $queue_processor @required @part
@@ -35,23 +35,6 @@ use Osm\Framework\Cache\CacheItem;
  *      @property bool $log_layers @part
  * @see \Osm\Framework\Redis\Module:
  *      @property bool $redis_driver @part
- * @see \Osm\App\App\Module:
- *      @property int $backend_session_time_to_live @required @part
- *      @property string $backend_session_cookie_name @required @part
- *      @property string $backend_session_cookie_path @required @part
- *      @property string $backend_session_cookie_domain @part
- *      @property bool $backend_session_cookie_secure @required @part
- *      @property bool $backend_session_cookie_http_only @required @part
- *      @property string $backend_session_cookie_same_site @part
- *
- *      @property int $frontend_session_time_to_live @required @part
- *      @property string $frontend_session_cookie_name @required @part
- *      @property string $frontend_session_cookie_path @required @part
- *      @property string $frontend_session_cookie_domain @part
- *      @property bool $frontend_session_cookie_secure @required @part
- *      @property bool $frontend_session_cookie_http_only @required @part
- *      @property string $frontend_session_cookie_same_site @part
- *
  * @see \Osm\Ui\SnackBars\Module:
  *      @property int $close_snack_bars_after @required @part
  * @see \Osm\Ui\DataTables\Module:
