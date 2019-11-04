@@ -85,7 +85,7 @@ class ShowConfig extends Command
         $dump = preg_replace('#\n([ ]*)\),#', "\n$1],", $dump); // Ends
         $dump = preg_replace('#=> \[\n\s+\],\n#', "=> [],\n", $dump); // Empties
         $dump = preg_replace('#\)$#', "]", $dump);
-        $dump = preg_replace('#\n\s*Osm\\\\Core\\\\Promise::__set_state\(array\(\n\s*\'object\' => \'localization\',\n\s*\'method\' => \'translate\',\n\s*\'args\' => \[\n\s*0 => \'([^\']*)\',\n\s*1 => \[\],\n\s*\],\n\s*\)\),#', "m_('$1')", $dump);
+        $dump = preg_replace('#\n\s*Osm\\\\Core\\\\Promise::__set_state\(array\(\n\s*\'object\' => \'localization\',\n\s*\'method\' => \'translate\',\n\s*\'args\' => \[\n\s*0 => \'([^\']*)\',\n\s*1 => \[\],\n\s*\],\n\s*\)\),#', "osm_t('$1'),", $dump);
 
         return $dump;
     }

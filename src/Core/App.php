@@ -110,7 +110,6 @@ use Symfony\Component\HttpFoundation\Response;
  *      @property Theme $theme_ @required @default
  * @see \Osm\Framework\Sessions\Module:
  *      @property Stores|Store[] $session_stores @required @default
- *      @property Session $session @required
  * @see \Osm\Framework\Layers\Module:
  *      @property Layout $layout @required
  * @see \Osm\Framework\Queues\Module:

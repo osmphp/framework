@@ -9,25 +9,19 @@ use Osm\Framework\Settings\Settings;
 
 /**
  * @property \SessionHandlerInterface $handler @required
- * @property int $time_to_live @required (in minutes)
- * @property string $env @required
- * @property string $area @required
- * @property Settings $settings @required
+ * @property string $name @required @part
+ *
+ * @property string $session_class @part
+ * @property int $time_to_live @required @part (in minutes)
+ * @property string $cookie_name @required @part
+ * @property string $cookie_path @required @part
+ * @property string $cookie_domain @part
+ * @property bool $cookie_secure @required @part
+ * @property bool $cookie_http_only @required @part
+ * @property string $cookie_same_site @part
  */
 abstract class Store extends Object_
 {
-    protected function default($property) {
-        global $osm_app; /* @var App $osm_app */
-
-        switch ($property) {
-            case 'env': return env('APP_ENV');
-            case 'area': return $osm_app->area;
-            case 'settings': return $osm_app->settings;
-            case 'time_to_live': return $this->settings->{"{$this->area}_session_time_to_live"};
-        }
-        return parent::default($property);
-    }
-
     public function offsetGet($offset) {
         return unserialize($this->handler->read($offset));
     }
@@ -40,7 +34,7 @@ abstract class Store extends Object_
         $this->handler->destroy($offset);
     }
 
-    public function gc($timeToLiveInSeconds) {
-        $this->handler->gc($timeToLiveInSeconds);
+    public function gc() {
+        $this->handler->gc($this->time_to_live * 60);
     }
 }

@@ -8,6 +8,8 @@ use Osm\Framework\Http\Controller;
 use Osm\Framework\Http\Controllers;
 use Osm\Framework\Http\Parameter;
 use Osm\Framework\Http\Parameters;
+use Osm\Framework\Sessions\Session;
+use Osm\Framework\Sessions\Stores\Store;
 
 /**
  * @property Areas|Area[] $parent
@@ -28,7 +30,8 @@ use Osm\Framework\Http\Parameters;
  *      @property Controllers|Controller[] $controllers @required
  *      @property array $query @required Parsed area-wide parameters (like _env) in current request
  * @see \Osm\Framework\Sessions\Module
- *      @property string $session_class @part
+ *      @property Store|Session[] $sessions @default
+ *      @property Session $session
  */
 class Area extends Object_
 {

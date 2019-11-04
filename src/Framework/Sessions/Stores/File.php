@@ -17,9 +17,10 @@ class File extends Store
 
         switch ($property) {
             case 'files': return $osm_app->laravel->files;
-            case 'path': return osm_make_dir($osm_app->path('temp/' . env('APP_ENV') .
-                '/sessions/' . $this->area));
-            case 'handler': return $osm_app->createRaw(FileSessionHandler::class, $this->files,
+            case 'path': return osm_make_dir($osm_app->path(
+                "{$osm_app->temp_path}/sessions/{$this->name}"));
+            case 'handler': return $osm_app->createRaw(
+                FileSessionHandler::class, $this->files,
                 $this->path, $this->time_to_live);
         }
         return parent::default($property);
