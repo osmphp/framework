@@ -8,13 +8,13 @@ use Osm\Framework\Http\Advice;
 use Osm\Framework\Http\Exceptions\NotFound;
 use Osm\Framework\Http\Request;
 use Osm\Framework\Http\Responses;
-use Osm\Framework\Http\UrlGenerator;
+use Osm\Framework\Http\Url;
 
 /**
  * @property Request $request @required
  * @property Responses $responses @required
  * @property Area $area @required
- * @property UrlGenerator $url_generator @required
+ * @property Url $url @required
  */
 class RedirectToTrailingSlash extends Advice
 {
@@ -25,7 +25,7 @@ class RedirectToTrailingSlash extends Advice
             case 'request': return $osm_app->request;
             case 'responses': return $osm_app[Responses::class];
             case 'area': return $osm_app->area_;
-            case 'url_generator': return $osm_app->url_generator;
+            case 'url': return $osm_app->url;
         }
         return parent::default($property);
     }
@@ -62,6 +62,6 @@ class RedirectToTrailingSlash extends Advice
             return null;
         }
 
-        return $this->responses->redirect($this->url_generator->rawUrl($redirectTo, $this->request->query));
+        return $this->responses->redirect($this->url->to($redirectTo, $this->request->query));
     }
 }

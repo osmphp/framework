@@ -4,7 +4,7 @@ namespace Osm\Ui\DataTables\Columns;
 
 use Osm\Core\App;
 use Osm\Core\Object_;
-use Osm\Framework\Http\UrlGenerator;
+use Osm\Framework\Http\Url;
 use Osm\Ui\DataTables\Views\DataTable;
 
 /**
@@ -17,7 +17,7 @@ use Osm\Ui\DataTables\Views\DataTable;
  * @property string $button_icon @part
  * @property string $button_title @part
  * @property string $option_list @required @part
- * @property UrlGenerator $url_generator @required
+ * @property Url $url @required
  */
 class Column extends Object_
 {
@@ -45,7 +45,7 @@ class Column extends Object_
 
         switch ($property) {
             case 'width': return $this->getWidth();
-            case 'url_generator': return $osm_app[UrlGenerator::class];
+            case 'url': return $osm_app->url;
         }
 
         return parent::default($property);

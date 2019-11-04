@@ -19,7 +19,7 @@ use Osm\Framework\Areas\Area;
  *      can be full array of parsed query parameters, area-wide parameters if route is not detected yet or
  *      empty array
  */
-class UrlGenerator extends Object_
+class Url extends Object_
 {
     protected function default($property) {
         global $osm_app; /* @var App $osm_app */
@@ -37,13 +37,13 @@ class UrlGenerator extends Object_
         return parent::default($property);
     }
 
-    public function assetUrl($path) {
+    public function toAsset($path) {
         global $osm_app; /* @var App $osm_app */
         return $this->asset_base . ($this->env_path ? "/{$this->env_path}" : '') .
             "/{$this->area}/{$osm_app->theme}/{$path}?v={$this->asset_version}";
     }
 
-    public function rawUrl($route, $rawQuery = []) {
+    public function to($route, $rawQuery = []) {
         return $this->base .
             substr($route, strpos($route, ' ') + 1) .
             $this->generateQueryString($rawQuery);
@@ -76,12 +76,12 @@ class UrlGenerator extends Object_
      * @param array $data
      * @return string
      */
-    public function routeUrl($route, $parsedQuery = [], $data = []) {
+    public function toRoute($route, $parsedQuery = [], $data = []) {
         global $osm_profiler; /* @var Profiler $osm_profiler */
 
         if ($osm_profiler) $osm_profiler->start(__METHOD__, 'helpers');
         try {
-            return $this->rawUrl($route, $this->generateQuery($route, $parsedQuery));
+            return $this->to($route, $this->generateQuery($route, $parsedQuery));
         }
         finally {
             if ($osm_profiler) $osm_profiler->stop(__METHOD__);

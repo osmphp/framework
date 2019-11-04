@@ -5,7 +5,7 @@ namespace Osm\Framework\Http\Traits;
 use Osm\Core\App;
 use Osm\Framework\Http\Query;
 use Osm\Framework\Http\Request;
-use Osm\Framework\Http\UrlGenerator;
+use Osm\Framework\Http\Url;
 
 trait PropertiesTrait
 {
@@ -13,8 +13,8 @@ trait PropertiesTrait
         return Request::new();
     }
 
-    public function Osm_Core_App__url_generator(App $app) {
-        return UrlGenerator::new();
+    public function Osm_Core_App__url(App $app) {
+        return Url::new();
     }
 
     public function Osm_Core_App__query(App $app) {

@@ -41,7 +41,7 @@ function osm_t($text, $parameters = []) {
 }
 
 function osm_url($route, $parsedQuery = [], $data = []) {
-    return new Promise('url_generator', 'routeUrl', [$route, $parsedQuery, $data]);
+    return new Promise('url', 'toRoute', [$route, $parsedQuery, $data]);
 }
 
 function osm_current_url($parsedQuery = [], $data = []) {
@@ -51,7 +51,7 @@ function osm_current_url($parsedQuery = [], $data = []) {
 }
 
 function osm_asset($path) {
-    return new Promise('url_generator', 'assetUrl', [$path]);
+    return new Promise('url', 'toAsset', [$path]);
 }
 
 function osm_env($name, $default = null) {

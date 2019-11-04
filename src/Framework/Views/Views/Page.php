@@ -6,7 +6,7 @@ use Osm\Core\App;
 use Osm\Framework\Http\Controller;
 use Osm\Framework\Http\Parameter;
 use Osm\Framework\Http\Request;
-use Osm\Framework\Http\UrlGenerator;
+use Osm\Framework\Http\Url;
 use Osm\Framework\Views\View;
 
 /**
@@ -26,7 +26,7 @@ use Osm\Framework\Views\View;
  * Dependencies:
  *
  * @property Request $request @required
- * @property UrlGenerator $url_generator @required
+ * @property Url $url @required
  * @property Controller $controller @required
  */
 class Page extends View
@@ -72,7 +72,7 @@ class Page extends View
 
         switch ($property) {
             case 'request': return $osm_app->request;
-            case 'url_generator': return $osm_app->url_generator;
+            case 'url': return $osm_app->url;
             case 'controller': return $osm_app->controller;
         }
         return parent::default($property);
@@ -81,7 +81,7 @@ class Page extends View
     public function rendering() {
         $this->model = osm_merge([
             'base_url' => $this->request->base,
-            'transient_query' => (object)$this->url_generator->generateQuery(
+            'transient_query' => (object)$this->url->generateQuery(
                 "{$this->request->method} {$this->controller->route}",
                 $this->controller->query,
                 function(Parameter $parameter) { return $parameter->transient; }

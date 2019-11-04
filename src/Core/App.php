@@ -32,12 +32,11 @@ use Osm\Framework\Encryption\Hashing\Hashing;
 use Osm\Framework\Http\Controller;
 use Osm\Framework\Http\Query as HttpQuery;
 use Osm\Framework\Http\Request;
-use Osm\Framework\Http\UrlGenerator;
+use Osm\Framework\Http\Url;
 use Osm\Framework\Layers\Layout;
 use Osm\Framework\Logging\Logs;
 use Osm\Framework\Queues\Queue;
 use Osm\Framework\Queues\Queues;
-use Osm\Framework\Sessions\Session;
 use Osm\Framework\Sessions\Stores;
 use Osm\Framework\Sessions\Stores\Store;
 use Osm\Framework\Settings\Settings;
@@ -97,7 +96,7 @@ use Symfony\Component\HttpFoundation\Response;
  *      @property Db|TableQuery[] $db @required @default
  * @see \Osm\Framework\Http\Module:
  *      @property Request $request @required @default
- *      @property UrlGenerator $url_generator @required @default
+ *      @property Url $url @required @default
  *      @property Controller $controller @required
  *      @property HttpQuery|array $query @required @default
  * @see \Osm\Framework\Areas\Module:
