@@ -1,5 +1,6 @@
 <?php
 
+use Osm\Framework\Http\Advices\RedirectToBaseUrl;
 use Osm\Framework\Http\Parameters;
 
 return [
@@ -10,6 +11,12 @@ return [
                 'class' => Parameters\String_::class,
                 'transient' => true,
                 'pattern' => '/development|testing|production/'
+            ],
+        ],
+        'advices' => [
+            'resolve_base_url' => [
+                'class' => RedirectToBaseUrl::class,
+                'sort_order' => 10,
             ],
         ],
     ],

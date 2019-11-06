@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 
 /**
  * @property SymfonyRequest $symfony_request @required
- * @property string $asset_base @required @part
  * @property string $base @required @part
  * @property string $route @required @part
  * @property string $method @required @part
@@ -20,16 +19,13 @@ use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
  *      string - in most cases
  *      string[] - if same parameter in URL is met more than once or if parameter name ends with '[]'
  *      true - if there is parameter name but no value
- *
- * @property string $base_url_path @temp
  */
 class Request extends Object_
 {
     protected function default($property) {
         switch ($property) {
             case 'symfony_request': return SymfonyRequest::createFromGlobals();
-            case 'asset_base': return $this->symfony_request->getUriForPath('');
-            case 'base': return $this->symfony_request->getUriForPath($this->base_url_path);
+            case 'base': return $this->symfony_request->getUriForPath('');
             case 'route': return $this->decode($this->symfony_request->getPathInfo());
             case 'method': return $this->symfony_request->getMethod();
             case 'method_and_route': return "{$this->method} {$this->route}";

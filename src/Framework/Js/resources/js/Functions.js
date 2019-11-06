@@ -33,4 +33,16 @@ export default class Functions {
 
         return Promise.resolve($.ajax(url.generate(route, options.query), parameters));
     }
+
+    area(name, callback) {
+        let area = url.area;
+        url.area = name;
+
+        try {
+            return callback();
+        }
+        finally {
+            url.area = area;
+        }
+    }
 };

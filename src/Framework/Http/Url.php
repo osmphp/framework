@@ -6,18 +6,51 @@ use Osm\Core\App;
 use Osm\Core\Object_;
 use Osm\Core\Profiler;
 use Osm\Framework\Areas\Area;
+use Osm\Framework\Areas\Areas;
+use Osm\Framework\Settings\Settings;
 
 /**
- * @property Request $request @required
- * @property string $area @required
- * @property Area $area_ @required
- * @property string $base @required
- * @property string $asset_base @required
+ * Constructor arguments:
+ *
+ * @property string $area @required Name of area in which routes for this
+ *      URL generator are defined
+ * @property string $base_url Absolute URL to prefix all generated URLs.
+ *      Leave empty in constructor to take default value from `base_url` setting
+ *      which, in turn, takes value of `APP_URL` environment variable.
+ *      In case no value is provided in constructor and `base_url` setting
+ *      is not assigned, it is inferred from incoming request, that is to
+ *      `$request_base_url` property. If you plan to generate URLs in console
+ *      do provide this property in constructor or assign `APP_URL` environment
+ *      variable.
+ * @property string $route_base_url Used to calculate `route_base_url_` property
+ *      which contains absolute URL to prefix all generated route URLs.
+ *      Leave empty, specify URL relative to `base_url` property or use
+ *      absolute URL.
+ * @property string $asset_base_url Absolute URL to prefix all asset URLs.
+ *      If not provided, uses default value from `asset_base_url` setting
+ *      which, in turn, takes value of `ASSET_URL` environment variable. Use
+ *      this property to serve assets from CDN.
+ *
+ * Dependencies:
+ *
+ * @property Request $request @required Current HTTP request. This property
+ *       is not available in console.
+ * @property Area $area_ @required Area containing route definitions used by
+ *      this URL generator
+ * @property Areas|Area[] $areas @required
+ * @property Settings $settings @required
+ * @property string $request_base_url @required Base URL of incoming HTTP
+ *      request. This property is not available in console.
  * @property string $asset_version @required
  * @property string $env_path @required
  * @property Query|array $query @required Parsed query, depending on how far we progressed in processing HTTP request it
  *      can be full array of parsed query parameters, area-wide parameters if route is not detected yet or
  *      empty array
+ *
+ * Calculated properties:
+ *
+ * @property string $route_base_url_ @required Absolute URL to prefix all route
+ *      URLs. Calculated from `route_base_url` and `base_url` properties.
  */
 class Url extends Object_
 {
@@ -28,8 +61,15 @@ class Url extends Object_
             case 'request': return $osm_app->request;
             case 'area': return $osm_app->area;
             case 'area_': return $osm_app->areas[$this->area];
-            case 'base': return $this->request->base;
-            case 'asset_base': return $this->request->asset_base;
+            case 'areas': return $osm_app->areas;
+            case 'settings': return $osm_app->settings;
+            case 'request_base_url': return $this->request->base;
+            case 'base_url': return (string)$this->settings->base_url
+                ?: $this->request_base_url;
+            case 'route_base_url_': return osm_is_absolute_url($this->route_base_url)
+                ? $this->route_base_url
+                : $this->base_url . $this->route_base_url;
+            case 'asset_base_url': return $this->base_url;
             case 'env_path': return env('APP_ENV') != 'production' ? env('APP_ENV') : '';
             case 'asset_version': return $this->getAssetVersion();
             case 'query': return $osm_app->query;
@@ -39,12 +79,12 @@ class Url extends Object_
 
     public function toAsset($path) {
         global $osm_app; /* @var App $osm_app */
-        return $this->asset_base . ($this->env_path ? "/{$this->env_path}" : '') .
+        return $this->asset_base_url . ($this->env_path ? "/{$this->env_path}" : '') .
             "/{$this->area}/{$osm_app->theme}/{$path}?v={$this->asset_version}";
     }
 
     public function to($route, $rawQuery = []) {
-        return $this->base .
+        return $this->route_base_url_ .
             substr($route, strpos($route, ' ') + 1) .
             $this->generateQueryString($rawQuery);
     }
@@ -73,10 +113,9 @@ class Url extends Object_
     /**
      * @param string $route
      * @param array $parsedQuery
-     * @param array $data
      * @return string
      */
-    public function toRoute($route, $parsedQuery = [], $data = []) {
+    public function toRoute($route, $parsedQuery = []) {
         global $osm_profiler; /* @var Profiler $osm_profiler */
 
         if ($osm_profiler) $osm_profiler->start(__METHOD__, 'helpers');
@@ -86,6 +125,14 @@ class Url extends Object_
         finally {
             if ($osm_profiler) $osm_profiler->stop(__METHOD__);
         }
+    }
+
+    public function toAreaRoute($area, $route, $parsedQuery = []) {
+        if ($area == $this->area) {
+            return $this->toRoute($route, $parsedQuery);
+        }
+
+        return $this->areas[$area]->url->toRoute($route, $parsedQuery);
     }
 
     public function generateQuery($route, $parsedQuery = [], callable $filterCallback = null) {
@@ -184,6 +231,4 @@ class Url extends Object_
         return file_get_contents($osm_app->path('public' . ($this->env_path ? "/{$this->env_path}" : '') .
             "/{$this->area}/{$osm_app->theme}/version.txt"));
     }
-
-
 }

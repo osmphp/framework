@@ -7,6 +7,7 @@ use Osm\Framework\Areas\Area;
 use Osm\Framework\Http\Advices;
 use Osm\Framework\Http\Controllers;
 use Osm\Framework\Http\Parameters;
+use Osm\Framework\Http\Url;
 
 trait AreaTrait
 {
@@ -48,5 +49,16 @@ trait AreaTrait
         }
 
         return $proceed($property);
+    }
+
+    public function setUrl(Url $url) {
+        global $osm_app; /* @var App $osm_app */
+
+        /* @var Area $area */
+        $area = $this;
+
+        $area->url = $url;
+        $osm_app->request->route = mb_substr($osm_app->request->route,
+            mb_strlen($url->route_base_url_) - mb_strlen($url->base_url));
     }
 }

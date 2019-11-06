@@ -12,7 +12,9 @@ export default class Url {
             return url;
         }
 
-        return config.base_url + url + this.generateQuery(Object.assign(query, config.transient_query));
+        return (this.area ? config.base_urls[this.area] : config.base_url)
+            + url
+            + this.generateQuery(Object.assign(query, config.transient_query));
     }
 
     generateQuery(query) {

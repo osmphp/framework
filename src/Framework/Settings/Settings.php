@@ -9,6 +9,9 @@ use Osm\Framework\Cache\CacheItem;
  * @property string $app_title @required @part
  * @property string $app_version @required @part
  *
+ * @see \Osm\Framework\Http\Module:
+ *      @property string $base_url @part
+ *      @property string $asset_base_url @part
  * @see \Osm\Framework\Db\Module:
  *      @property bool $log_db_queries @part
  *      @property float $log_db_queries_from @part

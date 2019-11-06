@@ -8,6 +8,7 @@ use Osm\Framework\Http\Controller;
 use Osm\Framework\Http\Controllers;
 use Osm\Framework\Http\Parameter;
 use Osm\Framework\Http\Parameters;
+use Osm\Framework\Http\Url;
 use Osm\Framework\Sessions\Session;
 use Osm\Framework\Sessions\Stores\Store;
 
@@ -29,6 +30,8 @@ use Osm\Framework\Sessions\Stores\Store;
  *      @property Parameters|Parameter[] $parameters_ @required @part
  *      @property Controllers|Controller[] $controllers @required
  *      @property array $query @required Parsed area-wide parameters (like _env) in current request
+ *      @property Url $url @required
+ *      @method void setUrl(Url $url)
  * @see \Osm\Framework\Sessions\Module
  *      @property Store|Session[] $sessions @default
  *      @property Session $session

@@ -40,21 +40,25 @@ function osm_t($text, $parameters = []) {
     return new Promise('localization', 'translate', [$text, $parameters]);
 }
 
-function osm_url($route, $parsedQuery = [], $data = []) {
-    return new Promise('url', 'toRoute', [$route, $parsedQuery, $data]);
+function osm_url($route, $parsedQuery = []) {
+    return new Promise('url', 'toRoute', [$route, $parsedQuery]);
 }
 
-function osm_current_url($parsedQuery = [], $data = []) {
+function osm_area_url($area, $route, $parsedQuery = []) {
+    return new Promise('url', 'toAreaRoute', [$area, $route, $parsedQuery]);
+}
+
+function osm_current_url($parsedQuery = []) {
     global $osm_app; /* @var App $osm_app */
 
-    return osm_url($osm_app->request->method_and_route, $parsedQuery, $data);
+    return osm_url($osm_app->request->method_and_route, $parsedQuery);
 }
 
 function osm_asset($path) {
     return new Promise('url', 'toAsset', [$path]);
 }
 
-function osm_env($name, $default = null) {
+function osm_env($name, $default = '') {
     return new Promise(null, 'getEnv', [$name, $default]);
 }
 
@@ -178,4 +182,8 @@ function osm_copy_dir($target, $source) {
                 "{$target}/{$fileInfo->getFilename()}");
         }
     }
+}
+
+function osm_is_absolute_url($url) {
+    return starts_with(strtolower($url), ['http://', 'https://']);
 }

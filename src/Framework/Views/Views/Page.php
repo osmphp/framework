@@ -3,6 +3,8 @@
 namespace Osm\Framework\Views\Views;
 
 use Osm\Core\App;
+use Osm\Framework\Areas\Area;
+use Osm\Framework\Areas\Areas;
 use Osm\Framework\Http\Controller;
 use Osm\Framework\Http\Parameter;
 use Osm\Framework\Http\Request;
@@ -28,6 +30,7 @@ use Osm\Framework\Views\View;
  * @property Request $request @required
  * @property Url $url @required
  * @property Controller $controller @required
+ * @property Areas|Area[] $areas @required
  */
 class Page extends View
 {
@@ -74,21 +77,49 @@ class Page extends View
             case 'request': return $osm_app->request;
             case 'url': return $osm_app->url;
             case 'controller': return $osm_app->controller;
+            case 'areas': return $osm_app->areas;
         }
         return parent::default($property);
     }
 
     public function rendering() {
         $this->model = osm_merge([
-            'base_url' => $this->request->base,
-            'transient_query' => (object)$this->url->generateQuery(
-                "{$this->request->method} {$this->controller->route}",
-                $this->controller->query,
-                function(Parameter $parameter) { return $parameter->transient; }
-            ),
-            'translations' => array_map(function($s) {
-                return (string)osm_t($s);
-            }, $this->translations),
+            'base_url' => $this->url->route_base_url_,
+            'base_urls' => (object)$this->renderBaseUrls(),
+            'transient_query' => (object)$this->renderTransientQuery(),
+            'translations' => (object)$this->renderTranslations(),
         ], $this->model ?: []);
+    }
+
+    protected function renderBaseUrls() {
+        $result = [];
+
+        foreach ($this->areas as $area) {
+            if ($area == $this->url->area_) {
+                continue;
+            }
+
+            if (!isset($area->url)) {
+                continue;
+            }
+
+            $result[$area->name] = $area->url->route_base_url_;
+        }
+
+        return $result;
+    }
+
+    protected function renderTransientQuery() {
+        return $this->url->generateQuery(
+            "{$this->request->method} {$this->controller->route}",
+            $this->controller->query,
+            function(Parameter $parameter) { return $parameter->transient; }
+        );
+    }
+
+    protected function renderTranslations() {
+        return array_map(function($s) {
+            return (string)osm_t($s);
+        }, $this->translations);
     }
 }
