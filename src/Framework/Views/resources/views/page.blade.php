@@ -7,6 +7,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{ $view->title }}</title>
+    @if ($view->canonical_url)
+        <link rel="canonical" href="{{ $view->canonical_url }}" />
+    @endif
     <link rel="stylesheet" href="{{ osm_asset('styles.css') }}">
     <script src="{{ osm_asset('critical.js') }}"></script>
     @foreach($view->head_end as $child)

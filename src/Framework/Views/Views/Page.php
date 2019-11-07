@@ -24,6 +24,7 @@ use Osm\Framework\Views\View;
  * @property View $header @part Header view
  * @property View $footer @part Footer view
  * @property string $html_modifier @part CSS classes to add to <html> element
+ * @property string $canonical_url @part
  *
  * Dependencies:
  *
