@@ -68,7 +68,8 @@ class Builder {
                                     [
                                         '@babel/preset-env',
                                         {
-                                            "useBuiltIns": "entry"
+                                            "useBuiltIns": "entry",
+                                            "corejs": 2
                                         }
                                     ]
                                 ],

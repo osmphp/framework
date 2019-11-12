@@ -3,14 +3,10 @@
 // standard libraries
 const fs = require('fs');
 const execSync = require('child_process').execSync;
-const path = require('path');
 
 // packages
 const dotenv = require('dotenv');
 const Watchpack = require("watchpack");
-
-// our helpers
-const paths = require('./paths');
 
 class Bootstrapper {
     constructor(config, paths) {
@@ -23,7 +19,6 @@ class Bootstrapper {
         this.keepFresh();
         this.prepare();
         this.load();
-        this.watchDataFiles();
     }
 
     setEnvironment() {
@@ -75,69 +70,6 @@ class Bootstrapper {
         else {
             execSync('php fresh', {stdio: 'inherit'});
         }
-    }
-
-    watchDataFiles() {
-        if (process.argv.indexOf('--watch') == -1) {
-            return;
-        }
-
-        if (!this.config.data.files.length && !this.config.data.directories.length) {
-            return;
-        }
-
-        let wp = new Watchpack({aggregateTimeout: 300});
-
-        // hack to prevent triggering change events during initial
-        // directory scan
-        let lastType;
-        wp._onChange = (item, mtime, file, type) => {
-            lastType = type;
-            Watchpack.prototype._onChange.call(wp, item, mtime, file, type);
-        };
-        let files = [];
-
-        wp.watch(this.config.data.files, this.config.data.directories);
-        wp.on("aggregated", () => {
-            // remove duplicates and reset the `paths` array storing currently
-            // modified files, so we can accumulate newly modified files
-            // while processing it
-            let input = files.filter((path, index) => index == files.indexOf(path));
-            files = [];
-
-            if (!input.length) {
-                return;
-            }
-
-            if (input.length < 10) {
-                execSync('php run notify:data-changed ' +
-                    input.map(path => '"' + path + '"').join(" "),
-                    {stdio: 'inherit'});
-            }
-            else {
-                let tempFile = paths.getTempPath('notifications/' +
-                    (new Date).getTime()) + '.txt';
-
-                if (!fs.existsSync(path.dirname(tempFile))) {
-                    fs.mkdirSync(path.dirname(tempFile), {recursive: true});
-                }
-                fs.writeFileSync(tempFile, input.join("\n"));
-
-                execSync('php run notify:data-changed --filelist=' + tempFile,
-                    {stdio: 'inherit'});
-
-                fs.unlinkSync(tempFile);
-            }
-            console.log(input.length + ' data file modification(s)/deletion(s) processed.');
-        });
-        wp.on("change", (filePath) => {
-            if (lastType != 'initial') {
-                files.push(filePath);
-            }
-        });
-        wp.on("remove", filePath => {
-            files.push(filePath);
-        });
     }
 
     prepare() {

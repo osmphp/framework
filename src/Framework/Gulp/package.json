@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "watch-data": "gulp --cwd=. --gulpfile=vendor/osmphp/framework/src/Framework/Gulp/gulpfile.js watch"
+  },
+  "dependencies": {
+    "gulp": "^4.0.2"
+  }
+}
