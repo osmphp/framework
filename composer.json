@@ -1,5 +1,7 @@
 {
     "name": "osmphp/framework",
+    "description": "Osm Framework is PHP/JS framework for creating modular, extensible and fast Web sites.",
+    "license": "GPL-3.0-only",
     "authors": [
         {
             "name": "Vladislav Osmianskij",
