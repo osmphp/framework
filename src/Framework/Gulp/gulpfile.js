@@ -21,8 +21,6 @@ function watchTask(env) {
     execSync('php run config:gulp' + envParameter, {stdio: 'inherit'});
     let patterns = JSON.parse(fs.readFileSync('temp/' + env + '/gulp.json', 'utf8'));
 
-    //['data/**/*.*', '/home/osmdocs.vm/**/*.*'];
-
     let paths = [];
     let watcher = watch(patterns, function process_file_changes (cb) {
         let input = paths;
