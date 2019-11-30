@@ -107,7 +107,11 @@ class CompilerEngine extends LaravelCompilerEngine
             file_put_contents($this->filename, "<?php\n\n");
         }
         file_put_contents($this->filename, $code, FILE_APPEND | LOCK_EX);
-        opcache_invalidate($this->filename, true);
+
+        if (function_exists('opcache_invalidate')) {
+            opcache_invalidate($this->filename, true);
+        }
+
         $this->compiled_templates = $this->getCompiledTemplates();
         $this->timestamp = filemtime($this->filename);
     }
