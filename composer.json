@@ -29,9 +29,6 @@
         "predis/predis": "^1.1"
     },
     "extra": {
-        "branch-alias": {
-            "dev-master": "2.x-dev"
-        },
         "osm": {
             "component_pools": {
                 "src": {
