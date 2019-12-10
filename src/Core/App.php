@@ -42,6 +42,7 @@ use Osm\Framework\Sessions\Stores\Store;
 use Osm\Framework\Settings\Settings;
 use Osm\Framework\Themes\Theme;
 use Osm\Framework\Themes\Themes;
+use Swift_Mailer;
 use Symfony\Component\Finder\Glob;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -119,6 +120,8 @@ use Symfony\Component\HttpFoundation\Response;
  *      @property Hashing $hashing @required @default
  * @see \Osm\Framework\Logging\Module:
  *      @property Logs $logs @required @default
+ * @see \Osm\Framework\Emails\Module:
+ *      @property Swift_Mailer $mailer @required @default
  * @see \Osm\Data\OptionLists\Module:
  *      @property OptionLists|OptionList[] $option_lists @required @default
  * @see \Osm\Data\TableQueries\Module:

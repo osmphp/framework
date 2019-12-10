@@ -25,9 +25,9 @@ class Package extends Object_
             case 'samples': return $this->project ? 'app/samples' : 'samples';
             case 'tests': return $this->project ? 'app/tests' : 'tests';
 
-            case 'src_path': return $this->project ? $this->src : "{$this->path}{$this->src}";
-            case 'sample_path': return $this->project ? $this->samples : "{$this->path}{$this->samples}";
-            case 'test_path': return $this->project ? $this->tests : "{$this->path}{$this->tests}";
+            case 'src_path': return $this->project ? $this->src : "{$this->path}/{$this->src}";
+            case 'sample_path': return $this->project ? $this->samples : "{$this->path}/{$this->samples}";
+            case 'test_path': return $this->project ? $this->tests : "{$this->path}/{$this->tests}";
         }
 
         return parent::default($property);

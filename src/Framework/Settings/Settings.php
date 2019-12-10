@@ -30,6 +30,14 @@ use Osm\Framework\Cache\CacheItem;
  *      @property bool $log_layers @part
  * @see \Osm\Framework\Redis\Module:
  *      @property bool $redis_driver @part
+ * @see \Osm\Framework\Emails\Module:
+ *      @property string $send_emails_via @part
+ *      @property string $smtp_host @required @part
+ *      @property string $smtp_port @required @part
+ *      @property string $smtp_encryption @part
+ *      @property string $smtp_user @required @part
+ *      @property string $smtp_password @required @part
+ *
  * @see \Osm\Ui\SnackBars\Module:
  *      @property int $close_snack_bars_after @required @part
  * @see \Osm\Ui\DataTables\Module:
