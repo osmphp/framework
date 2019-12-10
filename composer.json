@@ -26,7 +26,8 @@
         "symfony/dom-crawler": "~3.3",
         "doctrine/dbal": "~2.5",
         "fzaninotto/faker": "~1.8",
-        "predis/predis": "^1.1"
+        "predis/predis": "^1.1",
+        "swiftmailer/swiftmailer": "^6.0"
     },
     "extra": {
         "osm": {
