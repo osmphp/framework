@@ -27,8 +27,7 @@ class SendEmail extends Job
     }
 
     public function handle() {
-        $mailer = $this->module->createMailer();
-        $mailer->send($this->message);
+        $this->module->send($this->message);
     }
 
 }

@@ -29,11 +29,15 @@ class Module extends BaseModule
         return parent::default($property);
     }
 
-    public function createMailer() {
+    protected function createMailer() {
         if (!($transport = (string)$this->settings->send_emails_via)) {
             return new \Swift_Mailer(new \Swift_NullTransport());
         }
 
         return new \Swift_Mailer($this->transports[$transport]->create());
+    }
+
+    public function send(\Swift_Mime_SimpleMessage $message) {
+        return $this->createMailer()->send($message);
     }
 }

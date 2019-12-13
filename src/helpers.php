@@ -221,6 +221,6 @@ function osm_send_email(...$layers) {
         /* @var \Osm\Framework\Emails\Module $module */
         $module = $osm_app->modules['Osm_Framework_Emails'];
 
-        return $module->createMailer()->send($message);
+        return $module->send($message);
     }
 }

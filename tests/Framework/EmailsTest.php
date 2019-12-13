@@ -53,7 +53,7 @@ class EmailsTest extends UnitTestCase
     }
 
     public function testEmailApi() {
-        $sent = $this->module->createMailer()->send((new Swift_Message('Wonderful Subject'))
+        $sent = $this->module->send((new Swift_Message('Wonderful Subject'))
             ->setFrom(['example@domain.com' => 'The Sender'])
             ->setTo(['another@domain.com'])
             ->setBody('My <em>amazing</em> body', 'text/html')
