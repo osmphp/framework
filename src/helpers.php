@@ -4,6 +4,8 @@ use Osm\Core\App;
 use Osm\Core\Merger;
 use Osm\Core\Object_;
 use Osm\Core\Promise;
+use Osm\Framework\Emails\Jobs\SendEmail;
+use Osm\Framework\Emails\Views\Email;
 use Osm\Framework\Layers\Layout;
 use Osm\Framework\Views\View;
 
@@ -186,4 +188,39 @@ function osm_copy_dir($target, $source) {
 
 function osm_is_absolute_url($url) {
     return starts_with(strtolower($url), ['http://', 'https://']);
+}
+
+/**
+ * Renders specified layers into an email and sends it. Layers should be
+ * based on 'email' base layer
+ *
+ * Returns number of emails sent
+ *
+ * @param string ...$layers
+ * @return int
+ */
+function osm_send_email(...$layers) {
+    global $osm_app; /* @var App $osm_app */
+
+    /* @var Email $email */
+    $email = osm_layout(...$layers)->select('#email');
+
+    $message = (new Swift_Message((string)$email->subject))
+        ->setFrom($email->from)
+        ->setTo($email->to)
+        ->setBody($email->body_, 'text/html')
+        ->addPart($email->plain, 'text/plain');
+
+    if ($osm_app->settings->use_email_queue) {
+        $osm_app->queues->dispatch(SendEmail::new([
+            'email' => serialize($message),
+        ]));
+        return 0;
+    }
+    else {
+        /* @var \Osm\Framework\Emails\Module $module */
+        $module = $osm_app->modules['Osm_Framework_Emails'];
+
+        return $module->createMailer()->send($message);
+    }
 }

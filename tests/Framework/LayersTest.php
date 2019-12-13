@@ -15,7 +15,7 @@ class LayersTest extends UnitTestCase
         $layout = Layout::new(['area' => $osm_app->areas['test']]);
 
         $layout->load([
-            '@include' => 'base',
+            '@include' => 'layer_test',
         ]);
 
         $this->assertEquals('test_root', $layout->root->id);
@@ -26,7 +26,7 @@ class LayersTest extends UnitTestCase
 
         $layout = Layout::new(['area' => $osm_app->areas['test']]);
 
-        $layout->load('base', [
+        $layout->load('layer_test', [
             '#test_root' => [
                 'modifier' => '-test-root',
             ],
@@ -40,7 +40,7 @@ class LayersTest extends UnitTestCase
 
         $layout = Layout::new(['area' => $osm_app->areas['test']]);
 
-        $layout->load('base', [
+        $layout->load('layer_test', [
             '#test_root' => [
                 'child' => TestView::new([
                     'child' => TestView::new([
@@ -62,7 +62,7 @@ class LayersTest extends UnitTestCase
 
         $layout = Layout::new(['area' => $osm_app->areas['test']]);
 
-        $layout->load('base', [
+        $layout->load('layer_test', [
             '#test_root' => [
                 'modifier' => '-test-root',
                 'child' => TestView::new([

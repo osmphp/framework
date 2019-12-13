@@ -32,6 +32,7 @@ use Osm\Framework\Cache\CacheItem;
  *      @property bool $redis_driver @part
  * @see \Osm\Framework\Emails\Module:
  *      @property string $send_emails_via @part
+ *      @property bool $use_email_queue @part
  *      @property string $smtp_host @required @part
  *      @property string $smtp_port @required @part
  *      @property string $smtp_encryption @part

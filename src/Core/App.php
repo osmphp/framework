@@ -120,8 +120,6 @@ use Symfony\Component\HttpFoundation\Response;
  *      @property Hashing $hashing @required @default
  * @see \Osm\Framework\Logging\Module:
  *      @property Logs $logs @required @default
- * @see \Osm\Framework\Emails\Module:
- *      @property Swift_Mailer $mailer @required @default
  * @see \Osm\Data\OptionLists\Module:
  *      @property OptionLists|OptionList[] $option_lists @required @default
  * @see \Osm\Data\TableQueries\Module:
