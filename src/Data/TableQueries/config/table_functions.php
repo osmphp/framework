@@ -21,4 +21,8 @@ return [
         ],
         'return_data_type' => Types::STRING_,
     ],
+
+    'now' => [
+        'return_data_type' => Types::DATETIME,
+    ],
 ];

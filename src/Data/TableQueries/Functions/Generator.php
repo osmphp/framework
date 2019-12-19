@@ -29,6 +29,9 @@ class Generator extends Object_
                 $this->parent->handleFormula($formula->args[0]);
                 $this->parent->sql .= ")";
                 break;
+            case 'now':
+                $this->parent->sql .= "NOW()";
+                break;
             default:
                 throw new NotSupported(osm_t("Table function ':function' not supported",
                     ['function' => $formula->function]));
