@@ -16,6 +16,7 @@ class Email extends View
 {
     protected function default($property) {
         switch ($property) {
+            case 'from': return env('SMTP_FROM', env('SMTP_USER'));
             case 'body_': return (string)$this->body;
             case 'plain': return $this->getPlain();
         }
@@ -24,10 +25,24 @@ class Email extends View
     }
 
     protected function getPlain() {
-        $result = $this->body_;
+        return $this->stripParagraphs($this->stripLinks(
+            strip_tags($this->body_, '<p><a>')));
+    }
 
+    protected function stripParagraphs($html) {
+        return preg_replace_callback('/\s*<\s*p[^>]*>(?<text>[^<]*)<\s*\/p[^>]*>/u', function($match) {
+            return "{$match['text']}\n\n";
+        }, $html);
+    }
 
-
-        return strip_tags($result);
+    protected function stripLinks($html) {
+        return preg_replace_callback('/<\s*a(?<attributes>[^>]*)>(?:[^<]*?)<\s*\/\s*a>/u', function($match) {
+            if (preg_match('/href="(?<url>[^"]+)"/u', $match['attributes'], $attributeMatch)) {
+                return $attributeMatch['url'];
+            }
+            else {
+                return '';
+            }
+        }, $html);
     }
 }

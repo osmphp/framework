@@ -9,7 +9,7 @@ class Jobs extends Migration
 {
     public function up() {
         $this->schema->table('jobs', function (Blueprint $table) {
-            $table->longText('email');
+            $table->longText('email')->nullable();
         });
     }
 }
