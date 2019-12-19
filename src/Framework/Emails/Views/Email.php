@@ -8,8 +8,7 @@ use Osm\Framework\Views\View;
  * @property string $subject @required @part
  * @property string|array $from @required @part
  * @property string|array $to @required @part
- * @property View $body @required @part
- * @property string $body_ @required
+ * @property string $body @required
  * @property string $plain @required
  */
 class Email extends View
@@ -17,7 +16,7 @@ class Email extends View
     protected function default($property) {
         switch ($property) {
             case 'from': return env('SMTP_FROM', env('SMTP_USER'));
-            case 'body_': return (string)$this->body;
+            case 'body': return (string)$this;
             case 'plain': return $this->getPlain();
         }
 
@@ -26,7 +25,7 @@ class Email extends View
 
     protected function getPlain() {
         return $this->stripParagraphs($this->stripLinks(
-            strip_tags($this->body_, '<p><a>')));
+            strip_tags($this->body, '<p><a>')));
     }
 
     protected function stripParagraphs($html) {

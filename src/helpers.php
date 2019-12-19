@@ -196,19 +196,16 @@ function osm_is_absolute_url($url) {
  *
  * Returns number of emails sent
  *
- * @param string ...$layers
+ * @param Email $email
  * @return int
  */
-function osm_send_email(...$layers) {
+function osm_send_email($email) {
     global $osm_app; /* @var App $osm_app */
-
-    /* @var Email $email */
-    $email = osm_layout(...$layers)->select('#email');
 
     $message = (new Swift_Message((string)$email->subject))
         ->setFrom($email->from)
         ->setTo($email->to)
-        ->setBody($email->body_, 'text/html')
+        ->setBody($email->body, 'text/html')
         ->addPart($email->plain, 'text/plain');
 
     if ($osm_app->settings->use_email_queue) {

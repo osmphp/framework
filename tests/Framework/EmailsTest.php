@@ -4,7 +4,9 @@ namespace Osm\Tests\Framework;
 
 use Osm\Core\App;
 use Osm\Framework\Emails\Module;
+use Osm\Framework\Emails\Views\Email;
 use Osm\Framework\Testing\Tests\UnitTestCase;
+use Osm\Framework\Views\Views\Text;
 use Swift_Mailer;
 use Swift_Message;
 use Swift_SmtpTransport;
@@ -25,7 +27,7 @@ class EmailsTest extends UnitTestCase
     }
 
     public function testThatSwiftMailerWorks() {
-        if (!env('SMTP_USERNAME')) {
+        if (!env('SMTP_USER')) {
             $this->assertTrue(true);
             return;
         }
@@ -34,14 +36,14 @@ class EmailsTest extends UnitTestCase
         $transport = new Swift_SmtpTransport(env('SMTP_HOST'),
             env('SMTP_PORT'), env('SMTP_ENCRYPTION'));
         $transport
-            ->setUsername(env('SMTP_USERNAME'))
+            ->setUsername(env('SMTP_USER'))
             ->setPassword(env('SMTP_PASSWORD'));
 
         // Create the Mailer using your created Transport
         $mailer = new Swift_Mailer($transport);
 
         // Create a message
-        $message = (new Swift_Message('Wonderful Subject'))
+        $message = (new Swift_Message('SwiftMailer Works!'))
             ->setFrom(['example@domain.com' => 'The Sender'])
             ->setTo(['another@domain.com'])
             ->setBody('My <em>amazing</em> body', 'text/html')
@@ -53,7 +55,7 @@ class EmailsTest extends UnitTestCase
     }
 
     public function testEmailApi() {
-        $sent = $this->module->send((new Swift_Message('Wonderful Subject'))
+        $sent = $this->module->send((new Swift_Message('Module send() Works!'))
             ->setFrom(['example@domain.com' => 'The Sender'])
             ->setTo(['another@domain.com'])
             ->setBody('My <em>amazing</em> body', 'text/html')
@@ -68,22 +70,14 @@ class EmailsTest extends UnitTestCase
 
             $osm_app->area = 'test';
 
-            $sent = osm_send_email('welcome_email', [
-                '#email' => [
-                    'to' => 'recipient@example.com',
-                ],
-                '#email.body' => [
-                    'contents' => 'Hi',
-                ],
-            ]);
+            $sent = osm_send_email(Email::new([
+                'from' => ['example@domain.com' => 'The Sender'],
+                'to' => 'recipient@example.com',
+                'subject' => osm_t("osm_send_email() Works!"),
+                'body' => Text::new(['contents' => 'Hello']),
+            ]));
 
-            if ($osm_app->settings->use_email_queue) {
-                $this->assertEquals(0, $sent);
-
-            }
-            else {
-                $this->assertEquals(1, $sent);
-            }
+            $this->assertEquals($osm_app->settings->use_email_queue ? 0 : 1, $sent);
         }
         finally {
             // further tests may be corrupted as 'test' area is propagated

@@ -1,8 +1,10 @@
 <?php
 /* @var \Osm\Framework\Views\Views\Container $view */
 ?>
-@if ($view->modifier || $view->element)
-    <{{ $view->element ?: 'div' }} class="{{ $view->modifier }}">
+@if ($view->modifier || $view->element || !empty($view->attributes))
+    <{{ $view->element ?: 'div' }}
+    @if ($view->modifier) class="{{ $view->modifier }}" @endif
+    @foreach($view->attributes as $key => $value) {{ $key }}="{{ $value }}" @endforeach>
 @endif
 @foreach ($view->views_ as $child)
     @include ($child)
