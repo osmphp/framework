@@ -16,7 +16,7 @@ abstract class AppTestCase extends UnitTestCase
 
     protected static $areAppTestsSetUp = false;
 
-    protected function setUp() {
+    protected function setUp(): void {
         parent::setUp();
 
         if (static::$areAppTestsSetUp) {

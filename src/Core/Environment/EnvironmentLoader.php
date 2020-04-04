@@ -13,14 +13,11 @@ class EnvironmentLoader extends Object_
     public function load() {
         global $osm_app; /* @var App $osm_app */
 
-        try {
-            Dotenv::create($osm_app->path($osm_app->environment_path), '.env')->load();
+        $path = $osm_app->path($osm_app->environment_path);
+        Dotenv::createImmutable($path, '.env')->safeLoad();
 
-            if ($overload = $this->detectOverload()) {
-                Dotenv::create($osm_app->path($osm_app->environment_path), ".env.{$overload}")->overload();
-            }
-        } catch (InvalidPathException $e) {
-            // ignore
+        if ($overload = $this->detectOverload()) {
+            Dotenv::createMutable($path, ".env.{$overload}")->safeLoad();
         }
     }
 

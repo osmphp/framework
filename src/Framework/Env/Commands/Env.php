@@ -2,18 +2,21 @@
 
 namespace Osm\Framework\Env\Commands;
 
-use Dotenv\Dotenv;
-use Dotenv\Lines;
-use Dotenv\Parser;
+use Dotenv\Loader\Loader;
+use Dotenv\Repository\Adapter\ArrayAdapter;
+use Dotenv\Repository\Adapter\EnvConstAdapter;
+use Dotenv\Repository\RepositoryBuilder;
+use Dotenv\Repository\RepositoryInterface;
 use Osm\Core\App;
 use Osm\Framework\Console\Command;
-use PhpOption\Option;
 
 /**
  * @property string $path @required
- * @property Dotenv $dotenv @required
  * @property string $contents @required
- * @property string[] $entries @required
+ * @property string[] $lines @required
+ * @property RepositoryInterface $repository @required
+ * @property Loader $loader @required
+ * @property string[] $values @required
  */
 class Env extends Command
 {
@@ -23,34 +26,33 @@ class Env extends Command
 
         switch ($property) {
             case 'path': return $osm_app->path("{$osm_app->environment_path}/.env");
-            case 'dotenv': return Dotenv::create($this->path);
-            case 'contents': return @file_get_contents($this->path);
-            case 'entries': return $this->getEntries();
+            case 'contents': return file_get_contents($this->path);
+            case 'lines': return file($this->path);
+            case 'repository': return RepositoryBuilder::create()
+                ->withReaders([new EnvConstAdapter()])
+                ->withWriters([new ArrayAdapter()])
+                ->immutable()
+                ->make();
+            case 'loader': return new Loader();
+            case 'values': return $this->loader->load($this->repository, $this->contents);
         }
         return parent::default($property);
     }
 
-    protected function getEntries() {
-        $lines = Option::fromValue($this->contents, false);
-        $contents = '';
-        if ($lines->isDefined()) {
-            $contents = $lines->get();
-        }
-        return Lines::process(preg_split("/(\r\n|\n|\r)/", $contents));
-    }
     #endregion
 
     public function run() {
         $variables = $this->input->getArgument('variable');
         if (empty($variables)) {
-            foreach ($this->all() as $name => $value) {
+            foreach ($this->values as $name => $value) {
                 $this->output->writeln("$name=$value");
             }
         }
         else {
             foreach ($variables as $name) {
                 if (($pos = strpos($name, '=')) === false) {
-                    $this->output->writeln("$name={$this->get($name)}");
+                    $value = $this->values[$name] ?? null;
+                    $this->output->writeln("$name={$value}");
                 }
                 else {
                     $this->output->writeln("$name");
@@ -64,45 +66,20 @@ class Env extends Command
         }
     }
 
-    protected function all() {
-        $result = [];
-        foreach ($this->entries as $entry) {
-            list($key, $value) = Parser::parse($entry);
-            $result[$key] = $value;
-        }
-
-        return $result;
-    }
-
-    protected function get($name) {
-        foreach ($this->entries as $entry) {
-            list($key, $value) = Parser::parse($entry);
-            if ($key !== $name) {
-                continue;
-            }
-
-            return $value;
-        }
-
-        return null;
-    }
-
     protected function modify($name, $value) {
-        foreach ($this->entries as $entry) {
-            list($key) = Parser::parse($entry);
-            if ($key !== $name) {
-                continue;
-            }
-
-            $pos = mb_strpos($this->contents, $entry);
-            $contents = mb_substr($this->contents, 0, $pos) .
+        if (preg_match('/\R?(?<line>' . preg_quote("{$name}=") . '.*)\R/u',
+            $this->contents, $match, PREG_OFFSET_CAPTURE))
+        {
+            $this->contents =
+                mb_substr($this->contents, 0, $match['line'][1]) .
                 "{$name}={$value}" .
-                mb_substr($this->contents, $pos + mb_strlen($entry));
-            file_put_contents($this->path, $contents);
-            return;
+                mb_substr($this->contents,
+                    $match['line'][1] + mb_strlen($match['line'][0]));
+        }
+        else {
+            $this->contents .= "{$name}={$value}\n";
         }
 
-        $contents = rtrim($this->contents);
-        file_put_contents($this->path, "{$contents}\n{$name}={$value}\n");
+        file_put_contents($this->path, $this->contents);
     }
 }

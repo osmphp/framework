@@ -12,7 +12,7 @@ abstract class UnitTestCase extends TestCase
     public $suite = 'unit';
     protected static $areUnitTestsSetUp = false;
 
-    protected function setUp() {
+    protected function setUp(): void {
         if (static::$areUnitTestsSetUp) {
             return;
         }

@@ -12,7 +12,7 @@ abstract class DbTestCase extends UnitTestCase
 
     protected static $areDbTestsSetUp = false;
 
-    protected function setUp() {
+    protected function setUp(): void {
         global $osm_app; /* @var App $osm_app */
 
         parent::setUp();

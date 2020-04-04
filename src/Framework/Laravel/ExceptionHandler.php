@@ -2,24 +2,23 @@
 
 namespace Osm\Framework\Laravel;
 
-use Exception;
 use Illuminate\Contracts\Debug\ExceptionHandler as BaseExceptionHandler;
 
 class ExceptionHandler implements BaseExceptionHandler
 {
-    public function report(Exception $e) {
+    public function report(\Throwable $e) {
         osm_core_log($e->getMessage());
     }
 
-    public function render($request, Exception $e) {
+    public function render($request, \Throwable $e) {
         throw $e;
     }
 
-    public function renderForConsole($output, Exception $e) {
+    public function renderForConsole($output, \Throwable $e) {
         throw $e;
     }
 
-    public function shouldReport(Exception $e) {
+    public function shouldReport(\Throwable $e) {
         return true;
     }
 }

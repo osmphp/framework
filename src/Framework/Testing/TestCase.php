@@ -32,7 +32,7 @@ abstract class TestCase extends BaseTestCase
         ])->boot();
     }
 
-    protected function setUp() {
+    protected function setUp(): void {
         // boot application instance to be used in testing
         if (!static::$app_instance) {
             $this->recreateApp();
