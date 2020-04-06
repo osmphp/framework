@@ -73,6 +73,7 @@ class Migrator extends Object_
     public function migrate() {
         if ($this->fresh) {
             $this->db->schema->dropAllTables();
+            $this->db->tables->refresh();
         }
 
         $this->install();
