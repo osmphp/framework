@@ -18,6 +18,7 @@ use Osm\Ui\DataTables\Views\DataTable;
  * @property string $button_title @part
  * @property string $option_list @required @part
  * @property Url $url @required
+ * @property bool $row_link_disabled @part
  */
 class Column extends Object_
 {

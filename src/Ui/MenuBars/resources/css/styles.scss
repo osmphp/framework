@@ -56,3 +56,16 @@
     }
   }
 }
+
+.heading {
+  display: flex;
+
+  &__title {
+    flex-grow: 1;
+    padding-right: rem(60px);
+  }
+
+  &__menu {
+    margin: auto 0;
+  }
+}

@@ -23,6 +23,7 @@ use Osm\Ui\DataTables\Module;
  * @property int $rows_per_page @required @part
  * @property string $load_route @required @part
  * @property bool $render_rows @part
+ * @property bool $row_link_disabled @part
  *
  * @property Column[] $columns_ @required
  * @property int $offset @required
@@ -97,7 +98,23 @@ class DataTable extends View
     }
 
     public function getCellUrl() {
-        return $this->column->getUrl();
+        if ($result = $this->column->getUrl()) {
+            // if column generates link for the cell, render it
+            return $result;
+        }
+
+        if ($this->row_link_disabled) {
+            // if row edit links are disabled on data table level, don't render
+            return null;
+        }
+
+        if ($this->column->row_link_disabled) {
+            // if row edit links is disabled in the column, don't render
+            return null;
+        }
+
+        // otherwise, render edit link
+        return osm_url($this->edit_route, ['id' => $this->item->id]);
     }
 
     /**
