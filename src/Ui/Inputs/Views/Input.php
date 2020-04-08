@@ -27,7 +27,7 @@ class Input extends View implements FormPart
     protected function default($property) {
         switch ($property) {
             case 'type': return $this->getType();
-            case 'alias': return $this->name;
+            case 'name': return $this->getName();
             case 'autocomplete': return $this->type == 'password' ? 'new-password' : null;
         }
         return parent::default($property);
@@ -43,6 +43,17 @@ class Input extends View implements FormPart
         }
 
         return 'text';
+    }
+
+    protected function getName() {
+        $result = $this->alias;
+
+        // cut the prefix
+        if (mb_strpos($result, 'views_') === 0) {
+            $result = mb_substr($result, mb_strlen('views_'));
+        }
+
+        return $result;
     }
 
     public function rendering() {
