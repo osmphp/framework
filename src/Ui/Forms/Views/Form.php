@@ -8,6 +8,7 @@ use Osm\Data\Sheets\Sheet;
 use Osm\Framework\Views\View;
 use Osm\Framework\Views\Views\Container;
 use Osm\Ui\Forms\Assigner;
+use Osm\Ui\Forms\AutocompletePrefixAssigner;
 use Osm\Ui\Forms\Loader;
 use Osm\Ui\Forms\Validator;
 
@@ -25,6 +26,8 @@ use Osm\Ui\Forms\Validator;
  * @property string $submitting_message @part
  * @property int $row_id
  * @property object $data
+ * @property string $autocomplete_prefix @part Prefix added to element names to
+ *      scope browser auto-completion
  */
 class Form extends Container
 {
@@ -48,6 +51,8 @@ class Form extends Container
         $this->model = osm_merge([
             'submitting_message' => (string)$this->submitting_message,
         ], $this->model ?: []);
+
+        AutocompletePrefixAssigner::assign($this);
     }
 
     public function load() {

@@ -16,6 +16,8 @@ use Osm\Ui\Forms\FormPart;
  * @property bool $required @part
  * @property string $autocomplete @part
  * @property bool $focus @part
+ * @property string $autocomplete_prefix @part Prefix added to element name to
+ *      scope browser auto-completion
  */
 class Input extends View implements FormPart
 {
@@ -47,6 +49,9 @@ class Input extends View implements FormPart
         $this->model = osm_merge([],
             $this->required ? ['required' => $this->required] : [],
             $this->focus ? ['focus' => $this->focus] : [],
+            $this->autocomplete_prefix
+                ? ['autocomplete_prefix' => $this->autocomplete_prefix]
+                : [],
             $this->model ?: []);
 
         $this->layout->loadLayer([
@@ -70,6 +75,12 @@ class Input extends View implements FormPart
     public function assignFormPartValue($data) {
         if ($this->type != 'password') {
             $this->value = $data->{$this->name};
+        }
+    }
+
+    public function assignFormAutocompletePrefix($prefix) {
+        if (!$this->autocomplete_prefix) {
+            $this->autocomplete_prefix = $prefix;
         }
     }
 }

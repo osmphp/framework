@@ -12,4 +12,6 @@ interface FormPart
      * @param object $data
      */
     public function assignFormPartValue($data);
+
+    public function assignFormAutocompletePrefix($prefix);
 }

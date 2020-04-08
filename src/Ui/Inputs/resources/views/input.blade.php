@@ -7,7 +7,7 @@
             <label class="input__title" for="{{ $view->id_ }}__value">{{ $view->title }}</label>
         @endif
         <input class="input__value" type="{{ $view->type }}" id="{{ $view->id_ }}__value" value="{{ $view->value }}"
-            name="{{$view->name}}" @if ($view->placeholder) placeholder="{{ $view->placeholder }}" @endif
+            name="{{$view->autocomplete_prefix}}{{$view->name}}" @if ($view->placeholder) placeholder="{{ $view->placeholder }}" @endif
             @if ($view->autocomplete) autocomplete="{{ $view->autocomplete }}" @endif>
     </div>
 

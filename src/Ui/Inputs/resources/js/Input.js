@@ -121,7 +121,15 @@ export default class Input extends Field {
 
     get name() {
         let result = this.$value.attr('name');
-        return result.length ? result : null;
+        if (!result.length) {
+            return null;
+        }
+
+        if (this.model.autocomplete_prefix) {
+            result = result.substr(this.model.autocomplete_prefix.length);
+        }
+
+        return result;
     }
 
     get value() {
