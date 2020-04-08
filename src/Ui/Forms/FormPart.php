@@ -14,4 +14,9 @@ interface FormPart
     public function assignFormPartValue($data);
 
     public function assignFormAutocompletePrefix($prefix);
+
+    /**
+     * @return bool
+     */
+    public function assignFormFocus();
 }

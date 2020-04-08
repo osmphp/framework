@@ -83,4 +83,10 @@ class Input extends View implements FormPart
             $this->autocomplete_prefix = $prefix;
         }
     }
+
+    public function assignFormFocus() {
+        $this->focus = true;
+
+        return true;
+    }
 }

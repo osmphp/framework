@@ -9,6 +9,7 @@ use Osm\Framework\Views\View;
 use Osm\Framework\Views\Views\Container;
 use Osm\Ui\Forms\Assigner;
 use Osm\Ui\Forms\AutocompletePrefixAssigner;
+use Osm\Ui\Forms\FocusAssigner;
 use Osm\Ui\Forms\Loader;
 use Osm\Ui\Forms\Validator;
 
@@ -28,6 +29,7 @@ use Osm\Ui\Forms\Validator;
  * @property object $data
  * @property string $autocomplete_prefix @part Prefix added to element names to
  *      scope browser auto-completion
+ * @property bool $focus @part If set, sets the focus on the first form element
  */
 class Form extends Container
 {
@@ -53,6 +55,7 @@ class Form extends Container
         ], $this->model ?: []);
 
         AutocompletePrefixAssigner::assign($this);
+        FocusAssigner::assign($this);
     }
 
     public function load() {
