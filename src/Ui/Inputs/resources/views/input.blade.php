@@ -12,6 +12,8 @@
     </div>
 
     <div class="input__error"></div>
-    <div class="input__comment">{{ $view->comment }}</div>
+    @if ($view->comment)
+        <div class="input__comment">{{ $view->comment }}</div>
+    @endif
 </div>
 {!! $view->view_model_script !!}
