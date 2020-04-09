@@ -13,6 +13,8 @@ use Osm\Framework\Views\Views\Page;
  */
 class Heading extends View
 {
+    public $template = 'Osm_Ui_MenuBars.heading';
+
     protected function default($property) {
         global $osm_app; /* @var App $osm_app */
 
@@ -22,6 +24,4 @@ class Heading extends View
         }
         return parent::default($property);
     }
-
-    public $template = 'Osm_Ui_MenuBars.heading';
 }
