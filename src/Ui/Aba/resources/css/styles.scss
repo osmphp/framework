@@ -98,8 +98,9 @@ img {
 }
 
 .page-section {
+  padding: 0 $page-padding;
+
   & > * {
-    padding: 0 $page-padding;
     margin: 0 auto;
     max-width: $page-width;
   }

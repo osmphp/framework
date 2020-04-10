@@ -1,5 +1,6 @@
 <?php
 
+use Osm\Framework\Http\Returns;
 use Osm\Samples\Ui\Controllers\Web;
 use Osm\Ui\DataTables\Parameters\DataTable;
 use Osm\Framework\Http\Parameters;
@@ -37,5 +38,11 @@ return [
             '_offset' => ['class' => Parameters\Int_::class, 'required' => true],
             '_limit' => ['class' => Parameters\Int_::class, 'required' => true],
         ],
+    ],
+
+    'GET /tests/ui/containers' => [
+        'class' => Web::class,
+        'method' => 'containersPage',
+        'public' => true,
     ],
 ];

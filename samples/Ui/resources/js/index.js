@@ -1,8 +1,9 @@
+import ContainersPage from "./ContainersPage";
+import macaw from "Osm_Framework_Js/vars/macaw";
 import DialogsPage from "./DialogsPage";
 import MenusPage from "./MenusPage";
 import DataTablesPage from "./DataTablesPage";
 
-import macaw from 'Osm_Framework_Js/vars/macaw';
 import SampleViewUsingSnackBar from './SampleViewUsingSnackBar';
 import templates from "Osm_Framework_Js/vars/templates";
 import merge from 'Osm_Framework_Js/merge';
@@ -26,3 +27,4 @@ macaw.controller('body.-tests-ui-dialogs', DialogsPage);
 macaw.controller('body.-tests-ui-data-tables', DataTablesPage);
 
 
+macaw.controller('body.-tests-ui-containers', ContainersPage);
