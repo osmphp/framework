@@ -14,7 +14,12 @@ use Osm\Framework\Views\Exceptions\IdCantBeInferred;
  * @property string $alias @part
  * @property string $id_ @required @part
  * @property string $view_model @required @part
- * @property int $sort_order @part // used in Container views
+ *
+ * Rendering in the container:
+ *
+ * @property int $sort_order @part Position in container
+ * @property string $wrap_modifier @part Wrapper element CSS modifiers
+ *
  * @property array|null $model
  * @property string $view_model_script @required
  *
