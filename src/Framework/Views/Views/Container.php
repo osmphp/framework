@@ -10,9 +10,7 @@ use Osm\Framework\Views\View;
  * @property string $element @part
  * @property string[] $attributes @required @part
  * @property View[] $views @required @part
- *
  * @property View[] $views_ @required
- * @property Sorter $sorter @required
  */
 class Container extends View
 {
@@ -24,7 +22,6 @@ class Container extends View
         switch ($property) {
             case 'views': return [];
             case 'views_': return $this->getViews();
-            case 'sorter': return $osm_app[Sorter::class];
 
             /** @noinspection PhpDuplicateSwitchCaseBodyInspection */
             case 'attributes': return [];

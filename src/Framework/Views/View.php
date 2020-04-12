@@ -4,6 +4,7 @@ namespace Osm\Framework\Views;
 
 use Osm\Core\App;
 use Osm\Core\Object_;
+use Osm\Framework\Data\Sorter;
 use Osm\Framework\Layers\Layout;
 use Osm\Framework\Views\Exceptions\IdCantBeInferred;
 
@@ -28,6 +29,7 @@ use Osm\Framework\Views\Exceptions\IdCantBeInferred;
  * @property Rendering $rendering @required
  * @property Iterator $iterator @required
  * @property Layout $layout @required
+ * @property Sorter $sorter @required
  */
 class View extends Object_
 {
@@ -62,6 +64,7 @@ class View extends Object_
             case 'id_': return $this->inferId();
             case 'view_model_script': return $this->getViewModelScript();
             case 'layout': return $osm_app->layout ?? Layout::new();
+            case 'sorter': return $osm_app[Sorter::class];
         }
         return parent::default($property);
     }
@@ -144,5 +147,10 @@ class View extends Object_
         return "<script>new {$this->view_model}('#{$this->id_}', " .
             json_encode($this->model ? (object)$this->model : null) .
             ")</script>";
+    }
+
+    protected function sortViews($views) {
+        $this->sorter->orderBy($views, 'sort_order');
+        return $views;
     }
 }
