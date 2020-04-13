@@ -9,6 +9,10 @@ return [
     '@include' => ['base'],
     '#page' => [
         'title' => osm_t("Tests"),
-        'content' => View::new(['id_' => null, 'template' => 'Osm_Samples_Js.test_list']),
+    ],
+    '#content' => [
+        'views' => [
+            'test_list' => View::new(['id_' => null, 'template' => 'Osm_Samples_Js.test_list']),
+        ],
     ],
 ];

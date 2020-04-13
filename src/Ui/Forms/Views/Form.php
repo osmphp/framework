@@ -6,6 +6,7 @@ use Osm\Core\App;
 use Osm\Data\Sheets\Search;
 use Osm\Data\Sheets\Sheet;
 use Osm\Framework\Views\View;
+use Osm\Framework\Views\Views\Container;
 use Osm\Ui\Forms\Assigner;
 use Osm\Ui\Forms\AutocompletePrefixAssigner;
 use Osm\Ui\Forms\FocusAssigner;
@@ -18,8 +19,6 @@ use Osm\Ui\Forms\Validator;
  * @property string $set @part
  * @property Search $search @required
  *
- * @property View[] $views @required @part
- * @property View[] $views_ @required
  * @property string $route @required @part
  * @property string $method @required
  * @property string $action @required
@@ -30,7 +29,7 @@ use Osm\Ui\Forms\Validator;
  *      scope browser auto-completion
  * @property bool $focus @part If set, sets the focus on the first form element
  */
-class Form extends View
+class Form extends Container
 {
     public $template = 'Osm_Ui_Forms.form';
     public $view_model = 'Osm_Ui_Forms.Form';
@@ -39,8 +38,7 @@ class Form extends View
         global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'views': return [];
-            case 'views_': return $this->sortViews($this->views);
+            case 'empty': return false;
 
             case 'method': return substr($this->route, 0, strpos($this->route, ' '));
             case 'action': return substr($this->route, strpos($this->route, ' ') + 1);

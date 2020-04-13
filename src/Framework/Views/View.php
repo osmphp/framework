@@ -20,6 +20,8 @@ use Osm\Framework\Views\Exceptions\IdCantBeInferred;
  *
  * @property int $sort_order @part Position in container
  * @property string $wrap_modifier @part Wrapper element CSS modifiers
+ * @property bool $empty @part Indicate to the parent not to render wrap
+ *      around this empty view
  *
  * @property array|null $model
  * @property string $view_model_script @required

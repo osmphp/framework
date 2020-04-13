@@ -14,7 +14,11 @@ class Web extends Controller
         return osm_layout('base', [
             '#page' => [
                 'title' => osm_t("Typography"),
-                'content' => View::new(['template' => 'Osm_Samples_Ui.typography', 'id_' => null]),
+            ],
+            '#content' => [
+                'views' => [
+                    'typography' => View::new(['template' => 'Osm_Samples_Ui.typography', 'id_' => null]),
+                ],
             ],
         ]);
     }
@@ -23,7 +27,11 @@ class Web extends Controller
         return osm_layout('base', [
             '#page' => [
                 'title' => osm_t("Buttons"),
-                'content' => View::new(['template' => 'Osm_Samples_Ui.buttons', 'id_' => null]),
+            ],
+            '#content' => [
+                'views' => [
+                    'buttons' => View::new(['template' => 'Osm_Samples_Ui.buttons', 'id_' => null]),
+                ],
             ],
         ]);
     }
@@ -32,7 +40,11 @@ class Web extends Controller
         return osm_layout('base', [
             '#page' => [
                 'title' => osm_t("Snack Bars"),
-                'content' => View::new(['template' => 'Osm_Samples_Ui.snack-bars', 'id_' => null]),
+            ],
+            '#content' => [
+                'views' => [
+                    'snack-bars' => View::new(['template' => 'Osm_Samples_Ui.snack-bars', 'id_' => null]),
+                ],
             ],
         ]);
     }

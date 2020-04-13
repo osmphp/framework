@@ -6,9 +6,13 @@ return [
     '@include' => ['base'],
     '#page' => [
         'modifier' => '-tests-ui-containers',
-        'content' => View::new([
-            'template' => 'Osm_Samples_Ui.containers',
-            'id_' => null,
-        ]),
+    ],
+    '#content' => [
+        'views' => [
+            'containers' => View::new([
+                'template' => 'Osm_Samples_Ui.containers',
+                'id_' => null,
+            ]),
+        ],
     ],
 ];

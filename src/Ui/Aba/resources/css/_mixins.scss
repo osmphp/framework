@@ -30,8 +30,3 @@ $placeholder-color: $color--primary-light;
   padding: 0;
   margin: 0;
 }
-
-@mixin container-color($color, $on-color) {
-  background-color: $color;
-  color: $on-color;
-}

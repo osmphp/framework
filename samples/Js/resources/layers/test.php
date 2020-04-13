@@ -11,6 +11,10 @@ return [
         'head_end' => [
             'testing' => View::new(['template' => 'Osm_Samples_Js.mocha-styles']),
         ],
-        'content' => TestRunner::new(['id' => 'test_runner']),
+    ],
+    '#content' => [
+        'views' => [
+            'test_runner' => TestRunner::new(),
+        ],
     ],
 ];

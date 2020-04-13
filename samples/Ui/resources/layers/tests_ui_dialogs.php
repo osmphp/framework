@@ -20,4 +20,12 @@ return [
             "Do you really want to delete this item?" => "Do you really want to delete this item?",
         ],
     ],
+    '#content' => [
+        'views' => [
+            'containers' => View::new([
+                'template' => 'Osm_Samples_Ui.containers',
+                'id_' => null,
+            ]),
+        ],
+    ],
 ];

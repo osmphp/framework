@@ -5,9 +5,11 @@
     action="{{ $view->action }}" id="{{ $view->id_ }}">
 
     @foreach ($view->views_ as $child)
-        <div class="form-fields__wrap {{$child->wrap_modifier}}">
-            @include ($child)
-        </div>
+        @if (!$child->empty)
+            <div class="form-fields__wrap {{$child->wrap_modifier}}">
+                @include ($child)
+            </div>
+        @endif
     @endforeach
 
     <input type="submit" style="display: none;">

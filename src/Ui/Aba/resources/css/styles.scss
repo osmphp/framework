@@ -97,39 +97,6 @@ img {
   vertical-align: middle;
 }
 
-.page-section {
-  padding: 0 $page-padding;
-
-  & > * {
-    margin: 0 auto;
-    max-width: $page-width;
-  }
-
-  &.-narrow > * {
-    max-width: $narrow-page-width;
-  }
-
-  &.-primary {
-    @include container-color($color--primary, $color--on-primary);
-    &.-light {
-      @include container-color($color--primary-light, $color--on-primary-light);
-    }
-    &.-dark {
-      @include container-color($color--primary-dark, $color--on-primary-dark);
-    }
-  }
-
-  &.-secondary {
-    @include container-color($color--secondary, $color--on-secondary);
-    &.-light {
-      @include container-color($color--secondary-light, $color--on-secondary-light);
-    }
-    &.-dark {
-      @include container-color($color--secondary-dark, $color--on-secondary-dark);
-    }
-  }
-}
-
 /*-------------------------------------------------------------------*\
   #IMPORTANT-OVERRIDES
 \*-------------------------------------------------------------------*/

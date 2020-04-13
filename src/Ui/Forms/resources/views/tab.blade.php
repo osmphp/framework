@@ -7,9 +7,11 @@
     </header>
     <div class="form-fields" id="{{ $view->id_ }}___fields">
         @foreach ($view->views_ as $child)
-            <div class="form-fields__wrap {{$child->wrap_modifier}}">
-                @include ($child)
-            </div>
+            @if (!$child->empty)
+                <div class="form-fields__wrap {{$child->wrap_modifier}}">
+                    @include ($child)
+                </div>
+            @endif
         @endforeach
     </div>
     <script>new Osm_Ui_Forms.Fields('#{{ $view->id_}}___fields')</script>

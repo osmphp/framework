@@ -17,12 +17,9 @@ use Osm\Framework\Views\View;
  * Assign the following properties in every page type layer:
  *
  * @property string $title @required @part Page meta title
- * @property View $content @required @part View to be rendered in main content area
  *
  * Optional properties:
  *
- * @property View $header @part Header view
- * @property View $footer @part Footer view
  * @property string $html_modifier @part CSS classes to add to <html> element
  * @property string $canonical_url @part
  *
@@ -33,7 +30,7 @@ use Osm\Framework\Views\View;
  * @property Controller $controller @required
  * @property Areas|Area[] $areas @required
  */
-class Page extends View
+class Page extends Container
 {
     public $template = 'Osm_Framework_Views.page';
 
@@ -43,13 +40,6 @@ class Page extends View
      * @var string
      */
     public $id_ = '';
-
-    /**
-     * View ID is preassigned, so you can easily reference page view using '#page' => [ ... ] instruction
-     *
-     * @var string
-     */
-    public $id = 'page';
 
     /**
      * Add views to be rendered before closing </head>
@@ -79,6 +69,8 @@ class Page extends View
             case 'url': return $osm_app->url;
             case 'controller': return $osm_app->controller;
             case 'areas': return $osm_app->areas;
+
+            case 'empty': return false;
         }
         return parent::default($property);
     }

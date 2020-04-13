@@ -16,7 +16,7 @@ class Header extends View
 
         $this->set([
             'menu' => MenuBar::new([
-                'modifier' => $this->modifier,
+                'modifier' => $this->wrap_modifier,
                 'items' => [],
             ]),
         ]);

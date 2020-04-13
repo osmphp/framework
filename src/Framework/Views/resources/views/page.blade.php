@@ -18,13 +18,14 @@
 </head>
 <body class="{{ $view->modifier }}">
 
-@if ($view->header)
-    @include($view->header)
-@endif
-@include($view->content)
-@if ($view->footer)
-    @include($view->footer)
-@endif
+@foreach ($view->views_ as $child)
+    @if (!$child->empty)
+        <div class="page-sections__wrap {{$child->wrap_modifier}}">
+            @include ($child)
+        </div>
+    @endif
+@endforeach
+
 @foreach($view->body_end as $child)
     @include($child)
 @endforeach

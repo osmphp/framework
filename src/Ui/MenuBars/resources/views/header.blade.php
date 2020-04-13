@@ -1,6 +1,6 @@
 <?php
 /* @var \Osm\Ui\MenuBars\Views\Header $view */
 ?>
-<header class="page-section {{ $view->modifier }}">
+<header>
     @include ($view->menu)
 </header>

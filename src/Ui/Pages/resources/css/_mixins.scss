@@ -1,0 +1,4 @@
+@mixin container-color($color, $on-color) {
+  background-color: $color;
+  color: $on-color;
+}
