@@ -82,8 +82,9 @@ function osm_view($content) {
 function osm_core_log($message, $filename = 'core.log') {
     $dir = __DIR__;
     $filename = realpath($dir . '/../../../..') . "/temp/log/{$filename}";
+    $timestamp = date(DATE_ATOM);
     osm_make_dir_for($filename, 0777);
-    file_put_contents($filename, $message . "\n", FILE_APPEND | LOCK_EX);
+    file_put_contents($filename, "\n{$timestamp}\n{$message}\n", FILE_APPEND | LOCK_EX);
 
     // chmod may fail if log was initially created by www user and then appended to by console user or vice versa.
     // if so, file was already chmod'ed by user which created the file, so we just ignore it

@@ -2,6 +2,7 @@
 
 namespace Osm\Framework\Cache;
 
+use Osm\Core\Exceptions\NotSupported;
 use Osm\Core\Object_;
 
 /**
@@ -65,6 +66,4 @@ abstract class Cache extends Object_
         $item->modified = false;
         unset($this->modified_items[$item->cache_key]);
     }
-
-
 }

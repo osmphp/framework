@@ -10,6 +10,7 @@ class Module extends BaseModule
 {
     public $traits = [
         Properties::class => Traits\PropertiesTrait::class,
+        Cache::class => Traits\CacheTrait::class,
     ];
 
     public function terminate() {

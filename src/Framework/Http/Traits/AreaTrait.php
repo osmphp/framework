@@ -37,7 +37,7 @@ trait AreaTrait
                     $definitions = osm_merge($area->parameters ?? [], $definitions);
                 }
 
-                return Parameters::new(['config_' => $definitions]);
+                return Parameters::new(['config_' => $definitions], null, $this);
             case 'query':
                 $parsedQuery = [];
                 foreach ($area->parameters_ as $parameter) {

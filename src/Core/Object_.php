@@ -17,12 +17,6 @@ class Object_ implements \ArrayAccess
      */
     public $class;
 
-    // DEBUGGING: uncomment the following line to check if there is undeclared property assignment anywhere in code
-    // This measure takes significant performance overhead, so use with case and don't leave enabled in
-    // production environment
-
-    //use \Osm\Core\Traits\RestrictedSettersTrait;
-
     /**
      * @param array $data
      * @param null $name
@@ -221,6 +215,30 @@ class Object_ implements \ArrayAccess
             }
         }
         return $result;
+    }
+
+    /**
+     * @return \Generator|Object_[]
+     */
+    public function iterateParts() {
+        foreach (get_object_vars($this) as $property => $value) {
+            if (!isset($this->getProperty($property)['part'])) {
+                continue;
+            }
+
+            if ($value instanceof Object_) {
+                yield $value;
+                continue;
+            }
+
+            if (is_iterable($value)) {
+                foreach ($value as $item) {
+                    if ($item instanceof Object_) {
+                        yield $item;
+                    }
+                }
+            }
+        }
     }
 
     public function offsetExists($offset) { throw new NotSupported(); }

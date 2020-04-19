@@ -156,8 +156,18 @@ class Layout extends Object_
 
     protected function processInstruction($instruction, $value) {
         if (starts_with($instruction, '#')) {
-            if ($view = $this->select($instruction)) {
-                $this->merge($view, $value);
+            if ($view = $this->select($instruction, $property, $index)) {
+                if ($index) {
+                    $view->$property[$index] = osm_merge($view->$property[$index], $value);
+                    $this->registerDataRecursively($value);
+                }
+                elseif ($property) {
+                    $view->$property = osm_merge($view->$property, $value);
+                    $this->registerDataRecursively($value);
+                }
+                else {
+                    $this->merge($view, $value);
+                }
             }
             return;
         }
@@ -225,10 +235,12 @@ class Layout extends Object_
     }
 
     /**
-     * @param $selector
+     * @param string $selector
+     * @param string $property
+     * @param int|string $index
      * @return View
      */
-    public function select($selector) {
+    public function select($selector, &$property = null, &$index = null) {
         if (($pos = mb_strpos($selector, '.')) !== false) {
             $path = mb_substr($selector, $pos + 1);
             $selector = mb_substr($selector, 1, $pos - 1);
@@ -242,13 +254,19 @@ class Layout extends Object_
             return null;
         }
 
-        $result = $this->views[$selector];
+        $result = $value = $this->views[$selector];
 
         if ($path === null) {
             return $result;
         }
 
         foreach (explode('.', $path) as $property) {
+            if ($value !== $result) {
+                $property = null;
+                $index = null;
+                return null;
+            }
+
             if (($pos = mb_strpos($property, '[')) !== false) {
                 $index = mb_substr($property, $pos + 1, mb_strlen($property) - $pos - 2);
                 $property = mb_substr($property, 0, $pos);
@@ -257,14 +275,22 @@ class Layout extends Object_
                 $index = null;
             }
 
-            if (!isset($result->$property)) {
+            if (!isset($value->$property)) {
+                $property = null;
+                $index = null;
                 return null;
             }
 
-            $result = $result->$property;
+            $value = $value->$property;
 
             if ($index !== null) {
-                $result = $result[$index];
+                $value = $value[$index];
+            }
+
+            if ($value instanceof View) {
+                $result = $value;
+                $property = null;
+                $index = null;
             }
         }
 
@@ -316,7 +342,6 @@ class Layout extends Object_
                 continue;
             }
 
-            /** @noinspection PhpNonStrictObjectEqualityInspection */
             if ($this->views[$view->id] != $view) {
                 throw new InvalidInstruction(osm_t("Two or more views have the same id ':id'", ['id' => $view->id]));
             }

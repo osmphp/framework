@@ -30,7 +30,8 @@ class Controller extends Object_
             case 'area': return $this->parent->area_;
             case 'returns': return Returns::HTML;
             case 'request': return $osm_app->request;
-            case 'parameters_': return Parameters::new(['config_' => $this->parameters ?? []]);
+            case 'parameters_': return Parameters::new(['config_' => $this->parameters ?? []],
+                null, $this);
             case 'query':
                 $parsedQuery = $this->area->query;
                 foreach ($this->parameters_ as $parameter) {
