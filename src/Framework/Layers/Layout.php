@@ -242,31 +242,38 @@ class Layout extends Object_
      */
     public function select($selector, &$property = null, &$index = null) {
         if (($pos = mb_strpos($selector, '.')) !== false) {
+            // split '#id.foo.bar' into 'id' and 'foo.bar'
             $path = mb_substr($selector, $pos + 1);
             $selector = mb_substr($selector, 1, $pos - 1);
         }
         else {
+            // cut '#' from '#id'
             $path = null;
             $selector = mb_substr($selector, 1);
         }
 
         if (!isset($this->views[$selector])) {
+            // search by id failed - view not found
             return null;
         }
 
-        $result = $value = $this->views[$selector];
+        // find view object by id
+        $result = $object = $this->views[$selector];
 
         if ($path === null) {
+            // no properties or array indexes in the layer instruction - just
+            // return the view object
             return $result;
         }
 
-        foreach (explode('.', $path) as $property) {
-            if ($value !== $result) {
-                $property = null;
-                $index = null;
-                return null;
-            }
+        $path = explode('.', $path);
 
+        // go through property path by processing one property at a time.
+        // Note that $property and $index are not just local variables, but
+        // passed to the caller by reference
+        foreach ($path as $i => $property) {
+            // if there is an index in the instruction, split array
+            // property name and index
             if (($pos = mb_strpos($property, '[')) !== false) {
                 $index = mb_substr($property, $pos + 1, mb_strlen($property) - $pos - 2);
                 $property = mb_substr($property, 0, $pos);
@@ -275,22 +282,28 @@ class Layout extends Object_
                 $index = null;
             }
 
-            if (!isset($value->$property)) {
-                $property = null;
-                $index = null;
-                return null;
-            }
-
-            $value = $value->$property;
-
+            // find child object referenced in the instruction
+            $object = $object->$property;
             if ($index !== null) {
-                $value = $value[$index];
+                $object = $object[$index];
             }
 
-            if ($value instanceof View) {
-                $result = $value;
+            if ($object instanceof View) {
+                // if it's view, we will return it to the caller
+                $result = $object;
                 $property = null;
                 $index = null;
+                continue;
+            }
+
+            if ($i !== count($path) - 1) {
+                // if it's not view, we will return the last object that
+                // IS view and the property name and index in it.
+
+                // However, property/index can only be the last part in the
+                // instruction path. If that's not the case, return that
+                // view is not found
+                return null;
             }
         }
 
@@ -349,6 +362,10 @@ class Layout extends Object_
     }
 
     protected function registerDataRecursively($data) {
+        if (!is_iterable($data)) {
+            return;
+        }
+
         foreach ($this->iterator->iterateData($data) as $view) {
             $this->registerViewRecursively($view);
         }
