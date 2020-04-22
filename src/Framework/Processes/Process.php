@@ -24,7 +24,7 @@ class Process
     public static function run($command, callable $callback = null) {
         // realpath(__DIR__ . '/../../../../../..')
         $path = static::$path ?: static::getBasePath();
-        $process = new SymfonyProcess($command, $path, null, null, null);
+        $process = SymfonyProcess::fromShellCommandline($command, $path, null, null, null);
         $process->setWorkingDirectory($path);
         return $process->run($callback) == 0;
     }
