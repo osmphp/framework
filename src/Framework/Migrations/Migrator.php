@@ -42,7 +42,7 @@ class Migrator extends Object_
         global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'steps': return ['schema', 'data'];
+            case 'steps': return ['Schema', 'Data'];
             case 'modules_':
                 return empty($this->modules)
                     ? $osm_app->modules
@@ -96,7 +96,7 @@ class Migrator extends Object_
 
         foreach ($this->modules_ as $module) {
             $this->module = $module;
-            $this->path = $osm_app->path("{$module->path}/migrations/{$this->step}");
+            $this->path = $osm_app->path("{$module->path}/Migrations/{$this->step}");
             if (!is_dir($this->path)) {
                 continue;
             }
@@ -114,9 +114,6 @@ class Migrator extends Object_
             }
 
             $this->files_processed++;
-
-            /** @noinspection PhpIncludeInspection */
-            require_once $filename;
 
             $this->name = $name;
             $this->instance = $osm_app->create($this->getClassName($name), ['db' => $this->db]);
@@ -156,7 +153,7 @@ class Migrator extends Object_
 
         foreach (array_reverse($this->modules_) as $module) {
             $this->module = $module;
-            $this->path = $osm_app->path("{$module->path}/migrations/{$this->step}");
+            $this->path = $osm_app->path("{$module->path}/Migrations/{$this->step}");
             if (!is_dir($this->path)) {
                 continue;
             }
@@ -170,9 +167,6 @@ class Migrator extends Object_
 
         foreach ($this->getAllModuleMigrations() as $name) {
             $this->files_processed++;
-
-            /** @noinspection PhpIncludeInspection */
-            require_once $osm_app->path("{$this->module->path}/migrations/{$this->step}/{$name}.php");
 
             $this->name = $name;
             $this->instance = $osm_app->create($this->getClassName($name), ['db' => $this->db]);
@@ -262,9 +256,7 @@ class Migrator extends Object_
      * @return string
      */
     protected function getClassName($name) {
-        $pos = strpos($name, '_');
-
         return str_replace('_', '\\', $this->module->name) .
-            '\\Migrations\\' . studly_case($this->step) . '\\' . studly_case(substr($name, $pos + 1));
+            "\\Migrations\\{$this->step}\\{$name}";
     }
 }

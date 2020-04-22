@@ -5,7 +5,7 @@ namespace Osm\Framework\Queues\Migrations\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Osm\Framework\Migrations\Migration;
 
-class QueuedJobs extends Migration
+class m01_queued_jobs extends Migration
 {
     public function up() {
         $this->schema->create('queued_jobs', function (Blueprint $table) {

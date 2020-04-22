@@ -5,7 +5,7 @@ namespace Osm\Samples\Ui\Migrations\Schema;
 use Osm\Data\Tables\Blueprint;
 use Osm\Framework\Migrations\Migration;
 
-class TContacts extends Migration
+class m01_t_contacts extends Migration
 {
     public function up() {
         $this->db->create('t_contacts', function (Blueprint $table) {

@@ -7,7 +7,7 @@ use Osm\Core\App;
 use Osm\Data\Tables\Table;
 use Osm\Framework\Migrations\Migration;
 
-class RequiresFullReindexFix extends Migration
+class m02_requires_full_reindex_fix extends Migration
 {
     public function up() {
         // initially this columns was 'string', should be 'bool'

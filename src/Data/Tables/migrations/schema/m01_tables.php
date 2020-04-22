@@ -5,7 +5,7 @@ namespace Osm\Data\Tables\Migrations\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Osm\Framework\Migrations\Migration;
 
-class Tables extends Migration
+class m01_tables extends Migration
 {
     public function up() {
         $this->schema->create('tables', function(Blueprint $table) {

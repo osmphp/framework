@@ -7,7 +7,7 @@ use Osm\Core\App;
 use Osm\Data\Tables\Table;
 use Osm\Framework\Migrations\Migration;
 
-class Indexers extends Migration
+class m01_indexers extends Migration
 {
     public function up() {
         $this->schema->create('indexers', function(Blueprint $table) {

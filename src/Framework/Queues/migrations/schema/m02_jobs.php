@@ -5,7 +5,7 @@ namespace Osm\Framework\Queues\Migrations\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Osm\Framework\Migrations\Migration;
 
-class Jobs extends Migration
+class m02_jobs extends Migration
 {
     public function up() {
         $this->schema->create('jobs', function (Blueprint $table) {

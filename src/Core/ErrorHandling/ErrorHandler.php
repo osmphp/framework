@@ -4,7 +4,7 @@ namespace Osm\Core\ErrorHandling;
 
 use ErrorException;
 use Osm\Core\Object_;
-use Symfony\Component\Debug\Exception\FatalErrorException;
+use Symfony\Component\ErrorHandler\Error\FatalError;
 
 class ErrorHandler extends Object_
 {
@@ -41,9 +41,8 @@ class ErrorHandler extends Object_
         if (!is_null($error = error_get_last()) &&
             in_array($error['type'], [E_COMPILE_ERROR, E_CORE_ERROR, E_ERROR, E_PARSE]))
         {
-            $this->handleException(new FatalErrorException(
-                $error['message'], $error['type'], 0, $error['file'], $error['line'], 0
-            ));
+            $this->handleException(
+                new FatalError($error['message'], 0, $error));
         }
     }
 }
