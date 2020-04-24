@@ -40,6 +40,16 @@ class View extends Object_
      */
     public $parent = null;
 
+    public static function new($data = [], $name = null, $parent = null) {
+        global $osm_app; /* @var App $osm_app */
+
+        $class = $data['class'] ?? static::class;
+        $classes = $osm_app->theme_->view_classes;
+        $data['class'] = $classes[$class] ?? $class;
+
+        return parent::new($data, $name, $parent);
+    }
+
     public function __construct($data = []) {
         parent::__construct($data);
 
