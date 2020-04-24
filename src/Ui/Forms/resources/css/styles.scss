@@ -121,4 +121,20 @@
       @include field-color($color--secondary-dark, $color--on-secondary-dark);
     }
   }
+
+  &.-price &__body {
+    width: rem(180px);
+  }
+  &.-price &__price {
+    width: 100%;
+    display: flex;
+  }
+  &.-price &__currency {
+    padding-right: rem(8px);
+  }
+
+  &.-date &__body {
+    width: rem(180px);
+  }
+
 }

@@ -2,15 +2,15 @@
 
 namespace Osm\Ui\Forms\Views;
 
-class StringField extends InputField
+class DateField extends InputField
 {
-    public $view_model = 'Osm_Ui_Forms.StringField';
+    public $view_model = 'Osm_Ui_Forms.DateField';
+    public $type = 'date';
 
     protected function default($property) {
         switch ($property) {
-            case 'type': return 'text';
+            case 'modifier': return '-date';
         }
-
         return parent::default($property);
     }
 }

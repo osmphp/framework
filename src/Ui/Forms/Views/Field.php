@@ -15,11 +15,12 @@ use Osm\Framework\Views\View;
  * @property bool $focusable @part
  * @property string $prefix @part Prefix added to element name to scope
  *      browser auto-completion. Fields ignore
+ *
+ * @property string $field_template @required @part
  */
 abstract class Field extends View
 {
     public $template = 'Osm_Ui_Forms.field-wrap';
-    public $field_template;
 
     protected function default($property) {
         switch ($property) {
