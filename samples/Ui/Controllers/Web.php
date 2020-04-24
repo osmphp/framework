@@ -16,7 +16,7 @@ class Web extends Controller
                 'title' => osm_t("Typography"),
             ],
             '#content' => [
-                'views' => [
+                'items' => [
                     'typography' => View::new(['template' => 'Osm_Samples_Ui.typography', 'id_' => null]),
                 ],
             ],
@@ -29,7 +29,7 @@ class Web extends Controller
                 'title' => osm_t("Buttons"),
             ],
             '#content' => [
-                'views' => [
+                'items' => [
                     'buttons' => View::new(['template' => 'Osm_Samples_Ui.buttons', 'id_' => null]),
                 ],
             ],
@@ -42,7 +42,7 @@ class Web extends Controller
                 'title' => osm_t("Snack Bars"),
             ],
             '#content' => [
-                'views' => [
+                'items' => [
                     'snack-bars' => View::new(['template' => 'Osm_Samples_Ui.snack-bars', 'id_' => null]),
                 ],
             ],

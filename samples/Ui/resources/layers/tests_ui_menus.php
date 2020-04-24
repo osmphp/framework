@@ -13,7 +13,7 @@ return [
         'modifier' => '-tests-ui-menus',
         'content' => Container::new([
             'id' => 'content',
-            'views' => [
+            'items' => [
                 'surface' => MenuBar::new([
                     'items' => [
                         'file' => [
@@ -155,7 +155,7 @@ return [
                 ]),
                 'popup_test' => Container::new([
                     'template' => 'Osm_Samples_Ui.popup_test',
-                    'views' => [
+                    'items' => [
                         'button' => Button::new(['title' => osm_t("Open Popup Menu")]),
                         'menu' => PopupMenu::new([
                             'items' => [

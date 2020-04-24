@@ -8,7 +8,7 @@ return [
     '@include' => ['modal_dialog'],
     '#dialog' => [
         'modifier' => '-yes-no',
-        'views' => [
+        'items' => [
             'stack_trace' => View::new(['template' => 'Osm_Ui_Dialogs.message']),
         ],
         'footer' => MenuBar::new([

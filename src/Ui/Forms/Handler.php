@@ -24,7 +24,7 @@ abstract class Handler extends Object_
             $this->handleFormPart($view);
         }
 
-        foreach ($view->views ?: [] as $childView) {
+        foreach ($view->items ?: [] as $childView) {
             $this->handleView($childView);
         }
     }

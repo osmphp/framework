@@ -8,8 +8,8 @@ use Osm\Framework\Views\View;
  * @property string $element @part
  * @property string[] $attributes @required @part
  *
- * @property View[] $views @required @part
- * @property View[] $views_ @required
+ * @property View[] $items @required @part
+ * @property View[] $items_ @required
  */
 class Container extends View
 {
@@ -17,9 +17,9 @@ class Container extends View
 
     protected function default($property) {
         switch ($property) {
-            case 'views': return [];
-            case 'views_': return $this->sortViews($this->views);
-            case 'empty': return !count($this->views);
+            case 'items': return [];
+            case 'items_': return $this->sortViews($this->items);
+            case 'empty': return !count($this->items);
 
             /** @noinspection PhpDuplicateSwitchCaseBodyInspection */
             case 'attributes': return [];

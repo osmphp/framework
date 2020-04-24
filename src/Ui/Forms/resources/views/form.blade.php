@@ -4,7 +4,7 @@
 <form class="form {{ $view->modifier }} form-fields" method="{{ $view->method }}"
     action="{{ $view->action }}" id="{{ $view->id_ }}">
 
-    @foreach ($view->views_ as $child)
+    @foreach ($view->items_ as $child)
         @if (!$child->empty)
             <div class="form-fields__wrap {{$child->wrap_modifier}}">
                 @include ($child)

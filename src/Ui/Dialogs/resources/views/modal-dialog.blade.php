@@ -9,7 +9,7 @@
     @endif
 
     <div class="modal-dialog__body">
-        @foreach ($view->views_ as $child)
+        @foreach ($view->items_ as $child)
             @include ($child)
         @endforeach
     </div>

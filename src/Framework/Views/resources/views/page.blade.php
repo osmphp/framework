@@ -18,7 +18,7 @@
 </head>
 <body class="{{ $view->modifier }}">
 
-@foreach ($view->views_ as $child)
+@foreach ($view->items_ as $child)
     @if (!$child->empty)
         <div class="page-sections__wrap {{$child->wrap_modifier}}">
             @include ($child)

@@ -8,7 +8,7 @@ return [
         'modifier' => '-tests-ui-containers',
     ],
     '#content' => [
-        'views' => [
+        'items' => [
             'containers' => View::new([
                 'template' => 'Osm_Samples_Ui.containers',
                 'id_' => null,

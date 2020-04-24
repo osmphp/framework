@@ -10,7 +10,7 @@ return [
         // HTML id of every child view is the same as its alias
         'id_' => '',
 
-        'views' => [
+        'items' => [
             'content' => Container::new([
                 'id' => 'content',
 

@@ -10,7 +10,7 @@ return [
         'modifier' => '-tests-ui-dialogs',
         'content' => Container::new([
             'id' => 'content',
-            'views' => [
+            'items' => [
                 'exception_button' => Button::new(['title' => osm_t("Show Exception Dialog")]),
                 'yes_no_button' => Button::new(['title' => osm_t("Show Yes/No Dialog")]),
             ],
@@ -21,7 +21,7 @@ return [
         ],
     ],
     '#content' => [
-        'views' => [
+        'items' => [
             'containers' => View::new([
                 'template' => 'Osm_Samples_Ui.containers',
                 'id_' => null,

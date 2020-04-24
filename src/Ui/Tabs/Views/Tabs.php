@@ -17,7 +17,7 @@ class Tabs extends Container
     protected function default($property) {
         switch ($property) {
             case 'tabs_': return $this->getTabs();
-            case 'views': return $this->getViews();
+            case 'items': return $this->getViews();
             case 'active_tab': return $this->getActiveTab();
         }
         return parent::default($property);

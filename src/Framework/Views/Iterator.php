@@ -9,7 +9,7 @@ class Iterator extends Object_
 {
     public function iterateData($data) {
         if ($data instanceof Container) {
-            $data->views;
+            $data->items;
         }
 
         foreach ($data as $property => $value) {

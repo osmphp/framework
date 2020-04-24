@@ -7,7 +7,7 @@
         @if ($view->modifier) class="{{ $view->modifier }}" @endif
         @foreach($view->attributes as $key => $value) {{ $key }}="{{ $value }}" @endforeach>
     @endif
-    @foreach ($view->views_ as $child)
+    @foreach ($view->items_ as $child)
         @include ($child)
     @endforeach
     @if ($view->modifier || $view->element)

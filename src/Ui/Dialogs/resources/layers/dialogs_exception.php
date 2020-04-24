@@ -9,7 +9,7 @@ return [
     '#dialog' => [
         'modifier' => '-exception',
         'header' => '{{ message }}',
-        'views' => [
+        'items' => [
             'stack_trace' => View::new(['template' => 'Osm_Ui_Dialogs.exception_stack_trace']),
         ],
         'footer' => MenuBar::new([

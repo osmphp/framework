@@ -49,8 +49,8 @@ class Input extends View implements FormPart
         $result = $this->alias;
 
         // cut the prefix
-        if (mb_strpos($result, 'views_') === 0) {
-            $result = mb_substr($result, mb_strlen('views_'));
+        if (mb_strpos($result, 'items_') === 0) {
+            $result = mb_substr($result, mb_strlen('items_'));
         }
 
         return $result;

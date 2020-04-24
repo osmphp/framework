@@ -13,7 +13,7 @@ return [
         ],
     ],
     '#content' => [
-        'views' => [
+        'items' => [
             'test_runner' => TestRunner::new(),
         ],
     ],

@@ -11,7 +11,7 @@
         @endif
     </header>
     <div class="form-fields" id="{{ $view->id_ }}___fields">
-        @foreach ($view->views_ as $child)
+        @foreach ($view->items_ as $child)
             @if (!$child->empty)
                 <div class="form-fields__wrap {{$child->wrap_modifier}}">
                     @include ($child)

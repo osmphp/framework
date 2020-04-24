@@ -24,12 +24,12 @@ class ViewsTest extends UnitTestCase
                         View::new([]),
                         View::new([]),
                     ],
-                    'views' => [
+                    'items' => [
                         'title' => View::new([]),
                         'description' => View::new([]),
                     ],
                     'content' => View::new([
-                        'views' => [
+                        'items' => [
                             'extra' => View::new([]),
                         ],
                     ]),
@@ -55,21 +55,21 @@ class ViewsTest extends UnitTestCase
         $this->assertEquals('heading', $view->content->heading->id_);
         $this->assertEquals('product', $view->content->product->id_);
 
-        // '#root.content.product' children are prefixed with additional '_' because it has 'views' property
+        // '#root.content.product' children are prefixed with additional '_' because it has 'items' property
 
         $this->assertEquals('product___price', $view->content->product->price->id_);
         $this->assertEquals('product___images_0', $view->content->product->images[0]->id_);
         $this->assertEquals('product___images_1', $view->content->product->images[1]->id_);
         $this->assertEquals('product___images_2', $view->content->product->images[2]->id_);
 
-        // '#root.content.product.views' items does not have '_views__' in their html id
+        // '#root.content.product.items' items does not have '_items__' in their html id
 
-        $this->assertEquals('product__title', $view->content->product->views['title']->id_);
-        $this->assertEquals('product__description', $view->content->product->views['description']->id_);
+        $this->assertEquals('product__title', $view->content->product->items['title']->id_);
+        $this->assertEquals('product__description', $view->content->product->items['description']->id_);
 
-        // '#root.content.product.content.views[sidebar]' has neither 'content' not 'views' in its html id
+        // '#root.content.product.content.items[sidebar]' has neither 'content' not 'items' in its html id
 
-        $this->assertEquals('product__extra', $view->content->product->content->views['extra']->id_);
+        $this->assertEquals('product__extra', $view->content->product->content->items['extra']->id_);
 
     }
 }

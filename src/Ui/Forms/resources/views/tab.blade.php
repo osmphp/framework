@@ -6,7 +6,7 @@
         <h2 class="form-tab__title">{{ $view->title }}</h2>
     </header>
     <div class="form-fields" id="{{ $view->id_ }}___fields">
-        @foreach ($view->views_ as $child)
+        @foreach ($view->items_ as $child)
             @if (!$child->empty)
                 <div class="form-fields__wrap {{$child->wrap_modifier}}">
                     @include ($child)

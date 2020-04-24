@@ -120,12 +120,12 @@ class View extends Object_
             throw new IdCantBeInferred(osm_t("View alias not assigned, id_ can't be rendered."));
         }
 
-        $alias = isset($this->parent->content) || isset($this->parent->views)
+        $alias = isset($this->parent->content) || isset($this->parent->items)
             ? "_{$this->alias}"
             : $this->alias;
 
-        if (starts_with($alias, '_views_')) {
-            $alias = substr($alias, strlen('_views_'));
+        if (starts_with($alias, '_items_')) {
+            $alias = substr($alias, strlen('_items_'));
         }
 
         if ($this->parent->alias == 'content') {

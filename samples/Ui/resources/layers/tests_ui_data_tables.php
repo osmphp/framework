@@ -10,7 +10,7 @@ return [
         'modifier' => '-tests-ui-data-tables',
     ],
     '#content' => [
-        'views' => [
+        'items' => [
             'data_table' => DataTable::new([
                 'id' => 'data_table',
                 'sheet' => 't_contacts',

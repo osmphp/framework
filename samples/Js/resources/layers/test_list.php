@@ -11,7 +11,7 @@ return [
         'title' => osm_t("Tests"),
     ],
     '#content' => [
-        'views' => [
+        'items' => [
             'test_list' => View::new(['id_' => null, 'template' => 'Osm_Samples_Js.test_list']),
         ],
     ],
