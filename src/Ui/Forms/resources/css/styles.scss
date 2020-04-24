@@ -137,4 +137,7 @@
     width: rem(180px);
   }
 
+  &.-dropdown &__body {
+    width: rem(300px);
+  }
 }

@@ -1,4 +1,4 @@
-import InputField from 'Osm_Ui_Forms/InputField';
+import InputField from './InputField';
 
 export default class DateField extends InputField {
 };

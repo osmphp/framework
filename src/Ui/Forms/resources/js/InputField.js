@@ -1,4 +1,4 @@
-import Field from 'Osm_Ui_Forms/Field';
+import Field from './Field';
 
 export default class InputField extends Field {
     get events() {
