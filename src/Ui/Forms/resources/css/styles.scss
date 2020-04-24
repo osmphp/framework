@@ -140,4 +140,11 @@
   &.-dropdown &__body {
     width: rem(300px);
   }
+
+
+  &.-text &__value {
+    resize: none;
+    font-size: 16px;
+    font-family: inherit;
+  }
 }

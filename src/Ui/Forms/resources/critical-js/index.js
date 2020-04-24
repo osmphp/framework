@@ -6,8 +6,9 @@ import PriceField from './PriceField';
 import DateField from './DateField';
 import PasswordField from './PasswordField';
 import DropdownField from './DropdownField';
+import TextField from './TextField';
 
 merge(window, {
     Osm_Ui_Forms: { Form, Fields, StringField, PriceField, DateField,
-        PasswordField, DropdownField }
+        PasswordField, DropdownField, TextField }
 });
