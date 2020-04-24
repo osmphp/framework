@@ -32,7 +32,7 @@
 
 <script>Osm_Framework_Js.vars.config.merge({!! json_encode($view->model ?
     (object)$view->model : null, JSON_PRETTY_PRINT) !!});</script>
-<script src="{{ osm_asset('scripts.js') }}"></script>
+<script src="{{ osm_asset('scripts.js') }}" async defer></script>
 </body>
 
 </html>
