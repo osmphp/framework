@@ -4,20 +4,20 @@ import removeClass from 'Osm_Framework_Js/removeClass';
 import hasClass from 'Osm_Framework_Js/hasClass';
 import osm_t from 'Osm_Framework_Js/osm_t';
 
-export default class Input extends Field {
+export default class StringField extends Field {
     get events() {
         return Object.assign({}, super.events, {
-            'focus .input__value': 'onFocus',
-            'blur .input__value': 'onBlur',
+            'focus .string-field__value': 'onFocus',
+            'blur .string-field__value': 'onBlur',
             'mousedown': 'onMouseDown'
         });
     }
 
     get $value() {
-        return this.$element.find('.input__value');
+        return this.$element.find('.string-field__value');
     }
     get $error() {
-        return this.$element.find('.input__error');
+        return this.$element.find('.string-field__error');
     }
 
     onAttach() {

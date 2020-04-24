@@ -1,4 +1,5 @@
 @import '~Osm_Ui_Aba/_variables-and-mixins.scss';
+@import './_mixins.scss';
 
 @mixin form-items() {
   display: grid;
@@ -40,5 +41,84 @@
 
   &__items.-wide &__item {
     @include form-item();
+  }
+}
+
+.string-field {
+  margin: rem(16px) 0 rem(8px);
+
+  &__body {
+    padding: rem(4px) rem(12px) rem(6px);
+    border-bottom: solid rem(2px) transparent;
+    border-radius: rem(4px) rem(4px) 0 0;
+  }
+
+  &__value {
+    width: 100%;
+    border: none;
+  }
+
+  &__comment, &__error {
+    font-size: rem(12px);
+    padding: 0 rem(12px);
+    min-height: rem(18px);
+  }
+
+  &__error {
+    color: $color--error;
+    display: none;
+  }
+
+  &.-error {
+    .input__title {
+      color: $color--error;
+    }
+
+    .input__error {
+      display: block;
+    }
+
+    .input__comment {
+      display: none;
+    }
+  }
+
+  &.-error.-active {
+    .input__body {
+      border-color: $color--error;
+    }
+  }
+
+  &.-filled {
+    .input__body {
+      background: $color--input--filled;
+    }
+
+    .input__value {
+      background: $color--input--filled;
+
+      // fix Chrome auto filled input background
+      &:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 1000px $color--input--filled inset !important;
+      }
+    }
+  }
+
+  @include string-field-color($color--primary, $color--on-primary);
+  &.-light {
+    @include string-field-color($color--primary-light, $color--on-primary-light);
+  }
+  &.-dark {
+    @include string-field-color($color--primary-dark, $color--on-primary-dark);
+  }
+
+  &.-secondary {
+    @include string-field-color($color--secondary, $color--on-secondary);
+    &.-light {
+      @include string-field-color($color--secondary-light, $color--on-secondary-light);
+    }
+    &.-dark {
+      @include string-field-color($color--secondary-dark, $color--on-secondary-dark);
+    }
   }
 }

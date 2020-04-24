@@ -1,6 +1,6 @@
 <?php
 
-namespace Osm\Ui\Inputs\Views;
+namespace Osm\Ui\Forms\Views;
 
 use Osm\Data\Sheets\Search;
 use Osm\Framework\Views\View;
@@ -19,10 +19,10 @@ use Osm\Ui\Forms\FormPart;
  * @property string $autocomplete_prefix @part Prefix added to element name to
  *      scope browser auto-completion
  */
-class Input extends View implements FormPart
+class StringField extends View implements FormPart
 {
-    public $template = 'Osm_Ui_Inputs.input';
-    public $view_model = 'Osm_Ui_Inputs.Input';
+    public $template = 'Osm_Ui_Forms.string-field';
+    public $view_model = 'Osm_Ui_Forms.StringField';
 
     protected function default($property) {
         switch ($property) {

@@ -1,17 +1,13 @@
 import snackBars from 'Osm_Ui_SnackBars/vars/snackBars';
 import FieldGroup from './FieldGroup';
 import trigger from 'Osm_Framework_Js/trigger';
-import macaw from "Osm_Framework_Js/vars/macaw";
-import Input from "Osm_Ui_Inputs/Input";
-import $ from 'jquery';
 import url from 'Osm_Framework_Js/vars/url';
 import ajax from 'Osm_Framework_Js/ajax';
 
 export default class Form extends FieldGroup {
     get events() {
         return Object.assign({}, super.events, {
-            'submit': 'onSubmit',
-            'change .input__value': 'onInputChange'
+            'submit': 'onSubmit'
         });
     }
 
@@ -83,16 +79,5 @@ export default class Form extends FieldGroup {
     onOtherError(xhr, payload) {
         snackBars.showMessage(xhr.getResponseHeader('Status-Text'));
         return true;
-    }
-
-    // this hack handles IE and Edge autofill to update password field appearance
-    onInputChange(e) {
-        this.$element.find('.input__value[type=password]').each((index, element) => {
-            if (element == e) {
-                return;
-            }
-
-            macaw.get($(element).parents('.input')[0], Input).update();
-        });
     }
 };
