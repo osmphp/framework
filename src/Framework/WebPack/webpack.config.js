@@ -54,40 +54,13 @@ class Builder {
                 require('./scripts/paths')
             )).build(target));
 
-        //if (process.env.APP_ENV == 'production') {
-        config = merge(config, {
-            module: {
-                rules: [
-                    {
-                        test: /\.m?js$/,
-                        exclude: /(node_modules|bower_components)/,
-                        use: {
-                            loader: 'babel-loader',
-                            options: {
-                                presets: [
-                                    [
-                                        '@babel/preset-env',
-                                        {
-                                            "useBuiltIns": "entry",
-                                            "corejs": 2
-                                        }
-                                    ]
-                                ],
-                                plugins: ['@babel/plugin-transform-runtime']
-                            }
-                        }
-                    }
-                ]
-            }
-        });
-        //}
-
         this.config.forEachModule(module => {
             if (fs.existsSync(path.resolve(module.path, 'webpack.js'))) {
                 config = merge(config, require(path.resolve(module.path, 'webpack.js'))(target));
             }
         });
 
+        console.log(config);
         return config;
     }
 

@@ -18,8 +18,6 @@ import firstParentElement from './firstParentElement';
 import config from './vars/config';
 import view_models from "./vars/view_models";
 
-import "@babel/polyfill";
-
 merge(window, {
     Osm_Framework_Js: {
         addClass, callOncePerAnimationFrame, Object_, hasClass, merge, removeClass, mix, find,
