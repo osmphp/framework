@@ -23,6 +23,7 @@ class Preparer extends Handler
         }
 
         if ($field->focusable) {
+            $field->focus = true;
             $this->set = true;
         }
     }
