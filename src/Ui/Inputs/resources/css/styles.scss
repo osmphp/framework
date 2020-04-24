@@ -46,14 +46,6 @@
     }
   }
 
-  &.-large-title {
-    .input__title {
-      font-size: rem(16px);
-      position: relative;
-      top: rem(12px);
-    }
-  }
-
   &.-filled {
     .input__body {
       background: $color--input--filled;

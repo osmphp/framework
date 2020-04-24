@@ -23,28 +23,14 @@ export default class Input extends Field {
     onAttach() {
         super.onAttach();
 
-        // wait until animation frame as browser may auto fill form inputs and we need to update label position
-        // after that
-        requestAnimationFrame(() => {
-            this.update();
-        });
-
         if (this.model.focus) {
             this.$value.focus();
+            this.activate();
         }
     }
 
     focus() {
         this.$value.focus();
-    }
-
-    update() {
-        if (this.$value.is(':focus')) {
-            this.activate();
-        }
-        else {
-            this.deactivate();
-        }
     }
 
     onFocus() {
@@ -72,7 +58,6 @@ export default class Input extends Field {
 
     activate() {
         addClass(this.element, '-active');
-        removeClass(this.element, '-large-title');
     }
 
     deactivate() {
@@ -80,13 +65,6 @@ export default class Input extends Field {
             return;
         }
         removeClass(this.element, '-active');
-
-        if (!this.value && !this.isAutoFilled()) {
-            addClass(this.element, '-large-title');
-        }
-        else {
-            removeClass(this.element, '-large-title');
-        }
 
         if (hasClass(this.element, '-error')) {
             this.validate();
@@ -139,17 +117,5 @@ export default class Input extends Field {
 
     set value(value) {
         this.$value.val(value);
-        this.update();
-    }
-
-    isAutoFilled() {
-        try {
-            // :-webkit-autofill pseudo class tells if input is auto filled in Chrome
-            return this.$value.is(':-webkit-autofill');
-        }
-        catch (e) {
-            // on other browsers check for :-webkit-autofill pseudo class may cause an error
-            return false;
-        }
     }
 };
