@@ -10,10 +10,10 @@
             </div>
         @endif
     </header>
-    <div class="form-fields" id="{{ $view->id_ }}___fields">
+    <div class="form-section__items" id="{{ $view->id_ }}___fields">
         @foreach ($view->items_ as $child)
             @if (!$child->empty)
-                <div class="form-fields__wrap {{$child->wrap_modifier}}">
+                <div class="form-section__item {{$child->wrap_modifier}} wrap">
                     @include ($child)
                 </div>
             @endif

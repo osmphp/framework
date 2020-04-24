@@ -1,24 +1,44 @@
 @import '~Osm_Ui_Aba/_variables-and-mixins.scss';
 
-.form {
-  &__header {
-  }
+@mixin form-items() {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
 
-  &__footer {
+@mixin form-item() {
+  grid-column: 1/3;
+
+  &.-narrow {
+    grid-column: auto;
   }
 }
 
-.form-fields {
+.form {
   &.-wide {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    @include form-items();
   }
 
-  &.-wide > &__wrap {
-    grid-column: 1/3;
+  &.-wide &__item {
+    @include form-item();
+  }
+}
 
-    &.-narrow {
-      grid-column: auto;
-    }
+.form-tab {
+  &__items.-wide {
+    @include form-items();
+  }
+
+  &__items.-wide &__item {
+    @include form-item();
+  }
+}
+
+.form-section {
+  &__items.-wide {
+    @include form-items();
+  }
+
+  &__items.-wide &__item {
+    @include form-item();
   }
 }

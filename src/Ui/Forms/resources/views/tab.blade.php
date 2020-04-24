@@ -5,10 +5,10 @@
     <header class="form-tab__header">
         <h2 class="form-tab__title">{{ $view->title }}</h2>
     </header>
-    <div class="form-fields" id="{{ $view->id_ }}___fields">
+    <div class="form-tab__items" id="{{ $view->id_ }}___fields">
         @foreach ($view->items_ as $child)
             @if (!$child->empty)
-                <div class="form-fields__wrap {{$child->wrap_modifier}}">
+                <div class="form-tab__item {{$child->wrap_modifier}} wrap">
                     @include ($child)
                 </div>
             @endif
