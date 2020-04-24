@@ -5,13 +5,10 @@ namespace Osm\Ui\Forms\Views;
 use Osm\Core\App;
 use Osm\Data\Sheets\Search;
 use Osm\Data\Sheets\Sheet;
-use Osm\Framework\Views\View;
 use Osm\Framework\Views\Views\Container;
-use Osm\Ui\Forms\Assigner;
-use Osm\Ui\Forms\AutocompletePrefixAssigner;
-use Osm\Ui\Forms\FocusAssigner;
-use Osm\Ui\Forms\Loader;
-use Osm\Ui\Forms\Validator;
+use Osm\Ui\Forms\FieldHandlers\Assigner;
+use Osm\Ui\Forms\FieldHandlers\Preparer;
+use Osm\Ui\Forms\FieldHandlers\Fetcher;
 
 /**
  * @property string $sheet @required @part
@@ -44,7 +41,7 @@ class Form extends Container
             case 'action': return substr($this->route, strpos($this->route, ' ') + 1);
             case 'sheet_': return $osm_app->sheets[$this->sheet];
             case 'search': return $this->sheet_->search($this->set);
-            case 'data': return Loader::load($this);
+            case 'data': return Fetcher::fetch($this);
         }
         return parent::default($property);
     }
@@ -54,8 +51,7 @@ class Form extends Container
             'submitting_message' => (string)$this->submitting_message,
         ], $this->model ?: []);
 
-        AutocompletePrefixAssigner::assign($this);
-        FocusAssigner::assign($this);
+        Preparer::prepare($this, ['prefix' => $this->autocomplete_prefix]);
     }
 
     public function load() {
@@ -70,9 +66,5 @@ class Form extends Container
 
     public function assign($data) {
         Assigner::assign($this, $data);
-    }
-
-    public function validate() {
-        return Validator::validate($this);
     }
 }

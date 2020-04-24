@@ -1,13 +1,13 @@
 @import '~Osm_Ui_Aba/_variables-and-mixins.scss';
 
-@mixin string-field-color($color, $on-color) {
+@mixin field-color($color, $on-color) {
   color: $color;
   &.-active {
-    .string-field__body {
+    .field__body {
       border-color: $color;
     }
 
-    .string-field__comment {
+    .field__comment {
       color: $color;
     }
   }

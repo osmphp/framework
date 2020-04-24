@@ -1,15 +1,16 @@
 <?php
 
-namespace Osm\Ui\Forms;
+namespace Osm\Ui\Forms\FieldHandlers;
 
 use Osm\Data\Sheets\Search;
+use Osm\Ui\Forms\Views\Field;
 use Osm\Ui\Forms\Views\Form;
 
 /**
  * @property Search $search @required
  * @property int $id
  */
-class Loader extends Handler
+class Fetcher extends Handler
 {
     protected function default($property) {
         switch ($property) {
@@ -19,7 +20,7 @@ class Loader extends Handler
         return parent::default($property);
     }
 
-    public static function load(Form $form) {
+    public static function fetch(Form $form) {
         return static::new(['form' => $form])->handleForm();
     }
 
@@ -29,11 +30,13 @@ class Loader extends Handler
         }
 
         $this->search->id($this->id);
+
         parent::handleForm();
+
         return $this->search->get()->items->first();
     }
 
-    protected function handleFormPart(FormPart $view) {
-        $view->addFormPartToSearch($this->search);
+    protected function handleField(Field $field) {
+        $field->fetch($this->search);
     }
 }

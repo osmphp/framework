@@ -1,7 +1,8 @@
 <?php
 
-namespace Osm\Ui\Forms;
+namespace Osm\Ui\Forms\FieldHandlers;
 
+use Osm\Ui\Forms\Views\Field;
 use Osm\Ui\Forms\Views\Form;
 
 /**
@@ -13,7 +14,7 @@ class Assigner extends Handler
         return static::new(['form' => $form, 'data' => $data])->handleForm();
     }
 
-    protected function handleFormPart(FormPart $view) {
-        $view->assignFormPartValue($this->data);
+    protected function handleField(Field $field) {
+        $field->assign($this->data);
     }
 }

@@ -7,17 +7,17 @@ import osm_t from 'Osm_Framework_Js/osm_t';
 export default class StringField extends Field {
     get events() {
         return Object.assign({}, super.events, {
-            'focus .string-field__value': 'onFocus',
-            'blur .string-field__value': 'onBlur',
+            'focus .field__value': 'onFocus',
+            'blur .field__value': 'onBlur',
             'mousedown': 'onMouseDown'
         });
     }
 
     get $value() {
-        return this.$element.find('.string-field__value');
+        return this.$element.find('.field__value');
     }
     get $error() {
-        return this.$element.find('.string-field__error');
+        return this.$element.find('.field__error');
     }
 
     onAttach() {
@@ -103,8 +103,8 @@ export default class StringField extends Field {
             return null;
         }
 
-        if (this.model.autocomplete_prefix) {
-            result = result.substr(this.model.autocomplete_prefix.length);
+        if (this.model.prefix) {
+            result = result.substr(this.model.prefix.length);
         }
 
         return result;

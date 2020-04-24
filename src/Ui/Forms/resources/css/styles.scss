@@ -44,7 +44,7 @@
   }
 }
 
-.string-field {
+.field {
   margin: rem(16px) 0 rem(8px);
 
   &__body {
@@ -70,31 +70,31 @@
   }
 
   &.-error {
-    .input__title {
+    .field__title {
       color: $color--error;
     }
 
-    .input__error {
+    .field__error {
       display: block;
     }
 
-    .input__comment {
+    .field__comment {
       display: none;
     }
   }
 
   &.-error.-active {
-    .input__body {
+    .field__body {
       border-color: $color--error;
     }
   }
 
   &.-filled {
-    .input__body {
+    .field__body {
       background: $color--input--filled;
     }
 
-    .input__value {
+    .field__value {
       background: $color--input--filled;
 
       // fix Chrome auto filled input background
@@ -104,21 +104,21 @@
     }
   }
 
-  @include string-field-color($color--primary, $color--on-primary);
+  @include field-color($color--primary, $color--on-primary);
   &.-light {
-    @include string-field-color($color--primary-light, $color--on-primary-light);
+    @include field-color($color--primary-light, $color--on-primary-light);
   }
   &.-dark {
-    @include string-field-color($color--primary-dark, $color--on-primary-dark);
+    @include field-color($color--primary-dark, $color--on-primary-dark);
   }
 
   &.-secondary {
-    @include string-field-color($color--secondary, $color--on-secondary);
+    @include field-color($color--secondary, $color--on-secondary);
     &.-light {
-      @include string-field-color($color--secondary-light, $color--on-secondary-light);
+      @include field-color($color--secondary-light, $color--on-secondary-light);
     }
     &.-dark {
-      @include string-field-color($color--secondary-dark, $color--on-secondary-dark);
+      @include field-color($color--secondary-dark, $color--on-secondary-dark);
     }
   }
 }

@@ -16,9 +16,13 @@ export default class Form extends FieldGroup {
     }
 
     onSubmit(e) {
-        // form content will be sent via AJAX, so we prevent default submit behavior which sends POST request
-        // and reloads the page
         if (e) {
+            // form content will be sent via AJAX, so prevent default
+            // submit behavior which sends POST request and reloads the page.
+            //
+            // if submit() method is used, e is undefined, if submit event
+            // is handled (for instance after pressing Enter in a form's
+            // input field), e is not null
             e.preventDefault();
         }
 

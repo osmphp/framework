@@ -1,9 +1,10 @@
 <?php
 
-namespace Osm\Ui\Forms;
+namespace Osm\Ui\Forms\FieldHandlers;
 
 use Osm\Core\Object_;
-use Osm\Framework\Views\View;
+use Osm\Framework\Views\Views\Container;
+use Osm\Ui\Forms\Views\Field;
 use Osm\Ui\Forms\Views\Form;
 
 /**
@@ -17,11 +18,11 @@ abstract class Handler extends Object_
     }
 
     /**
-     * @param View $view
+     * @param Field|Container $view
      */
     protected function handleView($view) {
-        if ($view instanceof FormPart) {
-            $this->handleFormPart($view);
+        if ($view instanceof Field) {
+            $this->handleField($view);
         }
 
         foreach ($view->items ?: [] as $childView) {
@@ -29,6 +30,6 @@ abstract class Handler extends Object_
         }
     }
 
-    abstract protected function handleFormPart(FormPart $view);
+    abstract protected function handleField(Field $field);
 
 }
