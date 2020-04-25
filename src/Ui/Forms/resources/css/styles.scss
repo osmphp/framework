@@ -92,7 +92,7 @@
   }
 
   &.-price &__body {
-    width: rem(180px);
+    max-width: rem(180px);
   }
   &.-price &__price {
     width: 100%;
@@ -103,11 +103,11 @@
   }
 
   &.-date &__body {
-    width: rem(180px);
+    max-width: rem(180px);
   }
 
   &.-dropdown &__body {
-    width: rem(300px);
+    max-width: rem(300px);
   }
 
 
