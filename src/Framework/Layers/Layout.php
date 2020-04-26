@@ -157,17 +157,7 @@ class Layout extends Object_
     protected function processInstruction($instruction, $value) {
         if (starts_with($instruction, '#')) {
             if ($view = $this->select($instruction, $property, $index)) {
-                if ($index) {
-                    $view->$property[$index] = osm_merge($view->$property[$index], $value);
-                    $this->registerDataRecursively($value);
-                }
-                elseif ($property) {
-                    $view->$property = osm_merge($view->$property, $value);
-                    $this->registerDataRecursively($value);
-                }
-                else {
-                    $this->merge($view, $value);
-                }
+                $this->merge($view, $value, $property, $index);
             }
             return;
         }
@@ -283,7 +273,7 @@ class Layout extends Object_
             }
 
             // find child object referenced in the instruction
-            $object = $object->$property;
+            $object = $object->$property ?? null;
             if ($index !== null) {
                 $object = $object[$index];
             }
@@ -338,9 +328,18 @@ class Layout extends Object_
         $this->registerDataRecursively($data);
     }
 
-    protected function merge(View $view, $value) {
+    protected function merge(View $view, $value, $property = null, $index = null) {
+        if ($index !== null) {
+            $value = [$index => $value];
+        }
+        if ($property !== null) {
+            $value = [$property => $value];
+        }
+
         $view->assignSelfAsParentTo($value);
+
         osm_merge($view, $value);
+
         $this->registerDataRecursively($value);
     }
 

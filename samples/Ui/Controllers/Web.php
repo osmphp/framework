@@ -62,9 +62,7 @@ class Web extends Controller
 
     public function menusPage() {
         return osm_layout('tests_ui_menus', [
-            '#page' => [
-                'title' => osm_t("Menus"),
-            ],
+            '#page.title' => osm_t("Menus"),
         ]);
     }
 

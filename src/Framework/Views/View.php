@@ -144,7 +144,14 @@ class View extends Object_
         }
     }
 
-    public function assignSelfAsParentTo($data) {
+    public function assignSelfAsParentTo($data, $property = null, $index = null) {
+        if ($index !== null) {
+            $data = [$index => $data];
+        }
+        if ($property !== null) {
+            $data = [$property => $data];
+        }
+
         foreach ($this->iterator->iterateData($data) as $property => $view) {
             $view->parent = $this;
             $view->alias = $property;

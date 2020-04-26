@@ -152,4 +152,8 @@
       @include field-color($color--secondary-dark, $color--on-secondary-dark);
     }
   }
+
+  &.-checkbox {
+    color: inherit;
+  }
 }
