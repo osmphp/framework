@@ -32,6 +32,7 @@ class Module extends BaseModule
     public $hard_dependencies = [
         'Osm_Framework_Db',
         'Osm_Framework_Migrations',
+        'Osm_Framework_Queues',
         'Osm_Data_Tables',
         'Osm_Data_TableQueries',
     ];
