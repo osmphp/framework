@@ -18,7 +18,7 @@ class m01_indexers extends Migration
             $table->string('events');
             $table->string('columns');
             $table->boolean('requires_partial_reindex')->default(false);
-            $table->string('requires_full_reindex')->default(false);
+            $table->boolean('requires_full_reindex')->default(false);
         });
     }
 
