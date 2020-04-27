@@ -10,7 +10,8 @@ use Osm\Framework\Views\Exceptions\IdCantBeInferred;
 
 /**
  * @property string $template @required @part
- * @property string $modifier @part
+ * @property string $modifier @part @obsolete Use style `color`, `icon`,
+ *      `style` and other style properties instead
  * @property string $id @part
  * @property string $alias @part
  * @property string $id_ @required @part
@@ -22,6 +23,14 @@ use Osm\Framework\Views\Exceptions\IdCantBeInferred;
  * @property string $wrap_modifier @part Wrapper element CSS modifiers
  * @property bool $empty @part Indicate to the parent not to render wrap
  *      around this empty view
+ *
+ * Styles (each view class may support these or not):
+ *
+ * @property string $color @part
+ * @property string $icon @part
+ * @property string $style @part
+ *
+ * JS:
  *
  * @property array|null $model
  * @property string $view_model_script @required
@@ -77,6 +86,7 @@ class View extends Object_
             case 'view_model_script': return $this->getViewModelScript();
             case 'layout': return $osm_app->layout ?? Layout::new();
             case 'sorter': return $osm_app[Sorter::class];
+            case 'color': return $this->parent->color ?? null;
         }
         return parent::default($property);
     }

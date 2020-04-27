@@ -25,9 +25,17 @@ use Osm\Ui\Buttons\Views\Button;
 </p>
 <hr>
 <p>
-    @include(Button::new(['alias' => 'primary_dark', 'title' => '-dark', 'modifier' => '-dark']))
-    @include(Button::new(['alias' => 'outlined_primary_dark', 'title' => '-outlined -dark',
-        'modifier' => '-outlined -dark']))
+    @include(Button::new([
+        'alias' => 'primary_dark',
+        'title' => '-dark',
+        'color' => '-dark',
+    ]))
+    @include(Button::new([
+        'alias' => 'outlined_primary_dark',
+        'title' => '-outlined -dark',
+        'color' => '-dark',
+        'style' => '-outlined',
+    ]))
     @include(Button::new(['alias' => 'filled_primary_dark', 'title' => '-filled -dark',
         'modifier' => '-filled -dark']))
 </p>
