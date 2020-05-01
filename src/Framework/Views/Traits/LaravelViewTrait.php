@@ -34,7 +34,7 @@ trait LaravelViewTrait
             $rendering->current_view = $view;
 
             try {
-                return $view->rendering() ?? $view->rendered($callback());
+                return $view->rendering() ?? $view->rendered($callback(), $view->template);
             }
             finally {
                 $rendering->current_view = $currentView;

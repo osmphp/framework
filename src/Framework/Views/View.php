@@ -106,7 +106,11 @@ class View extends Object_
     public function rendering() {
     }
 
-    public function rendered($result) {
+    public function rendered($result, $template) {
+        if ($this->module->debug && isset($this->id_)) {
+            $this->addDebugViewModel($result, $template);
+        }
+
         return $result;
     }
 
@@ -179,5 +183,14 @@ class View extends Object_
     protected function sortViews($views) {
         $this->sorter->orderBy($views, 'sort_order');
         return $views;
+    }
+
+    protected function addDebugViewModel(&$result, $template) {
+        $result .= "<script>new Osm_Framework_Views.Debug(" .
+            "'#{$this->id_}', " . json_encode([
+                'view' => get_class($this),
+                'template' => $template,
+            ]) .
+            ")</script>\n";
     }
 }

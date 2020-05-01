@@ -115,4 +115,21 @@ class Page extends Container
             return (string)osm_t($s);
         }, $this->translations);
     }
+
+    protected function addDebugViewModel(&$result, $template) {
+        $script = "<script>new Osm_Framework_Views.Debug(" .
+            "'body', " . json_encode([
+                'view' => get_class($this),
+                'template' => $template,
+            ]) .
+            ")</script>\n";
+
+        if (($pos = mb_strpos($result, '</body>')) !== false) {
+            $result = mb_substr($result, 0, $pos) . $script .
+                mb_substr($result, $pos);
+        }
+        else {
+            $result .= $script;
+        }
+    }
 }
