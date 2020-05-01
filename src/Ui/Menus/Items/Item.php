@@ -6,14 +6,14 @@ use Osm\Core\App;
 use Osm\Core\Object_;
 use Osm\Core\Promise;
 use Osm\Ui\Menus\Module;
-use Osm\Ui\Menus\Views\Menu;
+use Osm\Ui\Menus\Views\MenuOld;
 
 /**
  * Dependencies:
  *      @property Module $module @required
  *      @property Type $type_ @required
  * Basic menu item properties:
- *      @property Menu $parent @required
+ *      @property MenuOld $parent @required
  *      @property string $name @part
  *      @property string $type @required @part
  *      @property string $modifier @part // CSS modifier

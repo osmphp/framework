@@ -29,21 +29,25 @@
     text-align: left;
     white-space: nowrap;
 
-    // remove blue highlight rectangle on touch
-    -webkit-tap-highlight-color: transparent;
+    @include remove-blue-highlight-rectangle-on-touch();
+
+    // two thing you can do visually with a menu item is to disable or hide it
+    // use -disabled and -hidden modifiers, respectively
 
     &:disabled,
     &.-disabled,
     &.-disabled:hover,
     &.-disabled:focus {
       color: $color--disabled;
-      pointer-events: none; /* don't handle mouse events */
-      cursor: default;
+      @include dont-handle-mouse-events();
     }
 
     &.-hidden {
       display: none;
     }
+
+    // each menu item class has its own CSS modifier specified
+    // in `type` property
 
     &.-separator {
       height: 1px;
@@ -54,12 +58,10 @@
     }
 
     &.-separator, &.-label {
-      pointer-events: none; /* don't handle mouse events */
-      cursor: default;
+      @include dont-handle-mouse-events();
     }
 
-    &.-indented {
-      padding-left: rem(32px);
+    &.-command {
     }
   }
 
@@ -70,12 +72,16 @@
 
   &__icon {
     /**
-     * Initially "min-width" was used here, but then we ran into the following problem. Initially menu is hidden and
-     * browser doesn't load actual icon due to some optimization. When menu is first shown, icon font is not assigned
-     * to <i> child element and for the very short time actual text such as "bold_action" is rendered using default
-     * font and in result menu__icon width was 87px, no 40px. At that very moment menu width (and icon width affected
-     * it) was used to calculate menu position. Very quickly browser applied correct font and rendered <i> element
-     * anew, but wrong menu width already affected incorrect menu position.
+     * Initially "min-width" was used here, but then we ran into the
+     * following problem. Initially menu is hidden and browser doesn't
+     * load actual icon due to some optimization. When menu is first shown,
+     * icon font is not assigned to <i> child element and for the very short
+     * time actual text such as "bold_action" is rendered using default
+     * font and in result menu__icon width was 87px, no 40px. At that very
+     * moment menu width (and icon width affected it) was used to calculate
+     * menu position. Very quickly browser applied correct font and rendered
+     * <i> element anew, but wrong menu width already affected incorrect
+     * menu position.
      */
     width: rem(40px);
 

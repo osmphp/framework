@@ -27,8 +27,6 @@ use Osm\Framework\Views\Exceptions\IdCantBeInferred;
  * Styles (each view class may support these or not):
  *
  * @property string $color @part
- * @property string $icon @part
- * @property string $style @part
  *
  * JS:
  *

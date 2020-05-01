@@ -2,9 +2,9 @@
 
 namespace Osm\Ui\PopupMenus\Views;
 
-use Osm\Ui\Menus\Views\Menu;
+use Osm\Ui\Menus\Views\MenuOld;
 
-class PopupMenu extends Menu
+class PopupMenu extends MenuOld
 {
     public $template = 'Osm_Ui_PopupMenus.popup-menu';
     public $view_model = 'Osm_Ui_PopupMenus.PopupMenu';

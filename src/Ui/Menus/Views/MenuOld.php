@@ -22,7 +22,7 @@ use Osm\Ui\Menus\Module;
 
  * @property Item $item @temp
  */
-class Menu extends View
+class MenuOld extends View
 {
     protected function default($property) {
         global $osm_app; /* @var App $osm_app */
