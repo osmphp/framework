@@ -1,5 +1,29 @@
 body.-debug {
   *[debug-view] {
-    background: red;
+    background: #ffcccc;
+
+    *[debug-view] {
+      background: #ffaaaa;
+
+      *[debug-view] {
+        background: #ff8888;
+
+        *[debug-view] {
+          background: #ff6666;
+
+          *[debug-view] {
+            background: #ff4444;
+
+            *[debug-view] {
+              background: #ff2222;
+
+              *[debug-view] {
+                background: #ff0000;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
