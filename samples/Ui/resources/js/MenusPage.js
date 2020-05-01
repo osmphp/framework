@@ -5,7 +5,7 @@ import PopupMenu from "Osm_Ui_Menus/PopupMenu";
 export default class MenusPage extends Controller {
     get events() {
         return Object.assign({}, super.events, {
-            'click #popup_test__button': 'onButtonClick'
+            'button:click #popup_test__button': 'onButtonClick'
         });
     }
 
