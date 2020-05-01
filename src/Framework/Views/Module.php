@@ -9,6 +9,7 @@ use Illuminate\View\FileViewFinder;
 use Osm\Core\App;
 use Osm\Core\Modules\BaseModule;
 use Illuminate\View\View as LaravelView;
+use Osm\Framework\Settings\Settings;
 
 /**
  * @property \Osm\Framework\Laravel\Module $laravel @required
@@ -16,6 +17,8 @@ use Illuminate\View\View as LaravelView;
  * @property FileViewFinder $laravel_view_finder @required
  * @property ViewFactory $laravel_view @required
  * @property BladeCompiler $laravel_blade_compiler @required
+ * @property Settings $settings @required
+ * @property bool $debug
  */
 class Module extends BaseModule
 {
@@ -57,6 +60,8 @@ class Module extends BaseModule
                     $this->laravel_view_finder, $this->laravel->events);
                 $viewFactory->setContainer($this->laravel->container);
                 return $viewFactory;
+            case 'settings': return $osm_app->settings;
+            case 'debug': return $this->settings->debug_views;
         }
         return parent::default($property);
     }

@@ -161,7 +161,9 @@ export default class Macaw {
 
     attachControllersToViewModels(element) {
         if (view_models.has(element)) {
-            this.attachControllersToViewModel(view_models.get(element));
+            view_models.get(element).forEach(viewModel => {
+                this.attachControllersToViewModel(viewModel);
+            });
         }
 
         Array.prototype.forEach.call(element.children, element => {

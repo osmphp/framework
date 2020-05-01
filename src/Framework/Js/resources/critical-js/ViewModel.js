@@ -6,7 +6,15 @@ export default class ViewModel {
         this.model = model || {};
         this.element = find(selector);
 
-        view_models.set(this.element, this);
+        if (view_models.has(this.element)) {
+            let viewModels = view_models.get(this.element);
+            viewModels.push(this);
+            view_models.set(this.element, viewModels);
+        }
+        else {
+            view_models.set(this.element, [this]);
+        }
+
         this.onAttach();
     }
 

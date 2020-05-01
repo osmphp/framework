@@ -38,6 +38,8 @@ use Osm\Framework\Cache\CacheItem;
  *      @property string $smtp_encryption @part
  *      @property string $smtp_user @required @part
  *      @property string $smtp_password @required @part
+ * @see \Osm\Framework\Views\Module:
+ *      @property bool $debug_views @part
  *
  * @see \Osm\Ui\SnackBars\Module:
  *      @property int $close_snack_bars_after @required @part
