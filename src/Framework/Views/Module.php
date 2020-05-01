@@ -8,7 +8,6 @@ use Illuminate\View\Engines\PhpEngine;
 use Illuminate\View\FileViewFinder;
 use Osm\Core\App;
 use Osm\Core\Modules\BaseModule;
-use Illuminate\View\View as LaravelView;
 use Osm\Framework\Settings\Settings;
 
 /**
@@ -22,10 +21,6 @@ use Osm\Framework\Settings\Settings;
  */
 class Module extends BaseModule
 {
-    public $traits = [
-        LaravelView::class => Traits\LaravelViewTrait::class,
-    ];
-
     protected function default($property) {
         global $osm_app; /* @var App $osm_app */
 
