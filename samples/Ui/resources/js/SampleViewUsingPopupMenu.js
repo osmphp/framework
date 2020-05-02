@@ -1,6 +1,6 @@
 import Controller from "Osm_Framework_Js/Controller";
 import macaw from "Osm_Framework_Js/vars/macaw";
-import PopupMenu from "Osm_Ui_Menus/PopupMenu";
+import PopupMenu from "Osm_Ui_Menus/PopupMenu/Menu";
 
 export default class SampleViewUsingPopupMenu extends Controller {
     get events() {

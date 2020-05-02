@@ -8,6 +8,9 @@
                 <li class="popup-menu__item {{ $child->type }}" id="{{$child->id_}}">
                     @include ($child)
                 </li>
+                @if ($child->view_model)
+                    {!! $child->view_model_script !!}
+                @endif
             @endif
         @endforeach
     </ul>

@@ -71,6 +71,7 @@ class Page extends Container
             case 'areas': return $osm_app->areas;
 
             case 'empty': return false;
+            case 'debug_selector': return 'body';
         }
         return parent::default($property);
     }
@@ -117,19 +118,13 @@ class Page extends Container
     }
 
     protected function addDebugViewModel(&$result, $template) {
-        $script = "<script>new Osm_Framework_Views.Debug(" .
-            "'body', " . json_encode([
-                'view' => get_class($this),
-                'template' => $template,
-            ]) .
-            ")</script>\n";
-
         if (($pos = mb_strpos($result, '</body>')) !== false) {
-            $result = mb_substr($result, 0, $pos) . $script .
+            $result = mb_substr($result, 0, $pos) .
+                $this->getDebugScript($template) .
                 mb_substr($result, $pos);
         }
         else {
-            $result .= $script;
+            $result .= $this->getDebugScript($template);
         }
     }
 }

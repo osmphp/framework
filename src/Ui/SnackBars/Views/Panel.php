@@ -9,6 +9,13 @@ class Panel extends View
 {
     public $template = 'Osm_Ui_SnackBars.panel';
 
+    protected function default($property) {
+        switch ($property) {
+            case 'debug_selector': return '.snack-bar-panel';
+        }
+        return parent::default($property);
+    }
+
     public function rendering() {
         global $osm_app; /* @var App $osm_app */
 

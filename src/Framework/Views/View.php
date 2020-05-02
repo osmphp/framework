@@ -32,6 +32,7 @@ use Osm\Framework\Views\Exceptions\IdCantBeInferred;
  *
  * @property array|null $model
  * @property string $view_model_script @required
+ * @property string $debug_selector @required @part
  *
  * @property \Osm\Framework\Views\Module $module @required
  * @property ViewFactory $laravel_view @required
@@ -85,6 +86,7 @@ class View extends Object_
             case 'layout': return $osm_app->layout ?? Layout::new();
             case 'sorter': return $osm_app[Sorter::class];
             case 'color': return $this->parent->color ?? null;
+            case 'debug_selector': return "#{$this->id_}";
         }
         return parent::default($property);
     }
@@ -107,7 +109,7 @@ class View extends Object_
     }
 
     public function rendered($result, $template) {
-        if ($this->module->debug && isset($this->id_)) {
+        if ($this->module->debug) {
             $this->addDebugViewModel($result, $template);
         }
 
@@ -185,12 +187,17 @@ class View extends Object_
         return $views;
     }
 
-    protected function addDebugViewModel(&$result, $template) {
-        $result .= "<script>new Osm_Framework_Views.Debug(" .
-            "'#{$this->id_}', " . json_encode([
+    protected function getDebugScript($template) {
+        /** @noinspection BadExpressionStatementJS */
+        return "<script>new Osm_Framework_Views.Debug(" .
+            "'{$this->debug_selector}', " . json_encode([
                 'view' => get_class($this),
                 'template' => $template,
             ]) .
             ")</script>\n";
+    }
+
+    protected function addDebugViewModel(&$result, $template) {
+        $result .= $this->getDebugScript($template);
     }
 }

@@ -10,5 +10,5 @@ use Osm\Framework\Views\Views\Container;
 class PopupMenu extends Container
 {
     public $template = 'Osm_Ui_Menus.popup_menu.menu';
-    public $view_model = 'Osm_Ui_Menus.PopupMenu';
+    public $view_model = 'Osm_Ui_Menus.PopupMenu.Menu';
 }

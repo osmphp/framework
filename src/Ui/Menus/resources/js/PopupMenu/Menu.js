@@ -8,7 +8,7 @@ import Detacher from "Osm_Framework_Js/Detacher";
 import Item from "./Item";
 import trigger from "Osm_Framework_Js/trigger";
 
-export default class PopupMenu extends Controller {
+export default class Menu extends Controller {
     get events() {
         return Object.assign({}, super.events, {
             'click document': 'mouse_handling.onDocumentClick',
