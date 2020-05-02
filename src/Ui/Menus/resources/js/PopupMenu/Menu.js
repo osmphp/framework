@@ -5,8 +5,6 @@ import forEachParentElement from "Osm_Framework_Js/forEachParentElement";
 import isScrollable from "Osm_Framework_Js/isScrollable";
 import macaw from "Osm_Framework_Js/vars/macaw";
 import Detacher from "Osm_Framework_Js/Detacher";
-import Item from "./Item";
-import trigger from "Osm_Framework_Js/trigger";
 
 export default class Menu extends Controller {
     get events() {
@@ -14,7 +12,6 @@ export default class Menu extends Controller {
             'click document': 'mouse_handling.onDocumentClick',
             'resize window': 'onResizeOrScroll',
             'scroll window': 'onResizeOrScroll',
-            'click .popup-menu__item.-command': 'onCommandClick',
         });
     }
 
@@ -86,11 +83,10 @@ export default class Menu extends Controller {
     }
 
     align() {
-        // create new instance every time we need to align menu. It uses intermediate calculation results
-        // as properties so it is should not be reused
-        let positioning = new Positioning(this);
-
-        positioning.align();
+        // create new instance every time we need to align menu.
+        // It uses intermediate calculation results as properties so it
+        // is should not be reused
+        (new Positioning(this)).align();
     }
 
     close() {
@@ -114,36 +110,5 @@ export default class Menu extends Controller {
         }
 
         this.align();
-    }
-
-    item(name) {
-        let element = document.getElementById(this.getAliasedId(`&__${name}__item`));
-        if (!element) {
-            throw new Error(`Menu item '${name}' not found`);
-        }
-
-        return new Item(this, name, element);
-    }
-
-    onCommandClick(e) {
-        let element = e.currentTarget;
-
-        if (!element.id) {
-            return;
-        }
-
-        if (!element.id.startsWith(this.element.id + '__')) {
-            return;
-        }
-
-        if (!element.id.endsWith('__item')) {
-            return;
-        }
-
-        let item = this.item(element.id.substr(this.element.id.length + '__'.length,
-            element.id.length - (this.element.id.length + '__'.length + '__item'.length)));
-
-        trigger(this.element, 'item:command', item);
-        trigger(this.element, `item:${item.name}:command`, item);
     }
 };

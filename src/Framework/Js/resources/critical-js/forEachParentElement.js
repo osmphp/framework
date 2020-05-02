@@ -22,7 +22,7 @@ export default function forEachParentElement(element, callback) {
         }
 
         let result = callback(parent);
-        if (callback(parent)) {
+        if (result) {
             return result;
         }
     }

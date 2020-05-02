@@ -17,8 +17,8 @@ return [
                 'button' => Button::new(['title' => osm_t("Open Popup Menu")]),
                 'menu' => PopupMenu::new([
                     'items' => [
-                        'command' => CommandItem::new([
-                            'title' => osm_t("Command"),
+                        'bold' => CommandItem::new([
+                            'title' => osm_t("Bold"),
                             'shortcut' => 'Ctrl+B',
                             'icon' => '-bold',
                         ]),

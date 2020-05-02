@@ -1,4 +1,14 @@
-import Controller from "Osm_Framework_Js/Controller";
+import Item from "./Item";
 
-export default class CommandItem extends Controller {
+export default class CommandItem extends Item {
+    get events() {
+        return Object.assign({}, super.events, {
+            'click': 'onClick',
+        });
+    }
+
+    onClick() {
+        this.trigger('command');
+        this.menu.close();
+    }
 };
