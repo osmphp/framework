@@ -7,12 +7,11 @@ global $osm_app; /* @var App $osm_app */;
 
 return [
     '@include' => ['base'],
-    '#page' => [
-        'title' => osm_t("Tests"),
-    ],
-    '#content' => [
-        'items' => [
-            'test_list' => View::new(['id_' => null, 'template' => 'Osm_Samples_Js.test_list']),
-        ],
+    '#page.title' => osm_t("Tests"),
+    '#content.items' => [
+        'test_list' => View::new([
+            'id_' => null,
+            'template' => 'Osm_Samples_Js.test_list',
+        ]),
     ],
 ];

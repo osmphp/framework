@@ -5,6 +5,7 @@ use Osm\Framework\Views\Views\Container;
 use Osm\Ui\Buttons\Views\Button;
 use Osm\Ui\Menus\Items\Type;
 use Osm\Ui\Menus\Views\CommandItem;
+use Osm\Ui\Menus\Views\LinkItem;
 use Osm\Ui\Menus\Views\PopupMenu;
 
 return [
@@ -21,6 +22,11 @@ return [
                             'title' => osm_t("Bold"),
                             'shortcut' => 'Ctrl+B',
                             'icon' => '-bold',
+                        ]),
+                        'home' => LinkItem::new([
+                            'title' => osm_t("Home"),
+                            'icon' => '-italic',
+                            'url' => osm_url('GET /tests/'),
                         ]),
                     ],
                 ]),

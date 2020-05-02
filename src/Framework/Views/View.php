@@ -198,6 +198,8 @@ class View extends Object_
     }
 
     protected function addDebugViewModel(&$result, $template) {
-        $result .= $this->getDebugScript($template);
+        if ($this->id_) {
+            $result .= $this->getDebugScript($template);
+        }
     }
 }
