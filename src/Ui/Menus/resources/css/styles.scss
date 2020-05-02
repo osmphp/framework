@@ -68,6 +68,8 @@
   &__link {
     text-decoration: none;
     color: inherit;
+    display: flex;
+    width: 100%;
   }
 
   &__icon {
