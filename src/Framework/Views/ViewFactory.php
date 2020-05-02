@@ -46,7 +46,8 @@ class ViewFactory extends Factory
             $rendering->current_view = $view_;
 
             try {
-                return $view_->rendering() ?? $view_->rendered($engine->get($path, $data), $view);
+                return $view_->rendering()
+                    ?? $view_->rendered($engine->get($path, $data), $path);
             }
             finally {
                 $rendering->current_view = $currentView;
