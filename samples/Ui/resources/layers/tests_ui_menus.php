@@ -4,6 +4,7 @@ use Osm\Framework\Views\View;
 use Osm\Framework\Views\Views\Container;
 use Osm\Ui\Buttons\Views\Button;
 use Osm\Ui\Menus\Items\Type;
+use Osm\Ui\Menus\Views\CheckboxItem;
 use Osm\Ui\Menus\Views\CommandItem;
 use Osm\Ui\Menus\Views\LinkItem;
 use Osm\Ui\Menus\Views\PopupMenu;
@@ -27,6 +28,11 @@ return [
                             'title' => osm_t("Home"),
                             'icon' => '-italic',
                             'url' => osm_url('GET /tests/'),
+                        ]),
+                        'underline' => CheckboxItem::new([
+                            'title' => osm_t("Underline"),
+                            'checked' => true,
+                            'shortcut' => 'Ctrl+U',
                         ]),
                     ],
                 ]),

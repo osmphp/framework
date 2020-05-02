@@ -7,6 +7,7 @@ export default class MenusPage extends Controller {
         return Object.assign({}, super.events, {
             'button:click #popup_test__button': 'onButtonClick',
             'menuitem:command:bold #popup_test__menu': 'onBold',
+            'menuitem:checked:underline #popup_test__menu': 'onUnderline',
         });
     }
 
@@ -20,5 +21,9 @@ export default class MenusPage extends Controller {
 
     onBold() {
         console.log('Bold');
+    }
+
+    onUnderline(e) {
+        console.log('Underline: ' + e.detail.checked);
     }
 };
