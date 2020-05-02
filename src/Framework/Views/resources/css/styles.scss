@@ -1,3 +1,6 @@
+// highlights server-side views and client-side controllers, the deeper
+// down the hierarchy, the darker is the highlight color. Intentionally
+// doesn't highlight the Page view
 body.-debug {
   *[debug-controllers], *[debug-view] {
     background: #ffcccc;
