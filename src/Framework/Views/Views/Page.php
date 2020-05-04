@@ -71,7 +71,7 @@ class Page extends Container
             case 'areas': return $osm_app->areas;
 
             case 'empty': return false;
-            case 'debug_selector': return 'body';
+            case 'selector': return 'body';
         }
         return parent::default($property);
     }

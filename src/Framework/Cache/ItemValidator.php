@@ -15,6 +15,10 @@ class ItemValidator extends Object_
 
     protected function validateParents(CacheItem $item, Object_ $obj) {
         foreach ($obj->iterateParts() as $part) {
+            if (!($part instanceof Object_)) {
+                continue;
+            }
+
             $this->validateParent($item, $part);
             $this->validateParents($item, $part);
         }

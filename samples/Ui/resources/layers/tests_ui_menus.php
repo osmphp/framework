@@ -7,12 +7,22 @@ use Osm\Ui\Menus\Items\Type;
 use Osm\Ui\Menus\Views\CheckboxItem;
 use Osm\Ui\Menus\Views\CommandItem;
 use Osm\Ui\Menus\Views\LinkItem;
+use Osm\Ui\Menus\Views\MenuBar;
 use Osm\Ui\Menus\Views\PopupMenu;
 
 return [
     '@include' => ['base'],
     '#page.modifier' => '-tests-ui-menus',
     '#page.items'  => [
+        'bar' => MenuBar::new([
+            'items' => [
+                'bold' => CommandItem::new([
+                    'title' => osm_t("Bold"),
+                    'shortcut' => 'Ctrl+B',
+                    'icon' => '-bold',
+                ]),
+            ],
+        ]),
         'popup_test' => Container::new([
             'template' => 'Osm_Samples_Ui.popup_test',
             'items' => [

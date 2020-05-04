@@ -32,7 +32,7 @@ use Osm\Framework\Views\Exceptions\IdCantBeInferred;
  *
  * @property array|null $model
  * @property string $view_model_script @required
- * @property string $debug_selector @required @part
+ * @property string $selector @required @part
  *
  * @property \Osm\Framework\Views\Module $module @required
  * @property ViewFactory $laravel_view @required
@@ -82,11 +82,12 @@ class View extends Object_
             case 'rendering': return $osm_app[Rendering::class];
             case 'iterator': return $osm_app[Iterator::class];
             case 'id_': return $this->inferId();
-            case 'view_model_script': return $this->getViewModelScript();
+            case 'view_model_script':
+                return $this->getViewModelScript($this->view_model, $this->model);
             case 'layout': return $osm_app->layout ?? Layout::new();
             case 'sorter': return $osm_app[Sorter::class];
             case 'color': return $this->parent->color ?? null;
-            case 'debug_selector': return "#{$this->id_}";
+            case 'selector': return "#{$this->id_}";
         }
         return parent::default($property);
     }
@@ -172,13 +173,10 @@ class View extends Object_
         }
     }
 
-    /**
-     * @return string
-     */
-    protected function getViewModelScript() {
+    protected function getViewModelScript($viewModel, $model = null) {
         /** @noinspection BadExpressionStatementJS */
-        return "<script>new {$this->view_model}('#{$this->id_}', " .
-            json_encode($this->model ? (object)$this->model : null) .
+        return "<script>new {$viewModel}('{$this->selector}', " .
+            json_encode($model ? (object)$model : null) .
             ")</script>";
     }
 
@@ -188,13 +186,10 @@ class View extends Object_
     }
 
     protected function getDebugScript($template) {
-        /** @noinspection BadExpressionStatementJS */
-        return "<script>new Osm_Framework_Views.Debug(" .
-            "'{$this->debug_selector}', " . json_encode([
-                'view' => get_class($this),
-                'template' => $template,
-            ]) .
-            ")</script>\n";
+        return $this->getViewModelScript('Osm_Framework_Views.Debug', [
+            'view' => get_class($this),
+            'template' => $template,
+        ]);
     }
 
     protected function addDebugViewModel(&$result, $template) {

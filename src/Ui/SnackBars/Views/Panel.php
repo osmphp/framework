@@ -11,7 +11,7 @@ class Panel extends View
 
     protected function default($property) {
         switch ($property) {
-            case 'debug_selector': return '.snack-bar-panel';
+            case 'selector': return '.snack-bar-panel';
         }
         return parent::default($property);
     }

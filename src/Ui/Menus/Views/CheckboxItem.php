@@ -12,8 +12,8 @@ namespace Osm\Ui\Menus\Views;
  */
 class CheckboxItem extends Item
 {
-    public $template = 'Osm_Ui_Menus.popup_menu.checkbox';
-    public $view_model = 'Osm_Ui_Menus.PopupMenu.CheckboxItem';
+    public $menu_item_template = 'Osm_Ui_Menus.{menu_type}.checkbox';
+    public $menu_item_view_model = 'Osm_Ui_Menus.{menu_type}.CheckboxItem';
     public $type = '-checkbox';
 
     public function rendering() {

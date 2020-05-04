@@ -14,7 +14,7 @@ use Osm\Core\Promise;
  */
 class LinkItem extends Item
 {
-    public $template = 'Osm_Ui_Menus.popup_menu.link';
-    public $view_model = 'Osm_Ui_Menus.PopupMenu.LinkItem';
+    public $menu_item_template = 'Osm_Ui_Menus.{menu_type}.link';
+    public $menu_item_view_model = 'Osm_Ui_Menus.{menu_type}.LinkItem';
     public $type = '-link';
 }

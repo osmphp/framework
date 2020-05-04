@@ -15,7 +15,7 @@ namespace Osm\Ui\Menus\Views;
  */
 class CommandItem extends Item
 {
-    public $template = 'Osm_Ui_Menus.popup_menu.command';
-    public $view_model = 'Osm_Ui_Menus.PopupMenu.CommandItem';
+    public $menu_item_template = 'Osm_Ui_Menus.{menu_type}.command';
+    public $menu_item_view_model = 'Osm_Ui_Menus.{menu_type}.CommandItem';
     public $type = '-command';
 }

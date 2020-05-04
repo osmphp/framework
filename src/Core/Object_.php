@@ -226,17 +226,13 @@ class Object_ implements \ArrayAccess
                 continue;
             }
 
-            if ($value instanceof Object_) {
-                yield $value;
+            if (!is_iterable($value)) {
+                yield $property => $value;
                 continue;
             }
 
-            if (is_iterable($value)) {
-                foreach ($value as $item) {
-                    if ($item instanceof Object_) {
-                        yield $item;
-                    }
-                }
+            foreach ($value as $index => $item) {
+                yield "{$property} {$index}" => $item;
             }
         }
     }
