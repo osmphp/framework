@@ -3,12 +3,11 @@ import Item from "../Item";
 export default class CommandItem extends Item {
     get events() {
         return Object.assign({}, super.events, {
-            'click': 'onClick',
+            'click &__button': 'onButtonClick',
         });
     }
 
-    onClick() {
+    onButtonClick() {
         this.trigger('command');
-        this.menu.close();
     }
 };

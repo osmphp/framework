@@ -1,17 +1,28 @@
 import merge from 'Osm_Framework_Js/merge';
 
-import PopupMenu from './PopupMenu/Menu';
-import PopupCommandItem from './PopupMenu/CommandItem';
-import PopupLinkItem from './PopupMenu/LinkItem';
-import PopupCheckboxItem from './PopupMenu/CheckboxItem';
+import PopupMenu_Menu from './PopupMenu/Menu';
+import PopupMenu_CommandItem from './PopupMenu/CommandItem';
+import PopupMenu_LinkItem from './PopupMenu/LinkItem';
+import PopupMenu_CheckboxItem from './PopupMenu/CheckboxItem';
+
+import MenuBar_Menu from './MenuBar/Menu';
+import MenuBar_CommandItem from './MenuBar/CommandItem';
+import MenuBar_LinkItem from './MenuBar/LinkItem';
+import MenuBar_CheckboxItem from './MenuBar/CheckboxItem';
 
 merge(window, {
     Osm_Ui_Menus: {
         PopupMenu: {
-            Menu: PopupMenu,
-            CommandItem: PopupCommandItem,
-            LinkItem: PopupLinkItem,
-            CheckboxItem: PopupCheckboxItem,
-        }
+            Menu: PopupMenu_Menu,
+            CommandItem: PopupMenu_CommandItem,
+            LinkItem: PopupMenu_LinkItem,
+            CheckboxItem: PopupMenu_CheckboxItem,
+        },
+        MenuBar: {
+            Menu: MenuBar_Menu,
+            CommandItem: MenuBar_CommandItem,
+            LinkItem: MenuBar_LinkItem,
+            CheckboxItem: MenuBar_CheckboxItem,
+        },
     }
 });

@@ -1,12 +1,12 @@
-import Controller from "Osm_Framework_Js/Controller";
 import Positioning from "./Positioning";
 import MouseHandling from "./MouseHandling";
 import forEachParentElement from "Osm_Framework_Js/forEachParentElement";
 import isScrollable from "Osm_Framework_Js/isScrollable";
 import macaw from "Osm_Framework_Js/vars/macaw";
 import Detacher from "Osm_Framework_Js/Detacher";
+import BaseMenu from "../Menu";
 
-export default class Menu extends Controller {
+export default class Menu extends BaseMenu {
     get events() {
         return Object.assign({}, super.events, {
             'click document': 'mouse_handling.onDocumentClick',
