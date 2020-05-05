@@ -13,10 +13,6 @@ export default class CheckboxItem extends Item {
         return document.getElementById(this.getAliasedId('&__button'));
     }
 
-    get checked_css_class() {
-        return '-filled';
-    }
-
     get checked() {
         return this.model.checked;
     }
@@ -25,10 +21,20 @@ export default class CheckboxItem extends Item {
         this.model.checked = value;
 
         if (value) {
-            addClass(this.button_element, this.checked_css_class);
+            if (this.model.checked_button_style) {
+                addClass(this.button_element, this.model.checked_button_style);
+            }
+            if (this.model.unchecked_button_style) {
+                removeClass(this.button_element, this.model.unchecked_button_style);
+            }
         }
         else {
-            removeClass(this.button_element, this.checked_css_class);
+            if (this.model.checked_button_style) {
+                removeClass(this.button_element, this.model.checked_button_style);
+            }
+            if (this.model.unchecked_button_style) {
+                addClass(this.button_element, this.model.unchecked_button_style);
+            }
         }
 
         this.trigger('checked', {checked: value});
