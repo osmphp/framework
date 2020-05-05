@@ -21,6 +21,16 @@ return [
                     'shortcut' => 'Ctrl+B',
                     'icon' => '-bold',
                 ]),
+                'home' => LinkItem::new([
+                    'title' => osm_t("Home"),
+                    'icon' => '-italic',
+                    'url' => osm_url('GET /tests/'),
+                ]),
+                'underline' => CheckboxItem::new([
+                    'title' => osm_t("Underline"),
+                    'checked' => true,
+                    'shortcut' => 'Ctrl+U',
+                ]),
             ],
         ]),
         'popup_test' => Container::new([

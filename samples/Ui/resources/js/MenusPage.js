@@ -8,6 +8,7 @@ export default class MenusPage extends Controller {
             'button:click #popup_test__button': 'onButtonClick',
 
             'menuitem:command:bold #bar': 'onBold',
+            'menuitem:checked:underline #bar': 'onUnderline',
 
             'menuitem:command:bold #popup_test__menu': 'onBold',
             'menuitem:checked:underline #popup_test__menu': 'onUnderline',
