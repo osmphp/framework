@@ -1,4 +1,5 @@
 @import '~Osm_Ui_Aba/_variables-and-mixins.scss';
+@import "~Osm_Ui_Buttons/_mixins.scss";
 
 @mixin popup-menu-color($color, $on-color) {
   .popup-menu__item {
@@ -9,3 +10,14 @@
   }
 }
 
+@mixin menu-bar-color($color, $on-color) {
+  background: $color;
+  color: $on-color;
+
+  .menu-bar__item .button {
+    @include button-color($on-color, $color);
+  }
+  .menu-bar__show-more .button {
+    @include button-color($on-color, $color);
+  }
+}

@@ -49,7 +49,7 @@
     // each menu item class has its own CSS modifier specified
     // in `type` property
 
-    &.-separator {
+    &.-delimiter {
       height: 1px;
       border-top: 1px solid $color--disabled;
       min-height: 1px;
@@ -57,7 +57,7 @@
       padding-bottom: 0;
     }
 
-    &.-separator, &.-label {
+    &.-delimiter, &.-label {
       @include dont-handle-mouse-events();
     }
 
@@ -132,5 +132,83 @@
     &.-dark {
       @include popup-menu-color($color--secondary-dark, $color--on-secondary-dark);
     }
+  }
+}
+
+.menu-bar {
+  display: flex;
+
+  &__items {
+    flex-grow: 1;
+    height: $height--button;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    @include no-list-formatting();
+  }
+
+  &__item {
+    margin: 0 rem(4px);
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &.-delimiter {
+      width: 1px;
+      border-left: 1px solid $color--disabled;
+      min-width: 1px;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+  }
+
+  &__show-more {
+    display: none;
+  }
+
+  &.-show-more &__show-more {
+    display: block;
+  }
+
+  &.-center &__items {
+    justify-content: center;
+  }
+
+  &.-primary {
+    @include menu-bar-color($color--primary, $color--on-primary);
+    &.-light {
+      @include menu-bar-color($color--primary-light, $color--on-primary-light);
+    }
+    &.-dark {
+      @include menu-bar-color($color--primary-dark, $color--on-primary-dark);
+    }
+  }
+  &.-secondary {
+    @include menu-bar-color($color--secondary, $color--on-secondary);
+    &.-light {
+      @include menu-bar-color($color--secondary-light, $color--on-secondary-light);
+    }
+    &.-dark {
+      @include menu-bar-color($color--secondary-dark, $color--on-secondary-dark);
+    }
+  }
+}
+
+.heading {
+  display: flex;
+
+  &__title {
+    flex-grow: 1;
+    padding-right: rem(60px);
+  }
+
+  &__menu {
+    margin: auto 0;
   }
 }
