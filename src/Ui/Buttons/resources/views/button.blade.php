@@ -2,11 +2,13 @@
 /* @var \Osm\Ui\Buttons\Views\Button $view */
 ?>
 @if ($view->url)
-    <a class="button {{ $view->color }} {{ $view->style }} {{ $view->modifier }}"
-        href="{{ $view->url }}" id="{{ $view->id_ }}">
+    <a href="{{ $view->url }}" id="{{ $view->id_ }}" class="button {{ $view->color }}
+        {{ $view->main ? '-filled' : '' }}
+        {{ $view->dangerous ? '-outlined -dangerous' : '' }}">
 @else
-    <button type="button" class="button {{ $view->color }} {{ $view->style }} {{ $view->modifier }}"
-        id="{{ $view->id_ }}">
+    <button type="button" id="{{ $view->id_ }}" class="button {{ $view->color }}
+        {{ $view->main ? '-filled' : '' }}
+        {{ $view->dangerous ? '-outlined -dangerous' : '' }}">
 @endif
 
 @if ($view->icon)

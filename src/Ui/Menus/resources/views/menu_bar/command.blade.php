@@ -6,4 +6,6 @@ use Osm\Ui\Buttons\Views\Button;
     'alias' => 'button',
     'title' => $view->title,
     'icon' => $view->icon,
+    'main' => $view->main,
+    'dangerous' => $view->dangerous,
 ]))

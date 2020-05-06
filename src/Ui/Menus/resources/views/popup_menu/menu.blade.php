@@ -5,7 +5,9 @@
     <ul class="popup-menu__items">
         @foreach ($view->items_ as $child)
             @if (!$child->empty)
-                <li class="popup-menu__item {{ $child->type }}" id="{{$child->id_}}">
+                <li id="{{$child->id_}}" class="popup-menu__item {{ $child->type }}
+                        {{ $child->main ? '-main' : '' }}
+                        {{ $child->dangerous ? '-dangerous' : '' }}">
                     @include ($child)
                 </li>
                 @if ($child->view_model)

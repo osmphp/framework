@@ -12,7 +12,8 @@ use Osm\Framework\Views\View;
  * Style properties:
  *
  * @property string $icon @part
- * @property string $style @part
+ * @property bool $main @part
+ * @property bool $dangerous @part
  */
 class Button extends View
 {

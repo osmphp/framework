@@ -7,6 +7,11 @@ use Osm\Framework\Views\View;
 /**
  * @property string $type @required @part
  *
+ * Style properties:
+ *
+ * @property bool $main @part
+ * @property bool $dangerous @part
+ *
  * More precise type spec:
  *
  * @property Menu $parent

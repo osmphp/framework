@@ -20,11 +20,13 @@ return [
                     'title' => osm_t("Bold"),
                     'shortcut' => 'Ctrl+B',
                     'icon' => '-bold',
+                    'main' => true,
                 ]),
                 'home' => LinkItem::new([
                     'title' => osm_t("Home"),
                     'icon' => '-italic',
                     'url' => osm_url('GET /tests/'),
+                    'dangerous' => true,
                 ]),
                 DelimiterItem::new(),
                 'underline' => CheckboxItem::new([
@@ -44,11 +46,13 @@ return [
                             'title' => osm_t("Bold"),
                             'shortcut' => 'Ctrl+B',
                             'icon' => '-bold',
+                            'main' => true,
                         ]),
                         'home' => LinkItem::new([
                             'title' => osm_t("Home"),
                             'icon' => '-italic',
                             'url' => osm_url('GET /tests/'),
+                            'dangerous' => true,
                         ]),
                         DelimiterItem::new(),
                         'underline' => CheckboxItem::new([

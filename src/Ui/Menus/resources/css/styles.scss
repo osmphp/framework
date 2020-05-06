@@ -63,6 +63,14 @@
 
     &.-command {
     }
+
+    &.-main {
+      font-weight: bold;
+    }
+
+    &.-dangerous {
+      color: $color--error;
+    }
   }
 
   &__link {
