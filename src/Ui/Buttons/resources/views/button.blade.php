@@ -10,7 +10,7 @@
 @endif
 
 @if ($view->icon)
-    <i class="icon {{$view->icon}}"></i>
+    <i class="button__icon icon {{$view->icon}}"></i>
 @endif
 {{ $view->title }}
 

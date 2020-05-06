@@ -1,6 +1,6 @@
 import Item from "../Item";
-import addClass from "Osm_Framework_Js/addClass";
-import removeClass from "Osm_Framework_Js/removeClass";
+import macaw from "Osm_Framework_Js/vars/macaw";
+import Button from "Osm_Ui_Buttons/Button";
 
 export default class CheckboxItem extends Item {
     get events() {
@@ -13,6 +13,10 @@ export default class CheckboxItem extends Item {
         return document.getElementById(this.getAliasedId('&__button'));
     }
 
+    get button() {
+        return macaw.get(this.button_element, Button);
+    }
+
     get checked() {
         return this.model.checked;
     }
@@ -20,22 +24,7 @@ export default class CheckboxItem extends Item {
     set checked(value) {
         this.model.checked = value;
 
-        if (value) {
-            if (this.model.checked_button_style) {
-                addClass(this.button_element, this.model.checked_button_style);
-            }
-            if (this.model.unchecked_button_style) {
-                removeClass(this.button_element, this.model.unchecked_button_style);
-            }
-        }
-        else {
-            if (this.model.checked_button_style) {
-                removeClass(this.button_element, this.model.checked_button_style);
-            }
-            if (this.model.unchecked_button_style) {
-                addClass(this.button_element, this.model.unchecked_button_style);
-            }
-        }
+        this.button.icon = value ? '-checked' : '-unchecked';
 
         this.trigger('checked', {checked: value});
     }
