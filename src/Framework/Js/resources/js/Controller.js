@@ -138,7 +138,7 @@ export default class Controller {
     }
 
     getAliasedId(alias) {
-        if (!this.element.id) {
+        if (!this.alias_base) {
             return alias.substr(3);
         }
         return this.alias_base + alias.substr(1);

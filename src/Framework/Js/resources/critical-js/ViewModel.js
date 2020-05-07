@@ -30,4 +30,16 @@ export default class ViewModel {
             window.removeEventListener('resize', this._onResize);
         }
     }
+
+    get alias_base() {
+        return this.element.id;
+    }
+
+    getAliasedId(alias) {
+        if (!this.alias_base) {
+            return alias.substr(3);
+        }
+        return this.alias_base + alias.substr(1);
+    }
+
 };
