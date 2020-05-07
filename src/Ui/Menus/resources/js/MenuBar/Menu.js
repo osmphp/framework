@@ -10,10 +10,14 @@ export default class Menu extends BaseMenu {
     }
 
     get mobile_menu() {
-        return macaw.get(this.getAliasedId('&___mobile_menu'), PopupMenu);
+        let selector = '#' + this.getAliasedId('&___mobile_menu');
+        return macaw.get(selector, PopupMenu);
     }
 
     onShowMore(e) {
-        this.mobile_menu.open(e.currentTarget);
+        this.mobile_menu.open(e.currentTarget, {
+            overlap_y: false,
+            leftwards: true,
+        });
     }
 };
