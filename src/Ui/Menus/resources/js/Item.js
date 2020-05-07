@@ -15,6 +15,23 @@ export default class Item extends Controller {
             : undefined;
     }
 
+    get hidden() {
+        return this.model.hidden;
+    }
+
+    set hidden(value) {
+        this.model.hidden = value;
+
+        if (value) {
+            this.element.classList.add('-hidden');
+        }
+        else {
+            this.element.classList.remove('-hidden');
+        }
+
+        this.menu.rearrangeDelimiters();
+    }
+
     trigger(event, data = {}) {
         let menu = this.menu;
         let name = this.name;

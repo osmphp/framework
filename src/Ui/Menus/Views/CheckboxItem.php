@@ -16,9 +16,14 @@ class CheckboxItem extends Item
     public $menu_item_view_model = 'Osm_Ui_Menus.{menu_type}.CheckboxItem';
     public $type = '-checkbox';
 
-    public function rendering() {
-        $this->model = osm_merge([
-            'checked' => $this->checked ?? false,
-        ], $this->model ?: []);
+    protected function default($property) {
+        switch ($property) {
+            case 'model': return array_merge(
+                ['checked' => $this->checked ?? false],
+                parent::default($property)
+            );
+        }
+
+        return parent::default($property);
     }
 }

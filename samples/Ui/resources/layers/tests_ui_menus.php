@@ -28,8 +28,9 @@ return [
                     'icon' => '-italic',
                     'url' => osm_url('GET /tests/'),
                     'dangerous' => true,
+                    //'hidden' => true,
                 ]),
-                DelimiterItem::new(),
+                //DelimiterItem::new(),
                 'underline' => CheckboxItem::new([
                     'title' => osm_t("Underline"),
                     'checked' => true,

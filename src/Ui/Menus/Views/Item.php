@@ -6,6 +6,7 @@ use Osm\Framework\Views\View;
 
 /**
  * @property string $type @required @part
+ * @property bool $hidden @part
  *
  * Style properties:
  *
@@ -32,6 +33,7 @@ abstract class Item extends View
                 return str_replace('{menu_type}',
                     studly_case($this->parent->type),
                     $this->menu_item_view_model);
+            case 'model': return $this->hidden ? ['hidden' => true] : [];
         }
         return parent::default($property);
     }

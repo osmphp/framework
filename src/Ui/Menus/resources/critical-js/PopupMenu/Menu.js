@@ -1,5 +1,8 @@
-import ViewModel from 'Osm_Framework_Js/ViewModel';
+import BaseMenu from '../Menu';
 
-export default class Menu extends ViewModel {
+export default class Menu extends BaseMenu {
+    get item_selector() {
+        return '.popup-menu__item';
+    }
 };
 

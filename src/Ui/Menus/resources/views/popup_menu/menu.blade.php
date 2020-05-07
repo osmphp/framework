@@ -13,6 +13,7 @@ $delimiter = '';
                 <li id="{{$child->id_}}" class="popup-menu__item {{ $child->type }}
                         {{ $child->main ? '-main' : '' }}
                         {{ $child->dangerous ? '-dangerous' : '' }}
+                        {{ $child->hidden ? '-hidden' : '' }}
                         {{ $delimiter }}">
                     @include ($child)
                 </li>

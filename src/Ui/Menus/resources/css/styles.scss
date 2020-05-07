@@ -42,14 +42,16 @@
       @include dont-handle-mouse-events();
     }
 
-    &.-hidden {
+    // -hidden is set from the View properties; -invisible is set by menu bar
+    // resize behavior
+    &.-hidden, &.-invisible {
       display: none;
     }
 
     // each menu item class has its own CSS modifier specified
     // in `type` property
 
-    &.-delimiter {
+    &.-delimiter, &.-delimiter-copy {
       border-top: 1px solid $color--disabled;
     }
 
@@ -90,10 +92,6 @@
      * menu position.
      */
     width: rem(40px);
-
-    &.-hidden {
-      visibility: hidden;
-    }
   }
 
   &__title {
@@ -162,14 +160,22 @@
       margin-right: 0;
     }
 
-    &.-delimiter {
+    &.-delimiter, &.-delimiter-copy {
       border-left: 1px solid $color--disabled;
       padding-left: rem(8px);
     }
+
+    &.-hidden {
+      display: none;
+    }
+
+    &.-hidden-but-consuming-space {
+      visibility: hidden;
+    }
   }
 
-  &__show-more {
-    //display: none;
+  &__show-more.-hidden {
+    visibility: hidden;
   }
 
   &.-show-more &__show-more {

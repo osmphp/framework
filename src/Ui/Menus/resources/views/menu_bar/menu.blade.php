@@ -10,7 +10,9 @@ $delimiter = '';
     <ul class="menu-bar__items">
         @foreach ($view->items_ as $child)
             @if (!$child->empty)
-                <li class="menu-bar__item {{ $child->type }} {{ $delimiter }}" id="{{$child->id_}}">
+                <li id="{{$child->id_}}" class="menu-bar__item {{ $child->type }}
+                    {{ $child->hidden ? '-hidden' : '' }}
+                    {{ $delimiter }}" >
                     @include($child)
                 </li>
                 @if ($child->view_model)
@@ -20,7 +22,7 @@ $delimiter = '';
             <?php $delimiter = $child instanceof DelimiterItem ? '-delimiter' : ''; ?>
         @endforeach
     </ul>
-    <div class="menu-bar__show-more">
+    <div class="menu-bar__show-more -hidden">
         @include($view->show_more)
         @include($view->mobile_menu)
     </div>

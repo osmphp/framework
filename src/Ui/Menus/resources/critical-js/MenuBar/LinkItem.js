@@ -1,5 +1,5 @@
-import ViewModel from 'Osm_Framework_Js/ViewModel';
+import Item from '../Item';
 
-export default class LinkItem extends ViewModel {
+export default class LinkItem extends Item {
 };
 
