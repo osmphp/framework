@@ -24,7 +24,7 @@ export default class CheckboxItem extends Item {
     set checked(value) {
         this.model.checked = value;
 
-        this.button.icon = value ? '-checked' : '-unchecked';
+        this.button.icon = value ? '-checked' : '-empty';
 
         this.trigger('checked', {checked: value});
     }

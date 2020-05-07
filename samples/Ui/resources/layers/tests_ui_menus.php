@@ -22,6 +22,7 @@ return [
                     'icon' => '-bold',
                     'main' => true,
                 ]),
+                DelimiterItem::new(),
                 'home' => LinkItem::new([
                     'title' => osm_t("Home"),
                     'icon' => '-italic',

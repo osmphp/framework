@@ -50,14 +50,10 @@
     // in `type` property
 
     &.-delimiter {
-      height: 1px;
       border-top: 1px solid $color--disabled;
-      min-height: 1px;
-      padding-top: 0;
-      padding-bottom: 0;
     }
 
-    &.-delimiter, &.-label {
+    &.-label {
       @include dont-handle-mouse-events();
     }
 
@@ -167,13 +163,9 @@
     }
 
     &.-delimiter {
-      width: 1px;
       border-left: 1px solid $color--disabled;
-      min-width: 1px;
-      padding-left: 0;
-      padding-right: 0;
+      padding-left: rem(8px);
     }
-
   }
 
   &__show-more {

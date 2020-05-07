@@ -130,14 +130,14 @@
     }
   }
 
-  &.-checked, &.-unchecked {
+  &.-checked, &.-empty {
     @extend .icon.-material;
     &::before {
       content: 'done';
     }
   }
 
-  &.-unchecked {
+  &.-empty {
     visibility: hidden;
   }
 

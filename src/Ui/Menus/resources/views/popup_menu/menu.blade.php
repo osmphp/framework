@@ -1,5 +1,10 @@
 <?php
 /* @var \Osm\Ui\Menus\Views\PopupMenu $view */
+
+use Osm\Ui\Menus\Views\DelimiterItem;
+
+$delimiter = '';
+
 ?>
 <nav class="popup-menu {{ $view->color }}" id="{{$view->id_}}">
     <ul class="popup-menu__items">
@@ -7,13 +12,15 @@
             @if (!$child->empty)
                 <li id="{{$child->id_}}" class="popup-menu__item {{ $child->type }}
                         {{ $child->main ? '-main' : '' }}
-                        {{ $child->dangerous ? '-dangerous' : '' }}">
+                        {{ $child->dangerous ? '-dangerous' : '' }}
+                        {{ $delimiter }}">
                     @include ($child)
                 </li>
                 @if ($child->view_model)
                     {!! $child->view_model_script !!}
                 @endif
             @endif
+            <?php $delimiter = $child instanceof DelimiterItem ? '-delimiter' : ''; ?>
         @endforeach
     </ul>
 </nav>

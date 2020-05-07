@@ -14,6 +14,5 @@ use Osm\Core\Promise;
  */
 class DelimiterItem extends Item
 {
-    public $menu_item_template = 'Osm_Ui_Menus.{menu_type}.delimiter';
-    public $type = '-delimiter';
+    public $empty = true;
 }
