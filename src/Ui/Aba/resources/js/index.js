@@ -1,5 +1,4 @@
 import fontSpy from './fontSpy';
-import $ from 'jquery';
 
 // TLDR; always trigger window resize after custom font is loaded, otherwise element size calculations may
 // be wrong.
@@ -14,4 +13,9 @@ import $ from 'jquery';
 // The solution is to trigger window resize after font is loaded. It is responsibility of each component to readjust
 // itself after each window resize event.
 
-fontSpy('Material Icons', { glyphs: 'format_bold', success: () => { $(window).trigger('resize'); }});
+fontSpy('Material Icons', {
+    glyphs: 'format_bold',
+    success: () => {
+        window.dispatchEvent(new UIEvent('resize'));
+    }
+});

@@ -1,4 +1,4 @@
-import Item from "../Item";
+import Item from "./Item";
 
 export default class CommandItem extends Item {
     get events() {
@@ -7,7 +7,21 @@ export default class CommandItem extends Item {
         });
     }
 
+    get mobile_menu_events() {
+        return Object.assign({}, super.mobile_menu_events, {
+            'menuitem:command': 'onMobileItemCommand',
+        });
+    }
+
     onButtonClick() {
+        this.trigger('command');
+    }
+
+    onMobileItemCommand(e) {
+        if (e.detail.name !== this.name) {
+            return;
+        }
+
         this.trigger('command');
     }
 };
