@@ -5,6 +5,7 @@ import isScrollable from "Osm_Framework_Js/isScrollable";
 import macaw from "Osm_Framework_Js/vars/macaw";
 import Detacher from "Osm_Framework_Js/Detacher";
 import BaseMenu from "../Menu";
+import trigger from "Osm_Framework_Js/trigger";
 
 export default class Menu extends BaseMenu {
     get events() {
@@ -98,6 +99,7 @@ export default class Menu extends BaseMenu {
         delete this.model.anchor_element;
         delete this.model.opened;
         this.$element.hide();
+        trigger(this.element, 'menu:close');
     }
 
     onResizeOrScroll() {

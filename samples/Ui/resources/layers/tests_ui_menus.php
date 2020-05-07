@@ -9,6 +9,7 @@ use Osm\Ui\Menus\Views\DelimiterItem;
 use Osm\Ui\Menus\Views\LinkItem;
 use Osm\Ui\Menus\Views\MenuBar;
 use Osm\Ui\Menus\Views\PopupMenu;
+use Osm\Ui\Menus\Views\SubmenuItem;
 
 return [
     '@include' => ['base'],
@@ -61,6 +62,24 @@ return [
                             'title' => osm_t("Underline"),
                             'checked' => true,
                             'shortcut' => 'Ctrl+U',
+                        ]),
+                        'submenu' => SubmenuItem::new([
+                            'title' => osm_t("Submenu"),
+                            'icon' => '-underline',
+                            'items' => [
+                                'bold' => CommandItem::new([
+                                    'title' => osm_t("Bold"),
+                                    'shortcut' => 'Ctrl+B',
+                                    'icon' => '-bold',
+                                    'main' => true,
+                                ]),
+                                'home' => LinkItem::new([
+                                    'title' => osm_t("Home"),
+                                    'icon' => '-italic',
+                                    'url' => osm_url('GET /tests/'),
+                                    'dangerous' => true,
+                                ]),
+                            ],
                         ]),
                     ],
                 ]),
