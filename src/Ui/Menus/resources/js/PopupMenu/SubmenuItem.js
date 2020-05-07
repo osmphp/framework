@@ -26,6 +26,7 @@ export default class SubmenuItem extends Item {
         return {
             'mouseenter': 'onSubmenuMouseEnter',
             'mouseleave': 'onSubmenuMouseLeave',
+            'menuitem': 'onMenuItemEvent',
         };
     }
 
@@ -101,5 +102,18 @@ export default class SubmenuItem extends Item {
         if (this.opened) {
             this.close(true);
         }
+    }
+
+    onMenuItemEvent(e) {
+        let data = Object.assign({}, e.detail);
+
+        let event = data.event;
+        delete data.event;
+
+        let name = `${this.name}.${data.name}`;
+        delete data.name;
+
+        this.trigger(event, data, name);
+        this.menu.close();
     }
 };

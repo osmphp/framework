@@ -10,7 +10,7 @@ export default class MenusPage extends Controller {
             'menuitem:command:bold #bar': 'onBold',
             'menuitem:checked:underline #bar': 'onUnderline',
 
-            'menuitem:command:bold #popup_test__menu': 'onBold',
+            'menuitem:command #popup_test__menu': 'onBold',
             'menuitem:checked:underline #popup_test__menu': 'onUnderline',
         });
     }
@@ -23,8 +23,8 @@ export default class MenusPage extends Controller {
         this.menu.open(e.currentTarget);
     }
 
-    onBold() {
-        console.log('Bold');
+    onBold(e) {
+        console.log(e.detail.name);
     }
 
     onUnderline(e) {

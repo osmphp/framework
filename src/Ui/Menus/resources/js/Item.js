@@ -32,9 +32,11 @@ export default class Item extends Controller {
         this.menu.rearrangeDelimiters();
     }
 
-    trigger(event, data = {}) {
+    trigger(event, data = {}, name = null) {
         let menu = this.menu;
-        let name = this.name;
+        if (!name) {
+            name = this.name;
+        }
 
         trigger(menu.element, `menuitem:${event}:${name}`, data);
         data.name = name;
