@@ -4,9 +4,11 @@ namespace Osm\Ui\Menus\Views;
 
 use Osm\Core\Exceptions\NotSupported;
 use Osm\Core\Object_;
+use Osm\Ui\Buttons\Views\Button;
 
 /**
- * @property PopupMenu $menu @required
+ * @property PopupMenu $mobile_menu @required
+ * @property Button $show_more @required
  */
 class MenuBar extends Menu
 {
@@ -14,9 +16,20 @@ class MenuBar extends Menu
     public $template = 'Osm_Ui_Menus.menu_bar.menu';
     public $view_model = 'Osm_Ui_Menus.MenuBar.Menu';
 
+    protected function default($property) {
+        switch ($property) {
+            case 'show_more': return Button::new([
+                'alias' => 'show_more',
+                'icon' => '-menu',
+            ]);
+        }
+
+        return parent::default($property);
+    }
+
     public function rendering() {
-        $this->menu = PopupMenu::new([
-            'alias' => 'menu',
+        $this->mobile_menu = PopupMenu::new([
+            'alias' => 'mobile_menu',
             'items' => $this->cloneObjects($this->items),
         ]);
 

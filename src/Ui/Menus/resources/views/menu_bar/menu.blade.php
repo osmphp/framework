@@ -8,7 +8,7 @@ use Osm\Ui\Buttons\Views\Button;use Osm\Ui\Menus\Items\Item;
         @foreach ($view->items_ as $child)
             @if (!$child->empty)
                 <li class="menu-bar__item {{ $child->type }}" id="{{$child->id_}}">
-                    @include ($child)
+                    @include($child)
                 </li>
                 @if ($child->view_model)
                     {!! $child->view_model_script !!}
@@ -17,7 +17,8 @@ use Osm\Ui\Buttons\Views\Button;use Osm\Ui\Menus\Items\Item;
         @endforeach
     </ul>
     <div class="menu-bar__show-more">
-        @include($view->menu)
+        @include($view->show_more)
+        @include($view->mobile_menu)
     </div>
 </nav>
 {!! $view->view_model_script !!}
