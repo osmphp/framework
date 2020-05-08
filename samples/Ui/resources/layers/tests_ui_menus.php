@@ -37,6 +37,29 @@ return [
                     'checked' => true,
                     'shortcut' => 'Ctrl+U',
                 ]),
+                'submenu' => SubmenuItem::new([
+                    'title' => osm_t("Submenu"),
+                    'icon' => '-underline',
+                    'items' => [
+                        'bold' => CommandItem::new([
+                            'title' => osm_t("Bold"),
+                            'shortcut' => 'Ctrl+B',
+                            'icon' => '-bold',
+                            'main' => true,
+                        ]),
+                        'home' => LinkItem::new([
+                            'title' => osm_t("Home"),
+                            'icon' => '-italic',
+                            'url' => osm_url('GET /tests/'),
+                            'dangerous' => true,
+                        ]),
+                        'underline' => CheckboxItem::new([
+                            'title' => osm_t("Underline"),
+                            'checked' => true,
+                            'shortcut' => 'Ctrl+U',
+                        ]),
+                    ],
+                ]),
             ],
         ]),
         'popup_test' => Container::new([

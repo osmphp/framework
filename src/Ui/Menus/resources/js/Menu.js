@@ -16,6 +16,17 @@ export default class Menu extends Controller {
     }
 
     getItem(name) {
-        return macaw.get(this.getItemElement(name), Item);
+        let pos = name.indexOf('.');
+        if (pos === -1) {
+            return macaw.get(this.getItemElement(name), Item);
+        }
+
+        let submenuItem = macaw.get(this.getItemElement(name.substr(0, pos)),
+            Item);
+        if (!submenuItem) {
+            return null;
+        }
+
+        return submenuItem.submenu.getItem(name.substr(pos + 1));
     }
 };
