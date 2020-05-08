@@ -67,12 +67,15 @@ export default class SubmenuItem extends Item {
 
     open(withClick) {
         this.submenu.open(this.element, {
-            leftwards: this.model.leftwards,
-            upwards: this.model.upwards,
+            leftwards: this.menu.model.leftwards,
+            upwards: this.menu.model.upwards,
             overlap_x: false,
         });
         this.opened = true;
         this.openedWithClick = withClick;
+
+        this.menu.model.child_menu = this.submenu;
+        this.menu.align();
     }
 
     close(withClick) {
@@ -85,6 +88,7 @@ export default class SubmenuItem extends Item {
         requestAnimationFrame(() => {
             if (!this.opened) {
                 this.submenu.close();
+                this.menu.model.child_menu = null;
             }
         });
     }
