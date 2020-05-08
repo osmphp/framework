@@ -16,6 +16,8 @@ import fontSpy from './fontSpy';
 fontSpy('Material Icons', {
     glyphs: 'format_bold',
     success: () => {
-        window.dispatchEvent(new UIEvent('resize'));
+        requestAnimationFrame(() => {
+            window.dispatchEvent(new UIEvent('resize'));
+        });
     }
 });
