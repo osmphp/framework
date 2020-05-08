@@ -6,7 +6,9 @@ import trigger from "Osm_Framework_Js/trigger";
 export default class Menu extends BaseMenu {
     get events() {
         return Object.assign({}, super.events, {
-            'button:click &___show_more': 'onShowMore',
+            'mouseenter &___show_more': 'onShowMoreMouseEnter',
+            'mouseleave &___show_more': 'onShowMoreMouseLeave',
+            'button:click &___show_more': 'onShowMoreClick',
             'menuitem:checked': 'onItemChecked',
         });
     }
@@ -15,12 +17,18 @@ export default class Menu extends BaseMenu {
         return {
             'menuitem': 'onMobileItemEvent',
             'menuitem:checked': 'onMobileItemChecked',
+            'menu:mouseover': 'onMobileMouseOver',
+            'menu:close': 'onMobileClose',
         };
     }
 
     get mobile_menu() {
         let selector = '#' + this.getAliasedId('&___mobile_menu');
         return macaw.get(selector, PopupMenu);
+    }
+
+    get show_more_element() {
+        return document.getElementById(this.getAliasedId('&___show_more'));
     }
 
     onAttach() {
@@ -37,10 +45,61 @@ export default class Menu extends BaseMenu {
         super.onDetach();
     }
 
-    onShowMore(e) {
-        this.mobile_menu.open(e.currentTarget, {
+    onShowMoreMouseEnter() {
+        if (!this.mobile_menu_opened) {
+            this.openMobileMenu(false);
+        }
+
+        this.mobile_menu_opened = true;
+    }
+
+    onShowMoreMouseLeave() {
+        this.closeMobileMenu(false);
+    }
+
+    onMobileMouseOver(e) {
+        if (e.detail.value) {
+            this.mobile_menu_opened = true;
+        }
+        else {
+            this.closeMobileMenu(false);
+        }
+    }
+
+    onShowMoreClick() {
+        if (this.mobile_menu_opened) {
+            this.closeMobileMenu(true);
+            return;
+        }
+
+        this.openMobileMenu(true);
+    }
+
+    onMobileClose() {
+        this.mobile_menu_opened = false;
+        this.mobile_menu_opened_with_click = false;
+    }
+
+    openMobileMenu(withClick) {
+        this.mobile_menu.open(this.show_more_element, {
             overlap_y: false,
             leftwards: true,
+        });
+        this.mobile_menu_opened = true;
+        this.mobile_menu_opened_with_click = withClick;
+    }
+
+    closeMobileMenu(withClick) {
+        if (this.mobile_menu_opened_with_click && !withClick) {
+            return;
+        }
+
+        this.mobile_menu_opened = false;
+        this.mobile_menu_opened_with_click = false;
+        requestAnimationFrame(() => {
+            if (!this.mobile_menu_opened) {
+                this.mobile_menu.close();
+            }
         });
     }
 

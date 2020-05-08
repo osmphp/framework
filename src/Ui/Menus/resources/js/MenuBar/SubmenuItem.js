@@ -18,8 +18,7 @@ export default class SubmenuItem extends Item {
 
     get submenu_events() {
         return {
-            'mouseenter': 'onSubmenuMouseEnter',
-            'mouseleave': 'onSubmenuMouseLeave',
+            'menu:mouseover': 'onSubmenuMouseOver',
             'menuitem': 'onMenuItemEvent',
             'menu:close': 'onSubmenuClose',
         };
@@ -49,12 +48,13 @@ export default class SubmenuItem extends Item {
         this.close(false);
     }
 
-    onSubmenuMouseEnter() {
-        this.opened = true;
-    }
-
-    onSubmenuMouseLeave() {
-        this.close(false);
+    onSubmenuMouseOver(e) {
+        if (e.detail.value) {
+            this.opened = true;
+        }
+        else {
+            this.close(false);
+        }
     }
 
     onSubmenuClose() {

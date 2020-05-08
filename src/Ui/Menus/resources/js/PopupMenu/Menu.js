@@ -13,6 +13,8 @@ export default class Menu extends BaseMenu {
             'click document': 'mouse_handling.onDocumentClick',
             'resize window': 'onResizeOrScroll',
             'scroll window': 'onResizeOrScroll',
+            'mouseenter': 'onMouseEnter',
+            'mouseleave': 'onMouseLeave',
         });
     }
 
@@ -54,6 +56,8 @@ export default class Menu extends BaseMenu {
         macaw.attachControllerToElement(Detacher, this.element.parentNode, null,
             {element_to_be_detached: this.element});
         document.body.appendChild(this.element);
+        this._mouseover = 0;
+        this._last_mouseover = 0;
     }
 
     onDetach() {
@@ -113,5 +117,34 @@ export default class Menu extends BaseMenu {
         }
 
         this.align();
+    }
+
+    onMouseEnter() {
+        this.mouseover++;
+    }
+
+    onMouseLeave() {
+        this.mouseover--;
+    }
+
+    get mouseover() {
+        return this._mouseover;
+    }
+
+    set mouseover(value) {
+        this._mouseover = value;
+
+        if (this._last_mouseover === this._mouseover) {
+            return;
+        }
+
+        this.element.dispatchEvent(new CustomEvent('menu:mouseover', {
+            detail: {
+                value: this._mouseover > 0,
+                delta: this._mouseover - this._last_mouseover,
+            },
+        }));
+
+        this._last_mouseover = this._mouseover;
     }
 };

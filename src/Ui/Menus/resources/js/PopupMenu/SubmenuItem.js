@@ -24,8 +24,7 @@ export default class SubmenuItem extends Item {
 
     get submenu_events() {
         return {
-            'mouseenter': 'onSubmenuMouseEnter',
-            'mouseleave': 'onSubmenuMouseLeave',
+            'menu:mouseover': 'onSubmenuMouseOver',
             'menuitem': 'onMenuItemEvent',
         };
     }
@@ -56,12 +55,14 @@ export default class SubmenuItem extends Item {
         this.close(false);
     }
 
-    onSubmenuMouseEnter() {
-        this.opened = true;
-    }
-
-    onSubmenuMouseLeave() {
-        this.close(false);
+    onSubmenuMouseOver(e) {
+        this.menu.mouseover += e.detail.delta;
+        if (e.detail.value) {
+            this.opened = true;
+        }
+        else {
+            this.close(false);
+        }
     }
 
     open(withClick) {
