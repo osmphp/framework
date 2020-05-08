@@ -61,7 +61,7 @@ export default class Menu extends BaseMenu {
         super.onDetach();
     }
 
-    open(anchorElement, options) {
+    open(anchorElement, options = {}) {
         this.model = Object.assign({
             anchor_element: anchorElement,
             leftwards: false,
@@ -69,11 +69,12 @@ export default class Menu extends BaseMenu {
             overlap_x: true,
             overlap_y: true,
             opening: true,
-            opened: true
+            opened: true,
         }, options);
 
         this.$element.show();
         this.align();
+
         if (this.model.opened) { // after align() call menu can get closed
             this.addListenerToScrollableParents();
         }
