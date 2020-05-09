@@ -13,6 +13,7 @@
 // The following tool aws used to pick these colors:
 // https://material.io/tools/color/#!/?view.left=0&view.right=0&primary.color=26b1ed&secondary.color=00872d
 
+//region: brand color pairs
 $color--primary-dark: #0082ba;
 $color--on-primary-dark: black;
 
@@ -30,6 +31,7 @@ $color--on-secondary: white;
 
 $color--secondary-light: #4cb85a;
 $color--on-secondary-light: black;
+//endregion
 
 // Theme defines the following **system** colors independent of brand colors
 

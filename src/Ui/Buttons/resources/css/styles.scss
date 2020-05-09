@@ -35,9 +35,6 @@
   }
 
   @include button-color($color--primary, $color--on-primary);
-  &.-dangerous {
-    @include button-color($color--error, $color--on-primary);
-  }
   &.-light {
     @include button-color($color--primary-light, $color--on-primary-light);
   }
@@ -53,5 +50,9 @@
     &.-dark {
       @include button-color($color--secondary-dark, $color--on-secondary-dark);
     }
+  }
+
+  &.-dangerous {
+    @include button-color($color--error, $color--on-primary);
   }
 }

@@ -186,22 +186,42 @@
     justify-content: center;
   }
 
+  @include menu-bar-color($color--primary, transparent);
   &.-primary {
-    @include menu-bar-color($color--primary, $color--on-primary);
     &.-light {
-      @include menu-bar-color($color--primary-light, $color--on-primary-light);
+      @include menu-bar-color($color--primary-light, transparent);
     }
     &.-dark {
-      @include menu-bar-color($color--primary-dark, $color--on-primary-dark);
+      @include menu-bar-color($color--primary-dark, transparent);
     }
   }
   &.-secondary {
-    @include menu-bar-color($color--secondary, $color--on-secondary);
+    @include menu-bar-color($color--secondary, transparent);
     &.-light {
-      @include menu-bar-color($color--secondary-light, $color--on-secondary-light);
+      @include menu-bar-color($color--secondary-light, transparent);
     }
     &.-dark {
-      @include menu-bar-color($color--secondary-dark, $color--on-secondary-dark);
+      @include menu-bar-color($color--secondary-dark, transparent);
+    }
+  }
+  &.-main {
+    &.-primary {
+      @include menu-bar-color($color--on-primary, $color--primary);
+      &.-light {
+        @include menu-bar-color($color--on-primary-light, $color--primary-light);
+      }
+      &.-dark {
+        @include menu-bar-color($color--on-primary-dark, $color--primary-dark);
+      }
+    }
+    &.-secondary {
+      @include menu-bar-color($color--on-secondary, $color--secondary);
+      &.-light {
+        @include menu-bar-color($color--on-secondary-light, $color--secondary-light);
+      }
+      &.-dark {
+        @include menu-bar-color($color--on-secondary-dark, $color--secondary-dark);
+      }
     }
   }
 }

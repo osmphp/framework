@@ -7,6 +7,8 @@ use Osm\Core\Object_;
 use Osm\Ui\Buttons\Views\Button;
 
 /**
+ * @property bool $main @part If set, attracts more attention
+ *
  * @property PopupMenu $mobile_menu @required
  * @property Button $show_more @required
  */
