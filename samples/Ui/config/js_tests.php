@@ -9,6 +9,7 @@ return [
     'ui' => [
         'title' => osm_t("UI Components"),
         'children' => [
+            'colors' => ['title' => osm_t("Colors"), 'route' => 'GET /tests/ui/colors'],
             'containers' => ['title' => osm_t("Containers"), 'route' => 'GET /tests/ui/containers'],
             'typography' => ['title' => osm_t("Typography"), 'route' => 'GET /tests/ui/typography'],
             'buttons' => ['title' => osm_t("Buttons"), 'route' => 'GET /tests/ui/buttons'],

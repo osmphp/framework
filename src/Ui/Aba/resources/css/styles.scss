@@ -24,8 +24,14 @@ button {
 
 body {
   margin:0;
-  background: $color--background;
-  color: $color--on-background;
+
+  @each $bg in $bg-colors { @include bg-rule($bg) {
+    background-color: bg-color($bg);
+
+    @each $fg in $fg-colors { @include fg-rule($bg, $fg) {
+      color: fg-color($bg, $fg);
+    }}
+  }}
 
   & > * {
     // The following is a bad idea as all dynamically popping up elements as direct children of body and we

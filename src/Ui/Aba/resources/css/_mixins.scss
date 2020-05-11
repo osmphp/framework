@@ -39,3 +39,164 @@ $placeholder-color: $color--primary-light;
 @mixin remove-blue-highlight-rectangle-on-touch() {
   -webkit-tap-highlight-color: transparent;
 }
+
+@function prefixed-selector($selector, $prefix) {
+  @if str-length($selector) == 0 {
+    @return $selector;
+  }
+
+  $result: "";
+  $pos: str-index($selector, " ");
+
+  @while $pos {
+    $result: $result + $prefix + str-slice($selector, 1, $pos - 1);
+
+    $selector: str-slice($selector, $pos + 1);
+    $pos: str-index($selector, " ");
+  }
+
+  $result: $result + $prefix + $selector;
+
+  @return $result;
+}
+
+@function bg($selector) {
+  @for $i from 1 through length($bg-colors) {
+    $bg: nth($bg-colors, $i);
+    @if nth($bg, 1) == $selector {
+      @return $bg;
+    }
+  }
+
+  @return null;
+}
+
+@function fg($selector) {
+  @for $i from 1 through length($fg-colors) {
+    $fg: nth($fg-colors, $i);
+    @if nth($fg, 1) == $selector {
+      @return $fg;
+    }
+  }
+
+  @return null;
+}
+
+@function bg-color($bg) {
+  @return nth($bg, 3);
+}
+
+@function dark($color) {
+  @return lightness($color) < 40;
+}
+
+@function fg-default-color($bg, $fg) {
+  @return if(dark(bg-color($bg)), nth($fg, 4), nth($fg, 3));
+}
+
+@function fg-emotion-color($bg, $fg) {
+  $type: nth($bg, 2);
+
+  @if ($type == "emotion") {
+    @return null;
+  }
+
+  @return fg-default-color($bg, $fg);
+
+}
+
+@function fg-brand-color($bg, $fg) {
+  $type: nth($bg, 2);
+  $selector: nth($fg, 1);
+  $default-fg: fg("");
+
+  @if ($type == "emotion") {
+    @return null;
+  }
+
+  @if ($type == "brand") {
+    @return null;
+  }
+
+  $brand-bg: bg($selector);
+  @if dark(bg-color($bg)) == dark(bg-color($brand-bg)) {
+    @return fg-default-color($bg, $default-fg);
+  }
+
+  @return bg-color($brand-bg);
+
+}
+
+@function fg-highlighted-color($bg) {
+  $color: bg-color($bg);
+
+  @return if(dark($color),
+    rgba(lighten($color, 30), 0.05),
+    rgba(darken($color, 30), 0.05));
+
+}
+
+@function fg-pressed-color($bg) {
+  $color: bg-color($bg);
+
+  @return if(dark($color),
+    rgba(lighten($color, 35), 0.05),
+    rgba(darken($color, 35), 0.05));
+}
+
+@function fg-delimiter-color($bg) {
+  $default-fg: fg("");
+
+  @return rgba(fg-default-color($bg, $default-fg), 0.5);
+}
+
+@function fg-color($bg, $fg) {
+  $type: nth($fg, 2);
+  $selector: nth($fg, 1);
+
+  @if ($type == "brand") {
+    @return fg-brand-color($bg, $fg);
+  }
+  @if ($type == "emotion") {
+    @return fg-emotion-color($bg, $fg);
+  }
+  @if ($type == "state") {
+    @if ($selector == "delimiter") {
+      @return fg-delimiter-color($bg);
+    }
+    @if ($selector == "highlighted") {
+      @return fg-highlighted-color($bg);
+    }
+    @if ($selector == "pressed") {
+      @return fg-pressed-color($bg);
+    }
+  }
+
+  @return fg-default-color($bg, $fg);
+}
+
+@mixin bg-rule($bg) {
+  $selector: prefixed-selector(nth($bg, 1), ".-on-");
+
+  @if str-length($selector) == 0 {
+    @content
+  } @else {
+    #{$selector} {
+      @content
+    }
+  }
+}
+
+@mixin fg-rule($bg, $fg) {
+  @if nth($fg, 2) != "state" and fg-color($bg, $fg) {
+    $selector: prefixed-selector(nth($fg, 1), ".-");
+    @if $selector == "" {
+      @content
+    } @else {
+      &#{$selector}, & #{$selector} {
+        @content
+      }
+    }
+  }
+}
+

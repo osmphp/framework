@@ -43,3 +43,21 @@ body.-tests-ui-menus {
 
 .product-grid {
 }
+
+body.-tests-ui-colors {
+  @each $bg in $bg-colors { @include bg-rule($bg) {
+    .-delimiter {
+      color: fg-delimiter-color($bg);
+    }
+  }}
+
+  .__palette {
+    td {
+      text-align: center;
+    }
+  }
+
+  .__color {
+    border: solid 1px currentColor;
+  }
+}

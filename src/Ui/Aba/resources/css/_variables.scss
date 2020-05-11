@@ -14,44 +14,64 @@
 // https://material.io/tools/color/#!/?view.left=0&view.right=0&primary.color=26b1ed&secondary.color=00872d
 
 //region: brand color pairs
-$color--primary-dark: #0082ba;
-$color--on-primary-dark: black;
-
-$color--primary: #26b1ed;
-$color--on-primary: black;
-
-$color--primary-light: #70e3ff;
-$color--on-primary-light: black;
-
-$color--secondary-dark: #005900;
-$color--on-secondary-dark: white;
-
-$color--secondary: #00872d;
-$color--on-secondary: white;
-
-$color--secondary-light: #4cb85a;
-$color--on-secondary-light: black;
 //endregion
 
 // Theme defines the following **system** colors independent of brand colors
 
-$color--background: white;
-$color--on-background: black;
+//region background colors
 
+// default theme background color
+$color--background: #ffffff; // white
+
+// brand colors and variations
+$color--primary-dark: #0082ba;
+$color--primary: #26b1ed;
+$color--primary-light: #70e3ff;
+$color--secondary-dark: #005900;
+$color--secondary: #00872d;
+$color--secondary-light: #4cb85a;
+
+// emotion colors
+$color--success: #006400; // darkgreen
+$color--warning: #a77908;
+$color--error: #8b0000; // darkred
+
+// other backgrounds
+$color--space: #e5e5e5;
+$color--message: #323232;
+
+//endregion
+//region foreground colors
+
+// default color
+$color--default: #000000; // black
+$color--default-on-dark: #ffffff; // white
+
+// emotion color light counterparts
+$color--success-on-dark: #7abe85;
+$color--warning-on-dark: #ecd2a2;
+$color--error-on-dark: #bc7b7c;
+
+// other colors
+$color--disabled: #4e4d4d;
+$color--disabled-on-dark: #c7c7c7;
+
+//endregion
+
+// obsolete
+$color--on-background: black;
 $color--surface: white;
 $color--on-surface: black;
-
-$color--error: darkred;
-
-$color--disabled: lightgrey;
-
+$color--on-primary-dark: black;
+$color--on-primary: black;
+$color--on-primary-light: black;
+$color--on-secondary-dark: white;
+$color--on-secondary: white;
+$color--on-secondary-light: black;
 $color--page-dialog: #e5e5e5;
-
 $color--input--filled: #e5e5e5;
-
 $color--snack-bar: #323232;
 $color--on-snack-bar: #b1b1b1;
-
 $color--data-table-line: lightgrey;
 
 /*-------------------------------------------------------------------*\
@@ -83,3 +103,65 @@ $narrow-page-width: 800px;
 $page-padding: rem(12px);               // padding INSIDE of page width
 
 @import './_variables-custom.scss';
+
+$bg-colors: (
+  // CSS class root   type        color   highlight pressed
+  (""                 "default"  $color--background),
+
+  ("primary"          "brand"    $color--primary),
+  ("primary dark"     "brand"    $color--primary-dark),
+  ("primary light"    "brand"    $color--primary-light),
+  ("secondary"        "brand"    $color--secondary),
+  ("secondary dark"   "brand"    $color--secondary-dark),
+  ("secondary light"  "brand"    $color--secondary-light),
+
+  ("success"          "emotion"  $color--success),
+  ("warning"          "emotion"  $color--warning),
+  ("error"            "emotion"  $color--error),
+  ("danger"           "emotion"  $color--error),
+
+  ("space"            "other"    $color--space),
+  ("message"          "other"    $color--message),
+);
+
+$fg-colors: (
+  // CSS class root   type       on light bg         on dark bg
+  (""                 "default"  $color--default     $color--default-on-dark),
+
+  ("primary"          "brand"),
+  ("primary dark"     "brand"),
+  ("primary light"    "brand"),
+  ("secondary"        "brand"),
+  ("secondary dark"   "brand"),
+  ("secondary light"  "brand"),
+
+  ("success"          "emotion"  $color--success     $color--success-on-dark),
+  ("warning"          "emotion"  $color--warning     $color--warning-on-dark),
+  ("error"            "emotion"  $color--error       $color--error-on-dark),
+  ("danger"           "emotion"  $color--error       $color--error-on-dark),
+
+  ("delimiter"        "state"),
+  ("highlighted"      "state"),
+  ("pressed"          "state"),
+  ("disabled"         "other"    $color--disabled    $color--disabled-on-dark),
+);
+
+$colors: (
+  "": (
+    "background-color": white,
+    "colors": (
+      "": if(lightness(#ffa07a) > 50, black, white),
+      ".-primary": $color--primary,
+      ".-primary.-dark": $color--primary-dark,
+      ".-primary.-light": $color--primary-light,
+      ".-danger": $color--error,
+    ),
+  ),
+  ".-on-primary": (
+    "background-color": $color--primary,
+    "colors": (
+      "": $color--on-primary,
+      ".-danger": $color--error-on-dark,
+    ),
+  ),
+);

@@ -102,4 +102,12 @@ class Web extends Controller
             // bind data to views
         ]);
     }
+
+    public function colorsPage() {
+        return osm_layout('tests_ui_colors', [
+            '#page.title' => osm_t("Colors"),
+
+            // bind data to views
+        ]);
+    }
 }
