@@ -145,23 +145,3 @@ $fg-colors: (
   ("pressed"          "state"),
   ("disabled"         "other"    $color--disabled    $color--disabled-on-dark),
 );
-
-$colors: (
-  "": (
-    "background-color": white,
-    "colors": (
-      "": if(lightness(#ffa07a) > 50, black, white),
-      ".-primary": $color--primary,
-      ".-primary.-dark": $color--primary-dark,
-      ".-primary.-light": $color--primary-light,
-      ".-danger": $color--error,
-    ),
-  ),
-  ".-on-primary": (
-    "background-color": $color--primary,
-    "colors": (
-      "": $color--on-primary,
-      ".-danger": $color--error-on-dark,
-    ),
-  ),
-);
