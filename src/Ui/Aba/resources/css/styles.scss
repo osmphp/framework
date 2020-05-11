@@ -25,13 +25,14 @@ button {
 body {
   margin:0;
 
-  @each $bg in $bg-colors { @include bg-rule($bg) {
+  $bg: nth($bg-colors, 1);
+  @include bg-rule($bg) {
     background-color: bg-color($bg);
 
     @each $fg in $fg-colors { @include fg-rule($bg, $fg) {
       color: fg-color($bg, $fg);
     }}
-  }}
+  }
 
   & > * {
     // The following is a bad idea as all dynamically popping up elements as direct children of body and we
@@ -40,9 +41,18 @@ body {
   }
 }
 
+@each $bg in $bg-colors { @include bg-rule($bg, false) {
+  background-color: bg-color($bg);
+
+  @each $fg in $fg-colors { @include fg-rule($bg, $fg) {
+    color: fg-color($bg, $fg);
+  }}
+}}
+
 button {
   cursor: pointer;
   outline: 0;
+  background-color: inherit;
 
   // remove blue highlight rectangle on touch
   -webkit-tap-highlight-color: transparent;

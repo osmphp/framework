@@ -1,5 +1,4 @@
 @import '~Osm_Ui_Aba/_variables-and-mixins.scss';
-@import './_mixins.scss';
 
 .button {
   border: solid transparent rem(1px);
@@ -21,11 +20,6 @@
   // remove blue highlight rectangle on touch
   -webkit-tap-highlight-color: transparent;
 
-  &.-outlined, &.-filled {
-    padding-left: rem(16px);
-    padding-right: rem(16px);
-  }
-
   &:disabled,
   &.-disabled,
   &.-disabled:hover,
@@ -34,25 +28,22 @@
     cursor: default;
   }
 
-  @include button-color($color--primary, $color--on-primary);
-  &.-light {
-    @include button-color($color--primary-light, $color--on-primary-light);
-  }
-  &.-dark {
-    @include button-color($color--primary-dark, $color--on-primary-dark);
-  }
-
-  &.-secondary {
-    @include button-color($color--secondary, $color--on-secondary);
-    &.-light {
-      @include button-color($color--secondary-light, $color--on-secondary-light);
+  @each $bg in $bg-colors { @include bg-rule($bg) {
+    &:disabled {
+      background-color: fg-disabled-color($bg);
     }
-    &.-dark {
-      @include button-color($color--secondary-dark, $color--on-secondary-dark);
-    }
-  }
 
-  &.-dangerous {
-    @include button-color($color--error, $color--on-primary);
+    @each $fg in $fg-colors { @include fg-rule($bg, $fg) {
+      &:hover, &:focus {
+        background-color: fg-highlighted-color($bg, $fg);
+      }
+      &:active {
+        background-color: fg-pressed-color($bg, $fg);
+      }
+    }}
+  }}
+
+  &.-outlined {
+    border-color: currentColor;
   }
 }

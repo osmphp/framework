@@ -3,78 +3,123 @@
 use Osm\Ui\Buttons\Views\Button;
 ?>
 <p>
-    @include(Button::new(['alias' => 'button', 'title' => osm_t("Normal Button")]))
-    @include(Button::new(['alias' => 'link', 'title' => osm_t("Normal Link"), 'url' => osm_url('GET /tests/')]))
-    @include(Button::new(['alias' => 'disabled', 'title' => osm_t("Normal Disabled"), 'modifier' => '-disabled']))
-</p>
-<p>
-    @include(Button::new(['alias' => 'outlined_button', 'title' => osm_t("Outlined Button"),
-        'modifier' => '-outlined']))
-    @include(Button::new(['alias' => 'outlined_link', 'title' => osm_t("Outlined Link"),
-        'modifier' => '-outlined', 'url' => osm_url('GET /tests/')]))
-    @include(Button::new(['alias' => 'outlined_disabled', 'title' => osm_t("Outlined Disabled"),
-        'modifier' => '-outlined -disabled']))
-</p>
-<p>
-    @include(Button::new(['alias' => 'filled_button', 'title' => osm_t("Filled Button"),
-        'modifier' => '-filled']))
-    @include(Button::new(['alias' => 'filled_link', 'title' => osm_t("Filled Link"),
-        'modifier' => '-filled', 'url' => osm_url('GET /tests/')]))
-    @include(Button::new(['alias' => 'filled_disabled', 'title' => osm_t("Filled Disabled"),
-        'modifier' => '-filled -disabled']))
+    @include(Button::new([
+        'alias' => 'button',
+        'title' => 'Button',
+    ]))
+    @include(Button::new([
+        'alias' => 'link',
+        'title' => 'Link',
+        'url' => osm_url('GET /tests/'),
+    ]))
+    @include(Button::new([
+        'alias' => 'disabled',
+        'title' => 'Disabled',
+        'disabled' => true,
+    ]))
+    @include(Button::new([
+        'alias' => 'dangerous_button',
+        'title' => 'Button',
+        'dangerous' => true,
+    ]))
+    @include(Button::new([
+        'alias' => 'dangerous_link',
+        'title' => 'Link',
+        'url' => osm_url('GET /tests/'),
+        'dangerous' => true,
+    ]))
+    @include(Button::new([
+        'alias' => 'dangerous_disabled',
+        'title' => 'Disabled',
+        'dangerous' => true,
+        'disabled' => true,
+    ]))
+    @include(Button::new([
+        'alias' => 'main_button',
+        'title' => 'Button',
+        'main' => true,
+    ]))
+    @include(Button::new([
+        'alias' => 'main_link',
+        'title' => 'Link',
+        'url' => osm_url('GET /tests/'),
+        'main' => true,
+    ]))
+    @include(Button::new([
+        'alias' => 'main_disabled',
+        'title' => 'Disabled',
+        'main' => true,
+        'disabled' => true,
+    ]))
 </p>
 <hr>
 <p>
     @include(Button::new([
         'alias' => 'primary_dark',
-        'title' => '-dark',
-        'color' => '-dark',
+        'title' => '-primary -dark',
+        'color' => '-primary -dark',
     ]))
     @include(Button::new([
-        'alias' => 'outlined_primary_dark',
-        'title' => '-outlined -dark',
-        'color' => '-dark',
-        'style' => '-outlined',
+        'alias' => 'main_primary_dark',
+        'title' => '-primary -dark',
+        'color' => '-primary -dark',
+        'main' => true,
     ]))
-    @include(Button::new(['alias' => 'filled_primary_dark', 'title' => '-filled -dark',
-        'modifier' => '-filled -dark']))
-</p>
-<p>
-    @include(Button::new(['alias' => 'primary', 'title' => '-primary', 'modifier' => '-primary']))
-    @include(Button::new(['alias' => 'outlined_primary', 'title' => '-outlined -primary',
-        'modifier' => '-outlined -primary']))
-    @include(Button::new(['alias' => 'filled_primary', 'title' => '-filled -primary',
-        'modifier' => '-filled -primary']))
-</p>
-<p>
-    @include(Button::new(['alias' => 'primary_light', 'title' => '-light', 'modifier' => '-light']))
-    @include(Button::new(['alias' => 'outlined_primary_light', 'title' => '-outlined -light',
-        'modifier' => '-outlined -light']))
-    @include(Button::new(['alias' => 'filled_primary_light', 'title' => '-filled -light',
-        'modifier' => '-filled -light']))
-</p>
-<p>
-    @include(Button::new(['alias' => 'secondary_dark', 'title' => '-secondary -dark',
-        'modifier' => '-secondary -dark']))
-    @include(Button::new(['alias' => 'outlined_secondary_dark', 'title' => '-outlined -secondary -dark',
-        'modifier' => '-outlined -secondary -dark']))
-    @include(Button::new(['alias' => 'filled_secondary_dark', 'title' => '-filled -secondary -dark',
-        'modifier' => '-filled -secondary -dark']))
-</p>
-<p>
-    @include(Button::new(['alias' => 'secondary', 'title' => '-secondary', 'modifier' => '-secondary']))
-    @include(Button::new(['alias' => 'outlined_secondary', 'title' => '-outlined -secondary',
-        'modifier' => '-outlined -secondary']))
-    @include(Button::new(['alias' => 'filled_secondary', 'title' => '-filled -secondary',
-        'modifier' => '-filled -secondary']))
-</p>
-<p>
-    @include(Button::new(['alias' => 'secondary_light', 'title' => '-secondary -light',
-        'modifier' => '-secondary -light']))
-    @include(Button::new(['alias' => 'outlined_secondary_light', 'title' => '-outlined -secondary -light',
-        'modifier' => '-outlined -secondary -light']))
-    @include(Button::new(['alias' => 'filled_secondary_light', 'title' => '-filled -secondary -light',
-        'modifier' => '-filled -secondary -light']))
+    @include(Button::new([
+        'alias' => 'primary',
+        'title' => '-primary',
+        'color' => '-primary',
+    ]))
+    @include(Button::new([
+        'alias' => 'main_primary',
+        'title' => '-primary',
+        'color' => '-primary',
+        'main' => true,
+    ]))
+    @include(Button::new([
+        'alias' => 'primary_light',
+        'title' => '-primary -light',
+        'color' => '-primary -light',
+    ]))
+    @include(Button::new([
+        'alias' => 'main_primary_light',
+        'title' => '-primary -light',
+        'color' => '-primary -light',
+        'main' => true,
+    ]))
+    @include(Button::new([
+        'alias' => 'secondary_dark',
+        'title' => '-secondary -dark',
+        'color' => '-secondary -dark',
+    ]))
+    @include(Button::new([
+        'alias' => 'main_secondary_dark',
+        'title' => '-secondary -dark',
+        'color' => '-secondary -dark',
+        'main' => true,
+    ]))
+    @include(Button::new([
+        'alias' => 'secondary',
+        'title' => '-secondary',
+        'color' => '-secondary',
+    ]))
+    @include(Button::new([
+        'alias' => 'main_secondary',
+        'title' => '-secondary',
+        'color' => '-secondary',
+        'main' => true,
+    ]))
+    @include(Button::new([
+        'alias' => 'secondary_light',
+        'title' => '-secondary -light',
+        'color' => '-secondary -light',
+    ]))
+    @include(Button::new([
+        'alias' => 'main_secondary_light',
+        'title' => '-secondary -light',
+        'color' => '-secondary -light',
+        'main' => true,
+    ]))
 </p>
 <hr>
 <footer>

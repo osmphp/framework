@@ -1,14 +1,18 @@
 <?php
 /* @var \Osm\Ui\Buttons\Views\Button $view */
+
+$modifier = $view->main
+    ? $view->on($view->color)
+    : ($view->dangerous
+        ? '-outlined -danger'
+        : $view->color);
 ?>
 @if ($view->url)
-    <a href="{{ $view->url }}" id="{{ $view->id_ }}" class="button {{ $view->color }}
-        {{ $view->main ? '-filled' : '' }}
-        {{ $view->dangerous ? '-outlined -dangerous' : '' }}">
+    <a href="{{ $view->url }}" id="{{ $view->id_ }}" class="button {{ $modifier }}
+        @if ($view->disabled) -disabled @endif">
 @else
-    <button type="button" id="{{ $view->id_ }}" class="button {{ $view->color }}
-        {{ $view->main ? '-filled' : '' }}
-        {{ $view->dangerous ? '-outlined -dangerous' : '' }}">
+    <button type="button" id="{{ $view->id_ }}" class="button {{ $modifier }}
+        @if ($view->disabled) -disabled @endif">
 @endif
 
 @if ($view->icon)

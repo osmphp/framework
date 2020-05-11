@@ -142,7 +142,7 @@
 
   &__items {
     flex-grow: 1;
-    height: $height--button;
+    height: rem(36px);
     overflow: hidden;
     display: flex;
     flex-wrap: wrap;

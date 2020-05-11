@@ -127,21 +127,18 @@ $placeholder-color: $color--primary-light;
 
 }
 
-@function fg-highlighted-color($bg) {
-  $color: bg-color($bg);
+@function fg-highlighted-color($bg, $fg) {
+  $bg-color: bg-color($bg);
+  $fg-color: fg-color($bg, $fg);
 
-  @return if(dark($color),
-    rgba(lighten($color, 30), 0.05),
-    rgba(darken($color, 30), 0.05));
-
+  @return mix($bg-color, $fg-color, 93);
 }
 
-@function fg-pressed-color($bg) {
-  $color: bg-color($bg);
+@function fg-pressed-color($bg, $fg) {
+  $bg-color: bg-color($bg);
+  $fg-color: fg-color($bg, $fg);
 
-  @return if(dark($color),
-    rgba(lighten($color, 35), 0.05),
-    rgba(darken($color, 35), 0.05));
+  @return mix($bg-color, $fg-color, 87);
 }
 
 @function fg-delimiter-color($bg) {
@@ -160,28 +157,22 @@ $placeholder-color: $color--primary-light;
   @if ($type == "emotion") {
     @return fg-emotion-color($bg, $fg);
   }
-  @if ($type == "state") {
-    @if ($selector == "delimiter") {
-      @return fg-delimiter-color($bg);
-    }
-    @if ($selector == "highlighted") {
-      @return fg-highlighted-color($bg);
-    }
-    @if ($selector == "pressed") {
-      @return fg-pressed-color($bg);
-    }
+  @if ($type == "delimiter") {
+    @return fg-delimiter-color($bg);
   }
 
   @return fg-default-color($bg, $fg);
 }
 
-@mixin bg-rule($bg) {
+@mixin bg-rule($bg, $default: true) {
   $selector: prefixed-selector(nth($bg, 1), ".-on-");
 
-  @if str-length($selector) == 0 {
+  @if $default == true and str-length($selector) == 0 {
     @content
-  } @else {
-    #{$selector} {
+  }
+
+  @if str-length($selector) != 0 {
+    &#{$selector} {
       @content
     }
   }
