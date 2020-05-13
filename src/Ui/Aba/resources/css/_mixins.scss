@@ -119,12 +119,48 @@ $placeholder-color: $color--primary-light;
   }
 
   $brand-bg: bg($selector);
-  @if dark(bg-color($bg)) == dark(bg-color($brand-bg)) {
-    @return fg-default-color($bg, $default-fg);
+  $dark-background: dark(bg-color($bg));
+  @if $dark-background != dark(bg-color($brand-bg)) {
+    @return bg-color($brand-bg);
   }
 
-  @return bg-color($brand-bg);
+  // remove color variation from the selector
+  $variation-pos: str-index($selector, "-");
+  $selector: if($variation-pos,
+    str-slice($selector, 1, $variation-pos - 1),
+    $selector);
 
+  @if $dark-background {
+    // find the darkest possible light color variation. Since variation of the
+    // same color always go from the lightest in $bg-colors, iterate
+    // from the end of the array
+    $i: length($bg-colors);
+    @while ($i >= 1) {
+      $brand-bg: nth($bg-colors, $i);
+      @if str-index(nth($brand-bg, 1), $selector) == 1 and
+        $dark-background != dark(bg-color($brand-bg))
+      {
+        @return bg-color($brand-bg);
+      }
+
+      $i: $i - 1;
+    }
+  }
+  @else {
+    // find the lightest possible dark color variation. Since variation of the
+    // same color always go from the lightest in $bg-colors, iterate
+    // from the beginning of the array
+    @for $i from 1 through length($bg-colors) {
+      $brand-bg: nth($bg-colors, $i);
+      @if str-index(nth($brand-bg, 1), $selector) == 1 and
+        $dark-background != dark(bg-color($brand-bg))
+      {
+        @return bg-color($brand-bg);
+      }
+    }
+  }
+
+  @return fg-default-color($bg, $default-fg);
 }
 
 @function fg-highlighted-color($bg, $fg) {
@@ -142,9 +178,11 @@ $placeholder-color: $color--primary-light;
 }
 
 @function fg-delimiter-color($bg) {
-  $default-fg: fg("");
+  $fg: fg("");
+  $bg-color: bg-color($bg);
+  $fg-color: fg-color($bg, $fg);
 
-  @return rgba(fg-default-color($bg, $default-fg), 0.5);
+  @return mix($bg-color, $fg-color, 80);
 }
 
 @function fg-color($bg, $fg) {
@@ -161,16 +199,18 @@ $placeholder-color: $color--primary-light;
   @return fg-default-color($bg, $fg);
 }
 
-@mixin bg-rule($bg, $default: true) {
+@mixin bg-rule($bg, $filter: "") {
   $selector: prefixed-selector(nth($bg, 1), ".-on-");
 
-  @if $default == true and str-length($selector) == 0 {
+  @if $filter == "" and str-length($selector) == 0 {
     @content
   }
 
-  $selector: if(str-length($selector) != 0, $selector, ".-on-neutral");
-  &#{$selector} {
-    @content
+  @if $filter == "" or $filter == "no-default" or nth($bg, 2) == $filter {
+    $selector: if(str-length($selector) != 0, $selector, ".-on-neutral");
+    &#{$selector}, & #{$selector} {
+      @content
+    }
   }
 }
 

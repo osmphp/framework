@@ -41,7 +41,7 @@ body {
   }
 }
 
-@each $bg in $bg-colors { @include bg-rule($bg, false) {
+@each $bg in $bg-colors { @include bg-rule($bg, "no-default") {
   background-color: bg-color($bg);
 
   @each $fg in $fg-colors { @include fg-rule($bg, $fg) {

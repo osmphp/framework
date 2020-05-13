@@ -6,7 +6,7 @@ use Osm\Ui\Menus\Views\DelimiterItem;
 $delimiter = '';
 
 ?>
-<nav class="popup-menu {{ $view->color }}" id="{{$view->id_}}">
+<nav class="popup-menu {{ $view->on_color_ }} {{ $view->color_ }}" id="{{$view->id_}}">
     <ul class="popup-menu__items">
         @foreach ($view->items_ as $child)
             @if (!$child->empty)

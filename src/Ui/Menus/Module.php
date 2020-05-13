@@ -12,6 +12,11 @@ use Osm\Ui\Menus\Items\Types;
  */
 class Module extends BaseModule
 {
+    public $hard_dependencies = [
+        'Osm_Ui_Aba',
+        'Osm_Ui_Buttons',
+    ];
+
     protected function default($property) {
         global $osm_app; /* @var App $osm_app */
 

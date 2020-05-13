@@ -23,12 +23,12 @@ class Colors extends View
     protected function default($property) {
         switch ($property) {
             case 'brand_colors': return [
-                'primary dark',
+                'primary-dark',
                 'primary',
-                'primary light',
-                'secondary dark',
+                'primary-light',
+                'secondary-dark',
                 'secondary',
-                'secondary light',
+                'secondary-light',
             ];
             case 'emotion_colors': return [
                 'success',

@@ -62,13 +62,13 @@ use Osm\Ui\Buttons\Views\Button;
 <p>
     @include(Button::new([
         'alias' => 'primary_dark',
-        'title' => 'primary dark',
-        'color' => 'primary dark',
+        'title' => 'primary-dark',
+        'color' => 'primary-dark',
     ]))
     @include(Button::new([
         'alias' => 'main_primary_dark',
-        'title' => 'primary dark',
-        'on_color' => 'primary dark',
+        'title' => 'primary-dark',
+        'on_color' => 'primary-dark',
         'color' => 'neutral',
     ]))
     @include(Button::new([
@@ -84,24 +84,24 @@ use Osm\Ui\Buttons\Views\Button;
     ]))
     @include(Button::new([
         'alias' => 'primary_light',
-        'title' => 'primary light',
-        'color' => 'primary light',
+        'title' => 'primary-light',
+        'color' => 'primary-light',
     ]))
     @include(Button::new([
         'alias' => 'main_primary_light',
-        'title' => 'primary light',
-        'on_color' => 'primary light',
+        'title' => 'primary-light',
+        'on_color' => 'primary-light',
         'color' => 'neutral',
     ]))
     @include(Button::new([
         'alias' => 'secondary_dark',
-        'title' => 'secondary dark',
-        'color' => 'secondary dark',
+        'title' => 'secondary-dark',
+        'color' => 'secondary-dark',
     ]))
     @include(Button::new([
         'alias' => 'main_secondary_dark',
-        'title' => 'secondary dark',
-        'on_color' => 'secondary dark',
+        'title' => 'secondary-dark',
+        'on_color' => 'secondary-dark',
         'color' => 'neutral',
     ]))
     @include(Button::new([
@@ -117,8 +117,8 @@ use Osm\Ui\Buttons\Views\Button;
     ]))
     @include(Button::new([
         'alias' => 'secondary_light',
-        'title' => 'secondary light',
-        'color' => 'secondary light',
+        'title' => 'secondary-light',
+        'color' => 'secondary-light',
     ]))
     @include(Button::new([
         'alias' => 'main_secondary_light',

@@ -6,6 +6,7 @@ use Osm\Ui\Buttons\Views\Button;
     'alias' => 'button',
     'title' => $view->title,
     'icon' => $view->icon,
-    'main' => $view->main,
-    'dangerous' => $view->dangerous,
+    'color' => $view->button_color,
+    'on_color' => $view->button_on_color,
+    'outlined' => $view->button_outlined,
 ]))

@@ -20,6 +20,7 @@ class SubmenuItem extends Item
     public function rendering() {
         $this->submenu = PopupMenu::new([
             'alias' => 'submenu',
+            'on_color' => $this->parent->color ?: $this->parent->on_color,
             'items' => $this->items,
         ]);
 

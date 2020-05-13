@@ -50,7 +50,7 @@ $color--default-on-dark: #ffffff; // white
 // emotion color light counterparts
 $color--success-on-dark: #7abe85;
 $color--warning-on-dark: #ecd2a2;
-$color--error-on-dark: #bc7b7c;
+$color--error-on-dark: $color--error; //#cc666e; //#bc7b7c;
 
 // other colors
 $color--disabled: #7d7d7d;
@@ -108,12 +108,12 @@ $bg-colors: (
   // CSS class root   type        color   highlight pressed
   (""                 "default"  $color--background),
 
+  ("primary-light"    "brand"    $color--primary-light),
   ("primary"          "brand"    $color--primary),
-  ("primary dark"     "brand"    $color--primary-dark),
-  ("primary light"    "brand"    $color--primary-light),
+  ("primary-dark"     "brand"    $color--primary-dark),
+  ("secondary-light"  "brand"    $color--secondary-light),
   ("secondary"        "brand"    $color--secondary),
-  ("secondary dark"   "brand"    $color--secondary-dark),
-  ("secondary light"  "brand"    $color--secondary-light),
+  ("secondary-dark"   "brand"    $color--secondary-dark),
 
   ("success"          "emotion"  $color--success),
   ("warning"          "emotion"  $color--warning),
@@ -128,12 +128,12 @@ $fg-colors: (
   // CSS class root   type       on light bg         on dark bg
   (""                 "default"  $color--default     $color--default-on-dark),
 
+  ("primary-light"    "brand"),
   ("primary"          "brand"),
-  ("primary dark"     "brand"),
-  ("primary light"    "brand"),
+  ("primary-dark"     "brand"),
+  ("secondary-light"  "brand"),
   ("secondary"        "brand"),
-  ("secondary dark"   "brand"),
-  ("secondary light"  "brand"),
+  ("secondary-dark"   "brand"),
 
   ("success"          "emotion"  $color--success     $color--success-on-dark),
   ("warning"          "emotion"  $color--warning     $color--warning-on-dark),

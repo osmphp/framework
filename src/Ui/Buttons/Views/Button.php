@@ -18,11 +18,4 @@ use Osm\Framework\Views\View;
 class Button extends View
 {
     public $template = 'Osm_Ui_Buttons.button';
-
-    protected function default($property) {
-        switch ($property) {
-            case 'color': return 'primary';
-        }
-        return parent::default($property);
-    }
 }

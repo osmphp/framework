@@ -7,15 +7,8 @@ use Osm\Core\Object_;
 use Osm\Ui\Buttons\Views\Button;
 
 /**
- * @property bool $main @part If set, attracts more attention
- *
  * @property PopupMenu $mobile_menu @required
  * @property Button $show_more @required
- *
- * Style properties:
- *
- * @property string $color_ @part
- * @property string $on_color_ @part
  */
 class MenuBar extends Menu
 {
@@ -25,16 +18,13 @@ class MenuBar extends Menu
 
     protected function default($property) {
         switch ($property) {
-            case 'color_': return $this->main
-                ? '-default-color'
-                : $this->color;
-            case 'on_color_': return $this->main
-                ? $this->cssPrefix($this->color)
-                : $this->on_color;
             case 'show_more': return Button::new([
                 'alias' => 'show_more',
                 'icon' => '-menu',
+                'color' => $this->color,
+                'on_color' => $this->on_color,
             ]);
+            case 'wrap_modifier': return "{$this->on_color_} {$this->color_}";
         }
 
         return parent::default($property);
@@ -43,6 +33,7 @@ class MenuBar extends Menu
     public function rendering() {
         $this->mobile_menu = PopupMenu::new([
             'alias' => 'mobile_menu',
+            'on_color' => $this->color ?: $this->on_color,
             'items' => $this->cloneObjects($this->items),
         ]);
 

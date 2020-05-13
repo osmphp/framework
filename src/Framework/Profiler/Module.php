@@ -76,7 +76,7 @@ class Module extends BaseModule
 
         foreach ($files as $file) {
             /* @var SplFileInfo $file */
-            unlink($file->getPathname());
+            @unlink($file->getPathname());
         }
     }
 

@@ -1,9 +1,8 @@
 @import '~Osm_Ui_Aba/_variables-and-mixins.scss';
-@import './_mixins.scss';
 
 .popup-menu {
-  background-color: $color--surface;
-  color: $color--on-surface;
+  background-color: bg-color(bg(""));
+  color: fg-color(bg(""), fg(""));
   padding: rem(8px) 0;
   box-shadow: shadow($z-index--menu);
   position: absolute;
@@ -34,11 +33,8 @@
     // two thing you can do visually with a menu item is to disable or hide it
     // use -disabled and -hidden modifiers, respectively
 
-    &:disabled,
-    &.-disabled,
-    &.-disabled:hover,
-    &.-disabled:focus {
-      color: $color--disabled;
+    &:disabled, &.-disabled, &.-disabled:hover, &.-disabled:focus {
+      color: fg-color(bg(""), fg("disabled"));
       @include dont-handle-mouse-events();
     }
 
@@ -52,7 +48,7 @@
     // in `type` property
 
     &.-delimiter, &.-delimiter-copy {
-      border-top: 1px solid $color--disabled;
+      border-top: 1px solid fg-delimiter-color(bg(""));
     }
 
     &.-label {
@@ -67,7 +63,7 @@
     }
 
     &.-dangerous {
-      color: $color--error;
+      color: fg-color(bg(""), fg("danger"));
     }
   }
 
@@ -118,23 +114,16 @@
     padding: 10px;
   }
 
-  @include popup-menu-color($color--primary, $color--on-primary);
-  &.-light {
-    @include popup-menu-color($color--primary-light, $color--on-primary-light);
+  &__item:hover, &__item.-hovered {
+    background-color: bg-color(bg("primary"));
+    color: fg-color(bg("primary"), fg(""));
   }
-  &.-dark {
-    @include popup-menu-color($color--primary-dark, $color--on-primary-dark);
-  }
-  
-  &.-secondary {
-    @include popup-menu-color($color--secondary, $color--on-secondary);
-    &.-light {
-      @include popup-menu-color($color--secondary-light, $color--on-secondary-light);
+  @each $bg in $bg-colors { @include bg-rule($bg, "brand") {
+    & .popup-menu__item:hover, & .popup-menu__item.-hovered {
+      background-color: bg-color($bg);
+      color: fg-color($bg, fg(""));
     }
-    &.-dark {
-      @include popup-menu-color($color--secondary-dark, $color--on-secondary-dark);
-    }
-  }
+  }}
 }
 
 .menu-bar {
@@ -161,7 +150,7 @@
     }
 
     &.-delimiter, &.-delimiter-copy {
-      border-left: 1px solid $color--disabled;
+      border-left: 1px solid transparent;
       padding-left: rem(8px);
     }
 
@@ -186,44 +175,11 @@
     justify-content: center;
   }
 
-  @include menu-bar-color($color--primary, transparent);
-  &.-primary {
-    &.-light {
-      @include menu-bar-color($color--primary-light, transparent);
+  @each $bg in $bg-colors { @include bg-rule($bg) {
+    .-delimiter, .-delimiter-copy {
+      border-color: fg-delimiter-color($bg);
     }
-    &.-dark {
-      @include menu-bar-color($color--primary-dark, transparent);
-    }
-  }
-  &.-secondary {
-    @include menu-bar-color($color--secondary, transparent);
-    &.-light {
-      @include menu-bar-color($color--secondary-light, transparent);
-    }
-    &.-dark {
-      @include menu-bar-color($color--secondary-dark, transparent);
-    }
-  }
-  &.-main {
-    &.-primary {
-      @include menu-bar-color($color--on-primary, $color--primary);
-      &.-light {
-        @include menu-bar-color($color--on-primary-light, $color--primary-light);
-      }
-      &.-dark {
-        @include menu-bar-color($color--on-primary-dark, $color--primary-dark);
-      }
-    }
-    &.-secondary {
-      @include menu-bar-color($color--on-secondary, $color--secondary);
-      &.-light {
-        @include menu-bar-color($color--on-secondary-light, $color--secondary-light);
-      }
-      &.-dark {
-        @include menu-bar-color($color--on-secondary-dark, $color--secondary-dark);
-      }
-    }
-  }
+  }}
 }
 
 .heading {

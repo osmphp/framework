@@ -16,8 +16,8 @@ return [
     '#page.modifier' => '-tests-ui-menus',
     '#page.items'  => [
         'bar' => MenuBar::new([
-            'color' => '-secondary',
-            'main' => true,
+            'on_color' => 'secondary-dark',
+            //'color' => 'secondary-dark',
             'items' => [
                 'bold' => CommandItem::new([
                     'title' => osm_t("Bold"),
