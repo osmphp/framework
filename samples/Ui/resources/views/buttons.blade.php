@@ -20,35 +20,41 @@ use Osm\Ui\Buttons\Views\Button;
     @include(Button::new([
         'alias' => 'dangerous_button',
         'title' => 'Button',
-        'dangerous' => true,
+        'outlined' => true,
+        'color' => 'danger',
     ]))
     @include(Button::new([
         'alias' => 'dangerous_link',
         'title' => 'Link',
         'url' => osm_url('GET /tests/'),
-        'dangerous' => true,
+        'outlined' => true,
+        'color' => 'danger',
     ]))
     @include(Button::new([
         'alias' => 'dangerous_disabled',
         'title' => 'Disabled',
-        'dangerous' => true,
+        'outlined' => true,
+        'color' => 'danger',
         'disabled' => true,
     ]))
     @include(Button::new([
         'alias' => 'main_button',
         'title' => 'Button',
-        'main' => true,
+        'on_color' => 'primary',
+        'color' => 'neutral',
     ]))
     @include(Button::new([
         'alias' => 'main_link',
         'title' => 'Link',
         'url' => osm_url('GET /tests/'),
-        'main' => true,
+        'on_color' => 'primary',
+        'color' => 'neutral',
     ]))
     @include(Button::new([
         'alias' => 'main_disabled',
         'title' => 'Disabled',
-        'main' => true,
+        'on_color' => 'primary',
+        'color' => 'neutral',
         'disabled' => true,
     ]))
 </p>
@@ -56,69 +62,69 @@ use Osm\Ui\Buttons\Views\Button;
 <p>
     @include(Button::new([
         'alias' => 'primary_dark',
-        'title' => '-primary -dark',
-        'color' => '-primary -dark',
+        'title' => 'primary dark',
+        'color' => 'primary dark',
     ]))
     @include(Button::new([
         'alias' => 'main_primary_dark',
-        'title' => '-primary -dark',
-        'color' => '-primary -dark',
-        'main' => true,
+        'title' => 'primary dark',
+        'on_color' => 'primary dark',
+        'color' => 'neutral',
     ]))
     @include(Button::new([
         'alias' => 'primary',
-        'title' => '-primary',
-        'color' => '-primary',
+        'title' => 'primary',
+        'color' => 'primary',
     ]))
     @include(Button::new([
         'alias' => 'main_primary',
-        'title' => '-primary',
-        'color' => '-primary',
-        'main' => true,
+        'title' => 'primary',
+        'on_color' => 'primary',
+        'color' => 'neutral',
     ]))
     @include(Button::new([
         'alias' => 'primary_light',
-        'title' => '-primary -light',
-        'color' => '-primary -light',
+        'title' => 'primary light',
+        'color' => 'primary light',
     ]))
     @include(Button::new([
         'alias' => 'main_primary_light',
-        'title' => '-primary -light',
-        'color' => '-primary -light',
-        'main' => true,
+        'title' => 'primary light',
+        'on_color' => 'primary light',
+        'color' => 'neutral',
     ]))
     @include(Button::new([
         'alias' => 'secondary_dark',
-        'title' => '-secondary -dark',
-        'color' => '-secondary -dark',
+        'title' => 'secondary dark',
+        'color' => 'secondary dark',
     ]))
     @include(Button::new([
         'alias' => 'main_secondary_dark',
-        'title' => '-secondary -dark',
-        'color' => '-secondary -dark',
-        'main' => true,
+        'title' => 'secondary dark',
+        'on_color' => 'secondary dark',
+        'color' => 'neutral',
     ]))
     @include(Button::new([
         'alias' => 'secondary',
-        'title' => '-secondary',
-        'color' => '-secondary',
+        'title' => 'secondary',
+        'color' => 'secondary',
     ]))
     @include(Button::new([
         'alias' => 'main_secondary',
-        'title' => '-secondary',
-        'color' => '-secondary',
-        'main' => true,
+        'title' => 'secondary',
+        'on_color' => 'secondary',
+        'color' => 'neutral',
     ]))
     @include(Button::new([
         'alias' => 'secondary_light',
-        'title' => '-secondary -light',
-        'color' => '-secondary -light',
+        'title' => 'secondary light',
+        'color' => 'secondary light',
     ]))
     @include(Button::new([
         'alias' => 'main_secondary_light',
-        'title' => '-secondary -light',
-        'color' => '-secondary -light',
-        'main' => true,
+        'title' => 'secondary light',
+        'on_color' => 'secondary light',
+        'color' => 'neutral',
     ]))
 </p>
 <hr>
