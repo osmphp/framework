@@ -157,9 +157,6 @@ $placeholder-color: $color--primary-light;
   @if ($type == "emotion") {
     @return fg-emotion-color($bg, $fg);
   }
-  @if ($type == "delimiter") {
-    @return fg-delimiter-color($bg);
-  }
 
   @return fg-default-color($bg, $fg);
 }
@@ -171,22 +168,23 @@ $placeholder-color: $color--primary-light;
     @content
   }
 
-  @if str-length($selector) != 0 {
-    &#{$selector} {
-      @content
-    }
+  $selector: if(str-length($selector) != 0, $selector, ".-on-neutral");
+  &#{$selector} {
+    @content
   }
 }
 
 @mixin fg-rule($bg, $fg) {
-  @if nth($fg, 2) != "state" and fg-color($bg, $fg) {
+  @if fg-color($bg, $fg) {
     $selector: prefixed-selector(nth($fg, 1), ".-");
     @if $selector == "" {
       @content
-    } @else {
-      &#{$selector}, & #{$selector} {
-        @content
-      }
+    }
+
+    $selector: if(str-length($selector) != 0, $selector, ".-neutral");
+
+    &#{$selector}, & #{$selector} {
+      @content
     }
   }
 }

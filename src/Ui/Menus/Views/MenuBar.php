@@ -11,6 +11,11 @@ use Osm\Ui\Buttons\Views\Button;
  *
  * @property PopupMenu $mobile_menu @required
  * @property Button $show_more @required
+ *
+ * Style properties:
+ *
+ * @property string $color_ @part
+ * @property string $on_color_ @part
  */
 class MenuBar extends Menu
 {
@@ -20,6 +25,12 @@ class MenuBar extends Menu
 
     protected function default($property) {
         switch ($property) {
+            case 'color_': return $this->main
+                ? '-default-color'
+                : $this->color;
+            case 'on_color_': return $this->main
+                ? $this->cssPrefix($this->color)
+                : $this->on_color;
             case 'show_more': return Button::new([
                 'alias' => 'show_more',
                 'icon' => '-menu',

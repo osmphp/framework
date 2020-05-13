@@ -21,6 +21,7 @@ use Osm\Framework\Views\View;
  * Optional properties:
  *
  * @property string $html_modifier @part CSS classes to add to <html> element
+ * @property string $modifier @part CSS classes to add to <body> element
  * @property string $canonical_url @part
  *
  * Dependencies:

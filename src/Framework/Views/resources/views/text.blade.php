@@ -1,4 +1,6 @@
 <?php
 /* @var \Osm\Framework\Views\Views\Text $view */
 ?>
-<{{ $view->tag }} class="{{ $view->modifier }}">{{ $view->contents }}</{{ $view->tag }}>
+<{{ $view->tag }} class="{{ $view->on_color_ }} {{ $view->color_ }}">
+    {{ $view->contents }}
+</{{ $view->tag }}>

@@ -16,7 +16,7 @@
         @include($child)
     @endforeach
 </head>
-<body class="page {{ $view->modifier }}">
+<body class="page {{ $view->modifier }} {{ $view->on_color_ }} {{ $view->color_ }}">
 
 @foreach ($view->items_ as $child)
     @if (!$child->empty)

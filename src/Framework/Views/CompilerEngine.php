@@ -11,7 +11,6 @@ use PhpParser\NodeVisitor\NameResolver;
 use PhpParser\ParserFactory;
 use PhpParser\PrettyPrinter;
 use PhpParser\Node\Stmt;
-use Symfony\Component\Debug\Exception\FatalThrowableError;
 
 /**
  * @property string[] $compiled_templates
@@ -130,7 +129,7 @@ class CompilerEngine extends LaravelCompilerEngine
         } catch (\Exception $e) {
             $this->handleViewException($e, $obLevel);
         } catch (\Throwable $e) {
-            $this->handleViewException(new FatalThrowableError($e), $obLevel);
+            $this->handleViewException($e, $obLevel);
         }
 
         return ltrim(ob_get_clean());

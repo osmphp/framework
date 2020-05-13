@@ -6,7 +6,7 @@ use Osm\Ui\Menus\Views\DelimiterItem;
 $delimiter = '';
 
 ?>
-<nav id="{{$view->id_}}" class="menu-bar {{$view->color}} {{$view->main ? '-main' : ''}}">
+<nav id="{{$view->id_}}" class="menu-bar {{ $view->on_color_ }} {{$view->color_}}">
     <ul class="menu-bar__items">
         @foreach ($view->items_ as $child)
             @if (!$child->empty)

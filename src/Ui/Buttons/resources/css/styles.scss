@@ -30,7 +30,7 @@
 
   @each $bg in $bg-colors { @include bg-rule($bg) {
     &:disabled {
-      background-color: fg-disabled-color($bg);
+      color: fg-color($bg, fg("disabled"));
     }
 
     @each $fg in $fg-colors { @include fg-rule($bg, $fg) {

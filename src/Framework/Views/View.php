@@ -10,8 +10,6 @@ use Osm\Framework\Views\Exceptions\IdCantBeInferred;
 
 /**
  * @property string $template @required @part
- * @property string $modifier @part @obsolete Use style `color`, `icon`,
- *      `style` and other style properties instead
  * @property string $id @part
  * @property string $alias @part
  * @property string $id_ @required @part
@@ -27,6 +25,9 @@ use Osm\Framework\Views\Exceptions\IdCantBeInferred;
  * Styles (each view class may support these or not):
  *
  * @property string $color @part
+ * @property string $on_color @part
+ * @property string $color_
+ * @property string $on_color_
  *
  * JS:
  *
@@ -86,7 +87,8 @@ class View extends Object_
                 return $this->getViewModelScript($this->view_model, $this->model);
             case 'layout': return $osm_app->layout ?? Layout::new();
             case 'sorter': return $osm_app[Sorter::class];
-            case 'color': return $this->parent->color ?? null;
+            case 'color_': return $this->cssPrefix($this->color);
+            case 'on_color_': return $this->cssPrefix($this->on_color, '-on-');
             case 'selector': return "#{$this->id_}";
         }
         return parent::default($property);
@@ -196,5 +198,15 @@ class View extends Object_
         if ($this->id_) {
             $result .= $this->getDebugScript($template);
         }
+    }
+
+    protected function cssPrefix($color, $prefix = '-') {
+        if (!$color) {
+            return $color;
+        }
+
+        return implode(' ', array_map(function($color) use ($prefix) {
+            return "{$prefix}{$color}";
+        }, explode(' ', $color)));
     }
 }
