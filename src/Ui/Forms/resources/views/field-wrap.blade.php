@@ -1,7 +1,7 @@
 <?php
 /* @var \Osm\Ui\Forms\Views\Field $view */
 ?>
-<div class="field {{ $view->modifier }}" id="{{ $view->id_ }}">
+<div id="{{ $view->id_ }}" class="field {{ $view->type ? "-{$view->type}" : '' }}">
     <div class="field__body">
         @if ($view->title)
             <label class="field__title"

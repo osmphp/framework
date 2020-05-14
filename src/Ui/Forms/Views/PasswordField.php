@@ -10,13 +10,6 @@ class PasswordField extends InputField
     public $type = 'password';
     public $autocomplete = 'new-password';
 
-    protected function default($property) {
-        switch ($property) {
-            case 'modifier': return '-password';
-        }
-        return parent::default($property);
-    }
-
     public function fetch(Search $search) {
         // don't fetch password hash from the DB
     }

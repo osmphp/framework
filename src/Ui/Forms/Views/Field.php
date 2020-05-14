@@ -15,6 +15,7 @@ use Osm\Framework\Views\View;
  * @property bool $focusable @part
  * @property string $prefix @part Prefix added to element name to scope
  *      browser auto-completion. Fields ignore
+ * @property string $type @part
  *
  * @property string $field_template @required @part
  */

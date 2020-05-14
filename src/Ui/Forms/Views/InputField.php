@@ -3,7 +3,6 @@
 namespace Osm\Ui\Forms\Views;
 
 /**
- * @property string $type @part @required
  * @property string $placeholder @part
  * @property string $autocomplete @part
  * @property string $step @part
