@@ -49,6 +49,12 @@ class View extends Object_
      */
     public $parent = null;
 
+    /**
+     * @param array $data
+     * @param null $name
+     * @param null $parent
+     * @return static|Object_
+     */
     public static function new($data = [], $name = null, $parent = null) {
         global $osm_app; /* @var App $osm_app */
 

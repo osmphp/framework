@@ -14,25 +14,28 @@
     &.-narrow > * {
       max-width: $narrow-page-width;
     }
+  }
+}
 
-    &.-primary {
-      @include container-color($color--primary, $color--on-primary);
-      &.-light {
-        @include container-color($color--primary-light, $color--on-primary-light);
-      }
-      &.-dark {
-        @include container-color($color--primary-dark, $color--on-primary-dark);
-      }
-    }
+.heading {
+  display: flex;
 
-    &.-secondary {
-      @include container-color($color--secondary, $color--on-secondary);
-      &.-light {
-        @include container-color($color--secondary-light, $color--on-secondary-light);
-      }
-      &.-dark {
-        @include container-color($color--secondary-dark, $color--on-secondary-dark);
-      }
-    }
+  &__title {
+    // keep the title text on one line
+    white-space: nowrap;
+
+    // if title and menu doesn't fit in full, allow title to shrink
+    flex-shrink: 1;
+
+    // when title shrinks and doesn't and only part of the text text
+    // is displayed, show ellipsis in the end of text indicating that
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__menu {
+    width: rem(40px);
+    flex-grow: 1;
+    margin: $margin--h1 0 $margin--h1 rem(8px);
   }
 }

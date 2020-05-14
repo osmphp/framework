@@ -38,9 +38,8 @@
       @include dont-handle-mouse-events();
     }
 
-    // -hidden is set from the View properties; -invisible is set by menu bar
-    // resize behavior
-    &.-hidden, &.-invisible {
+    // -hidden is set from the View properties
+    &.-hidden {
       display: none;
     }
 
@@ -130,11 +129,11 @@
   display: flex;
 
   &__items {
-    flex-grow: 1;
+    flex-shrink: 1;
     height: rem(36px);
     overflow: hidden;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     @include no-list-formatting();
   }
 
@@ -157,22 +156,30 @@
     &.-hidden {
       display: none;
     }
-
-    &.-hidden-but-consuming-space {
-      visibility: hidden;
-    }
   }
 
-  &__show-more.-hidden {
+  &::before, &::after {
+    content: '.';
+    width: 0;
     visibility: hidden;
   }
 
-  &.-show-more &__show-more {
-    display: block;
+  &.-left {
+    &::after {
+      flex-grow: 1;
+    }
   }
 
-  &.-center &__items {
-    justify-content: center;
+  &.-center {
+    &::before, &::after {
+      flex-grow: 1;
+    }
+  }
+
+  &.-right {
+    &::before {
+      flex-grow: 1;
+    }
   }
 
   @each $bg in $bg-colors { @include bg-rule($bg) {
@@ -182,15 +189,3 @@
   }}
 }
 
-.heading {
-  display: flex;
-
-  &__title {
-    flex-grow: 1;
-    padding-right: rem(60px);
-  }
-
-  &__menu {
-    margin: auto 0;
-  }
-}

@@ -102,6 +102,13 @@ $page-width: 1200px;                    // if page is larger, content is of this
 $narrow-page-width: 800px;
 $page-padding: rem(12px);               // padding INSIDE of page width
 
+$margin--h1: 0.75rem;
+$margin--h2: 0.75rem;
+$margin--h3: 0.75rem;
+$margin--h4: 0.75rem;
+$margin--h5: 0.75rem;
+$margin--h6: 0.75rem;
+
 @import './_variables-custom.scss';
 
 $bg-colors: (

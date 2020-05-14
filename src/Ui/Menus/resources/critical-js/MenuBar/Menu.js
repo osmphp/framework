@@ -5,8 +5,12 @@ export default class Menu extends BaseMenu {
         return '.menu-bar__item';
     }
 
+    get items_element() {
+        return this.element.querySelector('.menu-bar__items');
+    }
+
     get show_more_element() {
-        return this.element.querySelector('.menu-bar__show-more')
+        return this.element.querySelector('.menu-bar__show-more');
     }
 
     get mobile_menu_element() {
@@ -19,62 +23,47 @@ export default class Menu extends BaseMenu {
 
     onResize() {
         let itemElements = this.item_elements;
-        let firstRowItemCount = this.countFirstRowItems(itemElements);
-
-        // if only one item fits into the first row and there is more, then we
-        // hide it but let it still occupy the space
-        if (itemElements.length > 1 && firstRowItemCount === 1) {
-            itemElements[0].classList.add('-hidden-but-consuming-space');
-            firstRowItemCount = 0;
-        }
-        else {
-            itemElements[0].classList.remove('-hidden-but-consuming-space');
-        }
-
-        // if there are items that didn't fit into the first row, show the
-        // "show more" hamburger
-        if (firstRowItemCount < itemElements.length) {
-            this.show_more_element.classList.remove('-hidden');
-        }
-        else {
-            this.show_more_element.classList.add('-hidden');
-        }
-
-        // in the mobile menu, hide all the items which are visible
-        // in the first row of this menu bar
-        this.hideFirstMobileItems(firstRowItemCount);
-    }
-
-    countFirstRowItems(itemElements) {
-        let top;
-        let result = 0;
+        let showMore = false;
+        let containerRect = this.items_element.getBoundingClientRect();
+        let containerStyle = getComputedStyle(this.element);
+        let containerRight = containerRect.right -
+            parseFloat(containerStyle.borderRight) -
+            parseFloat(containerStyle.paddingRight);
+        let count = 0;
 
         Array.prototype.forEach.call(itemElements, itemElement => {
-            if (itemElement.classList.contains('-hidden')) {
+            if (itemElement.classList.contains('_hidden')) {
                 return;
             }
 
-            if (top === undefined) {
-                top = itemElement.offsetTop;
-            }
+            let itemRect = itemElement.getBoundingClientRect();
 
-            if (top === itemElement.offsetTop) {
-                result++;
+            if (itemRect.right <= containerRight) {
+                itemElement.classList.remove('_invisible');
+                count++;
+            }
+            else {
+                itemElement.classList.add('_invisible');
+                showMore = true;
             }
         });
 
-        return result;
+        if (showMore) {
+            this.show_more_element.classList.remove('_hidden');
+        }
+        else {
+            this.show_more_element.classList.add('_hidden');
+        }
 
-    }
+        this.rearrangeDelimiters();
 
-    hideFirstMobileItems(count) {
-        let itemElements = this.mobile_menu_item_elements;
+        itemElements = this.mobile_menu_item_elements;
         Array.prototype.forEach.call(itemElements, (element, index) => {
             if (index < count) {
-                element.classList.add('-invisible');
+                element.classList.add('_hidden');
             }
             else {
-                element.classList.remove('-invisible');
+                element.classList.remove('_hidden');
             }
         });
 

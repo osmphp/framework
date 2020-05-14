@@ -81,28 +81,28 @@ input[type=radio] {
 
 h1 {
   font-size: rem(40px);
-  margin: 0.75rem 0;
+  margin: $margin--h1 0;
 }
 h2 {
   font-size: rem(36px);
-  margin: 0.75rem 0;
+  margin: $margin--h2 0;
 }
 
 h3 {
   font-size: rem(32px);
-  margin: 0.75rem 0;
+  margin: $margin--h3 0;
 }
 h4 {
   font-size: rem(28px);
-  margin: 0.75rem 0;
+  margin: $margin--h4 0;
 }
 h5 {
   font-size: rem(24px);
-  margin: 0.75rem 0;
+  margin: $margin--h5 0;
 }
 h6 {
   font-size: rem(20px);
-  margin: 0.75rem 0;
+  margin: $margin--h6 0;
 }
 
 p {
@@ -118,6 +118,9 @@ img {
 \*-------------------------------------------------------------------*/
 
 ._hidden {
+  display: none !important;
+}
+._invisible {
   visibility: hidden !important;
 }
 

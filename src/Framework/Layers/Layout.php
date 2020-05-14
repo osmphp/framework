@@ -369,4 +369,10 @@ class Layout extends Object_
             $this->registerViewRecursively($view);
         }
     }
+
+    public function view(View $view, $property, View $value) {
+        $view->assignSelfAsParentTo($value, $property);
+        $this->registerViewRecursively($value);
+        return $value;
+    }
 }

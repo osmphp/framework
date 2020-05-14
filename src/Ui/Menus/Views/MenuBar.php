@@ -9,6 +9,8 @@ use Osm\Ui\Buttons\Views\Button;
 /**
  * @property PopupMenu $mobile_menu @required
  * @property Button $show_more @required
+ *
+ * @property string $horizontal_align @required @part By default, 'left'
  */
 class MenuBar extends Menu
 {
@@ -25,6 +27,7 @@ class MenuBar extends Menu
                 'on_color' => $this->on_color,
             ]);
             case 'wrap_modifier': return "{$this->on_color_} {$this->color_}";
+            case 'horizontal_align': return 'left';
         }
 
         return parent::default($property);
