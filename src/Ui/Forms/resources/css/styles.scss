@@ -135,25 +135,24 @@
     font-size: inherit;
   }
 
-  @include field-color($color--primary, $color--on-primary);
-  &.-light {
-    @include field-color($color--primary-light, $color--on-primary-light);
-  }
-  &.-dark {
-    @include field-color($color--primary-dark, $color--on-primary-dark);
-  }
-
-  &.-secondary {
-    @include field-color($color--secondary, $color--on-secondary);
-    &.-light {
-      @include field-color($color--secondary-light, $color--on-secondary-light);
-    }
-    &.-dark {
-      @include field-color($color--secondary-dark, $color--on-secondary-dark);
+  &.-active {
+    .field__body {
+      border-color: currentColor;
     }
   }
+}
 
-  &.-checkbox {
-    color: inherit;
+@each $bg in $bg-colors {
+  @include bg-rule($bg, "no-default") {
+    .field.-checkbox .field__title {
+      color: fg-color($bg, fg(""));
+    }
+
+    .field.-text, .field.-dropdown, .field.-price, .field.-date {
+      .field__value {
+        background-color: bg-color($bg);
+        color: fg-color($bg, fg(""));
+      }
+    }
   }
 }

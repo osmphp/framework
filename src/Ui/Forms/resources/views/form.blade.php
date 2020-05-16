@@ -1,8 +1,8 @@
 <?php
 /* @var \Osm\Ui\Forms\Views\Form $view */
 ?>
-<form class="form {{ $view->modifier }}" method="{{ $view->method }}"
-    action="{{ $view->action }}" id="{{ $view->id_ }}">
+<form id="{{ $view->id_ }}" class="form {{ $view->on_color_ }} {{ $view->color_ }}"
+    method="{{ $view->method }}" action="{{ $view->action }}">
 
     @foreach ($view->items_ as $child)
         @if (!$child->empty)

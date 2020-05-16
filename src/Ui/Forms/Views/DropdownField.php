@@ -15,12 +15,12 @@ class DropdownField extends Field
 {
     public $field_template = 'Osm_Ui_Forms.dropdown-field';
     public $view_model = 'Osm_Ui_Forms.DropdownField';
+    public $type = 'dropdown';
 
     protected function default($property) {
         global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'modifier': return '-dropdown';
             case 'option_list_': return $this->option_list
                 ? $osm_app->option_lists[$this->option_list]
                 : null;
