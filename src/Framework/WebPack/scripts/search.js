@@ -17,7 +17,7 @@ class Search {
 
     searchInThemes(resourcePath, target, options) {
         return this.config.forEachTheme(target, theme => {
-            if (options.mostDetailedTheme && theme.name !== options.mostDetailedTheme) {
+            if (options.hasOwnProperty('mostDetailedTheme') && theme.name !== options.mostDetailedTheme) {
                 return;
             }
 

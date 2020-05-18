@@ -34,12 +34,12 @@ class ResolverPlugin {
     }
 
     resolveProceed(target, resource){
-        if (resource.request !== '@proceed') {
+        const match = resource.request.match(/^@proceed\(([^\)]+)\)$/);
+        if (!match) {
             return;
         }
 
-        const projectPath = this.paths.getProjectPath(resource.context.issuer);
-
+        const projectPath = this.paths.getProjectPath(path.resolve(resource.path, match[1]));
         const themeResource = this.projectPathParser.parseThemeResource(target, projectPath);
         if (themeResource) {
             return this.search.search(themeResource.path, target, { mostDetailedTheme: themeResource.theme.parent_theme });
