@@ -140,19 +140,17 @@
       border-color: currentColor;
     }
   }
-}
 
-@each $bg in $bg-colors {
-  @include bg-rule($bg) {
-    .field.-checkbox .field__title {
-      color: fg-color($bg, fg(""));
+  &.-checkbox &__title {
+    @include foreach-background() using($bg) {
+      color: fg-color($bg);
     }
+  }
 
-    .field.-text, .field.-dropdown, .field.-price, .field.-date {
-      .field__value {
-        background-color: bg-color($bg);
-        color: fg-color($bg, fg(""));
-      }
+  &.-text &__value, &.-dropdown &__value, &.-price &__value, &.-date &__value {
+    @include foreach-background() using($bg) {
+      background-color: bg-color($bg);
+      color: fg-color($bg);
     }
   }
 }

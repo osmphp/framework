@@ -60,7 +60,7 @@ $placeholder-color: $color--primary-light;
   @return $result;
 }
 
-@function bg($selector) {
+@function bg($selector: "") {
   @for $i from 1 through length($bg-colors) {
     $bg: nth($bg-colors, $i);
     @if nth($bg, 1) == $selector {
@@ -71,7 +71,7 @@ $placeholder-color: $color--primary-light;
   @return null;
 }
 
-@function fg($selector) {
+@function fg($selector: "") {
   @for $i from 1 through length($fg-colors) {
     $fg: nth($fg-colors, $i);
     @if nth($fg, 1) == $selector {
@@ -82,7 +82,8 @@ $placeholder-color: $color--primary-light;
   @return null;
 }
 
-@function bg-color($bg) {
+@function bg-color($bg: null) {
+  $bg: if($bg != null, $bg, bg(""));
   @return nth($bg, 3);
 }
 
@@ -163,21 +164,26 @@ $placeholder-color: $color--primary-light;
   @return fg-default-color($bg, $default-fg);
 }
 
-@function fg-highlighted-color($bg, $fg) {
+@function fg-highlighted-color($bg: null, $fg: null) {
+  $bg: if($bg != null, $bg, bg(""));
+  $fg: if($fg != null, $fg, fg(""));
   $bg-color: bg-color($bg);
   $fg-color: fg-color($bg, $fg);
 
   @return mix($bg-color, $fg-color, 93);
 }
 
-@function fg-pressed-color($bg, $fg) {
+@function fg-pressed-color($bg: null, $fg: null) {
+  $bg: if($bg != null, $bg, bg(""));
+  $fg: if($fg != null, $fg, fg(""));
   $bg-color: bg-color($bg);
   $fg-color: fg-color($bg, $fg);
 
   @return mix($bg-color, $fg-color, 87);
 }
 
-@function fg-delimiter-color($bg) {
+@function fg-delimiter-color($bg: null) {
+  $bg: if($bg != null, $bg, bg(""));
   $fg: fg("");
   $bg-color: bg-color($bg);
   $fg-color: fg-color($bg, $fg);
@@ -185,7 +191,9 @@ $placeholder-color: $color--primary-light;
   @return mix($bg-color, $fg-color, 80);
 }
 
-@function fg-color($bg, $fg) {
+@function fg-color($bg: null, $fg: null) {
+  $bg: if($bg != null, $bg, bg(""));
+  $fg: if($fg != null, $fg, fg(""));
   $type: nth($fg, 2);
   $selector: nth($fg, 1);
 
@@ -199,33 +207,132 @@ $placeholder-color: $color--primary-light;
   @return fg-default-color($bg, $fg);
 }
 
-@mixin bg-rule($bg, $filter: "") {
-  $selector: prefixed-selector(nth($bg, 1), ".-on-");
+//@function _bg($bg) {
+//  $selector: prefixed-selector(nth($bg, 1), ".-on-");
+//  @return if(str-length($selector) != 0, $selector, ".-on-neutral");
+//}
+//
+//@function _fg($fg) {
+//  $selector: prefixed-selector(nth($fg, 1), ".-");
+//  @return if(str-length($selector) != 0, $selector, ".-neutral");
+//}
+//
 
-  @if $filter == "" and str-length($selector) == 0 {
-    @content
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace +
+      str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+  @return $string;
+}
+
+@mixin fg($selector: "", $bg: null, $fg: null) {
+  // request info about the background and foreground colors
+  $bg: if($bg != null, $bg, bg(""));
+  $fg: if($fg != null, $fg, fg(""));
+
+  // ".-{color}" CSS selector
+  $fg-selector: prefixed-selector(nth($bg, 1), ".-");
+  $fg-selector: if(str-length($fg-selector) != 0, $fg-selector, ".-neutral");
+}
+
+@function bg-type-is($bg, $type) {
+  @return $type == null or nth($bg, 2) == $type;
+}
+
+//$block: null;
+//@mixin block() {
+//  $block: & !global;
+//
+//  @content;
+//
+//  $block: null !global;
+//}
+
+@mixin foreach-background($type: null) {
+  @if & and bg-type-is(bg(""), $type) {
+    // render default background rule only if inside some rule AND
+    // the default background matches the type filter
+    @content(bg(""));
   }
 
-  @if $filter == "" or $filter == "no-default" or nth($bg, 2) == $filter {
-    $selector: if(str-length($selector) != 0, $selector, ".-on-neutral");
-    &#{$selector}, & #{$selector} {
-      @content
+  @each $bg in $bg-colors {
+    @if bg-type-is($bg, $type) {
+      // render $bg background if it matches the type filter
+      @at-root #{bg-selector($bg)} {
+        @content($bg);
+      }
     }
   }
 }
 
-@mixin fg-rule($bg, $fg) {
-  @if fg-color($bg, $fg) {
-    $selector: prefixed-selector(nth($fg, 1), ".-");
-    @if $selector == "" {
-      @content
+@function bg-selector($bg: null) {
+  $bg: if($bg != null, $bg, bg(""));
+  $bg-selector: prefixed-selector(nth($bg, 1), ".-on-");
+  $bg-selector: if(str-length($bg-selector) != 0, $bg-selector, ".-on-neutral");
+
+  $result: ();
+  @if & {
+    @each $parent in & {
+      // .-on-{color} {parent} {}
+      $result: append($result, "#{$bg-selector} #{inspect($parent)}", comma);
+
+      // {parent[1]}.-on-{color} {parent[2...]} {}
+      $same: set-nth($parent, 1, nth($parent, 1) + $bg-selector);
+      $result: append($result, inspect($same), comma);
     }
+  }
+  @else { // if called outside of any CSS rule
+    // .-on-{color} {}
+    $result: append($result, $bg-selector, comma);
+  }
 
-    $selector: if(str-length($selector) != 0, $selector, ".-neutral");
+  @return $result;
+}
 
-    &#{$selector}, & #{$selector} {
-      @content
+@mixin foreach-foreground($bg: null) {
+  $bg: if($bg != null, $bg, bg(""));
+
+  @if & {
+    // render default foreground rule only if inside some rule
+    @content($bg, fg(""));
+  }
+
+  @each $fg in $fg-colors {
+    @if fg-color($bg, $fg) {
+      // render $fg foreground on $bg background (if applicable)
+      @at-root #{fg-selector($fg)} {
+        @content($bg, $fg);
+      }
     }
   }
 }
 
+@function fg-selector($fg: null) {
+  $fg: if($fg != null, $fg, fg(""));
+  $fg-selector: prefixed-selector(nth($fg, 1), ".-");
+  $fg-selector: if(str-length($fg-selector) != 0, $fg-selector, ".-neutral");
+
+  $result: ();
+  @if & {
+    @each $parent in & {
+      // .-{color} {parent} {}
+      $result: append($result, "#{$fg-selector} #{inspect($parent)}", comma);
+
+      // {parent[1]}.-{color} {parent[2...]} {}
+      $same: set-nth($parent, 1, nth($parent, 1) + $fg-selector);
+      $result: append($result, inspect($same), comma);
+
+      // {parent} .-{color} {}
+      $child: append($parent, unquote($fg-selector));
+      $result: append($result, inspect($child), comma);
+    }
+  }
+  @else { // if called outside of any CSS rule
+    // .-{color} { ... } rules
+    $result: append($result, $fg-selector, comma);
+  }
+
+  @return $result;
+}

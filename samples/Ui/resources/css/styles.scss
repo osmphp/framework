@@ -45,11 +45,11 @@ body.-tests-ui-menus {
 }
 
 body.-tests-ui-colors {
-  @each $bg in $bg-colors { @include bg-rule($bg) {
-    .-delimiter {
+  .-delimiter {
+    @include foreach-background() using($bg) {
       color: fg-delimiter-color($bg);
     }
-  }}
+  }
 
   .__palette {
     td {

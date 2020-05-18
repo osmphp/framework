@@ -114,15 +114,11 @@
   }
 
   &__item:hover, &__item.-hovered {
-    background-color: bg-color(bg("primary"));
-    color: fg-color(bg("primary"), fg(""));
-  }
-  @each $bg in $bg-colors { @include bg-rule($bg, "brand") {
-    & .popup-menu__item:hover, & .popup-menu__item.-hovered {
+    @include foreach-background() using($bg) {
       background-color: bg-color($bg);
-      color: fg-color($bg, fg(""));
+      color: fg-color($bg);
     }
-  }}
+  }
 }
 
 .menu-bar {
@@ -182,10 +178,10 @@
     }
   }
 
-  @each $bg in $bg-colors { @include bg-rule($bg) {
-    .-delimiter, .-delimiter-copy {
+  .-delimiter, .-delimiter-copy {
+    @include foreach-background() using($bg) {
       border-color: fg-delimiter-color($bg);
     }
-  }}
+  }
 }
 

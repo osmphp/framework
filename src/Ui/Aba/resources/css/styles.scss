@@ -25,14 +25,8 @@ button {
 body {
   margin:0;
 
-  $bg: nth($bg-colors, 1);
-  @include bg-rule($bg) {
-    background-color: bg-color($bg);
-
-    @each $fg in $fg-colors { @include fg-rule($bg, $fg) {
-      color: fg-color($bg, $fg);
-    }}
-  }
+  background-color: bg-color();
+  color: fg-color();
 
   & > * {
     // The following is a bad idea as all dynamically popping up elements as direct children of body and we
@@ -41,13 +35,16 @@ body {
   }
 }
 
-@each $bg in $bg-colors { @include bg-rule($bg, "no-default") {
-  background-color: bg-color($bg);
+@include foreach-foreground(bg()) using($bg, $fg) {
+  color: fg-color($bg, $fg);
+}
 
-  @each $fg in $fg-colors { @include fg-rule($bg, $fg) {
+@include foreach-background() using($bg) {
+  background-color: bg-color($bg);
+  @include foreach-foreground($bg) using($bg, $fg) {
     color: fg-color($bg, $fg);
-  }}
-}}
+  }
+}
 
 button {
   cursor: pointer;

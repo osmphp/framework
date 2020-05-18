@@ -6,6 +6,18 @@
 
 // HTML:  <i class="icon -cart"></i>
 
+%material-icon {
+  font-family: 'Material Icons';
+}
+
+%awesome-icon {
+  font-family: 'FontAwesome';
+}
+
+%themify-icon {
+  font-family: 'themify';
+}
+
 .icon {
   font-weight: normal;
   font-style: normal;
@@ -39,48 +51,36 @@
     padding-right: 0;
   }
 
-  &.-material {
-    font-family: 'Material Icons';
-  }
-
-  &.-awesome {
-    font-family: 'FontAwesome';
-  }
-
-  &.-themify {
-    font-family: 'themify';
-  }
-
   &.-cart {
-    @extend .icon.-material;
+    @extend %material-icon;
     &::before {
       content: 'shopping_cart';
     }
   }
 
   &.-menu {
-    @extend .icon.-material;
+    @extend %material-icon;
     &::before {
       content: 'menu';
     }
   }
 
   &.-more-horiz {
-    @extend .icon.-material;
+    @extend %material-icon;
     &::before {
       content: 'more_horiz';
     }
   }
 
   &.-more-vert {
-    @extend .icon.-material;
+    @extend %material-icon;
     &::before {
       content: 'more_vert';
     }
   }
 
   &.-sorted {
-    @extend .icon.-material;
+    @extend %material-icon;
     &::before {
       content: 'trending_flat';
     }
@@ -95,14 +95,14 @@
   }
 
   &.-filtered {
-    @extend .icon.-material;
+    @extend %material-icon;
     &::before {
       content: 'filter_list';
     }
   }
 
   &.-submenu {
-    @extend .icon.-material;
+    @extend %material-icon;
     &::before {
       //content: 'chevron_right';
       content: 'keyboard_arrow_right';
@@ -110,28 +110,28 @@
   }
 
   &.-bold {
-    @extend .icon.-material;
+    @extend %material-icon;
     &::before {
       content: 'format_bold';
     }
   }
 
   &.-italic {
-    @extend .icon.-material;
+    @extend %material-icon;
     &::before {
       content: 'format_italic';
     }
   }
 
   &.-underline {
-    @extend .icon.-material;
+    @extend %material-icon;
     &::before {
       content: 'format_underlined';
     }
   }
 
   &.-checked, &.-empty {
-    @extend .icon.-material;
+    @extend %material-icon;
     &::before {
       content: 'done';
     }
@@ -142,68 +142,68 @@
   }
 
   &.-checkbox-off {
-    @extend .icon.-material;
+    @extend %material-icon;
     &::before {
       content: 'check_box_outline_blank';
     }
   }
   &.-checkbox-on {
-    @extend .icon.-material;
+    @extend %material-icon;
     &::before {
       content: 'check_box';
     }
   }
   &.-checkbox-dimmed {
-    @extend .icon.-material;
+    @extend %material-icon;
     &::before {
       content: 'indeterminate_check_box';
     }
   }
 
   &.-user {
-    @extend .icon.-awesome;
+    @extend %awesome-icon;
     &::before {
       content: '\f007';
     }
   }
 
   &.-expand {
-    @extend .icon.-material;
+    @extend %material-icon;
     &::before {
       content: 'expand_more';
     }
   }
 
   &.-collapse {
-    @extend .icon.-material;
+    @extend %material-icon;
     &::before {
       content: 'expand_less';
     }
   }
 
   &.-document {
-    @extend .icon.-material;
+    @extend %material-icon;
     &::before {
       content: 'description';
     }
   }
 
   &.-image {
-    @extend .icon.-material;
+    @extend %material-icon;
     &::before {
       content: 'insert_photo';
     }
   }
 
   &.-close {
-    @extend .icon.-material;
+    @extend %material-icon;
     &::before {
       content: 'close';
     }
   }
 
   &.-settings {
-    @extend .icon.-awesome;
+    @extend %awesome-icon;
     &::before {
       content: '\f013';
     }

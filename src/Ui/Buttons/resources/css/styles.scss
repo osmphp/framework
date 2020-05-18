@@ -20,32 +20,38 @@
   // remove blue highlight rectangle on touch
   -webkit-tap-highlight-color: transparent;
 
-  &:disabled,
-  &.-disabled,
-  &.-disabled:hover,
-  &.-disabled:focus {
-    pointer-events: none; /* don't handle mouse events */
-    cursor: default;
+  &:disabled, &.-disabled, &.-disabled:hover, &.-disabled:focus {
+    @include dont-handle-mouse-events();
   }
 
-  @each $bg in $bg-colors { @include bg-rule($bg) {
-    &:disabled {
+  &:disabled, &.-disabled {
+    @include foreach-background() using($bg) {
       color: fg-color($bg, fg("disabled"));
     }
+  }
 
-    @each $fg in $fg-colors { @include fg-rule($bg, $fg) {
-      &:visited {
+  &:visited {
+    @include foreach-background() using($bg) {
+      @include foreach-foreground($bg) using($bg, $fg) {
         color: fg-color($bg, $fg);
       }
+    }
+  }
 
-      &:hover, &:focus {
+  &:hover, &:focus {
+    @include foreach-background() using($bg) {
+      @include foreach-foreground($bg) using($bg, $fg) {
         background-color: fg-highlighted-color($bg, $fg);
       }
-      &:active {
+    }
+  }
+  &:active {
+    @include foreach-background() using($bg) {
+      @include foreach-foreground($bg) using($bg, $fg) {
         background-color: fg-pressed-color($bg, $fg);
       }
-    }}
-  }}
+    }
+  }
 
   &.-outlined {
     border-color: currentColor;
