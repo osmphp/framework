@@ -109,7 +109,7 @@ $margin--h4: 0.75rem;
 $margin--h5: 0.75rem;
 $margin--h6: 0.75rem;
 
-@import './_variables-custom.scss';
+@import '~./_variables-custom.scss';
 
 $bg-colors: (
   // CSS class root   type        color   highlight pressed
