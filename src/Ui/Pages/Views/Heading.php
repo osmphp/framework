@@ -21,7 +21,7 @@ class Heading extends View
 
         $this->menu = $this->layout->view($this, 'menu',
             MenuBar::new([
-                'color' => $this->color,
+                'color' => $this->color ?: 'primary',
                 'on_color' => $this->on_color,
                 'horizontal_align' => 'right',
             ]));

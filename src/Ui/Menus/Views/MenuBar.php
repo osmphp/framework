@@ -23,8 +23,6 @@ class MenuBar extends Menu
             case 'show_more': return Button::new([
                 'alias' => 'show_more',
                 'icon' => '-menu',
-                'color' => $this->color,
-                'on_color' => $this->on_color,
             ]);
             case 'wrap_modifier': return "{$this->on_color_} {$this->color_}";
             case 'horizontal_align': return 'left';
@@ -36,7 +34,6 @@ class MenuBar extends Menu
     public function rendering() {
         $this->mobile_menu = PopupMenu::new([
             'alias' => 'mobile_menu',
-            'on_color' => $this->color ?: $this->on_color,
             'items' => $this->cloneObjects($this->items),
         ]);
 

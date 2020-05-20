@@ -10,6 +10,7 @@
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
+  color: inherit;
 
   // buttons on elements not catching mouse events (such as snack bars) should still catch hovers and clicks
   pointer-events: auto;
