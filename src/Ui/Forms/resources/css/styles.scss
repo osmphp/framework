@@ -135,10 +135,19 @@
     font-size: inherit;
   }
 
-  &.-active {
-    .field__body {
-      border-color: currentColor;
+  &.-image &__body {
+    border-left: solid rem(2px) transparent;
+  }
+  &.-image &__image {
+    &:not([src]) {
+      @include foreach-background() using($bg) {
+        @include placeholder-background(fg-delimiter-color($bg));
+      }
     }
+  }
+
+  &.-active &__body {
+    border-color: currentColor;
   }
 
   &.-checkbox &__title {

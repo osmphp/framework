@@ -102,12 +102,6 @@
     padding-left: rem(16px);
   }
 
-  &__placeholder {
-    width: rem(150px);
-    height: rem(200px);
-    @include placeholder-background();
-  }
-
   &__viewport {
     display: none;
     padding: 10px;

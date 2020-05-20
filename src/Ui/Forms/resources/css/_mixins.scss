@@ -13,15 +13,3 @@
   }
 }
 
-@mixin field-color($color, $on-color) {
-  color: $color;
-  &.-active {
-    .field__body {
-      border-color: $color;
-    }
-
-    .field__comment {
-      color: $color;
-    }
-  }
-}

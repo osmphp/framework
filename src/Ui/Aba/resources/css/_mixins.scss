@@ -7,7 +7,6 @@
 
 $shadow-thickness: rem(0) rem(3px) rem(1px) rem(-2px) rgba(0, 0, 0, 0.2);
 $shadow-ambient: rem(0) rem(0) rem(5px) rem(0) rgba(0, 0, 0, 0.1);
-$placeholder-color: $color--primary-light;
 
 @function shadow($z-index) {
   @return rem(0) rem($z-index * 1px) rem($z-index * 2px) rem(0) rgba(0, 0, 0, 0.25),
@@ -15,14 +14,14 @@ $placeholder-color: $color--primary-light;
           $shadow-thickness;
 }
 
-@mixin placeholder-background() {
-  background-color: $color--background;
-  background-image: linear-gradient(45deg, $placeholder-color 25%, transparent 25%, transparent 75%,
-          $placeholder-color 75%, $placeholder-color),
-  linear-gradient(45deg, $placeholder-color 25%, transparent 25%, transparent 75%,
-                  $placeholder-color 75%, $placeholder-color);
-  background-size: 30px 30px;
-  background-position: 0 0, 15px 15px;
+@mixin placeholder-background($color) {
+  background-image:
+    linear-gradient(45deg, $color 25%, transparent 25%, transparent 75%,
+            $color 75%, $color),
+    linear-gradient(45deg, $color 25%, transparent 25%, transparent 75%,
+            $color 75%, $color);
+  background-size: 16px 16px;
+  background-position: 0 0, 8px 8px;
 }
 
 @mixin no-list-formatting() {
