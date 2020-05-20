@@ -73,6 +73,7 @@ class Page extends Container
 
             case 'empty': return false;
             case 'selector': return 'body';
+            case 'color': return 'primary';
         }
         return parent::default($property);
     }
