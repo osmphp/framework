@@ -79,8 +79,8 @@ export default class Positioning extends Action {
         }
 
         this.$element.css({
-            left: this.alignX() + 'px',
-            top: this.alignY() + 'px'
+            left: (this.alignX() + window.scrollX) + 'px',
+            top: (this.alignY() + window.scrollY) + 'px'
         });
 
         if (!this.model.child_menu) {
