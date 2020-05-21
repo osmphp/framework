@@ -1,4 +1,5 @@
 @import '~Osm_Ui_Aba/_variables-and-mixins.scss';
+@import '~Osm_Ui_Pages/_mixins.scss';
 @import './_mixins.scss';
 
 .form {
@@ -22,12 +23,28 @@
 }
 
 .form-section {
+  @include heading($margin--h3);
+
+  &__header {
+      @include foreach-background() using($bg) {
+        border-bottom: 1px solid fg-delimiter-color($bg);
+      }
+  }
+
   &__items.-wide {
     @include form-items();
   }
 
   &__items.-wide &__item {
     @include form-item();
+  }
+
+  &.-image &__image {
+    &:not([src]) {
+      @include foreach-background() using($bg) {
+        @include placeholder-background(fg-delimiter-color($bg));
+      }
+    }
   }
 }
 
@@ -137,13 +154,6 @@
 
   &.-image &__body {
     border-left: solid rem(2px) transparent;
-  }
-  &.-image &__image {
-    &:not([src]) {
-      @include foreach-background() using($bg) {
-        @include placeholder-background(fg-delimiter-color($bg));
-      }
-    }
   }
 
   &.-active &__body {

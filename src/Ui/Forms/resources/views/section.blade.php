@@ -1,7 +1,7 @@
 <?php
 /* @var \Osm\Ui\Forms\Views\Section $view */
 ?>
-<section class="form-section" id="{{ $view->id_ }}">
+<section id="{{ $view->id_ }}" class="form-section {{ $view->type ? "-{$view->type}" : '' }}">
     <header class="form-section__header">
         <h3 class="form-section__title">{{ $view->title }}</h3>
         @if (!empty($view->menu->items))

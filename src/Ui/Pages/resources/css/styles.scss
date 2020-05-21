@@ -18,24 +18,5 @@
 }
 
 .heading {
-  display: flex;
-
-  &__title {
-    // keep the title text on one line
-    white-space: nowrap;
-
-    // if title and menu doesn't fit in full, allow title to shrink
-    flex-shrink: 1;
-
-    // when title shrinks and doesn't and only part of the text text
-    // is displayed, show ellipsis in the end of text indicating that
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  &__menu {
-    width: rem(40px);
-    flex-grow: 1;
-    margin: $margin--h1 0 $margin--h1 rem(8px);
-  }
+  @include heading($margin--h1);
 }

@@ -35,21 +35,11 @@ body {
   }
 }
 
-@include foreach-foreground(bg()) using($bg, $fg) {
-  color: fg-color($bg, $fg);
-}
-
-@include foreach-background() using($bg) {
-  background-color: bg-color($bg);
-  @include foreach-foreground($bg) using($bg, $fg) {
-    color: fg-color($bg, $fg);
-  }
-}
-
 button {
   cursor: pointer;
   outline: 0;
   background-color: inherit;
+  color: inherit;
 
   // remove blue highlight rectangle on touch
   -webkit-tap-highlight-color: transparent;
@@ -108,6 +98,17 @@ p {
 
 img {
   vertical-align: middle;
+}
+
+@include foreach-foreground(bg()) using($bg, $fg) {
+  color: fg-color($bg, $fg);
+}
+
+@include foreach-background() using($bg) {
+  background-color: bg-color($bg);
+  @include foreach-foreground($bg) using($bg, $fg) {
+    color: fg-color($bg, $fg);
+  }
 }
 
 /*-------------------------------------------------------------------*\

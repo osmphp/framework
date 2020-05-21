@@ -1,4 +1,30 @@
-@mixin container-color($color, $on-color) {
-  background-color: $color;
-  color: $on-color;
+@import '~Osm_Ui_Aba/_variables-and-mixins.scss';
+
+@mixin heading($margin) {
+  &__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: $margin;
+  }
+
+  &__title {
+    // keep the title text on one line
+    white-space: nowrap;
+
+    // if title and menu doesn't fit in full, allow title to shrink
+    flex-shrink: 1;
+
+    // when title shrinks and doesn't and only part of the text text
+    // is displayed, show ellipsis in the end of text indicating that
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    margin-bottom: 0;
+  }
+
+  &__menu {
+    width: rem(40px);
+    flex-grow: 1;
+    margin: $margin 0 0 rem(8px);
+  }
 }

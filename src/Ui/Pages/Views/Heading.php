@@ -19,12 +19,9 @@ class Heading extends View
     public function __construct($data = []) {
         parent::__construct($data);
 
-        $this->menu = $this->layout->view($this, 'menu',
-            MenuBar::new([
-                'color' => $this->color ?: 'primary',
-                'on_color' => $this->on_color,
-                'horizontal_align' => 'right',
-            ]));
+        $this->menu = $this->layout->view($this, MenuBar::new([
+            'horizontal_align' => 'right',
+        ]), 'menu');
     }
 
     protected function default($property) {
