@@ -1,8 +1,8 @@
 <?php
 
 use Osm\Framework\Views\View;
-use Osm\Ui\MenuBars\Views\MenuBar;
-use Osm\Ui\Menus\Items\Type;
+use Osm\Ui\Menus\Views\CommandItem;
+use Osm\Ui\Menus\Views\MenuBar;
 
 return [
     '@include' => ['modal_dialog'],
@@ -13,14 +13,13 @@ return [
             'stack_trace' => View::new(['template' => 'Osm_Ui_Dialogs.exception_stack_trace']),
         ],
         'footer' => MenuBar::new([
-                'modifier' => '-center',
-                'items' => [
-                    'cancel' => [
-                        'type' => Type::COMMAND,
-                        'title' => osm_t("Close"),
-                        'modifier' => '-filled',
-                    ],
-                ],
+            'horizontal_align' => 'center',
+            'items' => [
+                'cancel' => CommandItem::new([
+                    'title' => osm_t("Close"),
+                    'main' => 'true',
+                ]),
+            ],
         ]),
     ],
 ];
