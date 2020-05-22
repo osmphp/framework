@@ -101,4 +101,12 @@ class Web extends Controller
             // bind data to views
         ]);
     }
+
+    public function uploadsPage() {
+        return osm_layout('tests_ui_uploads', [
+            '#page.title' => osm_t("[page title]"),
+
+            // bind data to views
+        ]);
+    }
 }

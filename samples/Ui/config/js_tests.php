@@ -16,6 +16,7 @@ return [
             'dialogs' => ['title' => osm_t("Dialogs"), 'route' => 'GET /tests/ui/dialogs'],
             'snack-bars' => ['title' => osm_t("Snack Bars"), 'route' => 'GET /tests/ui/snack-bars'],
             'data-tables' => ['title' => osm_t("Data Tables"), 'route' => 'GET /tests/ui/data-tables'],
+            'uploads' => ['title' => osm_t("Uploads"), 'route' => 'GET /tests/ui/uploads'],
         ],
     ],
 ];

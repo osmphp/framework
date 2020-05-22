@@ -45,4 +45,10 @@ return [
         'method' => 'colorsPage',
         'public' => true,
     ],
+
+    'GET /tests/ui/uploads' => [
+        'class' => Web::class,
+        'method' => 'uploadsPage',
+        'public' => true,
+    ],
 ];
