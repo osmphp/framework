@@ -317,7 +317,7 @@ $shadow-ambient: rem(0) rem(0) rem(5px) rem(0) rgba(0, 0, 0, 0.1);
   @if & {
     @each $parent in & {
       // .-{color} {parent} {}
-      $result: append($result, "#{$fg-selector} #{inspect($parent)}", comma);
+      //$result: append($result, "#{$fg-selector} #{inspect($parent)}", comma);
 
       // {parent[1]}.-{color} {parent[2...]} {}
       $same: set-nth($parent, 1, nth($parent, 1) + $fg-selector);

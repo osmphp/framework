@@ -1,7 +1,10 @@
 <?php
 /* @var \Osm\Ui\SnackBars\Views\SnackBar $view */
 ?>
-<div class="snack-bar @if ($side ?? null) -with-sidebar @endif snack-bar-panel__item" id="{{ $view->id_ }}">
+<div id="{{ $view->id_ }}" class="snack-bar snack-bar-panel__item
+    {{ $view->on_color_ }} {{ $view->color_ }}
+    @if ($side ?? null) -with-sidebar @endif"
+>
     @if ($side ?? null)
     <div class="snack-bar__sidebar">
         {{ $side }}
