@@ -6,8 +6,8 @@ tests['/tests/unit/framework'] = function() {
         describe('ajax()', function () {
             it('normal response should be handled in .then()', function (done) {
                 ajax('POST /tests/framework/ajax', {payload: {}})
-                    .then(payload => {
-                        assert.equal(JSON.parse(payload).sample, 'response');
+                    .then(json => {
+                        assert.equal(json.sample, 'response');
                         done();
                     });
             });

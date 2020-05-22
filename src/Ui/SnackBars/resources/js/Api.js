@@ -2,12 +2,9 @@ import templates from 'Osm_Framework_Js/vars/templates';
 import $ from 'jquery';
 import Mustache from 'mustache';
 import Handle from './Handle';
-import osm_t from 'Osm_Framework_Js/osm_t';
 import config from 'Osm_Framework_Js/vars/config';
 import macaw from "Osm_Framework_Js/vars/macaw";
-import view_models from "Osm_Framework_Js/vars/view_models";
-import isString from "Osm_Framework_Js/isString";
-import ajax from "Osm_Framework_Js/ajax";
+import SnackBar from "./SnackBar";
 
 /**
  * @property {int} last_id
@@ -57,53 +54,13 @@ export default class Api {
             }
 
             $('.snack-bar-panel').append($element);
-            view_models.get($element[0]).model.handle = handle;
+            macaw.getViewModel($element[0], SnackBar).model.handle = handle;
             macaw.afterInserted($element[0]);
 
             handle.element = $element[0];
         });
 
         return handle;
-    }
-
-    handleEmptyPayload(payload) {
-        if (!isString(payload) || payload.length) {
-            return false;
-        }
-
-        this.showMessage(osm_t("Request processing was interrupted."));
-        return true;
-    }
-
-    handleServerError(xhr) {
-        if (xhr instanceof Error) {
-            this.show('exception', {
-                message: xhr.message,
-                stack_trace: xhr.stack
-            });
-            return false;
-        }
-
-        if (xhr.getResponseHeader("Content-Type") == 'application/json') {
-            return false;
-        }
-
-        let statusText = xhr.getResponseHeader('status-text');
-        if (!statusText) {
-            console.log('Empty status text received: ', xhr);
-            return true;
-        }
-
-        if (!xhr.responseText) {
-            this.showMessage(statusText);
-            return true;
-        }
-
-        this.show('exception', {
-            message: statusText,
-            stack_trace: xhr.responseText
-        });
-        return true;
     }
 
     showLastingMessage(message) {
@@ -128,32 +85,5 @@ export default class Api {
         }
 
         return this.showMessage(lastingSnackBar.message, {timeout});
-    }
-
-    ajax(route, options) {
-        let snackBar = this.modalMessage(options.processing_message || osm_t("Processing ..."));
-        return ajax(route, options)
-            .then(payload => {
-                if (payload === undefined) return payload; // response fully handled by previous then()
-
-                if (this.handleEmptyPayload(payload)) {
-                    // subsequent then() will know than response is fully handled
-                    return undefined;
-                }
-
-                return payload;
-            })
-            .catch(xhr => {
-                if (this.handleServerError(xhr)) {
-                    // subsequent then() will know than response is fully handled
-                    return undefined;
-                }
-
-                // pass error response to subsequent catch
-                throw xhr;
-            })
-            .finally(() => {
-                snackBar.close();
-            });
     }
 };

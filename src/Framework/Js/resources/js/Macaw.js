@@ -202,4 +202,21 @@ export default class Macaw {
     all(element) {
         return element.osm_controllers || [];
     }
+
+    getViewModel(element, ViewModel) {
+        element = find(element);
+
+        let viewModels = view_models.get(element);
+        if (!viewModels) {
+            return null;
+        }
+
+        for (let i = 0; i < viewModels.length; i++) {
+            if (viewModels[i] instanceof ViewModel) {
+                return viewModels[i];
+            }
+        }
+
+        return null;
+    }
 };

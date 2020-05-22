@@ -9,25 +9,41 @@ export default class FunctionsMixin {
         }
 
         let snackBar = snackBars.modalMessage(options.snackbar_message);
+
         return ajax
-            .then(payload => {
-                if (payload === undefined) return payload; // response fully handled by previous then()
-
-                if (snackBars.handleEmptyPayload(payload)) {
-                    // subsequent then() will know than response is fully handled
-                    return undefined;
+            .catch(response => {
+                if (response instanceof Error) {
+                    snackBars.show('exception', {
+                        message: response.message,
+                        stack_trace: response.stack
+                    });
+                    return;
                 }
 
-                return payload;
-            })
-            .catch(xhr => {
-                if (snackBars.handleServerError(xhr)) {
-                    // subsequent then() will know than response is fully handled
-                    return undefined;
+                if (response.headers.get("content-type") == 'application/json') {
+                    return response.json().then(json => {
+                        json.message = response.headers.get("status-text");
+                        return Promise.reject(json);
+                    });
                 }
 
-                // pass error response to subsequent catch
-                throw xhr;
+                if (!response.headers.has("status-text")) {
+                    console.log('Empty status text received: ', response);
+                    return;
+                }
+
+                let statusText = response.headers.get("status-text");
+                response.text().then(text => {
+                    if (!text.length) {
+                        snackBars.showMessage(statusText);
+                    }
+                    else {
+                        snackBars.show('exception', {
+                            message: statusText,
+                            stack_trace: text
+                        });
+                    }
+                });
             })
             .finally(() => {
                 snackBar.close();
