@@ -2,13 +2,11 @@
 
 namespace Osm\Ui\Buttons\Views;
 
+/**
+ * @property string $accept @part
+ * @property bool $multi_select @part
+ */
 class UploadButton extends Button
 {
-    protected function default($property) {
-        switch ($property) {
-            case 'title': return osm_t("Upload");
-        }
-
-        return parent::default($property);
-    }
+    public $template = 'Osm_Ui_Buttons.upload_button';
 }

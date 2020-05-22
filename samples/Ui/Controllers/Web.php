@@ -104,7 +104,7 @@ class Web extends Controller
 
     public function uploadsPage() {
         return osm_layout('tests_ui_uploads', [
-            '#page.title' => osm_t("[page title]"),
+            '#page.title' => osm_t("Uploads"),
 
             // bind data to views
         ]);

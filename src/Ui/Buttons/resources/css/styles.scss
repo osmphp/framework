@@ -24,6 +24,20 @@
     @include dont-handle-mouse-events();
   }
 
+  &.-upload {
+    position: relative;
+    overflow: hidden;
+  }
+  &__file-input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+
   &:disabled, &.-disabled {
     @include foreach-background() using($bg) {
       color: fg-color($bg, fg("disabled"));
