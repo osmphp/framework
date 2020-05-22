@@ -62,6 +62,11 @@
     &.-command {
     }
 
+    &.-upload-command {
+      position: relative;
+      overflow: hidden;
+    }
+
     &.-main {
       font-weight: bold;
     }
@@ -76,6 +81,15 @@
     color: inherit;
     display: flex;
     width: 100%;
+  }
+
+  &__file-input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    cursor: pointer;
   }
 
   &__icon {
