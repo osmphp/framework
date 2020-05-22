@@ -40,12 +40,6 @@ return [
         ],
     ],
 
-    'GET /tests/ui/containers' => [
-        'class' => Web::class,
-        'method' => 'containersPage',
-        'public' => true,
-    ],
-
     'GET /tests/ui/colors' => [
         'class' => Web::class,
         'method' => 'colorsPage',

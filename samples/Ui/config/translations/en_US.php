@@ -34,5 +34,4 @@ return [
     "Show Yes/No Dialog" => "Show Yes/No Dialog",
     "Do you really want to delete this item?" => "Do you really want to delete this item?",
     "Show exception snack bar" => "Show exception snack bar",
-    "Containers" => "Containers",
 ];

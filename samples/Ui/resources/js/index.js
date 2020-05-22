@@ -1,5 +1,4 @@
 import ColorsPage from "./ColorsPage";
-import ContainersPage from "./ContainersPage";
 import macaw from "Osm_Framework_Js/vars/macaw";
 import DialogsPage from "./DialogsPage";
 import MenusPage from "./MenusPage";
@@ -27,6 +26,4 @@ macaw.controller('body.-tests-ui-menus', MenusPage);
 macaw.controller('body.-tests-ui-dialogs', DialogsPage);
 macaw.controller('body.-tests-ui-data-tables', DataTablesPage);
 
-
-macaw.controller('body.-tests-ui-containers', ContainersPage);
 macaw.controller('body.-tests-ui-colors', ColorsPage);

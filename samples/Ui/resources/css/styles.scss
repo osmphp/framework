@@ -22,28 +22,6 @@ body.-tests-ui-menus {
   }
 }
 
-.section {
-  display: grid;
-  grid-template-columns: 1fr 100% 1fr;
-  grid-template-areas: ". main .";
-  grid-auto-rows: auto;
-  padding: 0 $page-padding;
-
-  & > * {
-    // on wide screen, limit width
-    max-width: $page-width;
-
-    // on wide screen, center content
-    grid-area: main;
-  }
-}
-
-.form {
-}
-
-.product-grid {
-}
-
 body.-tests-ui-colors {
   .-delimiter {
     @include foreach-background() using($bg) {

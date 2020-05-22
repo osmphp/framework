@@ -94,15 +94,6 @@ class Web extends Controller
         return $layout->select('#data_table');
     }
 
-    public function containersPage() {
-        return osm_layout('tests_ui_containers', [
-            '#page' => [
-                'title' => osm_t("Containers"),
-            ],
-            // bind data to views
-        ]);
-    }
-
     public function colorsPage() {
         return osm_layout('tests_ui_colors', [
             '#page.title' => osm_t("Colors"),
