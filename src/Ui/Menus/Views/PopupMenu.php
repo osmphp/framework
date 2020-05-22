@@ -11,15 +11,18 @@ class PopupMenu extends Menu
     protected function default($property) {
         switch ($property) {
             case 'on_color': return $this->getOnColor();
+            case 'color': return 'neutral';
         }
         return parent::default($property);
     }
 
     protected function getOnColor() {
-        for ($parent = $this->parent; $parent; $parent = $parent->parent) {
-            if ($color = $parent->color ?: $parent->on_color) {
-                return $color;
-            }
+        if (($result = $this->parent->on_color ?? 'neutral') != 'neutral') {
+            return $result;
+        }
+
+        if (($result = $this->parent->color ?? 'neutral') != 'neutral') {
+            return $result;
         }
 
         return 'primary';

@@ -2,7 +2,6 @@
 
 .popup-menu {
   background-color: bg-color(bg(""));
-  color: fg-color(bg(""), fg(""));
   padding: rem(8px) 0;
   box-shadow: shadow($z-index--menu);
   position: absolute;
@@ -10,6 +9,12 @@
   display: none;
   overflow-y: auto;
   margin: 0;
+
+  &.-neutral {
+    // .popup-menu is always .neutral. This added specificity is needed to
+    // override Aba's .-on-{color}.-{color} rules
+    color: fg-color(bg(""), fg(""));
+  }
 
   &__items {
     @include no-list-formatting();
@@ -107,7 +112,7 @@
     padding: 10px;
   }
 
-  &__item:hover, &__item.-hovered {
+  & &__item:hover, &__item.-hovered {
     @include foreach-background() using($bg) {
       background-color: bg-color($bg);
       color: fg-color($bg);

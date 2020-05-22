@@ -93,6 +93,8 @@ class View extends Object_
                 return $this->getViewModelScript($this->view_model, $this->model);
             case 'layout': return $osm_app->layout ?? Layout::new();
             case 'sorter': return $osm_app[Sorter::class];
+            case 'color': return $this->parent->color ?? 'neutral';
+            case 'on_color': return $this->parent->on_color ?? 'neutral';
             case 'color_': return $this->cssPrefix($this->color);
             case 'on_color_': return $this->cssPrefix($this->on_color, '-on-');
             case 'selector': return "#{$this->id_}";

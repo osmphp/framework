@@ -1,7 +1,9 @@
 <?php
 /* @var \Osm\Ui\Forms\Views\Tab $view */
 ?>
-<section class="form-tab" id="{{ $view->id_ }}">
+<section class="form-tab" id="{{ $view->id_ }}
+    {{ $view->on_color_ }} {{ $view->color_ }}"
+>
     <header class="form-tab__header">
         <h2 class="form-tab__title">{{ $view->title }}</h2>
     </header>

@@ -275,7 +275,7 @@ $shadow-ambient: rem(0) rem(0) rem(5px) rem(0) rgba(0, 0, 0, 0.1);
   @if & {
     @each $parent in & {
       // .-on-{color} {parent} {}
-      $result: append($result, "#{$bg-selector} #{inspect($parent)}", comma);
+      //$result: append($result, "#{$bg-selector} #{inspect($parent)}", comma);
 
       // {parent[1]}.-on-{color} {parent[2...]} {}
       $same: set-nth($parent, 1, nth($parent, 1) + $bg-selector);
@@ -324,8 +324,8 @@ $shadow-ambient: rem(0) rem(0) rem(5px) rem(0) rgba(0, 0, 0, 0.1);
       $result: append($result, inspect($same), comma);
 
       // {parent} .-{color} {}
-      $child: append($parent, unquote($fg-selector));
-      $result: append($result, inspect($child), comma);
+      //$child: append($parent, unquote($fg-selector));
+      //$result: append($result, inspect($child), comma);
     }
   }
   @else { // if called outside of any CSS rule

@@ -1,7 +1,10 @@
 <?php
 /* @var \Osm\Ui\Forms\Views\Field $view */
 ?>
-<div id="{{ $view->id_ }}" class="field {{ $view->type ? "-{$view->type}" : '' }}">
+<div id="{{ $view->id_ }}" class="field
+    {{ $view->on_color_ }} {{ $view->color_ }}
+    {{ $view->type ? "-{$view->type}" : '' }}"
+>
     <div class="field__body">
         @if ($view->title)
             <label class="field__title"
