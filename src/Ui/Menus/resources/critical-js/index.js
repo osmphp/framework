@@ -5,12 +5,14 @@ import PopupMenu_CommandItem from './PopupMenu/CommandItem';
 import PopupMenu_LinkItem from './PopupMenu/LinkItem';
 import PopupMenu_CheckboxItem from './PopupMenu/CheckboxItem';
 import PopupMenu_SubmenuItem from './PopupMenu/SubmenuItem';
+import PopupMenu_UploadCommandItem from './PopupMenu/UploadCommandItem';
 
 import MenuBar_Menu from './MenuBar/Menu';
 import MenuBar_CommandItem from './MenuBar/CommandItem';
 import MenuBar_LinkItem from './MenuBar/LinkItem';
 import MenuBar_CheckboxItem from './MenuBar/CheckboxItem';
 import MenuBar_SubmenuItem from './MenuBar/SubmenuItem';
+import MenuBar_UploadCommandItem from './MenuBar/UploadCommandItem';
 
 merge(window, {
     Osm_Ui_Menus: {
@@ -20,6 +22,7 @@ merge(window, {
             LinkItem: PopupMenu_LinkItem,
             CheckboxItem: PopupMenu_CheckboxItem,
             SubmenuItem: PopupMenu_SubmenuItem,
+            UploadCommandItem: PopupMenu_UploadCommandItem,
         },
         MenuBar: {
             Menu: MenuBar_Menu,
@@ -27,6 +30,7 @@ merge(window, {
             LinkItem: MenuBar_LinkItem,
             CheckboxItem: MenuBar_CheckboxItem,
             SubmenuItem: MenuBar_SubmenuItem,
+            UploadCommandItem: MenuBar_UploadCommandItem,
         },
     }
 });

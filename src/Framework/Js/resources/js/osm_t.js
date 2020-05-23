@@ -1,4 +1,5 @@
 import config from './vars/config';
+import formatString from "./formatString";
 
 export default function osm_t(text, parameters = {}) {
     if (config.translations && config.translations[text]) {
@@ -8,9 +9,5 @@ export default function osm_t(text, parameters = {}) {
         console.log("Translation for '" + text + "' not provided by server side");
     }
 
-    Object.keys(parameters).sort((a, b) => b.length - a.length).forEach((value, parameter) => {
-        text = text.replace(new RegExp('\\:' + parameter, 'g'), value);
-    });
-
-    return text;
+    return formatString(text, parameters);
 }

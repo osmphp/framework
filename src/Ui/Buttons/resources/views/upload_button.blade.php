@@ -16,3 +16,4 @@
         @if ($view->multi_select) multiple @endif
     >
 </button>
+{!! $view->view_model_script !!}

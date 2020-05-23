@@ -19,6 +19,7 @@ return [
             'title' => osm_t("Upload"),
             'accept' => 'image/*',
             'multi_select' => true,
+            'route' => 'POST /tests/ui/uploads',
         ]),
         'popup_button' => Button::new([
             'title' => osm_t("Menu"),
@@ -29,6 +30,7 @@ return [
                     'title' => osm_t("Upload"),
                     'accept' => 'image/*',
                     'multi_select' => true,
+                    'route' => 'POST /tests/ui/uploads',
                 ]),
             ],
         ]),
@@ -39,6 +41,7 @@ return [
             'title' => osm_t("Upload"),
             'accept' => 'image/*',
             'multi_select' => true,
+            'route' => 'POST /tests/ui/uploads',
         ]),
     ],
 ];

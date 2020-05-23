@@ -51,4 +51,11 @@ return [
         'method' => 'uploadsPage',
         'public' => true,
     ],
+
+    'POST /tests/ui/uploads' => [
+        'class' => Web::class,
+        'method' => 'upload',
+        'public' => true,
+        'returns' => Returns::JSON,
+    ],
 ];

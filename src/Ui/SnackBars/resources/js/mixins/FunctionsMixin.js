@@ -29,7 +29,7 @@ export default class FunctionsMixin {
 
                 if (!response.headers.has("status-text")) {
                     console.log('Empty status text received: ', response);
-                    return;
+                    return Promise.reject();
                 }
 
                 let statusText = response.headers.get("status-text");
@@ -44,6 +44,7 @@ export default class FunctionsMixin {
                         });
                     }
                 });
+                return Promise.reject();
             })
             .finally(() => {
                 snackBar.close();

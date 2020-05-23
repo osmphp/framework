@@ -11,4 +11,6 @@ use Osm\Ui\Buttons\Views\UploadButton;
     'outlined' => $view->button_outlined,
     'accept' => $view->accept,
     'multi_select' => $view->multi_select,
+    'route' => $view->route,
+    'message' => $view->message,
 ]))

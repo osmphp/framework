@@ -109,4 +109,8 @@ class Web extends Controller
             // bind data to views
         ]);
     }
+
+    public function upload() {
+        return (object)[];
+    }
 }

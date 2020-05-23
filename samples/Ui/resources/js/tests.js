@@ -16,8 +16,8 @@ tests['/tests/unit/ui'] = function () {
             });
             it('unexpected error response should be handled by the framework', function (done) {
                 ajax('POST /tests/framework/not-implemented', {payload: {}, snackbar_message: osm_t("Processing ...")})
-                    .then(json => {
-                        // handled response is passed as undefined value
+                    .catch(json => {
+                        // undefined value means "handled by the framework"
                         assert.isUndefined(json);
 
                         done();

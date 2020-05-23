@@ -8,6 +8,7 @@ export default class Functions {
      * @param {Object} options Available options:
      * @param {Object=} options.query - Query parameters
      * @param {Object|Array|boolean|number|string=} options.payload - Data passed as request payload
+     * @param {File=} options.file - File to upload
      * @param {string[]=} options.headers - Additional request headers
      * @param {string=} options.snackbar_message - Enables showing request progress and error handling in
      *      snack bar. While request is being processed, this message is shown in snackbar. This option only
@@ -24,6 +25,9 @@ export default class Functions {
         if (options.payload !== undefined) {
             parameters.headers['Content-Type'] = 'application/json';
             parameters.body = JSON.stringify(options.payload);
+        }
+        else if (options.file) {
+            parameters.body = options.file;
         }
 
         return fetch(url.generate(route, options.query), parameters)
