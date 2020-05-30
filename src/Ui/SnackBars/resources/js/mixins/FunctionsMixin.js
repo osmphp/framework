@@ -17,7 +17,7 @@ export default class FunctionsMixin {
                         message: response.message,
                         stack_trace: response.stack
                     });
-                    return;
+                    return Promise.reject();
                 }
 
                 if (response.headers.get("content-type") == 'application/json') {

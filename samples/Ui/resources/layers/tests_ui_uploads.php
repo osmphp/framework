@@ -1,6 +1,7 @@
 <?php
 
 use Osm\Framework\Views\View;
+use Osm\Framework\Views\Views\Container;
 use Osm\Ui\Buttons\Views\Button;
 use Osm\Ui\Buttons\Views\UploadButton;
 use Osm\Ui\Menus\Views\CommandItem;
@@ -35,6 +36,9 @@ return [
             ],
         ]),
         'heading' => Heading::new(['id' => 'heading']),
+        'uploaded_images' => Container::new([
+            'empty' => false,
+        ]),
     ],
     '#heading.menu.items' => [
         'upload' => UploadCommandItem::new([

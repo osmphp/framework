@@ -11,10 +11,7 @@ class ValidationFailed extends HttpError
 
     public function __construct($errors = [], \Throwable $previous = null) {
         if (is_array($errors)) {
-            foreach ($errors as $key => $value) {
-                $message = "{$key}: $value";
-                break;
-            }
+            $message = osm_t("Validation failed");
         }
         else {
             $message = (string)$errors;

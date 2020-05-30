@@ -2,14 +2,27 @@
 
 namespace Osm\Samples\Ui\Controllers;
 
-use Osm\App\App\Views\Backend\DataFormContainer;
-use Osm\App\App\Views\Backend\DataTableContainer;
+use Osm\Core\App;
+use Osm\Data\Files\Files;
 use Osm\Framework\Http\Controller;
 use Osm\Framework\Views\View;
 use Osm\Ui\SnackBars\Views\SnackBar;
 
+/**
+ * @property Files $files @required
+ */
 class Web extends Controller
 {
+    protected function default($property) {
+        global $osm_app; /* @var App $osm_app */
+
+        switch ($property) {
+            case 'files': return $osm_app[Files::class];
+        }
+
+        return parent::default($property);
+    }
+
     public function typographyPage() {
         return osm_layout('base', [
             '#page' => [
@@ -111,6 +124,17 @@ class Web extends Controller
     }
 
     public function upload() {
-        return (object)[];
+        $this->files->validateNotHidden();
+        $this->files->validateImage();
+
+        $response = $this->files->upload(Files::PUBLIC);
+
+        return (object)array_merge($response, [
+            'html' => (string)View::new([
+                'id_' => null,
+                'template' => 'Osm_Samples_Ui.uploaded_image',
+                'url' => $response['url'],
+            ]),
+        ]);
     }
 }

@@ -24,6 +24,6 @@ class ValidationFailed extends Error
     }
 
     protected function getStatusText() {
-        return osm_t("Validation failed");
+        return $this->e->getMessage();
     }
 }

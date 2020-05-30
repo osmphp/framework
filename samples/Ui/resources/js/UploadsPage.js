@@ -18,6 +18,10 @@ export default class UploadsPage extends Controller {
         return macaw.get('#popup_menu', PopupMenu);
     }
 
+    get uploaded_images_element() {
+        return document.getElementById('uploaded_images');
+    }
+
     onButtonClick(e) {
         this.menu.open(e.currentTarget);
     }
@@ -27,6 +31,13 @@ export default class UploadsPage extends Controller {
         ":count image(s) successfully uploaded.", {
                 count: e.detail.files.length
             }));
+
         console.log(e.detail.files);
+
+        e.detail.files.forEach(file => {
+            let element = (new DOMParser()).parseFromString(
+                file.html, 'text/html').body;
+            this.uploaded_images_element.append(element);
+        });
     }
 };
