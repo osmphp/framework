@@ -17,6 +17,7 @@ use Osm\Framework\Data\Traits\CloneableTrait;
 /**
  * @property int $limit @part
  * @property int $offset @part
+ * @property bool $distinct @part
  * @property Parser $parser @required
  * @property Resolver $resolver @required
  * @property Types $types @required
@@ -43,7 +44,6 @@ abstract class Query extends Object_
      * @var Formula[]
      */
     public $sorts = [];
-
 
     protected function default($property) {
         global $osm_app; /* @var App $osm_app */
@@ -164,6 +164,13 @@ abstract class Query extends Object_
         $this->registerMethodCall(__FUNCTION__, $limit);
 
         $this->limit = $limit;
+        return $this;
+    }
+
+    public function distinct($distinct = true) {
+        $this->registerMethodCall(__FUNCTION__, $distinct);
+
+        $this->distinct = $distinct;
         return $this;
     }
 

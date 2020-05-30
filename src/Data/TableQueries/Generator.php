@@ -49,6 +49,11 @@ class Generator extends Object_
     public function generateSelect(TableQuery $query) {
         $this->query = $query;
         $this->sql .= 'SELECT ';
+
+        if ($query->distinct) {
+            $this->sql .= 'DISTINCT ';
+        }
+
         $this->generateColumns();
 
         foreach ($this->query->tables as $table) {

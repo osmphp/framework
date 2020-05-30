@@ -3,6 +3,7 @@
 namespace Osm\Data\Files;
 
 use Osm\Core\App;
+use Osm\Core\Exceptions\NotSupported;
 use Osm\Core\Object_;
 use Osm\Data\Files\Exceptions\CantUploadWithoutSession;
 use Osm\Data\Files\Exceptions\InvalidContentLength;
@@ -12,6 +13,8 @@ use Osm\Framework\Areas\Area;
 use Osm\Framework\Db\Db;
 use Osm\Framework\Http\Request;
 use Osm\Framework\Http\Url;
+use Osm\Framework\Sessions\Session;
+use Osm\Framework\Sessions\Stores\Store;
 use Osm\Framework\Validation\Exceptions\ValidationFailed;
 
 /**
@@ -122,5 +125,40 @@ class Files extends Object_
 
         return $this->db['files']->insert($data);
     }
+
+    public function deleteExpiredSessionFiles(Area $area) {
+        if (!($sessions = $area->sessions)) {
+            throw new NotSupported("Deleting expired session files " .
+                "is only possible while handling a HTTP request in an area " .
+                "having a session cookie");
+        }
+
+        $ids = $this->db['files']->distinct()->values("session");
+
+        foreach ($ids as $id) {
+            if (!$sessions[$id]) {
+                $this->delete("session = '{$id}'");
+            }
+        }
+    }
+
+    public function delete($where) {
+        $files = $this->db['files']->where($where)->get($this->columns());
+        foreach ($files as $file) {
+            $file_ = File::new((array)$file);
+
+            if (is_file($file_->filename_)) {
+                unlink($file_->filename_);
+            }
+
+            $this->db['files']->where("id = {$file->id}")->delete();
+        }
+    }
+
+    protected function columns() {
+        return ['id', 'uid', 'root', 'path', 'prefix', 'name', 'suffix', 'ext',
+            'filename'];
+    }
+
 
 }
