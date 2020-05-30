@@ -6,6 +6,7 @@ use Osm\Core\App;
 use Osm\Core\Object_;
 use Osm\Data\Files\Exceptions\CantUploadWithoutSession;
 use Osm\Data\Files\Exceptions\InvalidContentLength;
+use Osm\Data\Files\Hints\FileHint;
 use Osm\Data\TableQueries\TableQuery;
 use Osm\Framework\Areas\Area;
 use Osm\Framework\Db\Db;
@@ -44,6 +45,8 @@ class Files extends Object_
                 'file' => $this->request->content_name,
             ]));
         }
+
+        return $this;
     }
 
     public function validateNotHidden() {
@@ -52,8 +55,15 @@ class Files extends Object_
                 'file' => $this->request->content_name,
             ]));
         }
+
+        return $this;
     }
 
+    /**
+     * @param $root
+     * @param array $options
+     * @return object|FileHint
+     */
     public function upload($root, $options = []) {
         $file = File::new(array_merge([
             'root' => $root,
@@ -68,10 +78,9 @@ class Files extends Object_
                 "The size of the uploaded file doesn't match the file size estimated by the browser."));
         }
 
-        $id = $this->insert($file);
+        $this->insert($file);
 
         $result = [
-            'id' => $id,
             'uid' => $file->uid,
             'filename' => $file->filename,
         ];
@@ -80,7 +89,7 @@ class Files extends Object_
             $result['url'] = $this->url->toFile($file->filename);
         }
 
-        return $result;
+        return (object)$result;
     }
 
     protected function insert(File $file) {

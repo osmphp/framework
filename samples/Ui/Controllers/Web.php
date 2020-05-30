@@ -124,17 +124,16 @@ class Web extends Controller
     }
 
     public function upload() {
-        $this->files->validateNotHidden();
-        $this->files->validateImage();
+        $this->files->validateNotHidden()->validateImage();
 
-        $response = $this->files->upload(Files::PUBLIC);
-
-        return (object)array_merge($response, [
-            'html' => (string)View::new([
-                'id_' => null,
-                'template' => 'Osm_Samples_Ui.uploaded_image',
-                'url' => $response['url'],
-            ]),
+        $file = $this->files->upload(Files::PUBLIC);
+        $file->html = (string)View::new([
+            'id_' => null,
+            'template' => 'Osm_Samples_Ui.uploaded_image',
+            'url' => $file->url,
         ]);
+        unset($file->url);
+
+        return (object)$file;
     }
 }

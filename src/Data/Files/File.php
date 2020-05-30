@@ -32,7 +32,7 @@ use Osm\Data\Files\Exceptions\SuffixCantBeInferred;
  */
 class File extends Object_
 {
-    const MAX_FILES_PER_DIRECTORY = 5;
+    const MAX_FILES_PER_DIRECTORY = 256;
     const MAX_FILENAME_COLLISIONS = 256;
 
     protected function default($property) {
