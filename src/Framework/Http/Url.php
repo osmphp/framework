@@ -83,10 +83,6 @@ class Url extends Object_
             "/{$this->area}/{$osm_app->theme}/{$path}?v={$this->asset_version}";
     }
 
-    public function toFile($path) {
-        return "$this->asset_base_url/files/{$path}";
-    }
-
     public function to($route, $rawQuery = []) {
         return $this->route_base_url_ .
             substr($route, strpos($route, ' ') + 1) .

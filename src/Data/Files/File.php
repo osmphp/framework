@@ -3,6 +3,7 @@
 namespace Osm\Data\Files;
 
 use Osm\Core\App;
+use Osm\Core\Exceptions\NotSupported;
 use Osm\Core\Object_;
 use Osm\Data\Files\Exceptions\PrefixCantBeInferred;
 use Osm\Data\Files\Exceptions\SuffixCantBeInferred;
@@ -28,6 +29,7 @@ use Osm\Data\Files\Exceptions\SuffixCantBeInferred;
  * @property string $root_ @required
  * @property string $path_ @required
  * @property string $filename_ @required
+ * @property string $url @required
  * @property array $insert_data @required
  */
 class File extends Object_
@@ -43,9 +45,7 @@ class File extends Object_
             case 'root_': return $this->isRelativePath($this->root)
                 ? $osm_app->path($this->root)
                 : $this->root;
-            case 'path_': return $this->path
-                ? "{$this->root_}/{$this->path}"
-                : $this->root_;
+            case 'path_': return $this->getPath();
             case 'prefix': return $this->getPrefix();
             case 'name': return pathinfo($this->requested_filename,
                 PATHINFO_FILENAME);
@@ -59,6 +59,7 @@ class File extends Object_
                 : null;
             case 'filename': return $this->getRelativeFilename($this->suffix);
             case 'filename_': return $this->getAbsoluteFilename($this->suffix);
+            case 'url': return $this->getUrl();
         }
 
         return parent::default($property);
@@ -142,5 +143,32 @@ class File extends Object_
 
         $number26base = base_convert(strval($i), 10, 26);
         return strtr($number26base, $numericSymbols, $resolutionSymbols);
+    }
+
+    protected function getPath() {
+        $root = env('APP_ENV') == 'testing'
+            ? "{$this->root_}/testing"
+            : $this->root_;
+        return $this->path ? "{$root}/{$this->path}" : $root;
+    }
+
+    protected function getUrl() {
+        global $osm_app; /* @var App $osm_app */
+
+        if ($this->root != Files::PUBLIC) {
+            throw new NotSupported("Generating URL to non-public uploaded file is not supported");
+        }
+
+        $result = "{$osm_app->url->asset_base_url}/files";
+
+        if (env('APP_ENV') == 'testing') {
+            $result .= "/testing";
+        }
+
+        if ($this->path) {
+            $result .= "/{$this->path}";
+        }
+
+        return "{$result}/{$this->filename}";
     }
 }

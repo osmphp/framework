@@ -86,7 +86,7 @@ class Files extends Object_
         ];
 
         if ($root === static::PUBLIC) {
-            $result['url'] = $this->url->toFile($file->filename);
+            $result['url'] = $file->url;
         }
 
         return (object)$result;
