@@ -124,7 +124,7 @@ class Web extends Controller
     }
 
     public function upload() {
-        $this->files->validateNotHidden()->validateImage();
+        $this->files->validateImage();
 
         $file = $this->files->upload(Files::PUBLIC);
         $file->html = (string)View::new([

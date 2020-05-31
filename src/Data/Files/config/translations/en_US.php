@@ -18,4 +18,5 @@ return [
     "Check all files, even those not listed in 'files' table" => "Check all files, even those not listed in 'files' table",
     "Area" => "Area",
     "Pathname" => "Pathname",
+    "Can't upload executable file ':file'" => "Can't upload executable file ':file'",
 ];

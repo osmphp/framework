@@ -92,12 +92,26 @@ class Files extends Object_
         return $this;
     }
 
+    public function validateNotExecutable() {
+        $ext = mb_strtolower(pathinfo($this->request->content_name,
+            PATHINFO_EXTENSION));
+
+        if (in_array($ext, ['', 'php', 'phtml', 'php3', 'js', 'sh'])) {
+            throw new ValidationFailed(osm_t("Can't upload executable file ':file'", [
+                'file' => $this->request->content_name,
+            ]));
+        }
+
+        return $this;
+    }
+
     /**
      * @param $root
      * @param array $options
      * @return object|FileHint
      */
     public function upload($root, $options = []) {
+        $this->validateNotHidden()->validateNotExecutable();
         $file = File::new(array_merge([
             'root' => $root,
             'requested_filename' => $this->request->content_name,
