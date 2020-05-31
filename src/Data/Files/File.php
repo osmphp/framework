@@ -18,7 +18,9 @@ use Osm\Data\Files\Exceptions\SuffixCantBeInferred;
  * @property string $path "products"
  * @property string $requested_filename @required "jeans.jpg"
  * @property string $filename @required "ab/1e/jeans-2.jpg"
+ * @property string $pathname @required "products/ab/1e/jeans-2.jpg"
  * @property string $uid @required "ab1e...", omit for new files
+ * @property int $id
  * @property string $prefix "ab/1e"
  * @property string $name @required "jeans"
  * @property string $suffix "-2"
@@ -58,6 +60,7 @@ class File extends Object_
                     : 'generateNumericSuffix'])
                 : null;
             case 'filename': return $this->getRelativeFilename($this->suffix);
+            case 'pathname': return $this->getPathname();
             case 'filename_': return $this->getAbsoluteFilename($this->suffix);
             case 'url': return $this->getUrl();
         }
@@ -159,16 +162,22 @@ class File extends Object_
             throw new NotSupported("Generating URL to non-public uploaded file is not supported");
         }
 
-        $result = "{$osm_app->url->asset_base_url}/files";
+        return "{$osm_app->url->asset_base_url}/files/{$this->pathname}";
+    }
+
+    protected function getPathname() {
+        $result = [];
 
         if (env('APP_ENV') == 'testing') {
-            $result .= "/testing";
+            $result[] = 'testing';
         }
 
         if ($this->path) {
-            $result .= "/{$this->path}";
+            $result[] = $this->path;
         }
 
-        return "{$result}/{$this->filename}";
+        $result[] = $this->filename;
+
+        return implode('/', $result);
     }
 }

@@ -16,8 +16,10 @@ class m01_files extends Migration
                 ->index();
 
             $table->string('root')->title("Root")
-                ->required();
+                ->required()->index();
             $table->string('path')->title("Path");
+            $table->string('pathname')->title("Pathname")
+                ->required()->index();
             $table->string('prefix')->title("Prefix");
             $table->string('name')->title("Name")
                 ->required();

@@ -3,7 +3,6 @@
 namespace Osm\Data\Files;
 
 use Osm\Core\App;
-use Osm\Core\Exceptions\NotSupported;
 use Osm\Core\Object_;
 use Osm\Data\Files\Exceptions\CantUploadWithoutSession;
 use Osm\Data\Files\Exceptions\InvalidContentLength;
@@ -13,19 +12,25 @@ use Osm\Framework\Areas\Area;
 use Osm\Framework\Db\Db;
 use Osm\Framework\Http\Request;
 use Osm\Framework\Http\Url;
-use Osm\Framework\Sessions\Session;
-use Osm\Framework\Sessions\Stores\Store;
 use Osm\Framework\Validation\Exceptions\ValidationFailed;
 
 /**
+ * Dependencies:
+ *
  * @property Request $request @required
  * @property Db|TableQuery[] $db @required
  * @property Url $url @required
  * @property Area $area @required
+ *
+ * Computed properties:
+ *
+ * @property string[] $reference_columns
+ * @property string[] $data_columns
  */
 class Files extends Object_
 {
     const PUBLIC = 'public/files';
+    const PRIVATE = 'data';
 
     protected function default($property) {
         global $osm_app; /* @var App $osm_app */
@@ -35,9 +40,34 @@ class Files extends Object_
             case 'db': return $osm_app->db;
             case 'url': return $osm_app->url;
             case 'area': return $osm_app->area_;
+            case 'reference_columns': return $this->getColumns(true);
+            case 'data_columns': return $this->getColumns(false);
         }
 
         return parent::default($property);
+    }
+
+    protected function getColumns($reference) {
+        $result = [];
+
+        foreach ($this->db->tables['files']->columns as $column) {
+            if ($column->name === 'id') {
+                continue;
+            }
+
+            if ($reference) {
+                if ($column->pinned) {
+                    $result[] = $column->name;
+                }
+            }
+            else {
+                if (!$column->pinned) {
+                    $result[] = $column->name;
+                }
+            }
+        }
+
+        return $result;
     }
 
     public function validateImage() {
@@ -97,25 +127,14 @@ class Files extends Object_
 
     protected function insert(File $file) {
         $data = [];
-        $hasReference = false;
 
-        foreach ($this->db->tables['files']->columns as $column) {
-            if ($column->name === 'id') {
-                continue;
-            }
-
-            if (($value = $file->{$column->name}) === null) {
-                continue;
-            }
-
-            $data[$column->name] = $value;
-
-            if ($column->pinned) {
-                $hasReference = true;
+        foreach ($this->data_columns as $column) {
+            if (($value = $file->{$column}) !== null) {
+                $data[$column] = $value;
             }
         }
 
-        if (!$hasReference) {
+        if (empty($this->reference_columns)) {
             if (!$this->area->session) {
                 throw new CantUploadWithoutSession(osm_t(
                     "You can upload a file in an area without a session cookie."));
@@ -126,39 +145,60 @@ class Files extends Object_
         return $this->db['files']->insert($data);
     }
 
-    public function deleteExpiredSessionFiles(Area $area) {
-        if (!($sessions = $area->sessions)) {
-            throw new NotSupported("Deleting expired session files " .
-                "is only possible while handling a HTTP request in an area " .
-                "having a session cookie");
+    /**
+     * @param string|string[] $where
+     * @return TableQuery
+     */
+    public function query($where = []) {
+        $result = $this->db['files'];
+
+        if (!is_array($where)) {
+            $result->where($where);
+        }
+        else {
+            foreach ($where as $formula) {
+                $result->where($formula);
+            }
         }
 
-        $ids = $this->db['files']->distinct()->values("session");
+        return $result;
+    }
 
-        foreach ($ids as $id) {
-            if (!$sessions[$id]) {
-                $this->delete("session = '{$id}'");
-            }
+    public function get($where = []) {
+        return $this->query($where)
+            ->select('id')
+            ->get($this->data_columns);
+    }
+
+    /**
+     * @param string|string[] $where
+     * @return \Generator|File[]
+     */
+    public function each($where = []) {
+        foreach ($this->get($where) as $data) {
+            yield File::new((array)$data);
         }
     }
 
     public function delete($where) {
-        $files = $this->db['files']->where($where)->get($this->columns());
-        foreach ($files as $file) {
-            $file_ = File::new((array)$file);
-
-            if (is_file($file_->filename_)) {
-                unlink($file_->filename_);
+        $this->db->connection->transaction(function() use ($where) {
+            foreach ($this->each($where) as $file) {
+                $this->deleteFile($file);
             }
+        });
+    }
 
+    public function deleteFile(File $file) {
+        if (is_file($file->filename_)) {
+            unlink($file->filename_);
+        }
+
+        if ($file->id) {
             $this->db['files']->where("id = {$file->id}")->delete();
         }
     }
 
-    protected function columns() {
-        return ['id', 'uid', 'root', 'path', 'prefix', 'name', 'suffix', 'ext',
-            'filename'];
+    public function clear($options = []) {
+        GarbageCollector::new($options)->collect();
     }
-
-
 }

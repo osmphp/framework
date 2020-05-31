@@ -13,4 +13,7 @@ return [
     "You can upload a file in an area without a session cookie." => "You can upload a file in an area without a session cookie.",
     "Can't upload hidden file ':file'" => "Can't upload hidden file ':file'",
     "':file' is not an image" => "':file' is not an image",
+    "Deletes uploaded files that are not referenced anywhere" => "Deletes uploaded files that are not referenced anywhere",
+    "Output orphan files instead of deleting them" => "Output orphan files instead of deleting them",
+    "Check all files, even those not listed in 'files' table" => "Check all files, even those not listed in 'files' table",
 ];
