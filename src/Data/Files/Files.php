@@ -202,4 +202,11 @@ class Files extends Object_
     public function gc($options = []) {
         GarbageCollector::new($options)->collect();
     }
+
+    public function dropAllFiles() {
+        foreach ($this->each() as $file) {
+            unset($file->id);
+            $this->deleteFile($file);
+        }
+    }
 }

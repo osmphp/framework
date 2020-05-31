@@ -40,6 +40,7 @@ class Process extends Command
                 }
                 catch (\Throwable $e) {
                     $this->log->critical("{$job->name} FAILED");
+                    throw $e;
                 }
             }
         }

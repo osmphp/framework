@@ -2,11 +2,25 @@
 
 namespace Osm\Data\Files\Migrations\Schema;
 
+use Osm\Core\App;
+use Osm\Data\Files\Files;
 use Osm\Data\Tables\Blueprint;
 use Osm\Framework\Migrations\Migration;
 
+/**
+ * @property Files $files @required
+ */
 class m01_files extends Migration
 {
+    public function default($property) {
+        global $osm_app; /* @var App $osm_app */
+
+        switch ($property) {
+            case 'files': return $osm_app[Files::class];
+        }
+        return parent::default($property);
+    }
+
     public function up() {
         $this->db->create('files', function (Blueprint $table) {
             $table->string('uid', 40)->title("UID")
@@ -33,6 +47,7 @@ class m01_files extends Migration
     }
 
     public function down() {
+        $this->files->dropAllFiles();
         $this->db->drop('files');
     }
 }

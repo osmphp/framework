@@ -3,6 +3,7 @@
 namespace Osm\Data\Files;
 
 use Osm\Core\Modules\BaseModule;
+use Osm\Framework\Migrations\Migrator;
 use Osm\Framework\Sessions\Stores\Store;
 
 class Module extends BaseModule
@@ -14,5 +15,6 @@ class Module extends BaseModule
 
     public $traits = [
         Store::class => Traits\SessionStoreTrait::class,
+        Migrator::class => Traits\MigratorTrait::class,
     ];
 }
