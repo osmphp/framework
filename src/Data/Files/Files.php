@@ -139,6 +139,7 @@ class Files extends Object_
                 throw new CantUploadWithoutSession(osm_t(
                     "You can upload a file in an area without a session cookie."));
             }
+            $data['area'] = $this->area->name;
             $data['session'] = $this->area->session->id;
         }
 
@@ -198,7 +199,7 @@ class Files extends Object_
         }
     }
 
-    public function clear($options = []) {
+    public function gc($options = []) {
         GarbageCollector::new($options)->collect();
     }
 }

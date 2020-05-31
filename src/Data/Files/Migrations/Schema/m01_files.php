@@ -12,6 +12,8 @@ class m01_files extends Migration
             $table->string('uid', 40)->title("UID")
                 ->unique()->required();
 
+            $table->string('area')->title("Area")
+                ->index();
             $table->string('session')->title("Session")
                 ->index();
 

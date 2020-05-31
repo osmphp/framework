@@ -6,8 +6,12 @@ use Osm\Core\Object_;
 use Psr\Log\LoggerInterface;
 
 /**
- * @property LoggerInterface $layers @required @default
  * @property string $unique_filename @required
+ *
+ * @see \Osm\Framework\Layers\Module
+ *      @property LoggerInterface $layers @required @default
+ * @see \Osm\Framework\Cron\Module
+ *      @property LoggerInterface $cron @required @default
  */
 class Logs extends Object_
 {

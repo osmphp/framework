@@ -12,6 +12,8 @@ use Osm\Framework\Cache\CacheItem;
  * @see \Osm\Framework\Http\Module:
  *      @property string $base_url @part
  *      @property string $asset_base_url @part
+ * @see \Osm\Framework\Cron\Module:
+ *      @property bool $log_cron @part
  * @see \Osm\Framework\Db\Module:
  *      @property bool $log_db_queries @part
  *      @property float $log_db_queries_from @part
@@ -40,6 +42,8 @@ use Osm\Framework\Cache\CacheItem;
  *      @property string $smtp_password @required @part
  * @see \Osm\Framework\Views\Module:
  *      @property bool $debug_views @part
+ * @see \Osm\Data\Files\Module:
+ *      @property bool $collect_file_garbage @part
  *
  * @see \Osm\Ui\SnackBars\Module:
  *      @property int $close_snack_bars_after @required @part

@@ -24,7 +24,7 @@ class ClearFiles extends Command
     }
 
     public function run() {
-        $this->files->clear([
+        $this->files->gc([
             'dry_run' => $this->input->getOption('dry-run'),
             'full' => $this->input->getOption('full'),
             'callback' => function(File $file) {

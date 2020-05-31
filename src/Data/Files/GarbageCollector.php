@@ -54,7 +54,7 @@ class GarbageCollector extends Object_
             $where[] = "$column IS NULL";
         }
 
-        $this->files->delete($where);
+        $this->delete($where);
     }
 
     protected function collectExpiredSessionFiles() {
@@ -74,11 +74,14 @@ class GarbageCollector extends Object_
                 "having a session cookie");
         }
 
-        $ids = $this->db['files']->distinct()->values("session");
+        $ids = $this->db['files']
+            ->distinct()
+            ->where("area = ?", $area->name)
+            ->values("session");
 
         foreach ($ids as $id) {
             if (!$area->sessions[$id]) {
-                $this->files->delete("session = '{$id}'");
+                $this->delete("session = '{$id}'");
             }
         }
     }
@@ -89,15 +92,23 @@ class GarbageCollector extends Object_
             return;
         }
 
-        $this->collectOrphanFilesInDirectory(Files::PUBLIC,
-            (string)osm_path(Files::PUBLIC));
-        $this->collectOrphanFilesInDirectory(Files::PRIVATE,
-            (string)osm_path(Files::PRIVATE));
+        if (env('APP_ENV') == 'testing') {
+            $this->collectOrphanFilesInDirectory(Files::PUBLIC,
+                (string)osm_path(Files::PUBLIC) . '/testing');
+            $this->collectOrphanFilesInDirectory(Files::PRIVATE,
+                (string)osm_path(Files::PRIVATE) . '/testing');
+        }
+        else {
+            $this->collectOrphanFilesInDirectory(Files::PUBLIC,
+                (string)osm_path(Files::PUBLIC), ['testing']);
+            $this->collectOrphanFilesInDirectory(Files::PRIVATE,
+                (string)osm_path(Files::PRIVATE), ['testing']);
+        }
     }
 
-    protected function collectOrphanFilesInDirectory($root, $path) {
+    protected function collectOrphanFilesInDirectory($root, $path, $excludes = []) {
         if (!is_dir($path)) {
-            return;
+            return true;
         }
 
         $delete = true;
@@ -108,6 +119,11 @@ class GarbageCollector extends Object_
             }
 
             if (mb_strpos($fileInfo->getFilename(), '.') === 0) {
+                $delete = false;
+                continue;
+            }
+
+            if (in_array($fileInfo->getFilename(), $excludes) && $fileInfo->isDir()) {
                 $delete = false;
                 continue;
             }
