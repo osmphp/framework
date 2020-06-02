@@ -39,7 +39,7 @@ abstract class Item extends View
             case 'model': return $this->hidden ? ['hidden' => true] : [];
             case 'button_color': return $this->getButtonColor();
             case 'button_on_color': return $this->getButtonOnColor();
-            case 'button_outlined': return $this->dangerous;
+            //case 'button_outlined': return $this->dangerous;
         }
         return parent::default($property);
     }

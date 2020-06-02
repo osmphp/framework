@@ -1,4 +1,5 @@
 import ViewModel from 'Osm_Framework_Js/ViewModel';
+import cssNumber from "Osm_Framework_Js/cssNumber";
 
 export default class DataTable extends ViewModel {
     onAttach() {
@@ -13,8 +14,8 @@ export default class DataTable extends ViewModel {
 
         let totalWidth = this.getTotalWidth();
         let elementStyles = getComputedStyle(this.element);
-        let availableWidth = parseFloat(elementStyles.width) - parseFloat(elementStyles.paddingLeft) -
-            parseFloat(elementStyles.paddingRight);
+        let availableWidth = cssNumber(elementStyles.width) - cssNumber(elementStyles.paddingLeft) -
+            cssNumber(elementStyles.paddingRight);
         let columnHeader = this.element.querySelector(`.data-table__column-header.-col-${this.model.main_column}`);
         let minimumColumnWidth = this.model.columns[this.model.main_column].width;
 

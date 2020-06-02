@@ -2,6 +2,7 @@ import Controller from "Osm_Framework_Js/Controller";
 import getViewPortRect from "Osm_Ui_Aba/getViewPortRect";
 import addClass from "Osm_Framework_Js/addClass";
 import removeClass from "Osm_Framework_Js/removeClass";
+import cssNumber from "Osm_Framework_Js/cssNumber";
 
 /**
  * @param {Function} resolve
@@ -37,13 +38,13 @@ export default class ModalDialog extends Controller {
 
     onAttach() {
         let style = getComputedStyle(this.element);
-        this.width = parseFloat(style.width);
-        this.height = parseFloat(style.height);
+        this.width = cssNumber(style.width);
+        this.height = cssNumber(style.height);
 
         if (this.header) {
             let style = getComputedStyle(this.header);
             this.body.style.top = (this.header.offsetHeight +
-                parseFloat(style.marginTop) + parseFloat(style.marginBottom))+ 'px';
+                cssNumber(style.marginTop) + cssNumber(style.marginBottom))+ 'px';
         }
         else {
             this.body.style.top = 0;
@@ -52,7 +53,7 @@ export default class ModalDialog extends Controller {
         if (this.footer) {
             let style = getComputedStyle(this.footer);
             this.body.style.bottom = (this.footer.offsetHeight +
-                parseFloat(style.marginTop) + parseFloat(style.marginBottom)) + 'px';
+                cssNumber(style.marginTop) + cssNumber(style.marginBottom)) + 'px';
         }
         else {
             this.body.style.bottom = 0;

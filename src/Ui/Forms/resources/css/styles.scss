@@ -39,12 +39,21 @@
     @include form-item();
   }
 
-  &.-image &__image {
-    &:not([src]) {
-      @include foreach-background() using($bg) {
-        @include placeholder-background(fg-delimiter-color($bg));
-      }
+  &.-image &__placeholder {
+    @include foreach-background() using($bg) {
+      @include placeholder-background(fg-delimiter-color($bg));
+      border: 1px solid fg-delimiter-color($bg);
     }
+
+    display: none;
+  }
+
+  &.-image.-empty &__placeholder {
+    display: block;
+  }
+
+  &.-image.-empty &__image {
+    display: none;
   }
 }
 

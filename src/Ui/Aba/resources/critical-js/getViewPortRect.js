@@ -1,5 +1,6 @@
 import addClass from 'Osm_Framework_Js/addClass';
 let viewportElements = {};
+import cssNumber from "Osm_Framework_Js/cssNumber";
 
 export default function getViewPortRect(class_ = null) { //
     let rect = {
@@ -23,10 +24,10 @@ export default function getViewPortRect(class_ = null) { //
     }
 
     let style = getComputedStyle(viewportElements[class_]);
-    rect.left += parseFloat(style.paddingLeft);
-    rect.top += parseFloat(style.paddingTop);
-    rect.right -= parseFloat(style.paddingRight);
-    rect.bottom -= parseFloat(style.paddingBottom);
+    rect.left += cssNumber(style.paddingLeft);
+    rect.top += cssNumber(style.paddingTop);
+    rect.right -= cssNumber(style.paddingRight);
+    rect.bottom -= cssNumber(style.paddingBottom);
     rect.width = rect.right - rect.left;
     rect.height = rect.bottom - rect.top;
 

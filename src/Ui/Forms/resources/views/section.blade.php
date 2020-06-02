@@ -3,7 +3,8 @@
 ?>
 <section id="{{ $view->id_ }}" class="form-section
     {{ $view->on_color_ }} {{ $view->color_ }}
-    {{ $view->type ? "-{$view->type}" : '' }}"
+    {{ $view->type ? "-{$view->type}" : '' }}
+    {{ $view->modifier }}"
 >
     <header class="form-section__header">
         <h3 class="form-section__title">{{ $view->title }}</h3>
@@ -24,3 +25,6 @@
     </div>
     <script>new Osm_Ui_Forms.Fields('#{{ $view->id_}}___fields')</script>
 </section>
+@if (isset($view->view_model))
+    {!! $view->view_model_script !!}
+@endif

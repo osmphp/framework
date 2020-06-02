@@ -4,13 +4,17 @@ namespace Osm\Ui\Forms\Views;
 
 use Osm\Ui\Menus\Views\CommandItem;
 use Osm\Ui\Menus\Views\MenuBar;
+use Osm\Ui\Menus\Views\UploadCommandItem;
 
 class ImageField extends Section
 {
+    public $view_model = 'Osm_Ui_Forms.ImageField';
     public $type = 'image';
 
     public function __construct($data = []) {
         parent::__construct($data);
+
+        $this->modifier = '-empty';
 
         $this->items = [
             'value' => $this->layout->view($this, ImageValue::new([
@@ -21,12 +25,16 @@ class ImageField extends Section
         $this->menu = $this->layout->view($this, MenuBar::new([
             'horizontal_align' => 'right',
             'items' => [
-                'add' => CommandItem::new([
+                'add' => UploadCommandItem::new([
                     'title' => osm_t("Add"),
+                    'accept' => 'image/*',
+                    'route' => 'POST /forms/upload-image',
                     'sort_order' => 10,
                 ]),
-                'replace' => CommandItem::new([
+                'replace' => UploadCommandItem::new([
                     'title' => osm_t("Replace"),
+                    'accept' => 'image/*',
+                    'route' => 'POST /forms/upload-image',
                     'sort_order' => 20,
                 ]),
                 'clear' => CommandItem::new([
@@ -37,5 +45,4 @@ class ImageField extends Section
             ],
         ]), 'menu');
     }
-//    public $view_model = 'Osm_Ui_Forms.ImageField';
 }

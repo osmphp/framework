@@ -1,4 +1,5 @@
 import BaseMenu from '../Menu';
+import cssNumber from "Osm_Framework_Js/cssNumber";
 
 export default class Menu extends BaseMenu {
     get item_selector() {
@@ -27,8 +28,8 @@ export default class Menu extends BaseMenu {
         let containerRect = this.items_element.getBoundingClientRect();
         let containerStyle = getComputedStyle(this.element);
         let containerRight = containerRect.right -
-            parseFloat(containerStyle.borderRight) -
-            parseFloat(containerStyle.paddingRight);
+            cssNumber(containerStyle.borderRight) -
+            cssNumber(containerStyle.paddingRight);
         let count = 0;
 
         Array.prototype.forEach.call(itemElements, itemElement => {

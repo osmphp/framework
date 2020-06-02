@@ -3,6 +3,7 @@ import doRectanglesIntersect from "Osm_Framework_Js/doRectanglesIntersect";
 import firstParentElement from "Osm_Framework_Js/firstParentElement";
 import isScrollable from "Osm_Framework_Js/isScrollable";
 import getViewPortRect from "Osm_Ui_Aba/getViewPortRect";
+import cssNumber from "Osm_Framework_Js/cssNumber";
 
 export default class Positioning extends Action {
     get window() {
@@ -17,10 +18,10 @@ export default class Positioning extends Action {
             let rect = this.model.anchor_element.getBoundingClientRect();
             let style = getComputedStyle(this.model.anchor_element);
             this._anchor = this.rect({
-                left: rect.left - parseFloat(style.marginLeft),
-                top: rect.top - parseFloat(style.marginTop),
-                right: rect.right + parseFloat(style.marginRight),
-                bottom: rect.bottom + parseFloat(style.marginBottom),
+                left: rect.left - cssNumber(style.marginLeft),
+                top: rect.top - cssNumber(style.marginTop),
+                right: rect.right + cssNumber(style.marginRight),
+                bottom: rect.bottom + cssNumber(style.marginBottom),
             });
         }
 
@@ -30,11 +31,12 @@ export default class Positioning extends Action {
         if (!this._body) {
             let relativeParent = document.body;
             let rect = relativeParent.getBoundingClientRect();
+            let style = getComputedStyle(relativeParent);
             this._body = this.rect({
-                left: rect.left - parseFloat(style.marginLeft),
-                top: rect.top - parseFloat(style.marginTop),
-                right: rect.right + parseFloat(style.marginRight),
-                bottom: rect.bottom + parseFloat(style.marginBottom),
+                left: rect.left - cssNumber(style.marginLeft),
+                top: rect.top - cssNumber(style.marginTop),
+                right: rect.right + cssNumber(style.marginRight),
+                bottom: rect.bottom + cssNumber(style.marginBottom),
             });
         }
 

@@ -30,7 +30,7 @@ use Osm\Framework\Validation\Exceptions\ValidationFailed;
 class Files extends Object_
 {
     const PUBLIC = 'public/files';
-    const PRIVATE = 'data';
+    const PRIVATE = 'data/files';
 
     protected function default($property) {
         global $osm_app; /* @var App $osm_app */
