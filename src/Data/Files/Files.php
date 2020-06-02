@@ -139,6 +139,17 @@ class Files extends Object_
         return (object)$result;
     }
 
+    public function import($root, $filename, $options = []) {
+        $file = File::new(array_merge([
+            'root' => $root,
+            'requested_filename' => basename($filename),
+        ], $options));
+
+        copy($filename, osm_make_dir_for($file->filename_));
+        return $this->insert($file);
+    }
+
+
     protected function insert(File $file) {
         $data = [];
 

@@ -21,7 +21,7 @@ use Illuminate\Database\Schema;
  */
 class Migration extends Object_
 {
-    public function default($property) {
+    protected function default($property) {
         switch ($property) {
             case 'schema': return $this->db->schema;
 
