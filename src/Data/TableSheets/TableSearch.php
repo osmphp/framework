@@ -8,11 +8,18 @@ use Osm\Data\Sheets\Search;
 use Osm\Data\Sheets\SearchResult;
 use Osm\Data\Sheets\Column;
 use Osm\Data\TableQueries\TableQuery;
+use Osm\Data\TableSheets\ColumnHandlers\ProcessItems;
+use Osm\Data\TableSheets\ColumnHandlers\SelectColumns;
 use Osm\Framework\Db\Db;
 
 /**
  * @property TableSheet $parent @required
+ *
+ * Dependencies:
+ *
  * @property Db|TableQuery[] $db @required
+ * @property SelectColumns $select_columns @required
+ * @property ProcessItems $process_items @required
  *
  * @method TableQuery query()
  * @property int $count @temp
@@ -26,6 +33,9 @@ class TableSearch extends Search
 
         switch ($property) {
             case 'db': return $osm_app->db;
+            case 'select_columns': return $osm_app[SelectColumns::class];
+            case 'process_items': return $osm_app[ProcessItems::class];
+
             case 'count': return $this->getCount();
             case 'items': return $this->getItems();
         }
@@ -54,66 +64,25 @@ class TableSearch extends Search
     protected function getItems() {
         $this->query = $this->query();
         $this->applyFilters($this->query);
+
         $this->query->select('id');
 
         foreach ($this->columns as $column) {
-            $column_ = $this->getColumnDefinition($column);
-
-            $this->selectRawData($column_);
-            $this->selectOptionTitle($column_);
+            $this->select_columns->select($this,
+                $this->getColumnDefinition($column));
         }
 
-        return $this->processItems($this->query->limit($this->limit)->offset($this->offset)->get());
-    }
+        $items = $this->query
+            ->limit($this->limit)
+            ->offset($this->offset)
+            ->get();
 
-    protected function selectRawData(Column $column) {
-        $this->query->select($column->formula ?
-            "{$column->formula} AS {$column->name}" :
-            $column->name);
-    }
-
-    protected function selectOptionTitle(Column $column) {
-        if ($this->for != static::FOR_DISPLAY) {
-            return;
-        }
-
-        if (!$column->option_list_) {
-            return;
-        }
-
-        if (!$column->option_list_->supports_db_queries) {
-            // will add titles later, after retrieving items from database
-            return;
-        }
-
-        $column->option_list_->addToQuery($this->query, $column->name, ['title' => "{$column->name}__title"]);
-    }
-
-    protected function processItems(Collection $items) {
-         foreach ($this->columns as $column) {
-            $column_ = $this->getColumnDefinition($column);
-
-            $this->addOptionTitleToItems($items, $column_);
+        foreach ($this->columns as $column) {
+            $this->process_items->process($this, $items,
+                $this->getColumnDefinition($column));
         }
 
         return $items;
-    }
-
-    protected function addOptionTitleToItems(Collection $items, Column $column) {
-        if ($this->for != static::FOR_DISPLAY) {
-            return;
-        }
-
-        if (!$column->option_list_) {
-            return;
-        }
-
-        if ($column->option_list_->supports_db_queries) {
-            // titles are already in result, as title column has been added to SELECT
-            return;
-        }
-
-        $column->option_list_->addToCollection($items, $column->name, ['title' => "{$column->name}__title"]);
     }
 
     /**

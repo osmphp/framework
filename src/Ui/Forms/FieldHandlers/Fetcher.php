@@ -29,7 +29,7 @@ class Fetcher extends Handler
             return null;
         }
 
-        $this->search->id($this->id);
+        $this->search->forDisplay();
 
         parent::handleForm();
 

@@ -129,7 +129,7 @@ class Files extends Object_
 
         $result = [
             'uid' => $file->uid,
-            'filename' => $file->filename,
+            'filename' => $file->name,
         ];
 
         if ($root === static::PUBLIC) {
@@ -154,6 +154,12 @@ class Files extends Object_
         $data = [];
 
         foreach ($this->data_columns as $column) {
+            if (($value = $file->{$column}) !== null) {
+                $data[$column] = $value;
+            }
+        }
+
+        foreach ($this->reference_columns as $column) {
             if (($value = $file->{$column}) !== null) {
                 $data[$column] = $value;
             }
@@ -206,12 +212,28 @@ class Files extends Object_
         }
     }
 
+    public function first($where = []) {
+        foreach ($this->each($where) as $file) {
+            return $file;
+        }
+
+        return null;
+    }
+
     public function delete($where) {
         $this->db->connection->transaction(function() use ($where) {
             foreach ($this->each($where) as $file) {
                 $this->deleteFile($file);
             }
         });
+    }
+
+    public function url($id) {
+        return $this->first($this->whereId($id))->url;
+    }
+
+    protected function whereId($id) {
+        return is_int($id) ? "id = {$id}" : "uid = {$id}";
     }
 
     public function deleteFile(File $file) {

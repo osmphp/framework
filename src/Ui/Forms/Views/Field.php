@@ -3,7 +3,7 @@
 namespace Osm\Ui\Forms\Views;
 
 use Osm\Data\Sheets\Search;
-use Osm\Framework\Views\View;
+use Osm\Framework\Views\Views\Container;
 
 /**
  * @property string $name @required @part
@@ -19,7 +19,7 @@ use Osm\Framework\Views\View;
  *
  * @property string $field_template @required @part
  */
-abstract class Field extends View
+abstract class Field extends Container
 {
     public $template = 'Osm_Ui_Forms.field-wrap';
 
@@ -27,6 +27,7 @@ abstract class Field extends View
         switch ($property) {
             case 'name': return $this->getName();
             case 'focusable': return true;
+            case 'empty': return false;
         }
         return parent::default($property);
     }
@@ -59,11 +60,6 @@ abstract class Field extends View
         $search->select($this->name);
     }
 
-    /**
-     * Assigns fetched data to the field
-     *
-     * @param object $data
-     */
     public function assign($data) {
         $this->value = $data->{$this->name};
     }

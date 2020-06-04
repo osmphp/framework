@@ -8,14 +8,23 @@ use Osm\Data\OptionLists\OptionList;
 
 /**
  * @property string $name @required @part
- * @property Sheet $parent @required
+ * @property string $type @part If empty, the column doesn't have
+ *      any additional processing
  *
- * @property string $formula @part If empty, name property is used as a formula
- * @property string $option_list @part If not empty, option title is added to search result
- * @property OptionList $option_list_
+ * @property Sheet $parent @required
+ * @property string $formula @part
+ *
+ * OPTION column properties:
+ *
+ * @property string $option_list @required @part
+ * @property OptionList $option_list_ @required
  */
 class Column extends Object_
 {
+    const SECRET = 'secret';
+    const OPTION = 'option';
+    const FILE = 'file';
+
     protected function default($property) {
         global $osm_app; /* @var App $osm_app */
 

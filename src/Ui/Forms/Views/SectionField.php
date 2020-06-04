@@ -2,7 +2,6 @@
 
 namespace Osm\Ui\Forms\Views;
 
-use Osm\Framework\Views\Views\Container;
 use Osm\Ui\Menus\Views\MenuBar;
 
 /**
@@ -12,7 +11,7 @@ use Osm\Ui\Menus\Views\MenuBar;
  * @property string $state @part Reserved for image field and other
  *      custom section views
  */
-class Section extends Container
+class SectionField extends Field
 {
     public $template = 'Osm_Ui_Forms.section';
 }
