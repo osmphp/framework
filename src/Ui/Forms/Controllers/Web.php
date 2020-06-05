@@ -23,15 +23,17 @@ class Web extends Controller
     }
 
     public function uploadImage() {
-        $file = $this->files->validateImage()->upload(Files::PUBLIC);
+        $file = $this->files->validateImage()->upload(Files::PUBLIC, [
+            'path' => $this->query['path'] ?? null,
+        ]);
 
         return (object)[
             'uid' => $file->uid,
             'filename' => $file->name,
             'html' => (string)Image::new([
                 'id_' => null,
-                'width' => 160,
-                'height' => 160,
+                'width' => $this->query['width'],
+                'height' => $this->query['height'],
                 'attributes' => [
                     'class' => 'form-section__image',
                 ],

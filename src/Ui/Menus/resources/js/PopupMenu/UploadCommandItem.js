@@ -9,7 +9,11 @@ export default class UploadCommandItem extends Item {
     }
 
     onUpload(e) {
-        upload(this.model.route, e.currentTarget, this.model.message)
+        let uploading = {};
+        this.trigger('uploading', uploading);
+
+        upload(this.model.route, e.currentTarget, this.model.message,
+            uploading.query)
             .then(files => {
                 this.trigger('upload', {files});
             });

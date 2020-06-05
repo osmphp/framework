@@ -12,6 +12,7 @@ use Osm\Ui\Menus\Views\UploadCommandItem;
  *
  * @property int $width @required @part
  * @property int $height @required @part
+ * @property string $path @part
  *
  * Type overrides"
  *
@@ -88,6 +89,9 @@ class ImageField extends SectionField
         $this->model = [
             'value' => $this->value,
             'filename' => $data->{"{$this->name}__name"},
+            'width' => $this->width,
+            'height' => $this->height,
+            'path' => $this->path,
         ];
 
         if ($this->value) {

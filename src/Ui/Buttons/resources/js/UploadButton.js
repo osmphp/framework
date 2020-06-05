@@ -9,7 +9,12 @@ export default class UploadButton extends Controller {
     }
 
     onUpload(e) {
-        upload(this.model.route, e.currentTarget, this.model.message)
+        let uploading = {};
+        this.element.dispatchEvent(new CustomEvent('button:uploading',
+            {detail: uploading}));
+
+        upload(this.model.route, e.currentTarget, this.model.message,
+            uploading.query)
             .then(files => {
                 this.element.dispatchEvent(new CustomEvent('button:upload', {
                     detail: {files}

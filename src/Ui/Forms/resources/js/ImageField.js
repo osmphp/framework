@@ -9,6 +9,8 @@ export default class ImageField extends Field {
         return Object.assign({}, super.events, {
             'menuitem:upload:add &___menu': 'onUpload',
             'menuitem:upload:replace &___menu': 'onUpload',
+            'menuitem:uploading:add &___menu': 'onUploading',
+            'menuitem:uploading:replace &___menu': 'onUploading',
             'menuitem:command:clear &___menu': 'onClear',
         });
     }
@@ -20,6 +22,17 @@ export default class ImageField extends Field {
     get menu() {
         return macaw.get(document.getElementById(
             this.getAliasedId('&___menu')), MenuBar);
+    }
+
+    onUploading(e) {
+        e.detail.query = {
+            width: this.model.width,
+            height: this.model.height,
+        };
+
+        if (this.model.path) {
+            e.detail.query.path = this.model.path;
+        }
     }
 
     onUpload(e) {
