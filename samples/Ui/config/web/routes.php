@@ -56,6 +56,5 @@ return [
         'class' => Web::class,
         'method' => 'upload',
         'public' => true,
-        'returns' => Returns::JSON,
     ],
 ];

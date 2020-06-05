@@ -4,6 +4,7 @@ use Osm\Framework\Views\View;
 use Osm\Framework\Views\Views\Container;
 use Osm\Ui\Buttons\Views\Button;
 use Osm\Ui\Buttons\Views\UploadButton;
+use Osm\Ui\Images\Views\Image;
 use Osm\Ui\Menus\Views\CommandItem;
 use Osm\Ui\Menus\Views\PopupMenu;
 use Osm\Ui\Menus\Views\UploadCommandItem;
@@ -37,7 +38,12 @@ return [
         ]),
         'heading' => Heading::new(['id' => 'heading']),
         'uploaded_images' => Container::new([
-            'empty' => false,
+            'items' => [
+                'empty' => Image::new([
+                    'width' => 160,
+                    'height' => 160,
+                ]),
+            ],
         ]),
     ],
     '#heading.menu.items' => [

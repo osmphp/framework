@@ -3,17 +3,11 @@
 namespace Osm\Data\TableSheets\ColumnHandlers;
 
 use Illuminate\Support\Collection;
-use Osm\Core\App;
 use Osm\Core\Object_;
-use Osm\Data\Files\Files;
 use Osm\Data\Sheets\Column;
 use Osm\Data\TableSheets\TableSearch;
 
 /**
- * Dependencies:
- *
- * @property Files $files @required
- *
  * Temp properties:
  *
  * @property TableSearch $search @temp
@@ -22,15 +16,6 @@ use Osm\Data\TableSheets\TableSearch;
  */
 class ProcessItems extends Object_
 {
-    protected function default($property) {
-        global $osm_app; /* @var App $osm_app */
-
-        switch ($property) {
-            case 'files': return $osm_app[Files::class];
-        }
-        return parent::default($property);
-    }
-
     /**
      * @param TableSearch $search
      * @param Collection $items
@@ -48,7 +33,6 @@ class ProcessItems extends Object_
         try {
             switch ($this->column->type) {
                 case Column::OPTION: $this->processOption(); break;
-                case Column::FILE: $this->processFile(); break;
                 default: break; // by default, do nothing
             }
         }
@@ -72,17 +56,5 @@ class ProcessItems extends Object_
 
         $this->column->option_list_->addToCollection($this->items,
             $this->column->name, ['title' => "{$this->column->name}__title"]);
-    }
-
-    protected function processFile() {
-        $key = $this->column->name;
-
-        foreach ($this->items as $item) {
-            if ($item->{"{$key}__root"} != Files::PUBLIC) {
-                continue;
-            }
-
-            $item->{"{$key}__url"} = $this->files->url($item->$key);
-        }
     }
 }

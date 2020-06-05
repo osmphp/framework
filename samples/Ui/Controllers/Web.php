@@ -6,6 +6,7 @@ use Osm\Core\App;
 use Osm\Data\Files\Files;
 use Osm\Framework\Http\Controller;
 use Osm\Framework\Views\View;
+use Osm\Ui\Images\Views\Image;
 use Osm\Ui\SnackBars\Views\SnackBar;
 
 /**
@@ -126,14 +127,11 @@ class Web extends Controller
     public function upload() {
         $this->files->validateImage();
 
-        $file = $this->files->upload(Files::PUBLIC);
-        $file->html = (string)View::new([
+        return (string)Image::new([
             'id_' => null,
-            'template' => 'Osm_Samples_Ui.uploaded_image',
-            'url' => $file->url,
+            'width' => 160,
+            'height' => 160,
+            'file_' => $this->files->upload(Files::PUBLIC),
         ]);
-        unset($file->url);
-
-        return (object)$file;
     }
 }

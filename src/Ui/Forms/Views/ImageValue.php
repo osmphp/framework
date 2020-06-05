@@ -5,7 +5,7 @@ namespace Osm\Ui\Forms\Views;
 use Osm\Framework\Views\View;
 
 /**
- * @property string $url
+ * @property string $value
  */
 class ImageValue extends View
 {

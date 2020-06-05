@@ -314,10 +314,15 @@ class Generator extends Object_
             case Formula::LESS:
             case Formula::NOT_EQUAL:
                 /* @var Formulas\Operator $formula */
+                $this->sql .= "(";
                 $this->handleFormula($formula->operands[0]);
+                $this->sql .= ")";
+
                 foreach ($formula->operators as $i => $operator) {
                     $this->sql .= $this->operators[$operator];
+                    $this->sql .= "(";
                     $this->handleFormula($formula->operands[$i + 1]);
+                    $this->sql .= ")";
                 }
                 break;
 

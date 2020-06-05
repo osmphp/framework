@@ -26,6 +26,13 @@ use Osm\Data\Files\Exceptions\SuffixCantBeInferred;
  * @property string $suffix "-2"
  * @property string $ext "jpg"
  *
+ * @see \Osm\Ui\Images\Module::class
+ *      @property array $image_size
+ *      @property int $image_type
+ *      @property int $width
+ *      @property int $height
+ *      @property int $original_file
+ *
  * Computed properties:
  *
  * @property string $root_ @required

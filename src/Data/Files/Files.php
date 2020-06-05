@@ -108,7 +108,7 @@ class Files extends Object_
     /**
      * @param $root
      * @param array $options
-     * @return object|FileHint
+     * @return File
      */
     public function upload($root, $options = []) {
         $this->validateNotHidden()->validateNotExecutable();
@@ -125,18 +125,9 @@ class Files extends Object_
                 "The size of the uploaded file doesn't match the file size estimated by the browser."));
         }
 
-        $this->insert($file);
+        $file->id = $this->insert($file);
 
-        $result = [
-            'uid' => $file->uid,
-            'filename' => $file->name,
-        ];
-
-        if ($root === static::PUBLIC) {
-            $result['url'] = $file->url;
-        }
-
-        return (object)$result;
+        return $file;
     }
 
     public function import($root, $filename, $options = []) {
@@ -150,31 +141,8 @@ class Files extends Object_
     }
 
 
-    protected function insert(File $file) {
-        $data = [];
-
-        foreach ($this->data_columns as $column) {
-            if (($value = $file->{$column}) !== null) {
-                $data[$column] = $value;
-            }
-        }
-
-        foreach ($this->reference_columns as $column) {
-            if (($value = $file->{$column}) !== null) {
-                $data[$column] = $value;
-            }
-        }
-
-        if (empty($this->reference_columns)) {
-            if (!$this->area->session) {
-                throw new CantUploadWithoutSession(osm_t(
-                    "You can upload a file in an area without a session cookie."));
-            }
-            $data['area'] = $this->area->name;
-            $data['session'] = $this->area->session->id;
-        }
-
-        return $this->db['files']->insert($data);
+    public function insert(File $file) {
+        return $this->db['files']->insert($this->data($file));
     }
 
     /**
@@ -185,7 +153,9 @@ class Files extends Object_
         $result = $this->db['files'];
 
         if (!is_array($where)) {
-            $result->where($where);
+            $result->where(is_int($where)
+                ? "id = {$where}"
+                : "uid = {$where}");
         }
         else {
             foreach ($where as $formula) {
@@ -228,14 +198,6 @@ class Files extends Object_
         });
     }
 
-    public function url($id) {
-        return $this->first($this->whereId($id))->url;
-    }
-
-    protected function whereId($id) {
-        return is_int($id) ? "id = {$id}" : "uid = {$id}";
-    }
-
     public function deleteFile(File $file) {
         if (is_file($file->filename_)) {
             unlink($file->filename_);
@@ -255,5 +217,51 @@ class Files extends Object_
             unset($file->id);
             $this->deleteFile($file);
         }
+    }
+
+    /**
+     * @param File $file
+     * @return array
+     */
+    protected function data(File $file) {
+        $data = [];
+
+        foreach ($this->data_columns as $column) {
+            if (($value = $file->{$column}) !== null) {
+                $data[$column] = $value;
+            }
+        }
+
+        $hasReference = false;
+        foreach ($this->reference_columns as $column) {
+            if (($value = $file->{$column}) !== null) {
+                $data[$column] = $value;
+                $hasReference = true;
+            }
+        }
+
+        if ($hasReference) {
+            $data['area'] = null;
+            $data['session'] = null;
+        }
+        else {
+            if (!$this->area->session) {
+                throw new CantUploadWithoutSession(osm_t(
+                    "You can upload a file in an area without a session cookie."));
+            }
+            $data['area'] = $this->area->name;
+            $data['session'] = $this->area->session->id;
+        }
+
+        return $data;
+    }
+
+    /**
+     * @param File[] $files
+     *
+     * @return int[]
+     */
+    public function ids($files) {
+        return array_map(function (File $file) { return $file->id; }, $files);
     }
 }

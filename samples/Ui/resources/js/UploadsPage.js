@@ -36,7 +36,7 @@ export default class UploadsPage extends Controller {
 
         e.detail.files.forEach(file => {
             let element = (new DOMParser()).parseFromString(
-                file.html, 'text/html').body;
+                file, 'text/html').body.firstChild;
             this.uploaded_images_element.append(element);
         });
     }

@@ -69,6 +69,7 @@ class SelectColumns extends Object_
         $this->selectRelationColumn('uid');
         $this->selectRelationColumn('name');
         $this->selectRelationColumn('root');
+        $this->selectRelationColumn('ext');
     }
 
     protected function selectColumn() {

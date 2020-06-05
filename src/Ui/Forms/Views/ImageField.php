@@ -2,20 +2,30 @@
 
 namespace Osm\Ui\Forms\Views;
 
+use Osm\Ui\Images\Views\Image;
 use Osm\Ui\Menus\Views\CommandItem;
 use Osm\Ui\Menus\Views\MenuBar;
 use Osm\Ui\Menus\Views\UploadCommandItem;
 
 /**
+ * Constructor properties:
+ *
+ * @property int $width @required @part
+ * @property int $height @required @part
+ *
+ * Type overrides"
+ *
  * @property MenuBar $menu @part
- * @property string $url
  *
  * Computed properties:
  *
- * @property ImageValue $value_view @required
+ * @property Image $image @required
  */
 class ImageField extends SectionField
 {
+    const DEFAULT_WIDTH = 160;
+    const DEFAULT_HEIGHT = 160;
+
     public $view_model = 'Osm_Ui_Forms.ImageField';
     public $type = 'image';
 
@@ -24,9 +34,8 @@ class ImageField extends SectionField
 
 
         $this->items = [
-            'value' => $this->layout->view($this, ImageValue::new([
-
-            ]), 'items', 'value'),
+            'image' => $this->layout->view($this, Image::new([
+            ]), 'items', 'image'),
         ];
 
         $this->menu = $this->layout->view($this, MenuBar::new([
@@ -55,7 +64,9 @@ class ImageField extends SectionField
 
     protected function default($property) {
         switch ($property) {
-            case 'value_view': return $this->items['value'];
+            case 'width': return static::DEFAULT_WIDTH;
+            case 'height': return static::DEFAULT_HEIGHT;
+            case 'image': return $this->items['image'];
         }
         return parent::default($property);
     }
@@ -66,16 +77,16 @@ class ImageField extends SectionField
             'value' => $this->value,
             'filename' => $data->{"{$this->name}__name"},
         ];
-        if ($this->value) {
-            $this->url = $data->{"{$this->name}__url"};
-        }
+        // TODO: $this->file
     }
 
     public function rendering() {
         parent::rendering();
 
+        $this->image->width = $this->width;
+        $this->image->height = $this->height;
+
         if ($this->value) {
-            $this->value_view->url = $this->url;
             $this->menu->items['add']->hidden = true;
         }
         else {

@@ -49,6 +49,8 @@ use Osm\Framework\Cache\CacheItem;
  *      @property int $close_snack_bars_after @required @part
  * @see \Osm\Ui\DataTables\Module:
  *      @property int $data_table_rows_per_page @required @part
+ * @see \Osm\Ui\Images\Module:
+ *      @property string $thumbnail_retina_densities @part
  */
 class Settings extends CacheItem
 {
