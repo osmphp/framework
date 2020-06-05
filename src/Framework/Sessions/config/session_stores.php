@@ -11,6 +11,6 @@ return [
         'cookie_domain' => null,
         'cookie_secure' => false,
         'cookie_http_only' => true,
-        'cookie_same_site' => null,
+        'cookie_same_site' => 'Strict',
     ],
 ];
