@@ -3,6 +3,5 @@
 img:not([src]) {
   @include foreach-background() using($bg) {
     @include placeholder-background(fg-delimiter-color($bg));
-    border: 1px solid fg-delimiter-color($bg);
   }
 }

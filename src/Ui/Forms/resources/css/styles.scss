@@ -38,23 +38,6 @@
   &__items.-wide &__item {
     @include form-item();
   }
-
-  &.-image &__placeholder {
-    @include foreach-background() using($bg) {
-      @include placeholder-background(fg-delimiter-color($bg));
-      border: 1px solid fg-delimiter-color($bg);
-    }
-
-    display: none;
-  }
-
-  &.-image.-empty &__placeholder {
-    display: block;
-  }
-
-  &.-image.-empty &__image {
-    display: none;
-  }
 }
 
 .field {

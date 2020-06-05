@@ -1,6 +1,8 @@
 import Field from './Field';
 import macaw from "Osm_Framework_Js/vars/macaw";
 import MenuBar from "Osm_Ui_Menus/MenuBar/Menu";
+import templates from 'Osm_Framework_Js/vars/templates';
+import Mustache from 'mustache';
 
 export default class ImageField extends Field {
     get events() {
@@ -26,9 +28,7 @@ export default class ImageField extends Field {
         this.model.value = file.uid;
         this.model.filename = file.filename;
 
-        this.image_element.setAttribute('src', file.url);
-
-        this.element.classList.remove('-empty');
+        this.image_element.parentNode.innerHTML = file.html;
 
         this.menu.getItem('add').hidden = true;
         this.menu.getItem('replace').hidden = false;
@@ -39,9 +39,9 @@ export default class ImageField extends Field {
         this.model.value = null;
         this.model.filename = null;
 
-        this.element.classList.add('-empty');
-
-        this.image_element.removeAttribute('src');
+        templates.get(this.getAliasedId('&__placeholder')).then(html => {
+            this.image_element.parentNode.innerHTML = Mustache.render(html);
+        });
 
         this.menu.getItem('add').hidden = false;
         this.menu.getItem('replace').hidden = true;

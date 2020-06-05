@@ -20,6 +20,7 @@ use Osm\Ui\Menus\Views\UploadCommandItem;
  * Computed properties:
  *
  * @property Image $image @required
+ * @property ImagePlaceholder $placeholder @required
  */
 class ImageField extends SectionField
 {
@@ -35,7 +36,17 @@ class ImageField extends SectionField
 
         $this->items = [
             'image' => $this->layout->view($this, Image::new([
+                'attributes' => [
+                    'class' => 'form-section__image',
+                ],
             ]), 'items', 'image'),
+            'placeholder' => $this->layout->view($this, ImagePlaceholder::new([
+                'image' => $this->layout->view($this, Image::new([
+                    'attributes' => [
+                        'class' => 'form-section__image',
+                    ],
+                ]), 'image'),
+            ]), 'items', 'placeholder'),
         ];
 
         $this->menu = $this->layout->view($this, MenuBar::new([
@@ -67,6 +78,7 @@ class ImageField extends SectionField
             case 'width': return static::DEFAULT_WIDTH;
             case 'height': return static::DEFAULT_HEIGHT;
             case 'image': return $this->items['image'];
+            case 'placeholder': return $this->items['placeholder'];
         }
         return parent::default($property);
     }
@@ -77,7 +89,15 @@ class ImageField extends SectionField
             'value' => $this->value,
             'filename' => $data->{"{$this->name}__name"},
         ];
-        // TODO: $this->file
+
+        if ($this->value) {
+            $this->menu->items['add']->hidden = true;
+            $this->image->file = $data->{$this->name};
+        }
+        else {
+            $this->menu->items['replace']->hidden = true;
+            $this->menu->items['clear']->hidden = true;
+        }
     }
 
     public function rendering() {
@@ -86,13 +106,7 @@ class ImageField extends SectionField
         $this->image->width = $this->width;
         $this->image->height = $this->height;
 
-        if ($this->value) {
-            $this->menu->items['add']->hidden = true;
-        }
-        else {
-            $this->state = '-empty';
-            $this->menu->items['replace']->hidden = true;
-            $this->menu->items['clear']->hidden = true;
-        }
+        $this->placeholder->image->width = $this->width;
+        $this->placeholder->image->height = $this->height;
     }
 }
