@@ -2,17 +2,35 @@
 
 namespace Osm\Data\TableSheets\ColumnHandlers;
 
+use Osm\Core\App;
 use Osm\Core\Exceptions\NotSupported;
 use Osm\Core\Object_;
+use Osm\Data\Files\Files;
 use Osm\Data\Sheets\Column;
 use Osm\Data\TableSheets\TableSearch;
 
 /**
+ * Dependencies:
+ *
+ * @property Files $files @required
+ *
+ * Temps:
+ *
  * @property TableSearch $search @temp
  * @property Column $column @temp
  */
 class SelectColumns extends Object_
 {
+    protected function default($property) {
+        global $osm_app; /* @var App $osm_app */
+
+        switch ($property) {
+            case 'files': return $osm_app[Files::class];
+        }
+
+        return parent::default($property);
+    }
+
     /**
      * @param TableSearch $search
      * @param Column $column
@@ -66,10 +84,9 @@ class SelectColumns extends Object_
         }
 
         $this->selectColumn();
-        $this->selectRelationColumn('uid');
-        $this->selectRelationColumn('name');
-        $this->selectRelationColumn('root');
-        $this->selectRelationColumn('ext');
+        foreach ($this->files->data_columns as $column) {
+            $this->selectRelationColumn($column);
+        }
     }
 
     protected function selectColumn() {

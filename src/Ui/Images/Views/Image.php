@@ -12,13 +12,14 @@ use Osm\Ui\Images\Thumbnails;
  * Dependencies:
  *
  * @property Files $files @required
- * @property Thumbnails $thumbnails_ @required
+ * @property Thumbnails $thumbnails__ @required
  *
  * Data properties:
  *
  * @property int|string $file
  * @property File $file_
  * @property File[] $thumbnails
+ * @property File[] $thumbnails_
  *
  * Style properties:
  *
@@ -42,13 +43,13 @@ class Image extends View
 
         switch ($property) {
             case 'files': return $osm_app[Files::class];
-            case 'thumbnails_':
-                return $osm_app[Thumbnails::class];
+            case 'thumbnails__': return $osm_app[Thumbnails::class];
 
             case 'file_': return $this->file
                 ? $this->files->first($this->file)
                 : null;
-            case 'thumbnails': return $this->getThumbnails();
+            case 'thumbnails': return $this->getExistingThumbnails();
+            case 'thumbnails_': return $this->getAllThumbnails();
 
             case 'attributes': return [];
             case 'attributes_': return $this->getAttributes();
@@ -94,7 +95,7 @@ class Image extends View
     protected function getSrcset() {
         $result = '';
 
-        $sizes = $this->thumbnails_->retinaSizes($this->width,
+        $sizes = $this->thumbnails__->retinaSizes($this->width,
             $this->height);
 
         foreach ($sizes as $density => $size) {
@@ -115,12 +116,16 @@ class Image extends View
         return $result;
     }
 
-    protected function getThumbnails() {
-        $sizes = $this->thumbnails_->sizes($this->width, $this->height);
+    protected function getExistingThumbnails() {
+        $sizes = $this->thumbnails__->sizes($this->width, $this->height);
         $ids = $this->files->ids([$this->file_]);
 
-        $thumbnails = $this->thumbnails_->get($ids, $sizes);
-        return $this->thumbnails_->generate($this->file_, $sizes,
-            $thumbnails);
+        return $this->thumbnails__->get($ids, $sizes);
+    }
+
+    protected function getAllThumbnails() {
+        $sizes = $this->thumbnails__->sizes($this->width, $this->height);
+        return $this->thumbnails__->generate($this->file_, $sizes,
+            $this->thumbnails);
     }
 }

@@ -26,6 +26,14 @@ abstract class Search extends Object_
     public $columns = [];
 
     /**
+     * Additional column requests. For instance, for image columns, request
+     * thumbnail width and height to load thumbnail data
+     *
+     * @var array @required @part
+     */
+    public $column_extras = [];
+
+    /**
      * @return SearchResult
      */
     abstract public function get();
@@ -39,6 +47,20 @@ abstract class Search extends Object_
 
         foreach ($columns as $column) {
             $this->columns[$column] = $column;
+        }
+
+        return $this;
+    }
+
+    public function columnExtras($column, $data) {
+        $this->registerMethodCall(__FUNCTION__, $column, $data);
+
+        if (isset($this->column_extras[$column])) {
+            $this->column_extras[$column] = array_merge(
+                $this->column_extras[$column], $data);
+        }
+        else {
+            $this->column_extras[$column] = $data;
         }
 
         return $this;

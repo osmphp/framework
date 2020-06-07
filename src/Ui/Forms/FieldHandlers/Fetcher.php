@@ -33,7 +33,11 @@ class Fetcher extends Handler
 
         parent::handleForm();
 
-        return $this->search->get()->items->first();
+        return $this->search
+            ->id($this->id)
+            ->get()
+            ->items
+            ->first();
     }
 
     protected function handleField(Field $field) {

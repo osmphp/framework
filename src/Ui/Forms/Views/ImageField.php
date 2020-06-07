@@ -2,6 +2,7 @@
 
 namespace Osm\Ui\Forms\Views;
 
+use Osm\Data\Sheets\Search;
 use Osm\Ui\Images\Views\Image;
 use Osm\Ui\Menus\Views\CommandItem;
 use Osm\Ui\Menus\Views\MenuBar;
@@ -96,7 +97,8 @@ class ImageField extends SectionField
 
         if ($this->value) {
             $this->menu->items['add']->hidden = true;
-            $this->image->file = $data->{$this->name};
+            $this->image->file_ = $data->{"{$this->name}__file"};
+            $this->image->thumbnails = $data->{"{$this->name}__thumbnails"};
         }
         else {
             $this->menu->items['replace']->hidden = true;
@@ -112,5 +114,14 @@ class ImageField extends SectionField
 
         $this->placeholder->image->width = $this->width;
         $this->placeholder->image->height = $this->height;
+    }
+
+    public function fetch(Search $search) {
+        parent::fetch($search);
+
+        $search->columnExtras($this->name, [
+            'width' => $this->width,
+            'height' => $this->height,
+        ]);
     }
 }
