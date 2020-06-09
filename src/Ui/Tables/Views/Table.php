@@ -7,6 +7,7 @@ use Osm\Data\Sheets\Search;
 use Osm\Data\Sheets\SearchResult;
 use Osm\Data\Sheets\Sheet;
 use Osm\Framework\Views\View;
+use Osm\Ui\Lists\Views\List_;
 use Osm\Ui\Tables\Columns\Column;
 use Osm\Ui\Tables\Exceptions\LimitExceeded;
 use Osm\Ui\Tables\Module;
@@ -34,7 +35,7 @@ use Osm\Ui\Tables\Module;
  * @property Column $column @temp
  * @property object $item @temp
  */
-class Table extends View
+class Table extends List_
 {
     protected function default($property) {
         global $osm_app; /* @var App $osm_app */

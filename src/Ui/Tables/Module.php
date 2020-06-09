@@ -10,6 +10,10 @@ use Osm\Core\Modules\BaseModule;
  */
 class Module extends BaseModule
 {
+    public $hard_dependencies = [
+        'Osm_Ui_Lists',
+    ];
+
     protected function default($property) {
         global $osm_app; /* @var App $osm_app */
 

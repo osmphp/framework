@@ -1,3 +1,4 @@
+import ListsPage from "./ListsPage";
 import UploadsPage from "./UploadsPage";
 import ColorsPage from "./ColorsPage";
 import macaw from "Osm_Framework_Js/vars/macaw";
@@ -29,3 +30,4 @@ macaw.controller('body.-tests-ui-tables', TablesPage);
 
 macaw.controller('body.-tests-ui-colors', ColorsPage);
 macaw.controller('body.-tests-ui-uploads', UploadsPage);
+macaw.controller('body.-tests-ui-lists', ListsPage);

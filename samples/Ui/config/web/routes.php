@@ -1,5 +1,6 @@
 <?php
 
+use Osm\Framework\Http\Returns;
 use Osm\Samples\Ui\Controllers\Web;
 use Osm\Framework\Http\Parameters;
 
@@ -54,5 +55,10 @@ return [
         'class' => Web::class,
         'method' => 'upload',
         'public' => true,
+    ],
+
+    'GET /tests/ui/lists' => [
+        'class' => Web::class,
+        'method' => 'listsPage',
     ],
 ];

@@ -134,4 +134,12 @@ class Web extends Controller
             'file_' => $this->files->upload(Files::PUBLIC),
         ]);
     }
+
+    public function listsPage() {
+        return osm_layout('tests_ui_lists', [
+            '#page.title' => osm_t("Lists"),
+
+            // bind data to views
+        ]);
+    }
 }
