@@ -113,6 +113,10 @@ class DataTable extends View
             return null;
         }
 
+        if (!$this->edit_route) {
+            return null;
+        }
+
         // otherwise, render edit link
         return osm_url($this->edit_route, ['id' => $this->item->id]);
     }
