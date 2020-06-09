@@ -35,7 +35,7 @@ use Osm\Framework\Views\Exceptions\IdCantBeInferred;
  * @property string $view_model_script @required
  * @property string $selector @required @part
  *
- * @property \Osm\Framework\Views\Module $module @required
+ * @property \Osm\Framework\Views\Module $view_module @required
  * @property ViewFactory $laravel_view @required
  * @property Rendering $rendering @required
  * @property Iterator $iterator @required
@@ -84,8 +84,8 @@ class View extends Object_
         global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'module': return $osm_app->modules['Osm_Framework_Views'];
-            case 'laravel_view': return $this->module->laravel_view;
+            case 'view_module': return $osm_app->modules['Osm_Framework_Views'];
+            case 'laravel_view': return $this->view_module->laravel_view;
             case 'rendering': return $osm_app[Rendering::class];
             case 'iterator': return $osm_app[Iterator::class];
             case 'id_': return $this->inferId();
@@ -120,7 +120,7 @@ class View extends Object_
     }
 
     public function rendered($result, $template) {
-        if ($this->module->debug) {
+        if ($this->view_module->debug) {
             $this->addDebugViewModel($result, $template);
         }
 

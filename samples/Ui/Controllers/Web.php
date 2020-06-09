@@ -88,16 +88,16 @@ class Web extends Controller
         ]);
     }
 
-    public function dataTablesPage() {
-        return osm_layout('tests_ui_data_tables', [
+    public function tablesPage() {
+        return osm_layout('tests_ui_tables', [
             '#page' => [
                 'title' => osm_t("Data Tables"),
             ],
         ]);
     }
 
-    public function dataTableRows() {
-        $layout = osm_layout('tests_ui_data_tables', [
+    public function tableRows() {
+        $layout = osm_layout('tests_ui_tables', [
             '#data_table' => [
                 'render_rows' => true,
                 'offset' => $this->query['_offset'],

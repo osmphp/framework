@@ -1,0 +1,90 @@
+@import '~Osm_Ui_Aba/_variables-and-mixins.scss';
+@import './_mixins.scss';
+
+.table {
+  font-size: rem(13px);
+  overflow-x: auto;
+  overflow-y: hidden;
+  position: relative;
+
+  &__table {
+    display: table;
+    border-collapse: collapse;
+    table-layout: fixed;
+    @include no-list-formatting();
+  }
+
+  &__header, &__row {
+    display: table-row;
+  }
+
+  &__table-header, &__row-header, &__column-header, &__cell {
+    display: table-cell;
+    padding: 0 rem(24px);
+    overflow: hidden;
+    vertical-align: middle;
+  }
+
+  &__table-header, &__column-header, &__row-header {
+    cursor: pointer;
+  }
+
+  &__table-header, &__column-header {
+    height: rem(48px);
+    white-space: nowrap;
+    background: white;
+    border-top: 2px solid transparent;
+  }
+
+  &__column-header {
+    font-size: rem(12px);
+    font-weight: bold;
+  }
+
+  &__table-header, &__row-header {
+    padding: 0 rem(14px);
+  }
+
+  &__row-header, &__cell {
+    border-top: 1px solid $color--data-table-line;
+    height: rem(48px);
+  }
+
+  &__column-header, &__cell {
+    &.-type-bool {
+      text-align: center;
+    }
+  }
+
+  .table__cell {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  &__empty-row {
+    display: table-caption;
+    caption-side: bottom;
+    min-width: rem(300px);
+    border-top: 1px solid $color--data-table-line;
+    height: rem(48px);
+    padding: rem(12px) rem(24px) 0;
+  }
+
+  @include data-table-color($color--primary, $color--on-primary);
+  &.-light {
+    @include data-table-color($color--primary-light, $color--on-primary-light);
+  }
+  &.-dark {
+    @include data-table-color($color--primary-dark, $color--on-primary-dark);
+  }
+
+  &.-secondary {
+    @include data-table-color($color--secondary, $color--on-secondary);
+    &.-light {
+      @include data-table-color($color--secondary-light, $color--on-secondary-light);
+    }
+    &.-dark {
+      @include data-table-color($color--secondary-dark, $color--on-secondary-dark);
+    }
+  }
+}

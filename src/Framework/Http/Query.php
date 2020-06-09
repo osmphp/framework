@@ -10,7 +10,7 @@ use Osm\Data\Sheets\Query as SheetQuery;
 /**
  * @property array $__items @required
  *
- * @see \Osm\Ui\DataTables\Module:
+ * @see \Osm\Ui\Tables\Module:
  *      @property SheetQuery $data_table @required Typical name of data table query parameter which returns
  *          fully prepared sheet query
  */

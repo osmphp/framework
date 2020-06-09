@@ -1,8 +1,6 @@
 <?php
 
-use Osm\Framework\Http\Returns;
 use Osm\Samples\Ui\Controllers\Web;
-use Osm\Ui\DataTables\Parameters\DataTable;
 use Osm\Framework\Http\Parameters;
 
 return [
@@ -24,15 +22,15 @@ return [
         'public' => true,
     ],
 
-    'GET /tests/ui/data-tables' => [
+    'GET /tests/ui/tables' => [
         'class' => Web::class,
-        'method' => 'dataTablesPage',
+        'method' => 'tablesPage',
         'public' => true,
     ],
 
-    'GET /tests/ui/data-tables/rows' => [
+    'GET /tests/ui/tables/rows' => [
         'class' => Web::class,
-        'method' => 'dataTableRows',
+        'method' => 'tableRows',
         'public' => true,
         'parameters' => [
             '_offset' => ['class' => Parameters\Int_::class, 'required' => true],
