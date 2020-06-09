@@ -91,7 +91,7 @@ class Web extends Controller
     public function tablesPage() {
         return osm_layout('tests_ui_tables', [
             '#page' => [
-                'title' => osm_t("Data Tables"),
+                'title' => osm_t("Tables"),
             ],
         ]);
     }
