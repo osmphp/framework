@@ -2,6 +2,7 @@
 
 namespace Osm\Samples\Ui\Migrations\Data;
 
+use Faker\Factory as Faker;
 use Osm\Core\App;
 use Osm\Data\Files\Files;
 use Osm\Framework\Migrations\Migration;
@@ -38,7 +39,7 @@ class m01_t_contacts extends Migration
     }
 
     public function up() {
-        $faker = \Faker\Factory::create();
+        $faker = Faker::create();
 
         for ($i = 0; $i < 500; $i++) {
             $contact = $this->db['t_contacts']->insert([
@@ -48,18 +49,22 @@ class m01_t_contacts extends Migration
                 'group' => $faker->randomElement(array_merge([null],
                     $this->groups->items->keys()->toArray())),
                 'salary' => $faker->randomDigit !== 0
-                    ? $faker->randomFloat(2, 300.0, 10000.0)
+                    ? $faker->randomFloat(2, 300.0, 3000.0)
                     : null,
             ]);
 
             $this->db['t_contacts']->where("id = {$contact}")->update([
-                'image' => $this->random($contact),
+                'image' => $this->random($contact, $faker->randomElement(
+                    array_merge([null], $this->images))),
             ]);
         }
     }
 
-    protected function random($contact) {
-        $filename = $this->images[rand(0, count($this->images) - 1)];
+    protected function random($contact, $filename) {
+        if (!$filename) {
+            return null;
+        }
+
         return $this->files->import(Files::PUBLIC, $filename, [
             'path' => 't_contacts',
             't_contact' => $contact,
