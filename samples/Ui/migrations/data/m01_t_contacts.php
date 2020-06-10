@@ -5,11 +5,20 @@ namespace Osm\Samples\Ui\Migrations\Data;
 use Osm\Core\App;
 use Osm\Data\Files\Files;
 use Osm\Framework\Migrations\Migration;
+use Osm\Samples\Ui\Module;
 use Osm\Samples\Ui\OptionLists\ContactGroups;
 
 /**
+ * Dependencies:
+ *
  * @property ContactGroups $groups @required
  * @property Files $files @required
+ * @property Module $module @required
+ *
+ * Computed properties:
+ *
+ * @property string $path @required
+ * @property string[] $images @required
  */
 class m01_t_contacts extends Migration
 {
@@ -19,6 +28,11 @@ class m01_t_contacts extends Migration
         switch ($property) {
             case 'groups': return $osm_app->option_lists['t_contact_groups'];
             case 'files': return $osm_app[Files::class];
+            case 'module': return $osm_app->modules['Osm_Samples_Ui'];
+
+            case 'path': return osm_make_dir($osm_app->path(
+                "{$this->module->path}/files/contact-images"));
+            case 'images': return glob("{$this->path}/*.jpg");
         }
         return parent::default($property);
     }
@@ -26,7 +40,7 @@ class m01_t_contacts extends Migration
     public function up() {
         $faker = \Faker\Factory::create();
 
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < 500; $i++) {
             $contact = $this->db['t_contacts']->insert([
                 'name' => "{$faker->firstName} {$faker->lastName}",
                 'phone' => $faker->phoneNumber,
@@ -39,19 +53,16 @@ class m01_t_contacts extends Migration
             ]);
 
             $this->db['t_contacts']->where("id = {$contact}")->update([
-                'image' => $this->import($contact, $faker->image()),
+                'image' => $this->random($contact),
             ]);
         }
     }
 
-    protected function import($contact, $filename) {
-        try {
-            return $this->files->import(Files::PUBLIC, $filename, [
-                'path' => 't_contacts',
-                't_contact' => $contact,
-            ]);
-        } finally {
-            unlink($filename);
-        }
+    protected function random($contact) {
+        $filename = $this->images[rand(0, count($this->images) - 1)];
+        return $this->files->import(Files::PUBLIC, $filename, [
+            'path' => 't_contacts',
+            't_contact' => $contact,
+        ]);
     }
 }
