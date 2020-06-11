@@ -11,7 +11,14 @@ return [
     '#page.modifier' => '-tests-ui-lists',
     '#content.items' => [
         'heading' => Heading::new(['id' => 'heading']),
-        'list' => List_::new(),
+        'list' => List_::new([
+            'sheet' => 't_contacts',
+            'sheet_columns' => [
+                'image',
+            ],
+            'item_template' => 'Osm_Samples_Ui.lists.item',
+            //'placeholder_template' => 'Osm_Samples_Ui.lists.placeholder',
+        ]),
         'filters' => Filters::new(),
     ],
     '#heading.menu.items' => [

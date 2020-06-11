@@ -13,10 +13,6 @@ use Osm\Ui\Tables\Exceptions\LimitExceeded;
 use Osm\Ui\Tables\Module;
 
 /**
- * @property string $sheet @required @part
- * @property Sheet $sheet_ @required
- * @property string $set @part
- * @property Search $search @required
  * @property array $columns @required @part
  * @property string $not_found_message @required @part
  * @property string $edit_route @part
@@ -29,11 +25,9 @@ use Osm\Ui\Tables\Module;
  * @property Column[] $columns_ @required
  * @property int $offset @required
  * @property int $limit @required
- * @property SearchResult $data @required
  * @property Module $module @required
  *
  * @property Column $column @temp
- * @property object $item @temp
  */
 class Table extends List_
 {
@@ -41,8 +35,6 @@ class Table extends List_
         global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'sheet_': return $osm_app->sheets[$this->sheet];
-            case 'search': return $this->sheet_->search($this->set);
             case 'columns_': return $this->getColumns();
             case 'rows_per_page': return $osm_app->settings->data_table_rows_per_page;
             case 'template': return $this->render_rows ? $this->rows_template : $this->full_template;
@@ -50,7 +42,6 @@ class Table extends List_
 
             case 'offset': return 0;
             case 'limit': return $this->rows_per_page;
-            case 'data': return $this->getData();
         }
         return parent::default($property);
     }
