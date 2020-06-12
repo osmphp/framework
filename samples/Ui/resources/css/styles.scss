@@ -39,3 +39,10 @@ body.-tests-ui-colors {
     border: solid 1px currentColor;
   }
 }
+
+.list {
+  &.-grid.-contacts &__items {
+    grid-template-columns: repeat(auto-fill, minmax(rem(300px), 1fr));
+    grid-gap: rem(8px);
+  }
+}

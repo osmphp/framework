@@ -1,0 +1,22 @@
+@import '~Osm_Ui_Aba/_variables-and-mixins.scss';
+
+.list {
+  &__items {
+    @include no-list-formatting();
+  }
+
+  &__item {
+    border: 1px solid red;
+  }
+
+  &.-grid &__items {
+    display: grid;
+
+    // configure the CSS grid for each specific grid subtype:
+    // contacts, products, ... with the property setup like this:
+    //
+    //    grid-template-columns: repeat(auto-fill, minmax(rem(200px), 1fr));
+    //    grid-gap: rem(8px);
+
+  }
+}

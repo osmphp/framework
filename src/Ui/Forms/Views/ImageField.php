@@ -117,11 +117,9 @@ class ImageField extends SectionField
     }
 
     public function fetch(Search $search) {
-        parent::fetch($search);
-
-        $search->columnExtras($this->name, [
+        $search->select([$this->name => [
             'width' => $this->width,
             'height' => $this->height,
-        ]);
+        ]]);
     }
 }

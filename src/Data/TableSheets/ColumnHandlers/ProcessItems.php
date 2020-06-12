@@ -85,24 +85,11 @@ class ProcessItems extends Object_
             return;
         }
 
-        if (!isset($this->search->column_extras[$this->column->name])) {
-            return;
-        }
-
-        /* @var object|SizeHint $column */
-        $column = (object)$this->search->column_extras[$this->column->name];
-
         /* @var int[] $ids */
         $ids = $this->items
             ->map(function ($item) { return $item->{$this->column->name};})
             ->filter()
             ->toArray();
-
-        /* @var object[]|SizeHint[] $sizes */
-        $sizes = $this->thumbnails->sizes($column->width, $column->height);
-
-        /* @var File[] $thumbnails */
-        $thumbnails = $this->thumbnails->get($ids, $sizes);
 
         foreach ($this->items as $item) {
             $data = ['id' => $item->{$this->column->name}];
@@ -112,9 +99,28 @@ class ProcessItems extends Object_
             }
 
             $item->{"{$this->column->name}__file"} = File::new($data);
+        }
+
+        if (!isset($this->search->column_extras[$this->column->name])) {
+            return;
+        }
+
+        /* @var object|SizeHint $column */
+        $column = (object)$this->search->column_extras[$this->column->name];
+
+        /* @var object[]|SizeHint[] $sizes */
+        $sizes = $this->thumbnails->sizes($column->width, $column->height);
+
+        /* @var File[] $thumbnails */
+        $thumbnails = $this->thumbnails->get($ids, $sizes);
+
+        foreach ($this->items as $item) {
+            $file = $item->{"{$this->column->name}__file"};
+
             $item->{"{$this->column->name}__thumbnails"} =
-                array_filter($thumbnails, function (File $thumbnail) use ($data) {
-                    return $thumbnail->original_file === $data['id'];
+                array_filter($thumbnails, function (File $thumbnail) use ($file) {
+                    /* @var File $file */
+                    return $thumbnail->original_file === $file->id;
                 });
         }
     }

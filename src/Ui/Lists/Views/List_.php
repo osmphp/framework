@@ -15,6 +15,7 @@ use Osm\Framework\Views\View;
  * @property string $sheet @required @part
  * @property string[] $sheet_columns @required @part
  * @property string $set @part
+ * @property string $type @part
  *
  * View template properties:
  *
@@ -25,7 +26,7 @@ use Osm\Framework\Views\View;
  *
  * @property Sheet $sheet_ @required
  * @property Search $search @required
- * @property array $sections @required
+ * @property array $section_items @required
  * @property SearchResult $data @required Data for the ordinary rows
  * @property Collection|object[] $unrevealed_items @required
  * @property Collection|object[] $filtered_out_items @required
@@ -41,6 +42,11 @@ use Osm\Framework\Views\View;
  */
 class List_ extends View
 {
+    const DATA_ITEMS = 'data';
+    const UNREVEALED_ITEMS = 'unrevealed';
+    const FILTERED_OUT_ITEMS = 'filtered-out';
+    const NEW_ITEMS = 'new';
+
     public $template = 'Osm_Ui_Lists.list';
 
     protected function default($property) {
@@ -49,11 +55,11 @@ class List_ extends View
         switch ($property) {
             case 'sheet_': return $osm_app->sheets[$this->sheet];
             case 'search': return $this->sheet_->search($this->set);
-            case 'sections': return [
-                'data' => $this->data->items,
-                'unrevealed' => $this->unrevealed_items,
-                'filtered-out' => $this->filtered_out_items,
-                'new' => $this->new_items,
+            case 'section_items': return [
+                static::DATA_ITEMS => $this->data->items,
+                static::UNREVEALED_ITEMS => $this->unrevealed_items,
+                static::FILTERED_OUT_ITEMS => $this->filtered_out_items,
+                static::NEW_ITEMS => $this->new_items,
             ];
             case 'data': return $this->getData();
             case 'unrevealed_items': return $this->getUnrevealedItems();
@@ -84,6 +90,6 @@ class List_ extends View
     }
 
     protected function addSearchColumns() {
-        $this->search->select(...$this->sheet_columns);
+        $this->search->select($this->sheet_columns);
     }
 }

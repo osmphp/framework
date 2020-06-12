@@ -39,14 +39,24 @@ abstract class Search extends Object_
     abstract public function get();
 
     /**
-     * @param string[] ...$columns
+     * @param string|string[]|array $columns
      * @return Search
      */
-    public function select(...$columns) {
-        $this->registerMethodCall(__FUNCTION__, ...$columns);
+    public function select($columns) {
+        $this->registerMethodCall(__FUNCTION__, $columns);
 
-        foreach ($columns as $column) {
-            $this->columns[$column] = $column;
+        if (!is_array($columns)) {
+            $columns = [$columns];
+        }
+
+        foreach ($columns as $index => $column) {
+            if (is_int($index)) {
+                $this->columns[$column] = $column;
+                continue;
+            }
+
+            $this->columns[$index] = $index;
+            $this->addColumnExtras($index, $column);
         }
 
         return $this;
@@ -54,15 +64,7 @@ abstract class Search extends Object_
 
     public function columnExtras($column, $data) {
         $this->registerMethodCall(__FUNCTION__, $column, $data);
-
-        if (isset($this->column_extras[$column])) {
-            $this->column_extras[$column] = array_merge(
-                $this->column_extras[$column], $data);
-        }
-        else {
-            $this->column_extras[$column] = $data;
-        }
-
+        $this->addColumnExtras($column, $data);
         return $this;
     }
 
@@ -100,5 +102,19 @@ abstract class Search extends Object_
 
     protected function query() {
         return $this->parent->query($this->set);
+    }
+
+    /**
+     * @param $column
+     * @param $data
+     */
+    protected function addColumnExtras($column, $data) {
+        if (isset($this->column_extras[$column])) {
+            $this->column_extras[$column] = array_merge(
+                $this->column_extras[$column], $data);
+        } else
+        {
+            $this->column_extras[$column] = $data;
+        }
     }
 }

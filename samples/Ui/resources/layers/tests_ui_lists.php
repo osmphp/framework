@@ -12,9 +12,14 @@ return [
     '#content.items' => [
         'heading' => Heading::new(['id' => 'heading']),
         'list' => List_::new([
+            'type' => '-grid -contacts',
             'sheet' => 't_contacts',
             'sheet_columns' => [
-                'image',
+                'name',
+                'image' => [
+                    'width' => 160,
+                    'height' => 160,
+                ],
             ],
             'item_template' => 'Osm_Samples_Ui.lists.item',
             //'placeholder_template' => 'Osm_Samples_Ui.lists.placeholder',
