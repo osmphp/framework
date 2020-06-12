@@ -1,0 +1,5 @@
+@import '~Osm_Ui_Aba/_variables-and-mixins.scss';
+
+.filters {
+  @include no-list-formatting();
+}

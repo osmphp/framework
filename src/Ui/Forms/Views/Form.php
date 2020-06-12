@@ -35,8 +35,6 @@ class Form extends Container
         global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'empty': return false;
-
             case 'method': return substr($this->route, 0, strpos($this->route, ' '));
             case 'action': return substr($this->route, strpos($this->route, ' ') + 1);
             case 'sheet_': return $osm_app->sheets[$this->sheet];
@@ -66,5 +64,9 @@ class Form extends Container
 
     public function assign($data) {
         Assigner::assign($this, $data);
+    }
+
+    protected function isEmpty() {
+        return false;
     }
 }

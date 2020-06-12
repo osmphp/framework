@@ -20,3 +20,8 @@
 .heading {
   @include heading($margin--h1);
 }
+
+.aside {
+  box-shadow: shadow($z-index--card);
+  padding: rem(8px);
+}

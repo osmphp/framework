@@ -4,14 +4,27 @@ use Osm\Ui\Filters\Views\Filters;
 use Osm\Ui\Lists\Views\List_;
 use Osm\Ui\Menus\Views\CommandItem;
 use Osm\Ui\Menus\Views\SubmenuItem;
+use Osm\Ui\Pages\Views\Aside;
 use Osm\Ui\Pages\Views\Heading;
+use Osm\Ui\Filters\Views\DropdownFilter;
+use Osm\Ui\Filters\Views\PriceFilter;
 
 return [
     '@include' => ['base'],
     '#page.modifier' => '-tests-ui-lists',
     '#content.items' => [
         'heading' => Heading::new(['id' => 'heading']),
-        'filters' => Filters::new(),
+        'filter_aside' => Aside::new([
+            'id_' => null,
+            'items' => [
+                'filters' => Filters::new([
+                    'items' => [
+                        'group' => DropdownFilter\Checkboxes::new(),
+                        'salary' => PriceFilter\Checkboxes::new(),
+                    ],
+                ]),
+            ],
+        ]),
         'list' => List_::new([
             'type' => '-grid -contacts',
             'sheet' => 't_contacts',

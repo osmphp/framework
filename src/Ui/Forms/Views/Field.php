@@ -27,7 +27,6 @@ abstract class Field extends Container
         switch ($property) {
             case 'name': return $this->getName();
             case 'focusable': return true;
-            case 'empty': return false;
         }
         return parent::default($property);
     }
@@ -64,5 +63,9 @@ abstract class Field extends Container
         $this->value = $data->{$this->name};
 
         return $this;
+    }
+
+    protected function isEmpty() {
+        return false;
     }
 }

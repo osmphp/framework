@@ -71,7 +71,6 @@ class Page extends Container
             case 'controller': return $osm_app->controller;
             case 'areas': return $osm_app->areas;
 
-            case 'empty': return false;
             case 'selector': return 'body';
             case 'color': return 'primary';
         }
@@ -128,5 +127,9 @@ class Page extends Container
         else {
             $result .= $this->getDebugScript($template);
         }
+    }
+
+    protected function isEmpty() {
+        return false;
     }
 }
