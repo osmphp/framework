@@ -62,5 +62,7 @@ abstract class Field extends Container
 
     public function assign($data) {
         $this->value = $data->{$this->name};
+
+        return $this;
     }
 }

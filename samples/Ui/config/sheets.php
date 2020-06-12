@@ -7,10 +7,8 @@ return [
     't_contacts' => [
         'class' => Contacts::class,
         'columns' => [
-            'image' => [
-                'type' => Column::FILE,
-            ],
-
+            'group' => ['type' => Column::OPTION, 'option_list' => 't_contact_groups'],
+            'image' => [ 'type' => Column::FILE ],
         ],
     ],
 ];

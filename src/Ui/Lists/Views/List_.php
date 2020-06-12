@@ -16,6 +16,7 @@ use Osm\Framework\Views\View;
  * @property string[] $sheet_columns @required @part
  * @property string $set @part
  * @property string $type @part
+ * @property int $limit @required @part
  *
  * View template properties:
  *
@@ -47,12 +48,15 @@ class List_ extends View
     const FILTERED_OUT_ITEMS = 'filtered-out';
     const NEW_ITEMS = 'new';
 
+    const LIMIT = 10;
+
     public $template = 'Osm_Ui_Lists.list';
 
     protected function default($property) {
         global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
+            case 'limit': return static::LIMIT;
             case 'sheet_': return $osm_app->sheets[$this->sheet];
             case 'search': return $this->sheet_->search($this->set);
             case 'section_items': return [
@@ -74,7 +78,7 @@ class List_ extends View
 
         $this->addSearchColumns();
 
-        return $this->search->get();
+        return $this->search->limit($this->limit)->get();
     }
 
     protected function getUnrevealedItems() {

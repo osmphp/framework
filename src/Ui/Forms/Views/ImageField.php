@@ -104,6 +104,8 @@ class ImageField extends SectionField
             $this->menu->items['replace']->hidden = true;
             $this->menu->items['clear']->hidden = true;
         }
+
+        return $this;
     }
 
     public function rendering() {

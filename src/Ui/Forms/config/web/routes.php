@@ -13,7 +13,7 @@ return [
         'parameters' => [
             'width' => ['class' => Int_::class, 'required' => true],
             'height' => ['class' => Int_::class, 'required' => true],
-            'path' => ['class' => String_::class, 'pattern' => '/^[0-9a-z\\/]+$/'],
+            'path' => ['class' => String_::class, 'pattern' => '/^[_\\-0-9a-z\\/]+$/'],
         ],
     ],
 ];

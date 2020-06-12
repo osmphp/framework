@@ -42,7 +42,16 @@ body.-tests-ui-colors {
 
 .list {
   &.-grid.-contacts &__items {
-    grid-template-columns: repeat(auto-fill, minmax(rem(300px), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(rem(250px), 1fr));
     grid-gap: rem(8px);
   }
+
+  &.-grid.-contacts &__item {
+    border: 1px solid;
+    padding: rem(8px);
+    @include foreach-background() using($bg) {
+      border-color: fg-delimiter-color($bg);
+    }
+  }
+
 }
