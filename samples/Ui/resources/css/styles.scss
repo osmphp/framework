@@ -47,11 +47,8 @@ body.-tests-ui-colors {
   }
 
   &.-grid.-contacts &__item {
-    border: 1px solid;
+    box-shadow: shadow($z-index--card);
     padding: rem(8px);
-    @include foreach-background() using($bg) {
-      border-color: fg-delimiter-color($bg);
-    }
   }
 
 }

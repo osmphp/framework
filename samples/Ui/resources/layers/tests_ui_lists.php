@@ -11,6 +11,7 @@ return [
     '#page.modifier' => '-tests-ui-lists',
     '#content.items' => [
         'heading' => Heading::new(['id' => 'heading']),
+        'filters' => Filters::new(),
         'list' => List_::new([
             'type' => '-grid -contacts',
             'sheet' => 't_contacts',
@@ -28,7 +29,6 @@ return [
             'item_template' => 'Osm_Samples_Ui.lists.item',
             //'placeholder_template' => 'Osm_Samples_Ui.lists.placeholder',
         ]),
-        'filters' => Filters::new(),
     ],
     '#heading.menu.items' => [
         'new' => CommandItem::new(['title' => osm_t("New")]),

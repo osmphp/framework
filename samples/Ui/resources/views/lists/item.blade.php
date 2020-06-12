@@ -3,17 +3,27 @@
 
 use Osm\Ui\Forms\Views\Tab;
 use Osm\Ui\Forms\Views\Section;
+use Osm\Ui\Forms\Views\CheckboxField;
 use Osm\Ui\Forms\Views\DropdownField;
 use Osm\Ui\Forms\Views\ImageField;
+use Osm\Ui\Forms\Views\PriceField;
 use Osm\Ui\Forms\Views\StringField;
+use Osm\Framework\Views\Views\Container;
 
 /* @var object|\Osm\Samples\Ui\Hints\ContactHint $item */
 $item = $view->item;
 ?>
-@include (Tab::new([
+@include (Container::new([
     'alias' => "contact__{$item->id}",
-    'title' => $item->name,
     'items' => [
+        'selected' => CheckboxField::new([
+            'name' => 'selected',
+            'prefix' => "{$item->id}__",
+            'title' => $item->name,
+            'path' => 't_contacts',
+            'sort_order' => 0,
+            'value' => false,
+        ]),
         'image' => ImageField::new([
             'name' => 'image',
             'prefix' => "{$item->id}__",
@@ -23,6 +33,7 @@ $item = $view->item;
         ])->assign($item),
         'info' => Section::new([
             'title' => osm_t("Info"),
+            'sort_order' => 20,
             'items' => [
                 'name' => StringField::new([
                     'name' => 'name',
@@ -39,7 +50,7 @@ $item = $view->item;
                     'option_list' => 't_contact_groups',
                     'sort_order' => 20,
                 ])->assign($item),
-                'salary' => StringField::new([
+                'salary' => PriceField::new([
                     'name' => 'salary',
                     'prefix' => "{$item->id}__",
                     'title' => osm_t("Salary"),

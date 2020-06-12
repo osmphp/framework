@@ -1,2 +1,10 @@
 <?php /* @var \Osm\Ui\Filters\Views\Filters $view */ ?>
-Filters go here ...
+<ul class="filters">
+    @foreach ($view->items_ as $filter)
+        @if (!$filter->empty)
+            <li class="filters__filter">
+                @include($filter)
+            </li>
+        @endif
+    @endforeach
+</ul>
