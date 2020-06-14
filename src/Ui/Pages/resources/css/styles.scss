@@ -14,6 +14,10 @@
     &.-narrow > * {
       max-width: $narrow-page-width;
     }
+
+    &.-wide > * {
+      max-width: $wide-page-width;
+    }
   }
 }
 
@@ -21,7 +25,3 @@
   @include heading($margin--h1);
 }
 
-.aside {
-  box-shadow: shadow($z-index--card);
-  padding: rem(8px);
-}

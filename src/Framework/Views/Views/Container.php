@@ -7,7 +7,7 @@ use Osm\Framework\Views\View;
 /**
  * @property string $element @part
  * @property string[] $attributes @required @part
- * @property string $css_block @part
+ * @property string $css_class @part
  *
  * @property View[] $items @required @part
  * @property View[] $items_ @required

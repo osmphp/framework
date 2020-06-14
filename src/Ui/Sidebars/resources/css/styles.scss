@@ -1,0 +1,64 @@
+@import '~Osm_Ui_Aba/_variables-and-mixins.scss';
+
+.page {
+  &__main {
+    //display: flex;
+    display: grid;
+    //grid-template-columns: $sidebar-width 1fr $sidebar-width;
+    //grid-template-areas: "sidebar content alternative-sidebar";
+    grid-template-columns: 1fr;
+    grid-template-areas: "content";
+    grid-gap: rem(16px);
+  }
+
+  &__content {
+    //order: 2;
+    //flex-grow: 1;
+    grid-area: content;
+  }
+
+  &__sidebar {
+    width: $sidebar-width;
+    //order: 1;
+    //padding-right: rem(16px);
+    display: none;
+    grid-area: sidebar;
+  }
+
+  &__alternative-sidebar {
+    width: $sidebar-width;
+    //order: 3;
+    //padding-left: rem(16px);
+    display: none;
+    grid-area: alternative-sidebar;
+  }
+
+  @media screen and (min-width: 768px) {
+    &__main {
+      grid-template-columns: $sidebar-width 1fr;
+      grid-template-areas: "sidebar content";
+    }
+
+    &__sidebar {
+      display: block;
+    }
+  }
+  @media screen and (min-width: 768px + $sidebar-width) {
+    &__main {
+      grid-template-columns: $sidebar-width 1fr $sidebar-width;
+      grid-template-areas: "sidebar content alternative-sidebar";
+    }
+
+    &__alternative-sidebar {
+      display: block;
+    }
+  }
+}
+
+.sidebar {
+  &__item {
+    box-shadow: shadow($z-index--card);
+    padding: rem(8px);
+    margin: rem(16px) 0;
+  }
+}

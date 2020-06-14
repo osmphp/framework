@@ -7,7 +7,7 @@ export default class Image extends Controller {
         let src = this.element.getAttribute('data-src');
         if (src) {
             this.element.setAttribute('src', src);
-            this.element.removeAttribute(src);
+            this.element.removeAttribute('data-src');
         }
     }
 };

@@ -184,6 +184,8 @@ class View extends Object_
     }
 
     protected function getViewModelScript($viewModel, $model = null) {
+        // return '';
+
         /** @noinspection BadExpressionStatementJS */
         return "<script>new {$viewModel}('{$this->selector}', " .
             json_encode($model ? (object)$model : null) .

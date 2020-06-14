@@ -96,11 +96,15 @@ $z-index--modal-dialog: 24;
   #OTHER
 \*-------------------------------------------------------------------*/
 
-$line-height--base: 1.5;                // Default line height (1.5 ratio means that if font size is 16px,
-                                        // then line height is 24px)
-$page-width: 1200px;                    // if page is larger, content is of this width, centered
+$line-height--base: 1.5;        // Default line height (1.5 ratio means
+                                // that if font size is 16px,
+                                // then line height is 24px)
+$page-width: 1200px;            // if page is larger, content is of
+                                // this width, centered
 $narrow-page-width: 800px;
-$page-padding: rem(12px);               // padding INSIDE of page width
+$wide-page-width: 1600px;
+$sidebar-width: 296px;
+$page-padding: rem(12px);       // padding INSIDE of page width
 
 $margin--h1: 0.75rem;
 $margin--h2: 0.75rem;
