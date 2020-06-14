@@ -2,10 +2,15 @@
 /* @var \Osm\Ui\Images\Views\Image $view */
 ?>
 @if (!$view->file_)
-    <img {!! $view->attributes_ !!}>
+    <img class="image" {!! $view->attributes_ !!}>
 @else
-    <img {!! $view->attributes_ !!}
+    <img class="image" {!! $view->attributes_ !!}
         @if ($view->srcset) srcset="{{ $view->srcset }}" @endif
-        src="{{ $view->src }}">
+        @if ($view->eager)
+            src="{{ $view->src }}"
+        @else
+            data-src="{{ $view->src }}"
+        @endif
+    >
 @endif
 
