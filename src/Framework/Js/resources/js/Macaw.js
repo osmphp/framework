@@ -74,6 +74,15 @@ export default class Macaw {
         this.view_model_controllers = new Map();
     }
 
+    get debug() {
+        if (this._debug === undefined) {
+            this._debug = document.documentElement
+                .hasAttribute('debug-view');
+        }
+
+        return this._debug;
+    }
+
     /**
      * Called while page is being loaded to bind controller to every ViewModel or View matching first argument
      *
@@ -167,6 +176,19 @@ export default class Macaw {
             let controller = this.createController(binding.controller_class,
                 element, null, binding.model, binding.attribute);
             controller.onAttaching();
+
+            if (this.debug) {
+                let controllers = element.hasAttribute('debug-controllers')
+                    ? element.hasAttribute('debug-controllers').split(',')
+                    : [];
+
+                if (controllers.indexOf(controller.constructor.name) == -1) {
+                    controllers.push(controller.constructor.name);
+                    element.setAttribute('debug-controllers',
+                        controllers.join(','));
+                }
+            }
+
             return controller;
         });
 

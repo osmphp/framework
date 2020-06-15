@@ -118,17 +118,6 @@ class Page extends Container
         }, $this->translations);
     }
 
-    protected function addDebugViewModel(&$result, $template) {
-        if (($pos = mb_strpos($result, '</body>')) !== false) {
-            $result = mb_substr($result, 0, $pos) .
-                $this->getDebugScript($template) .
-                mb_substr($result, $pos);
-        }
-        else {
-            $result .= $this->getDebugScript($template);
-        }
-    }
-
     protected function isEmpty() {
         return false;
     }

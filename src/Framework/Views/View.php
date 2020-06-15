@@ -121,7 +121,7 @@ class View extends Object_
 
     public function rendered($result, $template) {
         if ($this->view_module->debug) {
-            $this->addDebugViewModel($result, $template);
+            $this->addDebugInfo($result, $template);
         }
 
         return $result;
@@ -208,17 +208,18 @@ class View extends Object_
         return $views;
     }
 
-    protected function getDebugScript($template) {
-        return $this->getViewModelScript('Osm_Framework_Views.Debug', [
-            'view' => get_class($this),
-            'template' => $template,
-        ]);
-    }
-
-    protected function addDebugViewModel(&$result, $template) {
-        if ($this->id_) {
-            $result .= $this->getDebugScript($template);
+    protected function addDebugInfo(&$result, $template) {
+        if (!preg_match('/<[a-z]+/u', $result, $match,
+            PREG_OFFSET_CAPTURE))
+        {
+            return;
         }
+
+        $pos = $match[0][1] + mb_strlen($match[0][0]);
+        $result = mb_substr($result, 0, $pos) .
+            ' debug-view="' . get_class($this) . '"' .
+            " debug-template=\"{$template}\"" .
+            mb_substr($result, $pos);
     }
 
     protected function cssPrefix($color, $prefix = '-') {
