@@ -29,6 +29,9 @@ export default class Controller {
         return this.element.id;
     }
 
+    onAttaching() {
+    }
+
     onAttach() {
         this.addEventListeners(this.element, this.events);
     }

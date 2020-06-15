@@ -65,6 +65,9 @@ class Image extends View
         // escape the values
         $attributes = array_map('e', $this->attributes);
 
+        $attributes['class'] = isset($attributes['class'])
+            ? "image {$attributes['class']}"
+            : 'image';
         $attributes['width'] = $this->width;
         $attributes['height'] = $this->height;
 

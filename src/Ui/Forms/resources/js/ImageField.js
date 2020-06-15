@@ -42,6 +42,7 @@ export default class ImageField extends Field {
         this.model.filename = file.filename;
 
         this.image_element.parentNode.innerHTML = file.html;
+        macaw.afterInserted(this.image_element);
 
         this.menu.getItem('add').hidden = true;
         this.menu.getItem('replace').hidden = false;

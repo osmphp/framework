@@ -80,13 +80,22 @@ export default class Macaw {
      * @param selector
      * @param Controller
      * @param model
+     * @param attribute
      */
-    controller(selector, Controller, model) {
+    controller(selector, Controller, model = null, attribute = null) {
         if (isString(selector)) {
+            if (!attribute) {
+                let match = selector.match(/^\.[a-z\-_]+$/);
+                if (match) {
+                    attribute = `data-${match[1]}`;
+                }
+            }
+
             this.selector_controllers.push({
                 selector: selector,
                 controller_class: Controller,
-                model: model
+                model: model,
+                attribute: attribute,
             });
         }
         else {
@@ -129,26 +138,57 @@ export default class Macaw {
         this.attachControllersToViewModels(element);
         view_models.clear();
 
-        // find all elements matching registered CSS selectors and attach controller object to each of them
+        let allBindings = new Map();
+
         this.selector_controllers.forEach(binding => {
             if (matches(element, binding.selector)) {
-                this.attachControllerToElement(binding.controller_class, element, null, binding.model);
+                if (!allBindings.has(element)) {
+                    allBindings.set(element, []);
+                }
+                allBindings.get(element).push(binding);
             }
 
-            this.attachControllerToElements(binding.controller_class,
-                element.querySelectorAll(binding.selector),
-                binding.model);
+            let elements = element.querySelectorAll(binding.selector);
+            Array.prototype.forEach.call(elements, element => {
+                if (!allBindings.has(element)) {
+                    allBindings.set(element, []);
+                }
+                allBindings.get(element).push(binding);
+            });
+        });
+
+        this.bindElement(element, allBindings);
+    }
+
+    bindElement(element, allBindings) {
+        let bindings = allBindings.get(element) || [];
+
+        let controllers = bindings.map(binding => {
+            let controller = this.createController(binding.controller_class,
+                element, null, binding.model, binding.attribute);
+            controller.onAttaching();
+            return controller;
+        });
+
+        Array.prototype.forEach.call(element.children, element => {
+            this.bindElement(element, allBindings);
+        });
+
+        controllers.forEach(controller => {
+            controller.onAttach();
         });
     }
 
-    attachControllerToElements(controllerClass, elements, model) {
-        Array.prototype.forEach.call(elements, element => {
-            this.attachControllerToElement(controllerClass, element, null, model);
-        });
+    createController(Controller, element, viewModel, model, attribute) {
+        if (attribute && element.hasAttribute(attribute)) {
+            let attributeModel = JSON.parse(element.getAttribute(attribute));
+            if (attributeModel) {
+                model = model
+                    ? Object.assign({}, model, attributeModel)
+                    : attributeModel;
+            }
+        }
 
-    }
-
-    attachControllerToElement(Controller, element, viewModel, model) {
         let controller = new Controller(element, viewModel, model);
 
         if (!element.osm_controllers) {
@@ -156,6 +196,14 @@ export default class Macaw {
         }
         element.osm_controllers.push(controller);
 
+        return controller;
+    }
+
+    attachControllerToElement(Controller, element, viewModel, model, attribute) {
+        let controller = this.createController(Controller, element, viewModel,
+            model, attribute);
+
+        controller.onAttaching();
         controller.onAttach();
     }
 
