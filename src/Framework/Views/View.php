@@ -13,7 +13,7 @@ use Osm\Framework\Views\Exceptions\IdCantBeInferred;
  * @property string $id @part
  * @property string $alias @part
  * @property string $id_ @required @part
- * @property string $view_model @required @part
+ * @property string $view_model @required @part @obsolete
  *
  * Rendering in the container:
  *
@@ -183,6 +183,17 @@ class View extends Object_
         }
     }
 
+    public function model($controller, $model = null) {
+        if (!$model) {
+            $model = $this->model;
+        }
+
+        if (!$model) {
+            return '';
+        }
+
+        return "data-{$controller}='" . json_encode((object)$model) . "'";
+    }
     protected function getViewModelScript($viewModel, $model = null) {
         // return '';
 

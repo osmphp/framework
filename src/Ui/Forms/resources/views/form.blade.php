@@ -2,7 +2,8 @@
 /* @var \Osm\Ui\Forms\Views\Form $view */
 ?>
 <form id="{{ $view->id_ }}" class="form {{ $view->on_color_ }} {{ $view->color_ }}"
-    method="{{ $view->method }}" action="{{ $view->action }}">
+    method="{{ $view->method }}" action="{{ $view->action }}"
+    {!! $view->model('form') !!}>
 
     @foreach ($view->items_ as $child)
         @if (!$child->empty)
@@ -14,5 +15,4 @@
 
     <input type="submit" style="display: none;">
 </form>
-{!! $view->view_model_script !!}
 <script>new Osm_Ui_Forms.Fields('#{{ $view->id_}}')</script>

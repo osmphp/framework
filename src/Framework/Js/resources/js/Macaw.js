@@ -85,7 +85,7 @@ export default class Macaw {
     controller(selector, Controller, model = null, attribute = null) {
         if (isString(selector)) {
             if (!attribute) {
-                let match = selector.match(/^\.[a-z\-_]+$/);
+                let match = selector.match(/^\.([a-z\-_]+)/);
                 if (match) {
                     attribute = `data-${match[1]}`;
                 }

@@ -4,6 +4,7 @@
 <div id="{{ $view->id_ }}" class="field
     {{ $view->on_color_ }} {{ $view->color_ }}
     {{ $view->type ? "-{$view->type}" : '' }}"
+    {!! $view->model('field') !!}
 >
     <div class="field__body">
         @if ($view->title)
@@ -18,4 +19,3 @@
         <div class="field__comment">{{ $view->comment }}</div>
     @endif
 </div>
-{!! $view->view_model_script !!}
