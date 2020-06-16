@@ -14,12 +14,12 @@ import MenuBar_CheckboxItem from './MenuBar/CheckboxItem';
 import MenuBar_SubmenuItem from './MenuBar/SubmenuItem';
 import MenuBar_UploadCommandItem from './MenuBar/UploadCommandItem';
 
-macaw.controller(Osm_Ui_Menus.PopupMenu.Menu, PopupMenu_Menu);
-macaw.controller(Osm_Ui_Menus.PopupMenu.CommandItem, PopupMenu_CommandItem);
-macaw.controller(Osm_Ui_Menus.PopupMenu.LinkItem, PopupMenu_LinkItem);
-macaw.controller(Osm_Ui_Menus.PopupMenu.CheckboxItem, PopupMenu_CheckboxItem);
-macaw.controller(Osm_Ui_Menus.PopupMenu.SubmenuItem, PopupMenu_SubmenuItem);
-macaw.controller(Osm_Ui_Menus.PopupMenu.UploadCommandItem, PopupMenu_UploadCommandItem);
+macaw.controller('.popup-menu', PopupMenu_Menu);
+macaw.controller('.popup-menu__item.-command', PopupMenu_CommandItem);
+macaw.controller('.popup-menu__item.-link', PopupMenu_LinkItem);
+macaw.controller('.popup-menu__item.-checkbox', PopupMenu_CheckboxItem);
+macaw.controller('.popup-menu__item.-submenu', PopupMenu_SubmenuItem);
+macaw.controller('.popup-menu__item.-upload-command', PopupMenu_UploadCommandItem);
 
 macaw.controller('.menu-bar', MenuBar_Menu);
 macaw.controller('.menu-bar__item.-command', MenuBar_CommandItem);
