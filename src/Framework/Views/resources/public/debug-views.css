@@ -1,0 +1,31 @@
+/*
+ * highlights server-side views and client-side controllers, the deeper
+ * down the hierarchy, the darker is the highlight color. Intentionally
+ * doesn't highlight the Page view
+ */
+*[debug-view] {
+  background: #ffcccc;
+}
+*[debug-view] *[debug-view] {
+  background: #ffaaaa;
+}
+
+*[debug-view] *[debug-view] *[debug-view] {
+  background: #ff8888;
+}
+
+*[debug-view] *[debug-view] *[debug-view] *[debug-view] {
+  background: #ff6666;
+}
+
+*[debug-view] *[debug-view] *[debug-view] *[debug-view] *[debug-view] {
+  background: #ff4444;
+}
+
+*[debug-view] *[debug-view] *[debug-view] *[debug-view] *[debug-view] *[debug-view] {
+  background: #ff2222;
+}
+
+*[debug-view] *[debug-view] *[debug-view] *[debug-view] *[debug-view] *[debug-view] *[debug-view] {
+  background: #ff0000;
+}

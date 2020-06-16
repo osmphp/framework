@@ -1,2 +1,3 @@
-import macaw from 'Osm_Framework_Js/vars/macaw';
+import osmDebugViews from "./osmDebugViews";
 
+window.osmDebugViews = osmDebugViews;
