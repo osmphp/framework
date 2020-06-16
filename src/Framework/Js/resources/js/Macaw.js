@@ -176,18 +176,7 @@ export default class Macaw {
             let controller = this.createController(binding.controller_class,
                 element, null, binding.model, binding.attribute);
             controller.onAttaching();
-
-            if (this.debug) {
-                let controllers = element.hasAttribute('debug-controllers')
-                    ? element.hasAttribute('debug-controllers').split(',')
-                    : [];
-
-                if (controllers.indexOf(controller.constructor.name) == -1) {
-                    controllers.push(controller.constructor.name);
-                    element.setAttribute('debug-controllers',
-                        controllers.join(','));
-                }
-            }
+            this.addControllerDebugInfo(element, controller);
 
             return controller;
         });
@@ -221,11 +210,30 @@ export default class Macaw {
         return controller;
     }
 
+    addControllerDebugInfo(element, controller) {
+        if (!this.debug) {
+            return;
+        }
+
+        let controllers = element.hasAttribute('debug-controllers')
+            ? element.getAttribute('debug-controllers').split(',')
+            : [];
+
+        if (controllers.indexOf(controller.constructor.name) != -1) {
+            return;
+        }
+
+        controllers.push(controller.constructor.name);
+        element.setAttribute('debug-controllers',
+            controllers.join(','));
+    }
+
     attachControllerToElement(Controller, element, viewModel, model, attribute) {
         let controller = this.createController(Controller, element, viewModel,
             model, attribute);
 
         controller.onAttaching();
+        this.addControllerDebugInfo(element, controller);
         controller.onAttach();
     }
 
