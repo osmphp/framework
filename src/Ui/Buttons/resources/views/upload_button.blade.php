@@ -5,7 +5,8 @@
 <button type="button" id="{{ $view->id_ }}" class="button -upload
         {{ $view->on_color_ }} {{ $view->color_ }}
         @if ($view->disabled) -disabled @endif
-        @if ($view->outlined) -outlined @endif">
+        @if ($view->outlined) -outlined @endif"
+        {!! $view->model('button') !!}>
 
     @if ($view->icon)
         <i class="button__icon icon {{$view->icon}}"></i>
@@ -16,4 +17,3 @@
         @if ($view->multi_select) multiple @endif
     >
 </button>
-{!! $view->view_model_script !!}
