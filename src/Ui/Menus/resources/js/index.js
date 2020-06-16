@@ -21,9 +21,9 @@ macaw.controller(Osm_Ui_Menus.PopupMenu.CheckboxItem, PopupMenu_CheckboxItem);
 macaw.controller(Osm_Ui_Menus.PopupMenu.SubmenuItem, PopupMenu_SubmenuItem);
 macaw.controller(Osm_Ui_Menus.PopupMenu.UploadCommandItem, PopupMenu_UploadCommandItem);
 
-macaw.controller(Osm_Ui_Menus.MenuBar.Menu, MenuBar_Menu);
-macaw.controller(Osm_Ui_Menus.MenuBar.CommandItem, MenuBar_CommandItem);
-macaw.controller(Osm_Ui_Menus.MenuBar.LinkItem, MenuBar_LinkItem);
-macaw.controller(Osm_Ui_Menus.MenuBar.CheckboxItem, MenuBar_CheckboxItem);
-macaw.controller(Osm_Ui_Menus.MenuBar.SubmenuItem, MenuBar_SubmenuItem);
-macaw.controller(Osm_Ui_Menus.MenuBar.UploadCommandItem, MenuBar_UploadCommandItem);
+macaw.controller('.menu-bar', MenuBar_Menu);
+macaw.controller('.menu-bar__item.-command', MenuBar_CommandItem);
+macaw.controller('.menu-bar__item.-link', MenuBar_LinkItem);
+macaw.controller('.menu-bar__item.-checkbox', MenuBar_CheckboxItem);
+macaw.controller('.menu-bar__item.-submenu', MenuBar_SubmenuItem);
+macaw.controller('.menu-bar__item.-upload-command', MenuBar_UploadCommandItem);

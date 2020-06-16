@@ -3,6 +3,8 @@ import view_models from "./vars/view_models";
 
 export default class ViewModel {
     constructor(selector, model) {
+        console.warn(`OBSOLETE: ${this.constructor.name} view model`);
+
         this.model = model || {};
         this.element = find(selector);
 

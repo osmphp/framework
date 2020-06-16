@@ -4,11 +4,35 @@ import Item from "./Item";
 
 export default class Menu extends Controller {
     get item_selector() {
-        this.view_model.item_selector;
+        throw 'Not implemented';
     }
 
-    rearrangeDelimiters() {
-        this.view_model.rearrangeDelimiters();
+    get item_elements() {
+        return this.element.querySelectorAll(this.item_selector);
+    }
+
+    rearrangeDelimiters(itemElements = null) {
+        let delimiterHidden = false;
+        if (!itemElements) {
+            itemElements = this.item_elements;
+        }
+
+        Array.prototype.forEach.call(itemElements, itemElement => {
+            // if delimiter item is hidden, set a boolean for showing
+            // the first visible item after it as a delimiter item
+            if (itemElement.classList.contains('-delimiter')) {
+                delimiterHidden = itemElement.classList.contains('-hidden');
+                return;
+            }
+
+            // don't set hidden items as delimiter items
+            if(delimiterHidden && !itemElement.classList.contains('-hidden')) {
+                itemElement.classList.add('-delimiter-copy');
+            }
+            else {
+                itemElement.classList.remove('-delimiter-copy');
+            }
+        });
     }
 
     getItemElement(name) {
@@ -28,5 +52,10 @@ export default class Menu extends Controller {
         }
 
         return submenuItem.submenu.getItem(name.substr(pos + 1));
+    }
+
+    onAttach() {
+        super.onAttach();
+        this.rearrangeDelimiters();
     }
 };

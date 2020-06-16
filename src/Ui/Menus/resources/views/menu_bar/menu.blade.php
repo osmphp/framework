@@ -7,18 +7,17 @@ $delimiter = '';
 
 ?>
 <nav id="{{$view->id_}}" class="menu-bar {{ $view->on_color_ }}
-        {{$view->color_}} -{{ $view->horizontal_align }}">
+        {{$view->color_}} -{{ $view->horizontal_align }}"
+        {!! $view->model('menu-bar') !!}>
     <ul class="menu-bar__items">
         @foreach ($view->items_ as $child)
             @if (!$child->empty)
                 <li id="{{$child->id_}}" class="menu-bar__item {{ $child->type }}
                     {{ $child->hidden ? '-hidden' : '' }}
-                    {{ $delimiter }}" >
+                    {{ $delimiter }}"
+                    {!! $view->model('menu-bar__item', $child->model) !!} >
                     @include($child)
                 </li>
-                @if ($child->view_model)
-                    {!! $child->view_model_script !!}
-                @endif
             @endif
             <?php $delimiter = $child instanceof DelimiterItem ? '-delimiter' : ''; ?>
         @endforeach
@@ -28,4 +27,3 @@ $delimiter = '';
         @include($view->mobile_menu)
     </div>
 </nav>
-{!! $view->view_model_script !!}

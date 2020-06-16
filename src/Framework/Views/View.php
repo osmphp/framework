@@ -192,7 +192,9 @@ class View extends Object_
             return '';
         }
 
-        return "data-{$controller}='" . json_encode((object)$model) . "'";
+        return "data-{$controller}='" .
+            str_replace("'", '&apos;', json_encode((object)$model)) .
+            "'";
     }
     protected function getViewModelScript($viewModel, $model = null) {
         // return '';

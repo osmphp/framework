@@ -18,6 +18,10 @@ export default class Menu extends BaseMenu {
         });
     }
 
+    get item_selector() {
+        return '.popup-menu__item';
+    }
+
     get scrollable_parent_events() {
         return {
             'scroll': 'onResizeOrScroll'
