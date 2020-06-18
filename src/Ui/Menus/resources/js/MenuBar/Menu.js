@@ -163,7 +163,9 @@ export default class Menu extends BaseMenu {
         let count = 0;
 
         Array.prototype.forEach.call(itemElements, itemElement => {
-            if (itemElement.classList.contains('_hidden')) {
+            let itemStyle = getComputedStyle(itemElement);
+
+            if (itemStyle.display == 'none') {
                 return;
             }
 

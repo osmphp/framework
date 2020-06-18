@@ -138,7 +138,7 @@
   display: flex;
 
   &__items {
-    flex-shrink: 1;
+    flex-grow: 1;
     height: rem(36px);
     overflow: hidden;
     display: flex;
@@ -181,13 +181,13 @@
 
   &.-center {
     &::before, &::after {
-      flex-grow: 1;
+      flex-grow: 1000;
     }
   }
 
   &.-right {
     &::before {
-      flex-grow: 1;
+      flex-grow: 1000;
     }
   }
 
