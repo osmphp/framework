@@ -15,7 +15,9 @@
             </div>
         @endif
     </header>
-    <div class="form-section__items" id="{{ $view->id_ }}___fields">
+    <div class="form-section__items" id="{{ $view->id_ }}___fields"
+        data-width-class='{ "-wide": 480 }'>
+
         @foreach ($view->items_ as $child)
             @if (!$child->empty)
                 <div class="form-section__item {{$child->wrap_modifier}} wrap">
@@ -24,5 +26,4 @@
             @endif
         @endforeach
     </div>
-    <script>new Osm_Ui_Forms.Fields('#{{ $view->id_}}___fields')</script>
 </section>

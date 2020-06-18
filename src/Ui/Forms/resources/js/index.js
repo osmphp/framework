@@ -18,3 +18,4 @@ macaw.controller('.field.-dropdown', DropdownField);
 macaw.controller('.field.-text', TextField);
 macaw.controller('.field.-checkbox', CheckboxField);
 macaw.controller('.form-section.-image', ImageField);
+

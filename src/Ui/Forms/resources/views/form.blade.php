@@ -3,6 +3,7 @@
 ?>
 <form id="{{ $view->id_ }}" class="form {{ $view->on_color_ }} {{ $view->color_ }}"
     method="{{ $view->method }}" action="{{ $view->action }}"
+    data-width-class='{ "-wide": 480 }'
     {!! $view->model('form') !!}>
 
     @foreach ($view->items_ as $child)
@@ -15,4 +16,3 @@
 
     <input type="submit" style="display: none;">
 </form>
-<script>new Osm_Ui_Forms.Fields('#{{ $view->id_}}')</script>
