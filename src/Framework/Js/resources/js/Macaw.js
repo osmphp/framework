@@ -140,12 +140,14 @@ export default class Macaw {
     }
 
     /**
-     * Called after element is inserted into DOM so that controllers can bind to new elements
+     * Called after element is inserted into DOM so that controllers
+     * can bind to new elements
+     *
      * @param element
      */
     afterInserted(element) {
-        this.attachControllersToViewModels(element);
-        view_models.clear();
+        // this.attachControllersToViewModels(element);
+        // view_models.clear();
 
         let allBindings = new Map();
 
