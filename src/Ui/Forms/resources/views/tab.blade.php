@@ -12,7 +12,7 @@
 
         @foreach ($view->items_ as $child)
             @if (!$child->empty)
-                <div class="form-tab__item {{$child->wrap_modifier}} wrap">
+                <div class="form-tab__item {{$child->wrap_modifier_}} wrap">
                     @include ($child)
                 </div>
             @endif

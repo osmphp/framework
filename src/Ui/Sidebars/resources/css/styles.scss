@@ -2,55 +2,80 @@
 
 .page {
   &__main {
-    //display: flex;
     display: grid;
-    //grid-template-columns: $sidebar-width 1fr $sidebar-width;
-    //grid-template-areas: "sidebar content alternative-sidebar";
     grid-template-columns: 1fr;
     grid-template-areas: "content";
     grid-gap: rem(16px);
   }
 
   &__content {
-    //order: 2;
-    //flex-grow: 1;
     grid-area: content;
   }
 
   &__sidebar {
     width: $sidebar-width;
-    //order: 1;
-    //padding-right: rem(16px);
     display: none;
     grid-area: sidebar;
   }
 
   &__alternative-sidebar {
     width: $sidebar-width;
-    //order: 3;
-    //padding-left: rem(16px);
     display: none;
     grid-area: alternative-sidebar;
   }
 
-  @media screen and (min-width: 768px) {
-    &__main {
-      grid-template-columns: $sidebar-width 1fr;
-      grid-template-areas: "sidebar content";
+  @media screen and (min-width: $sidebar-width * 3) {
+    &.-has-sidebar, &.-has-alternative-sidebar {
+      .page__item > * {
+        max-width: $page-width + $sidebar-width;
+      }
+
+      .page__item.-narrow > * {
+        max-width: $narrow-page-width + $sidebar-width;
+      }
     }
 
-    &__sidebar {
-      display: block;
+    &.-has-sidebar {
+      .page__main {
+        grid-template-columns: $sidebar-width 1fr;
+        grid-template-areas: "sidebar content";
+      }
+
+      .page__sidebar {
+        display: block;
+      }
+    }
+
+    &.-has-alternative-sidebar:not(.-has-sidebar) {
+      .page__main {
+        grid-template-columns: 1fr $sidebar-width;
+        grid-template-areas: "content alternative-sidebar";
+      }
+
+      .page__alternative-sidebar {
+        display: block;
+      }
     }
   }
-  @media screen and (min-width: 768px + $sidebar-width) {
-    &__main {
+
+  @media screen and (min-width: $sidebar-width * 5) {
+    &.-has-sidebar.-has-alternative-sidebar {
+      .page__item > * {
+        max-width: $page-width + 2 * $sidebar-width;
+      }
+
+      .page__item.-narrow > * {
+        max-width: $narrow-page-width + 2 * $sidebar-width;
+      }
+
+      .page__main {
       grid-template-columns: $sidebar-width 1fr $sidebar-width;
       grid-template-areas: "sidebar content alternative-sidebar";
-    }
+      }
 
-    &__alternative-sidebar {
-      display: block;
+      .page__alternative-sidebar {
+        display: block;
+      }
     }
   }
 }

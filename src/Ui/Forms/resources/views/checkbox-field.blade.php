@@ -1,7 +1,7 @@
 <?php
 /* @var \Osm\Ui\Forms\Views\CheckboxField $view */
 ?>
-<div class="field -checkbox {{ $view->modifier }}" id="{{ $view->id_ }}"
+<div class="field -checkbox {{ $view->modifier_ }}" id="{{ $view->id_ }}"
     {!! $view->model('field') !!}
 >
     <div class="field__body">

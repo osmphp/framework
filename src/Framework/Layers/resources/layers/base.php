@@ -1,6 +1,7 @@
 <?php
 
 use Osm\Framework\Views\Views\Container;
+use Osm\Framework\Views\Views\Main;
 use Osm\Framework\Views\Views\Page;
 
 return [
@@ -11,9 +12,9 @@ return [
         'id_' => '',
 
         'items' => [
-            'main' => Container::new([
+            'main' => Main::new([
                 'id' => 'main',
-                'css_class' => 'page__main',
+                'modifier' => 'page__main',
 
                 // HTML id of every child view is the same as its alias
                 'id_' => '',
@@ -22,7 +23,7 @@ return [
                 'items' => [
                     'content' => Container::new([
                         'id' => 'content',
-                        'css_class' => 'page__content',
+                        'modifier' => 'page__content',
 
                         // HTML id of every child view is the same as its alias
                         'id_' => '',

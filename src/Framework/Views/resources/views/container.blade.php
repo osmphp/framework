@@ -1,11 +1,11 @@
 <?php
 /* @var \Osm\Framework\Views\Views\Container $view */
-$wrap = $view->css_class || $view->element || !empty($view->attributes);
+$wrap = $view->modifier_ || $view->element || !empty($view->attributes);
 ?>
 @if (!$view->empty)
     @if ($wrap)
         <{{ $view->element ?: 'div' }} id="{{ $view->id_ }}"
-            class="{{ $view->on_color_ }} {{ $view->color_ }} {{ $view->css_class }}"
+            class="{{ $view->on_color_ }} {{ $view->color_ }} {{ $view->modifier_ }}"
             @foreach($view->attributes as $key => $value)
                 {{ $key }}="{{ $value }}"
             @endforeach

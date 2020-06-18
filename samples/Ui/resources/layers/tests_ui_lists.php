@@ -11,7 +11,7 @@ use Osm\Ui\Filters\Views\PriceFilter;
 return [
     '@include' => ['base'],
     '#page.modifier' => '-tests-ui-lists',
-    '#main.wrap_modifier' => '-wide',
+    //'#main.wrap_modifier' => '-narrow',
     '#sidebar.items' => [
         'filters' => Filters::new([
             'items' => [

@@ -3,7 +3,7 @@
 ?>
 @if (!$view->empty)
     <div id="{{ $view->id_ }}"
-        class="sidebar {{ $view->css_class }} {{ $view->on_color_ }} {{ $view->color_ }}"
+        class="sidebar {{ $view->modifier_ }} {{ $view->on_color_ }} {{ $view->color_ }}"
     >
         @foreach ($view->items_ as $child)
             @if (!$child->empty)

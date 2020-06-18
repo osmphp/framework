@@ -12,7 +12,6 @@ use Osm\Framework\Views\Exceptions\IdCantBeInferred;
  * @property string $template @required @part
  * @property string $id @part
  * @property string $alias @part
- * @property string $id_ @required @part
  * @property string $view_model @required @part @obsolete
  *
  * Rendering in the container:
@@ -26,14 +25,21 @@ use Osm\Framework\Views\Exceptions\IdCantBeInferred;
  *
  * @property string $color @part
  * @property string $on_color @part
- * @property string $color_
- * @property string $on_color_
  *
  * JS:
  *
  * @property array|null $model
  * @property string $view_model_script @required
  * @property string $selector @required @part
+ *
+ * Computed properties:
+ *
+ * @property string $id_ @required @part
+ * @property string $wrap_modifier_
+ * @property string $color_
+ * @property string $on_color_
+ *
+ * Dependencies:
  *
  * @property \Osm\Framework\Views\Module $view_module @required
  * @property ViewFactory $laravel_view @required
@@ -98,6 +104,7 @@ class View extends Object_
             case 'color_': return $this->cssPrefix($this->color);
             case 'on_color_': return $this->cssPrefix($this->on_color, '-on-');
             case 'selector': return "#{$this->id_}";
+            case 'wrap_modifier_': return $this->wrap_modifier;
         }
         return parent::default($property);
     }

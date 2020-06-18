@@ -16,11 +16,11 @@
         @include($child)
     @endforeach
 </head>
-<body class="page {{ $view->modifier }} {{ $view->on_color_ }} {{ $view->color_ }}">
+<body class="page {{ $view->modifier_ }} {{ $view->on_color_ }} {{ $view->color_ }}">
 
 @foreach ($view->items_ as $child)
     @if (!$child->empty)
-        <div class="page__item {{$child->wrap_modifier}} wrap">
+        <div class="page__item {{$child->wrap_modifier_}} wrap">
             @include ($child)
         </div>
     @endif

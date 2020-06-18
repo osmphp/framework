@@ -5,11 +5,16 @@ namespace Osm\Framework\Views\Views;
 use Osm\Framework\Views\View;
 
 /**
+ * Constructor arguments:
+ *
  * @property string $element @part
  * @property string[] $attributes @required @part
- * @property string $css_class @part
- *
+ * @property string $modifier @part
  * @property View[] $items @required @part
+ *
+ * Computed properties:
+ *
+ * @property string $modifier_
  * @property View[] $items_ @required
  */
 class Container extends View
@@ -18,6 +23,7 @@ class Container extends View
 
     protected function default($property) {
         switch ($property) {
+            case 'modifier_': return $this->modifier;
             case 'items': return [];
             case 'items_': return $this->sortViews($this->items);
             case 'empty': return $this->isEmpty();
