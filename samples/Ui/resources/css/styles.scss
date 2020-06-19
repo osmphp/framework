@@ -1,4 +1,5 @@
 @import '~Osm_Ui_Aba/_variables-and-mixins.scss';
+@import '~Osm_Ui_Sidebars/_mixins.scss';
 
 body.-tests-ui-menus {
 
@@ -50,5 +51,12 @@ body.-tests-ui-colors {
     box-shadow: shadow($z-index--card);
     padding: rem(8px);
   }
+}
 
+body.-tests-ui-lists {
+  @include sidebar-visible() {
+    #heading__menu__filter {
+      display: none;
+    }
+  }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use Osm\Framework\Views\Views\Text;
 use Osm\Ui\Filters\Views\Filters;
 use Osm\Ui\Lists\Views\List_;
 use Osm\Ui\Menus\Views\CommandItem;
@@ -21,12 +22,7 @@ return [
         ]),
     ],
     '#alternative_sidebar.items' => [
-        'filters' => Filters::new([
-            'items' => [
-                'group' => DropdownFilter\Checkboxes::new(),
-                'salary' => PriceFilter\Checkboxes::new(),
-            ],
-        ]),
+        'lorem' => Text::new(['contents' => 'Lorem ipsum ...']),
     ],
     '#content.items' => [
         'heading' => Heading::new(['id' => 'heading']),
@@ -50,12 +46,13 @@ return [
     ],
     '#heading.menu.items' => [
         'new' => CommandItem::new(['title' => osm_t("New")]),
+        'filter' => CommandItem::new(['title' => osm_t("Filter")]),
         'sort_by' => SubmenuItem::new([
-            'title' => osm_t("Sort By"),
+            'title' => osm_t("Sort"),
             'items' => [
-                'name_' => CommandItem::new(['title' => osm_t("Name")]),
-                'group' => CommandItem::new(['title' => osm_t("Group")]),
-                'salary' => CommandItem::new(['title' => osm_t("Salary")]),
+                'name_' => CommandItem::new(['title' => osm_t("By Name")]),
+                'group' => CommandItem::new(['title' => osm_t("By Group")]),
+                'salary' => CommandItem::new(['title' => osm_t("By Salary")]),
             ],
         ]),
         'delete' => CommandItem::new(['title' => osm_t("Delete Selected")]),
