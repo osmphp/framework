@@ -2,7 +2,7 @@
 
 namespace Osm\Data\Formulas\Exceptions;
 
-class UnexpectedCharacter extends error
+class UnexpectedCharacter extends Error
 {
 
 }
