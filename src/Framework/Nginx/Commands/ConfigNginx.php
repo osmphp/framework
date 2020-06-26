@@ -10,7 +10,8 @@ use Osm\Framework\Processes\Process;
 /**
  * `config:nginx` shell command class.
  *
- * @property string $project @required
+ * @property string $path @required
+ * @property string $path_ @required
  * @property string $domain @required
  * @property string $fastcgi_pass @required
  * @property string $filename @required
@@ -25,13 +26,14 @@ class ConfigNginx extends Command
         global $osm_app; /* @var App $osm_app */
 
         switch ($property) {
-            case 'project': return basename($osm_app->path());
+            case 'path': return $osm_app->path();
+            case 'path_': return str_replace('/', '_', mb_substr($this->path, 1));
             case 'domain': return $this->input->getOption('domain')
-                ?: $this->project;
+                ?: $this->path;
             case 'fastcgi_pass': return $this->input->getOption('fastcgi_pass')
                 ?: $this->getFastcgiPass();
-            case 'filename': return "/etc/nginx/sites-available/{$this->project}";
-            case 'link': return "/etc/nginx/sites-enabled/{$this->project}";
+            case 'filename': return "/etc/nginx/sites-available/{$this->path_}";
+            case 'link': return "/etc/nginx/sites-enabled/{$this->path_}";
             case 'contents': return $this->getContents();
             case 'module': return $osm_app->modules['Osm_Framework_Nginx'];
             case 'template_filename': return $osm_app->path(
