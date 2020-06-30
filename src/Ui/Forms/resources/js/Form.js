@@ -35,7 +35,14 @@ export default class Form extends FieldGroup {
             snackbar_message: this.model.submitting_message
         };
 
-        trigger(this.element, 'form:submitting', options);
+        let submitting = new CustomEvent('form:submitting', {
+            cancelable: true,
+            detail: options,
+        });
+        this.element.dispatchEvent(submitting);
+        if (submitting.defaultPrevented) {
+            return;
+        }
 
         ajax(this.element.method + ' ' + url.formAction(this.element.action), options)
             .then(payload => {
