@@ -26,6 +26,7 @@ use Osm\Framework\Validation\Exceptions\ValidationFailed;
  *
  * @property string[] $reference_columns
  * @property string[] $data_columns
+ * @property bool $can_make_queries
  */
 class Files extends Object_
 {
@@ -42,6 +43,8 @@ class Files extends Object_
             case 'area': return $osm_app->area_;
             case 'reference_columns': return $this->getColumns(true);
             case 'data_columns': return $this->getColumns(false);
+            case 'can_make_queries': return $osm_app->db->connection
+                ->getSchemaBuilder()->hasTable('tables');
         }
 
         return parent::default($property);
@@ -213,6 +216,10 @@ class Files extends Object_
     }
 
     public function dropAllFiles() {
+        if (!$this->can_make_queries) {
+            return;
+        }
+
         foreach ($this->each() as $file) {
             unset($file->id);
             $this->deleteFile($file);
