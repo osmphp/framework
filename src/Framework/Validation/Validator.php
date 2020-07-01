@@ -226,6 +226,15 @@ class Validator extends Object_
         return $data;
     }
 
+    protected function validateFloat($data, array $property, $path) {
+        if (!is_float($data)) {
+            $this->error($path, osm_t("Float expected"));
+            return $data;
+        }
+
+        return $data;
+    }
+
     protected function validateBool($data, array $property, $path) {
         if (!is_bool($data)) {
             $this->error($path, osm_t("Boolean expected"));
