@@ -17,4 +17,5 @@ return [
     "Value should be at least :length characters long" => "Value should be at least :length characters long",
     "Domain name expected" => "Domain name expected",
     "Float expected" => "Float expected",
+    "Value should be :length characters long" => "Value should be :length characters long",
 ];

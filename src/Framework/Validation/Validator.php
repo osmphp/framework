@@ -209,6 +209,12 @@ class Validator extends Object_
             return $data;
         }
 
+        if (!empty($property['length']) && mb_strlen($data) != $property['length']) {
+            $this->error($path, osm_t("Value should be :length characters long",
+                ['length' => $property['length']]));
+            return $data;
+        }
+
         if (!empty($property['pattern']) && !preg_match($this->patterns[$property['pattern']]->pattern, $data)) {
             $this->error($path, $this->patterns[$property['pattern']]->error_message);
             return $data;
@@ -227,6 +233,10 @@ class Validator extends Object_
     }
 
     protected function validateFloat($data, array $property, $path) {
+        if (is_int($data)) {
+            $data = floatval($data);
+        }
+
         if (!is_float($data)) {
             $this->error($path, osm_t("Float expected"));
             return $data;
