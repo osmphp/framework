@@ -57,10 +57,16 @@ export default class Form extends FieldGroup {
                     throw e;
                 }
             })
-            .catch(xhr => {
-                throw this.onError(xhr, JSON.parse(xhr.responseText))
-                    ? xhr
-                    : new Error('Unhandled form error');
+            .catch(json => {
+                if (!json) {
+                    return Promise.reject();
+                }
+
+                if (this.onError(json)) {
+                    return Promise.reject();
+                }
+
+                throw new Error('Unhandled form error');
             });
     }
 
@@ -68,27 +74,27 @@ export default class Form extends FieldGroup {
         trigger(this.element, 'form:success', payload);
     }
 
-    onError(xhr, payload) {
-        if (payload.error == 'validation_failed') {
-            Object.keys(payload.messages).forEach(path => {
+    onError(json) {
+        if (json.error == 'validation_failed') {
+            Object.keys(json.messages).forEach(path => {
                 let parts = path.split('/');
                 let field = this.findFieldByPath(parts);
                 if (!field) {
                     console.log("Field '" + path + "' not found");
                     return;
                 }
-                field.showError(payload.messages[path]);
+                field.showError(json.messages[path]);
             });
 
-            snackBars.showMessage(xhr.getResponseHeader('Status-Text'));
+            snackBars.showMessage(json.message);
             return true;
         }
 
-        return this.onOtherError(xhr, payload);
+        return this.onOtherError(json);
     }
 
-    onOtherError(xhr, payload) {
-        snackBars.showMessage(xhr.getResponseHeader('Status-Text'));
+    onOtherError(json) {
+        snackBars.showMessage(json.message);
         return true;
     }
 };
