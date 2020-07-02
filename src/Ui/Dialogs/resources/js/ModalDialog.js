@@ -60,7 +60,6 @@ export default class ModalDialog extends Controller {
         }
 
         super.onAttach();
-        this.onResize();
     }
 
     onResize() {

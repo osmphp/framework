@@ -34,6 +34,10 @@ export default class Controller {
 
     onAttach() {
         this.addEventListeners(this.element, this.events);
+
+        if (this.onResize) {
+            this.onResize();
+        }
     }
 
     onDetach() {

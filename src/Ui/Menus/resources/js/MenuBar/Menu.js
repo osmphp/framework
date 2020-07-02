@@ -51,7 +51,7 @@ export default class Menu extends BaseMenu {
 
     onAttach() {
         super.onAttach();
-        this.onResize();
+
         requestAnimationFrame(() => {
             this.addEventListeners(this.mobile_menu.element,
                 this.mobile_menu_events);

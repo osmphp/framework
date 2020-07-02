@@ -7,25 +7,9 @@ export default class WidthClass extends Controller {
         });
     }
 
-    onAttach() {
-        super.onAttach();
-
-        this.rules = {
-            'min-width-': 'minWidth',
-        };
-
-        this.onResize();
-    }
-
     onResize() {
-        Object.getOwnPropertyNames(this.model).forEach(property => {
-            let match = property.match(/^([a-z\-]+)considered([a-z\-]+)/);
-
-            if (!match) {
-                return;
-            }
-
-            this[this.rules[match[1]]](match[2], this.model[property]);
+        Object.getOwnPropertyNames(this.model).forEach(modifier => {
+            this.minWidth(modifier, this.model[modifier]);
         });
     }
 
