@@ -1,11 +1,11 @@
 @import '~Osm_Ui_Aba/_variables-and-mixins.scss';
 
-@mixin form-items() {
+@mixin wide-form-items() {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
-@mixin form-item() {
+@mixin wide-form-item() {
   grid-column: 1/3;
 
   &.-narrow {

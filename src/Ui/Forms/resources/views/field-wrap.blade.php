@@ -6,7 +6,7 @@
     {{ $view->type ? "-{$view->type}" : '' }}"
     {!! $view->model('field') !!}
 >
-    <div class="field__body">
+    <div class="field__body {{ $view->body_on_color_ }} {{ $view->body_color_ }}">
         @if ($view->title)
             <label class="field__title"
                 for="{{ $view->id_ }}__value">{{ $view->title }}</label>

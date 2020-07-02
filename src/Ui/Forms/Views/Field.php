@@ -18,6 +18,16 @@ use Osm\Framework\Views\Views\Container;
  * @property string $type @part
  *
  * @property string $field_template @required @part
+ *
+ * Styles (each view class may support these or not):
+ *
+ * @property string $body_color @part
+ * @property string $body_on_color @part
+ *
+ * Computed properties:
+ *
+ * @property string $body_color_
+ * @property string $body_on_color_
  */
 abstract class Field extends Container
 {
@@ -27,6 +37,11 @@ abstract class Field extends Container
         switch ($property) {
             case 'name': return $this->getName();
             case 'focusable': return true;
+
+            case 'body_color': return $this->color;
+            case 'body_on_color': return $this->on_color;
+            case 'body_color_': return $this->cssPrefix($this->body_color);
+            case 'body_on_color_': return $this->cssPrefix($this->body_on_color, '-on-');
         }
         return parent::default($property);
     }

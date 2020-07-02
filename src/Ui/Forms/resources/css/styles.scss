@@ -4,21 +4,21 @@
 
 .form {
   &.-wide {
-    @include form-items();
+    @include wide-form-items();
   }
 
   &.-wide &__item {
-    @include form-item();
+    @include wide-form-item();
   }
 }
 
 .form-tab {
   &__items.-wide {
-    @include form-items();
+    @include wide-form-items();
   }
 
   &__items.-wide &__item {
-    @include form-item();
+    @include wide-form-item();
   }
 }
 
@@ -32,11 +32,11 @@
   }
 
   &__items.-wide {
-    @include form-items();
+    @include wide-form-items();
   }
 
   &__items.-wide &__item {
-    @include form-item();
+    @include wide-form-item();
   }
 }
 
@@ -159,10 +159,22 @@
     }
   }
 
-  &.-text &__value, &.-dropdown &__value, &.-price &__value, &.-date &__value {
-    @include foreach-background() using($bg) {
-      background-color: bg-color($bg);
-      color: fg-color($bg);
-    }
+  //&.-text &__value, &.-dropdown &__value, &.-price &__value, &.-date &__value {
+  //  @include foreach-background() using($bg) {
+  //    background-color: bg-color($bg);
+  //    color: fg-color($bg);
+  //  }
+  //}
+}
+
+.form-flex {
+  display: flex;
+
+  &__item:not(:last-child) {
+    padding-right: rem(8px);
+  }
+
+  &__item.-button {
+    padding-top: rem(36px);
   }
 }
