@@ -49,7 +49,7 @@ class Themes extends CollectionRegistry
                 continue;
             }
 
-            $path = $osm_app->path($package->path . ($pool->name ? "/$pool->name" : ''));
+            $path = $osm_app->path(($package->path ? "{$package->path}/" : '') . $pool->name);
             foreach (glob("$path/{$pool->theme_path}") as $filename) {
                 // make sure Osm\Framework\Themes\Theme class file Theme.php is not treated as theme definition
                 // file theme.php. On Windows, file names are case-insensitive, so this may happen. Without this check,
