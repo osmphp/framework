@@ -1,6 +1,4 @@
 import templates from 'Osm_Framework_Js/vars/templates';
-import merge from 'Osm_Framework_Js/merge';
-import SnackBar from './SnackBar';
 import macaw from "Osm_Framework_Js/vars/macaw";
 import Exception from "./Exception";
 import snackBars from './vars/snackBars';

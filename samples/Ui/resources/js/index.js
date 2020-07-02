@@ -8,15 +8,9 @@ import TablesPage from "./TablesPage";
 
 import SampleViewUsingSnackBar from './SampleViewUsingSnackBar';
 import templates from "Osm_Framework_Js/vars/templates";
-import merge from 'Osm_Framework_Js/merge';
-import TestSnackBarViewModel from "./TestSnackBarViewModel";
 import TestSnackBar from "./TestSnackBar";
 import SampleViewUsingPopupMenu from "./SampleViewUsingPopupMenu";
 import './tests';
-
-merge(window, {
-    Osm_Samples_Ui: {TestSnackBar: TestSnackBarViewModel }
-});
 
 macaw.controller('.sample-view-using-snackbar', SampleViewUsingSnackBar);
 macaw.controller('.snack-bar.-sample', TestSnackBar);

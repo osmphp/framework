@@ -4,7 +4,6 @@ import Mustache from 'mustache';
 import Handle from './Handle';
 import config from 'Osm_Framework_Js/vars/config';
 import macaw from "Osm_Framework_Js/vars/macaw";
-import SnackBar from "./SnackBar";
 
 /**
  * @property {int} last_id
