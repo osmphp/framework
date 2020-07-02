@@ -54,7 +54,7 @@ export default class Api {
             }
 
             $('.snack-bar-panel').append($element);
-            macaw.getViewModel($element[0], SnackBar).model.handle = handle;
+            $element[0].osm_snackbar_handle = handle;
             macaw.afterInserted($element[0]);
 
             handle.element = $element[0];

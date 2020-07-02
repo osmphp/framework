@@ -18,8 +18,8 @@ merge(window, {
     Osm_Samples_Ui: {TestSnackBar: TestSnackBarViewModel }
 });
 
-macaw.controller(Osm_Samples_Ui.SampleViewUsingSnackBar, SampleViewUsingSnackBar);
-macaw.controller(Osm_Samples_Ui.TestSnackBar, TestSnackBar);
+macaw.controller('.sample-view-using-snackbar', SampleViewUsingSnackBar);
+macaw.controller('.snack-bar.-sample', TestSnackBar);
 macaw.controller('.test-popup-menu', SampleViewUsingPopupMenu);
 
 templates.add('snack-bar__test', {route: 'GET /snack-bars/test'});

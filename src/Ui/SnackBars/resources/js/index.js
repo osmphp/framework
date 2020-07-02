@@ -1,7 +1,6 @@
 import templates from 'Osm_Framework_Js/vars/templates';
 import merge from 'Osm_Framework_Js/merge';
 import SnackBar from './SnackBar';
-import ExceptionViewModel from "./ExceptionViewModel";
 import macaw from "Osm_Framework_Js/vars/macaw";
 import Exception from "./Exception";
 import snackBars from './vars/snackBars';
@@ -14,10 +13,6 @@ mix(Functions, FunctionsMixin);
 templates.add('snack-bar__message', {route: 'GET /snack-bars/message'});
 templates.add('snack-bar__exception', {route: 'GET /snack-bars/exception'});
 
-merge(window, {
-    Osm_Ui_SnackBars: { SnackBar, Exception: ExceptionViewModel }
-});
-
-macaw.controller(Osm_Ui_SnackBars.Exception, Exception);
+macaw.controller('.snack-bar.-exception', Exception);
 
 snackBars.restoreLastingMessage();

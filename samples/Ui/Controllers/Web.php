@@ -66,7 +66,7 @@ class Web extends Controller
     public function snackBarTemplate() {
         return SnackBar::new([
             'template' => 'Osm_Samples_Ui.snack-bars.test-snack-bar',
-            'view_model' => 'Osm_Samples_Ui.TestSnackBar',
+            'modifier' => '-sample',
         ]);
     }
 

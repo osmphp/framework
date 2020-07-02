@@ -8,13 +8,15 @@ use Osm\Ui\SnackBars\Views\SnackBar;
 class Web extends Controller
 {
     public function getMessageTemplate() {
-        return SnackBar::new(['template' => 'Osm_Ui_SnackBars.message']);
+        return SnackBar::new([
+            'template' => 'Osm_Ui_SnackBars.message',
+        ]);
     }
 
     public function getExceptionTemplate() {
         return SnackBar::new([
             'template' => 'Osm_Ui_SnackBars.exception',
-            'view_model' => 'Osm_Ui_SnackBars.Exception',
+            'modifier' => '-exception',
         ]);
     }
 }

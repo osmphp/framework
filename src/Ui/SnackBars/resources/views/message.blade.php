@@ -2,6 +2,7 @@
 /* @var \Osm\Ui\SnackBars\Views\SnackBar $view */
 ?>
 <div id="{{ $view->id_ }}" class="snack-bar snack-bar-panel__item
+    {{ $view->modifier }}
     {{ $view->on_color_ }} {{ $view->color_ }}
     @if ($side ?? null) -with-sidebar @endif"
 >
@@ -17,4 +18,3 @@
         </div>
     @endif
 </div>
-{!! $view->view_model_script !!}

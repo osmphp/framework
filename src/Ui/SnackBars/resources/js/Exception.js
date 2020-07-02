@@ -14,12 +14,14 @@ export default class Exception extends Controller {
     }
 
     onStackTraceClick() {
-        this.model.handle.close();
+        let handle = this.element.osm_snackbar_handle;
+
+        handle.close();
         dialogs.show('exception', {
             width: 1900,
             height: 700,
-            message: this.model.handle.variables.message,
-            stack_trace: this.model.handle.variables.stack_trace
+            message: handle.variables.message,
+            stack_trace: handle.variables.stack_trace
         });
     }
 };

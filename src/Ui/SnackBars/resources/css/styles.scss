@@ -22,7 +22,7 @@
   border-radius: rem(4px);
   box-shadow: shadow($z-index--snack-bar);
   font-size: rem(14px);
-  min-width: 343px; // this property is checked in SnackBar.js, don't remove it
+  max-width: calc(100% - 32px); // this property is checked in SnackBar.js, don't remove it
 
   &.-full-width {
     min-width: auto;

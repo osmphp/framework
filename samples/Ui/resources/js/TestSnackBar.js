@@ -13,6 +13,6 @@ export default class TestSnackBar extends Controller {
     }
 
     onCloseClick() {
-        this.model.handle.close();
+        this.element.osm_snackbar_handle.close();
     }
 };
