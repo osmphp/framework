@@ -55,6 +55,9 @@ input, select, textarea {
   border-width: 0 0 1px 0;
   border-color: lightgrey;
   font-size: rem(16px);
+  background: inherit;
+  color: inherit;
+  font-family: inherit;
 }
 
 input[type=checkbox],
