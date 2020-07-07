@@ -8,6 +8,7 @@ use Osm\Core\Modules\BaseModule;
 /**
  * @property string $locale @required
  * @property string[] $translations @required
+ * @property \NumberFormatter $float @required
  */
 class Module extends BaseModule
 {
@@ -18,10 +19,18 @@ class Module extends BaseModule
 
         switch ($property) {
             case 'locale': return env('APP_LOCALE');
-            case 'translations': return $osm_app->cache->remember("translations.{$this->locale}", function($data) {
-                return Translations::new(array_merge(['locale' => $this->locale], $data));
-            });
+            case 'translations':
+                return $osm_app->cache->remember("translations.{$this->locale}", function($data) {
+                    return Translations::new(array_merge(
+                        ['locale' => $this->locale],
+                        $data
+                    ));
+                });
+            case 'float':
+                return new \NumberFormatter($this->locale,
+                    \NumberFormatter::DECIMAL);
         }
+
         return parent::default($property);
     }
 

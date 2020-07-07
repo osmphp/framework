@@ -22,7 +22,7 @@ class Preparer extends Handler
             return;
         }
 
-        if ($field->focusable) {
+        if ($this->form->focus && $field->focusable) {
             $field->focus = true;
             $this->set = true;
         }

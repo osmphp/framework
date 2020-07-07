@@ -42,6 +42,18 @@ function osm_t($text, $parameters = []) {
     return new Promise('localization', 'translate', [$text, $parameters]);
 }
 
+function osm_parse_float($value) {
+    global $osm_app; /* @var App $osm_app */
+
+    return $osm_app->localization->float->parse($value);
+}
+
+function osm_float_to_string($value) {
+    global $osm_app; /* @var App $osm_app */
+
+    return $osm_app->localization->float->format($value);
+}
+
 function osm_url($route, $parsedQuery = []) {
     return new Promise('url', 'toRoute', [$route, $parsedQuery]);
 }

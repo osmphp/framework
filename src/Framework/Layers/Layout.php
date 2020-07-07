@@ -354,7 +354,7 @@ class Layout extends Object_
                 continue;
             }
 
-            if ($this->views[$view->id] != $view) {
+            if ($this->views[$view->id] !== $view) {
                 throw new InvalidInstruction(osm_t("Two or more views have the same id ':id'", ['id' => $view->id]));
             }
         }
