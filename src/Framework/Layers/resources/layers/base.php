@@ -19,6 +19,7 @@ return [
 
                 // HTML id of every child view is the same as its alias
                 'id_' => '',
+                'empty' => false,
 
                 'sort_order' => 100,
                 'items' => [
