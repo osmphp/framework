@@ -10,6 +10,7 @@ use Osm\Framework\Settings\Settings;
 /**
  * @property \SessionHandlerInterface $handler @required
  * @property string $name @required @part
+ * @property bool $disabled @part
  *
  * @property string $session_class @part
  * @property int $time_to_live @required @part (in minutes)

@@ -33,7 +33,7 @@ class StartSession extends Advice
     public function around(callable $next) {
         $gc = rand(0, 99) < 2;
         foreach ($this->areas as $area) {
-            if (!$area->sessions) {
+            if (!$area->sessions || $area->sessions->disabled) {
                 continue;
             }
 

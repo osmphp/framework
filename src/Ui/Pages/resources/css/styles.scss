@@ -1,9 +1,17 @@
 @import '~Osm_Ui_Aba/_variables-and-mixins.scss';
 @import './_mixins.scss';
 
+html, body {
+  height: 100%;
+}
+
 .page {
+  display: flex;
+  flex-direction: column;
+
   &__item {
     padding: 0 $page-padding;
+    flex-shrink: 0;
 
     & > * {
       margin-left: auto;
@@ -13,6 +21,9 @@
 
     &.-narrow > * {
       max-width: $narrow-page-width;
+    }
+    &.-main {
+      flex: 1 0 auto;
     }
   }
 }

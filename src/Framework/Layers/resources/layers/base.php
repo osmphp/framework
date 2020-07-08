@@ -15,6 +15,7 @@ return [
             'main' => Main::new([
                 'id' => 'main',
                 'modifier' => 'page__main',
+                'wrap_modifier' => '-main',
 
                 // HTML id of every child view is the same as its alias
                 'id_' => '',
