@@ -30,8 +30,15 @@ class Bootstrapper {
          *      npm run webpack -- --env.APP_ENV=testing
          */
         Object.assign(process.env,
-            {NO_WEBPACK_PREPARE: '0', APP_ENV: 'production'},
-            {APP_ENV: env.APP_ENV});
+            {
+                NO_WEBPACK_PREPARE: '0',
+                NO_WEBPACK_SOURCE_MAPS: '0',
+                APP_ENV: 'production'
+            },
+            {
+                NO_WEBPACK_SOURCE_MAPS: env.NO_WEBPACK_SOURCE_MAPS,
+                APP_ENV: env.APP_ENV
+            });
 
         process.argv.slice(2).forEach(arg => {
             if (!arg.startsWith('--env.APP_ENV=')) {

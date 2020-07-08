@@ -25,7 +25,7 @@ class Builder {
     buildTarget(target) {
         let config = {
             mode: process.env.APP_ENV == 'production' ? 'production' : 'development',
-            devtool: "source-map",
+            devtool: parseInt(process.env.NO_WEBPACK_SOURCE_MAPS) ? '' : "source-map",
             stats: "minimal",
             module: {
                 rules: [
