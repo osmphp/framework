@@ -24,6 +24,10 @@ use Osm\Framework\Views\View;
  * @property string $modifier @part CSS classes to add to <body> element
  * @property string $canonical_url @part
  *
+ * Computed properties:
+ *
+ * @property string $lang @required
+ *
  * Dependencies:
  *
  * @property Request $request @required
@@ -73,6 +77,7 @@ class Page extends Container
 
             case 'selector': return 'body';
             case 'color': return 'primary';
+            case 'lang': return strtr(env('APP_LOCALE'), '_', '-');
         }
         return parent::default($property);
     }

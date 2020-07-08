@@ -1,5 +1,3 @@
-import config from "Osm_Framework_Js/vars/config";
-
 export default function osmDebugViews() {
     const STYLES = '/styles.css';
     const DEBUG_VIEWS = '/Osm_Framework_Views/debug-views.css';

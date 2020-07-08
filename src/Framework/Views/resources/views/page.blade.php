@@ -2,7 +2,7 @@
 /* @var \Osm\Framework\Views\Views\Page $view */
 ?>
 <!DOCTYPE html>
-<html @if ($view->html_modifier) class="{{ $view->html_modifier }}" @endif>
+<html lang="{{ $view->lang }}" @if ($view->html_modifier) class="{{ $view->html_modifier }}" @endif>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

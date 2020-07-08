@@ -44,7 +44,10 @@ class Builder {
             },
             plugins: [
                 new VersionBumpPlugin(this.paths.getPublicPath(target) + '/version.txt')
-            ]
+            ],
+            performance: {
+              hints: false
+            }
         };
 
         config = merge(config, (new AssetResourceBuilder(
