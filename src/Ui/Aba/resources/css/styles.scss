@@ -9,15 +9,10 @@
   #TAG-GLOBAL-FONT-ETC
 \*-------------------------------------------------------------------*/
 
-@import './_material-icons.scss';
-@import './_themify-icons.scss';
-@import './_font-awesome.scss';
-@import './_roboto-slab.scss';
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese');
+@import './_fonts.scss';
 
 html,
 button {
-  font-family: 'Roboto', sans-serif;
   line-height: $line-height--base;
   box-sizing: border-box;
 }
