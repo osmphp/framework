@@ -13,6 +13,10 @@ html, body {
     padding: 0 $page-padding;
     flex-shrink: 0;
 
+    &.-full-width {
+      padding: 0;
+    }
+
     & > * {
       margin-left: auto;
       margin-right: auto;
@@ -22,6 +26,11 @@ html, body {
     &.-narrow > * {
       max-width: $narrow-page-width;
     }
+
+    &.-full-width > * {
+      max-width: none;
+    }
+
     &.-main {
       flex: 1 0 auto;
     }
