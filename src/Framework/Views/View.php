@@ -25,6 +25,7 @@ use Osm\Framework\Views\Exceptions\IdCantBeInferred;
  *
  * @property string $color @part
  * @property string $on_color @part
+ * @property string $modifier @part
  *
  * JS:
  *
