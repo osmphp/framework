@@ -8,6 +8,7 @@ use Osm\Framework\Views\View;
 /**
  * @property string $title @part
  * @property string $url @part
+ * @property bool $no_follow @part
  *
  * Style properties:
  *

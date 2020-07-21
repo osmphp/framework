@@ -6,7 +6,9 @@
     <a href="{{ $view->url }}" id="{{ $view->id_ }}" class="button
             {{ $view->on_color_ }} {{ $view->color_ }} {{ $view->modifier }}
             @if ($view->disabled) -disabled @endif
-            @if ($view->outlined) -outlined @endif">
+            @if ($view->outlined) -outlined @endif"
+            @if ($view->no_follow) rel="nofollow" @endif
+    >
 
         @if ($view->icon)
             <i class="button__icon icon {{$view->icon}}"></i>
