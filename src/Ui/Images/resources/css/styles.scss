@@ -1,7 +1,0 @@
-@import '~Osm_Ui_Aba/_variables-and-mixins.scss';
-
-.image:not([src]):not([data-src]) {
-  @include foreach-background() using($bg) {
-    @include placeholder-background(fg-delimiter-color($bg));
-  }
-}

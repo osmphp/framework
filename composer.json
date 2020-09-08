@@ -13,7 +13,7 @@
             "src/helpers.php"
         ],
         "psr-4": {
-            "Osm\\": "src/",
+            "Osm\\Framework\\": "src/",
             "Osm\\Tests\\": "tests/",
             "Osm\\Samples\\": "samples/"
         }
