@@ -1,1 +1,0 @@
-Credit to <https://picsum.photos/1000/1000>
