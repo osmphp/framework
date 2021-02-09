@@ -16,13 +16,11 @@ class test_01_console extends TestCase
     public function test_arguments_and_options() {
         Apps::run(Apps::create(App::class), function(App $app) {
             // GIVEN an app with a `hello` command defined in it
-            $console = $app->modules[Module::class]; /* @var Module $console */
 
             // WHEN you run a command
-            $console->symfony->setCatchExceptions(false);
-            $console->symfony->setAutoExit(false);
-            $console->symfony->run(
-                new StringInput('hello --caps vo'),
+            $app->console->setCatchExceptions(false);
+            $app->console->setAutoExit(false);
+            $app->console->run(new StringInput('hello --caps vo'),
                 $output = new BufferedOutput());
 
             // THEN its output is fetched
