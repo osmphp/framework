@@ -5,7 +5,7 @@
     <a href="https://packagist.org/packages/osmphp/framework"><img src="https://img.shields.io/packagist/l/osmphp/framework" alt="License"></a>
 </p>
 
-* [About osmphp/framework](#about-osmphpcore) 
+* [About osmphp/framework](#about-osmphpframework) 
 * [Prerequisites](#prerequisites) 
 * [Installation](#installation) 
 * [Getting Started](#getting-started)
