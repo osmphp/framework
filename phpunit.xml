@@ -8,4 +8,7 @@
     <testsuite name="all">
         <directory prefix="test_" suffix=".php">tests</directory>
     </testsuite>
+    <php>
+        <env name="APP_LOCALE" value="lt_LT"/>
+    </php>
 </phpunit>

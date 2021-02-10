@@ -10,13 +10,17 @@
     ],
     "require": {
         "php": ">=8.0",
-        "osmphp/core": "^0.4",
-        "symfony/console": "^5"
+        "osmphp/core": "^0.5",
+        "symfony/console": "^5",
+        "vlucas/phpdotenv": "^5"
     },
     "require-dev": {
         "phpunit/phpunit": "^9"
     },
     "autoload": {
+        "files": [
+            "src/Translations/functions.php"
+        ],
         "psr-4": {
             "Osm\\Framework\\": "src/"
         }
