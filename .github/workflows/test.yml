@@ -26,6 +26,11 @@ jobs:
                     extensions: mbstring
                     tools: composer:v2
                     coverage: none
+                env:
+                    COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            -   name: Setup problem matchers
+                run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
             -   name: Install dependencies
                 run: composer update --prefer-dist --no-interaction --no-progress
