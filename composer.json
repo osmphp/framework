@@ -10,15 +10,17 @@
     ],
     "require": {
         "php": ">=8.0",
-        "osmphp/core": "^0.5",
+        "osmphp/core": "^0.6",
         "symfony/console": "^5",
-        "vlucas/phpdotenv": "^5"
+        "vlucas/phpdotenv": "^5",
+        "symfony/cache": "^5"
     },
     "require-dev": {
         "phpunit/phpunit": "^9"
     },
     "autoload": {
         "files": [
+            "src/Cache/functions.php",
             "src/Translations/functions.php"
         ],
         "psr-4": {

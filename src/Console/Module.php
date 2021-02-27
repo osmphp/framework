@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Osm\Framework\Console;
 
 use Osm\Core\App;
-use Osm\Core\Module as BaseModule;
+use Osm\Core\BaseModule;
 use Symfony\Component\Console\Application as SymfonyConsole;
 
 /** @noinspection PhpUnused */

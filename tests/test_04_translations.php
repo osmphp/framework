@@ -9,7 +9,7 @@ use Osm\Runtime\Apps;
 use PHPUnit\Framework\TestCase;
 use function Osm\__;
 
-class test_03_translations extends TestCase
+class test_04_translations extends TestCase
 {
     public function test_externally_set_value() {
         Apps::run(Apps::create(App::class), function(App $app) {

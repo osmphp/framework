@@ -6,7 +6,7 @@ declare(strict_types=1);
 namespace Osm\Framework\Translations;
 
 use Osm\Core\App;
-use Osm\Core\Module as BaseModule;
+use Osm\Core\BaseModule;
 use Osm\Framework\Env\Env;
 
 /**

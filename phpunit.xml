@@ -10,5 +10,6 @@
     </testsuite>
     <php>
         <env name="APP_LOCALE" value="lt_LT"/>
+        <env name="CACHE_CLASS_NAME" value="Osm\Framework\Cache\Array_"/>
     </php>
 </phpunit>
