@@ -6,6 +6,8 @@ namespace Osm\Framework\Cache\Traits;
 
 use Osm\Core\App;
 use Osm\Framework\Cache\Cache;
+use Osm\Framework\Cache\File;
+use Osm\Framework\Env\Attributes\Env;
 use Symfony\Component\Cache\Adapter\TagAwareAdapter;
 
 /**
@@ -14,12 +16,15 @@ use Symfony\Component\Cache\Adapter\TagAwareAdapter;
 trait AppTrait
 {
     /** @noinspection PhpUnused */
+    #[Env('CACHE', 'Cache class name', File::class)]
     protected function get_cache(): TagAwareAdapter {
         /* @var App $this */
-        $new = "{$this->env->CACHE_CLASS_NAME}::new";
+
+        $className = $_ENV['CACHE'] ?? File::class;
+        $new = "{$className}::new";
 
         /* @var Cache $factory */
-        $factory = $new(['env_prefix' => 'CACHE_']);
+        $factory = $new(['env_prefix' => 'CACHE']);
         return $factory->create();
 
     }

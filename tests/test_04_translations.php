@@ -13,7 +13,7 @@ class test_04_translations extends TestCase
 {
     public function test_externally_set_value() {
         Apps::run(Apps::create(App::class), function(App $app) {
-            // GIVEN that PhpUnit sets APP_LOCALE=lt_LT
+            // GIVEN that PhpUnit sets $osm_app->settings->locale=lt_LT
 
             // WHEN you request text translation
             $text = __("A random text ':text'", ['text' => "Hello, world"]);

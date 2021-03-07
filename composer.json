@@ -13,7 +13,11 @@
         "osmphp/core": "^0.6",
         "symfony/console": "^5",
         "vlucas/phpdotenv": "^5",
-        "symfony/cache": "^5"
+        "symfony/cache": "^5",
+        "illuminate/events": "^8",
+        "illuminate/filesystem": "^8",
+        "illuminate/database": "^8",
+        "doctrine/dbal": "^3"
     },
     "require-dev": {
         "phpunit/phpunit": "^9"

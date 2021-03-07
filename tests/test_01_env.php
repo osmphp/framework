@@ -12,14 +12,12 @@ class test_01_env extends TestCase
 {
     public function test_externally_set_value() {
         Apps::run(Apps::create(App::class), function(App $app) {
-            // GIVEN that PhpUnit configuration set a APP_LOCALE
+            // GIVEN that PhpUnit configuration set a LOCALE
             // environment variable
 
             // WHEN you access it
-            $locale = $app->env->APP_LOCALE;
-
             // THEN it is as set in PhpUnit configuration
-            $this->assertEquals('lt_LT', $locale);
+            $this->assertEquals('tests/settings.php', $_ENV['SETTINGS'] ?? null);
         });
     }
 }

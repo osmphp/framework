@@ -5,17 +5,18 @@ declare(strict_types=1);
 namespace Osm\Framework\Cache;
 
 use Osm\Core\App;
-use Osm\Framework\Env\Env;
+use Osm\Framework\Env\Attributes\Env;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Cache\Adapter\TagAwareAdapter;
 
-/**
- * @property Env $env
- */
 class File extends Cache
 {
+    #[Env('CACHE_PATH', 'Cache directory absolute path', '{project_path}/temp/cache')]
     public function create(): TagAwareAdapter {
-        $path = $this->env->{$this->env_prefix . 'PATH'};
+        global $osm_app; /* @var App $osm_app */
+
+        $path = $_ENV["{$this->env_prefix}_PATH"] ??
+            "{$osm_app->paths->temp}/cache";
 
         $items = new FilesystemAdapter(directory: $path);
         $tags = new FilesystemAdapter(namespace: 'tags_',

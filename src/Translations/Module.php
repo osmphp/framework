@@ -7,7 +7,7 @@ namespace Osm\Framework\Translations;
 
 use Osm\Core\App;
 use Osm\Core\BaseModule;
-use Osm\Framework\Env\Env;
+use Osm\Framework\Settings\Hints\Settings;
 
 /**
  * @property string[] $translations
@@ -15,11 +15,11 @@ use Osm\Framework\Env\Env;
 class Module extends BaseModule
 {
     public static array $requires = [
-        \Osm\Framework\Env\Module::class,
+        \Osm\Framework\Settings\Module::class,
     ];
 
     public static array $traits = [
-        Env::class => Traits\EnvTrait::class,
+        Settings::class => Traits\SettingsTrait::class,
     ];
 
     /** @noinspection PhpUnused */
@@ -30,7 +30,7 @@ class Module extends BaseModule
 
         foreach ($osm_app->modules as $module) {
             $filename = "{$osm_app->paths->project}/{$module->path}/" .
-                "i18n/{$osm_app->env->APP_LOCALE}.php";
+                "i18n/{$osm_app->settings->locale}.php";
 
             if (is_file($filename)) {
                 /** @noinspection PhpIncludeInspection */

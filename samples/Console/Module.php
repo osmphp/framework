@@ -13,6 +13,6 @@ class Module extends BaseModule
     public static ?string $app_class_name = App::class;
 
     public static array $requires = [
-        \Osm\Framework\Console\Module::class,
+        \Osm\Framework\Samples\Base\Module::class,
     ];
 }
