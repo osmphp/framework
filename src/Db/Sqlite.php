@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Osm\Framework\Db;
 
-class Sqlite
+class Sqlite extends Db
 {
-    public function create(): mixed {
-
-    }
+    public static ?string $name = 'sqlite';
 }

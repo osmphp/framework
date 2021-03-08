@@ -10,20 +10,18 @@ use Osm\Core\BaseModule;
 use Osm\Core\Object_;
 
 /**
- * @property string $env_prefix
  * @property Connection $connection
  * @property Module $module
  * @property array $config
  */
 abstract class Db extends Object_
 {
+    public static ?string $name;
+
     /** @noinspection PhpUnused */
     protected function get_connection(): Connection {
         return $this->module->connection_factory->make($this->config);
     }
-
-    /** @noinspection PhpUnused */
-    abstract protected function get_config(): array;
 
     /** @noinspection PhpUnused */
     protected function get_module(): BaseModule {

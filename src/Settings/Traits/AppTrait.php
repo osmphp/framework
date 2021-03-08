@@ -11,7 +11,7 @@ use Osm\Framework\Cache\Attributes\Cached;
 use function Osm\merge;
 
 /**
- * @property \stdClass|Settings $settings #[Cached('settings')]
+ * @property Settings|\stdClass $settings #[Cached('settings')]
  */
 trait AppTrait
 {
