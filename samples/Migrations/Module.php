@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Osm\Framework\Samples\Translations;
+namespace Osm\Framework\Samples\Migrations;
 
 use Osm\Core\BaseModule;
 use Osm\Framework\Samples\App;

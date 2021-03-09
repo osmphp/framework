@@ -66,4 +66,8 @@ abstract class Db extends Object_
     public function transaction(callable $callback, int $attempts = 1): void {
         $this->connection->transaction($callback, $attempts);
     }
+
+    public function hasTable(string $table): bool {
+        return $this->connection->getSchemaBuilder()->hasTable($table);
+    }
 }
