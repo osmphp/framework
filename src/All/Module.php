@@ -12,9 +12,11 @@ class Module extends BaseModule
         \Osm\Framework\Cache\Module::class,
         \Osm\Framework\Console\Module::class,
         \Osm\Framework\Db\Module::class,
+        \Osm\Framework\ElasticSearch\Module::class,
         \Osm\Framework\Env\Module::class,
         \Osm\Framework\Laravel\Module::class,
         \Osm\Framework\Migrations\Module::class,
+        \Osm\Framework\Search\Module::class,
         \Osm\Framework\Settings\Module::class,
         \Osm\Framework\Translations\Module::class,
     ];

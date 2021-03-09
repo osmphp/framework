@@ -14,7 +14,7 @@ use Osm\Framework\Db\Module;
 trait AppTrait
 {
     /** @noinspection PhpUnused */
-    protected function get_db(): mixed {
+    protected function get_db(): Db {
         /* @var App $this */
 
         /* @var Module $module */

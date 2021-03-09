@@ -8,7 +8,6 @@ use Osm\Framework\Migrations\Module;
 use Osm\Framework\Samples\App;
 use Osm\Runtime\Apps;
 use PHPUnit\Framework\TestCase;
-use function Osm\__;
 
 class test_06_migrations extends TestCase
 {
@@ -21,15 +20,17 @@ class test_06_migrations extends TestCase
             $app->migrations()->fresh();
             $app->migrations()->up();
 
-
             // THEN the data is indeed in the database
             $price = $app->db->table('t_products')
                 ->where('sku', 'P1')
                 ->value('price');
             $this->assertEquals(10.0, $price);
 
-            // migrate it back
+            // WHEN you migrate it back
             $app->migrations()->down([Module::class]);
+
+            // THEN the `t_products` table is gone
+            $this->assertFalse($app->db->hasTable('t_products'));
         });
     }
 }
