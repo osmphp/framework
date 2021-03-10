@@ -6,6 +6,7 @@ namespace Osm\Framework\ElasticSearch;
 
 use Elasticsearch\Client;
 use Elasticsearch\ClientBuilder;
+use Osm\Core\App;
 use Osm\Framework\Search\Blueprint as BaseBlueprint;
 use Osm\Framework\Search\Query as BaseQuery;
 use Osm\Framework\Search\Search as BaseSearch;
@@ -27,6 +28,10 @@ class Search extends BaseSearch
 
     /** @noinspection PhpUnused */
     protected function get_client(): Client {
-        return ClientBuilder::fromConfig($this->config);
+        global $osm_app; /* @var App $osm_app */
+
+        return ClientBuilder::fromConfig(array_merge([
+            'logger' => $osm_app->logs->elastic,
+        ], $this->config));
     }
 }

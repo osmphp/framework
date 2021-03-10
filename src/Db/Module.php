@@ -8,7 +8,10 @@ namespace Osm\Framework\Db;
 use Illuminate\Database\Connectors\ConnectionFactory;
 use Osm\Core\App;
 use Osm\Core\BaseModule;
+use Osm\Framework\ElasticSearch\Traits\LogSettingsTrait;
 use Osm\Framework\Laravel\Module as LaravelModule;
+use Osm\Framework\Logs\Hints\LogSettings;
+use Osm\Framework\Logs\Logs;
 use Osm\Framework\Settings\Hints\Settings;
 use function Osm\get_descendant_classes_by_name;
 use Osm\Framework\Cache\Attributes\Cached;
@@ -22,12 +25,15 @@ class Module extends BaseModule
 {
     public static array $requires = [
         \Osm\Framework\Settings\Module::class,
+        \Osm\Framework\Logs\Module::class,
         LaravelModule::class,
     ];
 
     public static array $traits = [
         App::class => Traits\AppTrait::class,
         Settings::class => Traits\SettingsTrait::class,
+        LogSettings::class => Traits\LogSettingsTrait::class,
+        Logs::class => Traits\LogsTrait::class,
     ];
 
     public static array $classes = [

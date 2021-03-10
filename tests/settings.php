@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+/* @see \Osm\Framework\Settings\Hints\Settings */
 return (object)[
     'locale' => 'lt_LT',
     'db' => [
@@ -36,5 +37,11 @@ return (object)[
             $_ENV['SEARCH_HOST'] ?? 'localhost:9200',
         ],
         'retries' => 2,
+    ],
+
+    /* @see \Osm\Framework\Logs\Hints\LogSettings */
+    'logs' => (object)[
+        'elastic' => true,
+        //'db' => true,
     ],
 ];

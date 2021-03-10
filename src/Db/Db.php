@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace Osm\Framework\Db;
 
 use Illuminate\Database\Connection;
+use Illuminate\Database\Events\QueryExecuted;
 use Illuminate\Database\Query\Builder;
 use Osm\Core\App;
 use Osm\Core\BaseModule;
 use Osm\Core\Object_;
+use Osm\Framework\Laravel\Module as LaravelModule;
 
 /**
  * @property Connection $connection
@@ -21,7 +23,25 @@ abstract class Db extends Object_
 
     /** @noinspection PhpUnused */
     protected function get_connection(): Connection {
-        return $this->module->connection_factory->make($this->config);
+        global $osm_app; /* @var App $osm_app */
+
+        $db = $this->module->connection_factory->make($this->config);
+
+        if ($osm_app->settings->logs?->db ?? false) {
+            /* @var LaravelModule $laravel */
+            $laravel = $osm_app->modules[LaravelModule::class];
+
+            $db->setEventDispatcher($laravel->events);
+            $db->listen(function (QueryExecuted $query) use ($osm_app) {
+
+                $osm_app->logs->db->info($query->sql, [
+                    'bindings' => $query->bindings,
+                    'time' => $query->time,
+                ]);
+            });
+        }
+
+        return $db;
     }
 
     /** @noinspection PhpUnused */
