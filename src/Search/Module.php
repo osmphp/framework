@@ -18,11 +18,15 @@ class Module extends BaseModule
 {
     public static array $requires = [
         \Osm\Framework\Settings\Module::class,
+        \Osm\Framework\Cache\Module::class,
     ];
 
     public static array $traits = [
         App::class => Traits\AppTrait::class,
         Settings::class => Traits\SettingsTrait::class,
+        Fields\Field::class => Traits\FieldTrait::class,
+        Fields\Int_::class => Traits\IntFieldTrait::class,
+        Fields\String_::class => Traits\StringFieldTrait::class,
     ];
 
     /** @noinspection PhpUnused */

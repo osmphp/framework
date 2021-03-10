@@ -33,7 +33,6 @@ abstract class Db extends Object_
 
             $db->setEventDispatcher($laravel->events);
             $db->listen(function (QueryExecuted $query) use ($osm_app) {
-
                 $osm_app->logs->db->info($query->sql, [
                     'bindings' => $query->bindings,
                     'time' => $query->time,

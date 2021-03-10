@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Osm\Framework\Search;
 
+use Osm\Core\Exceptions\NotImplemented;
 use Osm\Core\Object_;
 
 /**
@@ -12,14 +13,18 @@ use Osm\Core\Object_;
  */
 abstract class Query extends Object_
 {
-    public function insert(array $data): void {
-    }
+    public array $filters = [];
+
+    abstract public function insert(array $data): void;
 
     public function where(string $fieldName, mixed $value): static {
+        $this->filters[$fieldName] = $value;
 
+        return $this;
     }
 
+    abstract public function get(): Result;
     public function value(string $fieldName): mixed {
-
+        throw new NotImplemented();
     }
 }
