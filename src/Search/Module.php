@@ -14,7 +14,6 @@ use function Osm\get_descendant_classes_by_name;
 
 /**
  * @property string[] $search_classes #[Cached('search_classes')]
- * @property string[] $filter_classes #[Cached('search_filter_classes')]
  */
 class Module extends BaseModule
 {
@@ -31,10 +30,5 @@ class Module extends BaseModule
     /** @noinspection PhpUnused */
     protected function get_search_classes(): array {
         return get_descendant_classes_by_name(Search::class);
-    }
-
-    /** @noinspection PhpUnused */
-    protected function get_filter_classes(): array {
-        return get_descendant_classes_by_name(FieldFilter::class);
     }
 }

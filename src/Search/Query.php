@@ -21,12 +21,9 @@ abstract class Query extends Object_
     abstract public function insert(array $data): void;
     abstract public function bulkInsert(array $data): void;
 
-    public function where(string $fieldName, string $method,
-        mixed $value = null): static
+    public function whereEquals(string $fieldName, mixed $value): static
     {
-        $new = "{$this->search_module->filter_classes[$method]}::new";
-
-        $this->filter->filters[] = $new([
+        $this->filter->filters[] = Filters\Equals::new([
             'field_name' => $fieldName,
             'value' => $value,
         ]);
@@ -36,7 +33,18 @@ abstract class Query extends Object_
 
     abstract public function get(): Result;
 
-    public function value(): ?string {
+    public function count(): int {
+        return $this->get()->count;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function ids(): array {
+        return $this->get()->ids;
+    }
+
+    public function id(): ?string {
         return $this->get()->ids[0] ?? null;
     }
 
