@@ -38,7 +38,7 @@ abstract class Search extends Object_
         $blueprint->drop();
     }
 
-    public function hasIndex(string $index): bool {
+    public function exists(string $index): bool {
         return $this->createBlueprint([
             'search' => $this,
             'index_name' => $index,

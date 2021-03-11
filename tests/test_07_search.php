@@ -15,7 +15,7 @@ class test_07_search extends TestCase
         Apps::run(Apps::create(App::class), function(App $app) {
             // GIVEN that search connection is configured in `search` setting
 
-            if ($app->search->hasIndex('test_products')) {
+            if ($app->search->exists('test_products')) {
                 $app->search->drop('test_products');
             }
 
@@ -42,7 +42,7 @@ class test_07_search extends TestCase
             $app->search->drop('test_products');
 
             // THEN it;s no longer there
-            $this->assertFalse($app->search->hasIndex('test_products'));
+            $this->assertFalse($app->search->exists('test_products'));
         });
     }
 
@@ -50,7 +50,7 @@ class test_07_search extends TestCase
         Apps::run(Apps::create(App::class), function(App $app) {
             // GIVEN that search connection is configured in `search` setting
 
-            if ($app->search->hasIndex('test_products')) {
+            if ($app->search->exists('test_products')) {
                 $app->search->drop('test_products');
             }
 
