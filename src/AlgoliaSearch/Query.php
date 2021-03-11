@@ -17,6 +17,10 @@ class Query extends BaseQuery
         throw new NotImplemented();
     }
 
+    public function bulkInsert(array $data): void {
+        throw new NotImplemented();
+    }
+
     public function get(): Result {
         throw new NotImplemented();
     }

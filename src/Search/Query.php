@@ -19,6 +19,7 @@ use Osm\Framework\Search\Filters\LogicalFilter;
 abstract class Query extends Object_
 {
     abstract public function insert(array $data): void;
+    abstract public function bulkInsert(array $data): void;
 
     public function where(string $fieldName, string $method,
         mixed $value = null): static
