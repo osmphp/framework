@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Osm\Framework\AlgoliaSearch;
 
+use Algolia\AlgoliaSearch\SearchIndex;
 use Osm\Core\Exceptions\NotImplemented;
 use Osm\Framework\Search\Blueprint as BaseBlueprint;
 
@@ -13,7 +14,17 @@ use Osm\Framework\Search\Blueprint as BaseBlueprint;
 class Blueprint extends BaseBlueprint
 {
     public function create(): void {
-        throw new NotImplemented();
+        $facets = '';
+        foreach ($this->fields as $field) {
+            if ($facets) {
+                $facets .= ', ';
+            }
+            $facets .= $field->generateAlgoliaFacet();
+        }
+
+        $this->index()->setSettings([
+            'attributesForFaceting' => ['filterOnly(sku)'],
+        ])->wait();
     }
 
     public function alter(): void {
@@ -21,10 +32,15 @@ class Blueprint extends BaseBlueprint
     }
 
     public function drop(): void {
-        throw new NotImplemented();
+        $this->index()->delete()->wait();
     }
 
     public function exists(): bool {
-        throw new NotImplemented();
+        return $this->index()->exists();
+    }
+
+    protected function index(): SearchIndex {
+        return $this->search->client->initIndex(
+            "{$this->search->index_prefix}{$this->index_name}");
     }
 }

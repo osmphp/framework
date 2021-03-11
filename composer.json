@@ -19,7 +19,8 @@
         "illuminate/database": "^8",
         "doctrine/dbal": "^3",
         "elasticsearch/elasticsearch": "^7",
-        "monolog/monolog": "^2"
+        "monolog/monolog": "^2",
+        "algolia/algoliasearch-client-php": "^2"
     },
     "require-dev": {
         "phpunit/phpunit": "^9"

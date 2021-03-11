@@ -61,7 +61,7 @@ class test_07_search extends TestCase
             });
 
             $data = [];
-            for ($i = 1; $i <= 100; $i++) {
+            for ($i = 1; $i <= 10; $i++) {
                 $data[] = [
                     'id' => $i,
                     'sku' => "P{$i}",
@@ -72,10 +72,10 @@ class test_07_search extends TestCase
 
             // THEN the data is indeed in the search engine
             $id = $app->search->index('test_products')
-                ->whereEquals('sku', 'P50')
+                ->whereEquals('sku', 'P5')
                 ->id();
 
-            $this->assertEquals('50', $id);
+            $this->assertEquals('5', $id);
 
             $app->search->drop('test_products');
         });

@@ -9,6 +9,7 @@ use Osm\Core\BaseModule;
 class Module extends BaseModule
 {
     public static array $requires = [
+        \Osm\Framework\AlgoliaSearch\Module::class,
         \Osm\Framework\Cache\Module::class,
         \Osm\Framework\Console\Module::class,
         \Osm\Framework\Db\Module::class,

@@ -20,9 +20,11 @@ class Module extends BaseModule
     public static array $traits = [
         Logs::class => Traits\LogsTrait::class,
         LogSettings::class => Traits\LogSettingsTrait::class,
+
         Fields\Field::class => Traits\Fields\FieldTrait::class,
         Fields\Int_::class => Traits\Fields\IntFieldTrait::class,
         Fields\String_::class => Traits\Fields\StringFieldTrait::class,
+
         Filters\Filter::class => Traits\Filters\FilterTrait::class,
         Filters\And_::class => Traits\Filters\AndTrait::class,
         Filters\Equals::class => Traits\Filters\EqualsTrait::class,
