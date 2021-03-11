@@ -30,22 +30,22 @@ return (object)[
 //            PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
 //        ]) : [],
 //    ],
-//    'search' => [
-//        'driver' => 'elastic',
-//        'index_prefix' => "{$_ENV['SEARCH_INDEX_PREFIX']}_",
-//        'hosts' => [
-//            $_ENV['SEARCH_HOST'] ?? 'localhost:9200',
-//        ],
-//        'retries' => 2,
-//        'refresh' => true, // testing-only: index new data immediately
-//    ],
     'search' => [
-        'driver' => 'algolia',
+        'driver' => 'elastic',
         'index_prefix' => "{$_ENV['SEARCH_INDEX_PREFIX']}_",
-        'app_id' => $_ENV['SEARCH_APP_ID'],
-        'admin_api_key' => $_ENV['SEARCH_ADMIN_API_KEY'],
-        'wait' => true, // testing-only: index new data immediately
+        'hosts' => [
+            $_ENV['SEARCH_HOST'] ?? 'localhost:9200',
+        ],
+        'retries' => 2,
+        'refresh' => true, // testing-only: index new data immediately
     ],
+//    'search' => [
+//        'driver' => 'algolia',
+//        'index_prefix' => "{$_ENV['SEARCH_INDEX_PREFIX']}_",
+//        'app_id' => $_ENV['SEARCH_APP_ID'],
+//        'admin_api_key' => $_ENV['SEARCH_ADMIN_API_KEY'],
+//        'wait' => true, // testing-only: index new data immediately
+//    ],
 
     /* @see \Osm\Framework\Logs\Hints\LogSettings */
     'logs' => (object)[
