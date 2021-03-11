@@ -37,7 +37,7 @@ abstract class Query extends Object_
     abstract public function get(): Result;
 
     public function value(): ?string {
-        return $this->get()->uids[0] ?? null;
+        return $this->get()->ids[0] ?? null;
     }
 
     /** @noinspection PhpUnused */

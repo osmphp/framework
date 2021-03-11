@@ -26,17 +26,17 @@ class test_07_search extends TestCase
             });
 
             $app->search->index('test_products')->insert([
-                'uid' => '1',
+                'id' => 1,
                 'sku' => 'P1',
                 'qty' => 5,
             ]);
 
             // THEN the data is indeed in the search engine
-            $uid = $app->search->index('test_products')
+            $id = $app->search->index('test_products')
                 ->where('sku', '=', 'P1')
                 ->value();
 
-            $this->assertEquals('1', $uid);
+            $this->assertEquals('1', $id);
 
             // WHEN you delete an index
             $app->search->drop('test_products');
@@ -63,7 +63,7 @@ class test_07_search extends TestCase
             $data = [];
             for ($i = 1; $i <= 100; $i++) {
                 $data[] = [
-                    'uid' => "{$i}",
+                    'id' => $i,
                     'sku' => "P{$i}",
                     'qty' => $i,
                 ];
@@ -71,11 +71,11 @@ class test_07_search extends TestCase
             $app->search->index('test_products')->bulkInsert($data);
 
             // THEN the data is indeed in the search engine
-            $uid = $app->search->index('test_products')
+            $id = $app->search->index('test_products')
                 ->where('sku', '=', 'P50')
                 ->value();
 
-            $this->assertEquals('50', $uid);
+            $this->assertEquals('50', $id);
 
             $app->search->drop('test_products');
         });

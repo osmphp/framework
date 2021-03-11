@@ -13,9 +13,9 @@ use Osm\Framework\Search\Result;
 class Query extends BaseQuery
 {
     public function insert(array $data): void {
-        if (isset($data['uid'])) {
-            $id = $data['uid'];
-            unset($data['uid']);
+        if (isset($data['id'])) {
+            $id = (string)$data['id'];
+            unset($data['id']);
         }
         else {
             $id = null;
@@ -32,9 +32,9 @@ class Query extends BaseQuery
     public function bulkInsert(array $data): void {
         $body = [];
         foreach ($data as $item) {
-            if (isset($item['uid'])) {
-                $body[] = ['index' => ['_id' => $item['uid']]];
-                unset($item['uid']);
+            if (isset($item['id'])) {
+                $body[] = ['index' => ['_id' => (string)$item['id']]];
+                unset($item['id']);
             }
             else {
                 $body[] = ['index' => []];
@@ -63,7 +63,7 @@ class Query extends BaseQuery
 
         return Result::new([
             'count' => $response['hits']['total']['value'],
-            'uids' => array_map(fn($item) => $item['_id'], $response['hits']['hits']),
+            'ids' => array_map(fn($item) => $item['_id'], $response['hits']['hits']),
         ]);
     }
 }
