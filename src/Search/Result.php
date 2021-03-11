@@ -6,6 +6,10 @@ namespace Osm\Framework\Search;
 
 use Osm\Core\Object_;
 
+/**
+ * @property string[] $uids
+ * @property int $count
+ */
 class Result extends Object_
 {
 

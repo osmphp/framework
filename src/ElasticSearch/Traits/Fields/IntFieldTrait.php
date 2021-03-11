@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Osm\Framework\Search\Traits;
+namespace Osm\Framework\ElasticSearch\Traits\Fields;
 
-trait StringFieldTrait
+trait IntFieldTrait
 {
     use FieldTrait;
 
     /** @noinspection PhpUnused */
     public function generateElasticField(): array {
         return [
-            'type' => 'keyword',
+            'type' => 'integer',
         ];
     }
 }

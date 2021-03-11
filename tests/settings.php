@@ -37,6 +37,7 @@ return (object)[
             $_ENV['SEARCH_HOST'] ?? 'localhost:9200',
         ],
         'retries' => 2,
+        'refresh' => true,
     ],
 
     /* @see \Osm\Framework\Logs\Hints\LogSettings */

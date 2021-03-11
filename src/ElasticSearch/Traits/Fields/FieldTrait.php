@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Osm\Framework\Search\Traits;
+namespace Osm\Framework\ElasticSearch\Traits\Fields;
 
 use Osm\Core\Exceptions\NotImplemented;
 

@@ -17,6 +17,7 @@ use Osm\Framework\Search\Search as BaseSearch;
 class Search extends BaseSearch
 {
     public static ?string $name = 'elastic';
+    public bool $refresh = false;
 
     protected function createBlueprint($data): BaseBlueprint {
         return Blueprint::new($data);
@@ -29,6 +30,11 @@ class Search extends BaseSearch
     /** @noinspection PhpUnused */
     protected function get_client(): Client {
         global $osm_app; /* @var App $osm_app */
+
+        if (isset($this->config['refresh'])) {
+            $this->refresh = $this->config['refresh'];
+            unset($this->config['refresh']);
+        }
 
         return ClientBuilder::fromConfig(array_merge([
             'logger' => $osm_app->logs->elastic,
