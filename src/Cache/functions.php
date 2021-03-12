@@ -2,6 +2,10 @@
 
 //
 namespace Osm {
+
+    use Symfony\Component\Cache\Adapter\TagAwareAdapter;
+    use Symfony\Contracts\Cache\ItemInterface;
+
     function resolve_placeholders(mixed $value, object $object): mixed {
         if (!is_string($value)) {
             return $value;
@@ -14,6 +18,5 @@ namespace Osm {
         return preg_replace_callback('/{(?<property>[^}]+)}/',
             fn($match) => $object->{$match['property']},
             $value);
-
     }
 }

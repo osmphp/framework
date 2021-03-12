@@ -8,30 +8,24 @@ use Illuminate\Database\Query\Builder as DbQuery;
 use Illuminate\Database\Schema\Blueprint as TableBlueprint;
 use Osm\Framework\Search\Blueprint as IndexBlueprint;
 
-class String_ extends Column
+class Id extends Column
 {
     protected function get_partition_weight(): int {
-        return 1;
+        return 0;
     }
 
     public function createInTable(TableBlueprint $table): void {
-        $table->string($this->name);
+        $table->increments($this->name);
     }
 
     public function createInIndex(IndexBlueprint $index): void {
-        if ($this->filterable) {
-            $index->string($this->name);
-        }
     }
 
     public function save(array &$values, \stdClass $data): void {
-        $values[$this->name] = $data->{$this->name};
     }
 
     public function index(array &$values, \stdClass $data): void {
-        if ($this->filterable) {
-            $values[$this->name] = $data->{$this->name};
-        }
+        $values[$this->name] = $data->{$this->name};
     }
 
     public function select(DbQuery $query): void {

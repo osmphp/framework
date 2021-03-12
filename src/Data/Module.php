@@ -10,6 +10,7 @@ use Osm\Core\BaseModule;
 class Module extends BaseModule
 {
     public static array $requires = [
+        \Osm\Framework\Cache\Module::class,
         \Osm\Framework\Db\Module::class,
         \Osm\Framework\Search\Module::class,
     ];

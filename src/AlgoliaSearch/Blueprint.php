@@ -23,7 +23,7 @@ class Blueprint extends BaseBlueprint
         }
 
         $this->index()->setSettings([
-            'attributesForFaceting' => ['filterOnly(sku)'],
+            'attributesForFaceting' => [$facets],
         ])->wait();
     }
 

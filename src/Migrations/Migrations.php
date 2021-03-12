@@ -37,22 +37,26 @@ class Migrations extends Object_
         $schema->dropAllViews();
     }
 
-    public function up(): void {
+    public function up(string ...$moduleClassNames): void {
         global $osm_app; /* @var App $osm_app */
 
         $this->init();
 
+        $modules = empty($moduleClassNames)
+            ? $osm_app->modules
+            : $this->getModulesAndTheirRequirements($moduleClassNames);
+
         foreach (array_keys($this->method_names) as $upMethodName) {
             $this->up_method_name = $upMethodName;
             $this->method_name = $upMethodName;
-            foreach ($osm_app->modules as $module) {
+            foreach ($modules as $module) {
                 $this->module = $module;
                 $this->moduleUp();
             }
         }
     }
 
-    public function down(array $moduleClassNames): void {
+    public function down(string ...$moduleClassNames): void {
         global $osm_app; /* @var App $osm_app */
 
         $this->init();
@@ -74,7 +78,7 @@ class Migrations extends Object_
     }
 
     protected function init() {
-        if ($this->db->hasTable($this->table_name)) {
+        if ($this->db->exists($this->table_name)) {
             return;
         }
 
@@ -135,6 +139,35 @@ class Migrations extends Object_
             }
 
             $moduleClassNames = array_keys($dependentModuleClassNames);
+        }
+
+        return array_filter($osm_app->modules, fn(BaseModule $module) =>
+            isset($populatedModuleClassNames[$module->class_name]));
+    }
+
+    /**
+     * @param array $moduleClassNames
+     * @return BaseModule[]
+     */
+    protected function getModulesAndTheirRequirements(array $moduleClassNames): array {
+        global $osm_app; /* @var App $osm_app */
+
+        $populatedModuleClassNames = array_flip($moduleClassNames);
+
+        while (!empty($moduleClassNames)) {
+            $requiredModuleClassNames = [];
+
+            foreach ($moduleClassNames as $moduleClassName) {
+                $module = $osm_app->modules[$moduleClassName];
+                foreach ($module::$requires as $requiredModuleClassName) {
+                    if (!isset($populatedModuleClassNames[$requiredModuleClassName])) {
+                        $populatedModuleClassNames[$requiredModuleClassName] = true;
+                        $requiredModuleClassNames[$requiredModuleClassName] = true;
+                    }
+                }
+            }
+
+            $moduleClassNames = array_keys($requiredModuleClassNames);
         }
 
         return array_filter($osm_app->modules, fn(BaseModule $module) =>

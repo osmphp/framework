@@ -27,10 +27,10 @@ class test_06_migrations extends TestCase
             $this->assertEquals(10.0, $price);
 
             // WHEN you migrate it back
-            $app->migrations()->down([Module::class]);
+            $app->migrations()->down(Module::class);
 
             // THEN the `t_products` table is gone
-            $this->assertFalse($app->db->hasTable('t_products'));
+            $this->assertFalse($app->db->exists('t_products'));
         });
     }
 }

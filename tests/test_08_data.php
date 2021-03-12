@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Osm\Framework\Tests;
 
+use Osm\Framework\Data\Module;
 use Osm\Framework\Samples\App;
 use Osm\Framework\Data\Blueprint;
 use Osm\Runtime\Apps;
@@ -13,8 +14,11 @@ class test_08_data extends TestCase
 {
     public function test_basics() {
         Apps::run(Apps::create(App::class), function(App $app) {
-            // GIVEN a compiled app with a query class specific to
-            // `test_products` sheet
+            // uncomment when the structure of sheet_column changes
+            $app->migrations()->fresh();
+
+            // GIVEN the `Osm_Framework_Data` is migrated
+            $app->migrations()->up(Module::class);
 
             if ($app->data->exists('test_products')) {
                 $app->data->drop('test_products');
@@ -22,11 +26,12 @@ class test_08_data extends TestCase
 
             // WHEN you create a simple index and add data to it
             $app->data->create('test_products', function(Blueprint $sheet) {
-                $sheet->string('sku');
-                $sheet->int('qty');
+                $sheet->id();
+                $sheet->string('sku')->filterable();
+                $sheet->int('qty')->partition_no(1);
             });
 
-            $id = $app->data->test_products()->insert([
+            $id = $app->data->test_products()->insert((object)[
                 'sku' => 'P1',
                 'qty' => 5,
             ]);

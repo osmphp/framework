@@ -7,6 +7,7 @@ namespace Osm\Framework\Db;
 use Illuminate\Database\Connection;
 use Illuminate\Database\Events\QueryExecuted;
 use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Query\Expression;
 use Osm\Core\App;
 use Osm\Core\BaseModule;
 use Osm\Core\Object_;
@@ -86,7 +87,11 @@ abstract class Db extends Object_
         $this->connection->transaction($callback, $attempts);
     }
 
-    public function hasTable(string $table): bool {
+    public function exists(string $table): bool {
         return $this->connection->getSchemaBuilder()->hasTable($table);
+    }
+
+    public function raw(string $expr): Expression {
+        return $this->connection->raw($expr);
     }
 }
