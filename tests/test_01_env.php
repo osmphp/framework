@@ -17,7 +17,7 @@ class test_01_env extends TestCase
 
             // WHEN you access it
             // THEN it is as set in PhpUnit configuration
-            $this->assertEquals('tests/settings.php', $_ENV['SETTINGS'] ?? null);
+            $this->assertEquals('test_value', $_ENV['TEST_VAR']);
         });
     }
 }
