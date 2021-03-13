@@ -11,15 +11,15 @@ jobs:
     ubuntu:
         runs-on: ubuntu-latest
 
-        services:
-            mysql:
-                image: mysql:8.0
-                env:
-                    MYSQL_ALLOW_EMPTY_PASSWORD: yes
-                    MYSQL_DATABASE: ${{ env.NAME }}
-                ports:
-                    - 3306
-                options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+#        services:
+#            mysql:
+#                image: mysql:8.0
+#                env:
+#                    MYSQL_ALLOW_EMPTY_PASSWORD: yes
+#                    MYSQL_DATABASE: ${{ env.NAME }}
+#                ports:
+#                    - 3306
+#                options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
         strategy:
             fail-fast: true
@@ -52,17 +52,14 @@ jobs:
             -   name: Install dependencies
                 run: composer update --prefer-dist --no-interaction --no-progress
 
-            -   name: Test
-                run: echo ${{ env.NAME }}
-
             -   name: Execute tests
                 run: vendor/bin/phpunit --verbose
                 env:
                     SETTINGS: tests/settings/${{ matrix.db }}__${{ matrix.search }}.php
                     MYSQL_DATABASE: ${{ env.NAME }}
-                    MYSQL_PORT: ${{ job.services.mysql.ports[3306] }}
+                    #MYSQL_PORT: ${{ job.services.mysql.ports[3306] }}
                     MYSQL_USERNAME: root
-                    MYSQL_PASSWORD: ""
+                    MYSQL_PASSWORD: root
                     SEARCH_INDEX_PREFIX: "${{ env.NAME }}_"
-                    ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
-                    ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
+                    #ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+                    #ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
