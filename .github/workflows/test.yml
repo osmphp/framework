@@ -6,6 +6,7 @@ on:
         -   cron: '0 0 * * *'
 env:
     NAME: framework_github
+    MYSQL_DATABASE: ${{ env.NAME }}
 
 jobs:
     ubuntu:
@@ -53,13 +54,12 @@ jobs:
                 run: composer update --prefer-dist --no-interaction --no-progress
 
             -   name: Execute tests
-                run: vendor/bin/phpunit --verbose
+                run: vendor/bin/phpunit
                 env:
                     SETTINGS: tests/settings/${{ matrix.db }}__${{ matrix.search }}.php
-                    MYSQL_DATABASE: ${{ env.NAME }}
                     #MYSQL_PORT: ${{ job.services.mysql.ports[3306] }}
-                    MYSQL_USERNAME: root
-                    MYSQL_PASSWORD: root
+                    #MYSQL_USERNAME: root
+                    #MYSQL_PASSWORD: root
                     SEARCH_INDEX_PREFIX: "${{ env.NAME }}_"
                     #ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
                     #ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
