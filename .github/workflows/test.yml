@@ -54,7 +54,8 @@ jobs:
                 run: composer update --prefer-dist --no-interaction --no-progress
 
             -   name: Test
-                run: php -r "echo json_encode(\$_ENV) . \"\\n\";"
+                #run: php -r "echo json_encode(\$_ENV) . \"\\n\";"
+                run: printenv
 
             -   name: Execute tests
                 run: vendor/bin/phpunit
