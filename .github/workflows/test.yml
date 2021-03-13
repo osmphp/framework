@@ -25,7 +25,7 @@ jobs:
             fail-fast: true
             matrix:
                 php: [ '8.0' ]
-                db: [sqlite]
+                db: [mysql]
                 search: [elastic]
                 #db: [mysql, sqlite]
                 #search: [elastic, algolia]
@@ -37,6 +37,7 @@ jobs:
                 uses: actions/checkout@v2
 
             -   name: Configure sysctl limits for ElasticSearch
+                if: ${{ matrix.search == 'elastic' }}
                 run: |
                     sudo swapoff -a
                     sudo sysctl -w vm.swappiness=1
@@ -44,6 +45,7 @@ jobs:
                     sudo sysctl -w vm.max_map_count=262144
 
             -   name: Install ElasticSearch
+                if: ${{ matrix.search == 'elastic' }}
                 uses: getong/elasticsearch-action@v1.2
                 with:
                     elasticsearch version: '7.6.1'
@@ -52,6 +54,12 @@ jobs:
                     host node port: 9300
                     node port: 9300
                     discovery type: 'single-node'
+
+            -   name: Start MySql and create the database
+                if: ${{ matrix.db == 'mysql' }}
+                run: |
+                    sudo systemctl start mysql.service
+                    mysql -u root -proot -e "CREATE DATABASE framework_test;"
 
             -   name: Setup PHP
                 uses: shivammathur/setup-php@v2
