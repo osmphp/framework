@@ -14,16 +14,13 @@ use Osm\Framework\Search\Blueprint as BaseBlueprint;
 class Blueprint extends BaseBlueprint
 {
     public function create(): void {
-        $facets = '';
+        $facets = [];
         foreach ($this->fields as $field) {
-            if ($facets) {
-                $facets .= ', ';
-            }
-            $facets .= $field->generateAlgoliaFacet();
+            $facets[] = $field->generateAlgoliaFacet();
         }
 
         $this->index()->setSettings([
-            'attributesForFaceting' => [$facets],
+            'attributesForFaceting' => $facets,
         ])->wait();
     }
 
