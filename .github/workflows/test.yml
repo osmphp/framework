@@ -42,6 +42,7 @@ jobs:
                 with:
                     php-version: ${{ matrix.php }}
                     extensions: mbstring, pdo, sqlite, pdo_sqlite
+                    ini-values: variables_order=EGPCS
                     tools: composer:v2
                     coverage: none
                 env:
@@ -52,10 +53,6 @@ jobs:
 
             -   name: Install dependencies
                 run: composer update --prefer-dist --no-interaction --no-progress
-
-            -   name: Test
-                #run: php -r "echo json_encode(\$_ENV) . \"\\n\";"
-                run: printenv
 
             -   name: Execute tests
                 run: vendor/bin/phpunit
