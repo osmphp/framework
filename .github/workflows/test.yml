@@ -6,6 +6,7 @@ on:
         -   cron: '0 0 * * *'
 env:
     NAME: framework_github
+    SEARCH_INDEX_PREFIX: framework_github_
 
 jobs:
     ubuntu:
@@ -60,6 +61,5 @@ jobs:
                     #MYSQL_PORT: ${{ job.services.mysql.ports[3306] }}
                     #MYSQL_USERNAME: root
                     #MYSQL_PASSWORD: root
-                    SEARCH_INDEX_PREFIX: "${{ env.NAME }}_"
                     #ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
                     #ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
