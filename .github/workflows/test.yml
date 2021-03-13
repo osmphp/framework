@@ -8,12 +8,24 @@ on:
 jobs:
     ubuntu:
         runs-on: ubuntu-latest
+
+        services:
+            mysql:
+                image: mysql:8.0
+                env:
+                    MYSQL_ALLOW_EMPTY_PASSWORD: yes
+                    MYSQL_DATABASE: framework
+                ports:
+                    - 3306
+                options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
         strategy:
             fail-fast: true
             matrix:
                 php: [ '8.0' ]
+                db: [mysql, sqlite]
+                search: [elastic, algolia]
 
-        name: ubuntu-latest, PHP ${{ matrix.php }}
+        name: ubuntu-latest, PHP ${{ matrix.php }}, ${{ matrix.db }}, ${{ matrix.search }}
 
         steps:
             -   name: Checkout code
@@ -23,7 +35,7 @@ jobs:
                 uses: shivammathur/setup-php@v2
                 with:
                     php-version: ${{ matrix.php }}
-                    extensions: mbstring
+                    extensions: mbstring, pdo, sqlite, pdo_sqlite
                     tools: composer:v2
                     coverage: none
                 env:
@@ -37,3 +49,10 @@ jobs:
 
             -   name: Execute tests
                 run: vendor/bin/phpunit --verbose
+                env:
+                    NAME: framework
+                    MYSQL_DATABASE: framework
+                    MYSQL_PORT: ${{ job.services.mysql.ports[3306] }}
+                    MYSQL_USERNAME: root
+                    MYSQL_PASSWORD:
+                    SEARCH_INDEX_PREFIX: framework_
