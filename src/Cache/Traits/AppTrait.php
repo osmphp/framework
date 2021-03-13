@@ -20,7 +20,7 @@ trait AppTrait
     protected function get_cache(): TagAwareAdapter {
         /* @var App $this */
 
-        $className = $_ENV['CACHE'] ?? File::class;
+        $className = $_SERVER['CACHE'] ?? File::class;
         $new = "{$className}::new";
 
         /* @var Cache $factory */

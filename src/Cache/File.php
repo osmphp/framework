@@ -15,7 +15,7 @@ class File extends Cache
     public function create(): TagAwareAdapter {
         global $osm_app; /* @var App $osm_app */
 
-        $path = $_ENV["{$this->env_prefix}_PATH"] ??
+        $path = $_SERVER["{$this->env_prefix}_PATH"] ??
             "{$osm_app->paths->temp}/cache";
 
         $items = new FilesystemAdapter(directory: $path);
