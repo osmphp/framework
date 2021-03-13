@@ -12,18 +12,18 @@ return \Osm\merge((object)[
     ],
     'search' => [
         'driver' => 'elastic',
-        'index_prefix' => $_SERVER['SEARCH_INDEX_PREFIX'],
+        'index_prefix' => $_ENV['SEARCH_INDEX_PREFIX'],
         'hosts' => [
-            $_SERVER['ELASTIC_HOST'] ?? 'localhost:9200',
+            $_ENV['ELASTIC_HOST'] ?? 'localhost:9200',
         ],
         'retries' => 2,
         'refresh' => true, // testing-only: index new data immediately
     ],
 //    'search' => [
 //        'driver' => 'algolia',
-//        'index_prefix' => $_SERVER['SEARCH_INDEX_PREFIX'],
-//        'app_id' => $_SERVER['ALGOLIA_APP_ID'],
-//        'admin_api_key' => $_SERVER['ALGOLIA_ADMIN_API_KEY'],
+//        'index_prefix' => $_ENV['SEARCH_INDEX_PREFIX'],
+//        'app_id' => $_ENV['ALGOLIA_APP_ID'],
+//        'admin_api_key' => $_ENV['ALGOLIA_ADMIN_API_KEY'],
 //        'wait' => true, // testing-only: index new data immediately
 //    ],
 ], include __DIR__ . '/general.php');

@@ -19,7 +19,7 @@ trait PathsTrait
         global $osm_app; /* @var App $osm_app */
 
         /* @var Paths $this */
-        $path = $_SERVER['SETTINGS'] ?? "settings.{$osm_app->name}.php";
+        $path = $_ENV['SETTINGS'] ?? "settings.{$osm_app->name}.php";
 
         return "{$this->project}/$path";
     }

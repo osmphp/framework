@@ -6,13 +6,13 @@ declare(strict_types=1);
 return \Osm\merge((object)[
     'db' => [
         'driver' => 'mysql',
-        'url' => $_SERVER['MYSQL_DATABASE_URL'] ?? null,
-        'host' => $_SERVER['MYSQL_HOST'] ?? 'localhost',
-        'port' => $_SERVER['MYSQL_PORT'] ?? '3306',
-        'database' => "{$_SERVER['MYSQL_DATABASE']}_test",
-        'username' => $_SERVER['MYSQL_USERNAME'],
-        'password' => $_SERVER['MYSQL_PASSWORD'],
-        'unix_socket' => $_SERVER['MYSQL_SOCKET'] ?? '',
+        'url' => $_ENV['MYSQL_DATABASE_URL'] ?? null,
+        'host' => $_ENV['MYSQL_HOST'] ?? 'localhost',
+        'port' => $_ENV['MYSQL_PORT'] ?? '3306',
+        'database' => "{$_ENV['MYSQL_DATABASE']}_test",
+        'username' => $_ENV['MYSQL_USERNAME'],
+        'password' => $_ENV['MYSQL_PASSWORD'],
+        'unix_socket' => $_ENV['MYSQL_SOCKET'] ?? '',
         'charset' => 'utf8mb4',
         'collation' => 'utf8mb4_unicode_ci',
         'prefix' => '',
@@ -25,9 +25,9 @@ return \Osm\merge((object)[
     ],
     'search' => [
         'driver' => 'elastic',
-        'index_prefix' => $_SERVER['SEARCH_INDEX_PREFIX'],
+        'index_prefix' => $_ENV['SEARCH_INDEX_PREFIX'],
         'hosts' => [
-            $_SERVER['ELASTIC_HOST'] ?? 'localhost:9200',
+            $_ENV['ELASTIC_HOST'] ?? 'localhost:9200',
         ],
         'retries' => 2,
         'refresh' => true, // testing-only: index new data immediately
