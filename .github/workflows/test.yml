@@ -25,8 +25,10 @@ jobs:
             fail-fast: true
             matrix:
                 php: [ '8.0' ]
-                db: [mysql, sqlite]
-                search: [elastic, algolia]
+                db: [sqlite]
+                search: [elastic]
+                #db: [mysql, sqlite]
+                #search: [elastic, algolia]
 
         name: ubuntu-latest, PHP ${{ matrix.php }}, ${{ matrix.db }}, ${{ matrix.search }}
 
@@ -61,6 +63,6 @@ jobs:
                     MYSQL_PORT: ${{ job.services.mysql.ports[3306] }}
                     MYSQL_USERNAME: root
                     MYSQL_PASSWORD:
-                    SEARCH_INDEX_PREFIX: ${{ env.NAME }}_
+                    SEARCH_INDEX_PREFIX: "${{ env.NAME }}_"
                     ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
                     ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
