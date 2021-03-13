@@ -4,6 +4,8 @@ on:
     pull_request:
     schedule:
         -   cron: '0 0 * * *'
+env:
+    NAME: framework_github
 
 jobs:
     ubuntu:
@@ -14,10 +16,11 @@ jobs:
                 image: mysql:8.0
                 env:
                     MYSQL_ALLOW_EMPTY_PASSWORD: yes
-                    MYSQL_DATABASE: framework
+                    MYSQL_DATABASE: ${{ env.NAME }}
                 ports:
                     - 3306
                 options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
         strategy:
             fail-fast: true
             matrix:
@@ -47,12 +50,17 @@ jobs:
             -   name: Install dependencies
                 run: composer update --prefer-dist --no-interaction --no-progress
 
+            -   name: Test
+                run: echo ${{ env.NAME }}
+
             -   name: Execute tests
                 run: vendor/bin/phpunit --verbose
                 env:
-                    NAME: framework
-                    MYSQL_DATABASE: framework
+                    SETTINGS: tests/settings/${{ matrix.db }}__${{ matrix.search }}.php
+                    MYSQL_DATABASE: ${{ env.NAME }}
                     MYSQL_PORT: ${{ job.services.mysql.ports[3306] }}
                     MYSQL_USERNAME: root
                     MYSQL_PASSWORD:
-                    SEARCH_INDEX_PREFIX: framework_
+                    SEARCH_INDEX_PREFIX: ${{ env.NAME }}_
+                    ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+                    ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
