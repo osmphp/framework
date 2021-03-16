@@ -31,7 +31,9 @@
             "src/Translations/functions.php"
         ],
         "psr-4": {
-            "Osm\\Framework\\": "src/"
+            "Osm\\Framework\\": "src/",
+            "Osm\\App\\": "app/",
+            "Osm\\Tools\\": "tools/"
         }
     },
     "autoload-dev": {
