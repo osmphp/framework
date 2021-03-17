@@ -9,6 +9,10 @@ return \Osm\merge((object)[
         'database' => ':memory:',
         'prefix' => '',
         'foreign_key_constraints' => true,
+        'options' => [
+            // use the same in-memory database in all tests
+            PDO::ATTR_PERSISTENT => true,
+        ],
     ],
     'search' => [
         'driver' => 'algolia',

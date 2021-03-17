@@ -9,7 +9,7 @@ return \Osm\merge((object)[
         'url' => $_ENV['MYSQL_DATABASE_URL'] ?? null,
         'host' => $_ENV['MYSQL_HOST'] ?? 'localhost',
         'port' => $_ENV['MYSQL_PORT'] ?? '3306',
-        'database' => "{$_ENV['MYSQL_DATABASE']}_test",
+        'database' => "{$_ENV['MYSQL_DATABASE']}",
         'username' => $_ENV['MYSQL_USERNAME'],
         'password' => $_ENV['MYSQL_PASSWORD'],
         'unix_socket' => $_ENV['MYSQL_SOCKET'] ?? '',

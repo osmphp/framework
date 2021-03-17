@@ -9,6 +9,10 @@ return \Osm\merge((object)[
         'database' => ':memory:',
         'prefix' => '',
         'foreign_key_constraints' => true,
+        'options' => [
+            // use the same in-memory database in all tests
+            PDO::ATTR_PERSISTENT => true,
+        ],
     ],
     'search' => [
         'driver' => 'elastic',
@@ -19,11 +23,4 @@ return \Osm\merge((object)[
         'retries' => 2,
         'refresh' => true, // testing-only: index new data immediately
     ],
-//    'search' => [
-//        'driver' => 'algolia',
-//        'index_prefix' => $_ENV['SEARCH_INDEX_PREFIX'],
-//        'app_id' => $_ENV['ALGOLIA_APP_ID'],
-//        'admin_api_key' => $_ENV['ALGOLIA_ADMIN_API_KEY'],
-//        'wait' => true, // testing-only: index new data immediately
-//    ],
 ], include __DIR__ . '/general.php');

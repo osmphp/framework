@@ -11,6 +11,8 @@ use Osm\Core\Object_;
 use Osm\Framework\Data\Columns\Column;
 use Osm\Framework\Db\Db;
 use Osm\Framework\Search\Search;
+use function Osm\__;
+use Osm\Framework\Data\Exceptions\QueryError;
 
 /**
  * @property string $sheet_name
@@ -45,6 +47,12 @@ class Query extends Object_
 
     public function whereEquals(string $columnName, mixed $value): static
     {
+        if (!$this->sheet->columns[$columnName]->filterable) {
+            throw new QueryError(__(
+                "Make ':sheet.:column' column filterable before trying to filter by it.",
+                ['sheet' => $this->sheet_name, 'column' => $columnName]));
+        }
+        
         $this->filter->filters[] = Filters\Equals::new([
             'column_name' => $columnName,
             'value' => $value,
