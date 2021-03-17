@@ -12,13 +12,15 @@ use PHPUnit\Framework\TestCase;
 
 class test_08_data extends TestCase
 {
-    public function test_basics() {
+    public function test_search() {
         Apps::run(Apps::create(App::class), function(App $app) {
+            #region TO BE DELETED
             // uncomment when the structure of sheet_column changes
             $app->migrations()->fresh();
 
             // GIVEN the `Osm_Framework_Data` is migrated
             $app->migrations()->up(Module::class);
+            #endregion
 
             if ($app->data->exists('test_products')) {
                 $app->data->drop('test_products');
@@ -38,6 +40,8 @@ class test_08_data extends TestCase
 
             // THEN the data is indeed in the search engine
             $value = $app->data->test_products()
+                // should be
+                // ->whereSearch(fn(Query $q) => $q->whereEquals('sku', 'P1'))
                 ->whereEquals('sku', 'P1')
                 ->value('id');
 
@@ -46,8 +50,54 @@ class test_08_data extends TestCase
             // WHEN you delete an index
             $app->data->drop('test_products');
 
-            // THEN it;s no longer there
+            // THEN it's no longer there
             $this->assertFalse($app->data->exists('test_products'));
         });
     }
+
+//    public function test_child_sheet() {
+//        Apps::run(Apps::create(App::class), function(App $app) {
+//            if ($app->data->exists('test_products')) {
+//                $app->data->drop('test_products');
+//            }
+//
+//            // WHEN you create a simple index and add data to it
+//            $app->data->create('test_products', function(Blueprint $sheet) {
+//                $sheet->id();
+//                $sheet->string('sku');
+//                $sheet->int('qty')->partition_no(1);
+//
+//                // custom child sheet
+//                $sheet->create('images', function(Blueprint $sheet) {
+//                    $sheet->string('filename');
+//                    $sheet->string('title')->searchable();
+//                    $sheet->int('position');
+//                });
+//
+//                // preconfigured child sheet
+//                $sheet->images('thumbnails');
+//
+//                // preconfigured value list
+//                $sheet->select('color')->values('Red', 'Green', 'Blue');
+//
+//                // code-based value list
+//                $sheet->select('status')->value_class_name(Status::class);
+//
+//                // preconfigured child sheet
+//                $sheet->multiselect('brand');
+//
+//                $sheet->foreign('main_category')
+//                    ->references('categories')->cascade();
+//
+//                $sheet->multiforeign('categories')
+//                    ->references('categories')->cascade();
+//
+//                $sheet->string('main_category_title')
+//                    ->computed("main_category.title");
+//
+//                $sheet->multistring('category_titles')
+//                    ->computed("categories.title");
+//            });
+//        });
+//    }
 }
