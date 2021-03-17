@@ -47,7 +47,7 @@ jobs:
                 if: ${{ matrix.db == 'mysql' }}
                 run: |
                     sudo systemctl start mysql.service
-                    mysql -u root -proot -e "CREATE DATABASE ${{ env.NAME }}_test;"
+                    mysql -u root -proot -e "CREATE DATABASE ${{ env.NAME }};"
 
             -   name: Setup PHP
                 uses: shivammathur/setup-php@v2
