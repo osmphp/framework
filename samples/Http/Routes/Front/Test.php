@@ -14,6 +14,6 @@ use Symfony\Component\HttpFoundation\Response;
 class Test extends Route
 {
     public function run(): Response {
-        return new Response('<p class="test">Hi</p>p>');
+        return new Response('<p class="test">Hi</p>');
     }
 }

@@ -94,12 +94,12 @@ class Http extends Object_
     protected function detectRoute() {
         $routeName = "{$this->request->getMethod()} {$this->path}";
         if ($this->route_class_name =
-            $this->module->routes[$this->area_class_name][$routeName])
+            $this->module->routes[$this->area_class_name][$routeName] ?? null)
         {
             return;
         }
 
-        foreach ($this->module->dynamic_routes[$this->area_class_name]
+        foreach ($this->module->dynamic_routes[$this->area_class_name] ?? []
             as $routeClassName)
         {
             $new = "{$routeClassName}::new";
