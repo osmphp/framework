@@ -13,4 +13,7 @@
         <env name="CACHE" value="Osm\Framework\Cache\Array_"/>
         <env name="TEST_VAR" value="test_value"/>
     </php>
+    <extensions>
+        <extension class="Symfony\Component\Panther\ServerExtension"/>
+    </extensions>
 </phpunit>

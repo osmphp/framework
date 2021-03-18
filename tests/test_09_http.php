@@ -11,7 +11,7 @@ use function Osm\browse;
 
 class test_09_http extends TestCase
 {
-    public function test_arguments_and_options() {
+    public function test_internal_browser() {
         Apps::run(Apps::create(App::class), function(App $app) {
             // GIVEN an app with a `GET /test` route and a browser
             $browser = browse();
