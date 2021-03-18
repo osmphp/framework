@@ -10,6 +10,8 @@ class Module extends BaseModule
 {
     public static array $requires = [
         \Osm\Framework\AlgoliaSearch\Module::class,
+        \Osm\Framework\Areas\Module::class,
+        \Osm\Framework\Browser\Module::class,
         \Osm\Framework\Cache\Module::class,
         \Osm\Framework\Console\Module::class,
         \Osm\Framework\Data\Module::class,

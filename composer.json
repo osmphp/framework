@@ -20,13 +20,19 @@
         "doctrine/dbal": "^3",
         "elasticsearch/elasticsearch": "^7",
         "monolog/monolog": "^2",
-        "algolia/algoliasearch-client-php": "^2"
+        "algolia/algoliasearch-client-php": "^2",
+        "symfony/http-foundation": "^5"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9"
+        "phpunit/phpunit": "^9",
+        "symfony/browser-kit": "^5",
+        "symfony/dom-crawler": "^5",
+        "symfony/panther": "^0.9",
+        "symfony/css-selector": "^5"
     },
     "autoload": {
         "files": [
+            "src/Browser/functions.php",
             "src/Cache/functions.php",
             "src/Translations/functions.php"
         ],
