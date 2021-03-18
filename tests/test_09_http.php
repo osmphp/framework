@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace Osm\Framework\Tests;
 
+use Osm\Framework\Http\Client;
 use Osm\Framework\Samples\App;
 use Osm\Runtime\Apps;
 use PHPUnit\Framework\TestCase;
-use function Osm\browse;
 
 class test_09_http extends TestCase
 {
     public function test_internal_browser() {
         Apps::run(Apps::create(App::class), function(App $app) {
             // GIVEN an app with a `GET /test` route and a browser
-            $browser = browse();
+            $client = new Client();
 
             // WHEN you browse the route
-            $text = $browser->get('/test')
+            $text = $client->request('GET', '/test')
                 ->filter('.test')
                 ->text();
 

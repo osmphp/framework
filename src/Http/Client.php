@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Osm\Framework\Browser;
+namespace Osm\Framework\Http;
 
 use Osm\Core\App;
 use Symfony\Component\BrowserKit\AbstractBrowser;

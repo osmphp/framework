@@ -32,7 +32,6 @@
     },
     "autoload": {
         "files": [
-            "src/Browser/functions.php",
             "src/Cache/functions.php",
             "src/Translations/functions.php"
         ],
