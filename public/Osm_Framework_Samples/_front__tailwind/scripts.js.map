@@ -1,0 +1,1 @@
+{"version":3,"names":[],"mappings":"","sources":["temp/Osm_Framework_Samples/_front__tailwind/js/Test2.js"],"sourcesContent":["import Test1 from './Test1';\n\nexport default class Test2 extends Test1 {\n    hello() {\n    }\n}\n"],"file":"scripts.js"}

@@ -23,6 +23,7 @@ class Module extends BaseModule
         \Osm\Framework\Migrations\Module::class,
         \Osm\Framework\Search\Module::class,
         \Osm\Framework\Settings\Module::class,
+        \Osm\Framework\Themes\Module::class,
         \Osm\Framework\Translations\Module::class,
     ];
 }

@@ -6,8 +6,10 @@ const commonjs = require('@rollup/plugin-commonjs');
 const postcss = require('gulp-postcss');
 const sourcemaps = require('gulp-sourcemaps');
 const del = require('del');
+const {exec, execSync, spawn} = require('child_process');
 
 const config = {
+    'Osm_Tools': [],
     'Osm_Framework_Samples': ['_front__tailwind']
 }
 
@@ -23,6 +25,8 @@ function osm(appName) {
     : `bin/run.php --app=${appName}`;
 }
 
+let json = {};
+
 function buildApp(appName) {
     return series(
         compile(appName),
@@ -31,16 +35,17 @@ function buildApp(appName) {
 }
 
 function compile(appName) {
-    function fn(cb) {
-        return cb();
+    function fn() {
+        return spawn('php', [osmc, appName], {stdio: 'inherit'});
     }
     return exports[fn.displayName = `compile('${appName}')`] = fn;
 }
 
 function refresh(appName) {
-    function fn(cb) {
-        return cb();
+    function fn() {
+        return spawn('php', [osmt, 'refresh', `--app=${appName}`], {stdio: 'inherit'});
     }
+
     return exports[fn.displayName = `refresh('${appName}')`] = fn;
 }
 
@@ -53,6 +58,8 @@ function watchApp(appName) {
 
 function buildTheme(appName, themeName) {
     return series(
+        clearTemp(appName, themeName),
+        load(appName),
         collect(appName, themeName),
         clearPublic(appName, themeName),
         files(appName, themeName),
@@ -61,11 +68,39 @@ function buildTheme(appName, themeName) {
     );
 }
 
-function collect(appName, themeName) {
-    function fn(cb) {
-        return cb();
+function clearTemp(appName, themeName) {
+    function fn() {
+        return del(`temp/${appName}/${themeName}/**`);
     }
-    return exports[fn.displayName = `collect('${appName}', '${themeName}')`] = fn;
+    return exports[fn.displayName = `clearTemp('${appName}', '${themeName}')`] = fn;
+}
+
+function load(appName) {
+    function fn() {
+        return exec(`php ${osmt} config:gulp --app=${appName}`,
+            (error, stdout) => {
+                json[appName] = JSON.parse(stdout.toString());
+            }
+        );
+    }
+    return exports[fn.displayName = `load('${appName}')`] = fn;
+}
+
+function collect(appName, themeName) {
+    let tasks = [collectFrom(appName, themeName, `themes/${themeName}`)];
+    return series((cb) => {
+        json[appName].themes.forEach(theme => )
+        console.log(json[appName]);
+        cb();
+    }, ...tasks);
+}
+
+function collectFrom(appName, themeName, sourcePath) {
+    function fn() {
+        return src(`${sourcePath}/**`)
+            .pipe(dest(`temp/${appName}/${themeName}`));
+    }
+    return exports[fn.displayName = `collectFrom('${appName}', '${themeName}', '${sourcePath}')`] = fn;
 }
 
 function clearPublic(appName, themeName) {
@@ -127,6 +162,15 @@ function watchTheme(appName, themeName) {
             collect(appName, themeName));
         watch(`temp/${appName}/${themeName}/js/*.js`,
             js(appName, themeName));
+        watch(`temp/${appName}/${themeName}/css/*.css`,
+            css(appName, themeName));
+
+        watch([
+            `temp/${appName}/${themeName}/**`,
+            `!temp/${appName}/${themeName}/js/**`,
+            `!temp/${appName}/${themeName}/css/**`,
+            `!temp/${appName}/${themeName}/views/**`,
+        ], files(appName, themeName));
     }
     return exports[fn.displayName = `watchTheme('${appName}', '${themeName}')`] = fn;
 }
@@ -150,6 +194,6 @@ for (let appName in config) {
     watchTasks.push(exports[`watch:${appName}`] = parallel(...watchAppTasks));
 }
 
-exports.default = exports.build = parallel(...buildTasks);
+exports.default = parallel(...buildTasks);
 exports.watch = parallel(...watchTasks);
 //endregion
