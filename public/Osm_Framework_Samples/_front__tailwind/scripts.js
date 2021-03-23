@@ -1,3 +1,5 @@
+console.log('Hello form a module');
+
 class Test1 {
     hi() {
     }

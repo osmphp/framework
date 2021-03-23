@@ -1,10 +1,13 @@
 const {watch, series, parallel, src, dest} = require('gulp');
+const fs = require('fs');
 const {rollup} = require('gulp-rollup-2');
 const {nodeResolve} = require('@rollup/plugin-node-resolve');
 const commonjs = require('@rollup/plugin-commonjs');
 const postcss = require('gulp-postcss');
 const sourcemaps = require('gulp-sourcemaps');
 const del = require('del');
+var through = require('through2');
+const replace = require('gulp-replace');
 const json = require('./config.json');
 
 const appName = process.env.GULP_APP;
@@ -14,6 +17,8 @@ function buildTheme() {
     return series(
         collect(),
         clear(),
+        importJsModules(),
+        importCssModules(),
         parallel(
             files('images'),
             files('fonts'),
@@ -67,22 +72,91 @@ function clear() {
     return exports[fn.displayName = `clearPublic('${appName}', '${themeName}')`] = fn;
 }
 
+function importJsModules() {
+    function fn() {
+        let dir = `${appName}/${themeName}/js`;
+
+        return src(`temp/${dir}/scripts.js`, { base: `temp/${dir}`})
+            .pipe(replace('/* @import_osm_modules */', function() {
+                return json.modules.map(moduleName => {
+                    return fs.existsSync(`temp/${dir}/${moduleName}/scripts.js`)
+                        ? `import './${moduleName}/scripts.js';\n`
+                        : '';
+                }).join('');
+            }))
+            .pipe(dest(`temp/${dir}`));
+    }
+    return exports[fn.displayName = `importJsModules('${appName}', '${themeName}')`] = fn;
+}
+
+function importCssModules() {
+    function fn() {
+        let dir = `${appName}/${themeName}/css`;
+
+        return src(`temp/${dir}/styles.css`, { base: `temp/${dir}`})
+            .pipe(replace('/* @import_osm_modules */', function() {
+                return json.modules.map(moduleName => {
+                    return fs.existsSync(`temp/${dir}/${moduleName}/styles.css`)
+                        ? `@import './${moduleName}/styles.css';\n`
+                        : '';
+                }).join('');
+            }))
+            .pipe(dest(`temp/${dir}`));
+    }
+    return exports[fn.displayName = `importCssModules('${appName}', '${themeName}')`] = fn;
+}
+
+
 function files(path) {
     function fn() {
-        return src([
-                `temp/${appName}/${themeName}/${path}/**`,
-            ])
-            .pipe(dest(`public/${appName}/${themeName}/${path}`));
+        let dir = `${appName}/${themeName}/${path}`;
+
+        let patterns = [`temp/${dir}/theme/**`];
+        json.modules.forEach(moduleName => {
+            patterns.push(`temp/${dir}/${moduleName}/**`);
+        });
+
+        return src(patterns, { base: `temp/${dir}`})
+            .pipe(dest(`public/${dir}`));
     }
     return exports[fn.displayName = `files('${appName}', '${themeName}', '${path}')`] = fn;
 }
 
+function importModules(options) {
+    return through.obj(function(file, _, cb) {
+        if (file.isBuffer() &&
+            file.contents.indexOf('//@import_osm_modules') !== -1)
+        {
+            let replacement = '';
+            json.modules.forEach(moduleName => {
+                if (fs.existsSync(options.pathPattern.replace(
+                    '{moduleName}', moduleName)))
+                {
+                    replacement += options.importPattern.replace(
+                        '{moduleName}', moduleName);
+                }
+            });
+
+            file.contents = Buffer.from(file.contents.toString().replace(
+                '//@import_osm_modules', replacement));
+        }
+        cb(null, file);
+    });
+}
+
 function js() {
     function fn() {
-        return src(`temp/${appName}/${themeName}/js/*.js`)
+        let dir = `${appName}/${themeName}/js`;
+
+        let patterns = [`temp/${dir}/theme/**`, `temp/${dir}/scripts.js`];
+        json.modules.forEach(moduleName => {
+            patterns.push(`temp/${dir}/${moduleName}/**`);
+        });
+
+        return src(patterns, { base: `temp/${dir}`})
             .pipe(sourcemaps.init())
             .pipe(rollup({
-                input: `temp/${appName}/${themeName}/js/index.js`,
+                input: `temp/${dir}/scripts.js`,
                 output: {
                     file: 'scripts.js',
                     format: 'es',
