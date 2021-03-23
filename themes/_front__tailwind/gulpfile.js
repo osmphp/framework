@@ -5,6 +5,7 @@ const commonjs = require('@rollup/plugin-commonjs');
 const postcss = require('gulp-postcss');
 const sourcemaps = require('gulp-sourcemaps');
 const del = require('del');
+const json = require('./config.json');
 
 const appName = process.env.GULP_APP;
 const themeName = process.env.GULP_THEME;
@@ -23,9 +24,32 @@ function buildTheme() {
     );
 }
 
+function findTheme(name) {
+    let result = null;
+
+    if (!name) {
+        return result;
+    }
+
+    json.themes.forEach(theme => {
+        if (theme.name === name) {
+            result = theme;
+        }
+    });
+
+    return result;
+}
+
 function collect() {
-    let tasks = [collectFrom(`themes/${themeName}`)];
-    return series(...tasks);
+    let tasks = [];
+
+    for (let theme = findTheme(themeName); theme; theme = findTheme(theme.parent)) {
+        theme.paths.reverse().forEach(path => {
+            tasks.push(collectFrom(path));
+        });
+    }
+
+    return series(...tasks.reverse());
 }
 
 function collectFrom(sourcePath) {

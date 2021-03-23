@@ -39,7 +39,8 @@ class Module extends BaseModule
                 : $this->paths->project;
 
             foreach (glob("{$path}/themes/*/osm_theme.json") as $filename) {
-                $name = basename(dirname($filename));
+                $dir = dirname($filename);
+                $name = basename($dir);
 
                 if (!isset($themes[$name])) {
                     $themes[$name] = Theme::new(['name' => $name]);
@@ -47,12 +48,11 @@ class Module extends BaseModule
 
                 $themes[$name] = merge($themes[$name],
                     json_decode(file_get_contents($filename)));
-                $themes[$name]->paths[] = mb_substr($filename,
+                $themes[$name]->paths[] = mb_substr($dir,
                     mb_strlen($this->paths->project) + 1);
 
-                if (is_file(dirname($filename) . '/gulpfile.js')) {
-                    $themes[$name]->gulpfile = mb_substr(
-                        dirname($filename) . '/gulpfile.js',
+                if (is_file("{$dir}/gulpfile.js")) {
+                    $themes[$name]->gulpfile = mb_substr("{$dir}/gulpfile.js",
                         mb_strlen($this->paths->project) + 1);
                 }
             }
