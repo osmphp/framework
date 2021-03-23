@@ -30,6 +30,7 @@ class Module extends BaseModule
     protected function get_themes(): array {
         global $osm_app; /* @var App $osm_app */
 
+        /* @var Theme[] $themes */
         $themes = [];
 
         foreach ($this->packages as $package) {
@@ -48,6 +49,12 @@ class Module extends BaseModule
                     json_decode(file_get_contents($filename)));
                 $themes[$name]->paths[] = mb_substr($filename,
                     mb_strlen($this->paths->project) + 1);
+
+                if (is_file(dirname($filename) . '/gulpfile.js')) {
+                    $themes[$name]->gulpfile = mb_substr(
+                        dirname($filename) . '/gulpfile.js',
+                        mb_strlen($this->paths->project) + 1);
+                }
             }
         }
 

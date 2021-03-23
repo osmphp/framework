@@ -1,12 +1,7 @@
 const {watch, series, parallel, src, dest} = require('gulp');
 const fs = require('fs');
-const {rollup} = require('gulp-rollup-2');
-const {nodeResolve} = require('@rollup/plugin-node-resolve');
-const commonjs = require('@rollup/plugin-commonjs');
-const postcss = require('gulp-postcss');
-const sourcemaps = require('gulp-sourcemaps');
 const del = require('del');
-const {exec, execSync, spawn} = require('child_process');
+const {exec, spawn} = require('child_process');
 
 const config = {
     'Osm_Tools': [],
@@ -19,13 +14,6 @@ const osmc = fs.existsSync('vendor/osmphp/core/bin/compile.php')
 const osmt = fs.existsSync('vendor/osmphp/framework/bin/tools.php')
     ? 'vendor/osmphp/core/bin/tools.php'
     : 'bin/tools.php';
-function osm(appName) {
-    return fs.existsSync(`vendor/osmphp/framework/bin/run.php`)
-    ? `vendor/osmphp/framework/bin/run.php --app=${appName}`
-    : `bin/run.php --app=${appName}`;
-}
-
-let json = {};
 
 function buildApp(appName) {
     return series(
@@ -58,119 +46,63 @@ function watchApp(appName) {
 
 function buildTheme(appName, themeName) {
     return series(
-        clearTemp(appName, themeName),
-        load(appName),
-        collect(appName, themeName),
-        clearPublic(appName, themeName),
-        files(appName, themeName),
-        js(appName, themeName),
-        css(appName, themeName)
+        clear(appName, themeName),
+        save(appName, themeName),
+        call(appName, themeName)
     );
 }
 
-function clearTemp(appName, themeName) {
+function clear(appName, themeName) {
     function fn() {
         return del(`temp/${appName}/${themeName}/**`);
     }
     return exports[fn.displayName = `clearTemp('${appName}', '${themeName}')`] = fn;
 }
 
-function load(appName) {
+function save(appName, themeName) {
     function fn() {
         return exec(`php ${osmt} config:gulp --app=${appName}`,
             (error, stdout) => {
-                json[appName] = JSON.parse(stdout.toString());
+                fs.mkdirSync(`temp/${appName}/${themeName}`,
+                    {recursive: true});
+
+                fs.writeFileSync(`temp/${appName}/${themeName}/config.json`,
+                    stdout.toString());
+
+                let json = JSON.parse(stdout.toString());
+                json.themes.forEach(theme => {
+                    if (theme.name === themeName) {
+                        fs.copyFileSync(theme.gulpfile,
+                            `temp/${appName}/${themeName}/gulpfile.js`);
+                    }
+                });
             }
         );
     }
-    return exports[fn.displayName = `load('${appName}')`] = fn;
+    return exports[fn.displayName = `save('${appName}', '${themeName}')`] = fn;
 }
 
-function collect(appName, themeName) {
-    let tasks = [collectFrom(appName, themeName, `themes/${themeName}`)];
-    return series((cb) => {
-        json[appName].themes.forEach(theme => )
-        console.log(json[appName]);
-        cb();
-    }, ...tasks);
-}
-
-function collectFrom(appName, themeName, sourcePath) {
+function call(appName, themeName) {
     function fn() {
-        return src(`${sourcePath}/**`)
-            .pipe(dest(`temp/${appName}/${themeName}`));
+        return spawn('node', [process.mainModule.filename,
+            '-f', `temp/${appName}/${themeName}/gulpfile.js`,
+            '--cwd', process.cwd()],
+            {
+                stdio: 'inherit',
+                env: Object.assign({}, process.env, {
+                    GULP_APP: appName,
+                    GULP_THEME: themeName
+                })
+            }
+        );
     }
-    return exports[fn.displayName = `collectFrom('${appName}', '${themeName}', '${sourcePath}')`] = fn;
-}
 
-function clearPublic(appName, themeName) {
-    function fn() {
-        return del(`public/${appName}/${themeName}/**`);
-    }
-    return exports[fn.displayName = `clearPublic('${appName}', '${themeName}')`] = fn;
-}
-
-function files(appName, themeName) {
-    function fn() {
-        return src([
-                `temp/${appName}/${themeName}/**`,
-                `!temp/${appName}/${themeName}/js/**`,
-                `!temp/${appName}/${themeName}/css/**`,
-                `!temp/${appName}/${themeName}/views/**`,
-            ])
-            .pipe(dest(`public/${appName}/${themeName}`));
-    }
-    return exports[fn.displayName = `files('${appName}', '${themeName}')`] = fn;
-}
-
-function js(appName, themeName) {
-    function fn() {
-        return src(`temp/${appName}/${themeName}/js/*.js`)
-            .pipe(sourcemaps.init())
-            .pipe(rollup({
-                input: `temp/${appName}/${themeName}/js/index.js`,
-                output: {
-                    file: 'scripts.js',
-                    format: 'es',
-                },
-                plugins: [commonjs(), nodeResolve()]
-            }))
-            .pipe(sourcemaps.write('.'))
-            .pipe(dest(`public/${appName}/${themeName}`));
-    }
-    return exports[fn.displayName = `js('${appName}', '${themeName}')`] = fn;
-}
-
-function css(appName, themeName) {
-    function fn() {
-        return src(`temp/${appName}/${themeName}/css/styles.css`)
-            .pipe(sourcemaps.init())
-            .pipe(postcss([
-                require('postcss-import'),
-                require('tailwindcss'),
-                require('autoprefixer')
-            ]))
-            .pipe(sourcemaps.write('.'))
-            .pipe(dest(`public/${appName}/${themeName}`));
-    }
-    return exports[fn.displayName = `css('${appName}', '${themeName}')`] = fn;
+    return exports[fn.displayName = `call('${appName}', '${themeName}')`] = fn;
 }
 
 function watchTheme(appName, themeName) {
-    function fn() {
-        watch(['_*/**', 'composer.lock', 'package-lock.json'],
-            collect(appName, themeName));
-        watch(`temp/${appName}/${themeName}/js/*.js`,
-            js(appName, themeName));
-        watch(`temp/${appName}/${themeName}/css/*.css`,
-            css(appName, themeName));
-
-        watch([
-            `temp/${appName}/${themeName}/**`,
-            `!temp/${appName}/${themeName}/js/**`,
-            `!temp/${appName}/${themeName}/css/**`,
-            `!temp/${appName}/${themeName}/views/**`,
-        ], files(appName, themeName));
+    function fn(cb) {
+        cb();
     }
     return exports[fn.displayName = `watchTheme('${appName}', '${themeName}')`] = fn;
 }

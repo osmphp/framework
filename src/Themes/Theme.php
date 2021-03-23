@@ -12,6 +12,7 @@ use Osm\Core\Attributes\Serialized;
  * @property ?string $parent #[Serialized]
  * @property ?bool $dev #[Serialized]
  * @property array $after
+ * @property string $gulpfile #[Serialized]
  */
 class Theme extends Object_
 {
