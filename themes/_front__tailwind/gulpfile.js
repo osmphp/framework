@@ -216,25 +216,32 @@ function watchCss() {
     return exports[fn.displayName = `watchCss('${appName}', '${themeName}')`] = fn;
 }
 
-exports.default = series(
-    collect(),
-    clear(),
-    importJsModules(),
-    importCssModules(),
-    parallel(
-        files('images'),
-        files('fonts'),
-        files('files'),
-        js(),
-        css()
-    )
-);
+function build() {
+    return series(
+        collect(),
+        clear(),
+        importJsModules(),
+        importCssModules(),
+        parallel(
+            files('images'),
+            files('fonts'),
+            files('files'),
+            js(),
+            css()
+        )
+    );
+}
 
-exports.watch = parallel(
-    watchCollect(),
-    watchFiles('images'),
-    watchFiles('fonts'),
-    watchFiles('files'),
-    watchJs(),
-    watchCss(),
+exports.default = build();
+
+exports.watch = series(
+    build(),
+    parallel(
+        watchCollect(),
+        watchFiles('images'),
+        watchFiles('fonts'),
+        watchFiles('files'),
+        watchJs(),
+        watchCss(),
+    ),
 );

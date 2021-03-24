@@ -102,17 +102,47 @@ function call(appName, themeName) {
 
 function watchTheme(appName, themeName) {
     function fn() {
-        return spawn('node', [process.mainModule.filename, 'watch',
-            '-f', `temp/${appName}/${themeName}/gulpfile.js`,
-            '--cwd', process.cwd()],
-            {
-                stdio: 'inherit',
-                env: Object.assign({}, process.env, {
-                    GULP_APP: appName,
-                    GULP_THEME: themeName
-                })
+        let p;
+
+        watch([`generated/${appName}/app.ser`], () => {
+            return exec(`php ${osmt} config:gulp --app=${appName}`,
+                (error, stdout) => {
+                    if (error) {
+                        return;
+                    }
+
+                    let json = fs.readFileSync(
+                        `temp/${appName}/${themeName}/config.json`);
+
+                    if (json != stdout.toString()) {
+                        fs.writeFileSync(
+                            `temp/${appName}/${themeName}/config.json`,
+                            stdout.toString());
+                        spawnThemeGulpfile();
+                    }
+                });
+        });
+
+        spawnThemeGulpfile();
+
+        function spawnThemeGulpfile() {
+            // kill previous spawned process
+            if (p) {
+                p.kill();
             }
-        );
+
+            p = spawn('node', [process.mainModule.filename, 'watch',
+                '-f', `temp/${appName}/${themeName}/gulpfile.js`,
+                '--cwd', process.cwd()],
+                {
+                    stdio: 'inherit',
+                    env: Object.assign({}, process.env, {
+                        GULP_APP: appName,
+                        GULP_THEME: themeName
+                    })
+                }
+            );
+        }
     }
     return exports[fn.displayName = `watchTheme('${appName}', '${themeName}')`] = fn;
 }
@@ -133,7 +163,10 @@ for (let appName in config) {
     });
 
     buildTasks.push(exports[`build:${appName}`] = series(...buildAppTasks));
-    watchTasks.push(exports[`watch:${appName}`] = parallel(...watchAppTasks));
+    watchTasks.push(exports[`watch:${appName}`] = series(
+        buildApp(appName),
+        parallel(...watchAppTasks))
+    );
 }
 
 exports.default = parallel(...buildTasks);
