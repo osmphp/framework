@@ -1,4 +1,4 @@
-export default class Test1 {
+export default class Test1 { // qq
     hi() {
     }
 }

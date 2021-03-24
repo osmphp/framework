@@ -173,6 +173,20 @@ function js() {
     return exports[fn.displayName = `js('${appName}', '${themeName}')`] = fn;
 }
 
+function watchJs() {
+    function fn() {
+        let dir = `${appName}/${themeName}/js`;
+
+        let patterns = [`temp/${dir}/theme/**`, `temp/${dir}/scripts.js`];
+        json.modules.forEach(moduleName => {
+            patterns.push(`temp/${dir}/${moduleName}/**`);
+        });
+
+        return watch(patterns, js());
+    }
+    return exports[fn.displayName = `watchJs('${appName}', '${themeName}')`] = fn;
+}
+
 function css() {
     function fn() {
         return src(`temp/${appName}/${themeName}/css/styles.css`)
@@ -188,23 +202,18 @@ function css() {
     return exports[fn.displayName = `css('${appName}', '${themeName}')`] = fn;
 }
 
-function watchTheme() {
+function watchCss() {
     function fn() {
-        watch(['_*/**', 'composer.lock', 'package-lock.json'],
-            collect(appName, themeName));
-        watch(`temp/${appName}/${themeName}/js/*.js`,
-            js(appName, themeName));
-        watch(`temp/${appName}/${themeName}/css/*.css`,
-            css(appName, themeName));
+        let dir = `${appName}/${themeName}/css`;
 
-        watch([
-            `temp/${appName}/${themeName}/**`,
-            `!temp/${appName}/${themeName}/js/**`,
-            `!temp/${appName}/${themeName}/css/**`,
-            `!temp/${appName}/${themeName}/views/**`,
-        ], files(appName, themeName));
+        let patterns = [`temp/${dir}/theme/**`, `temp/${dir}/styles.css`];
+        json.modules.forEach(moduleName => {
+            patterns.push(`temp/${dir}/${moduleName}/**`);
+        });
+
+        return watch(patterns, css());
     }
-    return exports[fn.displayName = `watchTheme('${appName}', '${themeName}')`] = fn;
+    return exports[fn.displayName = `watchCss('${appName}', '${themeName}')`] = fn;
 }
 
 exports.default = series(
@@ -226,4 +235,6 @@ exports.watch = parallel(
     watchFiles('images'),
     watchFiles('fonts'),
     watchFiles('files'),
+    watchJs(),
+    watchCss(),
 );
