@@ -72,7 +72,7 @@ jobs:
                 run: npm install
 
             -   name: Install Gulp
-                run: npm install --global gulp-cli
+                run: sudo npm install --global gulp-cli
 
             -   name: Run Gulp
                 run: gulp
