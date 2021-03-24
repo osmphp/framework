@@ -1,4 +1,5 @@
 const {watch, series, parallel, src, dest} = require('gulp');
+const watchSrc = require('gulp-watch');
 const fs = require('fs');
 const {rollup} = require('gulp-rollup-2');
 const {nodeResolve} = require('@rollup/plugin-node-resolve');
@@ -6,28 +7,14 @@ const commonjs = require('@rollup/plugin-commonjs');
 const postcss = require('gulp-postcss');
 const sourcemaps = require('gulp-sourcemaps');
 const del = require('del');
-var through = require('through2');
+const through = require('through2');
 const replace = require('gulp-replace');
+const {relative} = require('path');
+const print = require('gulp-print').default;
 const json = require('./config.json');
 
 const appName = process.env.GULP_APP;
 const themeName = process.env.GULP_THEME;
-
-function buildTheme() {
-    return series(
-        collect(),
-        clear(),
-        importJsModules(),
-        importCssModules(),
-        parallel(
-            files('images'),
-            files('fonts'),
-            files('files'),
-            js(),
-            css()
-        )
-    );
-}
 
 function findTheme(name) {
     let result = null;
@@ -45,16 +32,19 @@ function findTheme(name) {
     return result;
 }
 
-function collect() {
-    let tasks = [];
-
+function themePaths() {
+    let result = [];
     for (let theme = findTheme(themeName); theme; theme = findTheme(theme.parent)) {
         theme.paths.reverse().forEach(path => {
-            tasks.push(collectFrom(path));
+            result.push(path);
         });
     }
 
-    return series(...tasks.reverse());
+    return result.reverse();
+}
+
+function collect() {
+    return series(...themePaths().map(path => collectFrom(path)));
 }
 
 function collectFrom(sourcePath) {
@@ -63,6 +53,26 @@ function collectFrom(sourcePath) {
             .pipe(dest(`temp/${appName}/${themeName}`));
     }
     return exports[fn.displayName = `collectFrom('${appName}', '${themeName}', '${sourcePath}')`] = fn;
+}
+
+function watchCollect() {
+    function fn () {
+        let paths = themePaths();
+        return watchSrc(paths.map(path => `${path}/**`))
+            .pipe(through.obj(function(file, _, cb) {
+                paths.forEach(path => {
+                    const filename = `${path}/${relative(file.base, file.path)
+                        .replace(/\\/g, '/')}`;
+                    if (fs.existsSync(filename)) {
+                        file.contents = fs.readFileSync(filename);
+                    }
+                });
+                cb(null, file);
+            }))
+            .pipe(print(filepath => `collect(${filepath})`))
+            .pipe(dest(`temp/${appName}/${themeName}`));
+    }
+    return exports[fn.displayName = `watchCollect('${appName}', '${themeName}')`] = fn;
 }
 
 function clear() {
@@ -122,26 +132,20 @@ function files(path) {
     return exports[fn.displayName = `files('${appName}', '${themeName}', '${path}')`] = fn;
 }
 
-function importModules(options) {
-    return through.obj(function(file, _, cb) {
-        if (file.isBuffer() &&
-            file.contents.indexOf('//@import_osm_modules') !== -1)
-        {
-            let replacement = '';
-            json.modules.forEach(moduleName => {
-                if (fs.existsSync(options.pathPattern.replace(
-                    '{moduleName}', moduleName)))
-                {
-                    replacement += options.importPattern.replace(
-                        '{moduleName}', moduleName);
-                }
-            });
+function watchFiles(path) {
+    function fn() {
+        let dir = `${appName}/${themeName}/${path}`;
 
-            file.contents = Buffer.from(file.contents.toString().replace(
-                '//@import_osm_modules', replacement));
-        }
-        cb(null, file);
-    });
+        let patterns = [`temp/${dir}/theme/**`];
+        json.modules.forEach(moduleName => {
+            patterns.push(`temp/${dir}/${moduleName}/**`);
+        });
+
+        return watchSrc(patterns, {base: `temp/${dir}`})
+            .pipe(print(filepath => `files(${filepath})`))
+            .pipe(dest(`public/${dir}`));
+    }
+    return exports[fn.displayName = `watchFiles('${appName}', '${themeName}', '${path}')`] = fn;
 }
 
 function js() {
@@ -203,4 +207,23 @@ function watchTheme() {
     return exports[fn.displayName = `watchTheme('${appName}', '${themeName}')`] = fn;
 }
 
-exports.default = buildTheme();
+exports.default = series(
+    collect(),
+    clear(),
+    importJsModules(),
+    importCssModules(),
+    parallel(
+        files('images'),
+        files('fonts'),
+        files('files'),
+        js(),
+        css()
+    )
+);
+
+exports.watch = parallel(
+    watchCollect(),
+    watchFiles('images'),
+    watchFiles('fonts'),
+    watchFiles('files'),
+);

@@ -101,8 +101,18 @@ function call(appName, themeName) {
 }
 
 function watchTheme(appName, themeName) {
-    function fn(cb) {
-        cb();
+    function fn() {
+        return spawn('node', [process.mainModule.filename, 'watch',
+            '-f', `temp/${appName}/${themeName}/gulpfile.js`,
+            '--cwd', process.cwd()],
+            {
+                stdio: 'inherit',
+                env: Object.assign({}, process.env, {
+                    GULP_APP: appName,
+                    GULP_THEME: themeName
+                })
+            }
+        );
     }
     return exports[fn.displayName = `watchTheme('${appName}', '${themeName}')`] = fn;
 }
