@@ -12,7 +12,7 @@ const osmc = fs.existsSync('vendor/osmphp/core/bin/compile.php')
     ? 'vendor/osmphp/core/bin/compile.php'
     : 'bin/compile.php';
 const osmt = fs.existsSync('vendor/osmphp/framework/bin/tools.php')
-    ? 'vendor/osmphp/core/bin/tools.php'
+    ? 'vendor/osmphp/framework/bin/tools.php'
     : 'bin/tools.php';
 
 function buildApp(appName) {

@@ -7,7 +7,7 @@ use Osm\Tools\App;
 
 require 'vendor/autoload.php';
 
-Apps::$project_path = dirname(__DIR__);
+Apps::$project_path = getcwd();
 Apps::run(Apps::create(App::class), function (App $app) {
     $app->console->run();
 });
