@@ -6,5 +6,5 @@ namespace Osm\Framework\Areas;
 
 class Admin extends Web
 {
-
+    public ?string $name = 'admin';
 }

@@ -6,5 +6,5 @@ namespace Osm\Framework\Areas;
 
 class Front extends Web
 {
-
+    public ?string $name = 'front';
 }

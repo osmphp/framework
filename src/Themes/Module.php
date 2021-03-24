@@ -8,6 +8,7 @@ namespace Osm\Framework\Themes;
 use Osm\Core\App;
 use Osm\Core\BaseModule;
 use Osm\Core\Paths;
+use Osm\Framework\Settings\Hints\Settings;
 use Osm\Framework\Themes\Theme;
 use Osm\Framework\Cache\Attributes\Cached;
 use Osm\Runtime\Apps;
@@ -24,6 +25,12 @@ class Module extends BaseModule
 {
     public static array $requires = [
         \Osm\Framework\Cache\Module::class,
+        \Osm\Framework\Laravel\Module::class,
+    ];
+
+    public static array $traits = [
+        App::class => Traits\AppTrait::class,
+        Settings::class => Traits\SettingsTrait::class,
     ];
 
     /** @noinspection PhpUnused */

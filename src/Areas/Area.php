@@ -8,5 +8,5 @@ use Osm\Core\Object_;
 
 class Area extends Object_
 {
-    public static ?string $name;
+    public ?string $name;
 }

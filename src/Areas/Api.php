@@ -6,5 +6,5 @@ namespace Osm\Framework\Areas;
 
 class Api extends Area
 {
-
+    public ?string $name = 'api';
 }
