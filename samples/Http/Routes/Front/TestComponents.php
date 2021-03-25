@@ -11,11 +11,11 @@ use Osm\Framework\Http\Route;
 use Symfony\Component\HttpFoundation\Response;
 use function Osm\view;
 
-#[Area(Front::class), Name('GET /test2')]
-class Test2 extends Route
+#[Area(Front::class), Name('GET /test-components')]
+class TestComponents extends Route
 {
     public function run(): Response {
         return new Response((string)
-            view('Osm_Framework_Samples_Http.test2'));
+            view('sample-http::test-components'));
     }
 }

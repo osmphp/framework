@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Osm\Framework\Themes;
 
-use Illuminate\View\Compilers\BladeCompiler;
+use Illuminate\Contracts\View\Factory as FactoryContract;
 use Illuminate\View\Engines\CompilerEngine;
 use Illuminate\View\Engines\EngineResolver;
 use Illuminate\View\Engines\FileEngine;
@@ -12,9 +12,11 @@ use Illuminate\View\Engines\PhpEngine;
 use Illuminate\View\Factory;
 use Illuminate\View\FileViewFinder;
 use Osm\Core\App;
+use Osm\Core\BaseModule;
 use Osm\Core\Object_;
 use Osm\Core\Attributes\Serialized;
 use Osm\Framework\Laravel\Module as Laravel;
+use Osm\Framework\Themes\Blade\BladeCompiler;
 use function Osm\make_dir;
 
 /**
@@ -89,14 +91,25 @@ class Theme extends Object_
             $compiler = new BladeCompiler($laravel->files,
                 make_dir("{$osm_app->paths->temp}/view_cache/{$this->name}"));
 
+            foreach ($osm_app->modules as $module) {
+                $compiler->componentNamespace(
+                    "{$module->namespace}\\Components", $module->name);
+            }
+
             return new CompilerEngine($compiler, $laravel->files);
         });
 
         $finder = new FileViewFinder($laravel->files,
-            ["{$osm_app->paths->temp}/{$this->name}/views"]);
+            ["{$osm_app->paths->temp}/{$this->name}/views/theme"]);
+        foreach ($osm_app->modules as $module) {
+            $finder->addNamespace($module->name,
+                ["{$osm_app->paths->temp}/{$this->name}/views/{$module->name}"]);
+        }
 
         $factory = new Factory($resolver, $finder, $laravel->events);
         $factory->setContainer($laravel->container);
+
+        $laravel->container->instance(FactoryContract::class, $factory);
 
         return $factory;
     }

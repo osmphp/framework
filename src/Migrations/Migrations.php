@@ -190,7 +190,7 @@ class Migrations extends Object_
             $this->files_processed++;
             $this->output->writeln(__("Migrated: :method :module :migration", [
                 'method' => $this->method_name,
-                'module' => $this->module->name,
+                'module' => $this->module->class_name,
                 'migration' => $this->migration_name,
             ]));
         }
@@ -209,7 +209,7 @@ class Migrations extends Object_
             $this->files_processed++;
             $this->output->writeln(__("Migrated back: :method :module :migration", [
                 'method' => $this->method_name,
-                'module' => $this->module->name,
+                'module' => $this->module->class_name,
                 'migration' => $this->migration_name,
             ]));
         }
@@ -262,20 +262,19 @@ class Migrations extends Object_
 
     protected function isProcessed(): bool {
         return $this->db->connection->table($this->table_name)
-            ->where('module', $this->module->name)
+            ->where('module', $this->module->class_name)
             ->where('method', $this->up_method_name)
             ->where('migration', $this->migration_name)
             ->exists();
     }
 
     protected function getClassName(): string {
-        return str_replace('_', '\\', $this->module->name) .
-            "\\Migrations\\{$this->migration_name}";
+        return "{$this->module->namespace}\\Migrations\\{$this->migration_name}";
     }
 
     protected function markAsProcessed(): void {
         $this->db->connection->table($this->table_name)->insert([
-            'module' => $this->module->name,
+            'module' => $this->module->class_name,
             'method' => $this->up_method_name,
             'migration' => $this->migration_name,
             'batch' => $this->batch_number,
@@ -284,7 +283,7 @@ class Migrations extends Object_
 
     protected function getProcessedModuleMigrations(): array {
         return $this->db->connection->table($this->table_name)
-            ->where('module', $this->module->name)
+            ->where('module', $this->module->class_name)
             ->where('method', $this->up_method_name)
             ->orderBy('migration', 'desc')
             ->pluck('migration')
@@ -293,7 +292,7 @@ class Migrations extends Object_
 
     protected function unmarkAsProcessed() {
         $this->db->connection->table($this->table_name)
-            ->where('module', $this->module->name)
+            ->where('module', $this->module->class_name)
             ->where('method', $this->up_method_name)
             ->where('migration', $this->migration_name)
             ->delete();

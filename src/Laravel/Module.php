@@ -36,6 +36,8 @@ class Module extends BaseModule
             return $this->events;
         });
 
+        Container::setInstance($container);
+
         return $container;
     }
 

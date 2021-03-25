@@ -32,7 +32,22 @@ class test_09_http extends TestCase
             $client = new Client();
 
             // WHEN you browse the route
-            $text = $client->request('GET', '/test2')
+            $text = $client->request('GET', '/test-blade')
+                ->filter('.test')
+                ->text();
+
+            // THEN its output is fetched
+            $this->assertEquals('Hi', $text);
+        });
+    }
+
+    public function test_components() {
+        Apps::run(Apps::create(App::class), function(App $app) {
+            // GIVEN an app with a `GET /test` route and a browser
+            $client = new Client();
+
+            // WHEN you browse the route
+            $text = $client->request('GET', '/test-components')
                 ->filter('.test')
                 ->text();
 
