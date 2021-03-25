@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Osm\Framework\Laravel;
 
-use Illuminate\Container\Container;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Filesystem\Filesystem;

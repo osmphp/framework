@@ -16,6 +16,10 @@ class Component extends BaseComponent
 {
     use ComputedProperties;
 
+    public function __construct() {
+        $a = 1;
+    }
+
     /** @noinspection PhpMissingReturnTypeInspection */
     public function render() {
         return view($this->template);
