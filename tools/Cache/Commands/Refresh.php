@@ -9,6 +9,7 @@ use Osm\Core\App;
 use Osm\Framework\Console\Command;
 use Osm\Framework\Console\Attributes\Option;
 use Osm\Runtime\Apps;
+use function Osm\delete_dir;
 
 /**
  * @property ?string $app #[Option]
@@ -22,6 +23,8 @@ class Refresh extends Command
             if ($app->cache) {
                 $app->cache->clear();
             }
+
+            delete_dir("{$app->paths->temp}/view_cache");
         });
     }
 }

@@ -82,6 +82,10 @@ class Http extends Object_
             }
 
             foreach ($baseUrl as $property => $value) {
+                if ($property == 'base_url') {
+                    continue;
+                }
+
                 $this->$property = $value;
             }
 

@@ -12,7 +12,6 @@ use Illuminate\View\Engines\PhpEngine;
 use Illuminate\View\Factory;
 use Illuminate\View\FileViewFinder;
 use Osm\Core\App;
-use Osm\Core\BaseModule;
 use Osm\Core\Object_;
 use Osm\Core\Attributes\Serialized;
 use Osm\Framework\Laravel\Module as Laravel;
@@ -26,6 +25,7 @@ use function Osm\make_dir;
  * @property array $after
  * @property string $gulpfile #[Serialized]
  * @property Factory $views
+ * @property ?string $area_name
  */
 class Theme extends Object_
 {
@@ -93,7 +93,8 @@ class Theme extends Object_
 
             foreach ($osm_app->modules as $module) {
                 $compiler->componentNamespace(
-                    "{$module->namespace}\\Components", $module->name);
+                    "{$module->namespace}\\Components\\" .
+                    ucfirst($this->area_name), $module->name);
             }
 
             return new CompilerEngine($compiler, $laravel->files);
@@ -112,5 +113,11 @@ class Theme extends Object_
         $laravel->container->instance(FactoryContract::class, $factory);
 
         return $factory;
+    }
+
+    /** @noinspection PhpUnused */
+    protected function get_area_name(): ?string {
+        return preg_match('/^_([^_]+)/', $this->name, $match)
+            ? $match[1]: null;
     }
 }
