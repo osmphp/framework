@@ -18,6 +18,6 @@ class Layout extends Component
     }
 
     protected function get_class(): string {
-        return '.test';
+        return 'test';
     }
 }
