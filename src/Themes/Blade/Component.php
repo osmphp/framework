@@ -26,7 +26,7 @@ class Component extends BaseComponent
 
     /** @noinspection PhpUnused */
     protected function get___template(): string {
-        throw new NotImplemented();
+        throw new NotImplemented($this);
     }
 
 

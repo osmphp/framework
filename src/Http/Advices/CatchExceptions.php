@@ -20,7 +20,11 @@ class CatchExceptions extends Advice
             return $e->response();
         }
         catch (\Throwable $e) {
-            $content = "{$e->getMessage()}\n\n{$e->getTraceAsString()}";
+            $content = '';
+            for (; $e; $e = $e->getPrevious()) {
+                $content = "{$e->getMessage()}\n\n{$e->getTraceAsString()}" .
+                    "\n\n{$content}";
+            }
 
             return new Response($content, 500, [
                 'Content-Type' => 'text/plain',
