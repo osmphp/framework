@@ -39,7 +39,8 @@ function refresh(appName) {
 
 function watchApp(appName) {
     function fn() {
-        watch(['src/**', 'samples/**', 'composer.lock'], buildApp(appName));
+        watch(['src/**', 'samples/**', 'tools/**', 'composer.lock'],
+            buildApp(appName));
     }
     return exports[fn.displayName = `watchApp('${appName}')`] = fn;
 }
