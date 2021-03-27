@@ -1,3 +1,3 @@
 <x-sample-http::layout>
-    Hi
+    @__("Hi")
 </x-sample-http::layout>

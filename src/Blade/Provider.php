@@ -7,6 +7,7 @@ namespace Osm\Framework\Blade;
 use Illuminate\Filesystem\Filesystem;
 use Osm\Core\BaseModule;
 use Osm\Core\Object_;
+use Osm\Framework\Blade\Directives\Directive;
 use Osm\Framework\Themes\Theme;
 use Illuminate\Contracts\View\Factory as FactoryContract;
 use Illuminate\View\DynamicComponent;
@@ -30,6 +31,7 @@ use function Osm\make_dir;
  * @property CompilerEngine $blade_engine
  * @property FileViewFinder $finder
  * @property Laravel $laravel
+ * @property Module $module
  */
 class Provider extends Object_
 {
@@ -88,6 +90,7 @@ class Provider extends Object_
 
         $this->registerComponentNamespaces($compiler);
         $this->registerComponents($compiler);
+        $this->registerDirectives($compiler);
 
         return $compiler;
     }
@@ -102,12 +105,12 @@ class Provider extends Object_
         }
     }
 
-    protected function registerComponents(Compiler $compiler) {
+    protected function registerComponents(Compiler $compiler): void {
         $compiler->component('dynamic-component',
             DynamicComponent::class);
     }
 
-    protected function registerEngines(EngineResolver $resolver) {
+    protected function registerEngines(EngineResolver $resolver): void {
         $resolver->register('file', fn() => $this->file_engine);
         $resolver->register('php', fn() => $this->php_engine);
         $resolver->register('blade', fn() => $this->blade_engine);
@@ -134,5 +137,22 @@ class Provider extends Object_
         global $osm_app; /* @var App $osm_app */
 
         return $osm_app->modules[Laravel::class];
+    }
+
+    /** @noinspection PhpUnused */
+    protected function get_module(): BaseModule {
+        global $osm_app; /* @var App $osm_app */
+
+        return $osm_app->modules[Module::class];
+    }
+
+    protected function registerDirectives(Compiler $compiler): void {
+        foreach ($this->module->directive_class_names as $directiveClassName) {
+            $new = "{$directiveClassName}::new";
+            $directive = $new(); /* @var Directive $directive */
+
+            $compiler->directive($directive->name,
+                fn(string $expression) => $directive->render($expression));
+        }
     }
 }
