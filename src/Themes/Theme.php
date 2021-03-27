@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Osm\Framework\Themes;
 
 use Illuminate\Contracts\View\Factory as FactoryContract;
+use Illuminate\View\DynamicComponent;
 use Illuminate\View\Engines\CompilerEngine;
 use Illuminate\View\Engines\EngineResolver;
 use Illuminate\View\Engines\FileEngine;
@@ -96,6 +97,9 @@ class Theme extends Object_
                     "{$module->namespace}\\Components\\" .
                     ucfirst($this->area_name), $module->name);
             }
+
+            $compiler->component('dynamic-component',
+                DynamicComponent::class);
 
             return new CompilerEngine($compiler, $laravel->files);
         });
