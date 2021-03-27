@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Osm\Framework\Themes\Blade;
+namespace Osm\Framework\Blade;
 
-use Illuminate\View\Compilers\BladeCompiler as BaseBladeCompiler;
+use Illuminate\View\Compilers\BladeCompiler;
 
-class BladeCompiler extends BaseBladeCompiler
+class Compiler extends BladeCompiler
 {
     /**
      * Compile the component tags.

@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Osm\Framework\Themes\Blade;
+namespace Osm\Framework\Blade;
 
 use Illuminate\View\Component as BaseComponent;
-use Osm\Core\App;
-use Osm\Core\Class_;
 use Osm\Core\Exceptions\NotImplemented;
 use Osm\Core\Traits\Reflection;
 use Osm\Runtime\Traits\ComputedProperties;

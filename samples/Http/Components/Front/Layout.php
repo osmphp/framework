@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Osm\Framework\Samples\Http\Components\Front;
 
-use Osm\Framework\Themes\Blade\Component;
+use Osm\Framework\Blade\Component;
 
 /**
  * @property string $class

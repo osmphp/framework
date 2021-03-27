@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Osm\Framework\Themes\Blade;
+namespace Osm\Framework\Blade;
 
 use Illuminate\View\Compilers\ComponentTagCompiler as BaseComponentTagCompiler;
 
