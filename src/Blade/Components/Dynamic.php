@@ -7,6 +7,7 @@ namespace Osm\Framework\Blade\Components;
 use Illuminate\View\DynamicComponent;
 use Osm\Core\App;
 use Osm\Core\Attributes\Name;
+use Osm\Framework\Laravel\Module;
 use Osm\Runtime\Traits\ComputedProperties;
 
 #[Name('dynamic-component')]
@@ -31,6 +32,20 @@ class Dynamic extends DynamicComponent
         }
 
         return '__components::'.basename($viewFile, '.blade.php');
+    }
+
+    protected function compiler()
+    {
+        global $osm_app; /* @var App $osm_app */
+
+        if (! static::$compiler) {
+            /* @var Module $laravel */
+            $laravel = $osm_app->modules[Module::class];
+            static::$compiler = $laravel->container['blade.compiler']
+                ->createComponentTagCompiler();
+        }
+
+        return static::$compiler;
     }
 
 }

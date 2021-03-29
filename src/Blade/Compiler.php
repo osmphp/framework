@@ -20,8 +20,11 @@ class Compiler extends BladeCompiler
             return $value;
         }
 
-        return (new ComponentTagCompiler(
-            $this->classComponentAliases, $this->classComponentNamespaces, $this
-        ))->compile($value);
+        return $this->createComponentTagCompiler()->compile($value);
+    }
+
+    public function createComponentTagCompiler(): ComponentTagCompiler {
+        return (new ComponentTagCompiler($this->classComponentAliases,
+            $this->classComponentNamespaces, $this));
     }
 }
