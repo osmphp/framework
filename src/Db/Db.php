@@ -20,8 +20,6 @@ use Osm\Framework\Laravel\Module as LaravelModule;
  */
 abstract class Db extends Object_
 {
-    public static ?string $name;
-
     /** @noinspection PhpUnused */
     protected function get_connection(): Connection {
         global $osm_app; /* @var App $osm_app */

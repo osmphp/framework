@@ -7,6 +7,7 @@ namespace Osm\Framework\ElasticSearch;
 use Elasticsearch\Client;
 use Elasticsearch\ClientBuilder;
 use Osm\Core\App;
+use Osm\Core\Attributes\Name;
 use Osm\Framework\Search\Blueprint as BaseBlueprint;
 use Osm\Framework\Search\Query as BaseQuery;
 use Osm\Framework\Search\Search as BaseSearch;
@@ -14,9 +15,9 @@ use Osm\Framework\Search\Search as BaseSearch;
 /**
  * @property Client $client
  */
+#[Name('elastic')]
 class Search extends BaseSearch
 {
-    public static ?string $name = 'elastic';
     public bool $refresh = false;
 
     protected function createBlueprint($data): BaseBlueprint {

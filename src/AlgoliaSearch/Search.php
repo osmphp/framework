@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Osm\Framework\AlgoliaSearch;
 
 use Algolia\AlgoliaSearch\SearchClient;
+use Osm\Core\Attributes\Name;
 use Osm\Framework\Search\Blueprint as BaseBlueprint;
 use Osm\Framework\Search\Query as BaseQuery;
 use Osm\Framework\Search\Search as BaseSearch;
@@ -12,9 +13,9 @@ use Osm\Framework\Search\Search as BaseSearch;
 /**
  * @property SearchClient $client
  */
+#[Name('algolia')]
 class Search extends BaseSearch
 {
-    public static ?string $name = 'algolia';
     public bool $wait = false;
 
     protected function createBlueprint($data): BaseBlueprint {

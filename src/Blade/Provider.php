@@ -10,7 +10,6 @@ use Osm\Core\Object_;
 use Osm\Framework\Blade\Directives\Directive;
 use Osm\Framework\Themes\Theme;
 use Illuminate\Contracts\View\Factory as FactoryContract;
-use Illuminate\View\DynamicComponent;
 use Illuminate\View\Engines\CompilerEngine;
 use Illuminate\View\Engines\EngineResolver;
 use Illuminate\View\Engines\FileEngine;
@@ -43,6 +42,7 @@ class Provider extends Object_
         $factory->setContainer($this->laravel->container);
         $this->laravel->container->instance(FactoryContract::class,
             $factory);
+        $this->laravel->container->instance('view', $factory);
 
         return $factory;
     }
@@ -92,6 +92,8 @@ class Provider extends Object_
         $this->registerComponents($compiler);
         $this->registerDirectives($compiler);
 
+        $this->laravel->container->instance('blade.compiler', $compiler);
+
         return $compiler;
     }
 
@@ -106,8 +108,11 @@ class Provider extends Object_
     }
 
     protected function registerComponents(Compiler $compiler): void {
-        $compiler->component('dynamic-component',
-            DynamicComponent::class);
+        global $osm_app; /* @var App $osm_app */
+
+        foreach ($this->module->component_class_names as $name => $className) {
+            $compiler->component($name, $className);
+        }
     }
 
     protected function registerEngines(EngineResolver $resolver): void {

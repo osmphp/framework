@@ -1,3 +1,3 @@
-<x-sample-http::layout>
+<x-dynamic-component :component="'sample-http::layout'">
     @__("Hi")
-</x-sample-http::layout>
+</x-dynamic-component>

@@ -12,8 +12,6 @@ use Osm\Core\Object_;
  */
 abstract class Search extends Object_
 {
-    public static ?string $name;
-
     public function create(string $index, callable $callback): void {
         $callback($blueprint = $this->createBlueprint([
             'search' => $this,
