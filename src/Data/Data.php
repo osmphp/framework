@@ -165,7 +165,7 @@ class Data extends Object_
 
     /** @noinspection PhpUnused */
     protected function get_sheet_column_table_name(): string {
-        return 'sheet_columns';
+        return 'columns';
     }
 
     /** @noinspection PhpUnused */

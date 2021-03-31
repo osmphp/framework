@@ -13,7 +13,7 @@ use Osm\Framework\Migrations\Migration;
 /**
  * @property Db $db
  */
-class M01_sheet_columns extends Migration
+class M01_columns extends Migration
 {
     protected function get_db(): Db {
         global $osm_app; /* @var App $osm_app */
@@ -22,7 +22,7 @@ class M01_sheet_columns extends Migration
     }
 
     public function create(): void {
-        $this->db->create('sheet_columns', function(Blueprint $table) {
+        $this->db->create('columns', function(Blueprint $table) {
             $table->string('sheet_name')->index();
             $table->string('name');
             $table->unique(['sheet_name', 'name']);
@@ -33,6 +33,6 @@ class M01_sheet_columns extends Migration
     }
 
     public function drop(): void {
-        $this->db->drop('sheet_columns');
+        $this->db->drop('columns');
     }
 }
