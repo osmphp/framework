@@ -1,15 +1,17 @@
 <?php
 
+/** @noinspection PhpUnusedAliasInspection */
 declare(strict_types=1);
 
 namespace Osm\Framework\Data;
 
 use Osm\Core\Object_;
 use Osm\Framework\Data\Columns\Column;
+use Osm\Core\Attributes\Serialized;
 
 /**
  * @property bool $exists
- * @property Column[] $columns
+ * @property Column[] $columns #[Serialized]
  * @property array $partitions
  * @property Column[] $main_partition
  * @property array $additional_partitions
