@@ -18,7 +18,7 @@ use function Osm\__;
 
 /**
  * @property TagAwareAdapter $cache
- * @property string $sheet_column_table_name
+ * @property string $column_table_name
  * @property Db $db
  */
 class Data extends Object_
@@ -132,7 +132,7 @@ class Data extends Object_
                 $this->cache->get("data|sheets|{$sheetName}",
                     function (/*ItemInterface $item*/) use ($sheetName) {
                         return Sheet::new([
-                            'columns' => $this->db->table($this->sheet_column_table_name)
+                            'columns' => $this->db->table($this->column_table_name)
                                 ->where('sheet_name', $sheetName)
                                 ->get()
                                 ->keyBy(fn(\stdClass $item) => $item->name)
@@ -164,7 +164,7 @@ class Data extends Object_
     }
 
     /** @noinspection PhpUnused */
-    protected function get_sheet_column_table_name(): string {
+    protected function get_column_table_name(): string {
         return 'columns';
     }
 
@@ -332,13 +332,13 @@ class Data extends Object_
      */
     protected function insertColumns(array $columns): void {
         foreach ($columns as $column) {
-            $this->db->table($this->sheet_column_table_name)
+            $this->db->table($this->column_table_name)
                 ->insert($column->toDbRecord());
         }
     }
 
     protected function deleteColumns(string $sheetName): void {
-        $this->db->table($this->sheet_column_table_name)
+        $this->db->table($this->column_table_name)
             ->where('sheet_name', $sheetName)
             ->delete();
     }
