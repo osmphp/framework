@@ -10,7 +10,7 @@ umask(0);
 handle_errors();
 
 try {
-    Apps::$project_path = dirname(__DIR__);
+    Apps::$project_path = dirname(dirname(__DIR__));
     Apps::compile(\Osm\Framework\Samples\App::class);
 }
 catch (Throwable $e) {

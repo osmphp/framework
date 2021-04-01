@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Osm\Framework\Tests;
+namespace Osm\Framework\Tests\Unit;
 
 use Osm\Framework\Http\Client;
 use Osm\Framework\Samples\App;
