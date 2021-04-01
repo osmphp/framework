@@ -13,7 +13,7 @@ use Osm\Framework\Migrations\Migration;
 /**
  * @property Db $db
  */
-class M01_t_products extends Migration
+class M01_t_migrated extends Migration
 {
     protected function get_db(): Db {
         global $osm_app; /* @var App $osm_app */
@@ -22,7 +22,7 @@ class M01_t_products extends Migration
     }
 
     public function create(): void {
-        $this->db->create('t_products', function(Blueprint $table) {
+        $this->db->create('t_migrated', function(Blueprint $table) {
             $table->increments('id');
             $table->string('sku');
             $table->float('price');
@@ -30,11 +30,11 @@ class M01_t_products extends Migration
     }
 
     public function drop(): void {
-        $this->db->drop('t_products');
+        $this->db->drop('t_migrated');
     }
 
     public function insert(): void {
-        $this->db->table('t_products')->insert([
+        $this->db->table('t_migrated')->insert([
             'sku' => 'P1',
             'price' => 10.0,
         ]);

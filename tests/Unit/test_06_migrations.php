@@ -14,14 +14,14 @@ class test_06_migrations extends TestCase
     public function test_migrations() {
         Apps::run(Apps::create(App::class), function(App $app) {
             // GIVEN that \Osm\Framework\Samples\Migrations\Module introduces
-            // t_products table in its migrations
+            // t_migrated table in its migrations
 
             // WHEN you run the migrations
             $app->migrations()->fresh();
             $app->migrations()->up();
 
             // THEN the data is indeed in the database
-            $price = $app->db->table('t_products')
+            $price = $app->db->table('t_migrated')
                 ->where('sku', 'P1')
                 ->value('price');
             $this->assertEquals(10.0, $price);
@@ -30,7 +30,7 @@ class test_06_migrations extends TestCase
             $app->migrations()->down(Module::class);
 
             // THEN the `t_products` table is gone
-            $this->assertFalse($app->db->exists('t_products'));
+            $this->assertFalse($app->db->exists('t_migrated'));
         });
     }
 }
