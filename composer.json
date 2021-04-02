@@ -35,7 +35,8 @@
         "files": [
             "src/Cache/functions.php",
             "src/Translations/functions.php",
-            "src/Blade/functions.php"
+            "src/Blade/functions.php",
+            "src/Http/functions.php"
         ],
         "psr-4": {
             "Osm\\Framework\\": "src/",
