@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Osm\Framework\Data\Columns;
+namespace Osm\Framework\Data;
 
 use Illuminate\Database\Query\Builder as DbQuery;
 use Osm\Core\Exceptions\NotImplemented;
@@ -14,6 +14,7 @@ use Osm\Core\Attributes\Serialized;
 /**
  * @property string $sheet_name #[Serialized]
  * @property string $name #[Serialized]
+ * @property string $type #[Serialized]
  * @property string $class_name #[Serialized]
  * @property int $partition_no #[Serialized]
  * @property int $partition_weight
@@ -21,6 +22,13 @@ use Osm\Core\Attributes\Serialized;
  */
 class Column extends Object_
 {
+    const INT_ = 'int';
+    const STRING_ = 'string';
+    const FLOAT_ = 'float';
+    const BOOL_ = 'bool';
+    const TEXT_ = 'text';
+    const DATETIME_ = 'datetime';
+
     public function createInTable(TableBlueprint $table): void {
         throw new NotImplemented();
     }
@@ -55,7 +63,11 @@ class Column extends Object_
 
     /** @noinspection PhpUnused */
     protected function get_partition_weight(): int {
-        throw new NotImplemented();
+        if ($this->type == static::STRING_) {
+            return 1;
+        }
+
+        return 0;
     }
 
     /** @noinspection PhpUnused */

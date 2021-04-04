@@ -13,30 +13,27 @@ use Osm\Core\Object_;
 class Blueprint extends Object_
 {
     /**
-     * @var Columns\Column[]
+     * @var Column[]
      */
     public array $columns = [];
 
-    public function id(): Columns\Id {
-        $columnName = 'id';
-
-        return $this->columns[$columnName] = Columns\Id::new([
-            'sheet_name' => $this->sheet_name,
-            'name' => $columnName,
-        ]);
+    public function id(): Column {
+        return $this->int('id');
     }
 
-    public function int(string $columnName): Columns\Int_ {
-        return $this->columns[$columnName] = Columns\Int_::new([
-            'sheet_name' => $this->sheet_name,
-            'name' => $columnName,
-        ]);
+    public function int(string $columnName): Column {
+        return $this->column($columnName, Column::INT_);
     }
 
-    public function string(string $columnName): Columns\String_ {
-        return $this->columns[$columnName] = Columns\String_::new([
+    public function string(string $columnName): Column {
+        return $this->column($columnName, Column::STRING_);
+    }
+
+    protected function column(string $columnName, string $type): Column {
+        return $this->columns[$columnName] = Column::new([
             'sheet_name' => $this->sheet_name,
             'name' => $columnName,
+            'type' => $type,
         ]);
     }
 }

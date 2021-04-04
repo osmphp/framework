@@ -18,7 +18,8 @@ class test_06_migrations extends TestCase
 
             // WHEN you run the migrations
             $app->migrations()->fresh();
-            $app->migrations()->up();
+            $app->migrations()->up(
+                \Osm\Framework\Samples\Migrations\Module::class);
 
             // THEN the data is indeed in the database
             $price = $app->db->table('t_migrated')

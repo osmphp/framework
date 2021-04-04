@@ -8,7 +8,7 @@ use Illuminate\Database\Query\Builder as DbQuery;
 use Osm\Core\App;
 use Osm\Core\Exceptions\NotImplemented;
 use Osm\Core\Object_;
-use Osm\Framework\Data\Columns\Column;
+use Osm\Framework\Data\Column;
 use Osm\Framework\Db\Db;
 use Osm\Framework\Search\Search;
 use function Osm\__;

@@ -13,7 +13,7 @@ use Osm\Framework\Migrations\Migration;
 /**
  * @property Db $db
  */
-class M01_columns extends Migration
+class M02_columns extends Migration
 {
     protected function get_db(): Db {
         global $osm_app; /* @var App $osm_app */
@@ -23,12 +23,17 @@ class M01_columns extends Migration
 
     public function create(): void {
         $this->db->create('columns', function(Blueprint $table) {
-            $table->string('sheet_name')->index();
+            $table->increments('id');
+            $table->integer('sheet_id')->unsigned();
             $table->string('name');
-            $table->unique(['sheet_name', 'name']);
-            $table->string('class_name');
+            $table->string('type');
             $table->smallInteger('partition_no')->unsigned();
             $table->boolean('filterable');
+
+            $table->foreign('sheet_id')
+                ->references('id')
+                ->on('sheets')
+                ->onDelete('cascade');
         });
     }
 

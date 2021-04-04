@@ -9,7 +9,7 @@
         <directory prefix="test_" suffix=".php">tests/Unit</directory>
     </testsuite>
     <php>
-        <env name="SETTINGS" value="tests/settings/sqlite__elastic.php"/>
+        <env name="SETTINGS" value="tests/settings/mysql__elastic.php"/>
         <env name="CACHE" value="Osm\Framework\Cache\Array_"/>
         <env name="TEST_VAR" value="test_value"/>
     </php>
