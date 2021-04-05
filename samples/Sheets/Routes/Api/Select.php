@@ -10,6 +10,7 @@ use Osm\Framework\Areas\Api;
 use Osm\Framework\Areas\Attributes\Area;
 use Osm\Framework\Data\Data;
 use Osm\Framework\Data\Query;
+use Osm\Framework\Data\RequestParser;
 use Osm\Framework\Http\Route;
 use Symfony\Component\HttpFoundation\Response;
 use function Osm\json_response;
@@ -34,9 +35,13 @@ class Select extends Route
 
     /** @noinspection PhpUnused */
     protected function get_query(): Query {
-        return $this->data->sheet('sheets')
+        $query = $this->data->sheet('sheets');
+
+        RequestParser::new(['query' => $query])
             ->count()
-            ->whereEquals('name', 'sheets')
-            ->select('id');
+            ->select()
+            ->filters();
+
+        return $query;
     }
 }

@@ -8,10 +8,12 @@ use Osm\Core\App;
 use Osm\Core\BaseModule;
 use Osm\Core\Object_;
 use Osm\Framework\Areas\Area;
+use Osm\Framework\Http\Exceptions\InvalidParameter;
 use Osm\Framework\Http\Exceptions\NotFound;
 use Osm\Framework\Http\Hints\BaseUrl;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use function Osm\__;
 
 /**
  * @property Request $request
@@ -23,6 +25,7 @@ use Symfony\Component\HttpFoundation\Response;
  * @property Area $area
  * @property Route $route
  * @property BaseUrl[] $base_urls
+ * @property array $query
  */
 class Http extends Object_
 {
@@ -131,5 +134,97 @@ class Http extends Object_
     protected function get_base_url(): string {
         return $this->request->getSchemeAndHttpHost() .
             $this->request->getBaseUrl();
+    }
+
+    /** @noinspection PhpUnused */
+    protected function get_query(): array {
+        $query = [];
+
+        if ($queryString = $this->request->server->get('QUERY_STRING')) {
+            $parameters = array_filter(explode('&', $queryString));
+            foreach ($parameters as $parameter) {
+                $this->parseParameter($query, $parameter);
+            }
+        }
+
+        return $query;
+    }
+
+    protected function parseParameter(array &$query, string $parameterString)
+        : void
+    {
+        if (($pos = mb_strpos($parameterString, '=')) === false) {
+            $key = $this->decode($parameterString);
+            $value = '';
+        }
+        else {
+            $key = $this->decode(mb_substr($parameterString, 0, $pos));
+            $value = $this->decode(mb_substr($parameterString, $pos + 1));
+        }
+
+        if (str_ends_with($key, '[]')) {
+            $key = mb_substr($key, 0, mb_strlen($key) - 2);
+            $isArray = true;
+        }
+        else {
+            $isArray = false;
+        }
+
+        if ($pos !== false) {
+            $this->parseValueOrArray($query, $key, $value, $isArray);
+        }
+        else {
+            $this->parseFlag($query, $key, $isArray);
+        }
+    }
+
+    public function decode(string $url): string {
+        return rawurldecode(str_replace('+', '%20', $url));
+    }
+
+    protected function parseFlag(array &$query, string $key, bool $isArray)
+        : void
+    {
+        if ($isArray) {
+            throw new InvalidParameter(__(
+                "Flag parameter ':name' can't be an array",
+                ['name' => $key]));
+        }
+
+        if (isset($query[$key])) {
+            throw new InvalidParameter(__(
+                "Parameter ':name' can't have value and be a flag at the same time",
+                ['name' => $key]));
+        }
+
+        $query[$key] = true;
+    }
+
+    protected function parseValueOrArray(array &$query, string $key,
+        string $value, bool $isArray): void
+    {
+        if ($isArray) {
+            $this->parseArray($query, $key, $value);
+            return;
+        }
+
+        if (isset($query[$key])) {
+            $this->parseArray($query, $key, $value);
+            return;
+        }
+
+        $query[$key] = $value;
+    }
+
+    protected function parseArray(array &$query, string $key, string $value)
+        : void
+    {
+        $arrayValue = $query[$key] ?? [];
+        if (!is_array($arrayValue)) {
+            $arrayValue = [$arrayValue];
+        }
+
+        $arrayValue[] = $value;
+        $query[$key] = $arrayValue;
     }
 }

@@ -58,7 +58,7 @@ class Column extends Object_
     }
 
     public function select(DbQuery $query): void {
-        $query->select("this.{$this->name}");
+        $query->addSelect("this.{$this->name}");
     }
 
     /** @noinspection PhpUnused */
