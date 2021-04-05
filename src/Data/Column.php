@@ -58,7 +58,7 @@ class Column extends Object_
     }
 
     public function select(DbQuery $query): void {
-        throw new NotImplemented();
+        $query->select("this.{$this->name}");
     }
 
     /** @noinspection PhpUnused */

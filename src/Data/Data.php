@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Osm\Framework\Data;
 
+use Illuminate\Database\Query\JoinClause;
 use Osm\Core\App;
 use Osm\Core\Exceptions\NotImplemented;
 use Osm\Core\Object_;
-use Osm\Framework\Data\Columns\Column;
 use Osm\Framework\Data\Exceptions\BlueprintError;
 use Osm\Framework\Db\Db;
 use Osm\Framework\Search\Search;
@@ -102,7 +102,7 @@ class Data extends Object_
 
         $this->dropIndex($sheetName, $query->search);
 
-        $additionalPartitions = $this->sheet($sheetName)->additional_partitions;
+        $additionalPartitions = $this->get($sheetName)->additional_partitions;
         foreach ($additionalPartitions as $partitionNo => $columns) {
             $this->dropAdditionalPartition($sheetName, $query->db,
                 $partitionNo);
@@ -116,7 +116,7 @@ class Data extends Object_
     }
 
     public function exists(string $sheetName): bool {
-        return $this->sheet($sheetName)->exists;
+        return $this->get($sheetName)->exists;
     }
 
     protected function createBlueprint(string $sheetName): Blueprint {
@@ -125,27 +125,26 @@ class Data extends Object_
         ]);
     }
 
-    public function sheet(string $sheetName): Sheet {
+    public function get(string $sheetName): Sheet {
         return isset($this->sheets[$sheetName])
             ? $this->sheets[$sheetName]
             : $this->sheets[$sheetName] =
                 $this->cache->get("data|sheets|{$sheetName}",
-                    function (/*ItemInterface $item*/) use ($sheetName) {
-                        return Sheet::new([
-                            'columns' => $this->db->table($this->column_table_name)
-                                ->where('sheet_name', $sheetName)
-                                ->get()
-                                ->keyBy(fn(\stdClass $item) => $item->name)
-                                ->map(function (\stdClass $item) {
-                                    $new = "{$item->class_name}::new";
-                                    unset($item->class_name);
+                    fn() => $this->getFromDb($sheetName));
+    }
 
-                                    return $new((array)$item);
-                                })
-                                ->toArray()
-                        ]);
-                    }
-                );
+    protected function getFromDb(string $sheetName): Sheet {
+        return Sheet::new([
+            'columns' => $this->db->table('sheets__columns', 'this')
+                ->join('sheets AS sheet', fn (JoinClause $join) =>
+                    $join->on('sheet.id', '=', 'this.sheet_id')
+                        ->where('sheet.name', $sheetName)
+                )
+                ->get('this.*')
+                ->keyBy(fn(\stdClass $item) => $item->name)
+                ->map(fn(\stdClass $item) => Column::new((array)$item))
+                ->toArray()
+        ]);
     }
 
     protected function refreshSheet(string $sheetName): void {
@@ -254,7 +253,7 @@ class Data extends Object_
     protected function assignPartitions(string $sheetName, array $columns)
         : array
     {
-        $sheet = $this->sheet($sheetName);
+        $sheet = $this->get($sheetName);
 
         $weights = array_map(function ($columns) {
             $weight = 0;
@@ -341,5 +340,9 @@ class Data extends Object_
         $this->db->table($this->column_table_name)
             ->where('sheet_name', $sheetName)
             ->delete();
+    }
+
+    public function sheet(string $sheetName): Query {
+        return Query::new(['sheet_name' => $sheetName]);
     }
 }

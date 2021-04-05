@@ -6,7 +6,6 @@ declare(strict_types=1);
 namespace Osm\Framework\Data;
 
 use Osm\Core\Object_;
-use Osm\Framework\Data\Columns\Column;
 use Osm\Core\Attributes\Serialized;
 
 /**

@@ -9,6 +9,7 @@ use Osm\Core\App;
 use Osm\Core\Exceptions\NotImplemented;
 use Osm\Core\Object_;
 use Osm\Framework\Data\Column;
+use Osm\Framework\Data\Hints\Result;
 use Osm\Framework\Db\Db;
 use Osm\Framework\Search\Search;
 use function Osm\__;
@@ -21,13 +22,14 @@ use Osm\Framework\Data\Exceptions\QueryError;
  * @property Search $search
  * @property Data $data
  * @property Sheet $sheet
+ * @property bool $count
  */
 class Query extends Object_
 {
     /**
      * @var string[]
      */
-    public array $selected_column_names = [];
+    public array $select = [];
 
     public function insert(\stdClass $data): int {
         $data->id = $this->insertIntoMainPartition($data);
@@ -47,11 +49,11 @@ class Query extends Object_
 
     public function whereEquals(string $columnName, mixed $value): static
     {
-        if (!$this->sheet->columns[$columnName]->filterable) {
-            throw new QueryError(__(
-                "Make ':sheet.:column' column filterable before trying to filter by it.",
-                ['sheet' => $this->sheet_name, 'column' => $columnName]));
-        }
+//        if (!$this->sheet->columns[$columnName]->filterable) {
+//            throw new QueryError(__(
+//                "Make ':sheet.:column' column filterable before trying to filter by it.",
+//                ['sheet' => $this->sheet_name, 'column' => $columnName]));
+//        }
         
         $this->filter->filters[] = Filters\Equals::new([
             'column_name' => $columnName,
@@ -61,31 +63,45 @@ class Query extends Object_
         return $this;
     }
 
-    public function get(string ...$columnNames): Result {
-        $this->selected_column_names = $columnNames;
+    public function get(string ...$columnNames): array|\stdClass|Result {
+        $this->select(...$columnNames);
 
-        $searchQuery = $this->search->index($this->sheet_name);
-        $this->filter->apply($searchQuery);
-        $searchResult = $searchQuery->get();
+//        $searchQuery = $this->search->index($this->sheet_name);
+//        $this->filter->apply($searchQuery);
+//        $searchResult = $searchQuery->get();
 
         $mainTableName = $this->data->tableName($this->sheet_name);
-        $dbQuery = $this->db->table($mainTableName, 'this')
-            ->whereIn('this.id', $searchResult->ids);
+        $dbQuery = $this->db->table($mainTableName, 'this');
+        $this->filter->applyToDbQuery($dbQuery);
 
-        foreach ($this->selected_column_names as $columnName) {
-            $this->sheet->columns[$columnName]->select($dbQuery);
+        if (!empty($this->select)) {
+            foreach ($this->select as $columnName) {
+                $this->sheet->columns[$columnName]->select($dbQuery);
+            }
+
+            $items = $dbQuery->get()->toArray();
+        }
+        else {
+            $items = $dbQuery->pluck('id')->toArray();
         }
 
-        $rows = $dbQuery->get()->toArray();
+        if (!$this->count) {
+            return $items;
+        }
 
-        return Result::new([
-            'count' => $searchResult->count,
-            'rows' => $rows,
-        ]);
+        $dbQuery = $this->db->table($mainTableName, 'this');
+        $this->filter->applyToDbQuery($dbQuery);
+        $count = $dbQuery->value($this->db->raw('COUNT(this.id)'));
+
+        return (object)[
+            'count' => $count,
+            'items' => $items,
+        ];
     }
 
-    public function count(): int {
-        return $this->get('id')->count;
+    public function count(bool $count = true): static {
+        $this->count = $count;
+        return $this;
     }
 
     public function rows(string ...$columnNames): array {
@@ -136,7 +152,7 @@ class Query extends Object_
 
     /** @noinspection PhpUnused */
     protected function get_sheet(): Sheet {
-        return $this->data->sheet($this->sheet_name);
+        return $this->data->get($this->sheet_name);
     }
 
     protected function insertIntoMainPartition(\stdClass $data): int {
@@ -176,5 +192,11 @@ class Query extends Object_
         }
 
         $this->search->index($this->sheet_name)->insert($values);
+    }
+
+    public function select(...$columnNames): static {
+        $this->select = array_unique(array_merge($this->select, $columnNames));
+
+        return $this;
     }
 }

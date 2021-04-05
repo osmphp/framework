@@ -24,17 +24,27 @@ class M01_sheets extends Migration
     public function create(): void {
         $this->db->create('sheets', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('parent_id')->unsigned();
-            $table->string('name')->index();
 
-            $table->foreign('parent_id')
-                ->references('id')
-                ->on('sheets')
-                ->onDelete('cascade');
+            $table->string('name')->unique()
+                ->comment('Fully qualified sheet name, e.g. `orders__lines`');
         });
     }
 
     public function drop(): void {
         $this->db->drop('sheets');
+    }
+
+    public function insert(): void {
+        $this->db->table('sheets')->insert([
+            'name' => 'sheets',
+        ]);
+
+        $this->db->table('sheets')->insert([
+            'name' => 'sheets__columns',
+        ]);
+
+        $this->db->table('sheets')->insert([
+            'name' => 'sheets__columns__options',
+        ]);
     }
 }
