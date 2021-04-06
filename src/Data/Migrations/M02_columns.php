@@ -149,6 +149,36 @@ class M02_columns extends Migration
         #endregion
 
         #region options
+        $this->db->table('sheets__columns')->insert([
+            'sheet_id' => $options,
+            'name' => 'id',
+            'type_name' => Types::INT_,
+            'type_data' =>json_encode((object)[
+                'unsigned' => true,
+                'index' => Indexes::AUTO_INCREMENT,
+            ]),
+        ]);
+        $this->db->table('sheets__columns')->insert([
+            'sheet_id' => $options,
+            'name' => 'column',
+            'type_name' => Types::REF,
+        ]);
+        $this->db->table('sheets__columns')->insert([
+            'sheet_id' => $options,
+            'name' => 'title',
+            'type_name' => Types::STRING_,
+            'type_data' =>json_encode((object)[
+                'index' => Indexes::INDEX,
+            ]),
+        ]);
+        $this->db->table('sheets__columns')->insert([
+            'sheet_id' => $options,
+            'name' => 'sort_order',
+            'type_name' => Types::INT_,
+            'type_data' =>json_encode((object)[
+                'default' => 0,
+            ]),
+        ]);
         #endregion
     }
 }
