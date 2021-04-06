@@ -17,4 +17,11 @@ namespace Osm {
     {
         return new Response((string)view($template, $data, $mergeData));
     }
+
+    function plain_response(string $content) : Response
+    {
+        return new Response($content, 200, [
+            'Content-Type' => 'text/plain',
+        ]);
+    }
 }

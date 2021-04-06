@@ -43,6 +43,77 @@ class Query extends Object_
         return $data->id;
     }
 
+    protected function insertIntoMainPartition(\stdClass $data): int {
+        $values = [];
+
+        foreach ($this->sheet->main_partition as $column) {
+            $column->save($values, $data);
+        }
+
+        return $this->db->table($this->data->tableName($this->sheet_name))
+            ->insertGetId($values);
+    }
+
+    /**
+     * @param int $no
+     * @param Column[] $columns
+     * @param \stdClass $data
+     */
+    protected function insertIntoAdditionalPartition(int $no, array $columns,
+        \stdClass $data): void
+    {
+        $values = ['id' => $data->id];
+
+        foreach ($columns as $column) {
+            $column->save($values, $data);
+        }
+
+        $this->db->table($this->data->tableName($this->sheet_name, $no))
+            ->insert($values);
+    }
+
+    public function update(\stdClass $data): int {
+        $count = $this->updateMainPartition($data);
+
+        foreach ($this->sheet->additional_partitions as $no => $columns) {
+            $this->updateAdditionalPartition($no, $columns, $data);
+        }
+
+        return $count;
+    }
+
+    protected function updateMainPartition(\stdClass $data): int {
+        $values = [];
+
+        foreach ($this->sheet->main_partition as $column) {
+            $column->save($values, $data);
+        }
+
+        if (empty($values)) {
+            return 0;
+        }
+
+        $mainTableName = $this->data->tableName($this->sheet_name);
+        $dbQuery = $this->db->table($mainTableName, 'this');
+        $this->filter->applyToDbQuery($dbQuery);
+
+        return $dbQuery->update($values);
+    }
+
+    protected function updateAdditionalPartition(int $no, array $columns,
+        \stdClass $data): void
+    {
+
+    }
+
+    public function delete(): int {
+        $mainTableName = $this->data->tableName($this->sheet_name);
+        $dbQuery = $this->db->table($mainTableName, 'this');
+        $this->filter->applyToDbQuery($dbQuery);
+
+        return $dbQuery->delete();
+    }
+
     public function bulkInsert(\stdClass $data): void {
         throw new NotImplemented();
     }
@@ -153,35 +224,6 @@ class Query extends Object_
     /** @noinspection PhpUnused */
     protected function get_sheet(): Sheet {
         return $this->data->get($this->sheet_name);
-    }
-
-    protected function insertIntoMainPartition(\stdClass $data): int {
-        $values = [];
-
-        foreach ($this->sheet->main_partition as $column) {
-            $column->save($values, $data);
-        }
-
-        return $this->db->table($this->data->tableName($this->sheet_name))
-            ->insertGetId($values);
-    }
-
-    /**
-     * @param int $no
-     * @param Column[] $columns
-     * @param \stdClass $data
-     */
-    protected function insertIntoAdditionalPartition(int $no, array $columns,
-        \stdClass $data): void
-    {
-        $values = ['id' => $data->id];
-
-        foreach ($columns as $column) {
-            $column->save($values, $data);
-        }
-
-        $this->db->table($this->data->tableName($this->sheet_name, $no))
-            ->insert($values);
     }
 
     protected function insertIntoIndex(\stdClass $data): void {
