@@ -38,7 +38,7 @@ class Query extends Object_
             $this->insertIntoAdditionalPartition($no, $columns, $data);
         }
 
-        $this->insertIntoIndex($data);
+        //$this->insertIntoIndex($data);
 
         return $data->id;
     }

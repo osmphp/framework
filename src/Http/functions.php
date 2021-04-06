@@ -7,7 +7,9 @@ namespace Osm {
     use Symfony\Component\HttpFoundation\Response;
 
     function json_response(mixed $value): Response {
-        return new Response(json_encode(dehydrate($value)));
+        return new Response(json_encode(dehydrate($value)), 200, [
+            'Content-Type' => 'application/json',
+        ]);
     }
 
     function view_response(string $template, array $data = [],

@@ -44,7 +44,7 @@ class M02_columns extends Migration
             $table->unique(['sheet_id', 'name']);
 
             $table->string('type', 80);
-            $table->unsignedSmallInteger('partition_no')->default(1);
+            $table->unsignedSmallInteger('partition_no')->default(0);
             $table->boolean('unsigned')->nullable();
             $table->boolean('nullable')->nullable();
             $table->unsignedSmallInteger('length')->nullable();

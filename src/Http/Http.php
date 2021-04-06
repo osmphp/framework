@@ -26,6 +26,7 @@ use function Osm\__;
  * @property Route $route
  * @property BaseUrl[] $base_urls
  * @property array $query
+ * @property string $content
  */
 class Http extends Object_
 {
@@ -226,5 +227,9 @@ class Http extends Object_
 
         $arrayValue[] = $value;
         $query[$key] = $arrayValue;
+    }
+
+    protected function get_content(): string {
+        return $this->request->getContent();
     }
 }

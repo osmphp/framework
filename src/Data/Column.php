@@ -50,7 +50,9 @@ class Column extends Object_
     }
 
     public function save(array &$values, \stdClass $data): void {
-        throw new NotImplemented();
+        if (isset($data->{$this->name})) {
+            $values[$this->name] = $data->{$this->name};
+        }
     }
 
     public function index(array &$values, \stdClass $data): void {
