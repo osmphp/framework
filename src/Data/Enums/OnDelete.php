@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Osm\Framework\Data\Enums;
 
-class ForeignActions
+class OnDelete
 {
     const CASCADE = 'cascade';
     const RESTRICT = 'restrict';

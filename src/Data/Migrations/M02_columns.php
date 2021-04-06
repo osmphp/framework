@@ -7,7 +7,8 @@ namespace Osm\Framework\Data\Migrations;
 
 use Illuminate\Database\Schema\Blueprint;
 use Osm\Core\App;
-use Osm\Framework\Data\Enums\ForeignActions;
+use Osm\Framework\Data\Enums\IntSize;
+use Osm\Framework\Data\Enums\OnDelete;
 use Osm\Framework\Data\Enums\Indexes;
 use Osm\Framework\Data\Enums\Types;
 use Osm\Framework\Db\Db;
@@ -70,11 +71,7 @@ class M02_columns extends Migration
         $this->db->table('sheets__columns')->insert([
             'sheet_id' => $sheets,
             'name' => 'id',
-            'type_name' => Types::INT_,
-            'type_data' =>json_encode((object)[
-                'unsigned' => true,
-                'index' => Indexes::AUTO_INCREMENT,
-            ]),
+            'type_name' => Types::PK,
         ]);
         $this->db->table('sheets__columns')->insert([
             'sheet_id' => $sheets,
@@ -99,25 +96,23 @@ class M02_columns extends Migration
         $this->db->table('sheets__columns')->insert([
             'sheet_id' => $columns,
             'name' => 'id',
-            'type_name' => Types::INT_,
-            'type_data' =>json_encode((object)[
-                'unsigned' => true,
-                'index' => Indexes::AUTO_INCREMENT,
-            ]),
+            'type_name' => Types::PK,
         ]);
         $this->db->table('sheets__columns')->insert([
             'sheet_id' => $columns,
             'name' => 'sheet',
             'type_name' => Types::REF,
-            'type_data' =>json_encode((object)[
+            'type_data' => json_encode((object)[
                 'nullable' => true,
+                'refs' => 'sheets',
+                'on_delete' => OnDelete::CASCADE,
             ]),
         ]);
         $this->db->table('sheets__columns')->insert([
             'sheet_id' => $columns,
             'name' => 'options',
             'type_name' => Types::SHEET,
-            'type_data' =>json_encode((object)[
+            'type_data' => json_encode((object)[
                 'backref' => 'column',
             ]),
         ]);
@@ -125,7 +120,7 @@ class M02_columns extends Migration
             'sheet_id' => $columns,
             'name' => 'name',
             'type_name' => Types::STRING_,
-            'type_data' =>json_encode((object)[
+            'type_data' => json_encode((object)[
                 'index' => Indexes::INDEX,
             ]),
         ]);
@@ -133,7 +128,7 @@ class M02_columns extends Migration
             'sheet_id' => $columns,
             'name' => 'type',
             'type_name' => Types::OBJECT_,
-            'type_data' =>json_encode((object)[
+            'type_data' => json_encode((object)[
                 'class_names' => 'sheet_column_types',
             ]),
         ]);
@@ -141,9 +136,9 @@ class M02_columns extends Migration
             'sheet_id' => $columns,
             'name' => 'partition_no',
             'type_name' => Types::INT_,
-            'type_data' =>json_encode((object)[
+            'type_data' => json_encode((object)[
                 'unsigned' => true,
-                'size' => 'small',
+                'size' => IntSize::SMALL,
             ]),
         ]);
         #endregion
@@ -152,16 +147,16 @@ class M02_columns extends Migration
         $this->db->table('sheets__columns')->insert([
             'sheet_id' => $options,
             'name' => 'id',
-            'type_name' => Types::INT_,
-            'type_data' =>json_encode((object)[
-                'unsigned' => true,
-                'index' => Indexes::AUTO_INCREMENT,
-            ]),
+            'type_name' => Types::PK,
         ]);
         $this->db->table('sheets__columns')->insert([
             'sheet_id' => $options,
             'name' => 'column',
             'type_name' => Types::REF,
+            'type_data' => json_encode((object)[
+                'refs' => 'sheets__columns',
+                'on_delete' => OnDelete::CASCADE,
+            ]),
         ]);
         $this->db->table('sheets__columns')->insert([
             'sheet_id' => $options,

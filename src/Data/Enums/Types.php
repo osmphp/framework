@@ -11,4 +11,5 @@ class Types
     const OBJECT_ = 'object';
     const SHEET = 'sheet';
     const REF = 'ref';
+    const PK = 'pk';
 }
