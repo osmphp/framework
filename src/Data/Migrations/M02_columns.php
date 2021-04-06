@@ -32,31 +32,20 @@ class M02_columns extends Migration
             $table->foreign('sheet_id')->references('id')
                 ->on('sheets')->onDelete('cascade');
 
-            $table->unsignedInteger('child_sheet_id')->nullable();
-            $table->foreign('child_sheet_id')->references('id')
-                ->on('sheets')->onDelete('cascade');
-
-            $table->unsignedInteger('foreign_sheet_id')->nullable();
-            $table->foreign('foreign_sheet_id')->references('id')
-                ->on('sheets')->onDelete('set null');
-
             $table->string('name')->index();
             $table->unique(['sheet_id', 'name']);
 
-            $table->string('type', 80);
+            $table->string('type_name', 80);
+            $table->json('type_data')->nullable();
+
             $table->unsignedSmallInteger('partition_no')->default(0);
-            $table->boolean('unsigned')->nullable();
-            $table->boolean('nullable')->nullable();
-            $table->unsignedSmallInteger('length')->nullable();
-            $table->string('index', 80)->nullable();
-            $table->longText('default')->nullable();
-            $table->string('foreign_action', 80)->nullable();
-            $table->string('array', 80)->nullable();
 
-            $table->boolean('filterable')->default(false);
-            $table->boolean('sortable')->default(false);
-
-            $table->string('formula', 80)->nullable();
+//            $table->string('foreign_action', 80)->nullable();
+//
+//            $table->boolean('filterable')->default(false);
+//            $table->boolean('sortable')->default(false);
+//
+//            $table->string('formula', 80)->nullable();
         });
     }
 
@@ -81,24 +70,28 @@ class M02_columns extends Migration
         $this->db->table('sheets__columns')->insert([
             'sheet_id' => $sheets,
             'name' => 'id',
-            'type' => Types::INT_,
-
-            'unsigned' => true,
-            'index' => Indexes::AUTO_INCREMENT,
+            'type_name' => Types::INT_,
+            'type_data' =>json_encode((object)[
+                'unsigned' => true,
+                'index' => Indexes::AUTO_INCREMENT,
+            ]),
         ]);
         $this->db->table('sheets__columns')->insert([
             'sheet_id' => $sheets,
             'name' => 'columns',
-            'type' => Types::COMPUTED,
+            'type_name' => Types::SHEET,
+            'type_data' =>json_encode((object)[
+                'backref' => 'sheet',
+            ]),
 
-            'array' => true,
         ]);
         $this->db->table('sheets__columns')->insert([
             'sheet_id' => $sheets,
             'name' => 'name',
-            'type' => Types::STRING_,
-
-            'index' => Indexes::INDEX,
+            'type_name' => Types::STRING_,
+            'type_data' =>json_encode((object)[
+                'index' => Indexes::INDEX,
+            ]),
         ]);
         #endregion
 
@@ -106,35 +99,52 @@ class M02_columns extends Migration
         $this->db->table('sheets__columns')->insert([
             'sheet_id' => $columns,
             'name' => 'id',
-            'type' => Types::INT_,
-
-            'unsigned' => true,
-            'index' => Indexes::AUTO_INCREMENT,
+            'type_name' => Types::INT_,
+            'type_data' =>json_encode((object)[
+                'unsigned' => true,
+                'index' => Indexes::AUTO_INCREMENT,
+            ]),
         ]);
         $this->db->table('sheets__columns')->insert([
             'sheet_id' => $columns,
             'name' => 'sheet',
-            'type' => Types::INT_,
-
-            'unsigned' => true,
-            'nullable' => true,
-            'index' => Indexes::INDEX,
-            'foreign_sheet_id' => $sheets,
-            'foreign_action' => ForeignActions::CASCADE,
+            'type_name' => Types::REF,
+            'type_data' =>json_encode((object)[
+                'nullable' => true,
+            ]),
         ]);
         $this->db->table('sheets__columns')->insert([
             'sheet_id' => $columns,
             'name' => 'options',
-            'type' => Types::COMPUTED,
-
-            'array' => true,
+            'type_name' => Types::SHEET,
+            'type_data' =>json_encode((object)[
+                'backref' => 'column',
+            ]),
         ]);
         $this->db->table('sheets__columns')->insert([
             'sheet_id' => $columns,
             'name' => 'name',
-            'type' => Types::STRING_,
-
-            'index' => Indexes::INDEX,
+            'type_name' => Types::STRING_,
+            'type_data' =>json_encode((object)[
+                'index' => Indexes::INDEX,
+            ]),
+        ]);
+        $this->db->table('sheets__columns')->insert([
+            'sheet_id' => $columns,
+            'name' => 'type',
+            'type_name' => Types::OBJECT_,
+            'type_data' =>json_encode((object)[
+                'class_names' => 'sheet_column_types',
+            ]),
+        ]);
+        $this->db->table('sheets__columns')->insert([
+            'sheet_id' => $columns,
+            'name' => 'partition_no',
+            'type_name' => Types::INT_,
+            'type_data' =>json_encode((object)[
+                'unsigned' => true,
+                'size' => 'small',
+            ]),
         ]);
         #endregion
 

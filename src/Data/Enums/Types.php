@@ -8,5 +8,7 @@ class Types
 {
     const INT_ = 'int';
     const STRING_ = 'string';
-    const COMPUTED = 'computed';
+    const OBJECT_ = 'object';
+    const SHEET = 'sheet';
+    const REF = 'ref';
 }

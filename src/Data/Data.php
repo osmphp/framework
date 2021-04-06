@@ -6,6 +6,7 @@ namespace Osm\Framework\Data;
 
 use Illuminate\Database\Query\JoinClause;
 use Osm\Core\App;
+use Osm\Core\BaseModule;
 use Osm\Core\Exceptions\NotImplemented;
 use Osm\Core\Object_;
 use Osm\Framework\Data\Exceptions\BlueprintError;
@@ -20,6 +21,7 @@ use function Osm\__;
  * @property TagAwareAdapter $cache
  * @property string $column_table_name
  * @property Db $db
+ * @property Module $module
  */
 class Data extends Object_
 {
@@ -140,7 +142,7 @@ class Data extends Object_
                     $join->on('sheet.id', '=', 'this.sheet_id')
                         ->where('sheet.name', $sheetName)
                 )
-                ->get('this.*')
+                ->get(['this.*', 'sheet.name AS sheet_name'])
                 ->keyBy(fn(\stdClass $item) => $item->name)
                 ->map(fn(\stdClass $item) => Column::new((array)$item))
                 ->toArray()
@@ -343,8 +345,18 @@ class Data extends Object_
     }
 
     public function sheet(string $sheetName): Query {
-        return Query::new(['sheet_name' => $sheetName]);
+        if (!($className = $this->module->query_classes[$sheetName] ?? null)) {
+            return Query::new(['sheet_name' => $sheetName]);
+        }
+
+        $new = "{$className}::new";
+        return $new(['sheet_name' => $sheetName]);
     }
 
+    /** @noinspection PhpUnused */
+    protected function get_module(): BaseModule {
+        global $osm_app; /* @var App $osm_app */
 
+        return $osm_app->modules[Module::class];
+    }
 }

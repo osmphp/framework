@@ -32,15 +32,19 @@ class Query extends Object_
     public array $select = [];
 
     public function insert(\stdClass $data): int {
-        $data->id = $this->insertIntoMainPartition($data);
+        return $this->db->transaction(function() use ($data) {
+            $data->id = $this->insertIntoMainPartition($data);
 
-        foreach ($this->sheet->additional_partitions as $no => $columns) {
-            $this->insertIntoAdditionalPartition($no, $columns, $data);
-        }
+            foreach ($this->sheet->additional_partitions as $no => $columns) {
+                $this->insertIntoAdditionalPartition($no, $columns, $data);
+            }
 
-        //$this->insertIntoIndex($data);
+            $this->insertIntoChildSheets($data);
 
-        return $data->id;
+            //$this->insertIntoIndex($data);
+
+            return $data->id;
+        });
     }
 
     protected function insertIntoMainPartition(\stdClass $data): int {
@@ -70,6 +74,12 @@ class Query extends Object_
 
         $this->db->table($this->data->tableName($this->sheet_name, $no))
             ->insert($values);
+    }
+
+    protected function insertIntoChildSheets(\stdClass $data): void {
+        foreach ($this->sheet->columns as $column) {
+            $column->insertIntoChildSheet($data);
+        }
     }
 
     public function update(\stdClass $data): int {

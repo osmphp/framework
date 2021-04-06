@@ -81,8 +81,8 @@ abstract class Db extends Object_
         $this->connection->rollBack();
     }
 
-    public function transaction(callable $callback, int $attempts = 1): void {
-        $this->connection->transaction($callback, $attempts);
+    public function transaction(callable $callback, int $attempts = 1): mixed {
+        return $this->connection->transaction($callback, $attempts);
     }
 
     public function exists(string $table): bool {
