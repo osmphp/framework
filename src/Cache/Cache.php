@@ -22,6 +22,14 @@ class Cache extends Object_
         $this->adapter->clear();
     }
 
+    public function hasItem(string $key): bool {
+        return $this->adapter->hasItem($key);
+    }
+
+    public function deleteItem(string $key): void {
+        $this->adapter->deleteItem($key);
+    }
+
     protected function get_adapter(): TagAwareAdapter {
         throw new NotImplemented($this);
     }
