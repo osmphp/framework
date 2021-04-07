@@ -19,7 +19,6 @@ jobs:
         name: ubuntu-latest, PHP ${{ matrix.php }}, ${{ matrix.db }}, ${{ matrix.search }}
         env:
             NAME: "framework_${{ github.run_number }}_${{ matrix.db }}_${{ matrix.search }}"
-            MYSQL_PORT: ${{ job.services.mysql.ports[3306] }}
             MYSQL_USERNAME: root
             MYSQL_PASSWORD: root
             ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
@@ -81,6 +80,7 @@ jobs:
                 run: vendor/bin/phpunit
                 env:
                     SETTINGS: tests/settings/${{ matrix.db }}__${{ matrix.search }}.php
+                    MYSQL_PORT: ${{ job.services.mysql.ports[3306] }}
                     MYSQL_DATABASE: ${{ env.NAME }}
                     SEARCH_INDEX_PREFIX: "${{ env.NAME }}_"
 
@@ -88,5 +88,6 @@ jobs:
                 run: vendor/bin/phpunit --configuration phpunit_api.xml
                 env:
                     SETTINGS: tests/settings/${{ matrix.db }}__${{ matrix.search }}.php
+                    MYSQL_PORT: ${{ job.services.mysql.ports[3306] }}
                     MYSQL_DATABASE: ${{ env.NAME }}
                     SEARCH_INDEX_PREFIX: "${{ env.NAME }}_"
