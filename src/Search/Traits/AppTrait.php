@@ -17,10 +17,9 @@ trait AppTrait
     protected function get_search(): Search {
         /* @var App $this */
 
-        /* @var Module $module */
-        $module = $this->modules[Module::class];
+        $drivers = $this->descendants->byName(Search::class);
         $config = $this->settings->search;
-        $new = "{$module->search_classes[$config['driver']]}::new";
+        $new = "{$drivers[$config['driver']]}::new";
         unset($config['driver']);
 
 

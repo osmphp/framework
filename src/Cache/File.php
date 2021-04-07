@@ -12,7 +12,7 @@ use Symfony\Component\Cache\Adapter\TagAwareAdapter;
 class File extends Cache
 {
     #[Env('CACHE_PATH', 'Cache directory absolute path', '{project_path}/temp/cache')]
-    public function create(): TagAwareAdapter {
+    protected function get_adapter(): TagAwareAdapter {
         global $osm_app; /* @var App $osm_app */
 
         $path = $_ENV["{$this->env_prefix}_PATH"] ??

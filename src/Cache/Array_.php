@@ -9,7 +9,7 @@ use Symfony\Component\Cache\Adapter\TagAwareAdapter;
 
 class Array_ extends Cache
 {
-    public function create(): TagAwareAdapter {
+    protected function get_adapter(): TagAwareAdapter {
         $items = new ArrayAdapter();
         $tags = new ArrayAdapter();
 

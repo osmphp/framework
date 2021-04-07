@@ -111,7 +111,7 @@ class Http extends Object_
             as $routeClassName)
         {
             $new = "{$routeClassName}::new";
-            $route = $new();
+            $route = $new(); /* @var Route $route */
             if (!$route->match()) {
                 continue;
             }

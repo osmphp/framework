@@ -15,7 +15,11 @@ use Symfony\Component\HttpFoundation\Response;
 class Route extends Object_
 {
     public function run(): Response {
-        throw new NotImplemented();
+        throw new NotImplemented($this);
+    }
+
+    public function match(): bool {
+        throw new NotImplemented($this);
     }
 
     /** @noinspection PhpUnused */

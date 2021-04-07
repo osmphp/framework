@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Osm\Framework\Blade;
 
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\View\Component as LaravelComponent;
 use Osm\Core\BaseModule;
 use Osm\Core\Object_;
 use Osm\Framework\Blade\Directives\Directive;
@@ -110,7 +111,8 @@ class Provider extends Object_
     protected function registerComponents(Compiler $compiler): void {
         global $osm_app; /* @var App $osm_app */
 
-        foreach ($this->module->component_class_names as $name => $className) {
+        $classes = $osm_app->descendants->byName(LaravelComponent::class);
+        foreach ($classes as $name => $className) {
             $compiler->component($name, $className);
         }
     }
@@ -152,7 +154,10 @@ class Provider extends Object_
     }
 
     protected function registerDirectives(Compiler $compiler): void {
-        foreach ($this->module->directive_class_names as $directiveClassName) {
+        global $osm_app; /* @var App $osm_app */
+
+        $classes = $osm_app->descendants->all(Directive::class);
+        foreach ($classes as $directiveClassName) {
             $new = "{$directiveClassName}::new";
             $directive = $new(); /* @var Directive $directive */
 

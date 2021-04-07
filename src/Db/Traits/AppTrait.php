@@ -17,10 +17,9 @@ trait AppTrait
     protected function get_db(): Db {
         /* @var App $this */
 
-        /* @var Module $module */
-        $module = $this->modules[Module::class];
+        $drivers = $this->descendants->byName(Db::class);
         $config = $this->settings->db;
-        $new = "{$module->db_classes[$config['driver']]}::new";
+        $new = "{$drivers[$config['driver']]}::new";
         return $new(['config' => $config]);
     }
 }

@@ -6,8 +6,8 @@ namespace Osm\Framework\Cache\Traits;
 
 use Osm\Core\Object_;
 use Osm\Framework\Cache\Attributes\Cached;
+use Osm\Framework\Cache\Cache;
 use Osm\Framework\Samples\App;
-use Symfony\Component\Cache\Adapter\TagAwareAdapter;
 use Symfony\Contracts\Cache\ItemInterface;
 use function Osm\resolve_placeholders;
 
@@ -27,7 +27,7 @@ trait ObjectTrait
         /* @var Cached $attribute */
         $attribute = $this->__class->properties[$property]->attributes[Cached::class];
 
-        /* @var TagAwareAdapter $cache */
+        /* @var Cache $cache */
         $cache = $osm_app->{$attribute->cache_name};
 
         // replace {property} placeholders with actual property values

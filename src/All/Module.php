@@ -14,7 +14,6 @@ class Module extends BaseModule
         \Osm\Framework\Blade\Module::class,
         \Osm\Framework\Cache\Module::class,
         \Osm\Framework\Console\Module::class,
-        \Osm\Framework\Data\Module::class,
         \Osm\Framework\Db\Module::class,
         \Osm\Framework\ElasticSearch\Module::class,
         \Osm\Framework\Env\Module::class,
