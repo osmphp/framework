@@ -18,7 +18,7 @@ class Route extends Object_
         throw new NotImplemented($this);
     }
 
-    public function match(): bool {
+    public function match(): ?Route {
         throw new NotImplemented($this);
     }
 
