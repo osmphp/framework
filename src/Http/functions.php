@@ -24,4 +24,16 @@ namespace Osm {
             'Content-Type' => 'text/plain',
         ]);
     }
+
+    function exception_response(\Throwable $e): Response {
+        $content = '';
+        for (; $e; $e = $e->getPrevious()) {
+            $content = "{$e->getMessage()}\n\n{$e->getTraceAsString()}" .
+                "\n\n{$content}";
+        }
+
+        return new Response($content, 500, [
+            'Content-Type' => 'text/plain',
+        ]);
+    }
 }

@@ -8,6 +8,7 @@ use Osm\Core\App;
 use Osm\Framework\Areas\Attributes\Area;
 use Osm\Framework\Http\Exceptions\Http;
 use Symfony\Component\HttpFoundation\Response;
+use function Osm\exception_response;
 
 #[Area(null, 10)]
 class CatchExceptions extends Advice
@@ -20,15 +21,7 @@ class CatchExceptions extends Advice
             return $e->response();
         }
         catch (\Throwable $e) {
-            $content = '';
-            for (; $e; $e = $e->getPrevious()) {
-                $content = "{$e->getMessage()}\n\n{$e->getTraceAsString()}" .
-                    "\n\n{$content}";
-            }
-
-            return new Response($content, 500, [
-                'Content-Type' => 'text/plain',
-            ]);
+            return exception_response($e);
         }
     }
 }
