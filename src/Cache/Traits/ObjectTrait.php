@@ -48,7 +48,7 @@ trait ObjectTrait
             }
 
             // compute property value
-            return $proceed($property);
+            return $this->$property = $proceed($property);
         });
     }
 }
