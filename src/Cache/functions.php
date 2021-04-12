@@ -2,6 +2,10 @@
 
 //
 namespace Osm {
+
+    use Osm\Core\App;
+    use Osm\Core\Object_;
+
     function resolve_placeholders(mixed $value, object $object): mixed {
         if (!is_string($value)) {
             return $value;
@@ -35,5 +39,21 @@ namespace Osm {
         }
 
         rmdir($path);
+    }
+
+    function create(string $className, ?string $descendantName,
+        array $data = []): Object_
+    {
+        global $osm_app; /* @var App $osm_app */
+
+        if ($descendantName) {
+            $descendants = $osm_app->descendants;
+            $new = "{$descendants->byName($className)[$descendantName]}::new";
+        }
+        else {
+            $new = "{$className}::new";
+        }
+
+        return $new($data);
     }
 }
