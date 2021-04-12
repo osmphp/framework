@@ -15,13 +15,21 @@ use Osm\Framework\Laravel\Module as LaravelModule;
 
 /**
  * @property Connection $connection
+ * @property Connection $ddl
  * @property Module $module
  * @property array $config
  */
 abstract class Db extends Object_
 {
-    /** @noinspection PhpUnused */
     protected function get_connection(): Connection {
+        return $this->connect();
+    }
+
+    protected function get_ddl(): Connection {
+        return $this->connect();
+    }
+
+    public function connect(): Connection {
         global $osm_app; /* @var App $osm_app */
 
         $db = $this->module->connection_factory->make($this->config);
@@ -50,15 +58,15 @@ abstract class Db extends Object_
     }
 
     public function create(string $table, callable $callback): void {
-        $this->connection->getSchemaBuilder()->create($table, $callback);
+        $this->ddl->getSchemaBuilder()->create($table, $callback);
     }
 
     public function alter(string $table, callable $callback): void {
-        $this->connection->getSchemaBuilder()->table($table, $callback);
+        $this->ddl->getSchemaBuilder()->table($table, $callback);
     }
 
     public function drop(string $table): void {
-        $this->connection->getSchemaBuilder()->drop($table);
+        $this->ddl->getSchemaBuilder()->drop($table);
     }
 
     public function query(): Builder {
