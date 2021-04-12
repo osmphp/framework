@@ -33,10 +33,11 @@
     },
     "autoload": {
         "files": [
-            "src/Cache/functions.php",
-            "src/Translations/functions.php",
             "src/Blade/functions.php",
-            "src/Http/functions.php"
+            "src/Cache/functions.php",
+            "src/Http/functions.php",
+            "src/Logs/functions.php",
+            "src/Translations/functions.php"
         ],
         "psr-4": {
             "Osm\\Framework\\": "src/",
