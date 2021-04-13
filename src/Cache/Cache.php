@@ -7,6 +7,7 @@ namespace Osm\Framework\Cache;
 use Osm\Core\Exceptions\NotImplemented;
 use Osm\Core\Object_;
 use Symfony\Component\Cache\Adapter\TagAwareAdapter;
+use Symfony\Contracts\Cache\ItemInterface;
 
 /**
  * @property string $env_prefix
@@ -15,7 +16,16 @@ use Symfony\Component\Cache\Adapter\TagAwareAdapter;
 class Cache extends Object_
 {
     public function get(string $key, callable $callback): mixed {
-        return $this->adapter->get($key, $callback);
+        return $this->adapter->get($key,
+            function (ItemInterface $item) use ($callback) {
+                $result = $callback($item);
+
+                if ($result instanceof Object_) {
+                    $result->__sleep();
+                }
+
+                return $result;
+            });
     }
 
     public function clear(): void {
