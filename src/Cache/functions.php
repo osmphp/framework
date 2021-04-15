@@ -46,12 +46,12 @@ namespace Osm {
     {
         global $osm_app; /* @var App $osm_app */
 
+        $new = "{$className}::new";
         if ($descendantName) {
-            $descendants = $osm_app->descendants;
-            $new = "{$descendants->byName($className)[$descendantName]}::new";
-        }
-        else {
-            $new = "{$className}::new";
+            $descendants = $osm_app->descendants->byName($className);
+            if (isset($descendants[$descendantName])) {
+                $new = "{$descendants[$descendantName]}::new";
+            }
         }
 
         return $new($data);
