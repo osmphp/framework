@@ -48,7 +48,13 @@ trait ObjectTrait
             }
 
             // compute property value
-            return $this->$property = $proceed($property);
+            $this->$property = $proceed($property);
+
+            if ($attribute->callback) {
+                $this->{$attribute->callback}();
+            }
+
+            return $this->$property;
         });
     }
 }
