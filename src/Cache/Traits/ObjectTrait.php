@@ -33,7 +33,7 @@ trait ObjectTrait
         // replace {property} placeholders with actual property values
         $key = resolve_placeholders($attribute->key, $this);
 
-        return $cache->get($key, function (ItemInterface $item)
+        $this->$property = $cache->get($key, function (ItemInterface $item)
             use ($proceed, $property, $attribute)
         {
             // replace {property} placeholders with actual property values
@@ -48,13 +48,13 @@ trait ObjectTrait
             }
 
             // compute property value
-            $this->$property = $proceed($property);
-
-            if ($attribute->callback) {
-                $this->{$attribute->callback}();
-            }
-
-            return $this->$property;
+            return $this->$property = $proceed($property);
         });
+
+        if ($attribute->callback) {
+            $this->{$attribute->callback}();
+        }
+
+        return $this->$property;
     }
 }
