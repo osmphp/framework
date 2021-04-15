@@ -51,6 +51,7 @@ trait ObjectTrait
             $this->$property = $proceed($property);
 
             if ($attribute->callback) {
+                //
                 $this->{$attribute->callback}();
             }
 
