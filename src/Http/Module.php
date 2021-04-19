@@ -25,6 +25,7 @@ class Module extends BaseModule
 {
     public static array $requires = [
         Areas\Module::class,
+        \Osm\Framework\Settings\Module::class,
     ];
 
     public static array $traits = [

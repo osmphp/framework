@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Osm\Framework\Db;
 
 use Illuminate\Database\Connection;
-use Illuminate\Database\Events\QueryExecuted;
+use Illuminate\Database\Events;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Query\Expression;
 use Osm\Core\App;
@@ -21,6 +21,12 @@ use Osm\Framework\Laravel\Module as LaravelModule;
  */
 abstract class Db extends Object_
 {
+    /**
+     * @var callable[]
+     */
+    protected $rolledBack = [];
+    protected $transactions = 0;
+
     protected function get_connection(): Connection {
         return $this->connect();
     }
@@ -39,7 +45,8 @@ abstract class Db extends Object_
             $laravel = $osm_app->modules[LaravelModule::class];
 
             $db->setEventDispatcher($laravel->events);
-            $db->listen(function (QueryExecuted $query) use ($osm_app) {
+
+            $db->listen(function (Events\QueryExecuted $query) use ($osm_app) {
                 $osm_app->logs->db->info($query->sql, [
                     'bindings' => $query->bindings,
                     'time' => $query->time,
@@ -79,19 +86,53 @@ abstract class Db extends Object_
 
     public function beginTransaction(): void {
         $this->connection->beginTransaction();
+        $this->transactions++;
     }
 
     public function commit(): void {
         $this->connection->commit();
+        $this->transactions--;
+        if (!$this->transactions) {
+            $this->rolledBack = [];
+        }
     }
 
     public function rollBack(): void {
         $this->connection->rollBack();
+        $this->transactions--;
+        if (!$this->transactions) {
+            foreach (array_reverse($this->rolledBack) as $callback) {
+                $callback();
+            }
+            $this->rolledBack = [];
+        }
     }
 
-    public function transaction(callable $callback, int $attempts = 1): mixed {
-        return $this->connection->transaction($callback, $attempts);
+    public function transaction(callable $callback): mixed {
+        $this->beginTransaction();
+
+        try {
+            $result = $callback();
+            $this->commit();
+            return $result;
+        }
+        catch (\Throwable $e) {
+            $this->rollBack();
+            throw $e;
+        }
     }
+
+    public function dryRun(callable $callback): mixed {
+        $this->beginTransaction();
+
+        try {
+            return $callback();
+        }
+        finally {
+            $this->rollBack();
+        }
+    }
+
 
     public function exists(string $table): bool {
         return $this->connection->getSchemaBuilder()->hasTable($table);
@@ -99,5 +140,9 @@ abstract class Db extends Object_
 
     public function raw(string $expr): Expression {
         return $this->connection->raw($expr);
+    }
+
+    public function rolledBack(callable $callback): void {
+        $this->rolledBack[] = $callback;
     }
 }
