@@ -11,6 +11,7 @@ use Osm\Core\BaseModule;
 use Osm\Framework\Areas;
 use Osm\Framework\Areas\Attributes\Area;
 use Osm\Framework\Http\Advices\Advice;
+use Osm\Framework\PhpUnit\TestCase;
 use Osm\Framework\Settings\Hints\Settings;
 use Symfony\Component\HttpFoundation\Response;
 use Osm\Framework\Cache\Attributes\Cached;
@@ -25,6 +26,7 @@ class Module extends BaseModule
 {
     public static array $requires = [
         Areas\Module::class,
+        \Osm\Framework\PhpUnit\Module::class,
         \Osm\Framework\Settings\Module::class,
     ];
 
@@ -33,6 +35,7 @@ class Module extends BaseModule
         Settings::class => Traits\SettingsTrait::class,
         Areas\Area::class => Traits\Areas\AreaTrait::class,
         Areas\Api::class => Traits\Areas\ApiTrait::class,
+        TestCase::class => Traits\TestCaseTrait::class,
     ];
 
     public function around(callable $next, string $areaClassName = null,

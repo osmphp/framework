@@ -10,6 +10,7 @@ use Osm\Core\BaseModule;
 use Osm\Framework\Laravel\Module as LaravelModule;
 use Osm\Framework\Logs\Hints\LogSettings;
 use Osm\Framework\Logs\Logs;
+use Osm\Framework\PhpUnit\TestCase;
 use Osm\Framework\Settings\Hints\Settings;
 
 /**
@@ -21,6 +22,7 @@ class Module extends BaseModule
     public static array $requires = [
         \Osm\Framework\Cache\Module::class,
         \Osm\Framework\Logs\Module::class,
+        \Osm\Framework\PhpUnit\Module::class,
         \Osm\Framework\Settings\Module::class,
         LaravelModule::class,
     ];
@@ -30,6 +32,7 @@ class Module extends BaseModule
         Settings::class => Traits\SettingsTrait::class,
         LogSettings::class => Traits\LogSettingsTrait::class,
         Logs::class => Traits\LogsTrait::class,
+        TestCase::class => Traits\TestCaseTrait::class,
     ];
 
     public static array $classes = [
