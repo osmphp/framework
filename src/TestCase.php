@@ -2,36 +2,46 @@
 
 declare(strict_types=1);
 
-namespace Osm\Framework\Http\Traits;
+namespace Osm\Framework;
 
 use Osm\Core\Exceptions\NotImplemented;
+use Osm\Core\TestCase as BaseTestCase;
+use Osm\Framework\Db\Db;
 use Osm\Framework\Http\Client;
-use Osm\Framework\PhpUnit\TestCase;
 
-/**
- * @property bool $use_http
- * @property Client $http
- */
-trait TestCaseTrait
+class TestCase extends BaseTestCase
 {
-    protected function around_setUp(callable $proceed): void {
-        /* @var TestCase|static $this */
+    public bool $use_db = false;
+    public bool $use_http = false;
+    public bool $use_chrome = false;
 
-        $proceed();
+    protected ?Db $db = null;
+    protected ?Client $http = null;
+
+    protected function setUp(): void {
+        parent::setUp();
 
         if ($this->use_http) {
             $this->http = new Client();
         }
+
+        if ($this->use_db) {
+            $this->db = $this->app->db;
+            $this->db->beginTransaction();
+        }
     }
 
-    protected function around_tearDown(callable $proceed): void {
-        /* @var TestCase|static $this */
+    protected function tearDown(): void {
+        if ($this->use_db) {
+            $this->db->rollback();
+            $this->db = null;
+        }
 
         if ($this->use_http) {
             $this->http = null;
         }
 
-        $proceed();
+        parent::tearDown();
     }
 
     protected function call(string $request, string $baseUrl = '/api'): mixed {
