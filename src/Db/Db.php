@@ -24,8 +24,8 @@ abstract class Db extends Object_
     /**
      * @var callable[]
      */
-    protected $rolledBack = [];
-    protected $transactions = 0;
+    protected array $rolledBack = [];
+    protected int $transactions = 0;
 
     protected function get_connection(): Connection {
         return $this->connect();
@@ -102,7 +102,7 @@ abstract class Db extends Object_
         $this->transactions--;
         if (!$this->transactions) {
             foreach (array_reverse($this->rolledBack) as $callback) {
-                $callback();
+                $callback($this);
             }
             $this->rolledBack = [];
         }
