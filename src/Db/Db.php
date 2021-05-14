@@ -76,6 +76,10 @@ abstract class Db extends Object_
         $this->ddl->getSchemaBuilder()->drop($table);
     }
 
+    public function dropIfExists(string $table): void {
+        $this->ddl->getSchemaBuilder()->dropIfExists($table);
+    }
+
     public function query(): Builder {
         return $this->connection->query();
     }
