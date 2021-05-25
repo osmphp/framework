@@ -1,9 +1,8 @@
 <?php
 
-/** @noinspection PhpUnusedAliasInspection */
 declare(strict_types=1);
 
-namespace Osm\Tools\Migrations\Commands;
+namespace Osm\Framework\Migrations\Commands;
 
 use Osm\Core\App;
 use Osm\Framework\Console\Command;
@@ -12,7 +11,6 @@ use Osm\Framework\Console\Attributes\Argument;
 use Osm\Runtime\Apps;
 
 /**
- * @property ?string $app #[Option]
  * @property string[] $modules #[Argument]
  * @property ?bool $fresh #[Option]
  */
