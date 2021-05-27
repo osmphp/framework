@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Osm\Framework\Search;
 
 use Osm\Core\Object_;
+use Osm\Core\Traits\Observable;
 use Osm\Framework\Search\Fields\Field;
 
 /**
@@ -13,13 +14,14 @@ use Osm\Framework\Search\Fields\Field;
  */
 abstract class Blueprint extends Object_
 {
+    use Observable;
+
     /**
      * @var Field[]
      */
     public array $fields = [];
 
     abstract public function create(): void;
-    abstract public function alter(): void;
     abstract public function drop(): void;
     abstract public function exists(): bool;
 

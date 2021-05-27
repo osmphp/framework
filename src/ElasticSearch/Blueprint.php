@@ -14,7 +14,7 @@ use Osm\Framework\Search\Fields\Field;
 class Blueprint extends BaseBlueprint
 {
     public function create(): void {
-        $this->search->client->indices()->create([
+        $request = $this->fireFunction('elastic:creating', [
             'index' => "{$this->search->index_prefix}{$this->index_name}",
             'body' => [
                 'mappings' => [
@@ -25,10 +25,10 @@ class Blueprint extends BaseBlueprint
                 ],
             ],
         ]);
-    }
 
-    public function alter(): void {
-        throw new NotImplemented();
+        $this->search->client->indices()->create($request);
+
+        $this->fire('elastic:created');
     }
 
     public function drop(): void {

@@ -20,14 +20,6 @@ abstract class Search extends Object_
         $blueprint->create();
     }
 
-    public function alter(string $index, callable $callback): void {
-        $callback($blueprint = $this->createBlueprint([
-            'search' => $this,
-            'index_name' => $index,
-        ]));
-        $blueprint->alter();
-    }
-
     public function drop(string $index): void {
         $blueprint = $this->createBlueprint([
             'search' => $this,

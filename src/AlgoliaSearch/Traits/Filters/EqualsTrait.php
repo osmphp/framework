@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Osm\Framework\AlgoliaSearch\Traits\Filters;
 
-use Osm\Framework\Search\Filters\FieldFilter;
+use Osm\Framework\Search\Filters\Field;
 
 trait EqualsTrait
 {
@@ -12,7 +12,7 @@ trait EqualsTrait
 
     /** @noinspection PhpUnused */
     public function toAlgoliaQuery(): string {
-        /* @var FieldFilter $this */
+        /* @var Field $this */
         if (is_string($this->value)) {
             $value = "'{$this->value}'";
         }

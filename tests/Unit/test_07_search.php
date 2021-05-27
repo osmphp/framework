@@ -32,7 +32,7 @@ class test_07_search extends TestCase
 
         // THEN the data is indeed in the search engine
         $id = $this->app->search->index('test_products')
-            ->whereEquals('sku', 'P1')
+            ->where('sku', '=', 'P1')
             ->id();
 
         $this->assertEquals('1', $id);
@@ -69,7 +69,7 @@ class test_07_search extends TestCase
 
         // THEN the data is indeed in the search engine
         $id = $this->app->search->index('test_products')
-            ->whereEquals('sku', 'P5')
+            ->where('sku', '=', 'P5')
             ->id();
 
         $this->assertEquals('5', $id);

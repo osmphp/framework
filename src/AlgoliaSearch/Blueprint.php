@@ -19,13 +19,13 @@ class Blueprint extends BaseBlueprint
             $facets[] = $field->generateAlgoliaFacet();
         }
 
-        $this->index()->setSettings([
+        $settings = $this->fireFunction('algolia:creating', [
             'attributesForFaceting' => $facets,
-        ])->wait();
-    }
+        ]);
 
-    public function alter(): void {
-        throw new NotImplemented();
+        $this->index()->setSettings($settings)->wait();
+
+        $this->fire('algolia:created');
     }
 
     public function drop(): void {

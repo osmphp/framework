@@ -27,6 +27,6 @@ class Module extends BaseModule
 
         Filters\Filter::class => Traits\Filters\FilterTrait::class,
         Filters\And_::class => Traits\Filters\AndTrait::class,
-        Filters\Equals::class => Traits\Filters\EqualsTrait::class,
+        Filters\Field::class => Traits\Filters\FieldTrait::class,
     ];
 }
