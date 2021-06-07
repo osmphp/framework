@@ -21,12 +21,16 @@ class Query extends BaseQuery
             $data['objectID'] = (string)$data['id'];
         }
 
+        $data = $this->fireFunction('algolia:inserting', $data);
+
         $request = $this->search->initIndex($this->index_name)
             ->saveObject($data);
 
         if ($this->search->wait) {
             $request->wait();
         }
+
+        $this->fire('algolia:inserted', $data['id'] ?? null);
     }
 
     public function bulkInsert(array $data): void {
@@ -36,16 +40,22 @@ class Query extends BaseQuery
             }
         }
 
+        $data = $this->fireFunction('algolia:bulk-inserting', $data);
+
         $request = $this->search->initIndex($this->index_name)
             ->saveObjects($data);
 
         if ($this->search->wait) {
             $request->wait();
         }
+
+        $this->fire('algolia:bulk-inserted', $data);
     }
 
     public function update(int|string $id, array $data): void {
         $data['objectID'] = (string)$id;
+
+        $data = $this->fireFunction('algolia:updating', $data);
 
         $request = $this->search->initIndex($this->index_name)
             ->partialUpdateObject($data);
@@ -53,15 +63,21 @@ class Query extends BaseQuery
         if ($this->search->wait) {
             $request->wait();
         }
+
+        $this->fire('algolia:updated', $id);
     }
 
     public function delete(int|string $id): void {
+        $this->fire('algolia:deleting', $id);
+
         $request = $this->search->initIndex($this->index_name)
             ->deleteObject($id);
 
         if ($this->search->wait) {
             $request->wait();
         }
+
+        $this->fire('algolia:deleted', $id);
     }
 
     public function get(): Result {

@@ -75,11 +75,15 @@ class Query extends BaseQuery
             $body[] = $item;
         }
 
-        $this->search->client->bulk([
+        $request = $this->fireFunction('elastic:bulk-inserting', [
             'index' => "{$this->search->index_prefix}{$this->index_name}",
             'refresh' => $this->search->refresh,
             'body' => $body,
         ]);
+
+        $this->search->client->bulk($request);
+
+        $this->fire('elastic:bulk-inserted', $request);
     }
 
     public function get(): Result {
