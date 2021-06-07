@@ -112,8 +112,6 @@ class test_07_search extends TestCase
         }
         $search->index('test_products')->bulkInsert($data);
 
-        $ids = $search->index('test_products')->ids();
-
         $search->index('test_products')->update(4, [
             'description' => 'Phasellus sodales nunc sed quam egestas, vel congue purus tincidunt.',
         ]);

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Osm\Framework\AlgoliaSearch\Traits\Fields;
+namespace Osm\Framework\AlgoliaSearch\Traits;
 
 use Osm\Framework\Search\Field;
 

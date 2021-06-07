@@ -14,6 +14,8 @@ use Osm\Framework\Search\Blueprint as BaseBlueprint;
 class Blueprint extends BaseBlueprint
 {
     public function create(): void {
+        $this->addIdField();
+
         $facets = [];
         foreach ($this->fields as $field) {
             $facets[] = $field->generateAlgoliaFacet();
@@ -26,10 +28,14 @@ class Blueprint extends BaseBlueprint
         $this->index()->setSettings($settings)->wait();
 
         $this->fire('algolia:created');
+
+        $this->search->register($this);
     }
 
     public function drop(): void {
         $this->index()->delete()->wait();
+
+        $this->search->unregister($this);
     }
 
     public function exists(): bool {

@@ -11,9 +11,10 @@ use Osm\Framework\Search\Filter;
 class Module extends BaseModule
 {
     public static array $traits = [
-        Field::class => Traits\Fields\FieldTrait::class,
+        Field::class => Traits\FieldTrait::class,
 
-        Filter::class => Traits\Filters\FilterTrait::class,
-        Filter\And_::class => Traits\Filters\AndTrait::class,
+        Filter::class => Traits\FilterTrait::class,
+        Filter\Logical::class => Traits\FilterTrait\Logical::class,
+        Filter\Field::class => Traits\FilterTrait\Field::class,
     ];
 }

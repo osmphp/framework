@@ -104,9 +104,7 @@ class Query extends BaseQuery
         $result = Result::new([
             'count' => $response['hits']['total']['value'],
             'ids' => array_map(
-                fn($item) => is_numeric($item['_id'])
-                    ? (int)$item['_id']
-                    : $item['_id'],
+                fn($item) => $this->convertId($item['_id']),
                 $response['hits']['hits']),
             'facets' => $this->parseElasticAggregations($response),
         ]);
@@ -153,14 +151,16 @@ class Query extends BaseQuery
     }
 
     protected function sortElasticQuery(array $request): array {
-        if (empty($this->orders)) {
+        if (!$this->order) {
             return $request;
         }
 
         $sort = [];
-        foreach ($this->orders as $order) {
-            $sort[$order->field->elastic_raw_name] =
-                $order->desc ? "desc": "asc";
+
+        foreach ($this->order->by as $by) {
+            $field = $this->index->fields[$by->field_name];
+            $sort[$field->elastic_raw_name] =
+                $by->desc ? "desc": "asc";
         }
 
         $request['body']['sort'] = $sort;

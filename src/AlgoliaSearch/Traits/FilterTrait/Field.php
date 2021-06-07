@@ -2,17 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Osm\Framework\AlgoliaSearch\Traits\Filters;
+namespace Osm\Framework\AlgoliaSearch\Traits\FilterTrait;
 
-use Osm\Framework\Search\Filter\Field;
+use Osm\Framework\AlgoliaSearch\Traits\FilterTrait;
+use Osm\Framework\Search\Filter;
 
-trait EqualsTrait
+trait Field
 {
     use FilterTrait;
 
     /** @noinspection PhpUnused */
     public function toAlgoliaQuery(): string {
-        /* @var Field $this */
+        /* @var Filter\Field|Field $this */
         if (is_string($this->value)) {
             $value = "'{$this->value}'";
         }

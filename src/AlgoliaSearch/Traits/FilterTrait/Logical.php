@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Osm\Framework\AlgoliaSearch\Traits\Filters;
+namespace Osm\Framework\AlgoliaSearch\Traits\FilterTrait;
 
+use Osm\Framework\AlgoliaSearch\Traits\FilterTrait;
 use Osm\Framework\Search\Filter;
 
-trait AndTrait
+trait Logical
 {
     use FilterTrait;
 

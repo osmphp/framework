@@ -9,6 +9,7 @@ use Osm\Core\Exceptions\NotImplemented;
 use Osm\Core\Object_;
 use Osm\Framework\Cache\Cache;
 use Osm\Framework\Db\Db;
+use Osm\Framework\Search\Field\Sortable;
 use function Osm\create;
 use function Osm\dehydrate;
 use Osm\Framework\Cache\Attributes\Cached;
@@ -68,6 +69,7 @@ abstract class Search extends Object_
             'data' => json_encode(dehydrate(Index::new([
                 'name' => $index->index_name,
                 'fields' => $index->fields,
+                'orders' => $index->orders,
             ]))),
         ]);
 
@@ -119,15 +121,37 @@ abstract class Search extends Object_
         if (isset($data['fields'])) {
             $data['fields'] = (array)$data['fields'];
             foreach ($data['fields'] as &$field) {
-                $field = $this->hydrateField($field);
+                $field = $this->hydrateField((array)$field);
+            }
+        }
+
+        if (isset($data['orders'])) {
+            $data['orders'] = (array)$data['orders'];
+            foreach ($data['orders'] as &$order) {
+                $order = $this->hydrateOrder((array)$order);
             }
         }
 
         return Index::new($data);
     }
 
-    protected function hydrateField(\stdClass $field): Field|Object_ {
-        return create(Field::class, $field->type ?? null,
-            (array)$field);
+    protected function hydrateField(array $data): Field|Object_ {
+        if (isset($data['sortable'])) {
+            $data['sortable'] = Sortable::new((array)$data['sortable']);
+        }
+
+        return create(Field::class, $data->type ?? null,
+            $data);
+    }
+
+    protected function hydrateOrder(array $data): Order|Object_ {
+        if (isset($data['by'])) {
+            $data['by'] = array_map(
+                fn($item) => Order\By::new((array)$item),
+                $data['by']
+            );
+        }
+
+        return Order::new($data);
     }
 }

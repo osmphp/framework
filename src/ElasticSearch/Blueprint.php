@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Osm\Framework\ElasticSearch;
 
-use Osm\Core\Exceptions\NotImplemented;
 use Osm\Framework\Search\Blueprint as BaseBlueprint;
-use Osm\Framework\Search\Field;
 use function Osm\merge;
 
 /**
@@ -15,11 +13,7 @@ use function Osm\merge;
 class Blueprint extends BaseBlueprint
 {
     public function create(): void {
-        $this->fields = merge([
-            'id' => Field\Int_::new(['name' => 'id'])
-                ->filterable()
-                ->sortable(),
-        ], $this->fields);
+        $this->addIdField();
 
         $properties = [];
 

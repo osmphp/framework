@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Osm\Framework\AlgoliaSearch\Traits\Filters;
+namespace Osm\Framework\AlgoliaSearch\Traits;
 
 use Osm\Core\Exceptions\NotImplemented;
 

@@ -42,6 +42,24 @@ class Query extends BaseQuery
         }
     }
 
+    public function update(int|string $id, array $data): void {
+        $data['objectID'] = (string)$id;
+
+        $request = $this->index()->partialUpdateObject($data);
+
+        if ($this->search->wait) {
+            $request->wait();
+        }
+    }
+
+    public function delete(int|string $id): void {
+        $request = $this->index()->deleteObject($id);
+
+        if ($this->search->wait) {
+            $request->wait();
+        }
+    }
+
     public function get(): Result {
         $filters = $this->filter->toAlgoliaQuery();
         $response = $this->index()->search('', [
@@ -51,7 +69,10 @@ class Query extends BaseQuery
 
         return Result::new([
             'count' => $response['nbHits'],
-            'ids' => array_map(fn($item) => $item['objectID'], $response['hits']),
+            'ids' => array_map(
+                fn($item) => $this->convertId($item['objectID']),
+                $response['hits']
+            ),
         ]);
     }
 

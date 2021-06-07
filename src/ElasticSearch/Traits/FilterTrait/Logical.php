@@ -16,7 +16,7 @@ trait Logical
 
     /** @noinspection PhpUnused */
     public function toElasticQuery(bool $root = false): array {
-        /* @var Filter\Logical $this */
+        /* @var Filter\Logical|Logical $this */
         $filters = [];
 
         // if there is only one operand, don't apply any logical operator

@@ -4,13 +4,10 @@ declare(strict_types=1);
 
 namespace Osm\Framework\Search;
 
-use Osm\Core\App;
-use Osm\Core\BaseModule;
 use Osm\Core\Exceptions\NotImplemented;
 use Osm\Core\Object_;
 use Osm\Core\Traits\Observable;
 use Osm\Framework\Search\Exceptions\InvalidQuery;
-use Osm\Framework\Search\Filter\And_;
 use Osm\Framework\Search\Filter\Logical;
 use Osm\Framework\Search\Traits\Filterable;
 use function Osm\__;
@@ -22,6 +19,7 @@ use function Osm\__;
  * @property string $phrase
  * @property int $offset
  * @property int $limit
+ * @property Order $order
  *
  * @property Index $index
  */
@@ -33,11 +31,6 @@ class Query extends Object_
      * @var Facet[]
      */
     public array $facets = [];
-
-    /**
-     * @var Order[]
-     */
-    public array $orders = [];
 
     public function insert(array $data): void {
         throw new NotImplemented($this);
@@ -93,19 +86,16 @@ class Query extends Object_
         return $this;
     }
 
-    public function orderBy(string $fieldName, bool $desc = false): static
+    public function orderBy(string $orderName, bool $desc = false): static
     {
-        $field = $this->field($fieldName);
-        if (!$field->sortable) {
-            throw new InvalidQuery(__("Can't sort by ':field' field",
-                ['field' => $fieldName]));
+        $key = $orderName . '|' . ($desc ? 'desc' : 'asc');
+
+        if (!isset($this->index->orders[$key])) {
+            throw new InvalidQuery(__("Can't sort by ':order'",
+                ['order' => $orderName]));
         }
 
-        $this->orders[] = Order::new([
-            'query' => $this,
-            'field_name' => $fieldName,
-            'desc' => $desc,
-        ]);
+        $this->order = $this->index->orders[$key];
 
         return $this;
     }
@@ -136,5 +126,9 @@ class Query extends Object_
 
     protected function get_index(): Index {
         return $this->search->indexes[$this->index_name];
+    }
+
+    protected function convertId(int|string $id): int|string {
+        return is_numeric($id) ? (int)$id : $id;
     }
 }
