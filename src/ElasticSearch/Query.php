@@ -23,16 +23,20 @@ class Query extends BaseQuery
             $id = null;
         }
 
-        $this->search->client->index([
+        $request = $this->fireFunction('elastic:inserting', [
             'index' => "{$this->search->index_prefix}{$this->index_name}",
             'refresh' => $this->search->refresh,
             'id' => $id,
             'body' => $data,
         ]);
+
+        $this->search->client->index($request);
+
+        $this->fire('elastic:inserted', $data['id'] ?? null);
     }
 
     public function update(int|string $id, array $data): void {
-        $this->search->client->update([
+        $request = $this->fireFunction('elastic:updating', [
             'index' => "{$this->search->index_prefix}{$this->index_name}",
             'refresh' => $this->search->refresh,
             'id' => (string)$id,
@@ -40,14 +44,22 @@ class Query extends BaseQuery
                 'doc' => $data,
             ],
         ]);
+
+        $this->search->client->update($request);
+
+        $this->fire('elastic:updated', $id);
     }
 
     public function delete(int|string $id): void {
-        $this->search->client->delete([
+        $request = $this->fireFunction('elastic:deleting', [
             'index' => "{$this->search->index_prefix}{$this->index_name}",
             'refresh' => $this->search->refresh,
             'id' => (string)$id,
         ]);
+
+        $this->search->client->delete($request);
+
+        $this->fire('elastic:deleted', $id);
     }
 
     public function bulkInsert(array $data): void {
@@ -86,9 +98,10 @@ class Query extends BaseQuery
         $request = $this->paginateElasticQuery($request);
         $request = $this->facetElasticQuery($request);
 
+        $request = $this->fireFunction('elastic:getting', $request);
         $response = $this->search->client->search($request);
 
-        return Result::new([
+        $result = Result::new([
             'count' => $response['hits']['total']['value'],
             'ids' => array_map(
                 fn($item) => is_numeric($item['_id'])
@@ -97,6 +110,8 @@ class Query extends BaseQuery
                 $response['hits']['hits']),
             'facets' => $this->parseElasticAggregations($response),
         ]);
+
+        return $this->fireFunction('elastic:got', $result, $response);
     }
 
     protected function searchElasticQuery(array $query): array {
@@ -120,7 +135,6 @@ class Query extends BaseQuery
                     $field->name => [
                         'query' => $phrase,
                         'boost' => 1,
-                        //'auto_generate_synonyms_phrase_query' => false,
                     ],
                 ],
             ];
