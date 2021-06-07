@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Osm\Framework\Search;
 
+use Osm\Core\Exceptions\NotImplemented;
 use Osm\Core\Object_;
 use Osm\Core\Traits\Observable;
-use Osm\Framework\Search\Fields\Field;
 
 /**
  * @property Search $search
  * @property string $index_name
  */
-abstract class Blueprint extends Object_
+class Blueprint extends Object_
 {
     use Observable;
 
@@ -21,18 +21,38 @@ abstract class Blueprint extends Object_
      */
     public array $fields = [];
 
-    abstract public function create(): void;
-    abstract public function drop(): void;
-    abstract public function exists(): bool;
+    public function create(): void {
+        throw new NotImplemented($this);
+    }
 
-    public function int(string $fieldName): Fields\Int_ {
-        return $this->fields[$fieldName] = Fields\Int_::new([
+    public function drop(): void {
+        throw new NotImplemented($this);
+    }
+
+    public function exists(): bool {
+        throw new NotImplemented($this);
+    }
+
+    public function int(string $fieldName): Field\Int_ {
+        return $this->fields[$fieldName] = Field\Int_::new([
             'name' => $fieldName,
         ]);
     }
 
-    public function string(string $fieldName): Fields\String_ {
-        return $this->fields[$fieldName] = Fields\String_::new([
+    public function string(string $fieldName): Field\String_ {
+        return $this->fields[$fieldName] = Field\String_::new([
+            'name' => $fieldName,
+        ]);
+    }
+
+    public function float(string $fieldName): Field\Float_ {
+        return $this->fields[$fieldName] = Field\Float_::new([
+            'name' => $fieldName,
+        ]);
+    }
+
+    public function bool(string $fieldName): Field\Bool_ {
+        return $this->fields[$fieldName] = Field\Bool_::new([
             'name' => $fieldName,
         ]);
     }

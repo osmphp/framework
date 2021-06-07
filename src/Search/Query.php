@@ -9,36 +9,110 @@ use Osm\Core\BaseModule;
 use Osm\Core\Exceptions\NotImplemented;
 use Osm\Core\Object_;
 use Osm\Core\Traits\Observable;
-use Osm\Framework\Search\Filters\And_;
-use Osm\Framework\Search\Filters\LogicalFilter;
+use Osm\Framework\Search\Exceptions\InvalidQuery;
+use Osm\Framework\Search\Filter\And_;
+use Osm\Framework\Search\Filter\Logical;
+use Osm\Framework\Search\Traits\Filterable;
+use function Osm\__;
 
 /**
  * @property Search $search
  * @property string $index_name
- * @property LogicalFilter $filter
+ *
+ * @property string $phrase
+ * @property int $offset
+ * @property int $limit
+ *
  * @property Index $index
  */
-abstract class Query extends Object_
+class Query extends Object_
 {
-    use Observable;
+    use Observable, Filterable;
 
-    abstract public function insert(array $data): void;
-    abstract public function bulkInsert(array $data): void;
+    /**
+     * @var Facet[]
+     */
+    public array $facets = [];
 
-    public function where(string $fieldName, string $operator,
-        mixed $value = null): static
+    /**
+     * @var Order[]
+     */
+    public array $orders = [];
+
+    public function insert(array $data): void {
+        throw new NotImplemented($this);
+    }
+
+    public function update(int|string $id, array $data): void {
+        throw new NotImplemented($this);
+    }
+
+    public function delete(int|string $id): void {
+        throw new NotImplemented($this);
+    }
+
+    public function bulkInsert(array $data): void {
+        throw new NotImplemented($this);
+    }
+
+    public function search(string $phrase): static {
+        $this->phrase = $phrase;
+
+        return $this;
+    }
+
+    public function offset(int $offset): static {
+        $this->offset = $offset;
+
+        return $this;
+    }
+
+    public function limit(int $limit): static {
+        $this->limit = $limit;
+
+        return $this;
+    }
+
+    public function facetBy(string $fieldName, bool $min = false, bool $max = false,
+        bool $count = true): static
     {
-        $this->filter->filters[] = Filters\Field::new([
+        $field = $this->field($fieldName);
+        if (!$field->faceted) {
+            throw new InvalidQuery(__("Can't facet by ':field' field",
+                ['field' => $fieldName]));
+        }
+
+        $this->facets[] = Facet::new([
             'query' => $this,
             'field_name' => $fieldName,
-            'operator' => $operator,
-            'value' => $value,
+            'min' => $min,
+            'max' => $max,
+            'count' => $count,
         ]);
 
         return $this;
     }
 
-    abstract public function get(): Result;
+    public function orderBy(string $fieldName, bool $desc = false): static
+    {
+        $field = $this->field($fieldName);
+        if (!$field->sortable) {
+            throw new InvalidQuery(__("Can't sort by ':field' field",
+                ['field' => $fieldName]));
+        }
+
+        $this->orders[] = Order::new([
+            'query' => $this,
+            'field_name' => $fieldName,
+            'desc' => $desc,
+        ]);
+
+        return $this;
+    }
+
+    public function get(): Result {
+        throw new NotImplemented($this);
+    }
 
     public function count(): int {
         return $this->get()->count;
@@ -51,16 +125,16 @@ abstract class Query extends Object_
         return $this->get()->ids;
     }
 
-    public function id(): ?string {
+    public function id(): string|int|null {
         return $this->get()->ids[0] ?? null;
     }
 
     /** @noinspection PhpUnused */
-    protected function get_filter(): LogicalFilter {
-        return And_::new();
+    protected function get_filter(): Logical {
+        return Logical::new(['operator' => 'and']);
     }
 
     protected function get_index(): Index {
-        throw new NotImplemented($this);
+        return $this->search->indexes[$this->index_name];
     }
 }

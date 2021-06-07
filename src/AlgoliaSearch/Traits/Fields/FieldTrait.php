@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Osm\Framework\AlgoliaSearch\Traits\Fields;
 
-use Osm\Framework\Search\Fields\Field;
+use Osm\Framework\Search\Field;
 
 trait FieldTrait
 {

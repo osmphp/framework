@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Osm\Framework\AlgoliaSearch\Traits\Filters;
 
-use Osm\Framework\Search\Filters\Filter;
-use Osm\Framework\Search\Filters\LogicalFilter;
+use Osm\Framework\Search\Filter;
 
 trait AndTrait
 {
@@ -13,7 +12,7 @@ trait AndTrait
 
     /** @noinspection PhpUnused */
     public function toAlgoliaQuery(): string {
-        /* @var LogicalFilter $this */
+        /* @var Filter\Logical $this */
         return implode(" AND ",
             array_map(fn(Filter $filter) => $filter->toAlgoliaQuery(),
                 $this->filters));

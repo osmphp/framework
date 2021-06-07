@@ -41,19 +41,27 @@ namespace Osm {
         rmdir($path);
     }
 
-    function create(string $className, ?string $descendantName,
+    function create(string $className, ?string $descendantName = null,
         array $data = []): Object_
     {
-        global $osm_app; /* @var App $osm_app */
-
+        $className = subclass_name($className, $descendantName);
         $new = "{$className}::new";
-        if ($descendantName) {
-            $descendants = $osm_app->descendants->byName($className);
-            if (isset($descendants[$descendantName])) {
-                $new = "{$descendants[$descendantName]}::new";
-            }
-        }
 
         return $new($data);
+    }
+
+    function subclass_name(string $className, ?string $descendantName = null) {
+        global $osm_app; /* @var App $osm_app */
+
+        if (!$descendantName) {
+            return $className;
+        }
+
+        $descendants = $osm_app->descendants->byName($className);
+        if (isset($descendants[$descendantName])) {
+            return $descendants[$descendantName];
+        }
+
+        return $className;
     }
 }

@@ -5,16 +5,15 @@ declare(strict_types=1);
 namespace Osm\Framework\AlgoliaSearch;
 
 use Osm\Core\BaseModule;
-use Osm\Framework\Search\Fields;
-use Osm\Framework\Search\Filters;
+use Osm\Framework\Search\Field;
+use Osm\Framework\Search\Filter;
 
 class Module extends BaseModule
 {
     public static array $traits = [
-        Fields\Field::class => Traits\Fields\FieldTrait::class,
+        Field::class => Traits\Fields\FieldTrait::class,
 
-        Filters\Filter::class => Traits\Filters\FilterTrait::class,
-        Filters\And_::class => Traits\Filters\AndTrait::class,
-        Filters\Equals::class => Traits\Filters\EqualsTrait::class,
+        Filter::class => Traits\Filters\FilterTrait::class,
+        Filter\And_::class => Traits\Filters\AndTrait::class,
     ];
 }

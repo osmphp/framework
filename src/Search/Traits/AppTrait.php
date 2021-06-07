@@ -15,10 +15,14 @@ trait AppTrait
 {
     /** @noinspection PhpUnused */
     protected function get_search(): Search {
+        return $this->createSearch('search');
+    }
+
+    protected function createSearch(string $name): Search {
         /* @var App $this */
 
         $drivers = $this->descendants->byName(Search::class);
-        $config = $this->settings->search;
+        $config = $this->settings->{$name};
         $new = "{$drivers[$config['driver']]}::new";
         unset($config['driver']);
 
@@ -31,6 +35,7 @@ trait AppTrait
             $data = [];
         }
 
+        $data['name'] = $name;
         $data['config'] = $config;
         return $new($data);
     }

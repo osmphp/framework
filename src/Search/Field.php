@@ -3,13 +3,14 @@
 /** @noinspection PhpUnusedAliasInspection */
 declare(strict_types=1);
 
-namespace Osm\Framework\Search\Fields;
+namespace Osm\Framework\Search;
 
 use Osm\Core\Object_;
 use Osm\Core\Attributes\Serialized;
 
 /**
  * @property string $name #[Serialized]
+ * @property string $type #[Serialized]
  * @property bool $array #[Serialized]
  * @property bool $searchable #[Serialized]
  * @property bool $filterable #[Serialized]
@@ -18,6 +19,12 @@ use Osm\Core\Attributes\Serialized;
  */
 class Field extends Object_
 {
+    public function array(): static {
+        $this->array = true;
+
+        return $this;
+    }
+
     public function searchable(): static {
         $this->searchable = true;
 

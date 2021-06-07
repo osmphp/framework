@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Osm\Framework\Search\Filters;
+namespace Osm\Framework\Search\Filter;
 
-use Osm\Framework\Search\Fields\Field as FieldDef;
+use Osm\Framework\Search\Field as FieldDef;
+use Osm\Framework\Search\Filter;
 
 /**
  * @property string $field_name

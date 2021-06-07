@@ -6,7 +6,8 @@ namespace Osm\Framework\ElasticSearch;
 
 use Osm\Core\Exceptions\NotImplemented;
 use Osm\Framework\Search\Blueprint as BaseBlueprint;
-use Osm\Framework\Search\Fields\Field;
+use Osm\Framework\Search\Field;
+use function Osm\merge;
 
 /**
  * @property Search $search
@@ -14,14 +15,23 @@ use Osm\Framework\Search\Fields\Field;
 class Blueprint extends BaseBlueprint
 {
     public function create(): void {
+        $this->fields = merge([
+            'id' => Field\Int_::new(['name' => 'id'])
+                ->filterable()
+                ->sortable(),
+        ], $this->fields);
+
+        $properties = [];
+
+        foreach ($this->fields as $field) {
+            $properties = merge($properties, $field->generateElasticField());
+        }
+
         $request = $this->fireFunction('elastic:creating', [
             'index' => "{$this->search->index_prefix}{$this->index_name}",
             'body' => [
                 'mappings' => [
-                    'properties' => array_map(
-                        fn (Field $field) => $field->generateElasticField(),
-                        $this->fields
-                    ),
+                    'properties' => $properties,
                 ],
             ],
         ]);
@@ -29,12 +39,16 @@ class Blueprint extends BaseBlueprint
         $this->search->client->indices()->create($request);
 
         $this->fire('elastic:created');
+
+        $this->search->register($this);
     }
 
     public function drop(): void {
         $this->search->client->indices()->delete([
             'index' => "{$this->search->index_prefix}{$this->index_name}",
         ]);
+
+        $this->search->unregister($this);
     }
 
     public function exists(): bool {

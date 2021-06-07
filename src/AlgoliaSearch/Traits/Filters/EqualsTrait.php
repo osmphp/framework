@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Osm\Framework\AlgoliaSearch\Traits\Filters;
 
-use Osm\Framework\Search\Filters\Field;
+use Osm\Framework\Search\Filter\Field;
 
 trait EqualsTrait
 {

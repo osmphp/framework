@@ -7,8 +7,8 @@ namespace Osm\Framework\ElasticSearch;
 use Osm\Core\BaseModule;
 use Osm\Framework\Logs\Hints\LogSettings;
 use Osm\Framework\Logs\Logs;
-use Osm\Framework\Search\Fields;
-use Osm\Framework\Search\Filters;
+use Osm\Framework\Search\Field;
+use Osm\Framework\Search\Filter;
 
 class Module extends BaseModule
 {
@@ -21,12 +21,14 @@ class Module extends BaseModule
         Logs::class => Traits\LogsTrait::class,
         LogSettings::class => Traits\LogSettingsTrait::class,
 
-        Fields\Field::class => Traits\Fields\FieldTrait::class,
-        Fields\Int_::class => Traits\Fields\IntFieldTrait::class,
-        Fields\String_::class => Traits\Fields\StringFieldTrait::class,
+        Field::class => Traits\FieldTrait::class,
+        Field\Int_::class => Traits\FieldTrait\Int_::class,
+        Field\String_::class => Traits\FieldTrait\String_::class,
+        Field\Float_::class => Traits\FieldTrait\Float_::class,
+        Field\Bool_::class => Traits\FieldTrait\Bool_::class,
 
-        Filters\Filter::class => Traits\Filters\FilterTrait::class,
-        Filters\And_::class => Traits\Filters\AndTrait::class,
-        Filters\Field::class => Traits\Filters\FieldTrait::class,
+        Filter::class => Traits\FilterTrait::class,
+        Filter\Logical::class => Traits\FilterTrait\Logical::class,
+        Filter\Field::class => Traits\FilterTrait\Field::class,
     ];
 }
