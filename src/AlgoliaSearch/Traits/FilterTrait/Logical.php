@@ -14,7 +14,10 @@ trait Logical
     /** @noinspection PhpUnused */
     public function toAlgoliaQuery(): string {
         /* @var Filter\Logical $this */
-        return implode(" AND ",
+
+        $operator = strtoupper($this->operator);
+
+        return implode(" {$operator} ",
             array_map(fn(Filter $filter) => $filter->toAlgoliaQuery(),
                 $this->filters));
     }

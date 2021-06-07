@@ -10,7 +10,7 @@ use Osm\Core\Attributes\Serialized;
 /**
  * @property string $name #[Serialized]
  * @property Field[] $fields #[Serialized]
- * @property Order\Order[] $orders #[Serialized]
+ * @property Order[] $orders #[Serialized]
  */
 class Index extends Object_
 {

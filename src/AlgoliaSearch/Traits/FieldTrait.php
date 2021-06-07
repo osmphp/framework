@@ -10,6 +10,6 @@ trait FieldTrait
 {
     public function generateAlgoliaFacet(): string {
         /* @var Field $this */
-        return "filterOnly({$this->name})";
+        return $this->faceted ? $this->name : "filterOnly({$this->name})";
     }
 }

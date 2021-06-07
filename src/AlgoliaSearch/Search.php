@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Osm\Framework\AlgoliaSearch;
 
 use Algolia\AlgoliaSearch\SearchClient;
+use Algolia\AlgoliaSearch\SearchIndex;
 use Osm\Core\Attributes\Name;
 use Osm\Framework\Search\Blueprint as BaseBlueprint;
 use Osm\Framework\Search\Query as BaseQuery;
@@ -37,5 +38,20 @@ class Search extends BaseSearch
             $this->config['app_id'],
             $this->config['admin_api_key'],
         );
+    }
+
+    public function indexName(string $name, ?string $suffix = null)
+        : string
+    {
+        return $suffix
+            ? "{$this->index_prefix}{$name}__{$suffix}"
+            : "{$this->index_prefix}{$name}";
+    }
+
+    public function initIndex(string $name, ?string $suffix = null)
+        : SearchIndex
+    {
+        return $this->client->initIndex(
+            $this->indexName($name, $suffix));
     }
 }

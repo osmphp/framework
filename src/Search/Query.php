@@ -88,7 +88,7 @@ class Query extends Object_
 
     public function orderBy(string $orderName, bool $desc = false): static
     {
-        $key = $orderName . '|' . ($desc ? 'desc' : 'asc');
+        $key = $orderName . '__' . ($desc ? 'desc' : 'asc');
 
         if (!isset($this->index->orders[$key])) {
             throw new InvalidQuery(__("Can't sort by ':order'",

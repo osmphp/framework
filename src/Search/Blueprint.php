@@ -79,7 +79,7 @@ class Blueprint extends Object_
     }
 
     public function order(string $name, bool $desc = false): Order {
-        $key = $name . '|' . ($desc ? 'desc' : 'asc');
+        $key = $name . '__' . ($desc ? 'desc' : 'asc');
 
         return $this->orders[$key] = Order::new([
             'blueprint' => $this,

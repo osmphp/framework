@@ -7,6 +7,7 @@ namespace Osm\Framework\AlgoliaSearch;
 use Osm\Core\BaseModule;
 use Osm\Framework\Search\Field;
 use Osm\Framework\Search\Filter;
+use Osm\Framework\Search\Order;
 
 class Module extends BaseModule
 {
@@ -16,5 +17,7 @@ class Module extends BaseModule
         Filter::class => Traits\FilterTrait::class,
         Filter\Logical::class => Traits\FilterTrait\Logical::class,
         Filter\Field::class => Traits\FilterTrait\Field::class,
+
+        Order::class => Traits\OrderTrait::class,
     ];
 }
