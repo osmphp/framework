@@ -36,4 +36,12 @@ namespace Osm {
             'Content-Type' => 'text/plain',
         ]);
     }
+
+    function url_decode(string $url): string {
+        return rawurldecode($url);
+    }
+
+    function url_encode(string $url): string {
+        return rawurlencode($url);
+    }
 }
