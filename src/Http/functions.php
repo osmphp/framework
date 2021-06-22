@@ -38,10 +38,10 @@ namespace Osm {
     }
 
     function url_decode(string $url): string {
-        return rawurldecode($url);
+        return rawurldecode(str_replace('+', '%20', $url));
     }
 
     function url_encode(string $url): string {
-        return rawurlencode($url);
+        return str_replace('%20', '+', rawurlencode($url));
     }
 }
