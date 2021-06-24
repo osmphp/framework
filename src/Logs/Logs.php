@@ -15,7 +15,7 @@ use Osm\Core\Object_;
 class Logs extends Object_
 {
     /** @noinspection PhpUnused */
-    protected function get_elastic(): Logger {
+    protected function get_default(): Logger {
         global $osm_app; /* @var App $osm_app */
 
         $logger = new Logger('default');
