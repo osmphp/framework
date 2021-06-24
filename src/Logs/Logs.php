@@ -19,10 +19,8 @@ class Logs extends Object_
         global $osm_app; /* @var App $osm_app */
 
         $logger = new Logger('default');
-        if ($osm_app->settings->logs?->elastic ?? false) {
-            $logger->pushHandler(new RotatingFileHandler(
-                "{$osm_app->paths->temp}/logs/default.log"));
-        }
+        $logger->pushHandler(new RotatingFileHandler(
+            "{$osm_app->paths->temp}/logs/default.log"));
 
         return $logger;
     }
