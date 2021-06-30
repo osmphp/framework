@@ -37,7 +37,8 @@
             "src/Cache/functions.php",
             "src/Http/functions.php",
             "src/Logs/functions.php",
-            "src/Translations/functions.php"
+            "src/Translations/functions.php",
+            "src/Themes/functions.php"
         ],
         "psr-4": {
             "Osm\\Framework\\": "src/",

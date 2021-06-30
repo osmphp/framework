@@ -4,4 +4,4 @@
 
 /* @import_osm_modules */
 
-body {background: red; }
+body {--background: red; }

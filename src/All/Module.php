@@ -18,6 +18,7 @@ class Module extends BaseModule
         \Osm\Framework\ElasticSearch\Module::class,
         \Osm\Framework\Env\Module::class,
         \Osm\Framework\Http\Module::class,
+        \Osm\Framework\Js\Module::class,
         \Osm\Framework\Laravel\Module::class,
         \Osm\Framework\Logs\Module::class,
         \Osm\Framework\Migrations\Module::class,

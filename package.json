@@ -23,7 +23,8 @@
     "postcss-import": "^14.0.0",
     "precss": "^4.0.0",
     "rollup-plugin-postcss": "^4.0.0",
-    "tailwindcss": "^2.0.4"
+    "tailwindcss": "^2.0.4",
+    "mocha": "^9.0.1"
   },
   "dependencies": {
     "lodash": "^4.17.21"
