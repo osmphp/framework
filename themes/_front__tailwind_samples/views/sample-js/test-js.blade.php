@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 </head>
 <body>
+    <div id="container"></div>
     <div id="mocha"></div>
 
     <script src="https://unpkg.com/chai/chai.js"></script>

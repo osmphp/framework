@@ -162,8 +162,10 @@ function js() {
             .pipe(rollup({
                 input: `temp/${dir}/scripts.js`,
                 output: {
+                    //name: 'osm_app',
                     file: 'scripts.js',
-                    format: 'es',
+                    format: 'iife',
+                    sourcemap: true,
                 },
                 plugins: [commonjs(), nodeResolve()]
             }))
