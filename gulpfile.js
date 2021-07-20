@@ -86,6 +86,9 @@ function save(appName, themeName) {
 
 function call(appName, themeName) {
     function fn() {
+        let json = JSON.parse(fs.readFileSync(
+            `temp/${appName}/${themeName}/config.json`).toString());
+
         return spawn('node', [process.mainModule.filename,
             '-f', `temp/${appName}/${themeName}/gulpfile.js`,
             '--cwd', process.cwd()],
@@ -93,7 +96,8 @@ function call(appName, themeName) {
                 stdio: 'inherit',
                 env: Object.assign({}, process.env, {
                     GULP_APP: appName,
-                    GULP_THEME: themeName
+                    GULP_THEME: themeName,
+                    NODE_ENV: json.production ? 'production' : 'development',
                 })
             }
         );
@@ -133,6 +137,9 @@ function watchTheme(appName, themeName) {
                 p.kill();
             }
 
+            let json = fs.readFileSync(
+                `temp/${appName}/${themeName}/config.json`);
+
             p = spawn('node', [process.mainModule.filename, 'watch',
                 '-f', `temp/${appName}/${themeName}/gulpfile.js`,
                 '--cwd', process.cwd()],
@@ -140,7 +147,8 @@ function watchTheme(appName, themeName) {
                     stdio: 'inherit',
                     env: Object.assign({}, process.env, {
                         GULP_APP: appName,
-                        GULP_THEME: themeName
+                        GULP_THEME: themeName,
+                        NODE_ENV: json.production ? 'production' : 'development',
                     })
                 }
             );

@@ -11,8 +11,11 @@ const through = require('through2');
 const replace = require('gulp-replace');
 const {relative} = require('path');
 const print = require('gulp-print').default;
-const json = require('./config.json');
+const if_ = require('gulp-if');
+const {uglify} = require('rollup-plugin-uglify');
+const csso = require('postcss-csso');
 
+const json = require('./config.json');
 const appName = process.env.GULP_APP;
 const themeName = process.env.GULP_THEME;
 
@@ -157,19 +160,24 @@ function js() {
             patterns.push(`temp/${dir}/${moduleName}/**`);
         });
 
+        let plugins = [commonjs(), nodeResolve()];
+        if (json.production) {
+            plugins.push(uglify());
+        }
+
         return src(patterns, { base: `temp/${dir}`})
-            .pipe(sourcemaps.init())
+            .pipe(if_(!json.production, sourcemaps.init()))
             .pipe(rollup({
                 input: `temp/${dir}/scripts.js`,
                 output: {
                     //name: 'osm_app',
                     file: 'scripts.js',
                     format: 'iife',
-                    sourcemap: true,
+                    sourcemap: !json.production,
                 },
-                plugins: [commonjs(), nodeResolve()]
+                plugins: plugins,
             }))
-            .pipe(sourcemaps.write('.'))
+            .pipe(if_(!json.production, sourcemaps.write('.')))
             .pipe(dest(`public/${appName}/${themeName}`));
     }
     return exports[fn.displayName = `js('${appName}', '${themeName}')`] = fn;
@@ -191,14 +199,19 @@ function watchJs() {
 
 function css() {
     function fn() {
+        const plugins = [
+            require('postcss-import'),
+            require('tailwindcss')({config: __dirname + '/tailwind.config.js'}),
+            require('autoprefixer')
+        ];
+        if (json.production) {
+            plugins.push(csso);
+        }
+
         return src(`temp/${appName}/${themeName}/css/styles.css`)
-            .pipe(sourcemaps.init())
-            .pipe(postcss([
-                require('postcss-import'),
-                require('tailwindcss'),
-                require('autoprefixer')
-            ]))
-            .pipe(sourcemaps.write('.'))
+            .pipe(if_(!json.production, sourcemaps.init()))
+            .pipe(postcss(plugins))
+            .pipe(if_(!json.production, sourcemaps.write('.')))
             .pipe(dest(`public/${appName}/${themeName}`));
     }
     return exports[fn.displayName = `css('${appName}', '${themeName}')`] = fn;
