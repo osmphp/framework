@@ -22,6 +22,7 @@ class Module extends BaseModule
         \Osm\Framework\Laravel\Module::class,
         \Osm\Framework\Logs\Module::class,
         \Osm\Framework\Migrations\Module::class,
+        \Osm\Framework\Maintenance\Module::class,
         \Osm\Framework\Paths\Module::class,
         \Osm\Framework\Search\Module::class,
         \Osm\Framework\Settings\Module::class,
