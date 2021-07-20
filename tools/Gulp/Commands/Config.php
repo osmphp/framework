@@ -23,7 +23,7 @@ class Config extends Command
     public function run(): void {
         Apps::run(Apps::create($this->app), function(App $app) {
             $json = (object)[
-                'production' => true,
+                'production' => isset($_ENV['PRODUCTION']),
                 'modules' => array_values(array_map(
                     fn(BaseModule $module) => $module->name,
                     $app->modules)),

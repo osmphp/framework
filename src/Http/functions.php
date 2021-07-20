@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Osm {
 
+    use Osm\Core\App;
     use Symfony\Component\HttpFoundation\Response;
 
     function json_response(mixed $value): Response {
@@ -26,10 +27,20 @@ namespace Osm {
     }
 
     function exception_response(\Throwable $e): Response {
+        global $osm_app; /* @var App $osm_app */
+
         $content = '';
         for (; $e; $e = $e->getPrevious()) {
             $content = "{$e->getMessage()}\n\n{$e->getTraceAsString()}" .
                 "\n\n{$content}";
+        }
+
+        if (isset($_ENV['PRODUCTION'])) {
+            $osm_app->logs->http->error($content);
+
+            return new Response(__("Error"), 500, [
+                'Content-Type' => 'text/plain',
+            ]);
         }
 
         return new Response($content, 500, [
