@@ -1,1 +1,1 @@
-@php vendor/osmphp/core/bin/console.php %*
+@php vendor/osmphp/framework/bin/console.php %*
