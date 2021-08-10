@@ -6,4 +6,5 @@
 /.phpunit*
 /generated
 /composer.lock
+/package.json
 /package-lock.json
