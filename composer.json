@@ -1,6 +1,6 @@
 {
     "name": "osmphp/framework",
-    "description": "Standard Osm modules",
+    "description": "Osm Framework is an open-source, insanely fast, unprecedentedly extensible, and fun to work with PHP 8 framework for creating modern Web applications. It's built on top of tried and tested Symfony and Laravel components.",
     "license": "GPL-3.0-only",
     "authors": [
         {
