@@ -1,0 +1,9 @@
+{
+  "name": "osmphp",
+  "version": "1.0.0",
+  "description": "Compiles Osm application and builds Osm Framework theme assets",
+  "main": "gulpfile.js",
+  "author": "Vladislav Osmianskij",
+  "license": "GPL-3.0-only",
+  "private": "true"
+}
