@@ -1,0 +1,1 @@
+@php vendor/osmphp/core/bin/console.php %*
