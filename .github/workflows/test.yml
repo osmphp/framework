@@ -71,6 +71,12 @@ jobs:
             -   name: Install dependencies
                 run: composer update --prefer-dist --no-interaction --no-progress
 
+            -   name: Compile tools application
+                run: php vendor/osmphp/core/bin/compile.php Osm_Tools
+
+            -   name: Collect JS dependencies
+                run: php bin/tools.php config:npm
+
             -   name: Install Node modules
                 run: npm install
 
