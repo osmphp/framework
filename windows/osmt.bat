@@ -1,1 +1,0 @@
-@php vendor/osmphp/framework/bin/tools.php %*

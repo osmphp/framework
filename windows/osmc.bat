@@ -1,1 +1,0 @@
-@php vendor/osmphp/core/bin/compile.php %*
