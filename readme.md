@@ -9,9 +9,13 @@ Osm Framework is an open-source, insanely fast, unprecedentedly extensible, and
 fun to work with PHP 8 framework for creating modern Web applications. It's
 built on top of tried and tested Symfony and Laravel components.
 
+See also: 
+
 * [Introduction](https://osm.software/blog/21/05/framework-introduction.html)
 * [Installation](https://osm.software/blog/21/08/framework-installation.html) 
 * [License](https://github.com/osmphp/framework/blob/HEAD/LICENSE)
+
+For convenience, the introduction is repeated below.
 
 ## Extensibility (Dynamic Traits) 
 
