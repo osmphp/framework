@@ -11,8 +11,9 @@ built on top of tried and tested Symfony and Laravel components.
 
 # Documentation 
 
-* [Introduction](https://osm.software/blog/21/05/framework-introduction.html)
-* [Installation](https://osm.software/blog/21/08/framework-installation.html)
+* Getting Started
+    * [Introduction](https://osm.software/blog/21/05/framework-introduction.html)
+    * [Installation](https://osm.software/blog/21/08/framework-installation.html)
     * [Command Line Aliases](https://osm.software/blog/21/08/framework-command-line-aliases.html)  
 * Usage
     * [Search](https://osm.software/blog/21/05/framework-search.html) 
