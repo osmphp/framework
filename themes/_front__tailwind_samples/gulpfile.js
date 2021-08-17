@@ -19,45 +19,6 @@ const json = require('./config.json');
 const appName = process.env.GULP_APP;
 const themeName = process.env.GULP_THEME;
 
-function findTheme(name) {
-    let result = null;
-
-    if (!name) {
-        return result;
-    }
-
-    json.themes.forEach(theme => {
-        if (theme.name === name) {
-            result = theme;
-        }
-    });
-
-    return result;
-}
-
-function themePaths() {
-    let result = [];
-    for (let theme = findTheme(themeName); theme; theme = findTheme(theme.parent)) {
-        theme.paths.reverse().forEach(path => {
-            result.push(path);
-        });
-    }
-
-    return result.reverse();
-}
-
-function collect() {
-    return series(...themePaths().map(path => collectFrom(path)));
-}
-
-function collectFrom(sourcePath) {
-    function fn() {
-        return src(`${sourcePath}/**`)
-            .pipe(dest(`temp/${appName}/${themeName}`));
-    }
-    return exports[fn.displayName = `collectFrom('${appName}', '${themeName}', '${sourcePath}')`] = fn;
-}
-
 function watchCollect() {
     function fn () {
         let paths = themePaths();
@@ -233,7 +194,6 @@ function watchCss() {
 
 function build() {
     return series(
-        collect(),
         clear(),
         importJsModules(),
         importCssModules(),

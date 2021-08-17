@@ -14,13 +14,7 @@ module.exports = function save(appName, themeName) {
                 fs.writeFileSync(`temp/${appName}/${themeName}/config.json`,
                     stdout.toString());
 
-                let json = JSON.parse(stdout.toString());
-                json.themes.forEach(theme => {
-                    if (theme.name === themeName) {
-                        fs.copyFileSync(theme.gulpfile,
-                            `temp/${appName}/${themeName}/gulpfile.js`);
-                    }
-                });
+                global.json = JSON.parse(stdout.toString());
             }
         );
     });
