@@ -19,7 +19,7 @@ module.exports = function watchTheme(appName, themeName) {
                     let json = fs.readFileSync(
                         `temp/${appName}/${themeName}/config.json`);
 
-                    if (json != stdout.toString()) {
+                    if (json.toString() !== stdout.toString()) {
                         fs.writeFileSync(
                             `temp/${appName}/${themeName}/config.json`,
                             stdout.toString());
@@ -40,7 +40,7 @@ module.exports = function watchTheme(appName, themeName) {
                 `temp/${appName}/${themeName}/config.json`);
 
             p = spawn('node', [process.mainModule.filename, 'watch',
-                    '-f', `temp/${appName}/${themeName}/gulpfile.js`,
+                    '-f', `temp/${appName}/${themeName}/gulp/main.js`,
                     '--cwd', process.cwd()],
                 {
                     stdio: 'inherit',

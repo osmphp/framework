@@ -4,6 +4,7 @@ const buildApp = require('./buildApp');
 const watchApp = require('./watchApp');
 const buildTheme = require('./buildTheme');
 const watchTheme = require('./watchTheme');
+const watchCollect = require('./watchCollect');
 
 global.tasks = {};
 
@@ -18,14 +19,12 @@ for (let appName in global.config) {
 
     global.config[appName].forEach(function(themeName) {
         buildAppTasks.push(buildTheme(appName, themeName));
+        watchAppTasks.push(watchCollect(appName, themeName));
         watchAppTasks.push(watchTheme(appName, themeName));
     });
 
     buildTasks.push(global.tasks[`build:${appName}`] = series(...buildAppTasks));
-    watchTasks.push(global.tasks[`watch:${appName}`] = series(
-        buildApp(appName),
-        parallel(...watchAppTasks))
-    );
+    watchTasks.push(global.tasks[`watch:${appName}`] = parallel(...watchAppTasks));
 }
 
 global.tasks.default = parallel(...buildTasks);
