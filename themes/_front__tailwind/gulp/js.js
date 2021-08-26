@@ -10,6 +10,7 @@ const appName = require('./appName');
 const themeName = require('./themeName');
 const config = require('./config');
 const task = require('./task');
+const bump = require("./bump");
 
 module.exports = function js() {
     return task(`js('${appName}', '${themeName}')`, function () {
@@ -37,6 +38,7 @@ module.exports = function js() {
                 plugins: plugins,
             }))
             .pipe(if_(!config.production, sourcemaps.write('.')))
-            .pipe(dest(`public/${appName}/${themeName}`));
+            .pipe(dest(`public/${appName}/${themeName}`))
+            .pipe(bump.after());
     });
 }

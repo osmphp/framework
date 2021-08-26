@@ -8,6 +8,7 @@ const appName = require('./appName');
 const themeName = require('./themeName');
 const config = require('./config');
 const task = require('./task');
+const bump = require("./bump");
 
 module.exports = function css() {
     return task(`css('${appName}', '${themeName}')`, function () {
@@ -24,6 +25,7 @@ module.exports = function css() {
             .pipe(if_(!config.production, sourcemaps.init()))
             .pipe(postcss(plugins))
             .pipe(if_(!config.production, sourcemaps.write('.')))
-            .pipe(dest(`public/${appName}/${themeName}`));
+            .pipe(dest(`public/${appName}/${themeName}`))
+            .pipe(bump.after());
     });
 }

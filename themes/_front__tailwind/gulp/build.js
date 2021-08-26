@@ -6,12 +6,14 @@ const importCssModules = require('./importCssModules');
 const files = require('./files');
 const js = require('./js');
 const css = require('./css');
+const bump = require("./bump");
 
 module.exports = function build() {
     return series(
         clear(),
         importJsModules(),
         importCssModules(),
+        bump.once(),
         parallel(
             files('images'),
             files('fonts'),

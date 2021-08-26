@@ -4,6 +4,7 @@ const appName = require('./appName');
 const themeName = require('./themeName');
 const config = require('./config');
 const task = require('./task');
+const bump = require('./bump');
 
 module.exports = function files(path) {
     return task(`files('${appName}', '${themeName}', '${path}')`, function () {
@@ -15,6 +16,7 @@ module.exports = function files(path) {
         });
 
         return src(patterns, {base: `temp/${dir}`})
-            .pipe(dest(`public/${dir}`));
+            .pipe(dest(`public/${dir}`))
+            .pipe(bump.after());
     });
 }

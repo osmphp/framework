@@ -6,6 +6,7 @@ const appName = require('./appName');
 const themeName = require('./themeName');
 const config = require('./config');
 const task = require('./task');
+const bump = require("./bump");
 
 module.exports = function watchFiles(path) {
     return task(`watchFiles('${appName}', '${themeName}', '${path}')`, function () {
@@ -18,6 +19,7 @@ module.exports = function watchFiles(path) {
 
         return watch(patterns, {base: `temp/${dir}`})
             .pipe(print(filepath => `files(${filepath})`))
-            .pipe(dest(`public/${dir}`));
+            .pipe(dest(`public/${dir}`))
+            .pipe(bump.after());
     });
 }
