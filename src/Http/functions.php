@@ -36,7 +36,9 @@ namespace Osm {
         }
 
         if (isset($_ENV['PRODUCTION'])) {
-            $osm_app->logs->http->error($content);
+            $osm_app->logs->http->error(
+                "{$osm_app->http->request->getMethod()} " .
+                "{$osm_app->http->path}: {$content}");
 
             return new Response(__("Error"), 500, [
                 'Content-Type' => 'text/plain',
