@@ -2,6 +2,7 @@
 // compiled, and values are arrays of theme names to build for that application
 global.config = {
     'Osm_Tools': [],
+    'Osm_Project': [],
     'Osm_Framework_Samples': ['_front__tailwind_samples']
 };
 
