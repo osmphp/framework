@@ -20,15 +20,18 @@ class Descendants extends Object_
 
     /**
      * @param string $className
+     * @param string $attribute
      * @return string[]
      */
-    public function byName(string $className): array {
+    public function byName(string $className, string $attribute = Name::class)
+        : array
+    {
         if (!isset($this->byName[$className])) {
             $classNames = [];
 
             foreach ($this->classes($className) as $class) {
                 /* @var Name $name */
-                if ($name = $class->attributes[Name::class] ?? null) {
+                if ($name = $class->attributes[$attribute] ?? null) {
                     $classNames[$name->name] = $class->name;
                 }
             }
