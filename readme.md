@@ -16,7 +16,8 @@ built on top of tried and tested Symfony and Laravel components.
     * [Installation](https://osm.software/blog/21/08/framework-installation.html)
     * [Command Line Aliases](https://osm.software/blog/21/08/framework-command-line-aliases.html)  
 * Usage
-    * [Search](https://osm.software/blog/21/05/framework-search.html) 
+    * [Search](https://osm.software/blog/21/05/framework-search.html)
+    * [Logging](https://osm.software/blog/21/09/framework-logging.html)
 * [License](https://github.com/osmphp/framework/blob/HEAD/LICENSE)
 
 # Top Features
