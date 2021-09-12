@@ -8,6 +8,7 @@
     <link href="{{ $asset('styles.css') }}" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 </head>
+<body>
     @if(isset($header))
     <header class="container mx-auto fixed top-0 left-0 right-0 z-10">
         {{ $header }}
