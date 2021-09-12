@@ -1,7 +1,7 @@
 const {src, dest} = require("gulp");
 const commonjs = require("@rollup/plugin-commonjs");
 const {nodeResolve} = require("@rollup/plugin-node-resolve");
-const {uglify} = require("rollup-plugin-uglify");
+const {terser} = require("rollup-plugin-terser");
 const if_ = require("gulp-if");
 const sourcemaps = require("gulp-sourcemaps");
 const {rollup} = require("gulp-rollup-2");
@@ -23,7 +23,7 @@ module.exports = function js() {
 
         let plugins = [commonjs(), nodeResolve()];
         if (config.production) {
-            plugins.push(uglify());
+            plugins.push(terser());
         }
 
         return src(patterns, {base: `temp/${dir}`})
