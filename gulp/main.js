@@ -16,12 +16,17 @@ for (let appName in global.config) {
 
     let buildAppTasks = [buildApp(appName)];
     let watchAppTasks = [watchApp(appName)];
+    let buildThemeTasks = [];
 
     global.config[appName].forEach(function(themeName) {
-        buildAppTasks.push(buildTheme(appName, themeName));
+        buildThemeTasks.push(buildTheme(appName, themeName));
         watchAppTasks.push(watchCollect(appName, themeName));
         watchAppTasks.push(watchTheme(appName, themeName));
     });
+
+    if (buildThemeTasks.length) {
+        buildAppTasks.push(parallel(...buildThemeTasks));
+    }
 
     buildTasks.push(global.tasks[`build:${appName}`] = series(...buildAppTasks));
     watchTasks.push(global.tasks[`watch:${appName}`] = parallel(...watchAppTasks));

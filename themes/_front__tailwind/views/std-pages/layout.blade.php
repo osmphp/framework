@@ -5,9 +5,11 @@
     @if ($description)
         <meta name="description" content="{{ $description }}">
     @endif
+
     <link href="{{ $asset('styles.css') }}" rel="stylesheet">
     @include('std-pages::head')
-    {{ $head }}
+    {{ $head ?? '' }}
+
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 </head>
 <body>
@@ -17,12 +19,17 @@
     </header>
     <div class="h-10"></div>
     @endif
+
     <div class="container mx-auto px-4 grid grid-cols-12 gap-4">
         {{ $slot }}
     </div>
+
+    @if(isset($footer))
     <footer class="container mx-auto">
         {{ $footer }}
     </footer>
-<script src="{{ $asset('scripts.js') }}"></script>
+    @endif
+
+    <script src="{{ $asset('scripts.js') }}"></script>
 </body>
 </html>
