@@ -6,6 +6,7 @@
         <meta name="description" content="{{ $description }}">
     @endif
     <link href="{{ $asset('styles.css') }}" rel="stylesheet">
+    @include('std-pages::head')
     {{ $head }}
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 </head>
