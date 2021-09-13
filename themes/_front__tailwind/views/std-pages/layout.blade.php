@@ -6,6 +6,7 @@
         <meta name="description" content="{{ $description }}">
     @endif
     <link href="{{ $asset('styles.css') }}" rel="stylesheet">
+    {{ $head }}
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 </head>
 <body>
@@ -19,7 +20,7 @@
         {{ $slot }}
     </div>
     <footer class="container mx-auto">
-
+        {{ $footer }}
     </footer>
 <script src="{{ $asset('scripts.js') }}"></script>
 </body>
