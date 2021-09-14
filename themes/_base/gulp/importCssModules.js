@@ -13,11 +13,17 @@ module.exports = function importCssModules() {
 
         return src(`temp/${dir}/styles.css`, {base: `temp/${dir}`})
             .pipe(replace('/* @import_osm_modules */', function () {
-                return config.modules.map(moduleName => {
+                let directive = config.modules.map(moduleName => {
                     return fs.existsSync(`temp/${dir}/${moduleName}/styles.css`)
                         ? `@import './${moduleName}/styles.css';\n`
                         : '';
                 }).join('');
+
+                if (fs.existsSync(`temp/${dir}/theme/styles.css`)) {
+                    directive += `@import './theme/styles.css';\n`;
+                }
+
+                return directive;
             }))
             .pipe(dest(`temp/${dir}`));
     });

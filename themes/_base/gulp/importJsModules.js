@@ -13,11 +13,17 @@ module.exports = function importJsModules() {
 
         return src(`temp/${dir}/scripts.js`, {base: `temp/${dir}`})
             .pipe(replace('/* @import_osm_modules */', function () {
-                return config.modules.map(moduleName => {
+                let directive = config.modules.map(moduleName => {
                     return fs.existsSync(`temp/${dir}/${moduleName}/scripts.js`)
                         ? `import './${moduleName}/scripts.js';\n`
                         : '';
                 }).join('');
+
+                if (fs.existsSync(`temp/${dir}/theme/scripts.js`)) {
+                    directive += `import './theme/scripts.js';\n`;
+                }
+
+                return directive;
             }))
             .pipe(dest(`temp/${dir}`));
     });
