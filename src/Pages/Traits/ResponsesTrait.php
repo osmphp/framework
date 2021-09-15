@@ -30,7 +30,7 @@ trait ResponsesTrait
         catch (\Exception $e) {
             $this->log(
                 __("Can't render :status page: ",
-                    ['status' => 503]) .
+                    ['status' => 404]) .
                 "{$e->getMessage()}\n\n{$e->getTraceAsString()}");
 
             return $proceed($message);
@@ -53,7 +53,7 @@ trait ResponsesTrait
         catch (\Exception $e) {
             $this->log(
                 __("Can't render :status page: ",
-                    ['status' => 503]) .
+                    ['status' => 500]) .
                 "{$e->getMessage()}\n\n{$e->getTraceAsString()}");
 
             return $proceed($content);
