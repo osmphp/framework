@@ -17,6 +17,8 @@ trait ResponsesTrait
     protected function around_notFound(callable $proceed, string $message)
         : Response
     {
+        /* @var Responses $this */
+
         if (!$this->error_page_theme?->views->exists('std-pages::404')) {
             return $proceed($message);
         }
@@ -25,7 +27,12 @@ trait ResponsesTrait
             return $this->errorView('std-pages::404',
                 ['message' => $message], status: 404);
         }
-        catch (\Exception) {
+        catch (\Exception $e) {
+            $this->log(
+                __("Can't render :status page: ",
+                    ['status' => 503]) .
+                "{$e->getMessage()}\n\n{$e->getTraceAsString()}");
+
             return $proceed($message);
         }
     }
@@ -33,6 +40,8 @@ trait ResponsesTrait
     protected function around_renderException(callable $proceed,
         ?string $content): Response
     {
+        /* @var Responses $this */
+
         if (!$this->error_page_theme?->views->exists('std-pages::500')) {
             return $proceed($content);
         }
@@ -41,7 +50,12 @@ trait ResponsesTrait
             return $this->errorView('std-pages::500',
                 ['content' => $content], status: 500);
         }
-        catch (\Exception) {
+        catch (\Exception $e) {
+            $this->log(
+                __("Can't render :status page: ",
+                    ['status' => 503]) .
+                "{$e->getMessage()}\n\n{$e->getTraceAsString()}");
+
             return $proceed($content);
         }
     }
@@ -49,6 +63,8 @@ trait ResponsesTrait
     protected function around_maintenance(callable $proceed)
         : Response
     {
+        /* @var Responses $this */
+
         if (!$this->error_page_theme?->views->exists('std-pages::503')) {
             return $proceed();
         }
@@ -56,7 +72,12 @@ trait ResponsesTrait
         try {
             return $this->errorView('std-pages::503', status: 503);
         }
-        catch (\Exception) {
+        catch (\Exception $e) {
+            $this->log(
+                __("Can't render :status page: ",
+                    ['status' => 503]) .
+                "{$e->getMessage()}\n\n{$e->getTraceAsString()}");
+
             return $proceed();
         }
     }
@@ -86,9 +107,17 @@ trait ResponsesTrait
     protected function errorView(string $template, array $data = [],
         array $mergeData = [], int $status = 200): Response
     {
-        $view = $this->error_page_theme->views->make($template, $data,
-            $mergeData);
+        global $osm_app; /* @var App $osm_app */
+        /* @var Responses $this */
 
-        return new Response((string)$view, $status);
+        $theme = $osm_app->theme;
+        $osm_app->theme = $this->error_page_theme;
+
+        try {
+            return $this->view($template, $data, $mergeData, $status);
+        }
+        finally {
+            $osm_app->theme = $theme;
+        }
     }
 }
