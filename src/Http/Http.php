@@ -17,6 +17,7 @@ use function Osm\__;
 
 /**
  * @property Request $request
+ * @property Responses $responses
  * @property string $base_url
  * @property string $path
  * @property string $area_class_name
@@ -47,6 +48,10 @@ class Http extends Object_
         return Request::createFromGlobals();
     }
 
+    protected function get_responses(): Responses {
+        return Responses::new();
+    }
+
     /** @noinspection PhpUnused */
     protected function get_module(): BaseModule {
         global $osm_app; /* @var App $osm_app */
@@ -68,7 +73,7 @@ class Http extends Object_
         return $new();
     }
 
-    protected function detectArea() {
+    protected function detectArea(): void {
         $url = "{$this->base_url}{$this->request->getPathInfo()}";
         $placeholderUrl = "{{base_url}}{$this->request->getPathInfo()}";
 
@@ -99,7 +104,7 @@ class Http extends Object_
         throw new NotFound();
     }
 
-    protected function detectRoute() {
+    protected function detectRoute(): void {
         $routeName = "{$this->request->getMethod()} {$this->path}";
         if ($this->route_class_name =
             $this->module->routes[$this->area_class_name][$routeName] ?? null)
