@@ -11,5 +11,7 @@ use Osm\Framework\Themes\Theme;
  */
 trait AppTrait
 {
-
+    protected function get_theme(): ?Theme {
+        return null;
+    }
 }
