@@ -43,10 +43,7 @@ class Responses extends Object_
         }
 
         if (isset($_ENV['PRODUCTION'])) {
-            $osm_app->logs->http->error(
-                "{$osm_app->http->request->getMethod()} " .
-                "{$osm_app->http->path}: {$content}");
-
+            $this->log($content);
             return $this->renderException();
         }
 
@@ -59,5 +56,13 @@ class Responses extends Object_
 
     protected function renderException(?string $content = null): Response {
         return $this->plain($content ?? __("Error"), 500);
+    }
+
+    protected function log(string $content): void {
+        global $osm_app; /* @var App $osm_app */
+
+        $osm_app->logs->http->error(
+            "{$osm_app->http->request->getMethod()} " .
+            "{$osm_app->http->path}: {$content}");
     }
 }
