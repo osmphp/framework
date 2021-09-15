@@ -31,25 +31,7 @@ namespace Osm {
     function exception_response(\Throwable $e): Response {
         global $osm_app; /* @var App $osm_app */
 
-        $content = '';
-        for (; $e; $e = $e->getPrevious()) {
-            $content = "{$e->getMessage()}\n\n{$e->getTraceAsString()}" .
-                "\n\n{$content}";
-        }
-
-        if (isset($_ENV['PRODUCTION'])) {
-            $osm_app->logs->http->error(
-                "{$osm_app->http->request->getMethod()} " .
-                "{$osm_app->http->path}: {$content}");
-
-            return new Response(__("Error"), 500, [
-                'Content-Type' => 'text/plain',
-            ]);
-        }
-
-        return new Response($content, 500, [
-            'Content-Type' => 'text/plain',
-        ]);
+        return $osm_app->http->responses->exception($e);
     }
 
     function url_decode(string $url): string {
