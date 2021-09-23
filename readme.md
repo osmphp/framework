@@ -15,15 +15,13 @@ built on top of tried and tested Symfony and Laravel components.
     * [Introduction](https://osm.software/blog/21/05/framework-introduction.html)
     * [Installation](https://osm.software/blog/21/08/framework-installation.html)
     * [Command Line Aliases](https://osm.software/blog/21/08/framework-command-line-aliases.html)  
-    * Looking Around
-        * Directory Structure
-        * Using Gulp
+    * Directory Structure
+    * Using Gulp
 * Writing PHP Code
     * [Computed Properties](https://osm.software/blog/21/09/framework-computed-properties.html)
     * [Modules](https://osm.software/blog/21/09/framework-modules.html)
     * [Dynamic Traits](https://osm.software/blog/21/09/framework-dynamic-traits.html)
-    * Application
-        * Object Hierarchy
+    * [Application]()
     * Hint Classes
     * Reflection
     * Testing

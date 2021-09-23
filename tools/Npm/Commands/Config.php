@@ -8,7 +8,7 @@ use Osm\Framework\Console\Command;
 use Osm\Framework\Console\Exceptions\ConsoleError;
 use Osm\Runtime\Apps;
 use Osm\Runtime\Compilation\Compiler;
-use Osm\Tools\App;
+use Osm\Project\App;
 use function Osm\merge;
 use function Osm\__;
 
@@ -17,12 +17,12 @@ class Config extends Command
     public string $name = 'config:npm';
 
     public function run(): void {
-        $compiler = Compiler::new(['app_class_name' => App::class]);
+        global $osm_app; /* @var App $osm_app */
 
         $json = new \stdClass();
-        Apps::run($compiler, function(Compiler $compiler) use ($json) {
-            foreach ($compiler->app->unsorted_modules as $module) {
-                $filename = "{$compiler->paths->project}/{$module->path}/package.json";
+        Apps::run(Apps::create(App::class), function(App $app) use ($json) {
+            foreach ($app->modules as $module) {
+                $filename = "{$app->paths->project}/{$module->path}/package.json";
 
                 if (!is_file($filename)) {
                     continue;
@@ -37,7 +37,7 @@ class Config extends Command
             }
         });
 
-        file_put_contents("{$compiler->paths->project}/package.json",
+        file_put_contents("{$osm_app->paths->project}/package.json",
             json_encode($json, JSON_PRETTY_PRINT));
     }
 }
