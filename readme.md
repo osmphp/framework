@@ -21,7 +21,7 @@ built on top of tried and tested Symfony and Laravel components.
     * [Computed Properties](https://osm.software/blog/21/09/framework-computed-properties.html)
     * [Modules](https://osm.software/blog/21/09/framework-modules.html)
     * [Dynamic Traits](https://osm.software/blog/21/09/framework-dynamic-traits.html)
-    * [Application]()
+    * [Application](https://osm.software/blog/21/09/framework-application.html)
     * Hint Classes
     * Reflection
     * Testing
