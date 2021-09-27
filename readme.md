@@ -17,6 +17,8 @@ built on top of tried and tested Symfony and Laravel components.
     * [Command Line Aliases](https://osm.software/blog/21/08/framework-command-line-aliases.html)  
     * Directory Structure
     * Using Gulp
+    * Nginx
+    * Apache
 * Writing PHP Code
     * [Computed Properties](https://osm.software/blog/21/09/framework-computed-properties.html)
     * [Modules](https://osm.software/blog/21/09/framework-modules.html)
