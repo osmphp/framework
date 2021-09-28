@@ -74,6 +74,9 @@ jobs:
             -   name: Compile tools application
                 run: php vendor/osmphp/core/bin/compile.php Osm_Tools
 
+            -   name: Compile introspection application
+                run: php vendor/osmphp/core/bin/compile.php Osm_Project
+
             -   name: Collect JS dependencies
                 run: php bin/tools.php config:npm
 
