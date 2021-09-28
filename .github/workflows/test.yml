@@ -71,6 +71,9 @@ jobs:
             -   name: Install dependencies
                 run: composer update --prefer-dist --no-interaction --no-progress
 
+            -   name: Compile sample application
+                run: php vendor/osmphp/core/bin/compile.php Osm_Framework_Samples
+
             -   name: Compile tools application
                 run: php vendor/osmphp/core/bin/compile.php Osm_Tools
 
