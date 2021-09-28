@@ -15,6 +15,7 @@ class test_10_chrome extends PantherTestCase
         $paths = Apps::paths(App::class);
         $client = static::createPantherClient([
             'webServerDir' => "{$paths->project}/public/{$paths->app_name}",
+            'router' => "{$paths->project}/public/{$paths->app_name}/router.php",
         ]);
 
         $client->request('GET', '/test');

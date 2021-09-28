@@ -15,6 +15,7 @@ use Osm\Runtime\Apps;
 use Osm\Runtime\Compilation\Compiler;
 use Osm\Runtime\Compilation\Package;
 use function Osm\merge;
+use function Osm\sort_by_dependency;
 
 /**
  * @property Package[] $packages
@@ -65,36 +66,18 @@ class Module extends BaseModule
             }
         }
 
-        $compiler = Compiler::new(['app_class_name' => $osm_app->__class->name]);
-
-        return Apps::run($compiler, function(Compiler $compiler) use($themes) {
-            $app = $compiler->app;
-            return $app->sort($themes, 'Themes',
-                function($positions) {
-                    return function(Theme $a, Theme $b) use ($positions) {
-                        return $positions[$a->name] <=> $positions[$b->name];
-                    };
-                }
-            );
-        });
+        return sort_by_dependency($themes, 'Themes',
+            fn($positions) =>
+                fn(Theme $a, Theme $b) =>
+                    $positions[$a->name] <=> $positions[$b->name]
+        );
     }
 
     /** @noinspection PhpUnused */
     protected function get_packages(): array {
         global $osm_app; /* @var App $osm_app */
 
-        $compiler = Compiler::new(['app_class_name' => $osm_app->__class->name]);
-
-        return Apps::run($compiler, function(Compiler $compiler) {
-            $app = $compiler->app;
-            return $app->sort($app->packages, 'Packages',
-                function($positions) {
-                    return function(Package $a, Package $b) use ($positions) {
-                        return $positions[$a->name] <=> $positions[$b->name];
-                    };
-                }
-            );
-        });
+        return $osm_app->packages;
     }
 
     /** @noinspection PhpUnused */
