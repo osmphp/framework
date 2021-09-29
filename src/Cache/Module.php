@@ -19,5 +19,6 @@ class Module extends BaseModule
 
     public static array $requires = [
         \Osm\Framework\Env\Module::class,
+        \Osm\Framework\Console\Module::class,
     ];
 }
