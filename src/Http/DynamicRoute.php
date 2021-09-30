@@ -18,8 +18,14 @@ class DynamicRoute extends Route
             return null;
         }
 
-        $new = "{$dispatched[1]}::new";
+        if (is_array($dispatched[1])) {
+            foreach ($dispatched[1] as $className => $data) {
+                $new = "{$className}::new";
+                return $new(array_merge($data, $dispatched[2]));
+            }
+        }
 
+        $new = "{$dispatched[1]}::new";
         return $new($dispatched[2]);
     }
 
