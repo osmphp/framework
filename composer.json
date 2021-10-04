@@ -10,7 +10,7 @@
     ],
     "require": {
         "php": ">=8.0",
-        "osmphp/core": "^0.9",
+        "osmphp/core": "^0.10",
         "symfony/console": "^5",
         "vlucas/phpdotenv": "^5",
         "symfony/cache": "^5",

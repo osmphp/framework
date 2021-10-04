@@ -3,6 +3,7 @@
 namespace Osm\Framework\Pages\Traits;
 
 use Osm\Core\App;
+use Osm\Core\Attributes\UseIn;
 use Osm\Framework\Http\Responses;
 use Osm\Framework\Themes\Module;
 use Osm\Framework\Themes\Theme;
@@ -12,6 +13,7 @@ use function Osm\__;
 /**
  * @property ?Theme $error_page_theme
  */
+#[UseIn(Responses::class)]
 trait ResponsesTrait
 {
     protected function around_notFound(callable $proceed, string $message)

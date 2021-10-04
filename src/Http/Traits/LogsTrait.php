@@ -7,10 +7,13 @@ namespace Osm\Framework\Http\Traits;
 use Monolog\Handler\RotatingFileHandler;
 use Monolog\Logger;
 use Osm\Core\App;
+use Osm\Core\Attributes\UseIn;
+use Osm\Framework\Logs\Logs;
 
 /**
  * @property Logger $http
  */
+#[UseIn(Logs::class)]
 trait LogsTrait
 {
     protected function get_http(): Logger {

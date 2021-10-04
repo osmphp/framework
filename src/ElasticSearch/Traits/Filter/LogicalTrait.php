@@ -2,21 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Osm\Framework\ElasticSearch\Traits\FilterTrait;
+namespace Osm\Framework\ElasticSearch\Traits\Filter;
 
+use Osm\Core\Attributes\UseIn;
 use Osm\Core\Exceptions\NotSupported;
 use Osm\Framework\ElasticSearch\Traits\FilterTrait;
-use Osm\Framework\Search\Filter;
+use Osm\Framework\Search\Filter\Logical;
 use function Osm\__;
-use function Osm\merge;
 
-trait Logical
+#[UseIn(Logical::class)]
+trait LogicalTrait
 {
     use FilterTrait;
 
     /** @noinspection PhpUnused */
     public function toElasticQuery(bool $root = false): array {
-        /* @var Filter\Logical|Logical $this */
+        /* @var Logical|LogicalTrait $this */
         $filters = [];
 
         // if there is only one operand, don't apply any logical operator

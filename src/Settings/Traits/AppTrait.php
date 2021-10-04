@@ -6,6 +6,7 @@ declare(strict_types=1);
 namespace Osm\Framework\Settings\Traits;
 
 use Osm\Core\App;
+use Osm\Core\Attributes\UseIn;
 use Osm\Framework\Settings\Hints\Settings;
 use Osm\Framework\Cache\Attributes\Cached;
 use function Osm\merge;
@@ -13,6 +14,7 @@ use function Osm\merge;
 /**
  * @property Settings|\stdClass $settings #[Cached('settings')]
  */
+#[UseIn(App::class)]
 trait AppTrait
 {
     /** @noinspection PhpUnused */

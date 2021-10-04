@@ -13,8 +13,4 @@ class Module extends BaseModule
         \Osm\Framework\Cache\Module::class,
         \Osm\Framework\Themes\Module::class,
     ];
-
-    public static array $traits = [
-        Theme::class => Traits\ThemeTrait::class,
-    ];
 }

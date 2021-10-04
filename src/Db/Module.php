@@ -25,13 +25,6 @@ class Module extends BaseModule
         LaravelModule::class,
     ];
 
-    public static array $traits = [
-        App::class => Traits\AppTrait::class,
-        Settings::class => Traits\SettingsTrait::class,
-        LogSettings::class => Traits\LogSettingsTrait::class,
-        Logs::class => Traits\LogsTrait::class,
-    ];
-
     public static array $classes = [
         ConnectionFactory::class,
     ];

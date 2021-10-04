@@ -6,6 +6,7 @@ declare(strict_types=1);
 namespace Osm\Framework\Http\Traits;
 
 use Osm\Core\App;
+use Osm\Core\Attributes\UseIn;
 use Osm\Framework\Areas;
 use Osm\Framework\Http\Hints\BaseUrl;
 use Osm\Framework\Http\Http;
@@ -15,6 +16,7 @@ use Osm\Framework\Cache\Attributes\Cached;
  * @property Http $http
  * @property BaseUrl[] $base_urls #[Cached('base_urls')]
  */
+#[UseIn(App::class)]
 trait AppTrait
 {
     /** @noinspection PhpUnused */

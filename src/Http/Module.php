@@ -29,14 +29,6 @@ class Module extends BaseModule
         \Osm\Framework\Settings\Module::class,
     ];
 
-    public static array $traits = [
-        App::class => Traits\AppTrait::class,
-        Settings::class => Traits\SettingsTrait::class,
-        Areas\Area::class => Traits\Areas\AreaTrait::class,
-        Areas\Api::class => Traits\Areas\ApiTrait::class,
-        Logs::class => Traits\LogsTrait::class,
-    ];
-
     public function around(callable $next, string $areaClassName = null,
         int $index = 0): Response
     {

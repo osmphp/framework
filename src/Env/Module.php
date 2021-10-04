@@ -11,10 +11,6 @@ use Osm\Core\Paths;
 
 class Module extends BaseModule
 {
-    public static array $traits = [
-        Paths::class => Traits\PathsTrait::class,
-    ];
-
     public function boot(): void {
         global $osm_app; /* @var App $osm_app */
 

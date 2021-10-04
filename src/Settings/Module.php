@@ -14,10 +14,4 @@ class Module extends BaseModule
         \Osm\Framework\Env\Module::class,
         \Osm\Framework\Cache\Module::class,
     ];
-
-    public static array $traits = [
-        Paths::class => Traits\PathsTrait::class,
-        App::class => Traits\AppTrait::class,
-    ];
-
 }

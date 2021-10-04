@@ -2,20 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Osm\Framework\ElasticSearch\Traits\FilterTrait;
+namespace Osm\Framework\ElasticSearch\Traits\Filter;
 
+use Osm\Core\Attributes\UseIn;
 use Osm\Core\Exceptions\NotSupported;
 use Osm\Framework\ElasticSearch\Traits\FilterTrait;
-use Osm\Framework\Search\Filter;
+use Osm\Framework\Search\Filter\Field;
 use function Osm\__;
 
-trait Field
+#[UseIn(Field::class)]
+trait FieldTrait
 {
     use FilterTrait;
 
     /** @noinspection PhpUnused */
     public function toElasticQuery(bool $root = false): array {
-        /* @var Filter\Field|Field $this */
+        /* @var Field|FieldTrait $this */
 
         return match($this->operator) {
             '=' => $this->toElasticQuery_equals(),
@@ -30,7 +32,7 @@ trait Field
     }
 
     protected function toElasticQuery_equals(): array {
-        /* @var Filter\Field|Field $this */
+        /* @var Field|FieldTrait $this */
 
         return [
             'term' => [
@@ -40,7 +42,7 @@ trait Field
     }
 
     protected function toElasticQuery_in(): array {
-        /* @var Filter\Field|Field $this */
+        /* @var Field|FieldTrait $this */
 
         return [
             'terms' => [
@@ -51,7 +53,7 @@ trait Field
 
 
     protected function toElasticQuery_range(string $operator): array {
-        /* @var Filter\Field|Field $this */
+        /* @var Field|FieldTrait $this */
 
         static $operators = [
             '>' => 'gt',

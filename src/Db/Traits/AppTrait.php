@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace Osm\Framework\Db\Traits;
 
 use Osm\Core\App;
+use Osm\Core\Attributes\UseIn;
 use Osm\Framework\Db\Db;
 use Osm\Framework\Db\Module;
 
 /**
  * @property Db $db
  */
+#[UseIn(App::class)]
 trait AppTrait
 {
     /** @noinspection PhpUnused */

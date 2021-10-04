@@ -17,10 +17,6 @@ use Symfony\Component\Console\Application as SymfonyConsole;
  */
 class Module extends BaseModule
 {
-    public static array $traits = [
-        App::class => Traits\AppTrait::class,
-    ];
-
     /** @noinspection PhpUnused */
     protected function get_commands(): array {
         global $osm_app; /* @var App $osm_app */

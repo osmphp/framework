@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace Osm\Framework\Search\Traits;
 
 use Osm\Core\App;
+use Osm\Core\Attributes\UseIn;
 use Osm\Framework\Search\Module;
 use Osm\Framework\Search\Search;
 
 /**
  * @property Search $search
  */
+#[UseIn(App::class)]
 trait AppTrait
 {
     /** @noinspection PhpUnused */

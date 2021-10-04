@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace Osm\Framework\Paths\Traits;
 
 use Osm\Core\App;
+use Osm\Core\Attributes\UseIn;
 use Osm\Core\Paths;
 
 /**
  * @property string $data
  */
+#[UseIn(Paths::class)]
 trait PathsTrait
 {
     protected function get_data(): string {

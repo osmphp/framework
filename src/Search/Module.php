@@ -14,9 +14,4 @@ class Module extends BaseModule
         \Osm\Framework\Settings\Module::class,
         \Osm\Framework\Cache\Module::class,
     ];
-
-    public static array $traits = [
-        App::class => Traits\AppTrait::class,
-        Settings::class => Traits\SettingsTrait::class,
-    ];
 }

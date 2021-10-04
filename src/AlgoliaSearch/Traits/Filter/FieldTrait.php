@@ -2,20 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Osm\Framework\AlgoliaSearch\Traits\FilterTrait;
+namespace Osm\Framework\AlgoliaSearch\Traits\Filter;
 
+use Osm\Core\Attributes\UseIn;
 use Osm\Core\Exceptions\NotSupported;
 use Osm\Framework\AlgoliaSearch\Traits\FilterTrait;
-use Osm\Framework\Search\Filter;
+use Osm\Framework\Search\Filter\Field;
 use function Osm\__;
 
-trait Field
+#[UseIn(Field::class)]
+trait FieldTrait
 {
     use FilterTrait;
 
     /** @noinspection PhpUnused */
     public function toAlgoliaQuery(): string {
-        /* @var Filter\Field|Field $this */
+        /* @var FieldTrait|Field $this */
 
         return match($this->operator) {
             '=' => $this->toAlgoliaQuery_equals(),
@@ -31,13 +33,13 @@ trait Field
     }
 
     protected function toAlgoliaQuery_equals(): string {
-        /* @var Filter\Field|Field $this */
+        /* @var FieldTrait|Field $this */
 
         return "{$this->field_name}:{$this->algoliaValue($this->value)}";
     }
 
     protected function toAlgoliaQuery_in(): string {
-        /* @var Filter\Field|Field $this */
+        /* @var FieldTrait|Field $this */
         if (count($this->value) == 1) {
             return "{$this->field_name}:{$this->algoliaValue($this->value[0])}";
         }
@@ -55,7 +57,7 @@ trait Field
     }
 
     protected function toAlgoliaQuery_range(string $operator): string {
-        /* @var Filter\Field|Field $this */
+        /* @var FieldTrait|Field $this */
 
         return "{$this->field_name} {$operator} {$this->value}";
     }

@@ -7,10 +7,13 @@ namespace Osm\Framework\ElasticSearch\Traits;
 use Monolog\Handler\RotatingFileHandler;
 use Monolog\Logger;
 use Osm\Core\App;
+use Osm\Core\Attributes\UseIn;
+use Osm\Framework\Logs\Logs;
 
 /**
  * @property Logger $elastic
  */
+#[UseIn(Logs::class)]
 trait LogsTrait
 {
     /** @noinspection PhpUnused */

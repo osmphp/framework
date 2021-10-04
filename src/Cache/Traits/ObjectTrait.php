@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Osm\Framework\Cache\Traits;
 
+use Osm\Core\Attributes\UseIn;
 use Osm\Core\Object_;
 use Osm\Framework\Cache\Attributes\Cached;
 use Osm\Framework\Cache\Cache;
@@ -11,6 +12,7 @@ use Osm\Framework\Samples\App;
 use Symfony\Contracts\Cache\ItemInterface;
 use function Osm\resolve_placeholders;
 
+#[UseIn(Object_::class)]
 trait ObjectTrait
 {
     /** @noinspection PhpUnused */

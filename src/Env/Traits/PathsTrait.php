@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace Osm\Framework\Env\Traits;
 
 use Osm\Core\App;
+use Osm\Core\Attributes\UseIn;
 use Osm\Core\Paths;
 
 /**
  * @property string $env
  * @property string $env_file
  */
+#[UseIn(Paths::class)]
 trait PathsTrait
 {
     /** @noinspection PhpUnused */

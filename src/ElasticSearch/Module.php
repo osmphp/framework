@@ -16,19 +16,4 @@ class Module extends BaseModule
         \Osm\Framework\Search\Module::class,
         \Osm\Framework\Logs\Module::class,
     ];
-
-    public static array $traits = [
-        Logs::class => Traits\LogsTrait::class,
-        LogSettings::class => Traits\LogSettingsTrait::class,
-
-        Field::class => Traits\FieldTrait::class,
-        Field\Int_::class => Traits\FieldTrait\Int_::class,
-        Field\String_::class => Traits\FieldTrait\String_::class,
-        Field\Float_::class => Traits\FieldTrait\Float_::class,
-        Field\Bool_::class => Traits\FieldTrait\Bool_::class,
-
-        Filter::class => Traits\FilterTrait::class,
-        Filter\Logical::class => Traits\FilterTrait\Logical::class,
-        Filter\Field::class => Traits\FilterTrait\Field::class,
-    ];
 }

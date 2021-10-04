@@ -3,6 +3,8 @@
 namespace Osm\Tools\Cache\Traits;
 
 use Osm\Core\App;
+use Osm\Core\Attributes\UseIn;
+use Osm\Framework\Cache\Commands\Refresh;
 use Osm\Framework\Console\Attributes\Option;
 use Osm\Runtime\Apps;
 use Symfony\Component\Console\Input\StringInput;
@@ -11,6 +13,7 @@ use Symfony\Component\Console\Output\BufferedOutput;
 /**
  * @property ?string $app #[Option]
  */
+#[UseIn(Refresh::class)]
 trait RefreshTrait
 {
     protected function around_run(callable $proceed): void {

@@ -18,10 +18,6 @@ class Module extends BaseModule
         \Osm\Framework\Settings\Module::class,
     ];
 
-    public static array $traits = [
-        Settings::class => Traits\SettingsTrait::class,
-    ];
-
     /** @noinspection PhpUnused */
     protected function get_translations(): array {
         global $osm_app; /* @var App $osm_app */

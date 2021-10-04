@@ -11,13 +11,7 @@ use Osm\Framework\Search\Order;
 
 class Module extends BaseModule
 {
-    public static array $traits = [
-        Field::class => Traits\FieldTrait::class,
-
-        Filter::class => Traits\FilterTrait::class,
-        Filter\Logical::class => Traits\FilterTrait\Logical::class,
-        Filter\Field::class => Traits\FilterTrait\Field::class,
-
-        Order::class => Traits\OrderTrait::class,
+    public static array $requires = [
+        \Osm\Framework\Search\Module::class,
     ];
 }

@@ -15,8 +15,4 @@ class Module extends BaseModule
     public static array $requires = [
         \Osm\Tools\Base\Module::class,
     ];
-
-    public static array $traits = [
-        Refresh::class => Traits\RefreshTrait::class,
-    ];
 }

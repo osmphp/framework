@@ -11,11 +11,6 @@ use Osm\Framework\Settings\Hints\Settings;
 
 class Module extends BaseModule
 {
-    public static array $traits = [
-        App::class => Traits\AppTrait::class,
-        Settings::class => Traits\SettingsTrait::class,
-    ];
-
     public static array $requires = [
         \Osm\Framework\Settings\Module::class,
     ];

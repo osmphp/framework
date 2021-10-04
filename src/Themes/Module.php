@@ -29,11 +29,6 @@ class Module extends BaseModule
         \Osm\Framework\Laravel\Module::class,
     ];
 
-    public static array $traits = [
-        App::class => Traits\AppTrait::class,
-        Settings::class => Traits\SettingsTrait::class,
-    ];
-
     /** @noinspection PhpUnused */
     protected function get_themes(): array {
         global $osm_app; /* @var App $osm_app */

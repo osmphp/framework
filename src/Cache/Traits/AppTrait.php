@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Osm\Framework\Cache\Traits;
 
 use Osm\Core\App;
+use Osm\Core\Attributes\UseIn;
 use Osm\Framework\Cache\Cache;
 use Osm\Framework\Cache\Descendants;
 use Osm\Framework\Cache\File;
@@ -14,6 +15,7 @@ use Osm\Framework\Env\Attributes\Env;
  * @property Cache $cache
  * @property Descendants $descendants
  */
+#[UseIn(App::class)]
 trait AppTrait
 {
     /** @noinspection PhpUnused */
