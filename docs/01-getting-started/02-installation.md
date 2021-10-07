@@ -7,7 +7,7 @@ Contents:
 
 {{ toc }}
 
-## meta.list_text
+### meta.abstract
 
 Once PHP 8, Node and Gulp are installed, create new projects quickly using the command line.
 

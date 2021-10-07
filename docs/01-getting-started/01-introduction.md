@@ -8,7 +8,7 @@ Top features:
 
 {{ toc }}
 
-### meta.list_text
+#### meta.abstract
 
 Osm Framework is an open-source, insanely fast, unprecedentedly extensible, and
 fun to work with PHP 8 framework for creating modern Web applications. It's

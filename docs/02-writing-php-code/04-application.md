@@ -8,7 +8,7 @@ Details:
 
 {{ toc }}
 
-### meta.list_text
+#### meta.abstract
 
 In Osm Framework, an application is a set of modules that you run as a whole. There are several applications defined in the project, each having its own PHP class. Mostly, deal with the main one, `Osm\App\App`. Beside the class name, every application also has a name, the main one is named `Osm_App`.
 

@@ -8,7 +8,7 @@ Details:
 
 {{ toc }}
 
-### meta.list_text
+#### meta.abstract
 
 Modular software development is a well-known practice of dividing your application into several modules, each doing one thing, and doing it well. It increases readability and simplifies maintenance, as application concerns are fully separated from one another, easier to reason about, and to debug.
 

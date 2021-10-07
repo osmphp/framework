@@ -6,7 +6,7 @@ Contents:
 
 {{ toc }}
 
-## meta.list_text
+### meta.abstract
 
 Computed properties are one of Osm Framework pillars. They help to execute code only once, and only if it's actually needed. Computed properties control object serialization and caching. They provide meaningful insights into class interdependencies. Finally, computed properties are easy to test.
 

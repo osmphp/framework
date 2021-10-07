@@ -8,7 +8,7 @@ how.
 
 {{ toc }}
 
-## meta.list_text
+### meta.abstract
 
 Full-text search and layered navigation is a common feature for e-commerce
 applications. It's also used in this blog. Actually, it makes browsing any

@@ -2,7 +2,7 @@
 
 {{ toc }}
 
-## meta.list_text
+### meta.abstract
 
 Install and use `osm`, `osmc`, `osmt` and `osmh` *command line aliases* for faster command typing.
 
