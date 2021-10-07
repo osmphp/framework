@@ -1,5 +1,9 @@
 # Command Line Aliases
 
+Install and use `osm`, `osmc`, `osmt` and `osmh` *command line aliases* for faster command typing.
+
+Details: 
+
 {{ toc }}
 
 ### meta.abstract
