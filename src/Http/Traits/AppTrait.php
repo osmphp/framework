@@ -15,6 +15,7 @@ use Osm\Framework\Cache\Attributes\Cached;
 /**
  * @property Http $http
  * @property BaseUrl[] $base_urls #[Cached('base_urls')]
+ * @property ?string $base_url
  */
 #[UseIn(App::class)]
 trait AppTrait
@@ -49,5 +50,9 @@ trait AppTrait
                 'area_class_name' => Areas\Front::class,
             ],
         ];
+    }
+
+    protected function get_base_url(): ?string {
+        return $this->http->base_url;
     }
 }

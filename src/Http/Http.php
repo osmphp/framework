@@ -6,6 +6,7 @@ namespace Osm\Framework\Http;
 
 use Osm\Core\App;
 use Osm\Core\BaseModule;
+use Osm\Core\Exceptions\NotSupported;
 use Osm\Core\Object_;
 use Osm\Framework\Areas\Area;
 use Osm\Framework\Http\Exceptions\InvalidParameter;
@@ -28,23 +29,36 @@ use function Osm\__;
  * @property BaseUrl[] $base_urls
  * @property array $query
  * @property string $content
+ * @property bool $running
  */
 class Http extends Object_
 {
     public function run(): Response {
-        return $this->module->around(function() {
-            $this->detectArea();
+        $this->running = true;
 
+        try {
             return $this->module->around(function() {
-                $this->detectRoute();
+                $this->detectArea();
 
-                return $this->route->run();
-            }, $this->area_class_name);
-        });
+                return $this->module->around(function() {
+                    $this->detectRoute();
+
+                    return $this->route->run();
+                }, $this->area_class_name);
+            });
+        }
+        finally {
+            $this->running = false;
+        }
     }
 
     /** @noinspection PhpUnused */
     protected function get_request(): Request {
+        if (!$this->running) {
+            throw new NotSupported(__(
+                "Only use `\$osm_app->http` object while actually handling a HTTP request."));
+        }
+
         return Request::createFromGlobals();
     }
 
