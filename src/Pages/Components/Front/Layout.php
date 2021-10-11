@@ -15,7 +15,8 @@ class Layout extends Component
     public string $__template = 'std-pages::layout';
 
     public function __construct(public string $title,
-        public ?string $description = null)
+        public ?string $description = null,
+        public ?string $canonical_url = null)
     {
     }
 

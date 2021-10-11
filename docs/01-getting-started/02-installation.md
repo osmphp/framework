@@ -74,11 +74,12 @@ That's all - you can begin tinkering project files!
 
 However, before you do, run the following command in the project directory:
 
-    gulp watch
+    gulp && gulp watch
     
 Keep this command running as long as you change the project files. It detects file changes, and automatically: 
 
 * recompiles the application,
-* rebuilds JS, CSS and other assets.     
+* clear the application cache,
+* rebuilds JS, CSS, Blade templates, and other assets.     
 
 In some cases, you may need to restart this command.

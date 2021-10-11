@@ -5,6 +5,9 @@
     @if ($description)
         <meta name="description" content="{{ $description }}">
     @endif
+    @if ($canonical_url)
+        <link rel="canonical" href="{{ $canonical_url }}">
+    @endif
 
     <link href="{{ $asset('styles.css') }}" rel="stylesheet">
 
