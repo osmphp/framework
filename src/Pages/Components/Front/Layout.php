@@ -16,7 +16,7 @@ class Layout extends Component
 
     public function __construct(public string $title,
         public ?string $description = null,
-        public ?string $canonical_url = null)
+        public ?string $canonicalUrl = null)
     {
     }
 
