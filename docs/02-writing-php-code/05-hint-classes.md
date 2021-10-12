@@ -1,6 +1,6 @@
 # Hint Classes
 
-When dealing with plain PHP objects, be it some data read from a JSON, from a database record, or from a configuration file, use hint classes. A hint class is a class that is never directly instantiated. Instead, it provides symbol information to the IDE specifically PhpStorm. With this information, the IDE helps you avoid typing error, makes you faster using code completion, and provides contextual help.
+When dealing with plain PHP objects, be it some data read from a JSON, from a database record, or from a configuration file, use hint classes. A hint class is a class that is never directly instantiated. Instead, it provides symbol information to the IDE such as PhpStorm. With this information, the IDE helps you avoid typing error, makes you faster using code completion, and provides contextual help.
 
 More details:
 
@@ -8,7 +8,7 @@ More details:
 
 ### meta.abstract
 
-When dealing with plain PHP objects, be it some data read from a JSON, from a database record, or from a configuration file, use hint classes. A hint class is a class that is never directly instantiated. Instead, it provides symbol information to the IDE suc as PhpStorm. With this information, the IDE helps you avoid typing error, makes you faster using code completion, and provides contextual help.
+When dealing with plain PHP objects, be it some data read from a JSON, from a database record, or from a configuration file, use hint classes. A hint class is a class that is never directly instantiated. Instead, it provides symbol information to the IDE such as PhpStorm. With this information, the IDE helps you avoid typing error, makes you faster using code completion, and provides contextual help.
 
 ## Plain PHP Objects
 
