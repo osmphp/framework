@@ -71,24 +71,24 @@ When Osm Framework runs an application, it instantiates the application class, a
 
 ## Application Object Hierarchy
 
-The main parts of Osm Framework are accessible via the global `$osm_app` variable:
+The main parts of Osm Framework are accessible via the properties of the global `$osm_app` object:
 
-* `$osm_app->base_urls` - base URLs of the application areas
-* `$osm_app->console` - console command runner
-* `$osm_app->cache` - application cache storage
-* `$osm_app->class_name` - [application class name](#application-class)
-* `$osm_app->classes` - detailed class, property and method information gathered from all the modules that are part of the application
-* `$osm_app->db` - application relational database 
-* `$osm_app->descendants` - cacheable class inheritance crawler
-* `$osm_app->http` - HTTP request handler
-* `$osm_app->logs` - [application logs](08-framework-logging.md)
-* `$osm_app->modules` - [modules](22-framework-modules.md) that are part of the application. Every module is referenced by its class name, for example, `$osm_app->modules[\My\Base\Module::class]`. 
-* `$osm_app->name` - [application name](#application-name)
-* `$osm_app->packages` - Composer packages contributing modules to the application
-* `$osm_app->paths` - application file paths
-* `$osm_app->search` - [application search indexes](../05/27-framework-search.md)
-* `$osm_app->settings` - application settings
-* `$osm_app->theme` - current visual theme of the application
+* `base_urls` - base URLs of the application areas
+* `console` - console command runner
+* `cache` - application cache storage
+* `class_name` - [application class name](#application-class)
+* `classes` - detailed class, property and method information gathered from all the modules that are part of the application
+* `db` - application relational database 
+* `descendants` - cacheable class inheritance crawler
+* `http` - HTTP request handler
+* `logs` - [application logs](08-framework-logging.md)
+* `modules` - [modules](22-framework-modules.md) that are part of the application. Every module is referenced by its class name, for example, `$osm_app->modules[\My\Base\Module::class]`. 
+* `name` - [application name](#application-name)
+* `packages` - Composer packages contributing modules to the application
+* `paths` - application file paths
+* `search` - [application search indexes](../05/27-framework-search.md)
+* `settings` - application settings
+* `theme` - current visual theme of the application
 
 ## Application Object As A Container
 
