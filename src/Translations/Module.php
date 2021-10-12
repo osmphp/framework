@@ -15,6 +15,7 @@ use Osm\Framework\Settings\Hints\Settings;
 class Module extends BaseModule
 {
     public static array $requires = [
+        \Osm\Framework\Env\Module::class,
         \Osm\Framework\Settings\Module::class,
     ];
 

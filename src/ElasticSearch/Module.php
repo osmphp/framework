@@ -15,5 +15,7 @@ class Module extends BaseModule
     public static array $requires = [
         \Osm\Framework\Search\Module::class,
         \Osm\Framework\Logs\Module::class,
+        \Osm\Framework\Env\Module::class,
+        \Osm\Framework\Settings\Module::class,
     ];
 }

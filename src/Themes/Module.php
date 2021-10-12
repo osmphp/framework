@@ -27,6 +27,8 @@ class Module extends BaseModule
     public static array $requires = [
         \Osm\Framework\Cache\Module::class,
         \Osm\Framework\Laravel\Module::class,
+        \Osm\Framework\Env\Module::class,
+        \Osm\Framework\Settings\Module::class,
     ];
 
     /** @noinspection PhpUnused */

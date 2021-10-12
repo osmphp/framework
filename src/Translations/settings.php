@@ -3,5 +3,5 @@
 declare(strict_types=1);
 
 return (object)[
-    'locale' => 'en_US',
+    'locale' => $_ENV['LOCALE'] ?? 'en_US',
 ];
