@@ -1,6 +1,14 @@
 # Testing
 
+Write unit tests. They are additional work, but it's worth it. Osm Framework comes all prepared for writing pure PHP tests, database tests, search tests, functional tests, tests using headless browser. Also, consider running the test suite after every push.
+
+Contents:
+
 {{ toc }}
+
+### meta.abstract
+
+Write unit tests. They are additional work, but it's worth it. Osm Framework comes all prepared for writing pure PHP tests, database tests, search tests, functional tests, tests using headless browser. Also, consider running the test suite after every push.
 
 ## Writing And Running Tests
 
