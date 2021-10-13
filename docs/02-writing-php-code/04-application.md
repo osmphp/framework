@@ -20,15 +20,23 @@ In Osm Framework, an application is a set of modules that you run as a whole.
 
 There are several applications defined in every project, each having its own PHP class derived from [`Osm\Core\App`](https://github.com/osmphp/core/blob/HEAD/src/App.php) class. All modules registered with the `Osm\Core\App` class become a part of any application.   
 
+In most cases, you'll deal with the main application class, `Osm\App\App`. However, in order to run your code in the context of any application, define application variables using the base class, `Osm\Core\App`.
+
+### Main Application (`Osm\App\App`)
+
 The main application, [`Osm\App\App`](https://github.com/osmphp/framework/blob/HEAD/app/App.php), handles HTTP requests, and the commands issued using the `osm` command line alias. This application implements all the user interface, and all the data handling logic. Most modules are parts of the main application.  
+
+### Sample Application (`My\Samples\App`)
 
 The sample application, [`My\Samples\App`](https://github.com/osmphp/project/blob/HEAD/samples/App.php), extends the main application, and, hence, inherits all the modules that are parts of the main application. In addition, the sample application may contain additional modules that define additional tables or classes used exclusively in unit tests. This application is only run in unit tests.
 
+### Tool Application (`Osm\Tools\App`)
+
 The tool application, [`Osm\Tools\App`](https://github.com/osmphp/framework/blob/HEAD/tools/App.php), handles the commands issued using the `osmt` command line alias. This application implements useful utilities used for maintaining the project, and for code generation.
 
-Finally, the project application, [`Osm\Project\App`](https://github.com/osmphp/core/blob/HEAD/project/App.php), is used for introspecting all modules and classes of the project regardless to which application they belong. It's only used for reflection, invoking user code in context of this application may produce unexpected results.  
+### Project Application (`Osm\Project\App`)
 
-In most cases, you'll deal with the main application class, `Osm\App\App`. However, in order to run your code in the context of any application, define application variables using the base class, `Osm\Core\App`.
+Finally, the project application, [`Osm\Project\App`](https://github.com/osmphp/core/blob/HEAD/project/App.php), is used for introspecting all modules and classes of the project regardless to which application they belong. It's only used for reflection, invoking user code in context of this application may produce unexpected results.  
 
 ## Application Name
 
