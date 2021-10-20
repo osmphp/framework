@@ -1,6 +1,15 @@
 # Request-Response Loop
 
+Divide your application into *areas*, typically, front, admin and API areas. Think through all possible *requests* your application can receive from a browser, and implement regular or dynamic *routes* that return proper *responses*. Apply *advices* that alter request processing globally, or within a specific area.   
+
+In detail:
+
 {{ toc }}
+
+### meta.abstract
+
+Divide your application into *areas*, typically, front, admin and API areas. Think through all possible *requests* your application can receive from a browser, and implement regular or dynamic *routes* that return proper *responses*. Apply *advices* that alter request processing globally, or within a specific area.   
+
 
 ## How The Web Works
 
@@ -150,7 +159,7 @@ Render HTML using Blade template engine, and return it as a `Response` object us
         }
     }  
  
-For more information about Blade templates, read [Views And Components](02-views-and-components.md).
+For more information about Blade templates, read [Themes And Assets](02-themes-and-assets.md).
 
 ### JSON
 
