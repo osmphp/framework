@@ -12,6 +12,8 @@ use Osm\Framework\Http\Hints\BaseUrl;
 use Osm\Framework\Http\Http;
 use Symfony\Component\HttpFoundation\Response;
 use Osm\Framework\Cache\Attributes\Cached;
+use function Osm\__;
+
 /**
  * @property Http $http
  * @property BaseUrl[] $base_urls #[Cached('base_urls')]
@@ -44,10 +46,12 @@ trait AppTrait
             'admin' => (object)[
                 'base_url' => "{$this->settings->base_url}/admin",
                 'area_class_name' => Areas\Admin::class,
+                'title' => __($this->settings->admin_title),
             ],
             'front' => (object)[
                 'base_url' => $this->settings->base_url,
                 'area_class_name' => Areas\Front::class,
+                'title' => __($this->settings->title),
             ],
         ];
     }

@@ -9,6 +9,8 @@ use Osm\Framework\Settings\Hints\Settings;
 
 /**
  * @property ?string $base_url
+ * @property string $title
+ * @property string $admin_title
  */
 #[UseIn(Settings::class)]
 trait SettingsTrait

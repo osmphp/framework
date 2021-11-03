@@ -30,6 +30,7 @@ use function Osm\__;
  * @property array $query
  * @property string $content
  * @property bool $running
+ * @property string $title Default page meta title
  */
 class Http extends Object_
 {

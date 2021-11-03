@@ -4,33 +4,8 @@ declare(strict_types=1);
 
 namespace Osm\Framework\Pages\Components\Front;
 
-use Osm\Core\App;
-use Osm\Framework\Blade\Component;
+use Osm\Framework\Pages\Components\Layout as BaseLayout;
 
-/**
- * @property string $version
- */
-class Layout extends Component
+class Layout extends BaseLayout
 {
-    public string $__template = 'std-pages::layout';
-
-    public function __construct(public string $title,
-        public ?string $description = null,
-        public ?string $canonicalUrl = null)
-    {
-    }
-
-    public function asset($filename): string {
-        global $osm_app; /* @var App $osm_app */
-
-        return "{$osm_app->http->base_url}/{$osm_app->theme->name}/{$filename}" .
-            "?v={$this->version}";
-    }
-
-    protected function get_version(): string {
-        global $osm_app; /* @var App $osm_app */
-
-        return file_get_contents("{$osm_app->paths->project}/public/" .
-            "{$osm_app->name}/{$osm_app->theme->name}/version.txt");
-    }
 }
