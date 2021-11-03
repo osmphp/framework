@@ -20,7 +20,7 @@ class Layout extends Component
     {
         global $osm_app; /* @var App $osm_app */
 
-        if ($this->title) {
+        if (!$title) {
             $this->title = $osm_app->http->title;
         }
     }
