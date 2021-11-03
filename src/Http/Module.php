@@ -94,7 +94,7 @@ class Module extends BaseModule
         return $this->dynamic_routes;
     }
 
-    protected function loadRoutes() {
+    protected function loadRoutes(): void {
         $this->routes = [];
         $this->dynamic_routes = [];
 
