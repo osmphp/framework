@@ -18,6 +18,7 @@ use function Osm\__;
  * @property Http $http
  * @property BaseUrl[] $base_urls #[Cached('base_urls')]
  * @property ?string $base_url
+ * @property ?string $area_url
  */
 #[UseIn(App::class)]
 trait AppTrait
@@ -58,5 +59,9 @@ trait AppTrait
 
     protected function get_base_url(): ?string {
         return $this->http->base_url;
+    }
+
+    protected function get_area_url(): ?string {
+        return $this->http->area_url;
     }
 }

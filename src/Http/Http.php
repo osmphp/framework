@@ -7,6 +7,7 @@ namespace Osm\Framework\Http;
 use Osm\Core\App;
 use Osm\Core\BaseModule;
 use Osm\Core\Exceptions\NotSupported;
+use Osm\Core\Exceptions\Required;
 use Osm\Core\Object_;
 use Osm\Framework\Areas\Area;
 use Osm\Framework\Http\Exceptions\InvalidParameter;
@@ -22,6 +23,7 @@ use function Osm\__;
  * @property string $base_url
  * @property string $path
  * @property string $area_class_name
+ * @property string $area_url
  * @property string $route_class_name
  * @property array $route_parameters
  * @property Module $module
@@ -105,6 +107,9 @@ class Http extends Object_
             else {
                 continue;
             }
+
+            $this->area_url = str_replace('{{base_url}}',
+                $this->base_url, $baseUrl->base_url);
 
             foreach ($baseUrl as $property => $value) {
                 if ($property == 'base_url') {
@@ -261,5 +266,9 @@ class Http extends Object_
 
     protected function get_content(): string {
         return $this->request->getContent();
+    }
+
+    protected function get_area_url(): string {
+        throw new Required(__METHOD__);
     }
 }
