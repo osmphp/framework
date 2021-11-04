@@ -23,6 +23,7 @@ use function Osm\__;
  * @property string $path
  * @property string $area_class_name
  * @property string $route_class_name
+ * @property array $route_parameters
  * @property Module $module
  * @property Area $area
  * @property Route $route
@@ -85,7 +86,7 @@ class Http extends Object_
     protected function get_route(): Route {
         $new = "{$this->route_class_name}::new";
 
-        return $new();
+        return $new($this->route_parameters);
     }
 
     protected function detectArea(): void {
@@ -121,9 +122,19 @@ class Http extends Object_
 
     protected function detectRoute(): void {
         $routeName = "{$this->request->getMethod()} {$this->path}";
+        $this->route_parameters = [];
+
         if ($this->route_class_name =
             $this->module->routes[$this->area_class_name][$routeName] ?? null)
         {
+            if (is_array($this->route_class_name)) {
+                foreach ($this->route_class_name as $className => $parameters) {
+                    $this->route_parameters = $parameters;
+                    $this->route_class_name = $className;
+                    break;
+                }
+            }
+
             return;
         }
 
