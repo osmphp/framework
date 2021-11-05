@@ -93,6 +93,26 @@ Use the same name as the database an application uses, as a search index prefix.
     ...    
     SEARCH_INDEX_PREFIX="${NAME}_"
 
+### Application Title
+
+Set the application title in `settings.php` file:
+
+    ...
+    return (object)[
+        ...
+        'title' => 'My Website',        // page title in the front area
+        'admin_title' => 'Admin Panel', // page title in the admin area
+    ]; 
+
+Render the application title in your page template using `$osm_app->http->title` property:
+
+    <?php
+    global $osm_app; /* @var \Osm\Core\App $osm_app */
+    ?>
+    <x-std-pages::layout :title='$osm_app->http->title'>
+        ...
+    </x-std-pages::layout>
+
 ### Database
 
 Osm Framework uses Laravel for dealing with the databases. Laravel supports MySql, PostgreSQL, SQLite and SQLServer database engines, and this section provides configuration examples. 
