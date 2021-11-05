@@ -109,9 +109,11 @@ Render the application title in your page template using `$osm_app->http->title`
     <?php
     global $osm_app; /* @var \Osm\Core\App $osm_app */
     ?>
-    <x-std-pages::layout :title='$osm_app->http->title'>
+    <x-std-pages::layout :title='"My Page | {$osm_app->http->title}"'>
         ...
     </x-std-pages::layout>
+
+If `:title` property is omitted, the application title is rendered.
 
 ### Database
 
