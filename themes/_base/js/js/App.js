@@ -38,6 +38,7 @@ export default class App {
             let controller = new controllerClass(element, options);
             element.osm_controllers[controllerName] = controller;
 
+            element.classList.add(`js-${controllerName}`);
             controller.onAttaching();
         }
 
