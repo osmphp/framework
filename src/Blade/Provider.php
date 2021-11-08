@@ -87,7 +87,8 @@ class Provider extends Object_
         global $osm_app; /* @var App $osm_app */
 
         $compiler = new Compiler($this->laravel->files,
-            make_dir("{$osm_app->paths->temp}/view_cache/{$this->theme->name}"));
+            make_dir("{$osm_app->paths->temp}/view_cache/{$this->theme->name}"),
+            $this->theme);
 
         $this->registerComponentNamespaces($compiler);
         $this->registerComponents($compiler);

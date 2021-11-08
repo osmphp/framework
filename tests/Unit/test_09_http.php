@@ -44,6 +44,6 @@ class test_09_http extends TestCase
             ->text();
 
         // THEN its output is fetched
-        $this->assertEquals('Hi', $text);
+        $this->assertEquals('Hi, world!', $text);
     }
 }
