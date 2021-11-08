@@ -11,28 +11,19 @@
 
     <link href="{{ $asset('styles.css') }}" rel="stylesheet">
 
-    @if(isset($head))
-        {{ $head }}
-    @else
-        @include('std-pages::head')
-    @endif
+    @include('std-pages::head')
+    {{ $head ?? '' }}
 
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 </head>
 <body>
-    @if(isset($header))
-        {{ $header }}
-    @else
-        @include('std-pages::header')
-    @endif
+    @include('std-pages::header')
+    {{ $header ?? '' }}
 
     {{ $slot }}
 
-    @if(isset($footer))
-        {{ $footer }}
-    @else
-        @include('std-pages::footer')
-    @endif
+    @include('std-pages::footer')
+    {{ $footer ?? '' }}
 
     <script src="{{ $asset('scripts.js') }}"></script>
 </body>
