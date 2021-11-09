@@ -74,14 +74,17 @@ export default class Capturing {
 
     onMouseDown(e) {
         e.stopPropagation();
+        e.stopImmediatePropagation();
     }
 
     onMouseUp(e) {
         e.stopPropagation();
+        e.stopImmediatePropagation();
     }
 
     onClick(e) {
         e.stopPropagation();
+        e.stopImmediatePropagation();
         this.capturing_element.dispatchEvent(new CustomEvent('outside-click', {
             detail: {e}
         }));
@@ -89,10 +92,18 @@ export default class Capturing {
 
     onDoubleClick(e) {
         e.stopPropagation();
+        e.stopImmediatePropagation();
     }
 
     onFocus(e) {
         e.stopPropagation();
+        e.stopImmediatePropagation();
+
+        if (document.activeElement &&
+            document.activeElement instanceof HTMLElement)
+        {
+            document.activeElement.blur();
+        }
         this.capturing_element.focus();
     }
 }
