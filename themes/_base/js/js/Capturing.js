@@ -18,12 +18,24 @@ export default class Capturing {
             this.capturing = true;
         }
 
-        this.capturing_elements.push(element);
+        let focused = document.activeElement &&
+            document.activeElement instanceof HTMLElement
+                ? document.activeElement : null;
+
+        if (focused) {
+            focused.blur();
+        }
+
+        this.capturing_elements.push({element, focused});
         element.focus();
     }
 
     release() {
-        this.capturing_elements.pop();
+        let capture = this.capturing_elements.pop();
+
+        if (capture.focused) {
+            capture.focused.focus();
+        }
     }
 
     /**
@@ -31,7 +43,7 @@ export default class Capturing {
      */
     get capturing_element() {
         return this.capturing_elements.length
-            ? this.capturing_elements[0]
+            ? this.capturing_elements[this.capturing_elements.length - 1].element
             : null;
     }
 
