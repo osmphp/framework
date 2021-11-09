@@ -7,25 +7,26 @@ namespace Osm {
     use Osm\Core\App;
     use Symfony\Component\HttpFoundation\Response;
 
-    function json_response(mixed $value): Response {
+    function json_response(mixed $value, int $status = 200): Response {
         global $osm_app; /* @var App $osm_app */
 
-        return $osm_app->http->responses->json($value);
+        return $osm_app->http->responses->json($value, $status);
     }
 
     function view_response(string $template, array $data = [],
-        array $mergeData = []) : Response
+        array $mergeData = [], int $status = 200) : Response
     {
         global $osm_app; /* @var App $osm_app */
 
-        return $osm_app->http->responses->view($template, $data, $mergeData);
+        return $osm_app->http->responses->view($template, $data, $mergeData,
+            $status);
     }
 
-    function plain_response(string $content) : Response
+    function plain_response(string $content, int $status = 200) : Response
     {
         global $osm_app; /* @var App $osm_app */
 
-        return $osm_app->http->responses->plain($content);
+        return $osm_app->http->responses->plain($content, $status);
     }
 
     function exception_response(\Throwable $e): Response {

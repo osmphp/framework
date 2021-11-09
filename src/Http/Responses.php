@@ -27,7 +27,7 @@ class Responses extends Object_
         return new Response((string)view($template, $data, $mergeData), $status);
     }
 
-    public function json(mixed $value): Response {
+    public function json(mixed $value, int $status = 200): Response {
         return new Response(json_encode(dehydrate($value)), 200, [
             'Content-Type' => 'application/json',
         ]);
