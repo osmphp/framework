@@ -42,7 +42,12 @@ trait ResponsesTrait
     protected function around_renderException(callable $proceed,
         ?string $content): Response
     {
+        global $osm_app; /* @var App $osm_app */
         /* @var Responses $this */
+
+        if ($osm_app->http->request->isXmlHttpRequest()) {
+            return $proceed($content);
+        }
 
         if (!$this->error_page_theme?->views->exists('std-pages::500')) {
             return $proceed($content);
