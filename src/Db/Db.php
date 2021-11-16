@@ -24,6 +24,10 @@ abstract class Db extends Object_
     /**
      * @var callable[]
      */
+    protected array $committed = [];
+    /**
+     * @var callable[]
+     */
     protected array $rolledBack = [];
     protected int $transactions = 0;
 
@@ -97,6 +101,10 @@ abstract class Db extends Object_
         $this->connection->commit();
         $this->transactions--;
         if (!$this->transactions) {
+            foreach ($this->committed as $callback) {
+                $callback($this);
+            }
+            $this->committed = [];
             $this->rolledBack = [];
         }
     }
@@ -108,6 +116,7 @@ abstract class Db extends Object_
             foreach (array_reverse($this->rolledBack) as $callback) {
                 $callback($this);
             }
+            $this->committed = [];
             $this->rolledBack = [];
         }
     }
@@ -144,6 +153,10 @@ abstract class Db extends Object_
 
     public function raw(string $expr): Expression {
         return $this->connection->raw($expr);
+    }
+
+    public function committed(callable $callback): void {
+        $this->committed[] = $callback;
     }
 
     public function rolledBack(callable $callback): void {

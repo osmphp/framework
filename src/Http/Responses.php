@@ -28,7 +28,7 @@ class Responses extends Object_
     }
 
     public function json(mixed $value, int $status = 200): Response {
-        return new Response(json_encode(dehydrate($value)), 200, [
+        return new Response(json_encode($value), 200, [
             'Content-Type' => 'application/json',
         ]);
     }
