@@ -101,11 +101,13 @@ abstract class Db extends Object_
         $this->connection->commit();
         $this->transactions--;
         if (!$this->transactions) {
-            foreach ($this->committed as $callback) {
-                $callback($this);
-            }
+            $callbacks = $this->committed;
             $this->committed = [];
             $this->rolledBack = [];
+
+            foreach ($callbacks as $callback) {
+                $callback($this);
+            }
         }
     }
 
@@ -113,11 +115,13 @@ abstract class Db extends Object_
         $this->connection->rollBack();
         $this->transactions--;
         if (!$this->transactions) {
-            foreach (array_reverse($this->rolledBack) as $callback) {
-                $callback($this);
-            }
+            $callbacks = array_reverse($this->rolledBack);
             $this->committed = [];
             $this->rolledBack = [];
+
+            foreach ($callbacks as $callback) {
+                $callback($this);
+            }
         }
     }
 
