@@ -21,15 +21,7 @@ use Osm\Framework\Laravel\Module as LaravelModule;
  */
 abstract class Db extends Object_
 {
-    /**
-     * @var callable[]
-     */
-    protected array $committed = [];
-    /**
-     * @var callable[]
-     */
-    protected array $rolledBack = [];
-    protected int $transactions = 0;
+    protected array $transactions = [];
 
     protected function get_connection(): Connection {
         return $this->connect();
@@ -94,34 +86,24 @@ abstract class Db extends Object_
 
     public function beginTransaction(): void {
         $this->connection->beginTransaction();
-        $this->transactions++;
+        $this->transactions[] = ['committed' => [], 'rolled_back' => []];
     }
 
     public function commit(): void {
         $this->connection->commit();
-        $this->transactions--;
-        if (!$this->transactions) {
-            $callbacks = $this->committed;
-            $this->committed = [];
-            $this->rolledBack = [];
+        $callbacks = array_pop($this->transactions);
 
-            foreach ($callbacks as $callback) {
-                $callback($this);
-            }
+        foreach ($callbacks['committed'] as $callback) {
+            $callback($this);
         }
     }
 
     public function rollBack(): void {
         $this->connection->rollBack();
-        $this->transactions--;
-        if (!$this->transactions) {
-            $callbacks = array_reverse($this->rolledBack);
-            $this->committed = [];
-            $this->rolledBack = [];
+        $callbacks = array_pop($this->transactions);
 
-            foreach ($callbacks as $callback) {
-                $callback($this);
-            }
+        foreach (array_reverse($callbacks['rolled_back']) as $callback) {
+            $callback($this);
         }
     }
 
@@ -160,10 +142,12 @@ abstract class Db extends Object_
     }
 
     public function committed(callable $callback): void {
-        $this->committed[] = $callback;
+        $this->transactions[count($this->transactions) - 1]
+            ['committed'][] = $callback;
     }
 
     public function rolledBack(callable $callback): void {
-        $this->rolledBack[] = $callback;
+        $this->transactions[count($this->transactions) - 1]
+            ['rolled_back'][] = $callback;
     }
 }
