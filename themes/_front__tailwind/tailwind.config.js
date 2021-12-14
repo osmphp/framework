@@ -1,10 +1,7 @@
 module.exports = {
-    purge: {
-        content: [
-            'temp/*/*/views/**/*.php',
-        ]
-    },
-    darkMode: false,
+    content: [
+        'temp/*/*/views/**/*.php',
+    ],
     theme: {
         extend: {}
     },

@@ -1,7 +1,5 @@
 module.exports = {
-    purge: {
-        content: [
-            'temp/*/*/views/**/*.php',
-        ]
-    },
+    content: [
+        'temp/*/*/views/**/*.php',
+    ]
 }
