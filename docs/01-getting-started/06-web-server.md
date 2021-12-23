@@ -98,3 +98,43 @@ Run the following commands (again, replace `{domain}` with your actual domain na
 Most websites run under HTTPS - a secure protocol that encrypts all the traffic between a browser and your Web server. 
 
 The most often used solution is [Let's Encrypt](https://letsencrypt.org/), consult its documentation for a step-by-step guide.
+
+## Apache
+
+### Configuring Default Virtual Host
+
+On your development machine, configure the default virtual host, either for a single project or multiple projects.
+
+#### Single Project
+
+After installing Apache Web server and enabling its `rewrite` module, configure Apache to serve files from the project directory in `/etc/apache2/sites-available/000-default.conf` file:
+
+    <VirtualHost *:80>
+        ...
+        DocumentRoot {project_path}/public/Osm_App
+
+        <Directory "{project_path}/public/Osm_App">
+                AllowOverride all
+                Require all granted
+        </Directory>
+        ...
+    </VirtualHost>
+
+After restarting Apache, open <http://127.0.0.1/> URL in your browser.  
+
+#### Multiple Projects
+
+Alternatively, configure Apache to serve files from a directory that contains all your projects in `/etc/apache2/sites-available/000-default.conf` file:  
+
+    <VirtualHost *:80>
+        ...
+        DocumentRoot {parent_project_dir}
+
+        <Directory "{parent_project_dir}">
+                AllowOverride all
+                Require all granted
+        </Directory>
+        ...
+    </VirtualHost>
+
+After restarting Apache, open any `{project}` using <http://127.0.0.1/{project}/public/Osm_App/> URL in your browser.
