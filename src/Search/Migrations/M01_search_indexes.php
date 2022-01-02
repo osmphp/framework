@@ -22,8 +22,8 @@ class M01_search_indexes extends Migration
 
     public function create(): void {
         $this->db->create('search_indexes', function (Blueprint $table) {
-            $table->string('search', 128);
-            $table->string('index', 128);
+            $table->string('search', 100);
+            $table->string('index', 100);
             $table->unique(['search', 'index']);
             $table->json('data');
         });
