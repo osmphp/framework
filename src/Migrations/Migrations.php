@@ -83,9 +83,9 @@ class Migrations extends Object_
         }
 
         $this->db->create($this->table_name,  function (Blueprint $table) {
-            $table->string('module');
-            $table->string('method');
-            $table->string('migration');
+            $table->string('module', 128);
+            $table->string('method', 10);
+            $table->string('migration', 128);
             $table->integer('batch');
 
             $table->unique(['module', 'method', 'migration']);
