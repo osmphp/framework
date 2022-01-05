@@ -68,7 +68,7 @@ With `root` privileges, create a `/etc/nginx/sites-available/{domain}` configura
         
         location ~ \.php$ {
             fastcgi_split_path_info ^(.+\.php)(/.+)$;
-            fastcgi_pass unix:/var/run/php/php8.0-fpm.sock;
+            fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
             fastcgi_index index.php;
             include fastcgi_params;
             fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
