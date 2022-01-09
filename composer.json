@@ -37,6 +37,7 @@
             "src/Blade/functions.php",
             "src/Cache/functions.php",
             "src/Http/functions.php",
+            "src/Js/functions.php",
             "src/Logs/functions.php",
             "src/Translations/functions.php",
             "src/Themes/functions.php"
