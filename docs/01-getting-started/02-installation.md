@@ -34,6 +34,8 @@ Run the following commands:
 
     # run the installation
     bash bin/install.sh
+
+### If On Windows
     
 On Windows, instead of the last line run the following commands:
 
