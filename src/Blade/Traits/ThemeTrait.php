@@ -44,7 +44,7 @@ trait ThemeTrait
 
         foreach($descendants as $class) {
             /* @var ThemeAttribute $theme */
-            if (!($theme = $class->attributes[ThemeAttribute::class])) {
+            if (!($theme = $class->attributes[ThemeAttribute::class] ?? null)) {
                 continue;
             }
 
