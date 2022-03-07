@@ -30,10 +30,15 @@ namespace Osm {
         if (!($className = $osm_app->theme
                 ->view_class_names[$view->__class->name] ?? null))
         {
-            return clone $view;
+            $view = clone $view;
+            foreach ($data as $propertyName => $value) {
+                $view->$propertyName = $value;
+            }
+
+            return $view;
         }
 
         $new = "{$className}::new";
-        return $new((array)$view);
+        return $new(array_merge((array)$view, $data));
     }
 }
