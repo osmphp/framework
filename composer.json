@@ -20,7 +20,7 @@
         "doctrine/dbal": "^3",
         "elasticsearch/elasticsearch": "^7",
         "monolog/monolog": "^2",
-        "algolia/algoliasearch-client-php": "^2",
+        "algolia/algoliasearch-client-php": "^3",
         "symfony/http-foundation": "^5",
         "symfony/browser-kit": "^5",
         "illuminate/view": "^8",

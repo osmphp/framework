@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Osm\Framework\Themes;
 
+use Osm\Core\App;
 use Osm\Core\Object_;
 use Osm\Core\Attributes\Serialized;
 
