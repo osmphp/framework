@@ -1,30 +1,30 @@
+<?php
+global $osm_app; /* @var \Osm\Core\App $osm_app */
+
+?>
 <!doctype html>
 <html lang="en">
 <head>
-    <title>{{ $title }}</title>
-    @if ($description)
-        <meta name="description" content="{{ $description }}">
-    @endif
-    @if ($canonicalUrl)
-        <link rel="canonical" href="{{ $canonicalUrl }}">
-    @endif
+    <title>@yield('title') | {{ $osm_app->http->title }}</title>
 
-    <link href="{{ $asset('styles.css') }}" rel="stylesheet">
+    @section('head')
+        @include('std-pages::head')
+    @show
 
-    @include('std-pages::head')
-    {{ $head ?? '' }}
-
+    <link href="{{ $osm_app->asset('styles.css') }}" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 </head>
 <body>
-    @include('std-pages::header')
-    {{ $header ?? '' }}
+    @section('header')
+        @include('std-pages::header')
+    @show
 
-    {{ $slot }}
+    @yield('content')
 
-    @include('std-pages::footer')
-    {{ $footer ?? '' }}
+    @section('footer')
+        @include('std-pages::footer')
+    @show
 
-    <script src="{{ $asset('scripts.js') }}"></script>
+    <script src="{{ $osm_app->asset('scripts.js') }}"></script>
 </body>
 </html>
