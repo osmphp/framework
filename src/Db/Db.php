@@ -22,6 +22,7 @@ use Osm\Framework\Laravel\Module as LaravelModule;
 abstract class Db extends Object_
 {
     protected array $transactions = [];
+    protected array $callbacks = [];
 
     protected function get_connection(): Connection {
         return $this->connect();
@@ -86,24 +87,47 @@ abstract class Db extends Object_
 
     public function beginTransaction(): void {
         $this->connection->beginTransaction();
-        $this->transactions[] = ['committed' => [], 'rolled_back' => []];
+
+        $this->transactions[] = [
+            'committing' => [],
+            'committed' => [],
+            'rolled_back' => [],
+        ];
     }
 
     public function commit(): void {
-        $this->connection->commit();
-        $callbacks = array_pop($this->transactions);
+        $this->callbacks[] = array_pop($this->transactions);
 
-        foreach ($callbacks['committed'] as $callback) {
-            $callback($this);
+        if (empty($this->transactions)) {
+            foreach ($this->callbacks as $callbacks) {
+                foreach ($callbacks['committing'] as $callback) {
+                    $callback($this);
+                }
+            }
+        }
+
+        $this->connection->commit();
+
+        if (empty($this->transactions)) {
+            foreach ($this->callbacks as $callbacks) {
+                foreach ($callbacks['committed'] as $callback) {
+                    $callback($this);
+                }
+            }
         }
     }
 
     public function rollBack(): void {
         $this->connection->rollBack();
-        $callbacks = array_pop($this->transactions);
 
-        foreach (array_reverse($callbacks['rolled_back']) as $callback) {
-            $callback($this);
+        $this->callbacks[] = array_pop($this->transactions);
+
+        if (empty($this->transactions)) {
+            foreach (array_reverse($this->callbacks) as $callbacks) {
+                foreach (array_reverse($callbacks['rolled_back']) as $callback) {
+                    $callback($this);
+                }
+            }
         }
     }
 
@@ -139,6 +163,11 @@ abstract class Db extends Object_
 
     public function raw(string $expr): Expression {
         return $this->connection->raw($expr);
+    }
+
+    public function committing(callable $callback): void {
+        $this->transactions[count($this->transactions) - 1]
+            ['committing'][] = $callback;
     }
 
     public function committed(callable $callback): void {
