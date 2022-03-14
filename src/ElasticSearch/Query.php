@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Osm\Framework\ElasticSearch;
 
 use Osm\Core\Exceptions\NotImplemented;
+use Osm\Framework\Search\Exceptions\InvalidQuery;
 use Osm\Framework\Search\Query as BaseQuery;
 use Osm\Framework\Search\Result;
 use Osm\Framework\Search\Hints\Result\Facet as FacetResult;
+use function Osm\__;
 use function Osm\merge;
 
 /**
@@ -98,6 +100,10 @@ class Query extends BaseQuery
             '_source' => false,
         ];
 
+        if (!$this->count) {
+            $request['track_total_hits'] = false;
+        }
+
         $request = $this->sortElasticQuery($request);
         $request = $this->paginateElasticQuery($request);
         $request = $this->facetElasticQuery($request);
@@ -106,12 +112,18 @@ class Query extends BaseQuery
         $response = $this->search->client->search($request);
 
         $result = Result::new([
-            'count' => $response['hits']['total']['value'],
-            'ids' => array_map(
-                fn($item) => $this->convertId($item['_id']),
-                $response['hits']['hits']),
             'facets' => $this->parseElasticAggregations($response),
         ]);
+
+        if ($this->count) {
+            $result->count = $response['hits']['total']['value'];
+        }
+
+        if ($this->hits) {
+            $result->ids = array_map(
+                fn($item) => $this->convertId($item['_id']),
+                $response['hits']['hits']);
+        }
 
         return $this->fireFunction('elastic:got', $result, $response);
     }
@@ -173,12 +185,20 @@ class Query extends BaseQuery
     }
 
     protected function paginateElasticQuery(array $request): array {
+        if (!$this->hits) {
+            $request['body']['size'] = 0;
+            return $request;
+        }
+
         if ($this->offset !== null) {
             $request['body']['from'] = $this->offset;
         }
 
         if ($this->limit !== null) {
             $request['body']['size'] = $this->limit;
+        }
+        else {
+            throw new InvalidQuery(__("Call 'limit()' before retrieving data from the search index"));
         }
 
         return $request;

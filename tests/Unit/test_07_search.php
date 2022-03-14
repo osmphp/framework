@@ -121,13 +121,28 @@ class test_07_search extends TestCase
 
         $search->index('test_products')->delete(9);
 
-        // THEN the data is indeed in the search engine
+        // THEN if not requested, count is not returned
+        $this->assertFalse(isset($search->index('test_products')
+                ->limit(100)
+                ->get()->count));
+
+        // AND if canceled, IDs are not returned
+        $this->assertFalse(isset($search->index('test_products')
+                ->count()
+                ->hits(false)
+                ->get()->ids));
+
+        // AND the data is indeed in the search engine
         $this->assertEquals(9, $search->index('test_products')
-            ->count());
+            ->count()
+            ->hits(false)
+            ->get()->count);
 
         $this->assertTrue($search->index('test_products')
-            ->search('even three multiple') //
-            ->count() > 0);
+            ->search('even three multiple')
+            ->count()
+            ->hits(false)
+            ->get()->count > 0);
 
         $this->assertEquals(5, $search->index('test_products')
             ->where('sku', '=', 'P5')
@@ -137,12 +152,14 @@ class test_07_search extends TestCase
             $search->index('test_products')
                 ->where('tags', '=', 'Even')
                 ->orderBy('id')
+                ->limit(100)
                 ->ids());
 
         $this->assertEquals([2, 3, 4, 6, 8, 10],
             $search->index('test_products')
                 ->where('tags', 'in', ['Even', 'Multiple of three'])
                 ->orderBy('id')
+                ->limit(100)
                 ->ids());
 
         $this->assertEquals([5, 6, 7, 8],
@@ -150,6 +167,7 @@ class test_07_search extends TestCase
                 ->where('price', '>=', 5)
                 ->where('price', '<=', 10)
                 ->orderBy('id')
+                ->limit(100)
                 ->ids());
 
         $this->assertEquals([1, 5, 6, 7, 8, 10],
@@ -164,6 +182,7 @@ class test_07_search extends TestCase
                     )
                 )
                 ->orderBy('id')
+                ->limit(100)
                 ->ids());
 
         $result = $search->index('test_products')
@@ -175,6 +194,7 @@ class test_07_search extends TestCase
             ->offset(2)
             ->limit(2)
             ->orderBy('id')
+            ->count()
             ->get();
 
         $this->assertEquals(5, $result->count);

@@ -31,6 +31,8 @@ class Query extends Object_
      * @var Facet[]
      */
     public array $facets = [];
+    public bool $count = false;
+    public bool $hits = true;
 
     public function insert(array $data): void {
         throw new NotImplemented($this);
@@ -104,8 +106,16 @@ class Query extends Object_
         throw new NotImplemented($this);
     }
 
-    public function count(): int {
-        return $this->get()->count;
+    public function count(bool $count = true): static {
+        $this->count = $count;
+
+        return $this;
+    }
+
+    public function hits(bool $hits = true): static {
+        $this->hits = $hits;
+
+        return $this;
     }
 
     /**
@@ -116,7 +126,7 @@ class Query extends Object_
     }
 
     public function id(): string|int|null {
-        return $this->get()->ids[0] ?? null;
+        return $this->limit(1)->get()->ids[0] ?? null;
     }
 
     /** @noinspection PhpUnused */

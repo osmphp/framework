@@ -6,10 +6,12 @@ namespace Osm\Framework\AlgoliaSearch;
 
 use Algolia\AlgoliaSearch\SearchIndex;
 use Osm\Core\Exceptions\NotImplemented;
+use Osm\Framework\Search\Exceptions\InvalidQuery;
 use Osm\Framework\Search\Facet;
 use Osm\Framework\Search\Query as BaseQuery;
 use Osm\Framework\Search\Result;
 use Osm\Framework\Search\Hints\Result\Facet as FacetResult;
+use function Osm\__;
 
 /**
  * @property Search $search
@@ -91,12 +93,22 @@ class Query extends BaseQuery
             'attributesToRetrieve' => ['objectID'],
         ];
 
+        if (!$this->count) {
+            // TODO
+        }
+
         if ($this->offset) {
             $request['offset'] = $this->offset;
         }
 
         if ($this->limit) {
             $request['length'] = $this->limit;
+        }
+        elseif ($this->hits) {
+            throw new InvalidQuery(__("Call 'limit()' before retrieving data from the search index"));
+        }
+        else {
+            $request['length'] = 1;
         }
 
         if (!empty($this->facets)) {
@@ -108,14 +120,22 @@ class Query extends BaseQuery
         $response = $this->search->initIndex($this->index_name, $key)
             ->search((string)$this->phrase, $request);
 
-        return Result::new([
-            'count' => $response['nbHits'],
-            'ids' => array_map(
-                fn($item) => $this->convertId($item['objectID']),
-                $response['hits']
-            ),
+        $result = Result::new([
             'facets' => $this->parseFacets($response),
         ]);
+
+        if ($this->count) {
+            $result->count = $response['nbHits'];
+        }
+
+        if ($this->hits) {
+            $result->ids = array_map(
+                fn($item) => $this->convertId($item['objectID']),
+                $response['hits']
+            );
+        }
+
+        return $result;
     }
 
     protected function parseFacets($response): array {
