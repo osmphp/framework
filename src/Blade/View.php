@@ -2,18 +2,14 @@
 
 namespace Osm\Framework\Blade;
 
-use Osm\Core\Attributes\Serialized;
 use Osm\Core\Exceptions\Required;
 use Osm\Core\Object_;
 
 /**
- * @property string $template #[Serialized]
- *
  * Render-time properties:
  *
+ * @property string $template
  * @property array $data
- *
- * @uses Serialized
  */
 class View extends Object_
 {
