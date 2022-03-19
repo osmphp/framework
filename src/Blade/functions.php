@@ -6,6 +6,7 @@ namespace Osm {
 
     use Illuminate\Contracts\View\View;
     use Osm\Core\App;
+    use Osm\Core\Attributes\Serialized;
     use Osm\Framework\Blade\View as ViewObject;
 
     function template(string $template, array $data = [], array $mergeData = [])
@@ -16,10 +17,14 @@ namespace Osm {
         return $osm_app->theme->views->make($template, $data, $mergeData);
     }
 
-    function view(string|ViewObject $view, array $data = [])
-        : ViewObject
+    function view(string|ViewObject|null $view, array $data = [])
+        : ?ViewObject
     {
         global $osm_app; /* @var App $osm_app */
+
+        if ($view === null) {
+            return null;
+        }
 
         // use `rendering` flag in the debugger to distinguish view objects
         // created with the `view()` function from preconfigured view objects
@@ -32,6 +37,24 @@ namespace Osm {
             return $new($data);
         }
 
+        $unset = [];
+        foreach ($view as $propertyName => $value) {
+            $property = $view->__class->properties[$propertyName];
+
+            if (!is_a($property->type, ViewObject::class, true)) {
+                continue;
+            }
+
+            if (!isset($property->attributes[Serialized::class])) {
+                $unset[] = $propertyName;
+                continue;
+            }
+
+            $data[$propertyName] = is_array($value)
+                ? array_map(fn($view) => view($view), $value)
+                : view($value);
+        }
+
         if (!($className = $osm_app->theme
                 ->view_class_names[$view->__class->name] ?? null))
         {
@@ -39,11 +62,18 @@ namespace Osm {
             foreach ($data as $propertyName => $value) {
                 $view->$propertyName = $value;
             }
-
-            return $view;
+        }
+        else {
+            $new = "{$className}::new";
+            $view = $new(array_merge((array)$view, $data));
         }
 
-        $new = "{$className}::new";
-        return $new(array_merge((array)$view, $data));
+        foreach ($unset as $propertyName) {
+            unset($view->$propertyName);
+        }
+
+        $view->__wakeup();
+
+        return $view;
     }
 }

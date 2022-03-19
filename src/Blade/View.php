@@ -43,4 +43,8 @@ class View extends Object_
 
         return parent::default($property);
     }
+
+    public function __wakeup(): void
+    {
+    }
 }
