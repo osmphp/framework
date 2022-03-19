@@ -11,13 +11,17 @@ use Osm\Framework\Blade\Attributes\RenderTime;
 /**
  * @property string $template #[RenderTime]
  * @property array $data #[RenderTime]
- * @property bool $rendering `true` if the view is created using `view()`
- *      helper function, `null` otherwise
  *
  * @uses RenderTime
  */
 class View extends Object_
 {
+    /**
+     * `true` if the view is created using `view()` helper function
+     * @var bool
+     */
+    public bool $rendering = false;
+
     protected function get_template(): string {
         throw new Required(__METHOD__);
     }
