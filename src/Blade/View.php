@@ -10,6 +10,8 @@ use Osm\Core\Object_;
  *
  * @property string $template
  * @property array $data
+ * @property bool $rendering true if the view is created using `view()`
+ *      helper function
  */
 class View extends Object_
 {

@@ -9,13 +9,13 @@ use Osm\Framework\Areas\Attributes\Area;
 use Osm\Framework\Areas\Front;
 use Osm\Framework\Http\Route;
 use Symfony\Component\HttpFoundation\Response;
-use function Osm\view;
+use function Osm\template;
 
 #[Area(Front::class), Name('GET /test-components')]
 class TestComponents extends Route
 {
     public function run(): Response {
         return new Response((string)
-            view('sample-http::test-components'));
+            template('sample-http::test-components'));
     }
 }

@@ -6,7 +6,7 @@ use Osm\Core\App;
 use Osm\Core\Object_;
 use Symfony\Component\HttpFoundation\Response;
 use function Osm\__;
-use function Osm\view;
+use function Osm\template;
 use function Osm\dehydrate;
 
 class Responses extends Object_
@@ -24,7 +24,7 @@ class Responses extends Object_
     public function view(string $template, array $data = [],
         array $mergeData = [], int $status = 200): Response
     {
-        return new Response((string)view($template, $data, $mergeData), $status);
+        return new Response((string)template($template, $data, $mergeData), $status);
     }
 
     public function json(mixed $value, int $status = 200): Response {

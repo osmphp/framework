@@ -12,7 +12,7 @@ use Osm\Framework\Http\Exceptions\NotFound;
 use Osm\Framework\Http\Route;
 use Symfony\Component\HttpFoundation\Response;
 use function Osm\asset;
-use function Osm\view;
+use function Osm\template;
 
 /**
  * @property string $public_path
@@ -33,7 +33,7 @@ class TestJs extends Route
         }
 
         return new Response((string)
-            view('sample-js::test-js', [
+            template('sample-js::test-js', [
                 'test_url' => asset("files/$filename"),
                 'options' => (object)[
                     'ui' => 'bdd',

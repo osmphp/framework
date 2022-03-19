@@ -8,7 +8,7 @@ use Illuminate\View\Component as BaseComponent;
 use Osm\Core\Exceptions\NotImplemented;
 use Osm\Core\Traits\Reflection;
 use Osm\Runtime\Traits\ComputedProperties;
-use function Osm\view;
+use function Osm\template;
 
 /**
  * @property string $__template
@@ -19,7 +19,7 @@ class Component extends BaseComponent
 
     /** @noinspection PhpMissingReturnTypeInspection */
     public function render() {
-        return view($this->__template);
+        return template($this->__template);
     }
 
     /** @noinspection PhpUnused */
