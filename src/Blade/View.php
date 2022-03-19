@@ -32,10 +32,13 @@ class View extends Object_
 
     protected function default(string $property): mixed
     {
-        if (!$this->rendering) {
+        if (!$this->rendering &&
+            isset($this->__class->properties[$property]
+                ->attributes[RenderTime::class]))
+        {
             throw new RenderingError(__(
                 "Only use `:property` render-time property on objects created using `view()` helper function.",
-                ['property' => $property]));
+                ['property' => "{$this->__class->name}::\${$property}"]));
         }
 
         return parent::default($property);
