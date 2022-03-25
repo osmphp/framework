@@ -21,6 +21,10 @@ class Responses extends Object_
         return $this->plain($message, 404);
     }
 
+    public function forbidden(string $message): Response {
+        return $this->plain($message, 403);
+    }
+
     public function view(string $template, array $data = [],
         array $mergeData = [], int $status = 200): Response
     {
