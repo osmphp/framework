@@ -11,7 +11,9 @@ use Illuminate\Database\Query\Expression;
 use Osm\Core\App;
 use Osm\Core\BaseModule;
 use Osm\Core\Object_;
+use Osm\Framework\Db\Exceptions\TransactionError;
 use Osm\Framework\Laravel\Module as LaravelModule;
+use function Osm\__;
 
 /**
  * @property Connection $connection
@@ -21,8 +23,12 @@ use Osm\Framework\Laravel\Module as LaravelModule;
  */
 abstract class Db extends Object_
 {
-    protected array $transactions = [];
-    protected array $callbacks = [];
+    protected array $committing = [];
+    protected array $committed = [];
+    protected array $rolled_back = [];
+    protected int $transaction_count = 0;
+    protected bool $rolling_transaction_back = false;
+    protected bool $committing_transaction = false;
 
     protected function get_connection(): Connection {
         return $this->connect();
@@ -86,48 +92,83 @@ abstract class Db extends Object_
     }
 
     public function beginTransaction(): void {
-        $this->connection->beginTransaction();
+        if ($this->committing_transaction) {
+            throw new TransactionError(__(
+                "Can't begin a transaction in a `committing()` callback"));
+        }
 
-        $this->transactions[] = [
-            'committing' => [],
-            'committed' => [],
-            'rolled_back' => [],
-        ];
+        if ($this->rolling_transaction_back) {
+            throw new TransactionError(__(
+                "Can't begin an inner transaction in the outer transaction that is being rolled back."));
+        }
+
+        if ($this->transaction_count === 0) {
+            $this->connection->beginTransaction();
+        }
+
+        $this->transaction_count++;
     }
 
     public function commit(): void {
-        $this->callbacks[] = array_pop($this->transactions);
+        if ($this->rolling_transaction_back) {
+            throw new TransactionError(__(
+                "Can't commit a transaction that is being rolled back."));
+        }
 
-        if (empty($this->transactions)) {
-            foreach ($this->callbacks as $callbacks) {
-                foreach ($callbacks['committing'] as $callback) {
-                    $callback($this);
-                }
+        $this->transaction_count--;
+        if ($this->transaction_count > 0) {
+            // in inner transaction, do nothing
+            return;
+        }
+
+        $this->committing_transaction = true;
+        try {
+            foreach ($this->committing as $callback) {
+                $callback($this);
             }
+        }
+        finally {
+            $this->committing_transaction = false;
         }
 
         $this->connection->commit();
 
-        if (empty($this->transactions)) {
-            foreach ($this->callbacks as $callbacks) {
-                foreach ($callbacks['committed'] as $callback) {
-                    $callback($this);
-                }
-            }
+        $committed = $this->committed;
+        $this->committing = [];
+        $this->committed = [];
+        $this->rolled_back = [];
+        $this->rolling_transaction_back = false;
+        $this->committing_transaction = false;
+
+        foreach ($committed as $callback) {
+            $callback($this);
         }
     }
 
     public function rollBack(): void {
+        // if a `committing()` callback fails, the `transaction_count` may
+        // be 0, not 1, so the check
+        if ($this->transaction_count > 0) {
+            $this->transaction_count--;
+            $this->rolling_transaction_back = true;
+        }
+
+        if ($this->transaction_count > 0) {
+            // in inner transaction, do nothing
+            return;
+        }
+
+        $rolledBack = array_reverse($this->rolled_back);
+        $this->committing = [];
+        $this->committed = [];
+        $this->rolled_back = [];
+        $this->rolling_transaction_back = false;
+        $this->committing_transaction = false;
+
         $this->connection->rollBack();
 
-        $this->callbacks[] = array_pop($this->transactions);
-
-        if (empty($this->transactions)) {
-            foreach (array_reverse($this->callbacks) as $callbacks) {
-                foreach (array_reverse($callbacks['rolled_back']) as $callback) {
-                    $callback($this);
-                }
-            }
+        foreach ($rolledBack as $callback) {
+            $callback($this);
         }
     }
 
@@ -166,17 +207,14 @@ abstract class Db extends Object_
     }
 
     public function committing(callable $callback): void {
-        $this->transactions[count($this->transactions) - 1]
-            ['committing'][] = $callback;
+        $this->committing[] = $callback;
     }
 
     public function committed(callable $callback): void {
-        $this->transactions[count($this->transactions) - 1]
-            ['committed'][] = $callback;
+        $this->committed[] = $callback;
     }
 
     public function rolledBack(callable $callback): void {
-        $this->transactions[count($this->transactions) - 1]
-            ['rolled_back'][] = $callback;
+        $this->rolled_back[] = $callback;
     }
 }
