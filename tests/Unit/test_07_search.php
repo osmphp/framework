@@ -223,6 +223,12 @@ class test_07_search extends TestCase
             ->orderBy('price', desc: true)
             ->id());
 
+        $search->index('test_products')->deleteAll();
+        $this->assertEquals(0, $search->index('test_products')
+            ->count()
+            ->hits(false)
+            ->get()->count);
+
         $search->drop('test_products');
     }
 }

@@ -46,6 +46,10 @@ class Query extends Object_
         throw new NotImplemented($this);
     }
 
+    public function deleteAll(): void {
+        throw new NotImplemented($this);
+    }
+
     public function bulkInsert(array $data): void {
         throw new NotImplemented($this);
     }

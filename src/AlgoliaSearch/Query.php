@@ -82,6 +82,19 @@ class Query extends BaseQuery
         $this->fire('algolia:deleted', $id);
     }
 
+    public function deleteAll(): void {
+        $this->fire('algolia:deleting_all');
+
+        $request = $this->search->initIndex($this->index_name)
+            ->deleteBy(['filters' => 'id > 0']);
+
+        if ($this->search->wait) {
+            $request->wait();
+        }
+
+        $this->fire('algolia:deleted_all');
+    }
+
     public function get(): Result {
         $filters = $this->filter->toAlgoliaQuery();
         $key = $this->order

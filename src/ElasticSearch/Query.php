@@ -64,6 +64,22 @@ class Query extends BaseQuery
         $this->fire('elastic:deleted', $id);
     }
 
+    public function deleteAll(): void {
+        $request = $this->fireFunction('elastic:deleting_all', [
+            'index' => "{$this->search->index_prefix}{$this->index_name}",
+            'refresh' => $this->search->refresh,
+            'body' => [
+                'query' => [
+                    'match_all' => (object)[],
+                ],
+            ],
+        ]);
+
+        $this->search->client->deleteByQuery($request);
+
+        $this->fire('elastic:deleted_all');
+    }
+
     public function bulkInsert(array $data): void {
         $body = [];
         foreach ($data as $item) {
