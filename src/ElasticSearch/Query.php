@@ -136,6 +136,7 @@ class Query extends BaseQuery
                 $match => [
                     $field->name => [
                         'query' => $phrase,
+                        'fuzziness' => 1,
                         'boost' => 1,
                     ],
                 ],
