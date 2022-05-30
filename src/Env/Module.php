@@ -7,6 +7,7 @@ namespace Osm\Framework\Env;
 use Dotenv\Dotenv;
 use Osm\Core\App;
 use Osm\Core\BaseModule;
+use Osm\Core\Exceptions\NotImplemented;
 use Osm\Core\Paths;
 
 class Module extends BaseModule
