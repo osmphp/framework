@@ -37,12 +37,12 @@ In most cases, use the following commands to perform all these steps:
     # as an argument. If it's omitted, `$NAME.local` is used. By default, the
     # domain name maps to the localhost, `127.0.0.1`, use `--ip=1.2.3.4` to
     # override that.
-    sudo osmt config:host
+    sudo php vendor/osmphp/framework/bin/tools.php config:host
 
     # copy the `nginx_virtual_host.conf` file to Nginx configuration, and 
     # restart Nginx. If the file already exists in the Nginx configuration, it
     # will be overwritten.    
-    sudo osmt install:nginx
+    sudo php vendor/osmphp/framework/bin/tools.php install:nginx
 
 Alternatively, you can perform all these steps manually as described below. It's also a good read for better understanding of Nginx configuration.
 
