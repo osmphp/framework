@@ -34,8 +34,13 @@ class InstallNginx extends Command
             }
         }
         else {
+            if (!is_file('temp/nginx_virtual_host.conf')) {
+                $this->output->writeln("First, run 'osmt config:nginx' command.");
+                return;
+            }
+
             $this->output->writeln("Creating '$this->available_filename' ...");
-            copy('nginx_virtual_host.conf', $this->available_filename);
+            copy('temp/nginx_virtual_host.conf', $this->available_filename);
 
             $this->output->writeln("Creating '$this->enabled_filename' ...");
             if (is_link($this->enabled_filename)) {

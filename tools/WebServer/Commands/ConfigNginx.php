@@ -23,7 +23,7 @@ class ConfigNginx extends Command
 
     public function run(): void
     {
-        file_put_contents('nginx_virtual_host.conf', <<<EOT
+        file_put_contents('temp/nginx_virtual_host.conf', <<<EOT
 server {
 {$this->listen}
     server_name {$this->actual_domain};
