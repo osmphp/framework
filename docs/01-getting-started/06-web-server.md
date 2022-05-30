@@ -23,7 +23,30 @@ While the Web server is running, open the application home page in a browser: <h
 
 ## Nginx
 
-In order to run your application under Nginx Web server, create and enable a *virtual host*. In simple terms, it's a setup that instructs Nginx to execute your application whenever it receives an HTTP request for the specified domain name. The whole procedure is described below.
+In order to run your application under Nginx Web server, create and enable a *virtual host*. In simple terms, it's a setup that instructs Nginx to execute your application whenever it receives an HTTP request for the specified domain name. The whole procedure is described below. Also, make sure that your domain name resolves to the server's IP address.
+
+In most cases, use the following commands to perform all these steps: 
+
+    cd {project_path}
+    
+    # create the `nginx_virtual_host.conf` file. Optionally, pass a domain name
+    # as an argument. If it's omitted, `$NAME.local` is used.
+    osmt config:nginx
+    
+    # add the domain name to the hosts file. Optionally, pass a domain name
+    # as an argument. If it's omitted, `$NAME.local` is used. By default, the
+    # domain name maps to the localhost, `127.0.0.1`, use `--ip=1.2.3.4` to
+    # override that.
+    sudo osmt config:host
+
+    # copy the `nginx_virtual_host.conf` file to Nginx configuration, and 
+    # restart Nginx. If the file already exists in the Nginx configuration, it
+    # will be overwritten.    
+    sudo osmt install:nginx
+
+Alternatively, you can perform all these steps manually as described below. It's also a good read for better understanding of Nginx configuration.
+
+### Resolving Domain Name To Server IP 
 
 Before you begin, purchase the domain name (let's say, it's `www.example.com`), and make sure it's configured to resolve at your production server (let's say `123.456.78.90`). 
 
